@@ -45,6 +45,29 @@ PDF Revisão/
 5. **Publicação**: publicar **somente a pasta `Resumo_estudos`** no Surge:
    `npx surge "PDF Revisão\Resumo_estudos" resumos-hermes.surge.sh`
    - **NUNCA** publicar a pasta `PDF Revisão` inteira — o domínio serve o conteúdo de `Resumo_estudos`.
+6. **Git (obrigatório a cada aula)**: após concluir uma aula (conversão + resumo + questões),
+   commit e push no repositório `origin` (`https://github.com/fernandobritosc/pdfrevisao.git`):
+   - `git add -A`
+   - `git commit -m "<mensagem descritiva da aula>"` (ex: `Adiciona resumo Aula 07 - Licitações`)
+   - `git push origin main`
+   - O `.gitignore` já exclui `*.pdf` e `Resumo_estudos.rar` do versionamento.
+
+## Ambiente opencode (reproduzir em máquina nova)
+
+Este projeto usa **opencode** com a distribuição **GSD-OpenCode** (skills, agentes
+e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
+
+1. **Instalar o GSD-OpenCode globalmente** (instala skills, agentes, comandos e
+   regras em `~/.config/opencode/`):
+   `npx gsd-opencode --global`
+   - Fonte: https://github.com/rokicool/gsd-opencode (MIT).
+   - Para reparametrizar modelos (perfis simple/smart/genius): `/gsd-set-profile`.
+2. **Arquivos do projeto que viajam no repositório**:
+   - `.opencode/opencode.json` → config local do opencode (schema base).
+   - `.opencode/rule/gsd-oc-work-hard.md` → regra "executar, não descrever" (cópia).
+3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
+   configurar algum no futuro, registrar aqui (nome, `type`, `command`).
+4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.
 
 ## Regras de qualidade
 
