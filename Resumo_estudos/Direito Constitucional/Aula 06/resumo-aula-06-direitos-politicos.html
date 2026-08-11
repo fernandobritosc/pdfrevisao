@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DC Aula 06: Direitos Políticos</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Constitucional — Aula 06</div>
+  <div class="sidebar-sub">Direitos Políticos · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceitos iniciais e democracia</a>
+  <a href="#sec2">2. Sufrágio, voto e soberania popular</a>
+  <a href="#sec3">3. Alistamento eleitoral e capacidades</a>
+  <a href="#sec4">4. Elegibilidade e inelegibilidades</a>
+  <a href="#sec5">5. Perda e suspensão (art. 15)</a>
+  <a href="#sec6">6. Anterioridade eleitoral (art. 16)</a>
+  <a href="#sec7">7. Pontos que mais caem em prova</a>
+  <a href="#sec8">8. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: simplificado + completo + mapa mental<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITOS INICIAIS E DEMOCRACIA                     -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceitos iniciais e tipos de democracia</div>
+  </div>
+  <div class="sec-subtitle">O que são os direitos políticos e as formas de exercício do poder pelo povo</div>
+
+  <div class="card">
+    <div class="card-title">Direitos políticos: definição</div>
+    <div class="card-text">
+      Os <strong>direitos políticos</strong> são aqueles que garantem a participação do povo no processo de condução da vida política nacional. São direitos relacionados ao exercício da <strong>cidadania</strong> e, segundo Gilmar Mendes, formam a <strong>base do regime democrático</strong>.
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Democracia direta</div>
+      <div class="card-text">O povo exerce o poder <strong>diretamente</strong>, sem intermediários ou representantes.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Democracia representativa (indireta)</div>
+      <div class="card-text">O povo <strong>elege representantes</strong> que, em seu nome, governam o país. O representante exerce <strong>mandato livre</strong> (não vinculado à vontade do povo) e <strong>mandato geral</strong> (representa toda a população do território, não só seus eleitores).</div>
+    </div>
+    <div class="card" style="border-color:var(--purple);">
+      <div class="card-title" style="color:var(--purple);">Democracia semidireta (participativa)</div>
+      <div class="card-text">O povo exerce o poder <strong>tanto diretamente quanto por representantes</strong>. É o modelo <strong>adotado no Brasil</strong>, com institutos típicos: <strong>plebiscito, referendo e iniciativa popular de leis</strong>.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Direitos políticos positivos × negativos</div>
+    <div class="card-text">
+      A doutrina classifica os direitos políticos em duas espécies:<br><br>
+      • <strong>Positivos</strong>: relacionados à <strong>participação ativa</strong> na vida política do Estado (exercício do <strong>sufrágio</strong> — capacidade de votar e ser votado)<br>
+      • <strong>Negativos</strong>: normas que <strong>limitam o exercício da cidadania</strong>, impedindo a participação — são as <strong>inelegibilidades</strong> e as hipóteses de <strong>perda e suspensão</strong> dos direitos políticos
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — SUFRÁGIO, VOTO E SOBERANIA POPULAR                  -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Sufrágio, voto e soberania popular (art. 14, caput)</div>
+  </div>
+  <div class="sec-subtitle">Soberania popular · características do voto · plebiscito, referendo e iniciativa popular</div>
+
+  <div class="legal-block">
+    <strong>Art. 14, caput, CF/88:</strong> "A soberania popular será exercida pelo sufrágio universal e pelo voto direto e secreto, com valor igual para todos, e, nos termos da lei, mediante: I - plebiscito; II - referendo; III - iniciativa popular."
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sufrágio: capacidade eleitoral ativa e passiva</div>
+    <div class="card-text">
+      O <strong>sufrágio</strong> é a capacidade de <strong>votar e de ser votado</strong> e engloba:<br><br>
+      • <strong>Capacidade eleitoral ativa</strong>: direito de <strong>alistar-se como eleitor</strong> (alistabilidade) e de <strong>votar</strong><br>
+      • <strong>Capacidade eleitoral passiva</strong>: direito de <strong>ser votado e se eleger</strong> para cargo público (<strong>elegibilidade</strong>)<br><br>
+      O sufrágio pode ser <strong>universal</strong> (direito de votar concedido a todos os nacionais, sem condições econômicas, culturais ou sociais — <strong>tipo adotado pela CF/88</strong>) ou <strong>restrito (qualificativo)</strong> — que pode ser <strong>censitário</strong> (condições econômicas: renda, bens) ou <strong>capacitário</strong> (característica especial: ser alfabetizado, por exemplo).
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Características do voto</div>
+    <div class="card-text">
+      O voto, instrumento do exercício do sufrágio, deve ser:<br>
+      • <strong>Direto</strong> · <strong>Secreto</strong> · <strong>Universal</strong> · <strong>Periódico</strong> (art. 60, § 4º, CF — cláusula pétrea) · <strong>Obrigatório</strong> (art. 14, § 1º, I, CF) · <strong>Com valor igual para todos</strong> (art. 14, caput)<br><br>
+      <strong>⚠️ A única característica que NÃO é cláusula pétrea é a obrigatoriedade do voto</strong> — pode ser abolida mediante emenda constitucional.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Instituto</th><th>Momento da consulta</th><th>Exemplo no Brasil</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Plebiscito</strong></td><td>Consulta <strong>prévia</strong> à edição do ato legislativo ou administrativo</td><td>1993 — forma de governo (república/monarquia) e sistema de governo (parlamentarismo/presidencialismo)</td></tr>
+        <tr><td><strong>Referendo</strong></td><td>Consulta <strong>posterior</strong> à edição do ato — o povo <strong>ratifica ou rejeita</strong></td><td>Lei 10.826/2003 (Estatuto do Desarmamento) — 63,94% contra a proibição da comercialização de armas</td></tr>
+        <tr><td><strong>Iniciativa popular</strong></td><td>Projeto de lei apresentado pelo povo</td><td>Mínimo de <strong>1% do eleitorado nacional</strong>, distribuído por pelo menos <strong>5 Estados</strong>, com não menos de <strong>0,3%</strong> dos eleitores de cada um deles</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Participação social nos três Poderes:</strong> Legislativo — <strong>voto</strong>; Judiciário — <strong>júri popular</strong> (crimes dolosos contra a vida); Executivo — <strong>conselhos e comitês gestores</strong> de políticas públicas.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ALISTAMENTO ELEITORAL E CAPACIDADES                 -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Alistamento eleitoral e capacidades (art. 14, §§ 1º e 2º)</div>
+  </div>
+  <div class="sec-subtitle">Quem é obrigado, quem pode votar facultativamente e quem não pode se alistar</div>
+
+  <div class="card">
+    <div class="card-text">
+      A <strong>capacidade eleitoral ativa</strong> é adquirida mediante a <strong>inscrição junto à Justiça Eleitoral</strong> (alistamento, a pedido do interessado). A qualidade de eleitor confere a condição de <strong>cidadão</strong> — apto a ajuizar <strong>ação popular</strong> ou participar da <strong>iniciativa popular de leis</strong>. <strong>O cidadão não necessariamente poderá ser votado</strong> (exige as condições de elegibilidade, estudadas na seção 4).
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Obrigatório (art. 14, § 1º, I)</div>
+      <div class="card-text">
+        • <strong>Maiores de dezoito anos</strong>
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Facultativo (art. 14, § 1º, II)</div>
+      <div class="card-text">
+        • <strong>Analfabetos</strong><br>
+        • <strong>Maiores de setenta anos</strong><br>
+        • <strong>Maiores de 16 e menores de 18 anos</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Vedado (art. 14, § 2º)</div>
+    <div class="card-text">
+      Não podem alistar-se como eleitores:<br>
+      • <strong>Os estrangeiros</strong> — apenas brasileiros (natos ou naturalizados) podem se alistar; os <strong>portugueses equiparados</strong>, por receberem tratamento equivalente ao de brasileiro naturalizado, <strong>podem</strong> se alistar<br>
+      • <strong>Os conscritos</strong>, durante o período do serviço militar obrigatório (conscrito = o convocado para a prestação do serviço militar inicial obrigatório)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>O analfabeto VOTA (facultativamente), mas NÃO pode ser votado</strong> — é inelegível (art. 14, § 4º). Cuidado com assertivas que digam que o analfabetismo impede o alistamento: isso está errado.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O voto é facultativo para os <strong>maiores de setenta anos</strong> — NÃO sessenta. Assertivas com "60 anos" estão erradas.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — ELEGIBILIDADE E INELEGIBILIDADES                    -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Elegibilidade e inelegibilidades (art. 14, §§ 3º a 13)</div>
+  </div>
+  <div class="sec-subtitle">Condições de elegibilidade · inelegibilidades absolutas e relativas · impugnação de mandato</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Condições de elegibilidade (art. 14, § 3º) — cumulativas
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      I — <strong>nacionalidade brasileira</strong>;<br>
+      II — <strong>pleno exercício</strong> dos direitos políticos;<br>
+      III — <strong>alistamento eleitoral</strong>;<br>
+      IV — <strong>domicílio eleitoral na circunscrição</strong>;<br>
+      V — <strong>filiação partidária</strong>;<br>
+      VI — <strong>idade mínima</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Idade mínima</th><th>Cargos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>35 anos</strong></td><td>Presidente e Vice-Presidente da República · Senador</td></tr>
+        <tr><td><strong>30 anos</strong></td><td>Governador e Vice-Governador de Estado e do DF</td></tr>
+        <tr><td><strong>21 anos</strong></td><td>Deputado Federal, Deputado Estadual ou Distrital · Prefeito, Vice-Prefeito · juiz de paz</td></tr>
+        <tr><td><strong>18 anos</strong></td><td>Vereador</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      35 = "3+5" (Presidência e Senado) · 30 = Governador ("trinta = triângulo do estado") · 21 = cargos "rola solto" (Deputados, Prefeitos, juiz de paz) · 18 = Vereador (vota com 18, vereia com 18)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Senador exige 35 anos</strong> (não 30!). Governador exige 30. A banca adora trocar esses dois.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--purple);">
+    Inelegibilidades — visão geral
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Conceito</th><th>Hipóteses</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Absoluta</strong> (art. 14, § 4º)</td><td>Impede a candidatura a <strong>qualquer</strong> cargo; ligada a características pessoais; lista <strong>taxativa</strong> na CF (legislação infraconstitucional não pode criar)</td><td><span class="tag tag-red">Inalistáveis</span> e <span class="tag tag-red">analfabetos</span></td></tr>
+        <tr><td><strong>Relativa</strong> (arts. 14, §§ 5º a 9º)</td><td>Obsta a candidatura a <strong>certos cargos</strong>, por situações específicas</td><td>Por motivos <strong>funcionais</strong> (§ 5º) · <strong>reflexa</strong> (§ 7º) · <strong>militar</strong> (§ 8º) · outras por <strong>lei complementar</strong> (§ 9º)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--purple);">
+    Inelegibilidade relativa por motivos funcionais (arts. 14, §§ 5º e 6º)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Reeleição (art. 14, § 5º)</strong>: o Presidente da República, os Governadores e os Prefeitos e quem os houver <strong>sucedido ou substituído no curso dos mandatos</strong> poderão ser reeleitos para <strong>um único período subsequente</strong> — no máximo <strong>dois mandatos consecutivos</strong> no mesmo cargo<br>
+      • <strong>Não alcança o Poder Legislativo</strong>: Deputados e Senadores podem ser eleitos para mandatos ilimitados e sucessivos<br>
+      • <strong>Desincompatibilização (art. 14, § 6º)</strong>: para concorrerem a <strong>outros cargos</strong>, os Chefes do Executivo devem <strong>renunciar aos mandatos até 6 meses antes do pleito</strong> — não é necessária quando concorre à <strong>reeleição</strong> ao mesmo cargo
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Entendimentos do STF sobre reeleição:</strong> (1) quem exerceu dois mandatos consecutivos de prefeito fica inelegível para um terceiro, ainda que em município diferente — vedação ao <strong>"prefeito itinerante"</strong>; (2) o Chefe do Executivo com dois mandatos consecutivos não pode, na eleição seguinte, candidatar-se a <strong>Vice</strong>; (3) os Vices também só podem se reeleger ao mesmo cargo por um único período subsequente (salvo se não sucederam/substituíram o titular nos 6 meses antes do pleito).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--red);">
+    Inelegibilidade reflexa (art. 14, § 7º)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      São inelegíveis, <strong>no território de jurisdição do titular</strong>, o <strong>cônjuge e os parentes consanguíneos ou afins, até o segundo grau ou por adoção</strong>, do Presidente da República, de Governador, do DF, de Prefeito <strong>ou de quem os haja substituído dentro dos seis meses anteriores ao pleito</strong>, <strong>salvo se já titular de mandato eletivo e candidato à reeleição</strong>.<br><br>
+      • <strong>Só os Chefes do Poder Executivo afetam a elegibilidade de terceiros</strong> — titular de cargo do Legislativo não gera qualquer implicação<br>
+      • Alcance: cônjuge/parentes de Prefeito não concorrem a nenhum cargo <strong>no Município</strong>; de Governador, a nenhum cargo <strong>no Estado</strong> (inclui Deputado Federal/Estadual e Senador pelo estado); de Presidente, a <strong>nenhum cargo no País</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Entendimentos do STF:</strong> (1) alcança a <strong>união estável</strong> com o Chefe do Executivo, inclusive <strong>homoafetiva</strong>; (2) <strong>Súmula Vinculante nº 18</strong>: a dissolução da sociedade ou do vínculo conjugal <strong>no curso do mandato não afasta</strong> a inelegibilidade reflexa; (3) <strong>falecimento do cônjuge</strong> no curso do mandato — <strong>não se aplica</strong> a SV 18 (Repercussão Geral 678); (4) o parentesco do "município-mãe" afeta o "município-filho" (desmembramento).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--red);">
+    Inelegibilidade relativa ao militar (art. 14, § 8º)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tempo de serviço</th><th>Condição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Menos de 10 anos</strong></td><td>Deve <strong>afastar-se da atividade</strong> (desligar-se da corporação)</td></tr>
+        <tr><td><strong>Mais de 10 anos</strong></td><td>Será <strong>agregado pela autoridade superior</strong> e, se eleito, passará <strong>automaticamente, no ato da diplomação, para a inatividade</strong> (conserva-se ativo até a diplomação)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      Apenas o <strong>militar alistável</strong> é elegível (conscritos, por não serem alistáveis, não são elegíveis). O art. 143, § 3º, V, CF veda a filiação partidária do militar — mas o <strong>TSE</strong> entende que a ausência de prévia filiação é <strong>suprida pelo registro da candidatura</strong> apresentada pelo partido e autorizada pelo candidato.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Outras hipóteses e regras dos §§ 9º a 13
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Art. 14, § 9º</strong>: lei <strong>complementar nacional</strong> estabelecerá outros casos de inelegibilidade e prazos de cessação (proteger probidade administrativa, moralidade, normalidade e legitimidade das eleições) — emenda constitucional também pode; <strong>outros atos normativos, jamais</strong>. Foi com base nisso que surgiu a <strong>LC 64/90</strong>, alterada pela <strong>LC 135/2010 ("Lei da Ficha Limpa")</strong>. Diferença: lei <strong>nacional</strong> abrange todos os entes (União, Estados, DF, Municípios); lei <strong>federal</strong>, só a União<br>
+      • <strong>Art. 14, § 10</strong>: o mandato eletivo poderá ser impugnado ante a <strong>Justiça Eleitoral no prazo de 15 dias contados da diplomação</strong>, com provas de <strong>abuso do poder econômico, corrupção ou fraude</strong><br>
+      • <strong>Art. 14, § 11</strong>: a ação de impugnação de mandato tramita em <strong>segredo de justiça</strong> (exceção à publicidade), respondendo o autor se temerária ou de manifesta má-fé<br>
+      • <strong>Art. 14, §§ 12 e 13 (EC 111/2021)</strong>: consultas populares sobre questões locais, aprovadas pelas <strong>Câmaras Municipais</strong> e encaminhadas à Justiça Eleitoral <strong>até 90 dias antes</strong> das eleições municipais, realizadas <strong>concomitantemente</strong> a elas; manifestações favoráveis/contrárias ocorrem <strong>durante as campanhas, sem propaganda gratuita</strong> no rádio e TV
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ação de impugnação de mandato = prazo de <strong>15 dias</strong> da diplomação (não 30!) e tramita em <strong>segredo de justiça</strong> (a banca inverte para "público" ou "30 dias").
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PERDA E SUSPENSÃO (ART. 15)                          -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Perda e suspensão dos direitos políticos (art. 15)</div>
+  </div>
+  <div class="sec-subtitle">Vedação à cassação · hipóteses de perda × suspensão</div>
+
+  <div class="legal-block">
+    <strong>Art. 15, CF/88:</strong> "É vedada a cassação de direitos políticos, cuja perda ou suspensão só se dará nos casos de: I - cancelamento da naturalização por sentença transitada em julgado; II - incapacidade civil absoluta; III - condenação criminal transitada em julgado, enquanto durarem seus efeitos; IV - recusa de cumprir obrigação a todos imposta ou prestação alternativa, nos termos do art. 5º, VIII; V - improbidade administrativa, nos termos do art. 37, § 4º."
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Vedação à cassação</div>
+    <div class="card-text">
+      Em resposta à ditadura que a precedeu, a CF <strong>não permite, em nenhuma hipótese, a cassação dos direitos políticos</strong> — apenas perda (definitiva) ou suspensão (temporária).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hipótese (art. 15)</th><th>Classificação doutrinária</th><th>Efeito</th></tr></thead>
+      <tbody>
+        <tr><td><strong>I</strong> — Cancelamento da naturalização por sentença transitada em julgado</td><td><span class="tag tag-red">Perda</span></td><td>Prazo indeterminado; reaquisição <strong>não automática</strong> (requer processo de reaquisição)</td></tr>
+        <tr><td><strong>II</strong> — Incapacidade civil absoluta</td><td><span class="tag tag-amber">Suspensão</span></td><td>Direitos "congelados" enquanto durar a causa; restabelecimento <strong>automático</strong> após a cessação</td></tr>
+        <tr><td><strong>III</strong> — Condenação criminal transitada em julgado, enquanto durarem seus efeitos</td><td><span class="tag tag-amber">Suspensão</span></td><td>Suspensão <strong>imediata</strong> + perda imediata do mandato; norma <strong>autoaplicável</strong> (STF)</td></tr>
+        <tr><td><strong>IV</strong> — Recusa de cumprir obrigação a todos imposta ou prestação alternativa (escusa de consciência, art. 5º, VIII)</td><td><span class="tag tag-red">Perda</span></td><td>Prazo indeterminado</td></tr>
+        <tr><td><strong>V</strong> — Improbidade administrativa (art. 37, § 4º)</td><td><span class="tag tag-amber">Suspensão</span></td><td>Resulta em <strong>perda do mandato</strong> e <strong>suspensão</strong> dos direitos políticos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Critério distintivo (doutrina):</strong> na <strong>perda</strong>, a reaquisição não é automática após a cessação da causa e o prazo é indeterminado; na <strong>suspensão</strong>, a reaquisição é <strong>automática</strong> (prazo determinado ou indeterminado). <strong>A CF não diz expressamente</strong> quais incisos são perda ou suspensão — a classificação é doutrinária.</div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Escusa de consciência:</strong> do ponto de vista prático, a doutrina e as bancas de <strong>Direito Constitucional</strong> tratam a recusa de cumprir obrigação a todos imposta como <strong>perda</strong>. Questões de Direito Penal/Processo Penal (Tribunal do Júri, art. 438 do CPP, Lei 8.239/91) podem tratá-la como <strong>suspensão</strong> — atenção ao contexto da prova.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Na <strong>improbidade administrativa</strong> há <strong>perda do mandato + SUSPENSÃO dos direitos políticos</strong> — NUNCA "perda dos direitos políticos". Condenação criminal <strong>transitada em julgado</strong> suspende direitos; condenação em <strong>2º grau (sem trânsito)</strong> não é causa (a pessoa presa, sem condenação transitada, mantém o direito de voto).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — ANTERIORIDADE ELEITORAL (ART. 16)                   -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Princípio da anterioridade eleitoral (art. 16)</div>
+  </div>
+  <div class="sec-subtitle">Vigência imediata × aplicação à eleição do ano seguinte</div>
+
+  <div class="legal-block">
+    <strong>Art. 16, CF/88:</strong> "A lei que alterar o processo eleitoral entrará em vigor na data de sua publicação, não se aplicando à eleição que ocorra até um ano da data de sua vigência."
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      A lei eleitoral tem <strong>vigência imediata</strong> (força de lei na data da publicação), mas <strong>produz efeitos apenas em momento futuro</strong>: <strong>não se aplica à eleição que ocorrer até um ano</strong> da data de sua vigência.<br><br>
+      • O <strong>STF considera o princípio da anterioridade eleitoral cláusula pétrea</strong> do texto constitucional<br>
+      • Exemplo (questão TRE-GO): lei publicada em fevereiro de 2018 <strong>não</strong> se aplica ao pleito de outubro de 2018
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O prazo é de <strong>um ano</strong> — não dois. E a regra fala em eleição que ocorra <strong>até um ano da data de vigência</strong> (não da publicação, embora a vigência seja imediata).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Idades mínimas (art. 14, § 3º, VI)</strong>: 35 (Pres./Vice/Senador) · 30 (Governador/Vice) · 21 (Deputados, Prefeito, Vice-Prefeito, juiz de paz) · 18 (Vereador)<br>
+      • <strong>Alistamento</strong>: obrigatório 18+; facultativo: analfabetos, 70+, 16–18; vedado: estrangeiros e conscritos<br>
+      • <strong>Analfabeto vota (facultativo), mas é inelegível</strong><br>
+      • <strong>Reeleição</strong>: um único período subsequente (§ 5º) · <strong>desincompatibilização</strong>: 6 meses antes do pleito para outros cargos (§ 6º)<br>
+      • <strong>Inelegibilidade reflexa (§ 7º)</strong>: cônjuge, parentes consanguíneos ou afins até 2º grau ou por adoção, no território de jurisdição do titular
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Vedação à cassação</strong> dos direitos políticos (art. 15) — só perda ou suspensão<br>
+      • Perda: <strong>I</strong> (cancelamento da naturalização) e <strong>IV</strong> (escusa de consciência); Suspensão: <strong>II, III e V</strong> (classificação doutrinária)<br>
+      • Improbidade: perda do mandato + <strong>suspensão</strong> dos direitos políticos<br>
+      • Condenação criminal transitada em julgado: suspensão <strong>imediata</strong>, norma autoaplicável (STF)<br>
+      • <strong>Anterioridade eleitoral</strong> (art. 16): vigência imediata, efeitos após 1 ano; cláusula pétrea para o STF<br>
+      • Militar: &lt;10 anos = afasta-se; &gt;10 anos = agregado, inatividade na diplomação<br>
+      • Impugnação de mandato: 15 dias da diplomação, segredo de justiça<br>
+      • Consultas populares locais (EC 111/2021): Câmaras Municipais + JE até 90 dias antes, sem propaganda gratuita
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Senador = 35 anos</strong> (não 30) · facultativo é aos <strong>70</strong>, não 60<br>
+      • "Cassação" em assertivas está sempre <strong>errada</strong> (vedada pela CF)<br>
+      • Improbidade: "perda dos direitos políticos" está <strong>errado</strong> — é suspensão<br>
+      • <strong>Prefeito itinerante</strong> (3º mandato em outro município) é vedado pelo STF<br>
+      • Chefes do Executivo <strong>não precisam</strong> de desincompatibilização para a reeleição<br>
+      • Só Chefe do <strong>Executivo</strong> gera inelegibilidade reflexa — Legislativo, não<br>
+      • SV 18: dissolução do casamento <strong>no curso do mandato</strong> não afasta a inelegibilidade reflexa (mas o <strong>falecimento</strong> afasta — RG 678)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine o art. 14 § por § (alistamento, idades, reeleição, reflexa, militar, 15 dias), o art. 15 (perda × suspensão — nunca cassação) e o art. 16 (1 ano). É a tríade que FCC e FGV mais cobram em direitos políticos.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>
