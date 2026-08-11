@@ -50,11 +50,10 @@ TEC coladas em conteúdo de estudo e incrementar a incidência.
 5. **Publicação**: publicar **somente a pasta `Resumo_estudos`** no Surge:
    `npx surge "PDF Revisão\Resumo_estudos" resumos-hermes.surge.sh`
    - **NUNCA** publicar a pasta `PDF Revisão` inteira — o domínio serve o conteúdo de `Resumo_estudos`.
-6. **Git (obrigatório a cada aula)**: após concluir uma aula (conversão + resumo + questões),
-   commit e push no repositório `origin` (`https://github.com/fernandobritosc/pdfrevisao.git`):
-   - `git add -A`
-   - `git commit -m "<mensagem descritiva da aula>"` (ex: `Adiciona resumo Aula 07 - Licitações`)
-   - `git push origin main`
+6. **Git** no repositório `origin` (`https://github.com/fernandobritosc/pdfrevisao.git`):
+   - Commitar a cada etapa concluída (conversão, resumo, aprendizado TEC).
+   - **`git push origin main` SOMENTE quando o usuário encerrar a aula** — não pushar
+     por bloco/etapa. Acumular commits localmente até o encerramento.
    - O `.gitignore` já exclui `*.pdf` e `Resumo_estudos.rar` do versionamento.
 
 ## Ambiente opencode (reproduzir em máquina nova)
@@ -95,6 +94,9 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 ⚖️ Base legal     — artigo(s) de lei que fundamenta (ex: Lei 14.133/2021, art. 6º, XXIX)
 🚨 Pegadinha      — o erro da assertiva / o que a banca adora inverter
 ```
+
+- **NUNCA referenciar a questão no bloco** (nem número, banca, órgão, cargo ou ano) —
+  o conteúdo deve valer por si só, sem vínculo com a questão de origem.
 
 ### Tema repetido
 
