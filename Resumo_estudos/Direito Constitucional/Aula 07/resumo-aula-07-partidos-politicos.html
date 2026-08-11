@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DC Aula 07: Partidos Políticos</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Constitucional — Aula 07</div>
+  <div class="sidebar-sub">Partidos Políticos · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Natureza e valores (art. 17, caput)</a>
+  <a href="#sec2">2. Preceitos aplicáveis (incs. I-IV)</a>
+  <a href="#sec3">3. Autonomia partidária (§ 1º) e coligações</a>
+  <a href="#sec4">4. Personalidade jurídica e registro (§ 2º)</a>
+  <a href="#sec5">5. Cláusula de barreira (§ 3º) e direito de antena</a>
+  <a href="#sec6">6. Fidelidade partidária (§§ 5º e 6º)</a>
+  <a href="#sec7">7. EC 133/2024: cotas e imunidade</a>
+  <a href="#sec8">8. Pontos que mais caem em prova</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: simplificado + completo + mapa mental<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — NATUREZA E VALORES (ART. 17, CAPUT)                 -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Natureza jurídica e valores resguardados (art. 17, caput)</div>
+  </div>
+  <div class="sec-subtitle">O que são os partidos políticos e quais valores limitam a liberdade de criação</div>
+
+  <div class="legal-block">
+    <strong>Art. 17, caput, CF/88:</strong> "É livre a criação, fusão, incorporação e extinção de partidos políticos, resguardados a soberania nacional, o regime democrático, o pluripartidarismo, os direitos fundamentais da pessoa humana e observados os seguintes preceitos: [...]"
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Natureza jurídica</div>
+      <div class="card-text"><strong>Pessoa jurídica de direito privado</strong>, instituição essencial à preservação do Estado democrático de direito, que se organiza em torno de <strong>ideias e convicções políticas comuns</strong>, almejando a conquista e manutenção do poder por meio das <strong>eleições</strong>.</div>
+    </div>
+    <div class="card" style="border-color:var(--purple);">
+      <div class="card-title" style="color:var(--purple);">Liberdade de criação</div>
+      <div class="card-text">É <strong>plena</strong> — sem limites quantitativos ou territoriais —, desde que resguardados os valores do caput. Admite <strong>fusão e incorporação</strong> (STF admite lei exigindo prazo mínimo de 5 anos de existência — ADI 6.044).</div>
+    </div>
+    <div class="card" style="border-color:var(--red);">
+      <div class="card-title" style="color:var(--red);">Vedações</div>
+      <div class="card-text">Não pode haver partido <strong>nazista ou racista</strong> (direitos fundamentais da pessoa humana) nem partido <strong>vinculado a entidade ou governo estrangeiro</strong> (soberania nacional). <strong>Vedada a organização paramilitar</strong> (art. 17, § 4º, e art. 5º, XVII).</div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>EC 111/2021, art. 3º:</strong> nos processos de <strong>incorporação</strong>, as sanções aplicadas aos órgãos partidários regionais e municipais do partido incorporado (inclusive por prestação de contas) e a responsabilização de antigos dirigentes <strong>não se transferem</strong> ao partido incorporador nem a seus novos dirigentes — exceto quanto aos que já integravam o partido incorporado.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — PRECEITOS (INCS. I-IV)                              -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Preceitos a serem observados (art. 17, I a IV)</div>
+  </div>
+  <div class="sec-subtitle">Requisitos constitucionais impostos a todos os partidos</div>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">I — Caráter nacional</div>
+      <div class="card-text">Não pode haver partido envolvendo <strong>só um Estado, município ou o DF</strong>. Só é reconhecido partido aquele com <strong>repercussão em todo o país</strong> — evita "legendas de aluguel" e a proliferação de agremiações sem expressão.</div>
+    </div>
+    <div class="card" style="border-color:var(--red);">
+      <div class="card-title" style="color:var(--red);">II — Recursos estrangeiros</div>
+      <div class="card-text"><strong>Proibição de recebimento de recursos financeiros</strong> de entidade ou governo estrangeiros <strong>ou de subordinação a estes</strong>. Visa impedir que os interesses do Brasil fiquem subordinados ao capital estrangeiro.</div>
+    </div>
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">III — Prestação de contas</div>
+      <div class="card-text">Prestação de contas <strong>à Justiça Eleitoral</strong>, para impedir o "caixa dois" e submeter as contas partidárias à fiscalização financeira, em prol da moralidade pública.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">IV — Funcionamento parlamentar</div>
+      <div class="card-text">Funcionamento parlamentar <strong>de acordo com a lei</strong>. Norma de <strong>eficácia limitada</strong>, regulamentada pela <strong>Lei 9.096/95</strong>.</div>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Preceitos do art. 17: "N-R-P-F" — <strong>N</strong>acional (I) · <strong>R</strong>ecursos estrangeiros proibidos (II) · <strong>P</strong>restação de contas à JE (III) · <strong>F</strong>uncionamento parlamentar conforme a lei (IV)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Toda assertiva que admite recurso estrangeiro, caráter regional/territorial ou organização paramilitar está errada.</strong> São as três proibições mais cobradas (FCC/FGV) — e o recebimento de verbas de entidade estrangeira é vedado <strong>ainda que a finalidade seja a defesa do regime democrático</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — AUTONOMIA PARTIDÁRIA E COLIGAÇÕES (§ 1º)            -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Autonomia partidária e coligações (art. 17, § 1º)</div>
+  </div>
+  <div class="sec-subtitle">Liberdade de estrutura interna · coligações nas majoritárias e vedação nas proporcionais · fim da verticalização</div>
+
+  <div class="card">
+    <div class="card-title">Autonomia partidária (EC 52/2006)</div>
+    <div class="card-text">
+      A autonomia visa impedir o <strong>controle do Estado sobre os partidos</strong>. Assegura a liberdade para:<br><br>
+      • Definir a <strong>estrutura interna</strong><br>
+      • Estabelecer regras sobre <strong>escolha, formação e duração dos órgãos</strong> permanentes e provisórios<br>
+      • Definir <strong>organização e funcionamento</strong><br>
+      • Adotar critérios de escolha e o regime de <strong>coligações nas eleições majoritárias</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Espécie de eleição</th><th>Coligação</th><th>Fundamento</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Majoritárias</strong> (Presidente, Governador, Prefeito, Senador)</td><td><span class="tag tag-green">Permitida</span></td><td>Autonomia partidária (§ 1º)</td></tr>
+        <tr><td><strong>Proporcionais</strong> (Deputado Federal, Estadual, Distrital, Vereador)</td><td><span class="tag tag-red">Vedada</span> (EC 97/2017, aplicável desde as eleições de 2020)</td><td>§ 1º, parte final</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Verticalização/simetria — NÃO existe mais (desde a EC 52/2006):</strong> não há obrigatoriedade de vinculação entre as candidaturas nos âmbitos nacional, estadual, distrital ou municipal. Um partido pode coligar com A no plano nacional e com B no estadual. A banca adora afirmar que "deve haver simetria" — está errado.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Senador é cargo do Legislativo, mas a eleição é MAJORITÁRIA — então admite coligação.</strong> A pegadinha clássica da FGV (TJ-AP 2024) afirma que coligação só vale para o Executivo: errado, o critério é o sistema (majoritário × proporcional), não o Poder.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — PERSONALIDADE JURÍDICA E REGISTRO (§ 2º)             -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Personalidade jurídica e registro dos estatutos (art. 17, § 2º)</div>
+  </div>
+  <div class="sec-subtitle">Dois momentos distintos: registro civil (lei civil) e registro no TSE (capacidade política)</div>
+
+  <div class="flow">
+    <div class="flow-box">Inscrição do ato constitutivo no registro (CC, arts. 45 e 985; Lei de Registros Públicos, art. 120)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box"><strong>Personalidade jurídica</strong> (direito privado)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">Registro dos estatutos no <strong>TSE</strong></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box"><strong>Capacidade política</strong></div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      • A <strong>personalidade jurídica</strong> é adquirida na forma da <strong>lei civil</strong>: inscrição do ato constitutivo no respectivo registro (Cartório de Registros de Títulos e Documentos), averbando-se as alterações<br>
+      • Após a aferição dos requisitos legais, os <strong>estatutos são registrados no TSE</strong> — só então o partido adquire <strong>capacidade política</strong><br>
+      • <strong>EC 111/2021:</strong> nas alterações estatutárias, o TSE analisa <strong>apenas os dispositivos objeto de alteração</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O registro dos estatutos é no <strong>TSE — Tribunal Superior Eleitoral</strong>. Não é no TRE, não é no STF e não é no TCU (pegadinhas recorrentes: SEFAZ-AM 2022, FGV TJ-RR 2024, FGV ADAB 2024). E quem adquire personalidade é a <strong>inscrição do ato constitutivo</strong> (lei civil) — o registro no TSE confere <strong>capacidade política</strong>, não personalidade.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — CLÁUSULA DE BARREIRA E DIREITO DE ANTENA (§ 3º)     -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Cláusula de barreira (§ 3º) e direito de antena — EC 97/2017</div>
+  </div>
+  <div class="sec-subtitle">Quem tem acesso ao fundo partidário e à propaganda gratuita · critérios alternativos · transição até 2030</div>
+
+  <div class="legal-block">
+    <strong>Art. 17, § 3º, CF/88 (EC 97/2017):</strong> "Somente terão direito a recursos do fundo partidário e acesso gratuito ao rádio e à televisão, na forma da lei, os partidos políticos que alternativamente: I - obtiverem, nas eleições para a Câmara dos Deputados, no mínimo, 3% (três por cento) dos votos válidos, distribuídos em pelo menos um terço das unidades da Federação, com um mínimo de 2% (dois por cento) dos votos válidos em cada uma delas; ou II - tiverem elegido pelo menos quinze Deputados Federais distribuídos em pelo menos um terço das unidades da Federação."
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério (alternativos — basta UM)</th><th>Requisito</th></tr></thead>
+      <tbody>
+        <tr><td><strong>I — Votos</strong></td><td><strong>3%</strong> dos votos válidos para a Câmara dos Deputados, distribuídos em pelo menos <strong>1/3 das unidades da Federação</strong>, com mínimo de <strong>2%</strong> dos votos válidos em cada uma delas</td></tr>
+        <tr><td><strong>II — Deputados eleitos</strong></td><td>Pelo menos <strong>15 Deputados Federais</strong>, distribuídos em pelo menos <strong>1/3 das unidades da Federação</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fundo partidário × direito de antena</div>
+    <div class="card-text">
+      • <strong>Fundo partidário</strong>: garante o <strong>financiamento das atividades partidárias</strong>; recursos distribuídos pelo <strong>TSE aos órgãos nacionais</strong> dos partidos (Lei 9.096/95, art. 41, II)<br>
+      • <strong>Direito de antena</strong>: acesso gratuito ao rádio e à TV, instituído pelo legislador ordinário; objetiva "igualizar, por métodos ponderados, as oportunidades dos candidatos de maior ou menor expressão econômica" (STF, ADI 956)<br>
+      • <strong>Transição:</strong> a cláusula será <strong>plenamente aplicável somente em 2030</strong>; partidos que não a cumprem <strong>não são extintos</strong> — apenas não recebem fundo partidário nem direito de antena
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Cláusula de barreira: <strong>"3/1/3 com 2"</strong> (3% dos votos em 1/3 das UFs com 2% em cada) <strong>ou "15 em 1/3"</strong> (15 Deputados Federais em 1/3 das UFs). Critérios <strong>alternativos</strong> — nunca cumulativos.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Não confunda os percentuais:</strong> a banca troca por 2%/5%/10%/20% e por "1/5" ou "metade" das UFs. O correto é <strong>3% em 1/3 das UFs com mínimo de 2% em cada</strong> OU <strong>15 deputados em 1/3 das UFs</strong>. "Todos os partidos têm direito ao fundo partidário" também é assertiva clássica <strong>errada</strong> (TRE-PR 2012).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — FIDELIDADE PARTIDÁRIA (§§ 5º E 6º)                  -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Fidelidade partidária (art. 17, §§ 5º e 6º)</div>
+  </div>
+  <div class="sec-subtitle">Perda do mandato por desfiliação · exceções · EC 111/2021</div>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">§ 5º — Eleito por partido que NÃO cumpriu a cláusula</div>
+      <div class="card-text">
+        Ao eleito por partido que não preencheu os requisitos do § 3º é <strong>assegurado o mandato</strong> e <strong>facultada a filiação, sem perda do mandato</strong>, a outro partido que os tenha atingido. Essa filiação <strong>NÃO é considerada</strong> para fins de distribuição do fundo partidário e de acesso gratuito ao rádio e à TV (o partido que recebe o parlamentar <strong>não ganha</strong> mais recursos nem tempo de antena).
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--red);">
+      <div class="card-title" style="color:var(--red);">§ 6º — Fidelidade partidária (EC 111/2021)</div>
+      <div class="card-text">
+        <strong>Deputados Federais, Estaduais, Distritais e Vereadores</strong> que se desligarem do partido pelo qual foram eleitos <strong>perderão o mandato</strong>, salvo:<br>
+        • <strong>Anuência do partido</strong>; ou<br>
+        • Outras hipóteses de <strong>justa causa estabelecidas em lei</strong><br><br>
+        <strong>Não computada, em qualquer caso, a migração</strong> de partido para fins de fundo partidário, outros fundos públicos e acesso gratuito ao rádio e à TV.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Entendimento do STF (fidelidade partidária):</strong> a desfiliação e a infidelidade partidárias resultam em <strong>perda do mandato</strong> dos parlamentares eleitos pelo sistema <strong>proporcional</strong>, salvo justa causa (ex.: desvio de orientação ideológica do partido). A regra <strong>não se aplica</strong> aos eleitos por partidos que não cumprem a cláusula de barreira (§ 5º).</div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Antes × depois da EC 111/2021:</strong> a fidelidade partidária <strong>foi constitucionalizada</strong> pelo § 6º. Antes, o tema era regulado apenas pela <strong>Lei 9.096/95</strong> e pelos estatutos partidários. O § 6º alcança <strong>todos os mandatos proporcionais</strong> (DF, DE, DD e Vereadores).</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Desfiliação sem perda do mandato só nas hipóteses do § 5º (partido de origem não cumpriu a cláusula) ou do § 6º (anuência/justa causa).</strong> A FGV cobra muito o raciocínio inverso: partido com a cláusula cumprida (ex.: 19 deputados eleitos) → desfiliação <strong>gera perda do mandato</strong> (TCE-PA 2024). E o parlamentar que migra <strong>não leva</strong> o direito de antena nem fundo para a nova legenda (ALE-SC 2024).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — EC 133/2024: COTAS E IMUNIDADE                      -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">EC 133/2024 — cotas para pretos e pardas e imunidade</div>
+  </div>
+  <div class="sec-subtitle">Obrigatoriedade de aplicação de recursos · regularização de débitos · imunidade tributária</div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">30% em candidaturas de pessoas pretas e pardas (art. 17, § 9º)</div>
+    <div class="card-text">
+      Dos recursos do <strong>Fundo Especial de Financiamento de Campanha (FEFC)</strong> e do <strong>fundo partidário</strong> destinados às campanhas eleitorais, os partidos devem, obrigatoriamente, aplicar <strong>30% (trinta por cento)</strong> em candidaturas de pessoas <strong>pretas e pardas</strong>, nas circunscrições que melhor atendam aos interesses e às estratégias partidárias.<br><br>
+      <strong>⚠️ Atenção:</strong> o § 9º trata da <strong>distribuição de recursos públicos</strong>, e <strong>não</strong> do registro de candidaturas — <strong>não há cota mínima de candidaturas</strong>, apenas aplicação obrigatória de recursos. Aplica-se <strong>a partir das eleições de 2024</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Outras disposições da EC 133/2024</div>
+    <div class="card-text">
+      • <strong>Participação política das mulheres (§ 7º e Lei 9.096/95, art. 44, V):</strong> mínimo de <strong>5%</strong> dos recursos do fundo partidário na criação e manutenção de programas de promoção e difusão da participação política das mulheres (não são 1%, 10% ou 20%)<br>
+      • <strong>Regularização e refinanciamento</strong> de débitos de partidos políticos: parâmetros e condições estabelecidos pela EC<br>
+      • <strong>Reforço da imunidade tributária</strong> dos partidos políticos
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>30% é de RECURSOS (FEFC + fundo partidário) em candidaturas de pessoas pretas e pardas — não é cota de candidatos.</strong> E o percentual das mulheres é <strong>5%</strong> (programas de participação política) — a FCC usa "20%" e a FGV usa "1%" como distratores (DP-CE 2022, TJ-RR 2024, ADAB 2024).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Valores do caput</strong>: soberania nacional, regime democrático, pluripartidarismo, direitos fundamentais da pessoa humana (PGE-BA 2013)<br>
+      • <strong>Preceitos I-IV</strong>: caráter nacional · proibição de recursos estrangeiros · prestação de contas à JE · funcionamento parlamentar conforme a lei<br>
+      • <strong>Coligações</strong>: permitidas nas <strong>majoritárias</strong>, vedadas nas <strong>proporcionais</strong> (EC 97/2017, desde 2020) — <strong>sem verticalização</strong> (EC 52/2006)<br>
+      • <strong>Registro</strong>: ato constitutivo na lei civil → <strong>estatutos no TSE</strong> (capacidade política)<br>
+      • <strong>Cláusula de barreira</strong>: 3% (1/3 das UFs, 2% em cada) <strong>ou</strong> 15 Deputados Federais (1/3 das UFs) — alternativos<br>
+      • <strong>Fidelidade partidária (EC 111/2021)</strong>: desligamento = perda do mandato, salvo anuência ou justa causa; migração não conta para fundo/antena<br>
+      • <strong>Militar</strong>: registrar estatuto? Não — este ponto é das coligações/migração (ver §§ 5º e 6º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Fusão/incorporação</strong>: admitidas; STF admite prazo mínimo de 5 anos de existência (ADI 6.044); sanções do incorporado não passam ao incorporador (EC 111/2021, art. 3º)<br>
+      • <strong>Fundo partidário</strong>: distribuído pelo TSE aos órgãos nacionais (Lei 9.096/95, art. 41, II)<br>
+      • <strong>Direito de antena</strong>: igualizar oportunidades (ADI 956); critérios anuais do legislador ordinário<br>
+      • <strong>Cláusula plena em 2030</strong>: transição; partido sem cláusula continua existindo, mas sem fundo/antena<br>
+      • <strong>EC 133/2024</strong>: 30% do FEFC + fundo partidário em candidaturas pretas/pardas (§ 9º, desde 2024) · 5% em programas de participação política das mulheres (§ 7º) · refinanciamento de débitos · reforço da imunidade tributária<br>
+      • <strong>Alterações estatutárias</strong>: TSE analisa apenas os dispositivos alterados (EC 111/2021)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Registro no TSE</strong> — nunca TRE, STF ou TCU<br>
+      • <strong>Senador = majoritário</strong> → admite coligação (mesmo sendo Legislativo)<br>
+      • <strong>Verticalização obrigatória</strong>: assertiva sempre errada (EC 52/2006 acabou)<br>
+      • <strong>Percentuais trocados</strong>: 3%×2%, "1/5 ou metade" das UFs, 15 deputados, 5% mulheres (não 20%), 30% pretos/pardas (não 10%)<br>
+      • <strong>"Todos os partidos têm direito ao fundo partidário"</strong>: errado — depende da cláusula<br>
+      • <strong>Desfiliação</strong>: perda do mandato como regra; sem perda só no § 5º (origem sem cláusula) ou § 6º (anuência/justa causa); migrante não leva fundo/antena<br>
+      • <strong>Recursos estrangeiros</strong>: vedados mesmo "em defesa do regime democrático"<br>
+      • <strong>Paramilitar</strong>: vedada, em qualquer cenário
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine o art. 17 § por § (caput + preceitos, § 1º coligações, § 2º registro no TSE, § 3º cláusula de barreira, §§ 5º-6º fidelidade partidária, § 9º cota de 30%). O tema de maior incidência nas bancas FCC/FGV é a <strong>cláusula de barreira + desfiliação</strong> (situações hipotéticas de migração entre partidos).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>
