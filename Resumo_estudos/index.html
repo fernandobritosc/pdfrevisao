@@ -493,12 +493,22 @@ h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
   <p>Administração Financeira e Orçamentária · Direito Administrativo · Português · e mais</p>
   <div style="margin-top:1rem; display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,.7); border:1px solid var(--border); border-radius:999px; padding:.4rem 1rem; font-size:.8rem;">
     <span>🕐</span>
-    <span style="font-weight:700; color:#0f172a;">Última atualização: 11/08/2026 14:38</span>
+    <span style="font-weight:700; color:#0f172a;">Última atualização: 11/08/2026 15:44</span>
     <span style="color:var(--text2);">(horário de Brasília)</span>
   </div>
 </div>
 
 <div class="main">
+
+  <input id="busca" type="text" placeholder="🔍 Buscar aula ou tema..." autocomplete="off" style="width:100%;padding:.8rem 1.1rem;border:1px solid var(--border);border-radius:10px;font-size:.95rem;background:#fff;color:var(--text);margin-bottom:1.5rem;outline:none;">
+  <script>
+  document.getElementById('busca').addEventListener('input', function () {
+    var q = this.value.toLowerCase().trim();
+    document.querySelectorAll('.grid .card').forEach(function (card) {
+      card.style.display = (!q || card.textContent.toLowerCase().includes(q)) ? '' : 'none';
+    });
+  });
+  </script>
 
   <!-- AFO -->
   <div class="section-title">💰 AFO — Administração Financeira e Orçamentária</div>
