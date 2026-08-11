@@ -34,6 +34,11 @@ PDF Revisão/
 
 ## Fluxo de trabalho
 
+**Automação**: o comando `/nova-aula <Matéria> <número> <tema>` (skill local
+`.opencode/skills/nova-aula/`) executa o ciclo completo abaixo (conversão,
+resumo, índice, git, Surge). Pode ser usado também para transformar questões
+TEC coladas em conteúdo de estudo e incrementar a incidência.
+
 1. **Entrada**: usuário coloca a aula em PDF na pasta da matéria.
 2. **Conversão**: converter PDF → `.md` (completo) e **excluir o PDF** após conversão.
    - Se já existir o `.md` e sobrar PDF, excluir o PDF.
@@ -65,6 +70,9 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
 2. **Arquivos do projeto que viajam no repositório**:
    - `.opencode/opencode.json` → config local do opencode (schema base).
    - `.opencode/rule/gsd-oc-work-hard.md` → regra "executar, não descrever" (cópia).
+   - `.opencode/skills/nova-aula/SKILL.md` + `.opencode/command/nova-aula.md` →
+     automação do ciclo de aula (`/nova-aula`), incluindo caminhos de python
+     (PyMuPDF) e do CLI do Surge usados neste ambiente.
 3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
    configurar algum no futuro, registrar aqui (nome, `type`, `command`).
 4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.
