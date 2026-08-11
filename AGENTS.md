@@ -97,6 +97,9 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 
 - **NUNCA referenciar a questão no bloco** (nem número, banca, órgão, cargo ou ano) —
   o conteúdo deve valer por si só, sem vínculo com a questão de origem.
+- **Separação de assuntos**: dentro de um mesmo bloco (card/callout/gotcha), cada
+  assunto ocupa linha própria iniciada por **`→`** (quebra com `<br>`); não criar um
+  novo bloco a cada assunto.
 
 ### Tema repetido
 
