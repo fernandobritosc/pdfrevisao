@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO Aula 05: Dívida Ativa</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 05</div>
+  <div class="sidebar-sub">Dívida Ativa · Lei 4.320/64, art. 39</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito</a>
+  <a href="#sec2">2. Dívida ativa x pública</a>
+  <a href="#sec3">3. Art. 39 — Lei 4.320/64</a>
+  <a href="#sec4">4. Tributária x não tributária</a>
+  <a href="#sec5">5. Contabilização (MCASP)</a>
+  <a href="#sec6">6. Cessão onerosa (LC 208/2024)</a>
+  <a href="#sec7">7. Pegadinhas da banca</a>
+  <a href="#sec8">8. Pontos de prova</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + mapa mental<br>
+    Estratégia Concursos · Luciana de Paula Marinho
+  </div>
+</aside>
+
+<div class="main">
+
+<div class="header">
+  <h1>📌 AFO — Aula 05: Dívida Ativa</h1>
+  <p>Lei 4.320/64, art. 39 · tributária x não tributária · contabilização · cessão onerosa (LC 208/2024) · Material base: resumo + simplificado + mapa mental · Estratégia Concursos</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Conceito de Dívida Ativa</div></div>
+  <div class="sec-subtitle">Lei 4.320/64, art. 39, § 1º — créditos a favor da Fazenda Pública</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Definição legal</div></div>
+    <div class="card-text">
+      A dívida ativa abrange os <strong>créditos a favor da Fazenda Pública</strong> cuja <strong>certeza e liquidez foram apuradas</strong>, por não terem sido <strong>efetivamente recebidos nas datas aprazadas</strong> (art. 39, § 1º, Lei 4.320/64).<br><br>
+      • É uma <strong>fonte potencial de fluxos de caixa</strong>, com impacto positivo pela recuperação de valores<br>
+      • Espelha <strong>créditos a receber</strong> — contabilmente alocada no <strong>ativo</strong><br>
+      • Todos os valores inscritos são <strong>créditos vencidos</strong> a favor da Fazenda Pública
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Inscrição em dívida ativa</div></div>
+    <div class="card-text">
+      A inscrição é <strong>ato jurídico</strong> que visa <strong>legitimar a origem do crédito</strong> em favor da Fazenda Pública, revestindo o procedimento dos necessários requisitos jurídicos para as <strong>ações de cobrança</strong>.<br><br>
+      • Confere legalidade ao crédito como dívida passível de cobrança<br>
+      • Faculta ao ente público a iniciativa do <strong>processo judicial de execução</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Presunção de certeza e liquidez</div></div>
+    <div class="card-text">
+      A dívida ativa inscrita goza da <strong>presunção de certeza e liquidez</strong> e tem <strong>equivalência de prova pré-constituída</strong> contra o devedor.<br><br>
+      • A presunção é <strong>relativa (jure tantum)</strong> — pode ser derrogada por <strong>prova inequívoca</strong><br>
+      • O ônus de apresentar a prova é do <strong>sujeito passivo</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Cobrança:</strong> o crédito da dívida ativa é cobrado por meio da emissão da <strong>certidão da dívida ativa</strong> da Fazenda Pública, inscrita na forma da lei, <strong>valendo como título de execução</strong> — o que lhe garante liquidez.</div></div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Dívida Ativa x Dívida Pública</div></div>
+  <div class="sec-subtitle">Não se confundem — uma é crédito (ativo), a outra é obrigação (passivo)</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Dívida Ativa</th><th>Dívida Pública (Passiva)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Quem deve</strong></td><td>Dívidas de <strong>terceiros</strong> perante a Administração</td><td>Dívidas da <strong>Administração</strong> para com terceiros</td></tr>
+        <tr><td><strong>Representa</strong></td><td><strong>Créditos</strong> a favor da Fazenda Pública</td><td><strong>Obrigações</strong> do ente público</td></tr>
+        <tr><td><strong>Registro contábil</strong></td><td>No <strong>Ativo</strong> (créditos a receber)</td><td>No <strong>Passivo</strong></td></tr>
+        <tr><td><strong>Caráter</strong></td><td>Orçamentário — fonte potencial de fluxos de caixa</td><td>Obrigações exigíveis do ente</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> a banca costuma chamar a dívida ativa de "dívida da União", "despesa de exercício anterior" ou "dívida passiva". Dívida ativa <strong>não é despesa</strong> e <strong>não se confunde com dívida pública</strong> — é crédito em favor da Fazenda, registrado no ativo.</div></div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Natureza:</strong> a dívida ativa é uma espécie de <strong>crédito público</strong>, cuja matéria é definida desde a Lei 4.320/1964, sendo sua gestão econômica, orçamentária e financeira resultante de critérios estabelecidos em diversos outros textos legais.</div></div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Art. 39 da Lei 4.320/1964</div></div>
+  <div class="sec-subtitle">Base legal completa — caput e §§ 1º a 5º</div>
+
+  <div class="legal-block">
+    <strong>Caput — Escrituração no regime de caixa:</strong> os créditos da Fazenda Pública, de natureza <strong>tributária ou não tributária</strong>, serão escriturados como <strong>receita do exercício em que forem arrecadados</strong>, nas respectivas rubricas orçamentárias.
+  </div>
+  <div class="legal-block">
+    <strong>§ 1º — Inscrição:</strong> os créditos <strong>exigíveis pelo transcurso do prazo para pagamento</strong> serão inscritos, na forma da legislação própria, como <strong>Dívida Ativa</strong>, em <strong>registro próprio</strong>, <strong>após apurada a sua liquidez e certeza</strong>; e a respectiva receita será escriturada a esse título.
+  </div>
+  <div class="legal-block">
+    <strong>§ 2º — Naturezas:</strong> <strong>Dívida Ativa Tributária</strong> = crédito da Fazenda Pública proveniente de obrigação legal relativa a <strong>tributos e respectivos adicionais e multas</strong>. <strong>Dívida Ativa não Tributária</strong> = os <strong>demais créditos</strong> da Fazenda Pública (ver seção 4).
+  </div>
+  <div class="legal-block">
+    <strong>§ 3º — Moeda estrangeira:</strong> o valor do crédito da Fazenda Nacional em moeda estrangeira será convertido à moeda nacional à <strong>taxa cambial oficial, para compra</strong>, na data da <strong>notificação ou intimação do devedor</strong> pela autoridade administrativa ou, à sua falta, na <strong>data da inscrição</strong> da Dívida Ativa. A partir da conversão incidem <strong>atualização monetária e juros de mora</strong>, conforme preceitos legais dos débitos tributários.
+  </div>
+  <div class="legal-block">
+    <strong>§ 4º — Abrangência da receita:</strong> a receita da Dívida Ativa abrange os créditos dos parágrafos anteriores, bem como os valores correspondentes à <strong>atualização monetária</strong>, <strong>multa</strong>, <strong>juros de mora</strong> e o <strong>encargo</strong> de que tratam o <strong>art. 1º do Decreto-lei 1.025/1969</strong> e o <strong>art. 3º do Decreto-lei 1.645/1978</strong>.
+  </div>
+  <div class="legal-block">
+    <strong>§ 5º — Competência na União:</strong> a <strong>Dívida Ativa da União</strong> será <strong>apurada e inscrita na Procuradoria da Fazenda Nacional (PGFN)</strong>.
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica de prova:</strong> a dívida ativa compreende, além do <strong>valor principal</strong>, a atualização monetária, juros, multa e demais encargos previstos — incidência legal e de ocorrência natural (prevista desde a Lei 4.320/64), cabendo o registro contábil oportuno. Já o pagamento de <strong>custas e emolumentos foi dispensado</strong> para os atos judiciais da Fazenda Pública (art. 39 da Lei de Execuções Fiscais).</div></div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Tributária x Não Tributária — Gestão e Recebimento</div></div>
+  <div class="sec-subtitle">Art. 39, § 2º, Lei 4.320/64 — o tema mais cobrado da aula</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Natureza</th><th>Definição</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dívida Ativa Tributária</strong></td><td>Crédito proveniente de <strong>obrigação legal relativa a tributos</strong>, respectivos adicionais e multas</td><td>IPVA, IR, IPTU, ICMS e multas por infração à legislação do tributo</td></tr>
+        <tr><td><strong>Dívida Ativa Não Tributária</strong></td><td><strong>Demais créditos</strong> da Fazenda Pública</td><td>Empréstimos compulsórios; contribuições estabelecidas em lei; multas de qualquer origem (exceto tributárias — ex.: multa de trânsito); foros, laudêmios, aluguéis ou taxas de ocupação; custas processuais; preços de serviços prestados por estabelecimentos públicos; indenizações, reposições, restituições e alcances dos responsáveis definitivamente julgados; créditos em moeda estrangeira; sub-rogação de hipoteca, fiança, aval ou outra garantia; contratos em geral</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title">Gestão administrativa e judicial — Advocacia Pública</div></div>
+    <div class="card-text">
+      • <strong>União:</strong> gestão pela <strong>AGU</strong> — <strong>PGFN</strong> (dívida ativa <strong>tributária</strong>) e <strong>PGF</strong> (dívida ativa das <strong>autarquias e fundações públicas federais</strong>)<br>
+      • <strong>Demais entes:</strong> Procuradorias ou Advocacias dos <strong>estados e municípios</strong><br>
+      • A PGFN é o órgão responsável pela <strong>apuração da liquidez e certeza</strong> dos créditos da União e pela <strong>representação legal</strong> na execução da dívida ativa
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">💳</div><div class="card-title">Formas de recebimento e características</div></div>
+    <div class="card-text">
+      • <strong>Formas de recebimento:</strong> adjudicação e dação em pagamento (inclusive recebimento em bens)<br>
+      • <strong>Abatimento ou anistia</strong> depende de <strong>autorização legislativa</strong><br>
+      • A dívida ativa <strong>não está sujeita a sigilo fiscal</strong><br>
+      • Recuperação pode ocorrer por <strong>protesto extrajudicial, parcelamento ou execução fiscal</strong>, contribuindo para o equilíbrio fiscal
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      <span class="tag tag-red">Tributária</span> = nasce do <strong>tributo</strong> (IPVA, IR) + adicionais e multas do tributo<br>
+      <span class="tag tag-blue">Não tributária</span> = tudo o mais: aluguel vencido, multa de trânsito, empréstimo compulsório, foros, laudêmios, indenizações, custas…<br>
+      <strong>Multa de trânsito = não tributária</strong> (multa "de qualquer origem", exceto as tributárias)
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Contabilização da Dívida Ativa (MCASP)</div></div>
+  <div class="sec-subtitle">Inscrição, recebimento, cancelamento e o 8º dígito "tipo"</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Inscrição = fato contábil permutativo</div></div>
+    <div class="card-text">
+      Verificado o não recebimento no prazo de vencimento, o <strong>órgão de origem do crédito</strong> encaminha-o ao <strong>órgão competente para inscrição</strong>.<br><br>
+      • Órgão de origem: baixa o <strong>crédito a receber</strong> contra uma <strong>VPD</strong> (variação patrimonial diminutiva)<br>
+      • Órgão competente: reconhece um <strong>crédito de dívida ativa</strong> contra uma <strong>VPA</strong> (variação patrimonial aumentativa)<br>
+      • <strong>Não altera o valor do patrimônio líquido</strong> — no ente como um todo, há apenas a troca do crédito a receber não inscrito pelo crédito inscrito<br>
+      • Expectativa de realização: crédito a receber no <strong>ativo circulante</strong> → crédito de dívida ativa no <strong>ativo não circulante</strong> (o inadimplemento torna incerto o prazo de realização)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Recebimento (baixa)</div></div>
+    <div class="card-text">
+      O recebimento da dívida ativa corresponde a uma <strong>receita orçamentária</strong> com <strong>simultânea baixa contábil</strong> do crédito registrado no ativo.<br><br>
+      • <strong>Patrimonial:</strong> D — Caixa e Equivalentes de Caixa (F) / C — Créditos a Longo Prazo (P)<br>
+      • <strong>Orçamentária:</strong> D — Receita a Realizar / C — Receita Realizada<br>
+      • <strong>Controle:</strong> D — Controle da Disponibilidade de Recursos / C — Disponibilidade por Destinação de Recursos (DDR)<br>
+      • Recebimento em bens (adjudicação/dação) também pode corresponder a receita orçamentária no momento do recebimento
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Exceção ao regime de caixa (enfoque orçamentário)</div></div>
+    <div class="card-text">
+      A inscrição de créditos na dívida ativa consubstancia <strong>registro e reconhecimento da receita</strong>: o reconhecimento como receita se dá <strong>no momento da inscrição</strong> — e não no momento da arrecadação, como as demais receitas orçamentárias (exceção ao regime de caixa pela <strong>ótica orçamentária</strong>).<br><br>
+      <strong>Atenção:</strong> pelo <strong>enfoque patrimonial</strong> a dívida ativa <strong>não é exceção</strong> — a receita é tratada pelo princípio da <strong>competência</strong>; o acréscimo patrimonial (VPA) ocorreu em momento anterior, no reconhecimento do direito (inscrição).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Cancelamento, abatimento e anistia</div></div>
+    <div class="card-text">
+      O <strong>cancelamento</strong> do crédito inscrito representa sua extinção e provoca <strong>diminuição da situação líquida patrimonial</strong>: baixa do direito classificada como <strong>VPD independente da execução orçamentária</strong> (variação passiva extraorçamentária).<br><br>
+      • Mesma classificação para <strong>abatimentos, anistia ou quaisquer valores</strong> que diminuam os valores inscritos sem decorrer do efetivo recebimento
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🔢</div><div class="card-title">8º dígito "tipo" na classificação por natureza da receita</div></div>
+    <div class="card-text">
+      Na nova classificação por natureza da receita, a dívida ativa é identificada pelo <strong>8º dígito, denominado "tipo"</strong> (finalidade: identificar o tipo de arrecadação).<br><br>
+      • <strong>Tipo 0:</strong> receita não valorizável ou agregadora<br>
+      • <strong>Tipo 1:</strong> arrecadação <strong>Principal</strong> da receita<br>
+      • <strong>Tipo 2:</strong> <strong>Multas e Juros de Mora</strong> da receita<br>
+      • <strong>Tipo 3:</strong> <strong>Dívida Ativa</strong> da receita<br>
+      • <strong>Tipo 4:</strong> <strong>Multas e Juros de Mora da Dívida Ativa</strong><br>
+      • <strong>Tipos 5 a 8:</strong> Multas e Juros (da receita e da dívida ativa) quando a legislação <strong>diferencia a destinação</strong> das multas dos juros
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Atenção:</strong> o registro do ingresso deve, prioritariamente, usar os tipos <strong>1, 3, 5, 6, 7 e 8</strong> (multas recolhidas em código separado dos juros). O uso conjunto dos tipos <strong>2 e 4</strong> é excepcional, apenas quando multas e juros possuam <strong>exatamente as mesmas normas de aplicação na despesa</strong>.</div></div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Cessão onerosa de créditos — LC 208/2024</div></div>
+  <div class="sec-subtitle">Novidade do art. 39-A da Lei 4.320/64 — inclusão pela LC 208/2024</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Art. 39-A — Cessão de direitos creditórios</div></div>
+    <div class="card-text">
+      A <strong>União, o Estado, o DF ou o Município</strong> poderá <strong>ceder onerosamente</strong>, nos termos da Lei e de <strong>lei específica que o autorize</strong>, direitos originados de <strong>créditos tributários e não tributários</strong>, <strong>inclusive quando inscritos em dívida ativa</strong>, a <strong>pessoas jurídicas de direito privado</strong> ou a <strong>fundos de investimento regulamentados pela CVM</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Destinação da receita (§ 6º)</div></div>
+    <div class="card-text">
+      A receita de capital decorrente da venda desses ativos observa o <strong>art. 44 da LRF</strong>:<br><br>
+      • <strong>Pelo menos 50%</strong> do montante → despesas associadas a <strong>regime de previdência social</strong><br>
+      • O <strong>restante</strong> → <strong>despesas com investimentos</strong><br><br>
+      Classificação: <strong>Receita de Capital</strong>, no grupo <strong>Alienação de Bens</strong>.
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>LRF, art. 44:</strong> é vedada a aplicação da receita de capital derivada da <strong>alienação de bens e direitos</strong> que integram o patrimônio público para o financiamento de <strong>despesa corrente</strong>, salvo se destinada por lei aos regimes de previdência social, geral e próprio dos servidores públicos. A venda de direitos creditórios é receita de caráter <strong>não recorrente</strong> — não deve ser usada para custeio de despesas correntes.</div></div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Pegadinhas da banca</div></div>
+  <div class="sec-subtitle">O que a banca adora inverter ou afirmar errado (CESPE, FCC, FGV, VUNESP)</div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha 1 — Fato gerador basta?</div>
+    A ocorrência do <strong>fato gerador</strong> da obrigação <strong>NÃO é suficiente</strong> para a inscrição em dívida ativa. Exige-se a <strong>apuração de certeza e liquidez</strong> e a <strong>falta de recebimento no prazo estipulado</strong>.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha 2 — Inscrição sem apuração prévia</div>
+    É <strong>errado</strong> afirmar que os créditos exigíveis pelo transcurso do prazo serão inscritos em dívida ativa <strong>independentemente de prévia apuração de liquidez e certeza</strong> — a apuração é requisito (art. 39, § 1º).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha 3 — Exercício de escrituração</div>
+    Os créditos da Fazenda Pública são escriturados como receita do <strong>exercício em que forem arrecadados</strong> — e <strong>não</strong> do exercício do <strong>fato gerador</strong> nem do vencimento (art. 39, caput).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha 4 — Quem inscreve a dívida ativa da União</div>
+    A apuração e inscrição da Dívida Ativa da União competem à <strong>PGFN</strong> — <strong>não</strong> às unidades gestoras, à SOF nem aos órgãos detentores dos créditos (art. 39, § 5º).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha 5 — Confusões clássicas</div>
+    • Dívida ativa <strong>não é despesa</strong> e <strong>não se confunde</strong> com dívida pública (passiva)<br>
+    • <strong>Somente créditos tributários</strong> podem ser inscritos? <strong>Errado</strong> — tributários <strong>e não tributários</strong><br>
+    • Dívida ativa <strong>não é</strong> "dívida fundada/flutuante" — é crédito a favor da Fazenda
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha 6 — Presunção</div>
+    A presunção de certeza e liquidez é <strong>relativa</strong> — pode ser derrogada por <strong>prova inequívoca</strong>, cuja apresentação cabe ao <strong>sujeito passivo</strong>. Afirmar que é absoluta/presunção definitiva é erro.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha 7 — Atualização e encargos</div>
+    A receita da dívida ativa <strong>inclui</strong> atualização monetária, multa e juros de mora (e o encargo dos DLs 1.025/69 e 1.645/78). Afirmar que o recebimento <strong>"não está sujeito à atualização monetária"</strong> é erro clássico da FCC. A receita abrange a <strong>moeda estrangeira convertida</strong> (regra do § 3º: taxa cambial oficial <strong>para compra</strong>).
+  </div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Pontos que mais caem em prova</div></div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Alta incidência</div></div>
+    <div class="card-text">
+      • <strong>Tributária x não tributária</strong> — classificar exemplos (IPVA = tributária; multa de trânsito e aluguel vencido = não tributárias)<br>
+      • <strong>Inscrição após apurada liquidez e certeza</strong>, em registro próprio (art. 39, § 1º)<br>
+      • Escrituração como <strong>receita do exercício em que forem arrecadados</strong> (art. 39, caput)<br>
+      • <strong>PGFN</strong> — apuração e inscrição da dívida ativa da União (§ 5º)<br>
+      • Cessão onerosa (LC 208/2024): ≥ 50% para previdência social, restante investimentos
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚙️</div><div class="card-title">Regras técnicas</div></div>
+    <div class="card-text">
+      • <strong>§ 3º:</strong> moeda estrangeira → conversão à taxa cambial oficial <strong>para compra</strong> (data da notificação/intimação do devedor ou, à sua falta, da inscrição); depois incidem atualização monetária e juros de mora<br>
+      • <strong>§ 4º:</strong> receita da dívida ativa = principal + atualização monetária + multa + juros de mora + encargo (DL 1.025/69 e DL 1.645/78)<br>
+      • <strong>8º dígito "tipo":</strong> 3 = dívida ativa; 4 = multas e juros de mora da dívida ativa<br>
+      • Contabilização: inscrição = <strong>fato permutativo</strong> (não altera o PL); cancelamento = VPD extraorçamentária<br>
+      • Certidão da dívida ativa = <strong>título de execução</strong>; custas e emolumentos dispensados para atos judiciais da Fazenda
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Distinções específicas</div></div>
+    <div class="card-text">
+      • <strong>Dívida ativa (ativo)</strong> x <strong>dívida pública/passiva (passivo)</strong><br>
+      • <strong>Ótica orçamentária:</strong> reconhecimento na inscrição = exceção ao regime de caixa; <strong>ótica patrimonial:</strong> não é exceção (competência)<br>
+      • Gestão administrativa e judicial pela <strong>Advocacia Pública</strong> (AGU/PGFN, procuradorias estaduais e municipais)<br>
+      • Formas de recebimento: <strong>adjudicação</strong> e <strong>dação em pagamento</strong>; abatimento/anistia exigem <strong>autorização legislativa</strong>; dívida ativa <strong>não está sujeita a sigilo fiscal</strong>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Macete final</div>
+    <div class="mnemonic-content">
+      Crédito <span class="tag tag-green">certo + líquido</span>, <span class="tag tag-red">vencido e não pago</span> → inscrição na dívida ativa → cobrança por <span class="tag tag-blue">certidão (título executivo)</span> → execução judicial / protesto / parcelamento.
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica final:</strong> decore o art. 39 da Lei 4.320/64 por parágrafo — caput (arrecadação), § 1º (inscrição com liquidez/certeza), § 2º (tributária x não tributária), § 3º (moeda estrangeira), § 4º (encargos) e § 5º (PGFN). A classificação tributária x não tributária é o campeão de incidência nas bancas FCC, CESPE, FGV e VUNESP.</div></div>
+</section>
+
+<!-- SECAO 9 - INCIDÊNCIA DE TEMAS (TEC) -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Incidência de temas (TEC)</div></div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>
