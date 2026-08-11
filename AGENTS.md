@@ -144,6 +144,12 @@ Registro de quais aulas já foram revisadas, direto no card da aula em
 - A classe `card-tag` já existe no CSS do index (verde) — basta inserir o span
   no `card-meta`/`card-links` do card.
 
+## Backlog
+
+Pendências agendadas para execução futura (ver `BACKLOG.md` na raiz): item A =
+passo de verificação de seções finais na skill `/nova-aula`; item B (aguardando
+ideia do usuário) = incidência TEC agregada por matéria.
+
 ## Após cada alteração
 
 - Reportar ao usuário **onde** cada alteração foi feita (arquivo + seção + linha quando possível).
