@@ -126,6 +126,24 @@ Formato sugerido:
 </div>
 ```
 
+## Rastreabilidade de revisão (revisão espaçada)
+
+Registro de quais aulas já foram revisadas, direto no card da aula em
+`Resumo_estudos/index.html`, via tag verde:
+
+```html
+<span class="card-tag">🔁 revisada em 11/08/2026 · 2ª revisão</span>
+```
+
+- Quando o usuário diz **"revisei Aula X"** (ou "revisada"), atualizar o card da
+  aula no index: data da revisão (horário de Brasília) + contador de revisões
+  (`1ª`, `2ª`, `3ª`...).
+- Revisar de novo a mesma aula → atualizar a data e **incrementar** o contador.
+- Após marcar: atualizar o campo "Última atualização" no header do index,
+  commitar e publicar no Surge (fluxo normal).
+- A classe `card-tag` já existe no CSS do index (verde) — basta inserir o span
+  no `card-meta`/`card-links` do card.
+
 ## Após cada alteração
 
 - Reportar ao usuário **onde** cada alteração foi feita (arquivo + seção + linha quando possível).
