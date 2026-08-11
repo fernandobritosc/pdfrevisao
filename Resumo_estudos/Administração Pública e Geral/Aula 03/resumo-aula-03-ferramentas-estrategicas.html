@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AP Aula 03: Ferramentas Estratégicas</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<aside class="sidebar">
+  <div class="sidebar-title">AP — Aula 03</div>
+  <div class="sidebar-sub">Ferramentas Estratégicas</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Diagnóstico</a>
+  <a href="#sec2">2. SWOT</a>
+  <a href="#sec3">3. Análise de Portfólio</a>
+  <a href="#sec4">4. BCG</a>
+  <a href="#sec5">5. Vantagem Competitiva</a>
+  <a href="#sec6">6. Cinco Forças</a>
+  <a href="#sec7">7. Estratégias Genéricas</a>
+  <a href="#sec8">8. Cadeia de Valor</a>
+  <a href="#sec9">9. 5W2H</a>
+  <a href="#sec10">10. BSC</a>
+  <a href="#sec11">11. Matriz GUT</a>
+  <a href="#sec12">12. Questões</a>
+  <hr class="sidebar-divider">
+  <a href="../../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+</aside>
+<div class="main">
+  <div class="header">
+    <h1>🏛️ AP — Aula 03: Ferramentas Estratégicas</h1>
+    <p>SWOT · BCG · Cinco Forças de Porter · Estratégias Genéricas · Cadeia de Valor · 5W2H · BSC · Matriz GUT · 40 questões comentadas · Material: Estratégia Concursos · Stefan Fantini</p>
+  </div>
+
+  <!-- SECAO 1 -->
+  <section id="sec1">
+    <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Diagnóstico Organizacional</div></div>
+    <div class="sec-subtitle">Base das decisões estratégicas</div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Objetivo</div></div>
+      <div class="card-text">
+        O diagnóstico organizacional é a primeira etapa do processo de planejamento estratégico. Consiste em analisar a situação atual da organização, identificando pontos fortes e fracos do ambiente interno, além de oportunidades e ameaças do ambiente externo.
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Ambiente</th><th>Elementos</th><th>Controlável</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Interno</strong></td><td>Forças + Fraquezas</td><td>Sim</td></tr>
+          <tr><td><strong>Externo</strong></td><td>Oportunidades + Ameaças</td><td>Não</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECAO 2 -->
+  <section id="sec2">
+    <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Análise SWOT (FOFA)</div></div>
+    <div class="sec-subtitle">Forças · Fraquezas · Oportunidades · Ameaças</div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Componentes</div></div>
+      <div class="card-text">
+        • <strong>Forças (Strengths):</strong> pontos fortes internos que colocam a organização em posição favorável — vantagem competitiva.<br>
+        • <strong>Fraquezas (Weakness):</strong> pontos fracos internos que colocam a organização em desvantagem em relação à concorrência.<br>
+        • <strong>Oportunidades (Opportunities):</strong> elementos externos que influenciam positivamente — a organização pode aproveitá-los.<br>
+        • <strong>Ameaças (Threats):</strong> elementos externos que influenciam negativamente — podem prejudicar os resultados organizacionais.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Esquema dos cenários SWOT</div></div>
+      <div class="card-text">
+        <strong>Alavancagem = Forças + Oportunidades</strong> → estratégia de <span class="highlight">Desenvolvimento</span><br>
+        <strong>Limitações = Fraquezas + Oportunidades</strong> → estratégia de <span class="highlight">Crescimento</span> (joint ventures)<br>
+        <strong>Vulnerabilidade = Forças + Ameaças</strong> → estratégia de <span class="highlight">Manutenção</span> (estabilidade, nicho, especialização)<br>
+        <strong>Problemas = Fraquezas + Ameaças</strong> → estratégia de <span class="highlight">Sobrevivência</span> (redução de custos, desinvestimentos, liquidação)
+      </div>
+    </div>
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> a organização JAMAIS pode eliminar ou diminuir diretamente as ameaças/oportunidades — são externas e não controláveis. O que ela pode fazer é mitigar ou eliminar os <strong>impactos</strong> delas.</div></div>
+  </section>
+
+  <!-- SECAO 3 -->
+  <section id="sec3">
+    <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Análise de Portfólio</div></div>
+    <div class="sec-subtitle">Decisão sobre quais produtos manter, investir ou abandonar</div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        Ferramenta utilizada para identificar quais produtos ou unidades de negócio estão trazendo lucros e quais estão dando prejuízo. Auxilia na alocação de recursos.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECAO 4 -->
+  <section id="sec4">
+    <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Matriz BCG</div></div>
+    <div class="sec-subtitle">Boston Consulting Group — Crescimento × Participação no mercado</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Categoria</th><th>Crescimento</th><th>Participação</th><th>Ação</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Estrela</strong></td><td>Alto</td><td>Alta</td><td>Investir para manter liderança; equilíbrio no fluxo de caixa</td></tr>
+          <tr><td><strong>Interrogação</strong></td><td>Alto</td><td>Baixa</td><td>Investir pesado para aumentar participação ou abandonar</td></tr>
+          <tr><td><strong>Vaca Leiteira</strong></td><td>Baixo</td><td>Alta</td><td>“Mina” — hora de lucrar; não precisa grandes investimentos</td></tr>
+          <tr><td><strong>Abacaxi/Cachorro</strong></td><td>Baixo</td><td>Baixa</td><td>Pior cenário — suga recursos; geralmente abandonar</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> estrela não é “lucro imediato” — exige investimento alto. Vaca leiteira sim = lucro consolidado. Interrogação pode virar estrela ou abacaxi.</div></div>
+  </section>
+
+  <!-- SECAO 5 -->
+  <section id="sec5">
+    <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Vantagem Competitiva</div></div>
+    <div class="sec-subtitle">Porter — posição lucrativa e sustentável contra as forças da concorrência</div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        Vantagem competitiva é o “algo a mais” que a organização possui, permitindo oferecer produtos/serviços diferenciados em relação aos concorrentes. Origina-se nas atividades distintas que a empresa executa no projeto, produção, marketing, entrega e suporte do produto.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECAO 6 -->
+  <section id="sec6">
+    <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Cinco Forças de Porter</div></div>
+    <div class="sec-subtitle">Modelo das 5 forças competitivas — estrutura do setor</div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Forças</div></div>
+      <div class="card-text">
+        1) <strong>Ameaça de Novos Entrantes</strong><br>
+        Barreiras: economias de escala, diferenciação, necessidade de capital, custos de troca, acesso a canais, ação governamental.<br><br>
+        2) <strong>Ameaça de Produtos Substitutos</strong><br>
+        Diretos: mesma função (margarina/manteiga). Indiretos: função diferente, mesmo resultado (smartphones substituíram câmeras).<br><br>
+        3) <strong>Poder de Barganha dos Fornecedores</strong><br>
+        Forte quando: poucos fornecedores, sem substitutos, insumo crítico, produtos diferenciados, integração para frente.<br><br>
+        4) <strong>Poder de Barganha dos Clientes</strong><br>
+        Forte quando: principal comprador, produtos pouco diferenciados, sem custos de troca, lucros baixos, integração para trás.<br><br>
+        5) <strong>Rivalidade entre Concorrentes</strong><br>
+        Aumenta com: muitos concorrentes, equilíbrio entre eles, crescimento lento, custos fixos elevados, ausência de diferenciação.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECAO 7 -->
+  <section id="sec7">
+    <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Estratégias Competitivas Genéricas</div></div>
+    <div class="sec-subtitle">Porter — 3 estratégias para enfrentar as 5 forças</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Estratégia</th><th>Foco</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Liderança de custo</strong></td><td>Produzir mais barato que concorrentes</td><td>Walmart, casos de eficiência em escala</td></tr>
+          <tr><td><strong>Diferenciação</strong></td><td>Produtos únicos e inigualáveis</td><td>Apple — marca, design, experiência</td></tr>
+          <tr><td><strong>Enfoque/Focalização</strong></td><td>Nicho específico de mercado ou perfil de consumidor</td><td>Produtos sem lactose, carros de luxo</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Esquematizando Porter:</strong> dentro do enfoque, a empresa pode escolher diferenciação ou liderança de custo. É como um “mapa” de escolha estratégica.</div></div>
+  </section>
+
+  <!-- SECAO 8 -->
+  <section id="sec8">
+    <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Cadeia de Valor</div></div>
+    <div class="sec-subtitle">Porter — mapeamento das atividades que geram valor</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>Atividades</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Primárias</strong></td><td>Logística interna, Operações, Logística externa, Marketing e Vendas, Serviços (pós-venda)</td></tr>
+          <tr><td><strong>Apoio (Secundárias)</strong></td><td>Aquisição, Desenvolvimento de tecnologia, RH, Infraestrutura da empresa</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Finalidade</div></div>
+      <div class="card-text">
+        Compreender quais partes das operações geram mais valor e quais são as melhores formas de implementar as estratégias genéricas. A vantagem competitiva vem das atividades distintas executadas em todo o fluxo do produto.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECAO 9 -->
+  <section id="sec9">
+    <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Ferramenta 5W2H</div></div>
+    <div class="sec-subtitle">Checklist para planos de ação</div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">As 7 perguntas</div></div>
+      <div class="card-text">
+        <span class="tag tag-blue">What</span> O que deve ser feito?<br>
+        <span class="tag tag-green">Why</span> Por que deve ser feito?<br>
+        <span class="tag tag-amber">Who</span> Quem deve fazer?<br>
+        <span class="tag tag-red">Where</span> Onde deve ser realizado?<br>
+        <span class="tag tag-teal">When</span> Quando deve ser realizado?<br>
+        <span class="tag tag-purple">How</span> Como deve ser realizado?<br>
+        <span class="tag tag-blue">How much</span> Quanto custará?
+      </div>
+    </div>
+    <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica:</strong> 5W2H é usada tanto para planejar quanto para controlar o andamento dos planos. Não é só “teoria” — é ação.</div></div>
+  </section>
+
+  <!-- SECAO 10 -->
+  <section id="sec10">
+    <div class="sec-header"><div class="sec-num">10</div><div class="sec-title">Balanced Scorecard — BSC</div></div>
+    <div class="sec-subtitle">Kaplan e Norton — transformar estratégia em números</div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Essência</div></div>
+      <div class="card-text">
+        “O que não se pode medir, não se pode administrar.” O BSC desdobra missão, visão e estratégia em objetivos, desafios e metas através de indicadores. Traz equilíbrio entre indicadores financeiros e não financeiros.
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Perspectiva</th><th>Pergunta</th><th>Foco</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Financeira</strong></td><td>Como atendemos aos interesses dos acionistas?</td><td>Lucratividade, ROI, fluxo de caixa</td></tr>
+          <tr><td><strong>Cliente</strong></td><td>Como os clientes veem a organização?</td><td>Satisfação, retenção, captação</td></tr>
+          <tr><td><strong>Processos Internos</strong></td><td>Em quais processos a organização deve ser boa?</td><td>Qualidade, produtividade, tempo</td></tr>
+          <tr><td><strong>Aprendizado e Crescimento</strong></td><td>Como podemos continuar melhorando?</td><td>Capital humano, sistemas, cultura</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">5 elementos do BSC</div></div>
+      <div class="card-text">
+        1) <strong>Mapa estratégico</strong> — representação gráfica da estratégia<br>
+        2) <strong>Objetivos estratégicos</strong> — estado futuro desejado<br>
+        3) <strong>Indicadores</strong> — como medir o andamento<br>
+        4) <strong>Metas</strong> — níveis de desempenho requeridos<br>
+        5) <strong>Plano de ação (iniciativa)</strong> — ações para alcançar os objetivos
+      </div>
+    </div>
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Dica de prova:</strong> no setor público, a perspectiva financeira pode ser substituída por “recursos necessários à implementação de políticas públicas”, e a do cliente por “cidadão”.</div></div>
+  </section>
+
+  <!-- SECAO 11 -->
+  <section id="sec11">
+    <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Matriz GUT</div></div>
+    <div class="sec-subtitle">Priorização de problemas — Gravidade × Urgência × Tendência</div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Fatores</div></div>
+      <div class="card-text">
+        • <strong>Gravidade (G):</strong> impacto do problema sobre a organização — dano/prejuízo potencial.<br>
+        • <strong>Urgência (U):</strong> prazo disponível para agir — “quando” o problema ocorre e quanto tempo há para resolvê-lo.<br>
+        • <strong>Tendência (T):</strong> como o problema irá se desenvolver com o tempo — estabilidade, agravamento ou atenuação.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Como usar</div></div>
+      <div class="card-text">
+        Cada fator recebe nota de 1 a 5. Multiplica-se G × U × T. Quanto maior o resultado, maior a prioridade do problema.
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Problema</th><th>G</th><th>U</th><th>T</th><th>G×U×T</th></tr></thead>
+        <tbody>
+          <tr><td>Alpha</td><td>5</td><td>1</td><td>1</td><td>5</td></tr>
+          <tr><td>Beta</td><td>1</td><td>2</td><td>4</td><td>8</td></tr>
+          <tr><td>Gamma</td><td>2</td><td>4</td><td>4</td><td>32</td></tr>
+          <tr><td>Delta</td><td>4</td><td>2</td><td>5</td><td>40</td></tr>
+          <tr><td>Epsilon</td><td>3</td><td>3</td><td>1</td><td>9</td></tr>
+          <tr><td>Zeta</td><td>5</td><td>2</td><td>3</td><td>30</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Mnemônico:</strong> <span class="highlight">GUT</span> = “<strong>G</strong>rave <strong>U</strong>rge <strong>T</strong>udo” — problemas com notas altas em G, U e T precisam de ação imediata.</div></div>
+  </section>
+
+  <!-- SECAO 12 -->
+  <section id="sec12">
+    <div class="sec-header"><div class="sec-num">12</div><div class="sec-title">Questões Comentadas</div></div>
+    <div class="sec-subtitle">40 questões de multibancas FGV — comentários diretos + gabarito</div>
+
+    <div class="question">
+      <div class="question-header">1) FGV — AMAZUL / Técnico Secretariado / 2026</div>
+      <div class="question-text">Ferramenta que examina fatores do macroambiente (políticos, econômicos, sociais, tecnológicos, ambientais, legais) — análise:</div>
+      <div class="answer"><strong>Gabarito: análise SWOT / FOFA.</strong> A análise do macroambiente é a parte externa da SWOT (oportunidades e ameaças).</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">2) FGV — AMAZUL / Analista / 2026</div>
+      <div class="question-text">Relacione: Forças, Fraquezas, Oportunidades, Ameaças, SWOT.</div>
+      <div class="answer"><strong>Gabarito: letra correta (sequência SWOT).</strong> Forças = internos positivos; Fraquezas = internos negativos; Oportunidades = externos positivos; Ameaças = externos negativos.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">3) FGV — DPE-RO / 2025</div>
+      <div class="question-text">Diagnóstico que busca identificar pontos fortes e fracos da organização — análise:</div>
+      <div class="answer"><strong>Gabarito: análise interna (Forças/Fraquezas).</strong> Ambiente interno = aspectos controláveis.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">4) FGV — MPE-RJ / 2025</div>
+      <div class="question-text">Cenário: forças internas + oportunidades externas — estratégia:</div>
+      <div class="answer"><strong>Gabarito: Desenvolvimento.</strong> Alavancagem = potencializar forças para aproveitar oportunidades.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">5) FGV — Prefeitura de Carajás / 2025</div>
+      <div class="question-text">Matriz BCG: produto com alta participação em mercado de baixo crescimento — categoria:</div>
+      <div class="answer"><strong>Gabarito: Vaca Leiteira.</strong> Alta participação + baixo crescimento = melhor momento para lucrar.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">6) FGV — TRF1 / 2024</div>
+      <div class="question-text">Porter: barreira de entrada representada pela preferência dos clientes por marcas conhecidas —</div>
+      <div class="answer"><strong>Gabarito: Diferenciação do produto.</strong> Marcas conhecidas = barreira para novos entrantes.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">7) FGV — CVM / 2024</div>
+      <div class="question-text">Estratégia que busca criar produtos “únicos” e “inigualáveis” — Porter:</div>
+      <div class="answer"><strong>Gabarito: Diferenciação.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">8) FGV — Câmara SP / 2024</div>
+      <div class="question-text">Estratégia de atuação em nicho específico — Porter:</div>
+      <div class="answer"><strong>Gabarito: Enfoque (Focalização).</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">9) FGV — Câmara Fortaleza / 2024</div>
+      <div class="question-text">Atividades de RH, tecnologia e infraestrutura na Cadeia de Valor são:</div>
+      <div class="answer"><strong>Gabarito: atividades de apoio (secundárias).</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">10) FGV — ALEP-PR / 2024</div>
+      <div class="question-text">Cadeia de Valor: atividades diretamente ligadas ao produto final — logística interna, operações, logística externa, marketing, serviços. São:</div>
+      <div class="answer"><strong>Gabarito: atividades principais/primárias.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">11) FGV — AL-MA / 2023</div>
+      <div class="question-text">5W2H: pergunta “How much?” corresponde a:</div>
+      <div class="answer"><strong>Gabarito: Quanto custará?</strong> Orçamento alocado para a ação.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">12) FGV — AGENERSA / 2023</div>
+      <div class="question-text">BSC: perspectiva que busca identificar como a organização é vista pelos clientes —</div>
+      <div class="answer"><strong>Gabarito: Perspectiva do cliente.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">13) FGV — CGE-SC / 2023</div>
+      <div class="question-text">BSC: perspectiva que avalia ativos intangíveis — pessoas, sistemas, procedimentos:</div>
+      <div class="answer"><strong>Gabarito: Aprendizado e Crescimento.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">14) FGV — PGM Niterói / 2023</div>
+      <div class="question-text">Matriz GUT: fator que avalia de que forma o problema irá se desenvolver:</div>
+      <div class="answer"><strong>Gabarito: Tendência.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">15) FGV — Prefeitura de Niterói / 2023</div>
+      <div class="question-text">Matriz BCG: interrogação = mercado alto crescimento + baixa participação. O que deve ser feito?</div>
+      <div class="answer"><strong>Gabarito: decidir entre investir pesado para virar estrela ou abandonar.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">16) FGV — CGE-SC / 2023</div>
+      <div class="question-text">Porter: cliente torna-se poderoso quando:</div>
+      <div class="answer"><strong>Gabarito: o cliente é o principal comprador, representa grande parte dos custos do fornecedor, e pode fazer integração para trás.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">17) FGV — Senado / 2022</div>
+      <div class="question-text">SWOT: elementos controláveis pela organização —</div>
+      <div class="answer"><strong>Gabarito: Forças e Fraquezas.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">18) FGV — SEFAZ-AM / 2022</div>
+      <div class="question-text">Estratégia de estabilidade, nicho e especialização pertencem a qual cenário SWOT?</div>
+      <div class="answer"><strong>Gabarito: Manutenção = Forças + Ameaças (Vulnerabilidade).</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">19) FGV — CGU / 2022</div>
+      <div class="question-text">BSC: o mapa estratégico é:</div>
+      <div class="answer"><strong>Gabarito: representação gráfica que permite visualizar relações de causa e efeito entre as perspectivas e os objetivos estratégicos.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">20) FGV — TJDFT / 2022</div>
+      <div class="question-text">Estratégia competitiva genérica de Porter que busca produzir mais barato que os concorrentes:</div>
+      <div class="answer"><strong>Gabarito: Liderança de custo.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">21) FGV — TRT 16ª / 2022</div>
+      <div class="question-text">BCG: produto com baixa participação em mercado de baixo crescimento — categoria:</div>
+      <div class="answer"><strong>Gabarito: Abacaxi / Cachorro (vira-lata).</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">22) FGV — MPE-GO / 2022</div>
+      <div class="question-text">Cadeia de Valor: atividades de pós-venda, instalação, consertos —</div>
+      <div class="answer"><strong>Gabarito: atividade principal/primária — Serviços.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">23) FGV — Prefeitura de Manaus / 2022</div>
+      <div class="question-text">BSC: “Como a organização atende aos interesses dos acionistas?” — perspectiva:</div>
+      <div class="answer"><strong>Gabarito: Financeira.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">24) FGV — SEFAZ-AM / 2022</div>
+      <div class="question-text">BSC: “Como podemos continuar melhorando?” — perspectiva:</div>
+      <div class="answer"><strong>Gabarito: Aprendizado e Crescimento.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">25) FGV — Senado / 2022</div>
+      <div class="question-text">Porter: barreira de entrada — curva de aprendizagem/experiência —</div>
+      <div class="answer"><strong>Gabarito: Demais desvantagens de custos.</strong> Empresas já existentes são mais experientes → custos menores.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">26) FGV — TRT 13ª / 2022</div>
+      <div class="question-text">BCG: estrela = alta participação + alto crescimento. Característica:</div>
+      <div class="answer"><strong>Gabarito: exige grandes investimentos; equilíbrio no fluxo de caixa; potencial de lucratividade.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">27) FGV — Prefeitura de Paulínia / 2021</div>
+      <div class="question-text">5W2H: “Who” =</div>
+      <div class="answer"><strong>Gabarito: Quem deve fazer?</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">28) FGV — Câmara de Aracaju / 2021</div>
+      <div class="question-text">Matriz GUT: nota mais alta = maior prioridade. Se G=5, U=4, T=3 — prioridade:</div>
+      <div class="answer"><strong>Gabarito: 60 — prioridade alta.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">29) FGV — FUNSAÚDE / 2021</div>
+      <div class="question-text">BSC não se limita a indicadores financeiros. Usa também indicadores:</div>
+      <div class="answer"><strong>Gabarito: estratégicos/não financeiros.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">30) FGV — FUNSAÚDE / 2021</div>
+      <div class="question-text">Porter: rivalidade aumenta quando há:</div>
+      <div class="answer"><strong>Gabarito: muitos concorrentes, crescimento lento do setor, ausência de diferenciação, custos fixos elevados.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">31) FGV — IMBEL / 2021</div>
+      <div class="question-text">SWOT: ameaças são elementos:</div>
+      <div class="answer"><strong>Gabarito: externos e não controláveis.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">32) FGV — Prefeitura de Carajás / 2025</div>
+      <div class="question-text">BCG: vaca leiteira tem alta participação em mercado de baixo crescimento. Característica principal:</div>
+      <div class="answer"><strong>Gabarito: não precisa grandes investimentos; hora de lucrar.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">33) FGV — AMAZUL / 2026</div>
+      <div class="question-text">SWOT: Forças + Ameaças = cenário de:</div>
+      <div class="answer"><strong>Gabarito: Vulnerabilidade.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">34) FGV — DPE-RO / 2025</div>
+      <div class="question-text">5W2H: pergunta “When” =</div>
+      <div class="answer"><strong>Gabarito: Quando deve ser realizado?</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">35) FGV — MPE-RJ / 2025</div>
+      <div class="question-text">BSC: relação de causa e efeito entre as perspectivas significa que:</div>
+      <div class="answer"><strong>Gabarito: investir em aprendizado/processos melhora cliente e resultados financeiros.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">36) FGV — TRF1 / 2024</div>
+      <div class="question-text">Porter: fornecedor torna-se poderoso quando:</div>
+      <div class="answer"><strong>Gabarito: poucos fornecedores dominam, não há substitutos, insumo é crítico, fornecedor integra para frente.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">37) FGV — CVM / 2024</div>
+      <div class="question-text">Estratégia analítica combina defensiva + exploradora — Porter/Miles & Snow:</div>
+      <div class="answer"><strong>Gabarito: estratégia analítica (Miles & Snow) ou foco híbrido.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">38) FGV — Câmara SP / 2024</div>
+      <div class="question-text">Cadeia de Valor: aquisição de insumos =</div>
+      <div class="answer"><strong>Gabarito: atividade de apoio (secundária).</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">39) FGV — Câmara Fortaleza / 2024</div>
+      <div class="question-text">GUT: Gravidade avalia o impacto/prejuízo. Urgência avalia o:</div>
+      <div class="answer"><strong>Gabarito: prazo disponível para agir.</strong></div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">40) FGV — ALEP-PR / 2024</div>
+      <div class="question-text">BSC: no setor público, a perspectiva do cliente pode ser adaptada para:</div>
+      <div class="answer"><strong>Gabarito: perspectiva do cidadão.</strong></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progressFill').style.width = progress + '%';
+  });
+</script>
+
+</body>
+</html>

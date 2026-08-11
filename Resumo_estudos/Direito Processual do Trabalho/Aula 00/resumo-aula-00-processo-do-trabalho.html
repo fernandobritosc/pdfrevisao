@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DPT Aula 00: Introdução ao Direito Processual do Trabalho</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Processual do Trabalho — Aula 00</div>
+  <div class="sidebar-sub">Introdução ao DPT · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito e autonomia</a>
+  <a href="#sec2">2. Fontes e integração</a>
+  <a href="#sec3">3. Eficácia da lei no tempo e no espaço</a>
+  <a href="#sec4">4. Mediação e arbitragem</a>
+  <a href="#sec5">5. Princípios do processo do trabalho</a>
+  <a href="#sec6">6. Organização da Justiça do Trabalho</a>
+  <a href="#sec7">7. Pontos que mais caem em prova</a>
+  <a href="#sec8">8. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: aula 00 (completo)<br>
+    Estratégia Concursos — Prof. Bruno Klippel
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO E AUTONOMIA                                -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito e autonomia do Direito Processual do Trabalho</div>
+  </div>
+  <div class="sec-subtitle">Ramo autônomo do direito processual, mas incompleto — depende do direito processual comum</div>
+
+  <div class="card">
+    <div class="card-title">Autonomia do DPT</div>
+    <div class="card-text">
+      O direito processual do trabalho é um <strong>ramo autônomo do direito processual</strong> (posicionamento majoritário), pois possui <strong>regras, princípios e normas próprias</strong>, diferentes do direito processual civil, de quem <strong>usa subsidiariamente as normas</strong>.<br><br>
+      Apesar de autônomo, o DPT <strong>não é completo</strong>: a CLT em sua versão original é de <strong>1943</strong>. Por isso aplica-se subsidiariamente o CPC ao processo do trabalho.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Art. 769 da CLT — requisitos cumulativos:</strong> o CPC só é fonte subsidiária quando presentes simultaneamente: (1) <strong>lacuna</strong> na legislação trabalhista e (2) <strong>ausência de incompatibilidade</strong> entre o CPC e a CLT. Não basta apenas a omissão.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O art. 769 da CLT é <strong>muito cobrado</strong> em lei seca. As bancas (FCC, Cebraspe) trocam "omissão" por "concorrência", "escolha do julgador" ou "prudente arbítrio do juiz" — todos errados. Aplicando-se sempre que houver <strong>omissão + compatibilidade</strong>.
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      A <strong>Instrução Normativa nº 39/16 do TST</strong> (março de 2016, entrada em vigor do CPC/2015) enumera dispositivos do novo Código que se aplicam ao processo do trabalho (compatíveis) e outros que não se aplicam (incompatíveis).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — FONTES E INTEGRAÇÃO                                 -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Fontes do Direito Processual do Trabalho</div>
+  </div>
+  <div class="sec-subtitle">Fonte primária é a CLT; subsidiárias diferenciam-se entre conhecimento e execução</div>
+
+  <div class="card">
+    <div class="card-title">Fontes em geral</div>
+    <div class="card-text">
+      A <strong>principal fonte</strong> é a <strong>CLT em conjunto com as leis esparsas</strong>, tais como a <strong>Lei nº 5.584/70</strong> (assistência judiciária gratuita, prazos recursais, rito sumário etc.). <strong>Subsidiariamente</strong>, valemos das normas do <strong>CPC</strong> e da <strong>Lei nº 6.830/80 (Lei de Execução Fiscal)</strong>.<br><br>
+      Podem ser consideradas fontes do direito processual: <strong>lei, regimento interno dos Tribunais, costume, princípios, jurisprudência, equidade e doutrina</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Ordem de aplicação</th><th>Processo de conhecimento</th><th>Processo de execução</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1ª norma</strong></td><td>CLT</td><td>CLT</td></tr>
+        <tr><td><strong>2ª norma</strong></td><td>CPC</td><td>Lei 6.830/80 (Lei de Execução Fiscal)</td></tr>
+        <tr><td><strong>3ª norma</strong></td><td>—</td><td>CPC</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Na fase de <strong>execução</strong>, a Lei de Execução Fiscal (6.830/80) tem <strong>preferência sobre o CPC</strong>, que entra apenas em 3º lugar. É o inverso na fase de conhecimento: CLT → CPC. A assertiva que aplica a LEF "de forma concorrente e preferencial" a ponto de contrariar a CLT está errada.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Aplicação supletiva × subsidiária (art. 15 do CPC)</div>
+    <div class="card-text">
+      O <strong>art. 15 do CPC</strong> prevê a aplicação do CPC de forma <strong>supletiva e subsidiária</strong> aos processos eleitorais, trabalhistas e administrativos.<br><br>
+      • <strong>Supletiva</strong>: aplicação de dispositivos do CPC de forma <strong>complementar</strong> — ainda que exista norma na CLT, sendo ela <strong>incompleta</strong>, utiliza-se o CPC.<br>
+      • <strong>Subsidiária</strong>: aplicação diante da <strong>inexistência de norma jurídica</strong> sobre o assunto.<br><br>
+      O art. 15 do CPC fala apenas em "ausência" de normas (<strong>lacuna normativa</strong>); a CLT traz o requisito adicional da <strong>compatibilidade</strong> (art. 769).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Tipo de lacuna</th><th>Conceito</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Normativa</strong></td><td>Ausência de dispositivo legal sobre a matéria</td></tr>
+        <tr><td><strong>Ontológica</strong></td><td>A norma existe, mas não espelha mais a realidade — tornou-se obsoleta e não atinge a finalidade</td></tr>
+        <tr><td><strong>Axiológica</strong></td><td>A norma existe, mas, se aplicada, acarretará solução <strong>injusta</strong>, pois não reflete mais o ideal da norma</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      NOA — Lacunas: Normativa · Ontológica · Axiológica
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — EFICÁCIA DA LEI NO TEMPO E NO ESPAÇO                -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Eficácia da lei processual no tempo e no espaço</div>
+  </div>
+  <div class="sec-subtitle">No tempo: teoria dos atos processuais · No espaço: territorialidade</div>
+
+  <div class="card">
+    <div class="card-title">Eficácia no tempo — três teorias</div>
+    <div class="card-text">
+      1. <strong>Unidade</strong>: a lei processual nova não se aplica a processo em curso — o processo deve ser tratado como unidade, iniciando e terminando sob a égide da mesma lei.<br>
+      2. <strong>Fases processuais</strong>: o processo divide-se em fases (postulatória, saneatória, instrutória, decisória etc.) e a lei nova aplica-se apenas à <strong>próxima fase</strong>.<br>
+      3. <strong>Atos processuais</strong>: lei nova aplica-se aos <strong>atos processuais seguintes</strong>, não retroagindo (arts. 14 e 1.046 do CPC). É a <strong>teoria aplicável ao processo do trabalho</strong>.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      UFA — Unidade · Fases · Atos (a última é a que vale no processo do trabalho)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Prazo recursal de 8 dias (Recurso Ordinário, art. 895 CLT) em curso, e entra em vigor lei nova reduzindo-o para 5 dias: <strong>segue-se a lei vigente no nascimento do direito de recorrer</strong>, ou seja, interpõe-se no prazo antigo de 8 dias (arts. 14 e 1.046 CPC + art. 915 CLT). Vale também se a lei nova <strong>aumentar</strong> o prazo.
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Art. 915 CLT:</strong> "Não serão prejudicados os recursos interpostos com apoio em dispositivos alterados ou cujo prazo para interposição esteja em curso à data da vigência desta Consolidação."</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Eficácia no espaço — territorialidade</div>
+    <div class="card-text">
+      A lei processual aplica-se em <strong>todo o território nacional</strong>, a brasileiros e estrangeiros que ali trabalham. Segundo Renato Saraiva, <em>"prevalece o princípio da territorialidade, vigorando a lei processual trabalhista em todo o território nacional, sendo aplicada tanto aos brasileiros quanto aos estrangeiros residentes no Brasil"</em> (mesma ideia no art. 16 do CPC).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Lei processual estrangeira não se aplica</strong> aos processos trabalhistas que tramitam no Brasil.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — MEDIAÇÃO E ARBITRAGEM                               -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Métodos extrajudiciais de composição de conflitos: mediação e arbitragem</div>
+  </div>
+  <div class="sec-subtitle">Autocomposição × heterocomposição — mediação, conciliação prévia e arbitragem</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Espécie</th><th>Conceito</th><th>Exemplos no processo do trabalho</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Autocompositivos</strong></td><td>As próprias partes chegam ao consenso, com auxílio de um terceiro (mediador) ou sozinhas, abrindo mão de parte da pretensão</td><td><strong>Conciliação</strong> — a forma mais eficaz e presente; tentativas obrigatórias (arts. 846 e 850 CLT). Acordo firmado na <strong>Comissão de Conciliação Prévia (CCP)</strong> tem eficácia de <strong>título executivo extrajudicial</strong> (art. 625-E CLT)</td></tr>
+        <tr><td><strong>Heterocompositivos</strong></td><td>Um terceiro decide o conflito por autoridade</td><td><strong>Arbitragem</strong> e <strong>jurisdição</strong> (objeto principal do estudo — direito de ação + atos processuais)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Comissão de Conciliação Prévia (arts. 625-A a H da CLT)</div>
+    <div class="card-text">
+      A composição se firma também por meio da CCP, que põe fim ao conflito antes de instalado. O acordo firmado na CCP possui eficácia de <strong>título executivo extrajudicial</strong> (art. 625-E CLT).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Arbitragem</div>
+    <div class="card-text">
+      Prevista primeiramente no Brasil na <strong>Lei nº 9.307/96</strong>, é de <strong>difícil utilização</strong> no processo do trabalho, pois as partes preferem e confiam no Poder Judiciário em vez de se socorrerem de árbitros.<br><br>
+      • <strong>Dissídios individuais</strong>: o TST entendia que a arbitragem não podia ser aplicada, mas a <strong>reforma trabalhista (Lei 13.467/17)</strong> incluiu o <strong>art. 507-A na CLT</strong>, possibilitando a pactuação de cláusula compromissória de arbitragem mesmo em contratos individuais — desde que o empregado receba <strong>remuneração superior a duas vezes o limite do RGPS</strong> e a cláusula seja por <strong>iniciativa do empregado</strong> ou com sua <strong>concordância expressa</strong>.<br>
+      • <strong>Dissídios coletivos</strong>: sempre foi possível, pois o <strong>art. 114, § 2º, da CF/88</strong> prevê a arbitragem antes do ajuizamento do dissídio coletivo.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Art. 114, § 2º, CF:</strong> "Recusando-se qualquer das partes à negociação coletiva ou à arbitragem, é facultado às mesmas, de comum acordo, ajuizar dissídio coletivo de natureza econômica, podendo a Justiça do Trabalho decidir o conflito, respeitadas as disposições mínimas legais de proteção ao trabalho, bem como as convencionadas anteriormente."</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Arbitragem em <strong>contrato individual</strong> exige os requisitos do art. 507-A da CLT (remuneração superior a <strong>2x o limite do RGPS</strong> + iniciativa/concordância expressa do empregado). Em <strong>dissídio coletivo</strong>, a arbitragem sempre foi admitida (art. 114, § 2º, CF).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PRINCÍPIOS DO PROCESSO DO TRABALHO                  -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Princípios do processo do trabalho</div>
+  </div>
+  <div class="sec-subtitle">23 princípios estudados na aula — os mais cobrados em destaque</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Princípio</th><th>Ideia central (base legal)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Dispositivo (inércia)</strong></td><td>O juiz não presta tutela sem provocação (art. 2º CPC); exceções trabalhistas: arts. 878, 39 e 856 CLT</td></tr>
+        <tr><td><strong>Inquisitivo</strong></td><td>Impulso oficial (arts. 2º CPC e 765 CLT; art. 4º Lei 5.584/70); poderes instrutórios (art. 370 CPC; 852-D CLT)</td></tr>
+        <tr><td><strong>Juiz natural</strong></td><td>Art. 5º, XXXVII e LIII, CF; órgãos pré-constituídos, critérios objetivos de competência</td></tr>
+        <tr><td><strong>Identidade física do juiz</strong></td><td>CPC/2015 não o prevê; TST aplica de forma <strong>mitigada</strong> (celeridade/economia)</td></tr>
+        <tr><td><strong>Imparcialidade</strong></td><td>Art. 139, I, CPC (igualdade de tratamento); impedimento e suspeição (arts. 144/145 CPC; 795 e 799 CLT)</td></tr>
+        <tr><td><strong>Concentração dos atos</strong></td><td>Audiência <strong>una</strong> (art. 849 CLT) — maioria dos atos em uma só audiência</td></tr>
+        <tr><td><strong>Oralidade</strong></td><td>Atos orais predominam: reclamação verbal (840), defesa oral 20 min (847), sentença oral (831 e 850), protesto em audiência</td></tr>
+        <tr><td><strong>Irrecorribilidade imediata das interlocutórias</strong></td><td>Art. 893, § 1º, CLT + Súmula 214 TST; não cabe recurso imediato (no CPC usa-se agravo de instrumento)</td></tr>
+        <tr><td><strong>Duplo grau de jurisdição</strong></td><td><strong>Não é garantia constitucional</strong>; error in judicando × error in procedendo</td></tr>
+        <tr><td><strong>Contraditório e ampla defesa</strong></td><td>Art. 5º, LV, CF = informação + possibilidade de reação; notificação (art. 841 CLT)</td></tr>
+        <tr><td><strong>Conciliação</strong></td><td>Art. 764 CLT; dois momentos obrigatórios (846 e 850); homologação extingue com resolução de mérito (art. 487, III, "b", CPC)</td></tr>
+        <tr><td><strong>Jus postulandi</strong></td><td>Art. 791 CLT; restrições da Súmula 425 TST (MS, ação rescisória, ação cautelar, recursos ao TST) e art. 855-B CLT</td></tr>
+        <tr><td><strong>Motivação das decisões</strong></td><td>Art. 93, IX, CF (nulidade absoluta); requisitos da sentença no art. 489 CPC; art. 832 CLT</td></tr>
+        <tr><td><strong>Probidade processual</strong></td><td>Boa-fé; arts. 793-A a D CLT (litigância de má-fé, multa de 1% a 10% do valor corrigido da causa)</td></tr>
+        <tr><td><strong>Eventualidade</strong></td><td>Art. 336 CPC — toda matéria de defesa na contestação, sob pena de preclusão</td></tr>
+        <tr><td><strong>Preclusão</strong></td><td>Temporal, lógica e consumativa; perempção é pena diversa (arts. 731 e 732 CLT)</td></tr>
+        <tr><td><strong>Proteção</strong></td><td>Mais importante; Plá Rodriguez; custas ao final (789 §1º CLT), arquivamento (844), inversão do ônus (818 CLT), depósito recursal, efeito devolutivo (899 CLT)</td></tr>
+        <tr><td><strong>Busca pela verdade real</strong></td><td>Primazia da realidade; art. 765 CLT; Súmula 74, III, TST; poderes instrutórios (art. 370 CPC)</td></tr>
+        <tr><td><strong>Devido processo legal</strong></td><td>Art. 5º, LIV, CF; origem na Magna Carta de 1215 (Rei João Sem Terra); pai dos princípios</td></tr>
+        <tr><td><strong>Instrumentalidade das formas</strong></td><td>Art. 188 e 277 CPC — privilegia-se a finalidade do ato; nulidade = forma + prejuízo</td></tr>
+        <tr><td><strong>Normatização coletiva</strong></td><td>Função anômala no dissídio coletivo de natureza econômica (poder normativo, art. 114, § 2º, CF)</td></tr>
+        <tr><td><strong>Inafastabilidade da jurisdição</strong></td><td>Art. 5º, XXXV, CF; CCP não é obrigatória (ADIs 2139 e 2160 STF); exceção: justiça desportiva (art. 218, § 1º, CF)</td></tr>
+        <tr><td><strong>Estabilidade da lide</strong></td><td>Art. 329 CPC adaptado: aditamento sem consentimento antes da defesa; com consentimento após; nunca depois da instrução</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Dispositivo (inércia) e Inquisitivo — os mais cobrados
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Princípio dispositivo (art. 2º CPC)</div>
+    <div class="card-text">
+      Também chamado de <strong>princípio da inércia</strong>: o juiz não presta a tutela jurisdicional sem ser provocado. Em sede trabalhista há <strong>exceções</strong>:<br>
+      • <strong>Art. 878 CLT</strong> — execução <strong>definitiva</strong> pode ser promovida de ofício; a <strong>provisória depende de requerimento</strong> (art. 520 CPC); após a reforma trabalhista, somente quando a parte <strong>não estiver representada por advogado</strong><br>
+      • <strong>Art. 39 CLT</strong> — a DRT (hoje SRT) remete cópia do processo administrativo à JT (falta de anotação de CTPS e reconhecimento de vínculo)<br>
+      • <strong>Art. 856 CLT</strong> — dissídio coletivo pode ser instaurado de ofício (por iniciativa do presidente ou a requerimento da Procuradoria da JT, sempre que houver suspensão do trabalho)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Execução provisória não pode ser iniciada de ofício</strong> — sempre depende de requerimento. A regra do art. 878 CLT (execução de ofício) foi <strong>restringida pela Lei 13.467/17</strong>: só quando a parte não está representada por advogado.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Princípio inquisitivo (ou inquisitório)</div>
+    <div class="card-text">
+      • <strong>Impulso oficial</strong>: após exercido o direito de ação, o juiz deve praticar os atos de ofício (arts. 2º CPC e 765 CLT; art. 4º, Lei 5.584/70)<br>
+      • <strong>Poderes instrutórios</strong>: determinar provas independentemente de pedido e indeferir as protelatórias (art. 370 CPC; art. 852-D CLT no rito sumaríssimo)<br>
+      • <strong>Matérias de ordem pública</strong>: conhecer de ofício condições da ação e pressupostos processuais, ex.: incompetência absoluta (art. 64, § 1º, CPC) e MS impetrado após 120 dias (extingue por ausência de interesse processual)
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Súmula 74 do TST (atualizada pelo CPC/2015):</strong> a confissão se aplica à parte que, intimada com a cominação, não comparece à audiência em prosseguimento; a prova pré-constituída pode confrontar a confissão ficta (arts. 442 e 443 CPC); a vedação à produção de prova posterior pela parte confessa <strong>só a ela se aplica</strong>, não afetando o poder do magistrado de conduzir o processo.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Concentração e oralidade — a audiência una
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      No processo do trabalho a <strong>audiência é una</strong> (art. 849 CLT): nela se busca a conciliação, se produz a defesa, se colhem provas e se decide. Rito ordinário trabalhista: <strong>petição inicial → distribuição → notificação → audiência (sentença)</strong>. No CPC há citação, audiência de mediação, defesa e audiência de instrução — fases separadas.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th colspan="7">Fases da audiência una (resumo da aula)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1. Pregão</td><td>2. 1ª tentativa de conciliação</td><td>3. Defesa do reclamado</td><td>4. Instrução</td><td>5. Razões finais</td><td>6. 2ª tentativa de conciliação</td><td>7. Sentença</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Incidências da oralidade</div>
+    <div class="card-text">
+      • <strong>Reclamação verbal</strong> (art. 840 CLT): distribuída, o reclamante comparece em <strong>5 dias</strong> para redução a termo (facilita o acesso de quem não sabe escrever ou não tem advogado)<br>
+      • <strong>Leitura da inicial em audiência</strong> (art. 847 CLT), salvo dispensa pelas partes<br>
+      • <strong>Defesa oral em 20 minutos</strong> (art. 847 CLT); a <strong>defesa escrita</strong> foi incluída pela reforma trabalhista — hoje é escolha do reclamado<br>
+      • <strong>Razões finais orais de 10 minutos</strong> para cada parte (art. 850 CLT); sem previsão na CLT de conversão em memoriais, mas o juiz pode determiná-la subsidiariamente pelo CPC<br>
+      • <strong>Sentença oral ao término da audiência</strong> (arts. 831 e 850 CLT)<br>
+      • <strong>Protesto em audiência</strong>: inclusão na ata da discordância com decisão interlocutória; evita a <strong>preclusão</strong> e permite insurgir-se no recurso da decisão final
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Dois momentos <strong>obrigatórios</strong> de conciliação: <strong>no início da audiência</strong> (art. 846 CLT, após o pregão/antes da defesa) e <strong>após as razões finais</strong> (art. 850 CLT). A jurisprudência entende que a ausência da <strong>2ª tentativa</strong> (após razões finais) gera nulidade. Doutrina/jurisprudência: a mera falta da 1ª tentativa não acarreta nulidade se houve acordo no final (ausência de prejuízo).
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Razoável duração do processo:</strong> art. 5º, LXXVIII, CF — a celeridade é buscada pela efetivação de vários princípios, dentre eles a oralidade. A doutrina divide a oralidade em subprincípios: irrecorribilidade das decisões interlocutórias; identidade física do juiz; concentração dos atos em audiência; prevalência da prova oral sobre a escrita; imediatidade da colheita de provas pelo juiz.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Irrecorribilidade imediata das decisões interlocutórias
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Regra: <strong>não cabe recurso imediato</strong> contra decisão interlocutória na JT (art. 893, § 1º, CLT); a matéria será apreciada no recurso da <strong>decisão definitiva</strong> (ao contrário do CPC, onde cabe agravo de instrumento).<br><br>
+      <strong>Exceções legais/jurisprudenciais:</strong><br>
+      • <strong>Art. 799, § 2º, CLT</strong>: decisões interlocutórias <strong>terminativas do feito</strong> (reconhecem a incompetência absoluta da JT e determinam a remessa para fora dela) — cabe recurso, <strong>o ordinário</strong> (art. 895, I);<br>
+      • <strong>Súmula 214 TST</strong> (3 hipóteses): (a) decisão de TRT contrária a Súmula/OJ do TST; (b) decisão suscetível de impugnação por recurso para o <strong>próprio tribunal</strong> (ex.: relator decide monocraticamente nos termos do art. 932 CPC e cabe agravo interno — art. 1.021 CPC); (c) decisão que acolhe exceção de incompetência <strong>territorial</strong> com remessa para Vara vinculada a <strong>TRT diverso</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Não confundir as exceções.</strong> A exceção da Súmula 214 é a remessa para <strong>TRT distinto</strong> (mudança de Região). SP é o único Estado com dois TRTs (2ª — Capital e 15ª — Campinas); remessa de SP Capital para Campinas cabe recurso. Estados como RR, AP, AC e TO não possuem TRT.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Conciliação
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Art. 764 CLT</strong>: dissídios individuais e coletivos sempre sujeitos à conciliação; lícito às partes formulá-la em <strong>qualquer momento</strong> do processo, inclusive na execução<br>
+      • Rito sumaríssimo: <strong>art. 852-E CLT</strong> — o juiz instiga a conciliação <strong>em qualquer fase da audiência</strong><br>
+      • <strong>Homologação de acordo gera sempre a extinção com resolução do mérito</strong> (art. 487, III, "b", CPC)<br>
+      • <strong>Súmula 418 TST</strong>: homologar acordo é <em>faculdade</em> do juiz — não existe direito líquido e certo; não cabe <strong>mandado de segurança</strong>; o juiz verifica se o acordo é prejudicial ao obreiro (princípio da proteção)<br>
+      • <strong>Súmula 259 TST</strong>: o termo de conciliação (parágrafo único do art. 831 CLT) só é impugnável por <strong>ação rescisória</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Homologado o acordo, a sentença transita em julgado na ocasião — as partes não podem recorrer; a desconstituição se dá por <strong>ação rescisória</strong> (Súmula 259 TST). Exceção: a <strong>União</strong> pode interpor recurso ordinário da sentença homologatória se seu <strong>crédito previdenciário</strong> estiver sendo prejudicado (ex.: acordo que mascara verba salarial como dano moral para fugir do INSS).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Jus postulandi
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Possibilidade de a parte praticar atos processuais <strong>sem advogado</strong> (art. 791 CLT). Foi recepcionado pela CF/88 (não conflita com o art. 133). O jus postulandi existe independentemente do valor da causa ou complexidade da demanda.<br><br>
+      <strong>Restrições da Súmula 425 TST:</strong> não alcança <strong>ação rescisória, ação cautelar, mandado de segurança</strong> e <strong>recursos de competência do TST</strong>. Vale para Varas e TRTs.<br><br>
+      <strong>Art. 855-B CLT (reforma trabalhista):</strong> a homologação de <strong>acordo extrajudicial</strong> exige advogado obrigatório, não podendo ser <strong>advogado comum</strong> (cada parte com advogado próprio; faculta-se assistência pelo advogado do sindicato).
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      MACR-TST — MS · Ação Rescisória · Ação Cautelar · Recursos ao TST: onde NÃO há jus postulandi
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Os recursos dirigidos ao <strong>TRT</strong> PODEM ser interpostos sem advogado (jus postulandi). A restrição vale para os <strong>recursos dirigidos ao TST</strong> — as bancas adoram trocar TST por TRT.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Proteção
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Desdobramentos que favorecem o empregado hipossuficiente:<br>
+      • <strong>Gratuidade / custas ao final</strong>: custas pagas pelo vencido após o trânsito em julgado (art. 789, § 1º, CLT); ajuizamento gratuito; justiça gratuita pela Lei 5.584/70<br>
+      • <strong>Arquivamento</strong>: ausência do reclamante à audiência gera arquivamento (extinção sem resolução de mérito) — art. 844 CLT; ausência do reclamado gera <strong>revelia + confissão quanto à matéria de fato</strong><br>
+      • <strong>Inversão do ônus da prova</strong>: <strong>não é regra</strong> no processo do trabalho; distribuição pelo art. 818 CLT (reclamante: fato constitutivo; reclamado: fato impeditivo, modificativo ou extintivo), com inversões em hipóteses concretas (Súmulas 212 e 338, III, TST)<br>
+      • <strong>Depósito recursal</strong>: pressuposto de admissibilidade (art. 899, § 1º, CLT), valores máximos fixados pela Presidência do TST; exigido <strong>somente do empregador</strong><br>
+      • <strong>Impulso oficial na execução</strong>: art. 878 CLT (com a restrição da reforma — sem advogado)<br>
+      • <strong>Efeito meramente devolutivo dos recursos</strong>: art. 899 CLT — sem suspensão da eficácia, permitida a execução provisória até a penhora
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O <strong>reclamante é o autor da ação, mas não necessariamente o empregado</strong> — a ação pode ser ajuizada pela empresa. Independentemente de quem seja o autor, a sua ausência à audiência importa <strong>arquivamento</strong> (art. 844 CLT). Ex.: ação de consignação em pagamento ajuizada pela empresa que falta à audiência → arquivamento.
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Ônus da prova (art. 818 CLT, redação da Lei 13.467/17):</strong> I — ao reclamante, quanto ao fato constitutivo de seu direito; II — ao reclamado, quanto à existência de fato impeditivo, modificativo ou extintivo do direito do reclamante. <strong>Súmula 212 TST</strong>: ônus de provar o término do contrato é do empregador. <strong>Súmula 338, III, TST</strong>: cartões de ponto com horários uniformes são inválidos, invertendo-se o ônus da prova das horas extras (prevalecendo a jornada da inicial).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Preclusão × perempção
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Espécie de preclusão</th><th>Conceito</th><th>Base legal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Temporal</strong></td><td>Perda da possibilidade de praticar o ato fora do prazo (ex.: não recorrer em 8 dias) — possibilidade de <strong>justa causa</strong> para reabrir prazo</td><td>Art. 223 CPC</td></tr>
+        <tr><td><strong>Lógica</strong></td><td>Perda pela prática de ato incompatível (quem aceita a decisão, tácita ou expressamente, não pode recorrer)</td><td>Art. 1.000 CPC</td></tr>
+        <tr><td><strong>Consumativa</strong></td><td>Impossibilidade de repetir ato já praticado (ex.: contestação incompleta não pode ser complementada)</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Perempção</div>
+    <div class="card-text">
+      Pena pela ausência do reclamante que retira <strong>provisoriamente o direito de ação por 6 meses</strong>:<br>
+      • <strong>Art. 731 CLT</strong>: uma única vez, na redução a termo da <strong>reclamação verbal</strong> (não comparecer em 5 dias — art. 786 CLT)<br>
+      • <strong>Art. 732 CLT</strong>: por <strong>duas vezes seguidas</strong>, dar causa ao arquivamento da audiência (art. 844 CLT)<br><br>
+      <strong>Preclusão</strong> impede a prática de um ato processual determinado; <strong>perempção</strong> retira do autor, provisoriamente, o direito de ação.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Estabilidade da lide (aditamento da inicial)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Art. 329 CPC adaptado ao processo do trabalho:<br>
+      • <strong>Antes da defesa do réu (na audiência):</strong> aditamento <strong>sem consentimento</strong>; se necessário, a audiência é suspensa com nova data<br>
+      • <strong>Após a defesa:</strong> aditamento <strong>com consentimento</strong> do reclamado<br>
+      • <strong>Iniciada a instrução (produção de provas):</strong> <strong>não mais é possível</strong> — em nenhuma situação, mesmo com consentimento da parte, autorização do juiz etc. (a audiência é una)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Demais princípios em destaque
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">⚖️ Juiz natural</div><div class="card-text">Art. 5º, XXXVII e LIII, CF — ninguém é processado/julgado senão por autoridade competente; órgãos pré-constituídos; critérios objetivos (matéria, pessoa, relação com outro processo, valor da causa, território); art. 651 CLT (local da prestação de serviços). Funda também o <strong>promotor natural</strong>.</div></div>
+    <div class="card"><div class="card-title">⚖️ Identidade física do juiz</div><div class="card-text">CPC/2015 não o prevê (caiu o art. 132 CPC/73). TST aplica de forma <strong>mitigada</strong>, pela celeridade e economia: um juiz pode colher provas e outro julgar.</div></div>
+    <div class="card"><div class="card-title">⚖️ Imparcialidade</div><div class="card-text">Art. 139, I, CPC (igualdade de tratamento); impedimento e suspeição (arts. 144 e 145 CPC). Na CLT: arts. 795 e 799 (só exceções de suspeição e incompetência na CLT — impedimento aplica-se subsidiariamente pelo CPC, pois a CLT foi redigida sob o CPC/39, silente).</div></div>
+    <div class="card"><div class="card-title">🔁 Duplo grau de jurisdição</div><div class="card-text"><strong>Não é garantia constitucional</strong>. Error in <em>judicando</em> → reforma; error in <em>procedendo</em> → anulação. Recursos podem ser julgados pelo mesmo órgão (embargos de declaração). Restrição: dissídio de alçada (procedimento sumário — Lei 5.584/70).</div></div>
+    <div class="card"><div class="card-title">🔁 Contraditório e ampla defesa</div><div class="card-text">Art. 5º, LV, CF = informação + possibilidade de reação (não é exigida reação efetiva). Súmula 403, I, TST: silêncio da parte vencedora não é dolo processual (art. 485, III → atual 966, III, CPC). Nulidade = erro de forma + prejuízo.</div></div>
+    <div class="card"><div class="card-title">🔁 Devido processo legal</div><div class="card-text">Art. 5º, LIV, CF; origem na Magna Carta (1215, Rei João Sem Terra); considerado o "pai dos princípios"; violação aos demais princípios gera <strong>violação reflexa</strong> ao devido processo legal.</div></div>
+    <div class="card"><div class="card-title">📑 Motivação das decisões</div><div class="card-text">Art. 93, IX, CF — nulidade absoluta, insanável; art. 489 CPC (relatório, fundamentação, dispositivo); art. 832 CLT. Rito sumaríssimo pode dispensar relatório, nunca fundamentação/dispositivo. Despachos não precisam de fundamentação nem cabem recurso (art. 1.001 CPC).</div></div>
+    <div class="card"><div class="card-title">🔍 Busca pela verdade real</div><div class="card-text">Primazia da realidade sobre a forma; art. 765 CLT (ampla direção do processo); poder instrutório de ofício (art. 370 CPC); Súmula 74, III, TST.</div></div>
+    <div class="card"><div class="card-title">🔍 Instrumentalidade das formas</div><div class="card-text">Privilegia-se a finalidade do ato (arts. 188 e 277 CPC). Notificação por edital em vez de postal: válida se o réu tomou ciência e apresentou defesa (sem prejuízo). Súmula 427 TST (intimação em nome de advogado diverso é nula, salvo inexistência de prejuízo).</div></div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Nulidade = erro de forma + prejuízo.</strong> A ausência de citação/intimação nem sempre viola o contraditório: a nulidade somente é pronunciada se houver prejuízo (instrumentalidade das formas).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Probidade processual (arts. 793-A a D CLT — reforma trabalhista)</div>
+    <div class="card-text">
+      • <strong>Litigante de má-fé</strong> (art. 793-B): deduzir pretensão contra texto expresso de lei ou fato incontroverso; alterar a verdade dos fatos; usar o processo para objetivo ilegal; resistência injustificada; proceder de modo temerário; provocar incidente infundado; recurso com intuito protelatório<br>
+      • <strong>Penalidades</strong> (art. 793-C): <strong>multa de 1% a 10% do valor corrigido da causa</strong>, de ofício ou a requerimento, + indenização, honorários e despesas — declaração também de ofício<br>
+      • <strong>Múltiplos litigantes</strong>: proporcional ao interesse na causa, ou <strong>solidária</strong> quando se coligarem para lesar a parte contrária<br>
+      • <strong>Valor irrisório/inestimável</strong>: multa calculada sobre até <strong>2x o teto do RGPS</strong><br>
+      • <strong>Testemunha</strong> (art. 793-D): multa por alterar a verdade ou omitir fatos essenciais, executada nos próprios autos<br>
+      • CPC: art. 1.026, § 2º — embargos de declaração protelatórios → multa de até <strong>2%</strong> sobre o valor atualizado da causa
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Eventualidade</div>
+    <div class="card-text">
+      Art. 336 CPC: toda a matéria de defesa deve ser alegada na contestação, sob pena de preclusão. A <strong>defesa processual</strong> (art. 337 CPC) não sofre preclusão, pois pode ser conhecida <strong>de ofício</strong>, <strong>exceto a convenção de arbitragem e a incompetência relativa</strong> (art. 337, § 5º, CPC). <strong>Impugnação especificada</strong> (art. 341 CPC): defesa genérica tida como não apresentada → revelia; não se aplica a defensor público, advogado dativo e curador especial.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Normatização coletiva</div>
+    <div class="card-text">
+      Função <strong>anômala</strong> da JT no dissídio coletivo de <strong>natureza econômica</strong>: cria novas condições de trabalho (poder normativo, art. 114, § 2º, CF, restringido pela EC 45/2004, mas não extinto). Somente exercida se <strong>frustrada a negociação coletiva</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Inafastabilidade da jurisdição</div>
+    <div class="card-text">
+      Art. 5º, XXXV, CF. A regra no Brasil é a <strong>inexistência de instância administrativa obrigatória</strong>. A <strong>Comissão de Conciliação Prévia</strong> (art. 625-D CLT usa "será submetida"), embora prevista como obrigatória, foi declarada pelo STF (ADIs 2139 e 2160) <strong>meio legítimo, mas não obrigatório</strong> — interpretação conforme atribuída ao art. 625-D, § 1º a § 4º.<br><br>
+      <strong>Exceção constitucional</strong>: justiça desportiva (art. 218, § 1º, CF) — só em juízo após esgotamento das instâncias desportivas ou decurso de <strong>60 dias</strong>.<br><br>
+      Idas à CCP: o prazo de <strong>prescrição fica suspenso</strong>, voltando a contar sem acordo ou se não tentada a conciliação em 10 dias (art. 625-G CLT).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — ORGANIZAÇÃO DA JUSTIÇA DO TRABALHO                  -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Organização da Justiça do Trabalho</div>
+  </div>
+  <div class="sec-subtitle">Art. 111 CF — TST, TRTs e Juízes do Trabalho (Varas)</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th></th><th>TST</th><th>TRTs</th><th>Varas do Trabalho (Juízes do Trabalho)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Base legal</strong></td><td>Art. 111 CF</td><td>Art. 115 CF</td><td>Art. 116 CF</td></tr>
+        <tr><td><strong>Composição</strong></td><td><strong>27 Ministros</strong> (fixo — nem mínimo nem máximo)</td><td><strong>No mínimo 7 Juízes</strong></td><td>Juiz <strong>singular</strong> (togado, de carreira)</td></tr>
+        <tr><td><strong>Idade</strong></td><td>Entre <strong>35 e 70 anos</strong></td><td>Entre <strong>30 e 70 anos</strong></td><td>—</td></tr>
+        <tr><td><strong>Nomeação</strong></td><td>Presidente da República + aprovação pela <strong>maioria absoluta do Senado</strong> (sabatina)</td><td>Presidente da República, <strong>sem sabatina</strong></td><td>—</td></tr>
+        <tr><td><strong>Quinto constitucional</strong></td><td>Sim — 1/5 de advocacia e MPT (membros vêm dos TRTs, advocacia e MPT)</td><td>Sim — 1/5 de advocacia e MPT</td><td>—</td></tr>
+        <tr><td><strong>Brasileiro nato?</strong></td><td><strong>Não</strong> — admite naturalizado</td><td><strong>Não</strong> — admite naturalizado</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O TST tem <strong>27 Ministros fixos</strong> — não é "no mínimo 27". Já os TRTs têm <strong>no mínimo 7 Juízes</strong> — não é um número fixo. Idades mínimas distintas: <strong>TST 35</strong> × <strong>TRT 30</strong>. A idade máxima de 70 veio da EC 122/2022 (promulgada em 17/05/2022), elevando o limite que era 65.
+  </div>
+
+  <div class="card">
+    <div class="card-title">TST (órgão de cúpula)</div>
+    <div class="card-text">
+      Surgiu em <strong>1946</strong>, com a incorporação da Justiça do Trabalho ao Poder Judiciário. Órgão de cúpula — <strong>terceiro grau</strong> da jurisdição trabalhista; uniformiza a jurisprudência trabalhista e decide em última instância as questões administrativas da Justiça Laboral.<br><br>
+      <strong>Órgãos do TST (art. 65 do Regimento Interno):</strong> Tribunal Pleno; Órgão Especial; Seção Especializada em Dissídios Coletivos; Seção Especializada em Dissídios Individuais (2 subseções); Turmas. Além deles, funcionam junto ao TST: <strong>ENAMAT</strong>, <strong>CSJT</strong>, CEFAST e Ouvidoria.<br><br>
+      ENAMAT e CSJT foram criados pela <strong>EC 45/2004</strong>: a ENAMAT regulamenta os cursos oficiais de ingresso/promoção na Magistratura do Trabalho; o CSJT supervisiona a JT de 1º e 2º graus nos campos administrativo, orçamentário, financeiro e patrimonial (decisões vinculantes).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">TRTs</div>
+    <div class="card-text">
+      A <strong>EC 45/2004</strong> excluiu a obrigação de haver um TRT em cada Estado. <strong>Quatro Estados nunca tiveram TRT: Tocantins, Roraima, Acre e Amapá</strong>, submetidos à competência de outros TRTs.<br><br>
+      São <strong>24 TRTs</strong>; o único Estado com <strong>dois</strong> é <strong>São Paulo</strong> (2ª Região — Capital e 15ª — Campinas).<br><br>
+      <strong>Art. 112 CF</strong>: em comarcas não abrangidas pela JT, a lei pode atribuir competência trabalhista aos <strong>juízes de direito</strong>, com recurso para o TRT competente (Recurso Ordinário — art. 895 CLT).<br><br>
+      <strong>Competência dos TRTs:</strong> <em>originária</em> (dissídios coletivos, mandados de segurança, ações rescisórias, ações cautelares) e <em>derivada</em> (recursos).<br><br>
+      <strong>Art. 115 CF</strong> (EC 45/2004): justiça itinerante e funcionamento descentralizado (Câmaras regionais) para assegurar pleno acesso do jurisdicionado.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Não confunda: <strong>TST = 27 Ministros</strong> (fixo), nomeados com <strong>sabatina no Senado</strong>; <strong>TRT = no mínimo 7 Juízes</strong>, nomeados <strong>sem sabatina</strong>. O TRT não tem sabatina.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Varas do Trabalho / Juízes do Trabalho</div>
+    <div class="card-text">
+      A CF/88 traz como órgão de 1º grau os <strong>"Juízes do Trabalho"</strong> (e não as Varas). O art. 111, com redação da <strong>EC 24/1999</strong>, extinguiu a <strong>representação classista</strong>: as antigas <strong>Juntas de Conciliação e Julgamento</strong> (formadas por juiz togado + juízes classistas) passaram a <strong>Varas do Trabalho</strong> com <strong>juiz singular</strong> (art. 116 CF).<br><br>
+      <strong>Comarca fora da jurisdição trabalhista</strong> (art. 112 CF): o juiz de direito julga as demandas trabalhistas; sua competência no processo de <strong>conhecimento cessa com a sentença</strong> (recurso ao TRT). Na <strong>execução</strong>, por ser do 1º grau, retorna ao juiz de direito — salvo se instalada Vara do Trabalho, quando os autos são <strong>imediatamente remetidos</strong> à JT (Súmula 10 STJ), por alteração de competência <strong>material/absoluta</strong> (art. 43 CPC).
+    </div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Súmula 10 STJ:</strong> "Instalada a Junta de Conciliação e Julgamento, cessa a competência do Juiz de Direito em matéria trabalhista, inclusive para a execução das sentenças por ele proferidas." Estando a ação em curso perante juiz de direito e sendo instalada a Vara do Trabalho, os autos são remetidos <strong>imediatamente</strong> (competência absoluta material) — não se espera a conclusão do ato nem a sentença.</div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Órgãos da JT (art. 111 CF) = TST + TRTs + Juízes do Trabalho → assertiva que diz "Juízes do Trabalho" está correta, pois é a dicção constitucional
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida dos avisos e "cuidados" destacados na aula</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Art. 769 CLT</strong>: CPC é fonte subsidiária nos casos omissos, exceto se incompatível — requisitos cumulativos (omissão + compatibilidade)<br>
+      • <strong>Execução de ofício</strong> (art. 878 CLT): só após a reforma, quando a parte não está representada por advogado; <strong>execução provisória depende de requerimento</strong> (art. 520 CPC)<br>
+      • <strong>Dois momentos obrigatórios de conciliação</strong> (arts. 846 e 850 CLT) — nulidade pela falta da 2ª tentativa<br>
+      • <strong>Jus postulandi</strong> (Súmula 425 TST): MS, ação rescisória, ação cautelar e recursos ao TST exigem advogado<br>
+      • <strong>Irrecorribilidade das interlocutórias</strong> (Súmula 214 TST) e suas 3 exceções<br>
+      • <strong>TST 27 Ministros (fixo)</strong> × <strong>TRT mínimo 7</strong>; idades 35/70 × 30/70; sabatina só no TST
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Reclamação verbal</strong>: 5 dias para redução a termo; ausência injustificada → <strong>perempção de 6 meses</strong> (art. 731 CLT); duas faltas à audiência → perempção (art. 732)<br>
+      • <strong>Defesa oral 20 min</strong> ou <strong>por escrito</strong> (reforma trabalhista — desde novembro/2017); razões finais <strong>10 min</strong><br>
+      • <strong>Homologação de acordo</strong>: faculdade do juiz (Súmula 418 TST); desconstituição só por <strong>ação rescisória</strong> (Súmula 259); União pode recorrer por crédito previdenciário<br>
+      • <strong>Inversão do ônus da prova não é regra</strong> — art. 818 CLT; Súmulas 212 e 338, III, TST<br>
+      • <strong>Depósito recursal</strong> só é exigido do <strong>empregador</strong>; recursos têm efeito meramente devolutivo (art. 899 CLT)<br>
+      • <strong>Reclamante ≠ empregado</strong>: o autor que falta à audiência é arquivado (art. 844 CLT), mesmo sendo a empresa<br>
+      • <strong>Estabilidade da lide</strong> (art. 329 CPC adaptado): aditamento <strong>jamais após iniciada a instrução</strong>, mesmo com consentimento<br>
+      • <strong>Lei processual estrangeira não se aplica</strong> aos processos trabalhistas no Brasil<br>
+      • <strong>4 Estados sem TRT</strong>: Tocantins, Roraima, Acre e Amapá; SP tem dois (2ª e 15ª)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine o art. 769 CLT (fonte subsidiária), o art. 878 CLT (execução de ofício, com a restrição da reforma), a Súmula 214 (interlocutórias), a Súmula 425 (jus postulandi), a Súmula 418/259 (conciliação), os arts. 844/731/732 (ausência, arquivamento e perempção) e a composição fixa do TST (27 Ministros) — são os pontos mais cobrados pelas bancas FCC e Cebraspe.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

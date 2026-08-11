@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 07: Licitações Públicas · Lei 14.133/2021</title>
+<style>
+:root {
+  --bg: #0f172a;
+  --sidebar: #0a0f1c;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --muted: #64748b;
+  --blue: #3b82f6;
+  --blue-light: #60a5fa;
+  --amber: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --purple: #8b5cf6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1rem;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 10;
+}
+.sidebar-title {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: .2rem;
+}
+.sidebar-sub {
+  font-size: .75rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid #1e293b;
+}
+.sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: #64748b;
+  text-decoration: none;
+  font-size: .78rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.sidebar a:hover { background: #1e293b; color: #e2e8f0; }
+.sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #93c5fd;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.sidebar-divider { border: none; border-top: 1px solid #1e293b; margin: .7rem 0; }
+
+/* MAIN */
+.main { margin-left: 260px; flex: 1; max-width: 960px; padding: 0 0 3rem; }
+section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+section:last-child { border-bottom: none; }
+.sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.sec-num {
+  width: 32px; height: 32px; color: #fff; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(59,130,246,.3);
+}
+.sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+
+/* CARDS */
+.grid { display: grid; gap: .8rem; margin-bottom: 1rem; }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.card-title { font-size: .85rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+
+/* CALLOUTS */
+.callout {
+  display: flex; gap: .6rem; padding: .7rem 1rem; border-radius: 10px;
+  font-size: .82rem; line-height: 1.6; margin: .8rem 0;
+}
+.callout-info { background: #1e3a5f; border: 1px solid #1e40af; color: #93c5fd; }
+.callout-warn { background: #3d2e0a; border: 1px solid #92400e; color: #fcd34d; }
+.callout-success { background: #0a2e1a; border: 1px solid #059669; color: #6ee7b7; }
+.callout-danger { background: #3b1010; border: 1px solid #991b1b; color: #fca5a5; }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #3d2e0a;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem; font-weight: 700; color: var(--amber);
+  text-transform: uppercase; letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem; font-weight: 800; color: #fcd34d;
+  letter-spacing: .02em; margin-top: .15rem;
+}
+
+/* TABLES */
+.table-wrap { overflow-x: auto; margin: .8rem 0; border-radius: 10px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead tr { background: #1e293b; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+tr:nth-child(even) { background: #1e293b; }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #3b1010; border: 1px solid #991b1b; border-left: 4px solid var(--red);
+  border-radius: 10px; padding: .65rem .9rem; margin: .75rem 0; font-size: .82rem;
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block; padding: .2rem .55rem; border-radius: 5px;
+  font-size: .72rem; font-weight: 700; margin: 0 .2rem;
+}
+.tag-blue { background: #1e40af; color: #93c5fd; }
+.tag-green { background: #065f46; color: #6ee7b7; }
+.tag-amber { background: #92400e; color: #fcd34d; }
+.tag-red { background: #991b1b; color: #fca5a5; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; max-width: 100%; }
+  section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 07</div>
+  <div class="sidebar-sub">Licitações Públicas · Lei 14.133/2021 · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <!-- PREENCHER COM LINKS DAS SEÇÕES -->
+  
+  
+  
+  
+  <a href="../index.html" style="color:#93c5fd;font-size:.78rem;">← Voltar ao índice</a>
+  <a href="#s1">1. Conceito e legislação</a>
+  <a href="#s2">2. Âmbito de aplicação</a>
+  <a href="#s3">3. Princípios expressos</a>
+  <a href="#s4">4. Objetivos da licitação</a>
+  <a href="#s5">5. Planejamento e PCA</a>
+  <a href="#s5.1">5.1. Termo de referência</a>
+  <a href="#s6">6. Igualdade e competitividade</a>
+  <a href="#s7">7. Publicidade e sigilo</a>
+  <a href="#s8">8. Segregação de funções</a>
+  <a href="#s9">9. Vinculação ao edital</a>
+  <a href="#s10">10. Julgamento objetivo</a>
+  <a href="#s11">11. Desenvolvimento sustentável</a>
+  <a href="#s12">12. Adjudicação compulsória</a>
+  <a href="#s13">13. Fases do procedimento</a>
+  <a href="#s14">14. Agentes da licitação</a>
+  <a href="#s15">15. Modalidades</a>
+  <a href="#s15.1">15.1. Contratação direta</a>
+  <a href="#s15.2">15.2. Procedimentos auxiliares</a>
+  <a href="#s16">16. Critérios de julgamento</a>
+  <a href="#s17">17. Diálogo competitivo</a>
+  <a href="#s17.1">17.1. Prorrogação e alteração</a>
+  <a href="#s17.2">17.2. Execução contratual</a>
+  <a href="#s17.3">17.3. Sanções contratuais</a>
+  <a href="#s17.4">17.4. Recursos</a>
+  <a href="#s17.5">17.5. Controle dos contratos</a>
+  <a href="#s17.6">17.6. Fiscalização</a>
+  <a href="#s17.7">17.7. Vigência/vacatio</a>
+  <a href="#s18">18. Pegadinhas</a>
+  <a href="#s19">19. Dicas e bizus</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO / INTRODUÇÃO                                -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Título da seção 1</div>
+  </div>
+  <div class="sec-subtitle">Subtítulo opcional com fonte/banca</div>
+
+  
+    <div class="card">
+      <div class="card-title">Tópico A</div>
+      <div class="card-text">
+        Conteúdo extraído do PDF. Use listas para pontos concisos.<br><br>
+        • Ponto importante 1<br>
+        • Ponto importante 2<br>
+        • Exemplo prático quando houver
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--green);">Tópico B</div>
+      <div class="card-text">
+        Contraste ou aprofundamento do tópico A.<br><br>
+        • Diferença key<br>
+        • Regra essencial<br>
+        • Exceção relevante
+      </div>
+    </div>
+
+  <!-- CALLOUTS: use para alertas, informações, regras importantes -->
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Informação adicional:</strong> conteúdo complementar de apoio.</div>
+
+  <!-- MNEMONIC: use para macetes e dicas de prova -->
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Regra ou macete que ajuda a lembrar o conteúdo na hora da prova.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CLASSIFICAÇÃO / ESTRUTURA                            -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Título da seção 2</div>
+  </div>
+  <div class="sec-subtitle">Subtítulo opcional</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Subtítulo interno (ex: 1º dígito — Categoria)
+  </h3>
+
+  
+    <div class="card">
+      <div class="card-title">Categoria / Item 1</div>
+      <div class="card-text">
+        • Característica 1<br>
+        • Característica 2<br>
+        • Exemplo prático
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Categoria / Item 2</div>
+      <div class="card-text">
+        • Característica 1<br>
+        • Característica 2<br>
+        • Exemplo prático
+      </div>
+    </div>
+
+  <!-- TABELA: use para classificações, códigos, quadros comparativos -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Coluna 1</th><th>Coluna 2</th><th>Coluna 3</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Item A</td><td>Descrição do item A</td><td>Exemplo / observação</td></tr>
+        <tr><td>Item B</td><td>Descrição do item B</td><td>Exemplo / observação</td></tr>
+        <tr><td>Item C</td><td>Descrição do item C</td><td>Exemplo / observação</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GOTCHA: use para pegadinhas da banca -->
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Descrição da pegadinha: o que a banca costuma inverter ou confundir.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — REGRAS / ASPECTOS TÉCNICOS                         -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Título da seção 3</div>
+  </div>
+  <div class="sec-subtitle">Subtítulo opcional</div>
+
+  <div class="card" style="margin-bottom:.8rem;">
+    <div class="card-text">
+      Texto corrido com explicação detalhada quando necessário. Use para regras técnicas,
+      artigos de lei, fundamentação doutrinária.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Atenção:</strong> ponto que costuma cair em prova e merece destaque especial.</div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica de prova:</strong> orientação direta para a prova.</div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Erro comum:</strong> equívoco que os alunos cometem e a banca explora.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — QUESTÕES COMENTADAS                                -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Questões comentadas</div>
+  </div>
+  <div class="sec-subtitle">Bancas e anos variados</div>
+
+  <!-- REPETIR ESSE BLOCO PARA CADA QUESTÃO -->
+  <div class="card" style="margin-bottom:.8rem;">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.5rem;">
+      <span class="tag tag-blue">01 — CEBRASPE / 2025</span>
+      <span class="tag tag-green">Gabarito: Letra C</span>
+    </div>
+    <div class="card-text" style="margin-bottom:.4rem;">
+      Texto da questão ou afirmação julgada. Destaque o elemento principal com <strong>negrito</strong>.
+    </div>
+    <div class="card-text" style="color:#6ee7b7;font-size:.8rem;">
+      <strong>Comentário:</strong> explicação direta do porquê da resposta, apontando a regra gramatical/orçamentária aplicada.
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:.8rem;">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;margin-bottom:.5rem;">
+      <span class="tag tag-amber">02 — FCC / 2024</span>
+      <span class="tag tag-red">Gabarito: INCORRETA</span>
+    </div>
+    <div class="card-text" style="margin-bottom:.4rem;">
+      Texto da questão.
+    </div>
+    <div class="card-text" style="color:#fca5a5;font-size:.8rem;">
+      <strong>Comentário:</strong> explicação do erro.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — GABARITO FINAL                                     -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Gabarito final</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Banca / Ano</th><th>Gabarito</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>01</td><td>CEBRASPE / 2025</td><td><span class="tag tag-green">Letra C</span></td></tr>
+        <tr><td>02</td><td>FCC / 2024</td><td><span class="tag tag-red">INCORRETA</span></td></tr>
+        <tr><td>03</td><td>FGV / 2024</td><td><span class="tag tag-amber">Letra B</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PONTOS DE PROVA / RESUMO FINAL                     -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  
+    <div class="card">
+      <div class="card-title">🎯 Alta incidência</div>
+      <div class="card-text">
+        • Ponto que cai muito 1<br>
+        • Ponto que cai muito 2<br>
+        • Ponto que cai muito 3
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">⚙️ Regras técnicas</div>
+      <div class="card-text">
+        • Regra técnica 1<br>
+        • Regra técnica 2<br>
+        • Regra técnica 3
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> orientação de fechamento da aula.</div>
+  </div>
+</section>
+
+</div><!-- .main -->
+<!-- CONTEÚDO SERÁ CONVERTIDO AQUI -->
+
+</div><!-- .main -->
+</body>
+</html>

@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Português Aula 01: Classes de Palavras I</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Português — Aula 01</div>
+  <div class="sidebar-sub">Classes de Palavras I · Estratégia Concursos</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceitos iniciais</a>
+  <a href="#sec2">2. Variáveis e invariáveis</a>
+  <a href="#sec3">3. Substantivo</a>
+  <a href="#sec4">4. Adjetivo</a>
+  <a href="#sec5">5. Expressões nominais</a>
+  <a href="#sec6">6. Advérbio</a>
+  <a href="#sec7">7. Artigo</a>
+  <a href="#sec8">8. Numeral</a>
+  <a href="#sec9">9. Interjeição</a>
+  <a href="#sec10">10. Palavras especiais</a>
+  <hr class="sidebar-divider">
+  <a href="../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">Fonte: Aula 01 - Classes de Palavras I (simplificado + completo)<br>Equipe Português Estratégia</div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Conceitos iniciais</div></div>
+  <div class="sec-subtitle">O que são classes de palavras e por que estudá-las</div>
+
+  
+    <div class="card">
+      <div class="card-title">10 classes gramaticais</div>
+      <div class="card-text">Substantivo, Adjetivo, Advérbio, Verbo, Conjunção, Interjeição, Preposição, Artigo, Numeral, Pronome.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Relação classe × função sintática</div>
+      <div class="card-text">A classe da palavra está ligada à sua função. Ex.: “hoje” é advérbio de tempo → funciona como adjunto adverbial de tempo.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Palavras denotativas:</strong> parecem advérbios, mas não modificam verbo/adjetivo/advérbio. Não se enquadram exatamente nas classes tradicionais.</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Locuções:</strong> conjunto de palavras que equivalem a uma classe gramatical. Ex.: “com coragem” = locução adjetiva = “corajoso”.</div></div>
+</section>
+
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Classes variáveis e invariáveis</div></div>
+  <div class="sec-subtitle">Flexionam ou não em gênero/número</div>
+
+  
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Variáveis</div>
+      <div class="card-text">Concordam em gênero e número.<br>Substantivo, Adjetivo, Pronome, Numeral, Verbo.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Invariáveis</div>
+      <div class="card-text">Sem flexão, sem concordância.<br>Advérbios, Conjunções, Preposições.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:.8rem;">
+    <div class="card-text">
+      Ex.: “João <strong>é bonito</strong>, Joana <strong>é feia</strong> e seus filhos <strong>são medianos</strong>” → adjetivo, pronome e substantivo variam.<br>
+      “João anda <strong>apressadamente</strong> e Joana <strong>lentamente</strong>” → advérbios invariáveis.
+    </div>
+  </div>
+</section>
+
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Substantivo</div></div>
+  <div class="sec-subtitle">Nome das coisas — classe variável</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Classificação quanto à origem</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Definição</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td>Primitivo</td><td>Não vem de outra palavra</td><td>pedra, mulher, felicidade</td></tr>
+        <tr><td>Derivado</td><td>Vem de primitiva + afixos</td><td>pedreiro, mulherão, infelicidade</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Classificação quanto à estrutura</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Definição</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td>Simples</td><td>Uma só palavra/radical</td><td>homem, pombo, arco</td></tr>
+        <tr><td>Composto</td><td>Mais de uma palavra/radical</td><td>homem-bomba, pombo-correio, arco-íris</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Classificação quanto ao significado</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Definição</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td>Comum</td><td>Designa uma espécie/ser qualquer</td><td>mulher, cidade, cigarro</td></tr>
+        <tr><td>Próprio</td><td>Designa um indivíduo específico</td><td>Maria, Paris, Malboro</td></tr>
+        <tr><td>Concreto</td><td>Existe por si só, material/espiritual/real/imag</td><td>pedra, menino, carro, Deus, fada</td></tr>
+        <tr><td>Abstrato</td><td>Ação, estado, sentimento, qualidade</td><td>criação, coragem, liberalismo</td></tr>
+        <tr><td>Coletivo</td><td>Pluralidade de seres da mesma espécie</td><td>tropa, cardume, frota</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Classificação não é fixa:</strong> depende do contexto. Ex.: “Judas” foi um apóstolo (próprio) x “um judas” = traidor (comum).</div></div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Gênero dos substantivos</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Característica</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td>Biformes</td><td>Mudam de forma para indicar gênero</td><td>lobo/loba, capitão/capitã, boi/vaca</td></tr>
+        <tr><td>Uniformes epicenos</td><td>Um só gênero para ambos; varia com macho/fêmea</td><td>a águia, a cobra, o gavião</td></tr>
+        <tr><td>Uniformes sobrecomuns</td><td>Um só gênero para ambos os sexos</td><td>a criança, o cônjuge, a vítima</td></tr>
+        <tr><td>Uniformes comuns de 2 gêneros</td><td>Mesma forma; distinção pelo artigo</td><td>o chefe/a chefe, o cliente/a cliente</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Flexão de número</h3>
+  <div class="card" style="margin-bottom:.8rem;">
+    <div class="card-text">
+      • Regra geral: plural em <strong>-S</strong> (carros, meninas)<br>
+      • Terminações variadas: reitores, cônsules, faróis, fuzis, animais<br>
+      • Sem plural: ônix, tórax<br>
+      • Só no plural: núpcias, fezes, férias, arredores<br>
+      • <strong>-ão</strong>: maioria em -ões (mãos, irmãos); alguns em -ães (capelães, alemães); vários admitem 2-3 formas
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Plural dos compostos</div>
+    <div class="mnemonic-content">
+      <span class="tag tag-green">Regra geral:</span> “quem varia varia; quem não varia não varia”<br>
+      <span class="tag tag-blue">2º elemento especifica o 1º:</span> banhos-maria OU banhos-marias<br>
+      <span class="tag tag-blue">Sub + preposição + sub:</span> só o 1º varia → pés de moleque, mãos de obra<br>
+      <span class="tag tag-blue">Guarda-:</span> se for verbo → guarda-chuvas; se for substantivo → guardas-florestais
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Grau do substantivo</h3>
+  
+    <div class="card">
+      <div class="card-title">Diminutivo</div>
+      <div class="card-text">Sufixos: -inho/-zinha.<br>Plural: corta-se o /S/ e acrescenta -zinhos/-zinhas.<br>
+        animal → animaizinhos<br>
+        coração → coraçõezinhos</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Aumentativo</div>
+      <div class="card-text">Sufixos: -ão, -zão, -arra, -az, etc.<br>
+        Ex.: sabichão, carrão, padreco, gentalha<br>
+        <strong>Pegadinha:</strong> aumentativo de “pata” é “patorra”, não “pataca”.</div>
+    </div>
+  </div>
+</section>
+
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Adjetivo</div></div>
+  <div class="sec-subtitle">Classe variável que qualifica o substantivo</div>
+
+  
+    <div class="card">
+      <div class="card-title">Classificação por estrutura</div>
+      <div class="card-text">
+        • <strong>Simples:</strong> 1 radical → belo<br>
+        • <strong>Composto:</strong> >1 radical → lítero-musical
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Classificação por origem</div>
+      <div class="card-text">
+        • <strong>Primitivo:</strong> não derivado → bom<br>
+        • <strong>Derivado:</strong> de outra palavra → bondoso
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Classificação por valor</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Característica</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td>Explicativo</td><td>Característica inerente/geral</td><td>homem mortal</td></tr>
+        <tr><td>Restritivo</td><td>Característica não própria</td><td>homem valente</td></tr>
+        <tr><td>Gentílico</td><td>Povos e raças</td><td>israelita, norueguês</td></tr>
+        <tr><td>Pátrio</td><td>Cidades, estados, países</td><td>goiano, fluminense, amazonense, mineiro</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Formação dos adjetivos pátrios</div>
+    <div class="mnemonic-content">
+      /ês/: português, francês, camaronês<br>
+      /ano/: goiano, americano, africano<br>
+      /ense/: estadunidense, fluminense<br>
+      /ão, eiro/: afegão, brasileiro, mineiro<br>
+      /ol, eta, ita, tico/: espanhol, mongol, lisboeta, vietnamita, asiático<br>
+      /ino, eu, enho/: argentino, europeu, judeu, panamenho
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Adjetivos uniformes</h3>
+  <div class="card" style="margin-bottom:.8rem;">
+    <div class="card-text">Uma só forma para ambos os gêneros. Terminados em /a/, /e/, /ar/, /or/, /s/, /z/, /m/:<br>
+      hipócrita, doce, constante, superior, simples, feliz, feroz, ruim, comum</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Flexão dos compostos</h3>
+  
+    <div class="card">
+      <div class="card-title">Regra geral</div>
+      <div class="card-text">Só o 2º item vai para o plural: luso-americanos, afro-brasileiras.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Exceção: adj + substantivo</div>
+      <div class="card-text">Nenhuma parte varia: amarelo-ouro, verde-oliva.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Adjetivos de relação:</strong> são objetivos, não aceitam grau, não variam livremente. Derivam de substantivos e indicam tempo, espaço, matéria, finalidade, procedência. Ex.: nota mensal, movimento estudantil, casa paterna, vinho português.</div></div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Ordem substantivo + adjetivo</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Caso</th><th>Exemplo</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td>Não muda sentido</td><td>cão bom / bom cão</td><td>Mesmo sentido</td></tr>
+        <tr><td>Muda sentido</td><td>candidato pobre / pobre candidato</td><td>Mudança semântica</td></tr>
+        <tr><td>Muda classe</td><td>alemão comunista / comunista alemão</td><td>Muda sentido e classe</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Grau do adjetivo</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Grau</th><th>Tipo</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td>Comparativo</td><td>Superioridade</td><td>mais alto</td></tr>
+        <tr><td></td><td>Inferioridade</td><td>menos alto</td></tr>
+        <tr><td></td><td>Igualdade</td><td>tão alto quanto</td></tr>
+        <tr><td>Superlativo</td><td>Relativo</td><td>o mais alto do mundo</td></tr>
+        <tr><td></td><td>Absoluto sintético</td><td>altíssimo</td></tr>
+        <tr><td></td><td>Absoluto analítico</td><td>muito alto</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Comparativos sintéticos:</strong> melhor, pior, maior, menor, superior. Não usam “mais/menos”.</div></div>
+</section>
+
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Expressões com substantivo e adjetivo</div></div>
+  <div class="sec-subtitle">Locuções adjetivas, nominais e ordem nominal</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Locuções adjetivas</h3>
+  <div class="card" style="margin-bottom:.8rem;">
+    <div class="card-text">Grupo de palavras que equivale a um adjetivo. Geralmente: <strong>preposição + substantivo</strong>.</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Locução</th><th>Adjetivo equivalente</th><th>Locução</th><th>Adjetivo equivalente</th></tr></thead>
+      <tbody>
+        <tr><td>de irmão</td><td>fraternal</td><td>de lua</td><td>lunar/selênico</td></tr>
+        <tr><td>de paixão</td><td>passional</td><td>de macaco</td><td>simiesco</td></tr>
+        <tr><td>de mestre</td><td>magistral</td><td>de monge</td><td>monacal</td></tr>
+        <tr><td>de neve</td><td>níveo/nival</td><td>de frente</td><td>frontal</td></tr>
+        <tr><td>de terra</td><td>telúrico</td><td>de velho</td><td>senil</td></tr>
+        <tr><td>de vento</td><td>eólico</td><td>de vidro</td><td>vítreo/hialino</td></tr>
+        <tr><td>de aluno</td><td>discente</td><td>de visão</td><td>óptico</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Valor objetivo x subjetivo</h3>
+  
+    <div class="card">
+      <div class="card-title">Objetivo</div>
+      <div class="card-text">Fato, não depende de interpretação. Podem ser retirados sem prejuízo gramatical?<br>
+        • carro preto<br>
+        • turista japonês<br>
+        • nota mensal</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Subjetivo</div>
+      <div class="card-text">Expressam opinião, são acessórios.<br>
+        • carro bonito<br>
+        • turista animado<br>
+        Podem ser retirados sem prejuízo gramatical.</div>
+    </div>
+  </div>
+</section>
+
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Advérbio</div></div>
+  <div class="sec-subtitle">Classe invariável — circunstância da ação</div>
+
+  
+    <div class="card">
+      <div class="card-title">Características</div>
+      <div class="card-text">
+        • Invariável (não flexiona)<br>
+        • Modifica verbo, adjetivo, outro advérbio ou oração<br>
+        • <strong>Exceção:</strong> TODO pode variar: “chegou todo sujo / a esposa o recebeu toda paciente”<br>
+        • Interrogativos: onde, quando, como, por que</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Circunstâncias adverbiais</div>
+      <div class="card-text">
+        • <strong>Tempo:</strong> hoje, ontem, amanhã, logo<br>
+        • <strong>Lugar:</strong> aqui, ali, lá, abaixo, acima<br>
+        • <strong>Modo:</strong> bem, mal, assim, depressa<br>
+        • <strong>Intensidade:</strong> muito, demais, pouco, bastante<br>
+        • <strong>Negação:</strong> não, nunca, jamais<br>
+        • <strong>Afirmação:</strong> sim, certamente, realmente</div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>-mente:</strong> 99% dos advérbios em -mente são de modo, mas nem todos. O contexto define a circunstância.</div></div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Palavras denotativas</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Função</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td>Designação</td><td>Apresenta algo</td><td>eis</td></tr>
+        <tr><td>Explicação/retificação</td><td>Esclarece, isoladas por vírgulas</td><td>isto é, ou seja, a saber, aliás</td></tr>
+        <tr><td>Expletiva/de realce</td><td>Ênfase, pode ser retirada</td><td>é que, cá, lá, não, mas</td></tr>
+        <tr><td>Situação</td><td>Marcadores discursivos</td><td>então, mas, se, agora, afinal</td></tr>
+        <tr><td>Exclusão</td><td>Restringe</td><td>somente, só, salvo, exceto</td></tr>
+        <tr><td>Inclusão</td><td>Reforça</td><td>até, ainda, mesmo, também</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha: “só” pode ser adjetivo, advérbio ou denotativa</div>
+    • <strong>Só João</strong> fuma = denotativa de exclusão<br>
+    • <strong>João só</strong> fuma = advérbio de exclusão<br>
+    • Estou <strong>só</strong> = adjetivo (=sozinho)
+  </div>
+</section>
+
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Artigo</div></div>
+  <div class="sec-subtitle">Classe variável — define ou indetermina o substantivo</div>
+
+  
+    <div class="card">
+      <div class="card-title">Artigo definido</div>
+      <div class="card-text">
+        • o, os, a, as<br>
+        • Refere-se a substantivo conhecido/familiar<br>
+        • Indica precisão: “o político” = político específico<br>
+        • Aglutina com preposições: no, na, dos, das</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Artigo indefinido</div>
+      <div class="card-text">
+        • um, uns, uma, umas<br>
+        • Refere-se a substantivo vago/inespecífico<br>
+        • Expressa intensificação: “ela tem uma força!”<br>
+        • Aproximação: “ela deve ter uns 57 anos”</div>
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>“Todo” + artigo:</strong><br>
+    • “Toda casa precisa de reforma” = todas as casas (genérico)<br>
+    • “Toda <strong>a</strong> casa precisa de reforma” = a casa inteira (completude)</div></div>
+
+  <div class="card" style="margin-top:.8rem;">
+    <div class="card-text">
+      <strong>Artigo + substantivo singular = universalizar:</strong><br>
+      “o homem é criativo” = todo homem<br>
+      “uma mulher deve ser respeitada” = toda mulher
+    </div>
+  </div>
+</section>
+
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Numeral</div></div>
+  <div class="sec-subtitle">Indica quantidade, ordem, sequência</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td>Ordinais</td><td>primeiro, segunda, septuagésimo quarto</td></tr>
+        <tr><td>Cardinais</td><td>um, duas, três pessoas</td></tr>
+        <tr><td>Fracionários</td><td>um terço, dois terços, quatro vinte avos</td></tr>
+        <tr><td>Multiplicativos</td><td>dobro, triplo, duplo, cabine dupla</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div>
+    <strong>Não são numerais:</strong> último, penúltimo, antepenúltimo, derradeiro, posterior, anterior.<br>
+    <strong>São numerais:</strong> ambos, zero.<br>
+    <strong>Numerais substantivos/coletivos:</strong> par, dezena, dúzia, década, centúria, milênio, século, lustro, tríduo, novena, bimestre, trimestre, semestre.
+  </div></div>
+</section>
+
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Interjeição</div></div>
+  <div class="sec-subtitle">Classe invariável — expressa emoção</div>
+
+  <div class="card" style="margin-bottom:.8rem;">
+    <div class="card-text">
+      Expressa emoções, estados de espírito, convencimento. Geralmente em frases exclamativas ou apelativas.<br>
+      Olá! Oba! Nossa! Cruzes! Ai! Ui! Ah! Putz! Oxalá! Tomara! Pudera! Tchau!
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Palavrões</strong> são interjeições por excelência — variam de sentido conforme o contexto.<br>
+    <strong>Locuções interjetivas:</strong> Meu Deus! Ora bolas! Valha-me Deus!</div></div>
+</section>
+
+<section id="sec10">
+  <div class="sec-header"><div class="sec-num">10</div><div class="sec-title">Palavras especiais</div></div>
+  <div class="sec-subtitle">Palavras com múltiplas classificações</div>
+
+  
+    <div class="card">
+      <div class="card-title">O, A, Os, As</div>
+      <div class="card-text">
+        • Substantivo: “o a é uma vogal”<br>
+        • Artigo definido: “a menina comeu as balas”<br>
+        • Pronome oblíquo átono: “Ele a odeia”<br>
+        • Pronome demonstrativo: “comprei a que estava mais barata”<br>
+        • Preposição: “Ele se referiu a João”</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Só</div>
+      <div class="card-text">
+        • Advérbio: “Você só reclama”<br>
+        • Denotativa: “Só você reclama”<br>
+        • Adjetivo: “Estou só” (=sozinho)</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Até</div>
+      <div class="card-text">
+        • Preposição: “Fui até a última parte”<br>
+        • Denotativa: “Até o padre riu”<br>
+        • Advérbio: “Ele até riu de mim”</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ainda</div>
+      <div class="card-text">
+        • Tempo: “você ainda não entendeu”<br>
+        • Enfático: “cheguei ainda agora”<br>
+        • Adição: “faz faculdade, ainda trabalha”<br>
+        • Ressalva: “se ainda fosse competente”<br>
+        • Oposição: “você ainda o recompensa”</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Mesmo</div>
+      <div class="card-text">
+        • Demonstrativo: “Eu mesma cozinho”<br>
+        • Comparativo: “falam do mesmo modo”<br>
+        • Especificativo: “somos da mesma cidade”<br>
+        • Denotativa: “Todos morreram, mesmo a mãe”<br>
+        • Advérbio: “Ele canta mesmo!”<br>
+        • Preposição acidental: “mesmo cansado”<br>
+        • Locução concessiva: “mesmo que eu falhe”</div>
+    </div>
+    <div class="card">
+      <div class="card-title">O mesmo</div>
+      <div class="card-text">
+        • Evite retomar pessoas/objetos com “o mesmo” (=ele/eles)<br>
+        • Correto quando significa “a mesma coisa/o mesmo fato”: “todos morreram, o mesmo ocorrerá com você”</div>
+    </div>
+  </div>
+</section>
+
+<div class="callout callout-success" style="margin: 2rem 1.5rem 1rem;">
+  <div class="callout-icon">✅</div>
+  <div><strong>Resumo gerado a partir de:</strong> Aula 01 — Classes de Palavras I (simplificado + completo) · Equipe Português Estratégia Concursos · Felipe Luccas.</div>
+</div>
+
+</div><!-- .main -->
+
+</body>
+</html>

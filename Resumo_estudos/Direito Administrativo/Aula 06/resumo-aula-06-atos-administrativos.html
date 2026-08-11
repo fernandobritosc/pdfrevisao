@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 06: Atos Administrativos</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 06</div>
+  <div class="sidebar-sub">Atos Administrativos · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito e conceitos relacionados</a>
+  <a href="#sec2">2. Atributos (PATI)</a>
+  <a href="#sec3">3. Elementos (COM FIFORMOOB)</a>
+  <a href="#sec4">4. Vícios dos atos</a>
+  <a href="#sec5">5. Mérito administrativo</a>
+  <a href="#sec6">6. Classificação dos atos</a>
+  <a href="#sec7">7. Espécies de atos</a>
+  <a href="#sec8">8. Extinção dos atos</a>
+  <a href="#sec9">9. Convalidação</a>
+  <a href="#sec10">10. Pontos que mais caem em prova</a>
+  <a href="#sec11">11. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO / INTRODUÇÃO                                -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito e conceitos relacionados</div>
+  </div>
+  <div class="sec-subtitle">Maria Sylvia Zanella Di Pietro — conceito mais cobrado (Cebraspe e FCC)</div>
+
+  <div class="card">
+    <div class="card-title">Conceito de ato administrativo</div>
+    <div class="card-text">
+      Ato administrativo é a <strong>declaração do Estado ou de quem o represente</strong>, que produz <strong>efeitos jurídicos imediatos</strong>, com observância da lei, sob <strong>regime jurídico de direito público</strong> e sujeita a <strong>controle pelo Poder Judiciário</strong> (Di Pietro).<br><br>
+      • <strong>Declaração unilateral</strong>: representa a vontade do Estado; diferencia-se dos contratos (bilaterais)<br>
+      • <strong>Pode emanar de todos os Poderes</strong> (Executivo, Legislativo e Judiciário), quando exercem função administrativa — ex.: sanção disciplinar aplicada por presidente de casa legislativa<br>
+      • <strong>Particulares no exercício de prerrogativas públicas</strong>: investidos da função pública, praticam atos administrativos — ex.: motorista de concessionária que faz passageiros desembarcarem<br>
+      • <strong>Finalidade pública</strong>: ato com fim diverso do interesse público = vício de finalidade (desvio), nulo<br>
+      • <strong>Regime de direito público</strong>: exige que a Administração aja "na qualidade de Poder Público" — banco público concedendo empréstimo <strong>não</strong> pratica ato administrativo
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Atos da administração (gênero) × ato administrativo (espécie)</div>
+    <div class="card-text">
+      "Ato da administração" é <strong>gênero</strong> que abrange: atos de direito privado (doação, permuta, locação); atos materiais (demolição, apreensão, varrição); atos de conhecimento, opinião, juízo ou valor (atestados, certidões, pareceres, votos); atos políticos (veto, sanção de lei); contratos e convênios (bilaterais); atos normativos; e atos administrativos propriamente ditos.<br><br>
+      🚨 <strong>Pegadinha:</strong> é o <strong>ato da administração</strong> que tem sentido mais amplo, e não o ato administrativo.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fatos administrativos</div>
+    <div class="card-text">
+      Pode ter três sentidos:<br>
+      • <strong>Atividade material</strong> decorrente de um ato administrativo (ex.: demolição é a execução da ordem de serviço)<br>
+      • <strong>Atuação administrativa que produz efeitos jurídicos indiretamente</strong> (ex.: colisão de veículo oficial → dever de indenizar; não há vontade de produzir efeito)<br>
+      • <strong>Evento da natureza que produz efeitos jurídicos</strong> (ex.: morte de servidor → vacância e pensão)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Silêncio administrativo</div>
+    <div class="card-text">
+      O silêncio (omissão) da Administração <strong>não é ato administrativo</strong>: é <strong>fato jurídico administrativo</strong> (Bandeira de Mello e Carvalho Filho).<br><br>
+      • A lei pode definir os efeitos: <strong>anuência tácita</strong> (ex.: parcelamento RFB após 90 dias — Lei 10.522/2000) ou <strong>negativa tácita</strong> (ex.: Habeas Data — Lei 9.507/1997)<br>
+      • Se a lei não definir, o particular pode acionar o Judiciário: ato <strong>vinculado</strong> → juiz determina a concessão; ato <strong>discricionário</strong> → juiz fixa prazo para decisão motivada (mesmo que indeferindo)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O silêncio administrativo, mesmo em atos <strong>discricionários</strong>, se submete ao controle judicial — o juiz determina que a Administração encerre a omissão e decida motivadamente (Sefaz CE/2021).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — ATRIBUTOS (PATI)                                     -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Atributos dos atos administrativos</div>
+  </div>
+  <div class="sec-subtitle">Qualidades que diferenciam os atos administrativos dos atos privados</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      PATI — Presunção de legitimidade/veracidade · Autoexecutoriedade · Tipicidade · Imperatividade
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Em TODOS os atos</div><div class="card-text"><strong>Presunção de legitimidade/veracidade</strong> e <strong>Tipicidade</strong></div></div>
+    <div class="card"><div class="card-title">⚡ Só em ALGUNS atos</div><div class="card-text"><strong>Imperatividade</strong> e <strong>Autoexecutoriedade</strong></div></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Presunção de legitimidade e de veracidade
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Legitimidade × veracidade</div>
+    <div class="card-text">
+      • <strong>Legitimidade</strong>: presume-se que o ato foi praticado em conformidade com a lei<br>
+      • <strong>Veracidade</strong>: presume-se que os <strong>fatos alegados</strong> pela Administração são verdadeiros<br><br>
+      <strong>Consequências:</strong> o ato produz efeitos enquanto não decretada a invalidade; <strong>inversão do ônus da prova</strong> (cabe ao administrado provar a ilegalidade); presunção é <strong>relativa (iuris tantum)</strong>; nulidade só decretada pelo Judiciário <strong>mediante provocação</strong> (princípio da inércia).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (CEBRASPE/EMBRAPA 2025)</div>
+    A resolução oficial da banca entende que a <strong>inversão do ônus da prova decorre especificamente da presunção de VERACIDADE</strong> (fatos), não da legitimidade. Para prova, prevaleça:<br>
+    • Presunção de <strong>legitimidade</strong> = conformidade com a lei<br>
+    • Presunção de <strong>veracidade</strong> = fatos verdadeiros → <strong>inverte o ônus da prova</strong>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A inversão do ônus da prova <strong>não é absoluta</strong>: em <strong>processos disciplinares</strong>, a Administração tem o dever de provar a infração (TRT CE/2017).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Imperatividade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Capacidade de <strong>impor obrigações a terceiros independentemente de concordância</strong>. É o <strong>poder extroverso</strong> do Estado; atos cogentes. Fundamento: supremacia do interesse público. Depende de <strong>previsão legal</strong>.<br><br>
+      <strong>Não está presente</strong> nos atos que concedem direitos (licença, autorização, permissão, admissão) nem nos atos enunciativos (certidão, atestado, parecer).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Autoexecutoriedade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Possibilidade de <strong>execução imediata e direta</strong> pela Administração, <strong>sem necessidade de ordem judicial</strong> (permite até o uso da força). <strong>Não afasta o controle judicial</strong> (prévio ou posterior).<br><br>
+      <strong>Presente em duas situações:</strong> (i) quando expressamente prevista em lei (ex.: apreensão de mercadorias, cassação de CNH); (ii) quando se trata de <strong>medida urgente</strong> (ex.: demolição de imóvel com risco de desabamento).<br><br>
+      <strong>Não existe</strong> contra o patrimônio financeiro do interessado — a Administração <strong>não pode retirar dinheiro da conta</strong> para cobrar multa (precisa de autorização judicial). Não gozam de autoexecutoriedade: <strong>multas do poder de polícia</strong> e <strong>desapropriação de bens imóveis</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Bandeira de Mello</th><th>Significado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Exigibilidade</strong></td><td>Meios <strong>indiretos</strong> de coação — o próprio administrado executa (ex.: negar licenciamento enquanto multa não quitada)</td></tr>
+        <tr><td><strong>Executoriedade</strong></td><td>Meios <strong>diretos</strong> / uso da força — a Administração executa; sinônimo de <strong>autoexecutoriedade</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Interdição de estabelecimento com risco concreto à coletividade = <strong>autoexecutoriedade</strong>. Não confundir com <strong>exigibilidade</strong> (meios indiretos) nem com <strong>coercibilidade</strong> (força para cumprir o ato). Multa administrativa tem imperatividade, mas <strong>não autoexecutoriedade</strong> — cobrança coercitiva exige execução fiscal.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Tipicidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O ato administrativo deve <strong>corresponder a figuras previamente definidas em lei</strong> como aptas a produzir determinados resultados. Relaciona-se ao princípio da <strong>legalidade</strong>.<br><br>
+      • Impede atos com imperatividade/executoriedade sem previsão legal<br>
+      • Afasta o ato totalmente discricionário (a lei já define os limites)<br>
+      • Só existe nos <strong>atos unilaterais</strong> — <strong>não existem atos unilaterais "inominados"</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A tipicidade <strong>não veda contratos inominados</strong> — os contratos dependem do que as partes convencionarem (TJ PA/2020). A tipicidade só alcança atos unilaterais.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ELEMENTOS (COM FIFORMOOB)                            -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Elementos (requisitos) de formação do ato</div>
+  </div>
+  <div class="sec-subtitle">Art. 2º da Lei 4.717/1965 (Ação Popular)</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      COM FI FOR MO OB — Competência · Finalidade · Forma · Motivo · Objeto
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Elemento</th><th>Definição</th><th>Vinculado × Discricionário</th><th>Vício</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Competência</strong></td><td>Poder legal conferido ao agente para o desempenho de suas atribuições</td><td><span class="tag tag-blue">Sempre vinculado</span></td><td>Excesso de poder / incapacidade</td></tr>
+        <tr><td><strong>Finalidade</strong></td><td>Interesse público (geral) + fim previsto em lei (específica)</td><td><span class="tag tag-blue">Sempre vinculado</span></td><td>Desvio de finalidade (insanável)</td></tr>
+        <tr><td><strong>Forma</strong></td><td>Meio de exteriorização do ato + formalidades do procedimento</td><td><span class="tag tag-blue">Sempre vinculado</span></td><td>Inobservância da forma/procedimento (sanável)</td></tr>
+        <tr><td><strong>Motivo</strong></td><td>Pressuposto de fato + fundamento de direito</td><td><span class="tag tag-amber">Pode ser discricionário</span></td><td>Falso, inexistente, inadequado (insanável)</td></tr>
+        <tr><td><strong>Objeto</strong></td><td>Efeito jurídico imediato que o ato produz (conteúdo)</td><td><span class="tag tag-amber">Pode ser discricionário</span></td><td>Ilícito, impossível, imoral, incerto (insanável)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Competência
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Poder-dever</strong>, irrenunciável, intransferível, imodificável pela vontade do administrador, imprescritível e improrrogável (incompetente não se torna competente pelo exercício). É <strong>sempre vinculada</strong>.<br><br>
+      • <strong>Primária</strong>: prevista em lei/CF (ex.: art. 84, CF)<br>
+      • <strong>Secundária</strong>: distribuída por regulamentos, resoluções<br><br>
+      Admite <strong>delegação</strong> e <strong>avocação</strong> (Lei 9.784/1999).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Delegação</th><th>Avocação</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Conceito</strong></td><td>Transferir a <strong>execução</strong> (a titularidade permanece com o delegante)</td><td>Chamar para si função de <strong>subordinado</strong></td></tr>
+        <tr><td><strong>Hierarquia</strong></td><td>Com <strong>ou sem</strong> hierarquia</td><td>Só com <strong>hierarquia</strong> (vertical)</td></tr>
+        <tr><td><strong>Natureza</strong></td><td><strong>Regra</strong> — pode, salvo vedação legal</td><td><strong>Exceção</strong> — motivos relevantes, temporária</td></tr>
+        <tr><td><strong>Vedações</strong></td><td>Atos normativos; decisão de recursos admin.; competência exclusiva</td><td>Competência exclusiva do subordinado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      NORECE — atos NORmativos, decisão de RECursos e competência E xclusiva: o que NÃO se delega
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Finalidade e forma
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Finalidade:</strong> geral (interesse público) + específica (definida em lei para cada ato). Invariável em sentido amplo; variável em sentido estrito. Manifestação do princípio da <strong>impessoalidade</strong>. Ato deve atender a ambas, sob pena de invalidação.<br><br>
+      <strong>Forma:</strong> exteriorização (sentido estrito — decreto, portaria) + procedimento/formalidades (sentido amplo — notificação, contraditório). Regra: <strong>escrita</strong>; exceções: gestos, palavras, sinais, imagens. <strong>Formalismo moderado</strong> (Lei 9.784, art. 22). No direito público, a formalidade é a <strong>regra</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Motivo e motivação
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Motivo</strong> = situação de fato e de direito que leva a Administração a praticar o ato (pressuposto de fato + pressuposto de direito). É elemento de formação — presente em <strong>todos</strong> os atos.<br><br>
+      <strong>Motivação</strong> = demonstração escrita dos motivos. <strong>Não é elemento de formação</strong>; em regra é exigida, mas há atos sem necessidade (ex.: exoneração de cargo em comissão).<br><br>
+      • Regra: motivação <strong>prévia ou concomitante</strong>; excepcionalmente <strong>posterior</strong> (motivos pré-existentes)<br>
+      • <strong>Contextual</strong>: motivos enumerados no próprio ato<br>
+      • <strong>Aliunde (por referência)</strong>: remete a parecer/documento anterior (art. 50, § 2º, Lei 9.784)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Ausência de motivação</strong> (quando exigida) = vício de <strong>FORMA</strong>, não de motivo! Motivo é elemento do ato; motivação é exteriorização.
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Teoria dos motivos determinantes:</strong> uma vez motivado o ato, sua validade fica <strong>vinculada à veracidade dos motivos</strong>. Aplica-se a atos vinculados e discricionários, com ou sem motivação obrigatória. Motivo falso/inexistente → ato nulo.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Objeto
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Conteúdo do ato — o efeito jurídico que cria, extingue, modifica ou declara. O <strong>objeto é o fim imediato</strong>; a <strong>finalidade é o fim mediato</strong> (resultado desejado). Para ser válido: <strong>lícito, possível, certo e moral</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Licença a servidor <strong>falecido</strong> = vício de <strong>objeto</strong> (impossível), e não de motivo — o motivo (doença na família) pode ser verdadeiro, mas o objeto é irrealizável (TRT 24/2017).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — VÍCIOS DOS ATOS                                      -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Vícios dos atos administrativos</div>
+  </div>
+  <div class="sec-subtitle">A gravidade do defeito determina se o ato é nulo ou anulável</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Vícios de competência
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Espécie</th><th>Conceito</th><th>Tratamento</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Excesso de poder</strong></td><td>Agente excede os limites da sua competência</td><td>Regra: <strong>sanável</strong> (convalidável) — exceto competência exclusiva</td></tr>
+        <tr><td><strong>Função de fato</strong></td><td>Investidura irregular/anormal (ex.: diploma falso)</td><td>Ato <strong>válido</strong> perante terceiros de boa-fé</td></tr>
+        <tr><td><strong>Usurpação de função</strong></td><td>Sem vínculo com o Estado, se passa por agente público</td><td><strong>Crime</strong> (CP, art. 328) — ato <strong>inexistente</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Incapacidade</div>
+    <div class="card-text">
+      Agente tem competência legal, mas <strong>não pode atuar</strong> por <strong>impedimento</strong> ou <strong>suspeição</strong> (falta de imparcialidade).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Demais vícios
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Elemento</th><th>Vício</th><th>Convalidação?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Finalidade</strong></td><td>Desvio de poder / desvio de finalidade (fim diverso do interesse público ou do fim legal)</td><td><span class="tag tag-red">NÃO — insanável</span></td></tr>
+        <tr><td><strong>Forma</strong></td><td>Forma prevista em lei não observada; rito/procedimento descumprido</td><td><span class="tag tag-green">SIM — sanável (regra)</span></td></tr>
+        <tr><td><strong>Motivo</strong></td><td>Falso; inexistente; juridicamente inadequado</td><td><span class="tag tag-red">NÃO — insanável</span></td></tr>
+        <tr><td><strong>Objeto</strong></td><td>Proibido/não previsto; diverso do legal; impossível; imoral; incerto</td><td><span class="tag tag-red">NÃO — insanável</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ato de <strong>nepotismo</strong> (nomear parente para cargo em comissão) pode configurar <strong>vício de objeto</strong> (imoral) e, ao mesmo tempo, ofender a <strong>finalidade</strong> (impessoalidade) — um ato pode ter vício em mais de um elemento.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Omissão de formalidades essenciais = vício de <strong>FORMA</strong>, e não desvio de finalidade. Desvio de finalidade é vício do elemento <strong>finalidade</strong> (fim diverso do previsto em lei) (CEBRASPE/TRF 6, 2025).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — MÉRITO ADMINISTRATIVO                                -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Mérito administrativo</div>
+  </div>
+  <div class="sec-subtitle">Núcleo de conveniência e oportunidade dos atos discricionários</div>
+
+  <div class="card">
+    <div class="card-text">
+      Mérito é o <strong>juízo de conveniência e oportunidade</strong> conferido pela lei ao administrador. Existe <strong>somente nos atos discricionários</strong>.<br><br>
+      • Competência, finalidade e forma: <strong>sempre vinculados</strong><br>
+      • Motivo e objeto: <strong>podem ser vinculados ou discricionários</strong><br>
+      • O controle de mérito cabe à <strong>própria Administração</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Elemento</th><th>Ato vinculado</th><th>Ato discricionário</th></tr></thead>
+      <tbody>
+        <tr><td>Competência</td><td>Vinculada</td><td>Vinculada</td></tr>
+        <tr><td>Finalidade</td><td>Vinculada</td><td>Vinculada</td></tr>
+        <tr><td>Forma</td><td>Vinculada</td><td>Vinculada</td></tr>
+        <tr><td>Motivo</td><td>Vinculado</td><td><strong>Discricionário</strong></td></tr>
+        <tr><td>Objeto</td><td>Vinculado</td><td><strong>Discricionário</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Limite da atuação judicial:</strong> o Judiciário <strong>não pode revogar nem substituir o mérito</strong> de ato administrativo discricionário válido. Ele controla <strong>legalidade, legitimidade e razoabilidade</strong> — se o ato for ilegal, anula; não altera a escolha discricionária legítima.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Atos <strong>discricionários não estão isentos de controle judicial</strong>. O Judiciário pode avaliar se o motivo é falso/inexistente (teoria dos motivos determinantes) e a legalidade/razoabilidade do ato — só não invade o juízo legítimo de conveniência e oportunidade (CEBRASPE/TRT 10, 2025).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — CLASSIFICAÇÃO DOS ATOS                               -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Classificação dos atos administrativos</div>
+  </div>
+  <div class="sec-subtitle">Critérios doutrinários mais cobrados</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Quanto à liberdade de ação
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Vinculados</div><div class="card-text">Sem margem de escolha — todos os requisitos definidos em lei (ex.: licença paternidade)</div></div>
+    <div class="card"><div class="card-title">Discricionários</div><div class="card-text">Lei deixa margem para valorar o motivo e escolher o objeto</div></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Quanto à formação ou intervenção da vontade
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Espécie</th><th>Característica</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Simples</strong></td><td>Um único órgão, unipessoal ou <strong>colegiado</strong> (vontade unitária)</td><td>Despacho de chefe de seção; decisão de conselho</td></tr>
+        <tr><td><strong>Complexo</strong></td><td><strong>Um único ato</strong> formado pela conjugação de vontades de <strong>dois ou mais órgãos</strong></td><td>Instrução interministerial; aposentadoria registrada pelo TCU</td></tr>
+        <tr><td><strong>Composto</strong></td><td><strong>Dois atos</strong>: principal + acessório/instrumental que o aprova (condição de exequibilidade)</td><td>Nomeação + visto/homologação</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Decisão de órgão <strong>colegiado</strong> é ato <strong>SIMPLES</strong> (vontade unitária), não complexo. Ato complexo exige vontade de <strong>dois ou mais órgãos</strong> (DPE PE/2018). E ato complexo ≠ processo administrativo: no processo, os atos intermediários podem ser impugnados autonomamente; o ato complexo só se ataca quando concluído.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Quanto aos efeitos
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Espécie</th><th>Conceito</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Constitutivo</strong></td><td>Cria nova situação jurídica (direito ou obrigação)</td><td>Nomeação, multa, concessão de licença</td></tr>
+        <tr><td><strong>Modificativo</strong></td><td>Altera situação preexistente, sem criar/extinguir</td><td>Mudança de horário/local de audiência</td></tr>
+        <tr><td><strong>Extintivo (desconstitutivo)</strong></td><td>Encerra situação jurídica individual</td><td>Demissão, exoneração, cassação de alvará</td></tr>
+        <tr><td><strong>Declaratório</strong></td><td>Reconhece situação preexistente</td><td>Certidão de regularidade fiscal, atestado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ato <strong>declaratório NÃO implanta, modifica nem extingue</strong> situação — apenas reconhece a que já existe (SEDF/2017).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Quanto à eficácia e à exequibilidade
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Espécies</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Eficácia</strong></td><td><strong>Válido</strong> (sem vícios) · <strong>Nulo</strong> (vício insanável) · <strong>Anulável</strong> (vício sanável) · <strong>Inexistente</strong> (usurpador; objeto impossível)</td></tr>
+        <tr><td><strong>Exequibilidade</strong></td><td><strong>Perfeito</strong> (ciclo de formação completo) · <strong>Imperfeito</strong> (incompleto) · <strong>Eficaz</strong> (apto a produzir efeitos) · <strong>Pendente</strong> (depende de termo/condição) · <strong>Consumado/exaurido</strong> (produziu todos os efeitos)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Perfeito ≠ válido ≠ eficaz.</strong> Ato perfeito é "pronto" (ciclo de formação completo) — mas pode conter vício (nulo/anulável). Ato apto a produzir efeitos = <strong>eficaz</strong> (CEBRASPE/EMBRAPA 2025). Atos posteriores a um ato de desclassificação ilegal são <strong>perfeitos, válidos e eficazes</strong> até que o ato anterior seja anulado (TST/2017).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — ESPÉCIES DE ATOS                                     -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Espécies de atos administrativos</div>
+  </div>
+  <div class="sec-subtitle">Cinco espécies clássicas (NONEP)</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Espécie</th><th>Exemplos</th><th>Características</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Normativos</strong></td><td>Decretos, regulamentos, resoluções, regimentos, deliberações, instruções normativas</td><td>Gerais e abstratos; sem efeitos concretos imediatos; <strong>não inovam</strong> o ordenamento (subordinados à lei); atos administrativos só em sentido formal</td></tr>
+        <tr><td><strong>Ordinatórios</strong></td><td>Instruções, ofícios, circulares, portarias, avisos, ordens de serviço, despachos</td><td>Disciplinam o funcionamento interno; fundamento: <strong>poder hierárquico</strong>; alcance interno</td></tr>
+        <tr><td><strong>Enunciativos</strong></td><td>Certidões, atestados, pareceres, apostilas (mnemônico <strong>CAPA</strong>)</td><td>Meros atos administrativos; <strong>não</strong> produzem efeitos jurídicos imediatos nem manifestam vontade; sentido <strong>formal</strong></td></tr>
+        <tr><td><strong>Negociais</strong></td><td>Licença, autorização, permissão, aprovação, admissão, visto, homologação, dispensa, renúncia, protocolo</td><td>Vontade da Administração <strong>coincide</strong> com a do particular; atos de consentimento; <strong>sem imperatividade</strong> nem autoexecutoriedade</td></tr>
+        <tr><td><strong>Punitivos</strong></td><td>Multa, interdição de atividade, destruição de coisas, apreensão</td><td>Fundamento: poderes <strong>disciplinar</strong> e de <strong>polícia</strong>; sanções internas (servidores) e externas (administrados)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Atos ordinatórios decorrem do poder HIERÁRQUICO</strong>, não do poder regulamentar (que é do Chefe do Executivo para editar regulamentos) (CEBRASPE/EMBRAPA 2025). Cuidado: portaria (ordinatório) institui comissão de concurso/licitação; resolução não cabe para ato do chefe do Executivo (usa-se decreto).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Atos negociais: Licença × Autorização × Permissão
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Licença</th><th>Autorização</th><th>Permissão</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Natureza</strong></td><td><span class="tag tag-blue">Vinculada</span></td><td>Discricionária</td><td>Discricionária</td></tr>
+        <tr><td><strong>Estabilidade</strong></td><td><span class="tag tag-green">Definitiva</span> (direito subjetivo)</td><td>Precária</td><td>Precária</td></tr>
+        <tr><td><strong>Revogação</strong></td><td>Não pode ser revogada (só anulada ou cassada)</td><td>Revogável a qualquer tempo, sem indenização</td><td>Revogável a qualquer tempo (condicionadas: prazo e indenização)</td></tr>
+        <tr><td><strong>Interesse predominante</strong></td><td>Particular</td><td><strong>Particular</strong></td><td><strong>Público</strong></td></tr>
+        <tr><td><strong>Exemplos</strong></td><td>CNH, alvará de funcionamento</td><td>Porte de arma, uso de bem público</td><td>Quiosque em praça pública</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Permissão de serviço público (Lei 8.987/1995):</strong> é <strong>contrato administrativo</strong> (bilateral), precedido de licitação, de natureza precária. Duas espécies: ato (uso de bem público, unilateral) e contrato (delegação de serviço público, bilateral).</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Visto</strong> é ato unilateral que <strong>atesta a legitimidade formal</strong> de outro ato e apenas informa que tomou ciência — <strong>não</strong> manifesta concordância com o conteúdo (CEBRASPE/MPE CE, 2025). Porte de arma = <strong>autorização</strong> (unilateral, discricionária, precária) (TRT PE/2018).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — EXTINÇÃO DOS ATOS                                    -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Extinção dos atos administrativos</div>
+  </div>
+  <div class="sec-subtitle">Formas de desfazimento + extinção natural</div>
+
+  <div class="card">
+    <div class="card-title">Extinção natural e demais formas</div>
+    <div class="card-text">
+      • <strong>Cumprimento dos efeitos</strong> (extinção natural); <strong>subjetiva</strong> (morte do beneficiário); <strong>objetiva</strong> (desaparecimento do objeto); <strong>renúncia</strong> (ex.: renúncia à aposentadoria)<br><br>
+      • <strong>Retirada</strong> (formas de desfazimento): <strong>caducidade, contraposição, cassação, anulação, revogação</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Forma</th><th>Motivo</th><th>Efeitos</th><th>Quem aplica</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Anulação</strong></td><td>Ilegalidade / vício</td><td><span class="tag tag-red">Ex tunc</span> (retroativos)</td><td>Administração (autotutela) ou Judiciário (provocado)</td></tr>
+        <tr><td><strong>Revogação</strong></td><td>Inconveniência/inoportunidade (mérito)</td><td><span class="tag tag-amber">Ex nunc</span> (prospectivos)</td><td><strong>Apenas a Administração</strong></td></tr>
+        <tr><td><strong>Cassação</strong></td><td>Descumprimento de condições pelo beneficiário</td><td>Ex nunc</td><td>Administração</td></tr>
+        <tr><td><strong>Caducidade</strong></td><td>Nova lei torna o ato ilegal/incompatível</td><td>Ex nunc</td><td>Administração</td></tr>
+        <tr><td><strong>Contraposição</strong></td><td>Novo ato com efeitos opostos (ex.: exoneração × nomeação)</td><td>Ex nunc</td><td>Administração</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Tapa na TESTA (ex tunc): cabeça para trás → retroage = ANULAÇÃO · Tapa na NUCA (ex nunc): cabeça para frente → não retroage = REVOGAÇÃO
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Base legal:</strong> Súmula 473 STF — a administração pode anular seus próprios atos quando eivados de ilegalidade (deles não se originam direitos) ou revogá-los por conveniência/oportunidade, respeitados os direitos adquiridos e a apreciação judicial. Art. 53 da Lei 9.784/1999 no mesmo sentido.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Anulação
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Desfazimento do ato <strong>ilegal/viciado</strong>. Efeitos <strong>retroativos (ex tunc)</strong>. Controle de legalidade (sentido amplo: CF, leis, princípios).<br><br>
+      • Em regra é um <strong>dever</strong> (princípio da legalidade), mas a administração <strong>não anula</strong> quando houver segurança jurídica/decadência ou quando o vício for sanável (convalidação)<br>
+      • Pode ser feita pela Administração (autotutela, de ofício ou provocação) ou pelo Judiciário (somente provocado)<br>
+      • Ato ilegal <strong>não comporta revogação</strong> — o desfazimento correto é a anulação (PGM Campo Grande/2019)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Decadência administrativa (art. 54, Lei 9.784/1999)</div>
+    <div class="card-text">
+      O direito de a Administração anular atos de que decorram <strong>efeitos favoráveis</strong> ao destinatário <strong>decai em 5 anos</strong>, contados da prática do ato, <strong>salvo comprovada má-fé</strong>.<br><br>
+      • <strong>Efeitos patrimoniais contínuos</strong>: contagem do <strong>primeiro pagamento</strong> (art. 54, § 1º)<br>
+      • <strong>Não há prazo</strong> para anular atos com efeitos <strong>desfavoráveis</strong> nem com <strong>má-fé</strong><br>
+      • <strong>Flagrante inconstitucionalidade</strong>: não se submete ao prazo decadencial (STF — ex.: provimento sem concurso)<br>
+      • Regra da Lei 9.784/99 aplica-se aos demais entes que não tenham lei própria de processo administrativo (Súmula 633 STJ)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Revogação
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Supressão de ato <strong>válido, eficaz e discricionário</strong>, por razões de conveniência e oportunidade. Efeitos <strong>prospectivos (ex nunc)</strong>. Só a própria Administração (ou autoridade em escala hierárquica superior) pode revogar — o Judiciário <strong>não revoga</strong> ato da Administração.
+    </div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Não são passíveis de revogação:</strong> atos inválidos (anulam-se); atos vinculados; atos exauridos/consumados; atos sobre os quais já se exauriu a competência (ex.: recurso já encaminhado à instância superior); meros atos administrativos (certidões, atestados); atos que integram procedimento (preclusão administrativa); atos que geraram direito adquirido (art. 5º, XXXVI, CF).</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Certidão não comporta revogação</strong> — é mero ato administrativo declaratório; não há como "revogar a realidade" (TRT 24/2017). Revogação recai sobre ato <strong>eficaz</strong> (não sobre ato imperfeito) (CGE CE/2019).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — CONVALIDAÇÃO                                         -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Convalidação dos atos administrativos</div>
+  </div>
+  <div class="sec-subtitle">Saneamento do vício sanável — teoria dualista (art. 55, Lei 9.784/1999)</div>
+
+  <div class="card">
+    <div class="card-text">
+      O Brasil adota a <strong>teoria dualista</strong>: atos <strong>nulos</strong> (vício insanável — não convalidam) e atos <strong>anuláveis</strong> (vício sanável — admitem convalidação). A teoria monista (todo ato inválido é nulo) <strong>não</strong> é a adotada.<br><br>
+      Convalidar é <strong>corrigir/regularizar</strong> o ato viciado, mantendo-o no mundo jurídico com efeitos <strong>retroativos (ex tunc)</strong>. Não é forma de desfazimento.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      FoCo — vícios sanáveis: FO rma (não essencial) + CO mpetência (não exclusiva)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Três requisitos cumulativos (art. 55)</div>
+    <div class="card-text">
+      1. Não acarretar <strong>lesão ao interesse público</strong><br>
+      2. Não causar <strong>prejuízo a terceiros</strong><br>
+      3. Tratar-se de <strong>vício sanável</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Vício</th><th>Regra</th><th>Exceção (insanável)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Competência</strong></td><td><span class="tag tag-green">Sanável</span></td><td>Competência <strong>exclusiva</strong>; competência <strong>em razão da matéria</strong></td></tr>
+        <tr><td><strong>Forma</strong></td><td><span class="tag tag-green">Sanável</span></td><td>Forma <strong>essencial</strong> (garantia de direito, definida em lei — ex.: ampla defesa em PAD, decreto de desapropriação)</td></tr>
+        <tr><td>Finalidade / Motivo / Objeto</td><td colspan="2"><span class="tag tag-red">Sempre insanáveis</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Ausência de motivação</strong> (quando obrigatória) = vício de <strong>forma</strong>, <strong>sanável</strong>. Vício de <strong>motivo/finalidade/objeto</strong> = <strong>insanável</strong>. A banca troca esses termos para derrubar candidato.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A convalidação <strong>NÃO pode gerar prejuízo a terceiros</strong> — assertiva que admita convalidação com prejuízo a terceiros está errada (CEBRASPE/ANM 2025). Em regra, a administração é <strong>obrigada a convalidar</strong> vício sanável; exceção: vício de competência em ato discricionário (pode optar).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>PATI:</strong> presunção e tipicidade em <strong>todos</strong> os atos; imperatividade e autoexecutoriedade <strong>só em alguns</strong><br>
+      • <strong>Presunção de veracidade → inversão do ônus da prova</strong> (na visão da Cebraspe); não é absoluta (PAD)<br>
+      • <strong>Autoexecutoriedade ≠ ausência de controle judicial</strong>; multa não tem autoexecutoriedade<br>
+      • <strong>Exigibilidade</strong> (meios indiretos) × <strong>executoriedade</strong> (meios diretos/força)<br>
+      • <strong>Anulação</strong> (ilegal, ex tunc, adm + juiz) × <strong>Revogação</strong> (válido, ex nunc, só adm)<br>
+      • <strong>Ausência de motivação = vício de forma</strong> (sanável) — teoria dos motivos determinantes
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>COM FIFORMOOB:</strong> competência, finalidade e forma sempre vinculados; motivo e objeto podem ser discricionários<br>
+      • <strong>Mérito:</strong> conveniência e oportunidade — só atos discricionários; Judiciário não invade o mérito<br>
+      • <strong>Decadência:</strong> 5 anos para anular atos com efeitos favoráveis (art. 54 L9784); sem prazo para má-fé, efeitos desfavoráveis e inconstitucionalidade flagrante<br>
+      • <strong>Convalidação (FoCo):</strong> forma não essencial + competência não exclusiva; efeitos ex tunc<br>
+      • <strong>NORECE:</strong> não se delega atos normativos, decisão de recursos e competência exclusiva; avocação só com hierarquia e temporariamente<br>
+      • <strong>Licença</strong> vinculada/definitiva · <strong>Autorização</strong> discricionária/precária (interesse do particular) · <strong>Permissão</strong> precária (interesse público)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • Silêncio administrativo <strong>não é ato administrativo</strong> — é fato jurídico administrativo<br>
+      • Ato de colegiado é <strong>simples</strong>, não complexo<br>
+      • Ato <strong>perfeito ≠ eficaz ≠ válido</strong><br>
+      • Certidão não é revogável (mero ato administrativo)<br>
+      • Vício de <strong>objeto</strong> (impossível) em licença a servidor falecido, não de motivo<br>
+      • Ordinatórios derivam do poder <strong>hierárquico</strong>, não do regulamentar<br>
+      • Visto atesta <strong>legitimidade formal</strong>, sem concordância com o conteúdo
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine os conceitos de Di Pietro (mais cobrados), o mnemônico PATI + COM FIFORMOOB + FoCo + NORECE, e as distinções anulação/revogação e licença/autorização/permissão. Essas são as pegadinhas recorrentes de Cebraspe, FCC e FGV.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

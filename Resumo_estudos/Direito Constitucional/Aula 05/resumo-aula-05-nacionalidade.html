@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DC Aula 05: Nacionalidade</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Constitucional — Aula 05</div>
+  <div class="sidebar-sub">Nacionalidade · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito e distinções</a>
+  <a href="#sec2">2. Brasileiros natos (art. 12, I)</a>
+  <a href="#sec3">3. Brasileiros naturalizados (art. 12, II)</a>
+  <a href="#sec4">4. Cargos privativos de nato (art. 12, § 3º)</a>
+  <a href="#sec5">5. Distinções nato × naturalizado (art. 12, § 2º)</a>
+  <a href="#sec6">6. Perda e reaquisição da nacionalidade</a>
+  <a href="#sec7">7. Pontos que mais caem em prova</a>
+  <a href="#sec8">8. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: simplificado + completo + mapa mental<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO E DISTINÇÕES                                -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de nacionalidade e distinções</div>
+  </div>
+  <div class="sec-subtitle">Nacionalidade × cidadania × população — os conceitos que a banca confunde</div>
+
+  <div class="card">
+    <div class="card-title">Nacionalidade: o vínculo com o Estado</div>
+    <div class="card-text">
+      Segundo a doutrina dominante, os elementos constitutivos do Estado são <strong>território, povo e governo soberano</strong>. Entre esses três elementos, o <strong>povo</strong> é o que constitui a <strong>dimensão pessoal do Estado</strong>.<br><br>
+      • <strong>População</strong>: conjunto de pessoas que habitam o território do Estado (nacionais e estrangeiros)<br>
+      • <strong>Povo</strong>: compõe-se dos <strong>nacionais</strong>, independentemente do local em que residam<br><br>
+      A <strong>nacionalidade</strong> é o <strong>vínculo jurídico-político entre o Estado soberano e o indivíduo</strong>, que torna este um membro integrante da comunidade que constitui o Estado.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Dimensões da nacionalidade (Mazzuoli)</div>
+    <div class="card-text">
+      A nacionalidade comporta duas dimensões:<br>
+      • <strong>Dimensão vertical</strong>: liga o indivíduo ao <strong>Estado</strong>; impõe obrigações ao indivíduo, próprias de uma relação de <strong>subordinação</strong><br>
+      • <strong>Dimensão horizontal</strong>: liga o indivíduo ao elemento <strong>povo</strong>; pressupõe uma relação <strong>sem grau hierárquico</strong>, paritária do indivíduo com a comunidade à qual pertence
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Nacionalidade × cidadania</div>
+    <div class="card-text">
+      A nacionalidade é mais ampla e <strong>não se confunde com a cidadania</strong>.<br><br>
+      • <strong>Cidadania</strong>: atributo que diferencia aqueles que possuem pleno gozo dos <strong>direitos políticos</strong> daqueles que não possuem<br>
+      • <strong>Nacionalidade</strong>: o que diferencia os <strong>nacionais</strong> dos <strong>estrangeiros</strong>, isto é, quem possui ligação pessoal com o Estado de quem não possui
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Soberania estatal:</strong> cabe a cada Estado legislar sobre sua própria nacionalidade, respeitando os compromissos gerais e particulares aos quais tenha se obrigado. O Estado soberano é o único outorgante possível da nacionalidade — ele determina quem são seus nacionais, as condições de aquisição e disciplina sua perda. O estabelecimento desses critérios é ato de manifestação da soberania estatal.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>População ≠ povo:</strong> a população abrange todas as pessoas que habitam o território (inclui estrangeiros); o povo é composto apenas pelos nacionais, mesmo que residam no exterior.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — BRASILEIROS NATOS                                    -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Brasileiros natos (art. 12, I, CF/88)</div>
+  </div>
+  <div class="sec-subtitle">Nacionalidade originária (primária) — resultante do nascimento</div>
+
+  <div class="card">
+    <div class="card-title">Nacionalidade originária</div>
+    <div class="card-text">
+      A <strong>nacionalidade originária</strong> resulta de um fato natural, o <strong>nascimento</strong>; é uma forma <strong>involuntária</strong> de aquisição. É atribuída em razão de critérios:<br><br>
+      • <strong>Territoriais</strong> (jus soli) — REGRA<br>
+      • <strong>Sanguíneos</strong> (jus sanguinis) — EXCEÇÃO<br>
+      • Ou mistos<br><br>
+      Os que a recebem são chamados <strong>"brasileiros natos"</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 12, I — "a": nascidos na RFB (jus soli)</div>
+    <div class="card-text">
+      São brasileiros natos os <strong>nascidos na República Federativa do Brasil, ainda que de pais estrangeiros, desde que estes não estejam a serviço de seu país</strong>.<br><br>
+      O território da RFB abrange, além das fronteiras geográficas, o <strong>mar territorial</strong> e o <strong>espaço aéreo</strong>.<br><br>
+      <strong>Exceção:</strong> o nascido no Brasil, filho de estrangeiros que estejam <strong>a serviço de seu país</strong>, <strong>não</strong> será brasileiro nato. Para excluir a atribuição pelo jus soli, é necessário o cumprimento <strong>cumulativo de 2 condições</strong>:<br>
+      • <strong>Ambos</strong> os pais serem estrangeiros; e<br>
+      • Um dos pais <strong>ou ambos</strong> estarem a serviço de seu país
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Situação</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td>Filho de pai ou mãe (ou ambos) brasileiros nasce no Brasil</td><td><span class="tag tag-green">Brasileiro nato</span></td></tr>
+        <tr><td>Filho de estrangeiros, um deles ou ambos a serviço de seu país, nasce no Brasil</td><td><span class="tag tag-red">NÃO é brasileiro nato</span></td></tr>
+        <tr><td>Filho de estrangeiros <strong>não</strong> a serviço de seu país nasce no Brasil</td><td><span class="tag tag-green">Brasileiro nato</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Diplomata italiano a serviço de seu país no Brasil casa-se com brasileira e têm filho em território brasileiro: o filho será <strong>brasileiro nato</strong>, pois apenas <strong>uma</strong> das duas condições cumulativas foi preenchida (a do serviço do país). Faltou a condição de <strong>"ambos os pais estrangeiros"</strong>.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 12, I — "b": nascidos no estrangeiro, a serviço do Brasil (jus sanguinis)</div>
+    <div class="card-text">
+      São brasileiros natos os <strong>nascidos no estrangeiro, de pai brasileiro ou mãe brasileira, desde que qualquer deles esteja a serviço da República Federativa do Brasil</strong>.<br><br>
+      O serviço da RFB significa <strong>qualquer serviço prestado por órgão ou entidade da União, dos Estados, do Distrito Federal ou dos Municípios</strong>.<br><br>
+      Requisitos <strong>cumulativos</strong>:<br>
+      • Ser filho de pai brasileiro ou mãe brasileira, ou de ambos; e<br>
+      • O pai ou a mãe, ou ambos, estarem a serviço do Brasil no exterior
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Art. 12, I — "c": nascidos no estrangeiro, fora do serviço do Brasil</div>
+    <div class="card-text">
+      São brasileiros natos os nascidos no estrangeiro, de pai ou mãe brasileira que <strong>não estejam a serviço do Brasil</strong>, desde que:<br>
+      • Sejam <strong>registrados em repartição brasileira competente</strong> (registro é condição <strong>suficiente</strong>); <strong>ou</strong><br>
+      • Venham a <strong>residir no Brasil e optem, em qualquer tempo, depois de atingida a maioridade, pela nacionalidade brasileira</strong> — a chamada <strong>nacionalidade potestativa</strong><br><br>
+      <strong>Menor que vem residir no Brasil:</strong> será considerado brasileiro nato, mas a aquisição definitiva dependerá de manifestação após a maioridade. Atingida a maioridade, fica <strong>suspensa</strong> a condição de brasileiro nato enquanto não for efetivada a opção — a maioridade passa a ser <strong>condição suspensiva</strong> da nacionalidade brasileira até o momento da opção.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Nacionalidade potestativa:</strong> a opção é <strong>direito personalíssimo</strong>, exercido exclusivamente pelo próprio indivíduo, e deve ser feita <strong>em juízo (Justiça Federal)</strong>, com <strong>efeitos ex tunc</strong>.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Na alínea "c", <strong>não</strong> existe condição de "o país de nascimento não conferir nacionalidade" nem opção <strong>antes</strong> da maioridade. A opção é sempre <strong>após a maioridade</strong>, em qualquer tempo, e a outra via é o <strong>registro em repartição brasileira competente</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — BRASILEIROS NATURALIZADOS                            -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Brasileiros naturalizados (art. 12, II, CF/88)</div>
+  </div>
+  <div class="sec-subtitle">Nacionalidade derivada (adquirida ou secundária) + quase-nacionalidade dos portugueses</div>
+
+  <div class="card">
+    <div class="card-text">
+      A <strong>nacionalidade derivada</strong> é aquela cuja aquisição depende de <strong>ato de vontade (ato volitivo)</strong>, praticado depois do nascimento, mediante <strong>naturalização</strong>. No Brasil, a aquisição derivada somente se dará por <strong>manifestação expressa do interessado</strong>. Os que a recebem são os <strong>"brasileiros naturalizados"</strong>.
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Ordinária (alínea "a")</div><div class="card-text">Concedida aos estrangeiros que cumpram os requisitos da <strong>lei (Lei da Migração)</strong>. <strong>Ato discricionário</strong> do Chefe do Poder Executivo.</div></div>
+    <div class="card"><div class="card-title">Extraordinária (alínea "b")</div><div class="card-text">3 requisitos constitucionais. <strong>Ato vinculado</strong> do Presidente da República — direito subjetivo.</div></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Naturalização ordinária (art. 12, II, "a")
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Para estrangeiros <strong>originários de países de língua portuguesa</strong>, o processo é <strong>facilitado</strong>, sendo exigidos apenas <strong>2 requisitos</strong>:<br>
+      • <strong>Residência no Brasil por um ano ininterrupto</strong>; e<br>
+      • <strong>Idoneidade moral</strong><br><br>
+      <strong>Importante:</strong> o mero cumprimento dos requisitos <strong>não assegura</strong> a concessão. A concessão da naturalização ordinária é <strong>ato discricionário do Chefe do Poder Executivo</strong>, dependendo de análise de <strong>conveniência e oportunidade</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Naturalização extraordinária (art. 12, II, "b")
+  </h3>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-text">
+      Depende do cumprimento de <strong>3 (três) requisitos</strong>:<br>
+      • <strong>Residência ininterrupta no Brasil por mais de quinze anos</strong>;<br>
+      • <strong>Ausência de condenação penal</strong>; e<br>
+      • <strong>Requerimento do interessado</strong><br><br>
+      Cumpridos os três requisitos, o interessado tem <strong>direito subjetivo</strong> à nacionalidade brasileira — ela <strong>não pode ser negada</strong> pelo Chefe do Executivo: trata-se de <strong>ato vinculado</strong> do Presidente da República.
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Entendimento do STF:</strong> na naturalização extraordinária, o reconhecimento pelo Executivo gera <strong>efeitos declaratórios</strong>, retroagindo à data de apresentação do requerimento.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Idoneidade moral NÃO é requisito da naturalização extraordinária</strong> (só da ordinária para lusófonos). Os três requisitos da extraordinária são: residência +15 anos ininterruptos, ausência de condenação penal e requerimento do interessado.
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Não existe aquisição jure matrimonii:</strong> o STF entende que não é possível a aquisição da nacionalidade brasileira como efeito direto e imediato resultante do casamento civil, pois tal hipótese não foi contemplada pela Constituição.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Portugueses residentes no Brasil — "quase-nacionalidade" (art. 12, § 1º)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A CF/88 estabelece condições favoráveis aos portugueses, que receberão <strong>tratamento igual ao de um brasileiro naturalizado</strong>. Segundo a doutrina, trata-se de situação de <strong>"quase-nacionalidade"</strong>.<br><br>
+      <strong>Dois requisitos:</strong><br>
+      • Residência <strong>permanente</strong> no Brasil; e<br>
+      • <strong>Reciprocidade</strong> de tratamento em favor dos brasileiros (Portugal deve conferir os mesmos direitos aos brasileiros que lá residam)<br><br>
+      <strong>Não há atribuição de nacionalidade</strong>: o português com ânimo permanente no Brasil continua português, e o brasileiro em Portugal continua brasileiro. O que existe é tão somente a <strong>concessão de direitos inerentes aos nacionais do Estado</strong> — por isso, o português <strong>não precisa se naturalizar</strong> para gozar dos direitos de um brasileiro naturalizado.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Os <strong>portugueses equiparados não podem ocupar cargos privativos de brasileiro nato</strong>, pois recebem o tratamento de <strong>brasileiro naturalizado</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — CARGOS PRIVATIVOS DE NATO                            -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Cargos privativos de brasileiro nato (art. 12, § 3º)</div>
+  </div>
+  <div class="sec-subtitle">Lista taxativa — quem não está na lista não precisa ser nato</div>
+
+  <div class="card">
+    <div class="card-text">
+      São privativos de <strong>brasileiro nato</strong> os cargos:<br>
+      I — de <strong>Presidente e Vice-Presidente da República</strong>;<br>
+      II — de <strong>Presidente da Câmara dos Deputados</strong>;<br>
+      III — de <strong>Presidente do Senado Federal</strong>;<br>
+      IV — de <strong>Ministro do Supremo Tribunal Federal</strong>;<br>
+      V — da <strong>carreira diplomática</strong>;<br>
+      VI — de <strong>oficial das Forças Armadas</strong>;<br>
+      VII — de <strong>Ministro de Estado da Defesa</strong>.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      MP3.COM — M inistro do STF · P residente e Vice · P residente da Câmara · P residente do Senado · C arreira diplomática · O ficial das Forças Armadas · M inistro da Defesa
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">A lógica da lista</div>
+    <div class="card-text">
+      • O Presidente da República deve ser nato para garantir a <strong>soberania nacional</strong>, evitando que o Chefe do Executivo use o cargo a serviço de interesses de outros Estados<br>
+      • Também só podem suceder o Presidente os natos: <strong>Vice-Presidente, Presidentes da Câmara e do Senado e Ministros do STF</strong><br>
+      • A <strong>carreira diplomática</strong> é restrita por representar o Brasil em outros Estados (o diplomata naturalizado poderia sucumbir aos interesses de sua origem)<br>
+      • <strong>Oficial das Forças Armadas e Ministro da Defesa</strong>: reduzir o risco de favorecer outra nação em caso de guerra (ex.: bombardeio à terra natal ou combate aos próprios conterrâneos)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Senador e Deputado Federal NÃO precisam ser brasileiros natos.</strong> A exigência recai apenas sobre o <strong>Presidente da Câmara</strong> e o <strong>Presidente do Senado</strong>.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O <strong>único Ministro de Estado que deve ser nato é o Ministro da Defesa</strong>. Os demais Ministros de Estado podem ser brasileiros <strong>naturalizados</strong>.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ministro do STF é cargo privativo de nato — assertiva que admita naturalizado no STF está <strong>errada</strong>. A lista do art. 12, § 3º é <strong>taxativa</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — DISTINÇÕES NATO × NATURALIZADO                       -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Distinções entre nato e naturalizado (art. 12, § 2º)</div>
+  </div>
+  <div class="sec-subtitle">Regra geral da isonomia e as exceções previstas na própria Constituição</div>
+
+  <div class="card">
+    <div class="card-title">Condição jurídica do nacionalizado</div>
+    <div class="card-text">
+      "A lei <strong>não poderá estabelecer distinção</strong> entre brasileiros natos e naturalizados, <strong>salvo nos casos previstos nesta Constituição</strong>."<br><br>
+      Natos e naturalizados devem ser tratados com <strong>isonomia</strong>. A discriminação só pode existir nos casos previstos na <strong>própria Constituição</strong> — leis que discriminem são flagrantemente <strong>inconstitucionais</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Exceções constitucionais
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dispositivo</th><th>Regra</th><th>Nato</th><th>Naturalizado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Art. 12, § 3º</strong></td><td>Cargos privativos de nato (lista taxativa)</td><td><span class="tag tag-green">Pode ocupar</span></td><td><span class="tag tag-red">Não pode</span></td></tr>
+        <tr><td><strong>Art. 5º, LI</strong></td><td>Extradição</td><td><span class="tag tag-green">Nunca extraditado</span></td><td>Extraditável em 2 hipóteses</td></tr>
+        <tr><td><strong>Art. 89, VII</strong></td><td>Conselho de República</td><td><span class="tag tag-green">6 vagas reservadas</span></td><td>—</td></tr>
+        <tr><td><strong>Art. 222</strong></td><td>Empresas jornalísticas e de radiodifusão</td><td><span class="tag tag-green">Podem ser proprietários</span></td><td>Só se naturalizado há mais de 10 anos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Extradição (art. 5º, LI)</div>
+    <div class="card-text">
+      • Os <strong>brasileiros natos não serão, em hipótese alguma, extraditados</strong><br>
+      • Os <strong>brasileiros naturalizados</strong> poderão ser extraditados em caso de <strong>crime comum cometido antes da naturalização</strong> ou de <strong>comprovado envolvimento com tráfico ilícito de entorpecentes e drogas afins</strong>, na forma da lei
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conselho de República (art. 89, VII)</div>
+    <div class="card-text">
+      <strong>6 (seis) vagas</strong> do Conselho de República, órgão superior de consulta do Presidente da República, foram reservadas para <strong>brasileiros natos</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Empresas jornalísticas e de radiodifusão (art. 222)</div>
+    <div class="card-text">
+      Só poderão ser <strong>proprietários</strong> de empresas jornalísticas e de radiodifusão sonora e de sons e imagens os <strong>brasileiros natos ou os naturalizados há mais de 10 anos</strong>.<br><br>
+      • Se a empresa for <strong>sociedade</strong>, pelo menos <strong>70% do capital total e votante</strong> deverá pertencer a brasileiros natos ou naturalizados há mais de 10 anos<br>
+      • O brasileiro <strong>naturalizado há menos de 10 anos</strong> não poderá <strong>participar da gestão</strong> desse tipo de empresa
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O naturalizado que comete <strong>crime comum antes da naturalização</strong> ou se envolve com <strong>tráfico ilícito de entorpecentes</strong> (mesmo depois) pode ser extraditado. O nato nunca, em hipótese alguma.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PERDA E REAQUISIÇÃO                                 -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Perda e reaquisição da nacionalidade (art. 12, § 4º e § 5º)</div>
+  </div>
+  <div class="sec-subtitle">Redação dada pela EC nº 131, de 3 de outubro de 2023</div>
+
+  <div class="card">
+    <div class="card-text">
+      A <strong>perda da nacionalidade</strong> é a <strong>extinção do vínculo patrial</strong> que liga o indivíduo ao Estado. No Brasil, ocorrerá nos termos do art. 12, § 4º, CF/88, já com a redação alterada pela <strong>EC nº 131/2023</strong>.<br><br>
+      Será declarada a perda da nacionalidade do brasileiro que:<br>
+      <strong>I</strong> — tiver <strong>cancelada sua naturalização, por sentença judicial</strong>, em virtude de <strong>fraude relacionada ao processo de naturalização</strong> ou de <strong>atentado contra a ordem constitucional e o Estado Democrático</strong>; ou<br>
+      <strong>II</strong> — fizer <strong>pedido expresso de perda da nacionalidade brasileira</strong> perante autoridade brasileira competente, <strong>ressalvadas situações que acarretem apatridia</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Reaquisição (art. 12, § 5º, incluído pela EC nº 131/2023)</div>
+    <div class="card-text">
+      A <strong>renúncia da nacionalidade</strong>, nos termos do inciso II do § 4º, <strong>não impede</strong> o interessado de <strong>readquirir sua nacionalidade brasileira originária</strong>, nos termos da lei.<br><br>
+      A reaquisição será definida pela <strong>legislação ordinária</strong>, não estando prevista diretamente no texto constitucional.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Novidade da EC nº 131/2023:</strong> o cidadão apenas perderá a nacionalidade brasileira se fizer um <strong>pedido por escrito</strong>. O texto constitucional <strong>veda que a pessoa fique apátrida</strong> — o brasileiro que requisita a perda somente pode fazê-lo a fim de <strong>obter outra nacionalidade</strong>.</div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Cancelamento da naturalização (art. 12, § 4º, I):</strong> a EC nº 131/2023 trouxe duas situações que justificam o cancelamento por sentença judicial — <strong>fraude no processo de naturalização</strong> ou <strong>atentado contra a ordem constitucional e o Estado Democrático</strong>.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Antes da EC nº 131/2023, a aquisição voluntária de outra nacionalidade era, em regra, causa de perda. Após a EC, a perda exige <strong>pedido expresso</strong>, e o pedido <strong>só pode ser feito para não se tornar apátrida</strong>. A renúncia <strong>não impede a reaquisição</strong>.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Língua e símbolos oficiais (art. 13) — cobrado em literalidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • A <strong>língua portuguesa é o idioma oficial</strong> da República Federativa do Brasil<br>
+      • São <strong>símbolos</strong> da RFB: a <strong>bandeira</strong>, o <strong>hino</strong>, as <strong>armas</strong> e o <strong>selo</strong> nacionais<br>
+      • Os <strong>Estados, o Distrito Federal e os Municípios poderão ter símbolos próprios</strong><br><br>
+      <strong>Importante:</strong> a Constituição estadual <strong>não pode criar ou extinguir livremente símbolos</strong> para os Municípios, sob pena de ofensa à <strong>autonomia municipal</strong> (art. 18, CF).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Jus soli</strong> é a REGRA (nascidos no Brasil) · <strong>jus sanguinis</strong> é a EXCEÇÃO<br>
+      • <strong>Exceção ao jus soli</strong>: exige 2 condições <strong>cumulativas</strong> — ambos os pais estrangeiros + um deles (ou ambos) a serviço de seu país<br>
+      • Alínea "b": pais a <strong>serviço do Brasil</strong> no exterior (qualquer órgão/entidade da União, Estados, DF, Municípios)<br>
+      • Alínea "c": <strong>registro em repartição</strong> OU <strong>residência + opção após a maioridade</strong> (nacionalidade potestativa, direito personalíssimo, efeitos ex tunc)<br>
+      • <strong>Idoneidade moral</strong> é requisito só da naturalização <strong>ordinária</strong> para lusófonos
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • Naturalização <strong>ordinária</strong> = ato <strong>discricionário</strong> do Chefe do Executivo<br>
+      • Naturalização <strong>extraordinária</strong> (3 requisitos: +15 anos ininterruptos, sem condenação penal, requerimento) = ato <strong>vinculado</strong>, direito subjetivo, efeitos declaratórios desde o requerimento<br>
+      • <strong>Não há nacionalidade jure matrimonii</strong> (entendimento do STF)<br>
+      • <strong>Quase-nacionalidade</strong> dos portugueses: residência permanente + reciprocidade; sem atribuição de nacionalidade<br>
+      • Cargos privativos de nato = lista <strong>taxativa</strong> (MP3.COM)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Senador e Deputado Federal</strong> não precisam ser natos; só os <strong>Presidentes das Casas</strong><br>
+      • Único <strong>Ministro de Estado nato</strong> = Ministro da Defesa<br>
+      • Português equiparado <strong>não pode</strong> ocupar cargo privativo de nato<br>
+      • Nato: <strong>nunca</strong> extraditado; naturalizado: só por crime comum <strong>anterior</strong> à naturalização ou <strong>tráfico</strong> de entorpecentes<br>
+      • Art. 222: empresa jornalística/radiodifusão exige nato ou naturalizado <strong>há mais de 10 anos</strong>; sociedade com <strong>70%</strong> do capital<br>
+      • Perda da nacionalidade (EC 131/2023): <strong>pedido expresso</strong>, sem apatridia; <strong>renúncia não impede reaquisição</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine o art. 12 da CF/88 alínea por alínea, a lógica da lista de cargos privativos de nato (MP3.COM) e as novidades da EC nº 131/2023 sobre perda e reaquisição. Essas são as pegadinhas recorrentes de FCC e FGV.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

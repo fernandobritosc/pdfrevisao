@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Informática Aula 01: Protocolos de Comunicação</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Informática — Aula 01</div>
+  <div class="sidebar-sub">Protocolos de Comunicação · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. O que são protocolos</a>
+  <a href="#sec2">2. Modelo OSI (camadas)</a>
+  <a href="#sec3">3. Arquitetura TCP/IP</a>
+  <a href="#sec4">4. Protocolos de rede e transporte</a>
+  <a href="#sec5">5. Protocolos de aplicação</a>
+  <a href="#sec6">6. Portas padrão</a>
+  <a href="#sec7">7. Pontos que mais caem em prova</a>
+  <a href="#sec8">8. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — O QUE SÃO PROTOCOLOS                                 -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">O que são protocolos</div>
+  </div>
+  <div class="sec-subtitle"><span class="tag tag-green">Incidência em prova: baixa</span></div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      Protocolos são <strong>conjuntos de regras e convenções</strong> que especificam como os dispositivos em uma rede devem se comunicar. Eles definem os <strong>formatos dos dados</strong>, a <strong>sequência de mensagens</strong>, a <strong>detecção e correção de erros</strong>, o <strong>controle de acesso</strong> e muitos outros aspectos necessários para a comunicação eficaz entre computadores em uma rede.<br><br>
+      • <strong>Tanenbaum:</strong> "um protocolo é um acordo entre as partes que se comunicam, estabelecendo como se dará a comunicação"<br>
+      • <strong>Forouzan:</strong> "um protocolo é um conjunto de regras que controlam a comunicação de dados"<br>
+      • <strong>Diego Carvalho:</strong> protocolos podem ser pensados simplesmente como um <strong>idioma</strong> — a analogia é usada ao longo de toda a aula
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Por que os protocolos importam:</strong> eles garantem que dispositivos com <strong>hardware e software diversos</strong> (notebook, tablet, computador; Linux ou Windows; arquitetura x86 ou x64) se comuniquem de maneira consistente. Como os dados são representados e organizados para a comunicação é o "idioma" da rede.</div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">TCP/IP — o conjunto padrão da internet</div>
+    <div class="card-text">
+      Hoje existe um <strong>conjunto de protocolos padrão da internet chamado TCP/IP</strong>, base da comunicação de redes na internet. Ele fornece as regras e convenções que permitem que dispositivos em <strong>redes diferentes</strong> se comuniquem entre si de maneira eficaz. <strong>Se estiver conectado à internet, estará utilizando o TCP/IP</strong> — não importa o dispositivo, o sistema operacional ou a arquitetura.<br><br>
+      • Para usar a internet: protocolos <strong>IP, TCP ou UDP</strong><br>
+      • Para usar um navegador: <strong>HTTP, HTTPS e DNS</strong><br>
+      • Para enviar/receber e-mail: <strong>SMTP, POP3 ou IMAP</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Termo</th><th>Definição (fonte)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Protocolos de redes</strong></td><td>Conjunto de regras que determinam como os dados são transmitidos e recebidos em uma rede</td></tr>
+        <tr><td><strong>TCP/IP</strong></td><td>Conjunto de protocolos de comunicação usados para interconexão de redes e na internet</td></tr>
+        <tr><td><strong>Internet</strong></td><td>Rede global de computadores interconectados que utilizam o protocolo TCP/IP para comunicação</td></tr>
+        <tr><td><strong>Interoperabilidade</strong></td><td>Capacidade de sistemas e dispositivos diferentes se comunicarem e trabalharem juntos</td></tr>
+        <tr><td><strong>Sistemas abertos</strong></td><td>Sistemas que suportam interoperabilidade e são construídos com padrões abertos</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — MODELO OSI                                          -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Modelo OSI (camadas)</div>
+  </div>
+  <div class="sec-subtitle"><span class="tag tag-amber">Incidência em prova: média</span></div>
+
+  <div class="card">
+    <div class="card-title">O que é o Modelo OSI</div>
+    <div class="card-text">
+      O Modelo <strong>OSI (Open Systems Interconnection / International Organization for Standardization)</strong> é um modelo de referência utilizado para entender como os protocolos de rede funcionam e interagem. Ele divide as funções de comunicação em <strong>sete camadas</strong>, cada uma com um propósito específico, organizadas <strong>hierarquicamente</strong>.<br><br>
+      • Criado pela <strong>ISO (International Standards Organization)</strong><br>
+      • É um <strong>modelo de sistema aberto</strong>: não restrito a um único fabricante, segue padrões abertos aceitos pela indústria<br>
+      • O objetivo é promover a <strong>interoperabilidade</strong> entre sistemas e fabricantes diferentes<br>
+      • Cada camada usa os serviços da <strong>camada imediatamente inferior</strong>; a comunicação entre camadas adjacentes se dá por uma <strong>interface</strong>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial — mnemônico das camadas</div>
+    <div class="mnemonic-content">
+      FLAMENGO ENSACOU NA REDE TRÊS SAPECADAS NO ATLÉTICO E AVAÍ → Física, Enlace, Rede, Transporte, Sessão, Apresentação, Aplicação (de baixo para cima)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      Em ordem inversa (de cima para baixo): <strong>Aplicação > Apresentação > Sessão > Transporte > Rede > Enlace > Física</strong> — mnemônico: <strong>"Até A Sua Tia Ri Enquanto Fofoca"</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Nº</th><th>Camada</th><th>Descrição</th><th>Protocolos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>7</td><td><strong>APLICAÇÃO</strong></td><td>Habilita o usuário (humano ou software) a estabelecer a comunicação entre aplicações e a acessar a rede</td><td>HTTP, SMTP, FTP, SSH, TELNET, SNMP, POP3, IMAP, DNS</td></tr>
+        <tr><td>6</td><td><strong>APRESENTAÇÃO</strong></td><td>Define o formato para troca de dados entre computadores, como se fosse um tradutor</td><td>AFP, ICA, LPP, NCP, NDR, TOX, XDR, PAD</td></tr>
+        <tr><td>5</td><td><strong>SESSÃO</strong></td><td>Permite que duas ou mais aplicações em computadores diferentes possam abrir, usar e fechar uma conexão (sessão)</td><td>NETBIOS</td></tr>
+        <tr><td>4</td><td><strong>TRANSPORTE</strong></td><td>Organiza dados em segmentos e garante que cheguem ao destino livres de erros (sem perdas, sem duplicações e na ordem correta)</td><td>TCP, UDP, NETBEUI</td></tr>
+        <tr><td>3</td><td><strong>REDE</strong></td><td>Endereçamento, roteamento e entrega de pacotes individuais da origem até o destino, provavelmente através de várias redes</td><td>IP, ICMP, ARP RARP, NAT</td></tr>
+        <tr><td>2</td><td><strong>ENLACE</strong></td><td>Organiza os dados em frames (quadros) e estabelece conexão nó-a-nó entre dois dispositivos físicos que compartilham o mesmo meio físico</td><td>Ethernet, Token Ring, Bluetooth, Wi-Fi</td></tr>
+        <tr><td>1</td><td><strong>FÍSICA</strong></td><td>Define as especificações elétricas e físicas da conexão de dados</td><td>USB, DSL</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>OSI é apenas uma abstração teórica:</strong> o modelo tem função <strong>didática</strong>, não é uma arquitetura de rede nem especifica serviços e protocolos exatos de cada camada. Nem sempre é possível "encaixar" um protocolo em uma camada específica (ex.: <strong>X.25 atua nas três primeiras camadas</strong>). <strong>Na prática, a arquitetura utilizada atualmente é o TCP/IP.</strong></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Detalhes das camadas
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Camada Física</div>
+    <div class="card-text">
+      Coordena as funções para transportar um <strong>fluxo de bits</strong> através de um meio físico. Responsável por:<br>
+      • Definir especificações dos meios de transmissão (sinais elétricos, ópticos ou de rádio)<br>
+      • Definir especificações físicas dos dispositivos (cabos, conectores, transceptores)<br>
+      • Codificar os bits como sinais; definir o <strong>sentido das transmissões</strong>: simplex, half-duplex ou full-duplex<br>
+      • Descrever a <strong>topologia</strong> (como os dispositivos estão fisicamente conectados)<br>
+      • Definir níveis de voltagem, frequência e modulação — <strong>não se preocupa com o conteúdo dos dados</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Camada de Enlace</div>
+    <div class="card-text">
+      Transforma o meio de transmissão bruto em um <strong>link confiável</strong> (faz a camada física parecer livre de erros para a camada de rede). Empacota bits em <strong>quadros (frames)</strong> e oferece endereçamento físico. Três serviços detalhados:<br>
+      • <strong>Controle de Fluxo:</strong> previne a sobrecarga do receptor ajustando a taxa de transmissão (ex.: <strong>Janelas Deslizantes</strong>)<br>
+      • <strong>Controle de Erros:</strong> adiciona bits de verificação ao final dos quadros; técnicas como <strong>CRC, Verificação de Paridade e Checksum</strong>; quadro com erro pode ser descartado e sua retransmissão solicitada<br>
+      • <strong>Controle de Acesso:</strong> decide qual dispositivo controla o link quando vários estão conectados; dividida em duas subcamadas — <strong>LLC</strong> (controle de fluxo e erros) e <strong>MAC</strong> (acesso ao meio, ex.: CSMA/CD para Ethernet, tokens para Token Ring)<br>
+      • Define os <strong>endereços físicos</strong> dos dispositivos (Endereço MAC)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Camada de Rede</div>
+    <div class="card-text">
+      Entrega cada <strong>pacote</strong> da origem até o destino final, possivelmente através de várias redes (por meio de roteadores). Se dois sistemas estiverem no mesmo link, em geral não há necessidade desta camada.<br>
+      • Empacota conjuntos de frames em <strong>pacotes (packets)</strong><br>
+      • Responsável pelo <strong>endereçamento lógico</strong> (Endereço IP) e pelo <strong>roteamento</strong><br>
+      • Realiza controle de congestionamento e encaminhamento; divide pacotes longos em <strong>fragmentos</strong> e reagrupa no destino<br>
+      • Implementa <strong>tabelas de roteamento</strong> para decidir o melhor caminho
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Camada de Transporte</div>
+    <div class="card-text">
+      Responsável pela entrega <strong>processo a processo</strong> de toda a mensagem (processo = aplicação em execução em uma máquina). A camada de rede entrega ao computador correto; a de transporte leva a mensagem ao <strong>processo correto</strong>.<br>
+      • Divide a mensagem em <strong>segmentos</strong>, cada um com <strong>número de sequência</strong> para remontagem e identificação de pacotes perdidos<br>
+      • Pode ser <strong>orientada ou não à conexão</strong><br>
+      • Garante que a mensagem chegue intacta e na sequência correta, com controle de erros e de fluxo no nível <strong>origem-destino</strong> (diferente do enlace, que é nó a nó adjacente)<br>
+      • Realiza <strong>multiplexação</strong> e identifica segmentos corretamente no destino
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Camada de Sessão</div>
+    <div class="card-text">
+      Permite abrir, usar e fechar uma conexão chamada <strong>sessão</strong>. Controla o diálogo da rede (estabelecer, manter e sincronizar a interação).<br>
+      • Permite comunicação em modo <strong>half ou full-duplex</strong><br>
+      • Adiciona <strong>pontos de verificação/sincronização</strong>: ex. enviando um arquivo de 2.000 páginas, pontos a cada 100 páginas — se houver falha na página 523, só as páginas 501 a 523 precisam ser reenviadas<br>
+      • Garante retomada da comunicação após interrupção
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Camada de Apresentação</div>
+    <div class="card-text">
+      Responsável pela <strong>sintaxe e semântica</strong> das informações trocadas; cuida da <strong>tradução, compressão e criptografia</strong> dos dados — "como se fosse um tradutor".<br>
+      • Ex.: conversão de dados codificados em <strong>EBCDIC para ASCII</strong><br>
+      • Garante a interoperabilidade entre diferentes métodos de codificação<br>
+      • Compressão reduz o número de bits, importante para multimídia (texto, áudio, vídeo)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Camada de Aplicação</div>
+    <div class="card-text">
+      Habilita o usuário (humano ou software) a <strong>acessar a rede</strong>. Fornece interface com o usuário e suporte a serviços: e-mail, acesso e transferência de arquivos remotos, gerenciamento de bancos de dados compartilhados.<br>
+      • Envolve aplicativos como <strong>navegadores e clientes de e-mail</strong><br>
+      • Implementa protocolos específicos de aplicação (ex.: <strong>HTTP para web e SMTP para e-mails</strong>)<br>
+      • Fornece serviços de aplicação (autenticação, transferência de arquivos, acesso a bancos de dados)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo de comunicação</th><th>Descrição</th><th>Camada</th></tr></thead>
+      <tbody>
+        <tr><td><strong>NÓ A NÓ</strong></td><td>Comunicação ponto-a-ponto ou hop-a-hop; conecta um dispositivo intermediário a outro adjacente</td><td>Enlace</td></tr>
+        <tr><td><strong>HOST A HOST</strong></td><td>Conecta uma máquina a outra, ignorando dispositivos intermediários</td><td>Rede</td></tr>
+        <tr><td><strong>FIM A FIM</strong></td><td>Comunicação processo-a-processo ou ponta-a-ponta; conecta processos/aplicações rodando em duas máquinas</td><td>Transporte</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Dispositivos e camadas:</strong> cada dispositivo trabalha em uma camada principal, mas todos trabalham nas camadas abaixo da sua principal — as camadas são <strong>acumulativas</strong>. Ex.: um <strong>roteador</strong> trabalha com foco na camada de <strong>rede</strong>, mas também nas camadas física e de enlace.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Recuperação de erros</strong> e <strong>entrega confiável processo a processo</strong> são funções da camada de <strong>Transporte</strong>; <strong>compressão e criptografia</strong> são funções da camada de <strong>Apresentação</strong>; <strong>compresão de dados</strong> NÃO é função da camada de enlace. A banca adora trocar essas funções entre camadas (FADESP/SEFA-PA 2022).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ARQUITETURA TCP/IP                                   -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Arquitetura TCP/IP</div>
+  </div>
+  <div class="sec-subtitle"><span class="tag tag-red">Incidência em prova: ALTA</span></div>
+
+  <div class="card">
+    <div class="card-title">O que é a arquitetura TCP/IP</div>
+    <div class="card-text">
+      A arquitetura <strong>TCP/IP (Transmission Control Protocol / Internet Protocol)</strong> é um conjunto de protocolos de comunicação amplamente utilizados na <strong>internet e em redes locais</strong>. Fornece regras e especificações que permitem que diferentes dispositivos se comuniquem, independentemente do fabricante ou sistema operacional.<br><br>
+      • Foi desenvolvida <strong>antes do Modelo OSI</strong> — por isso as camadas <strong>não correspondem exatamente</strong> às do OSI<br>
+      • É o <strong>conjunto padrão de protocolos da Internet</strong> (utilizado na prática, ao contrário do OSI, que é teórico)<br>
+      • <strong>Condensa</strong> as camadas de aplicação, apresentação e sessão do OSI na <strong>camada de aplicação</strong><br>
+      • <strong>Condensa</strong> as camadas física e de enlace na <strong>camada de enlace</strong> e chama a camada de rede de <strong>internet</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Número de camadas é controverso:</strong> o projeto original prevê <strong>quatro camadas</strong> (RFC 1122), mas há autores que modelam a arquitetura com <strong>três, quatro ou cinco</strong> camadas de nomes diversos. Alguns defendem uma arquitetura <strong>híbrida de cinco camadas</strong>: física, enlace, rede, transporte e aplicação — pois os modelos TCP/IP e OSI não combinam perfeitamente.</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Modelo OSI (7 camadas)</th><th>Arquitetura TCP/IP (condensa)</th></tr></thead>
+      <tbody>
+        <tr><td>Aplicação</td><td rowspan="1"><strong>Camada de Aplicação</strong></td></tr>
+        <tr><td>Apresentação</td><td rowspan="1"></td></tr>
+        <tr><td>Sessão</td><td rowspan="1"></td></tr>
+        <tr><td>Transporte</td><td><strong>Camada de Transporte</strong></td></tr>
+        <tr><td>Rede</td><td><strong>Camada de Internet</strong></td></tr>
+        <tr><td>Enlace</td><td rowspan="2"><strong>Camada de Enlace</strong></td></tr>
+        <tr><td>Física</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Servidores nomeados pelo protocolo
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Quando um servidor (máquina especializada) fornece os serviços de um protocolo, é comum chamá-lo pelo <strong>nome do protocolo</strong> que implementa:
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Servidor</th><th>Serviço fornecido</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Servidor HTTP</strong></td><td>Serviços de apresentação de páginas web</td></tr>
+        <tr><td><strong>Servidor SMTP</strong></td><td>Serviços de envio de e-mails</td></tr>
+        <tr><td><strong>Servidor DNS</strong></td><td>Serviços de tradução de domínios</td></tr>
+        <tr><td><strong>Servidor FTP</strong></td><td>Serviços de transferência de arquivos</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — PROTOCOLOS DE REDE E TRANSPORTE                      -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Protocolos de rede e transporte</div>
+  </div>
+  <div class="sec-subtitle">IP, ICMP, ARP/RARP (camada de rede) · TCP e UDP (camada de transporte)</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    IP (Internet Protocol) <span class="tag tag-red">Altíssima incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">O que é o IP</div>
+    <div class="card-text">
+      O <strong>IP</strong> é a base da comunicação na internet, responsável por <strong>rotear pacotes de dados de origem para destino</strong> em uma rede. Cada dispositivo conectado à internet recebe um <strong>endereço IP exclusivo</strong>, usado para identificar e encaminhar dados ao destinatário correto.<br><br>
+      • IP = <strong>Internet Protocol</strong> → protocolo para comunicação <strong>entre redes</strong> (Inter = entre, net = rede)<br>
+      • O endereço IP define de forma <strong>única e universal</strong> a conexão de um dispositivo (ex.: computador ou roteador)<br>
+      • <strong>Exclusivo:</strong> dois dispositivos jamais podem ter o mesmo endereço ao mesmo tempo na mesma rede<br>
+      • <strong>Universal:</strong> o sistema de endereçamento deve ser aceito por qualquer host (máquina) que queira se conectar à internet<br>
+      • Comando <strong>ipconfig</strong> no Prompt de Comando (cmd) exibe o endereço IPv4 da máquina
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Campos do pacote IP (analogia com os Correios)</div>
+    <div class="card-text">
+      As informações transmitidas são encapsuladas em um <strong>Pacote IP</strong>, que contém endereço IP de origem e de destino (como um envelope com remetente e destinatário). Campos principais:
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Campo</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Versão</strong></td><td>Versão do IP (IP Versão 4 ou IP Versão 6)</td></tr>
+        <tr><td><strong>Endereço de Origem</strong></td><td>IP do Remetente</td></tr>
+        <tr><td><strong>Endereço de Destino</strong></td><td>IP do Destinatário</td></tr>
+        <tr><td><strong>Dados</strong></td><td>Carga útil de dados que serão enviados</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fragmentação de pacotes</div>
+    <div class="card-text">
+      Existe um <strong>tamanho limite para o pacote IP (64 Kb)</strong> — dados grandes precisam ser divididos. O IP divide dados grandes em <strong>pacotes menores</strong> antes de enviá-los pela rede, em um processo conhecido como <strong>Fragmentação de Pacotes</strong>.<br>
+      • Quando um roteador encontra um pacote maior que o tamanho máximo permitido pela rede seguinte (<strong>MTU — Maximum Transmission Unit</strong>), ele divide o pacote em fragmentos menores<br>
+      • Cada fragmento é transmitido separadamente; <strong>no destino, os fragmentos são reagrupados</strong> para recriar o pacote original
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Roteamento</div>
+    <div class="card-text">
+      Processo de encaminhar pacotes da origem ao destino através de uma rede, envolvendo a escolha do <strong>caminho mais eficiente e adequado</strong> entre os dispositivos interconectados.<br>
+      • O roteador consulta sua <strong>tabela de roteamento</strong> para decidir o próximo dispositivo (roteador) ao longo do caminho<br>
+      • A escolha é feita com base no <strong>endereço IP de destino</strong> e nas informações de roteamento<br>
+      • Os roteadores utilizam <strong>métricas</strong> (como distância, largura de banda, atraso) para determinar a melhor rota
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Características do IP: não confiável e sem conexão</div>
+    <div class="card-text">
+      O IP possui duas características importantes que podem cair em prova: trata-se de um protocolo de distribuição de pacotes <strong>não confiável (ou de melhor esforço)</strong> e <strong>sem conexão</strong>.<br><br>
+      <strong>a) Não confiável</strong> — não fornece garantias de entrega, confirmação de recebimento ou controle de fluxo:<br>
+      • <strong>Sem confirmação de entrega:</strong> após enviar, não há garantia de que o pacote foi recebido<br>
+      • <strong>Sem controle de fluxo:</strong> não ajusta a taxa de transmissão com base na capacidade da rede/destinatário (pode causar congestionamento e perda)<br>
+      • <strong>Sem reordenação de pacotes:</strong> se recebidos fora de ordem, cabe às camadas superiores (ex.: TCP) lidar com a reordenação<br>
+      • <strong>Sem garantia de integridade:</strong> não verifica a integridade dos dados dentro dos pacotes<br><br>
+      <strong>b) Sem conexão</strong> — não estabelece conexão prévia antes de enviar dados:<br>
+      • Cada pacote contém dados suficientes para ser tratado <strong>independentemente</strong> e roteado separadamente<br>
+      • Pacotes podem seguir <strong>caminhos diferentes</strong> e chegar em ordens diferentes daquela em que foram enviados
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Classificação: IP estático × IP dinâmico
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>IP Estático (Fixo)</th><th>IP Dinâmico</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Atribuição</strong></td><td>Atribuídos <strong>manualmente</strong> (no dispositivo ou via configuração no servidor DHCP); permanecem constantes</td><td>Atribuídos <strong>automaticamente</strong> por um servidor <strong>DHCP</strong> sempre que o dispositivo se conecta</td></tr>
+        <tr><td><strong>Duração</strong></td><td>Não muda automaticamente</td><td>Temporário; precisa ser <strong>renovado periodicamente</strong>; pode variar a cada conexão</td></tr>
+        <tr><td><strong>Uso</strong></td><td>Dispositivos que precisam de endereço sempre igual (servidores, impressoras, roteadores)</td><td>Mais utilizado, principalmente em <strong>redes domésticas</strong></td></tr>
+        <tr><td><strong>Exemplo</strong></td><td>Servidor web (ex.: servidor do Estratégia Concursos)</td><td>Usuário doméstico (IP muda a cada conexão)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Versionamento: IPv4 × IPv6
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>IPv4</th><th>IPv6</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Bits</strong></td><td><strong>32 bits</strong></td><td><strong>128 bits</strong></td></tr>
+        <tr><td><strong>Endereços possíveis</strong></td><td>2³² = 4.294.967.296</td><td>2¹²⁸ = 340 undecilhões (340.282.366.920.938.000.000.000.000.000.000.000.000)</td></tr>
+        <tr><td><strong>Representação</strong></td><td>Notação de <strong>octetos binários</strong> ou <strong>Decimal Pontuada</strong> (4 octetos, 0 a 255 — ex.: 192.168.0.17)</td><td><strong>Hexadecimal</strong> — 128 bits divididos em <strong>8 grupos de 16 bits</strong> (seção de 4 hexadecimais), separados por <strong>dois-pontos</strong></td></tr>
+        <tr><td><strong>Classes</strong></td><td>Endereçamento por classes</td><td><strong>Não possui o conceito de classes</strong> e não possui endereço de broadcast</td></tr>
+        <tr><td><strong>Comunicação</strong></td><td>—</td><td>Não se comunica diretamente com IPv4 (existem estratégias indiretas)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Abreviação de endereços IPv6</div>
+    <div class="card-text">
+      Como o endereço hexadecimal ainda fica grande, há formas de abreviar:<br>
+      • Zeros <strong>não significativos</strong> de uma seção podem ser omitidos (ex.: 0074 → 74; 0000 → 0); zeros significativos não podem ser omitidos (ex.: 3210 não pode ser abreviado)<br>
+      • Seções consecutivas formadas somente por zeros podem ser substituídas por <strong>dois-pontos duplo (::)</strong> — permitido <strong>apenas uma vez por endereço</strong> (não pode 2001:C00::5400::9)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Exemplo</th><th>Endereço</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Original</strong></td><td>FDEC:0074:0000:0000:0000:B0FF:0000:FFF0</td></tr>
+        <tr><td><strong>Abreviado</strong></td><td>FDEC:74:0:0:0:B0FF:0:FFF0</td></tr>
+        <tr><td><strong>Mais abreviado</strong></td><td>FDEC:74::B0FF:0:FFF0</td></tr>
+        <tr><td><strong>Não pode</strong></td><td>2001:C00::5400::9 (:: usado duas vezes)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Endereçamento por classes (IPv4)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>1º octeto</th><th>Classe</th><th>Utilização</th></tr></thead>
+      <tbody>
+        <tr><td>1 a 126 (0 a 127)</td><td><strong>A</strong></td><td>Inicialmente destinado a <strong>grandes organizações</strong></td></tr>
+        <tr><td>128 a 191</td><td><strong>B</strong></td><td>Inicialmente destinado a organizações de <strong>médio porte</strong></td></tr>
+        <tr><td>192 a 223</td><td><strong>C</strong></td><td>Inicialmente destinado a <strong>pequenas organizações</strong></td></tr>
+        <tr><td>224 a 239</td><td><strong>D</strong></td><td>Inicialmente reservado para <strong>multicast</strong></td></tr>
+        <tr><td>240 a 255</td><td><strong>E</strong></td><td>Inicialmente reservado para <strong>testes</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Endereços de classe D e E não podem ser utilizados na internet</strong>; vários endereços são proprietários ou reservados (ex.: a Apple é dona de todo IP que inicia pelo 17; a Ford, de todo IP iniciado por 19). Apenas cerca de metade dos endereços podem realmente ser utilizados. Atualmente, o endereçamento por classes foi amplamente substituído por abordagens mais flexíveis.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Endereços privados, públicos e NAT</div>
+    <div class="card-text">
+      Como a quantidade de dispositivos cresceu muito, foram padronizadas <strong>faixas de endereços exclusivamente para redes privadas</strong>:
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Classe</th><th>Faixa de endereços para redes privadas</th></tr></thead>
+      <tbody>
+        <tr><td>A</td><td>10.0.0.0 até 10.255.255.255</td></tr>
+        <tr><td>B</td><td>172.16.0.0 até 172.31.255.255</td></tr>
+        <tr><td>C</td><td>192.168.0.0 até 192.168.255.255</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>IP Privado/Local:</strong> usado apenas dentro da rede interna (ex.: 192.168.0.17, 192.168.0.20); não existe na internet. Vários dispositivos de redes diferentes podem usar o mesmo endereço privado, pois estão em redes distintas<br>
+      • <strong>IP Público:</strong> endereço único na internet (ex.: 189.6.109.248); o roteador de uma rede doméstica é o único com endereço público<br>
+      • <strong>NAT (Network Address Translation):</strong> recurso usado em roteadores para <strong>traduzir endereços de uma rede para outra</strong>. Permite que dispositivos de uma rede privada se comuniquem com a internet usando um único endereço público. O NAT mantém uma <strong>tabela de tradução</strong> (endereço privado × endereço público) para saber para qual máquina enviar as respostas. Em resumo: traduz <strong>endereços privados</strong> (redes internas) para <strong>endereços públicos</strong> (internet)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O IP é <strong>não confiável</strong> e <strong>sem conexão</strong> (melhor esforço) — quem confere confiabilidade é o <strong>TCP</strong>, na camada de transporte. O IP é host-a-host; o TCP é fim-a-fim.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    ICMP e ARP/RARP <span class="tag tag-green">baixíssima incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">ICMP (Internet Control Message Protocol)</div>
+    <div class="card-text">
+      Protocolo da camada de rede responsável por enviar <strong>mensagens de erro</strong> e <strong>mensagens operacionais</strong>, indicando por exemplo que um serviço não está disponível ou que um roteador/host não pode ser alcançado. Tipos de mensagens: "destino inalcançável", "redirecionamento", "tempo excedido".<br>
+      • Suprir deficiências do IP (falta de controle de erros e de mecanismos de notificação de erros)<br>
+      • Protocolo <strong>auxiliar do IP</strong>, da camada de Internet/Rede da Arquitetura TCP/IP<br>
+      • Amplamente utilizado para <strong>diagnóstico de rede</strong> — ex.: o comando <strong>ping</strong> usa o ICMP<br>
+      • <strong>Não é responsável por corrigir eventuais falhas</strong>, apenas comunicá-las por relatórios de erros
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">ARP (Address Resolution Protocol) e RARP</div>
+    <div class="card-text">
+      Protocolo da camada de rede utilizado para <strong>mapear Endereços IP para Endereços MAC</strong> em redes locais — fundamental para o funcionamento de redes IPv4. Envia uma requisição na rede local para descobrir o <strong>MAC correspondente a um IP</strong> específico.<br>
+      • Mantém uma tabela de conversão de <strong>endereços lógicos (IP)</strong> em <strong>endereços físicos (MAC)</strong> — ver tabela com o comando <strong>arp -a</strong><br>
+      • Endereço lógico = IP (Camada de Rede); endereço físico = MAC (Camada de Enlace); formato XX-XX-XX-XX-XX-XX<br>
+      • <strong>RARP (Reverse ARP):</strong> faz o sentido contrário — mapeia endereços MAC (Enlace) para endereços IP (Rede)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    TCP (Transmission Control Protocol) <span class="tag tag-red">ALTA incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Características</div>
+    <div class="card-text">
+      Protocolo da camada de transporte, considerado <strong>confiável</strong> e <strong>orientado à conexão</strong>. Utiliza <strong>portas</strong> para estabelecer conexões, <strong>controle de fluxo</strong> para evitar congestionamento, permite transferência de dados <strong>bidirecional</strong>, <strong>confirma o recebimento</strong> de pacotes e <strong>retransmite</strong> os não confirmados. Garante que os pacotes cheguem <strong>na ordem correta</strong> e usa <strong>soma de verificação</strong> para detectar erros. Amplamente utilizado em aplicações que requerem entrega garantida, como <strong>navegadores web e e-mail</strong>.<br><br>
+      • Supera as limitações do IP: o <strong>TCP vai dentro do pacote IP</strong> (encapsulado), controlando e monitorando tudo<br>
+      • <strong>Orientado à conexão:</strong> estabelece conexão virtual antes de enviar dados; transmissão <strong>full-duplex</strong> (ambos os lados transmitem e recebem simultaneamente)<br>
+      • <strong>Fim-a-fim (processo a processo):</strong> cria conexão entre dois processos em duas máquinas, ignorando os nós intermediários — o IP é host-a-host, o TCP é fim-a-fim<br>
+      • <strong>Controle de fluxo:</strong> previne que o receptor fique sobrecarregado, usando o mecanismo da <strong>Janela Deslizante</strong><br>
+      • <strong>Controle de congestionamento:</strong> previne que a rede fique sobrecarregada<br>
+      • É mais <strong>lento, porém mais confiável</strong> que o UDP
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Three-Way Handshake (estabelecimento de conexão)</div>
+    <div class="card-text">
+      O estabelecimento da conexão no TCP envolve três etapas:<br>
+      1. O remetente envia um segmento <strong>SYN</strong> para iniciar a comunicação<br>
+      2. O destinatário responde com um segmento <strong>SYN/ACK</strong><br>
+      3. O remetente envia um segmento <strong>ACK</strong> para confirmar<br><br>
+      Após essa sequência, a conexão está estabelecida, permitindo a troca de segmentos de dados.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    UDP (User Datagram Protocol) <span class="tag tag-green">baixíssima incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Características</div>
+    <div class="card-text">
+      Protocolo da camada de transporte, considerado <strong>sem conexão</strong>; utiliza portas de forma similar ao TCP. <strong>Não possui controle de fluxo</strong> e permite transferência de dados <strong>rápida</strong>, mas <strong>sem garantias de entrega, ordem ou integridade</strong>.<br>
+      • Não confiável: <strong>não confirma</strong> recebimento e <strong>não retransmite</strong> pacotes perdidos; não reordena pacotes; realiza apenas verificações básicas de erros (mas não os corrige)<br>
+      • Não requer estabelecimento de conexão antes da transferência; <strong>baixo overhead</strong><br>
+      • Ideal para aplicações que requerem transmissão rápida, como <strong>streaming de vídeo e jogos online</strong> — tolera perdas, mas não tolera atrasos<br>
+      • Oferece serviços ponto a ponto ou ponto-multiponto, suportando <strong>unicast, multicast e broadcast</strong>, também em full-duplex
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>TCP</th><th>UDP</th></tr></thead>
+      <tbody>
+        <tr><td>Comparativamente mais lento que o UDP</td><td>Comparativamente mais rápido que o TCP</td></tr>
+        <tr><td><strong>Entregas confiáveis</strong></td><td>Entregas não confiáveis (melhor esforço)</td></tr>
+        <tr><td><strong>Orientado à conexão</strong></td><td>Não orientado à conexão</td></tr>
+        <tr><td>Dados perdidos são <strong>retransmitidos</strong></td><td>Dados perdidos <strong>não são retransmitidos</strong></td></tr>
+        <tr><td>Realiza controle de fluxo e congestionamento</td><td>Não realiza controle de fluxo e congestionamento</td></tr>
+        <tr><td>Tolera atrasos, mas não tolera perdas</td><td>Tolera perdas, mas não tolera atrasos</td></tr>
+        <tr><td>Envia dados em unicast</td><td>Envia dados em unicast, multicast ou broadcast</td></tr>
+        <tr><td>Oferece conexão ponto a ponto</td><td>Oferece conexão ponto a ponto ou ponto-multiponto</td></tr>
+        <tr><td>Bastante utilizado em e-mail, navegação, etc.</td><td>Bastante utilizado em VoIP, streaming, etc.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>UDP é protocolo da camada de TRANSPORTE</strong> (como o TCP), e não da camada de aplicação (CESGRANRIO/BB 2021). Cuidado com a classificação de camadas ao associar cada protocolo.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PROTOCOLOS DE APLICAÇÃO                               -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Protocolos de aplicação</div>
+  </div>
+  <div class="sec-subtitle">E-mail (SMTP/POP3/IMAP), DHCP, DNS, HTTP/HTTPS, FTP e protocolos diversos</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Protocolos de e-mail <span class="tag tag-red">ALTA incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Arquitetura cliente/servidor — termos</div>
+    <div class="card-text">
+      O serviço de correio eletrônico é baseado em uma arquitetura <strong>cliente/servidor</strong>: máquinas que oferecem serviços (servidores) e máquinas que consomem serviços (clientes).<br>
+      • <strong>Cliente de e-mail:</strong> aplicação instalada na máquina local para enviar/receber e-mails (ex.: Mozilla Thunderbird, Microsoft Outlook)<br>
+      • <strong>Servidor de e-mail:</strong> máquina especializada que recebe e-mails de um cliente/webmail e os envia para o servidor de destino<br>
+      • <strong>Provedor de e-mail:</strong> empresa/serviço que hospeda e disponibiliza serviços de e-mail (ex.: Gmail, Outlook, Yahoo, Uol)<br>
+      • <strong>Webmail:</strong> aplicação hospedada em um servidor remoto que permite enviar/receber e-mails via navegador (ex.: Gmail.com, Outlook.com)<br><br>
+      Os principais protocolos de correio eletrônico são: <strong>SMTP, POP e IMAP</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Protocolo</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SMTP</strong></td><td>Utilizado basicamente para <strong>enviar</strong> e-mails; transfere mensagens de um cliente para um servidor ou entre servidores. Funciona bem para entrega, mas não para recuperá-las</td></tr>
+        <tr><td><strong>POP</strong></td><td>Projetado para <strong>recuperar</strong> e-mails de um servidor; em regra os e-mails são <strong>baixados e excluídos do servidor</strong>; útil para acesso offline, mas limitante com vários dispositivos</td></tr>
+        <tr><td><strong>IMAP</strong></td><td>Também usado para recuperar e-mails, mas <strong>mantém as mensagens no servidor</strong>, permitindo acesso de vários dispositivos com tudo <strong>sincronizado</strong> (ler/excluir em um reflete nos demais)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>SMTP</th><th>POP3</th><th>IMAP</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Enviar</strong></td><td>Receber e copiar</td><td>Receber e acessar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">SMTP (Simple Mail Transfer Protocol)</div>
+    <div class="card-text">
+      Protocolo da camada de aplicação responsável pelo <strong>envio de e-mails</strong> de um cliente para um servidor ou entre servidores de e-mail. Funciona por arquitetura cliente/servidor e é interoperável com POP3 e IMAP.<br>
+      • Envia a mensagem do servidor do remetente para o servidor do destinatário<br>
+      • É eficaz para <strong>enviar</strong>, mas não para recuperá-las ou armazená-las<br>
+      • <strong>Comunicação entre servidores:</strong> nesse caso específico, o SMTP é usado tanto para envio quanto para recebimento de e-mail (não é o padrão, apenas nesse caso)<br>
+      • Em seu uso moderno inclui mecanismos de <strong>autenticação</strong> para prevenir spam
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      SMTP — "Sua Mensagem Tá Partindo" · DNS — "Dá Nome Ao Site"
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">POP (Post Office Protocol) — modo Delete e modo Keep</div>
+    <div class="card-text">
+      O <strong>POP3</strong> é um protocolo da camada de aplicação criado como uma forma simplificada de fazer <strong>download de mensagens</strong> da caixa postal do servidor para a máquina do usuário. Possui duas maneiras de trabalhar:<br>
+      • <strong>Modo Delete (padrão):</strong> remove as mensagens da caixa postal após o download — abre espaço no servidor, mas complica o gerenciamento se o usuário usar mais de um computador (além do risco de perda se a máquina for infectada ou furtada)<br>
+      • <strong>Modo Keep:</strong> faz o download sem remover do servidor — mantém gerenciamento centralizado e evita perda de dados, mas o armazenamento pode ultrapassar o espaço<br>
+      • Era indicado para quem não tinha acesso fácil à internet (leitura <strong>offline</strong>)<br>
+      • Não permite organizar mensagens/criar pastas no servidor; não permite verificar parte do conteúdo antes do download; problemas em mais de um computador; <strong>não sincroniza o estado</strong> (lido/não lido) entre dispositivos<br>
+      • Suporta criptografia via SSL/TLS e autenticação usuário/senha; ideal para <strong>um único dispositivo</strong>; menos flexível que o IMAP
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">IMAP (Internet Message Access Protocol)</div>
+    <div class="card-text">
+      Protocolo da camada de aplicação responsável pelo <strong>acesso, gerenciamento e sincronização</strong> de e-mails armazenados no servidor. As mensagens <strong>permanecem no servidor</strong>, permitindo acesso de qualquer dispositivo.<br>
+      • Sincroniza o <strong>estado das mensagens</strong> (lido/não lido, marcado/não marcado) entre múltiplos dispositivos<br>
+      • Permite <strong>verificar o cabeçalho</strong> e <strong>procurar pelo conteúdo</strong> antes de baixar; permite <strong>baixar parcialmente</strong> um e-mail (útil com largura de banda limitada)<br>
+      • Permite <strong>criar, eliminar ou renomear caixas de correio</strong> e hierarquias em pastas no servidor<br>
+      • Mais flexível que o POP3, ideal para <strong>múltiplos dispositivos</strong><br>
+      • <strong>Navegadores (e webmails) NÃO suportam IMAP</strong> — eles utilizam HTTP/HTTPS! O IMAP é equivocadamente associado a webmails pelo caráter de repositório central<br>
+      • Versão segura: <strong>IMAPS</strong> — utiliza a porta <strong>993</strong> e não 143
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>POP3</th><th>IMAP</th></tr></thead>
+      <tbody>
+        <tr><td>Post Office Protocol (Version 3)</td><td>Internet Message Access Protocol</td></tr>
+        <tr><td>Não recomendado para acesso em múltiplos dispositivos</td><td><strong>Recomendado</strong> para acesso em múltiplos dispositivos</td></tr>
+        <tr><td>Não permite criar e organizar pastas no servidor</td><td><strong>Permite</strong> criar e organizar pastas no servidor</td></tr>
+        <tr><td>Não permite verificar o cabeçalho antes de baixá-lo</td><td><strong>Permite</strong> verificar o cabeçalho antes de baixá-lo</td></tr>
+        <tr><td>Modificações em um dispositivo não refletidas em outros</td><td>Modificações em um dispositivo <strong>refletidas</strong> em outros</td></tr>
+        <tr><td>Não permite baixar parcialmente um e-mail</td><td><strong>Permite</strong> baixar parcialmente um e-mail</td></tr>
+        <tr><td>Por padrão, e-mails são lidos <strong>offline</strong></td><td>Por padrão, e-mails são lidos <strong>online</strong></td></tr>
+        <tr><td>Não permite múltiplas caixas postais</td><td><strong>Permite</strong> múltiplas caixas postais</td></tr>
+        <tr><td>Porta <strong>110</strong></td><td>Porta <strong>143</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Webmail e MIME</div>
+    <div class="card-text">
+      • <strong>Webmail:</strong> serviço de e-mail acessado e usado através de um <strong>navegador da web</strong>, em vez de um cliente dedicado (ex.: Gmail, Yahoo, Outlook, Hotmail). É como se o cliente de e-mail estivesse hospedado em um <strong>servidor web</strong> — a comunicação entre a máquina e o servidor web se dá por <strong>HTTP</strong> (e ao final, para recuperar o e-mail, também se usa HTTP). Algumas questões omitem o servidor web e tratam ambos apenas como servidor de correio eletrônico<br>
+      • <strong>MIME (Multipurpose Internet Mail Extensions):</strong> padrão que <strong>expande as capacidades do e-mail</strong>, originalmente limitado a textos em formato ASCII de 7 bits. Permite enviar arquivos binários ou dados em formatos de fotos, áudio, vídeo, documentos, executáveis. É um <strong>protocolo complementar ao SMTP</strong> que converte dados não-ASCII (fluxos de bits) em dados ASCII e vice-versa. Versão segura: <strong>S/MIME</strong> (criptografia e assinatura dos dados)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O <strong>webmail</strong> usa <strong>HTTP/HTTPS</strong> (navegador), NÃO usa IMAP/POP3 diretamente. IMAP/POP3 são usados por <strong>clientes de e-mail</strong> dedicados (Thunderbird, Outlook).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Protocolo DHCP <span class="tag tag-green">baixa incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">DHCP (Dynamic Host Configuration Protocol)</div>
+    <div class="card-text">
+      Protocolo da camada de aplicação responsável por <strong>atribuir automaticamente endereços IP</strong> e outras configurações de rede a dispositivos. Funciona em um modelo <strong>cliente-servidor</strong>: o Servidor DHCP atribui IPs dinamicamente aos clientes.<br>
+      • Suporta <strong>alocação dinâmica, alocação automática e alocação estática</strong> de endereços IP<br>
+      • Diferente dos endereços físicos (MAC), os endereços IP podem mudar sem problemas<br>
+      • O servidor DHCP também recupera informações como a <strong>máscara de sub-rede</strong> e o <strong>endereço do servidor DNS</strong><br>
+      • Ao final da conexão, o endereço é <strong>liberado</strong>, disponibilizando-o para outros usuários<br>
+      • IP dinâmico: atribuído <strong>temporariamente</strong> durante a conexão, pode mudar a cada nova conexão — mais comum em usuários domésticos. IP estático: <strong>permanente</strong>, alterado apenas manualmente — comum em servidores<br>
+      • Simplifica o gerenciamento (especialmente em redes grandes), eliminando a configuração manual computador por computador
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O protocolo que permite obter um endereço IP <strong>automaticamente</strong> é o <strong>DHCP</strong> — não confundir com DNS (tradução de nomes), HTTP (hipertexto) ou IMAP/SMTP (e-mail) (CESGRANRIO/BB 2021).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Protocolo DNS <span class="tag tag-red">Altíssima incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">DNS (Domain Name System)</div>
+    <div class="card-text">
+      Protocolo da camada de aplicação responsável por <strong>traduzir (resolver) nomes de domínio</strong> legíveis por humanos para <strong>Endereços IP</strong>. Funciona em modelo de <strong>consulta e resposta</strong>, estruturado de maneira <strong>hierárquica</strong> com vários níveis de servidores DNS.<br>
+      • Funciona como uma <strong>agenda telefônica da internet</strong>: transforma endereços numéricos em nomes compreensíveis (ex.: www.google.com → 216.58.211.14)<br>
+      • Armazena respostas recentes (cache) para reduzir o tempo de resposta e o tráfego na rede<br>
+      • Essencial para a navegação, permitindo o uso de URLs em vez de endereços IP numéricos<br>
+      • <strong>Protocolo cliente/servidor hierárquico e distribuído</strong>; o espaço de nomes é dividido em vários servidores de domínio baseado em níveis
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">URL (Uniform Resource Locator)</div>
+    <div class="card-text">
+      É o <strong>endereço de um recurso em uma rede de computadores</strong>, oferecendo uma maneira uniforme e padronizada de localizar recursos.<br><br>
+      <strong>Sintaxe abstrata:</strong> <code>protocolo://ip-ou-domínio:porta/caminho/recurso</code><br>
+      <strong>Sintaxe completa:</strong> <code>protocolo://nome-de-usuário@ip-ou-domínio:porta/caminho/recurso?query#fragmento</code><br><br>
+      • <strong>Obrigatórios:</strong> Protocolo e Domínio<br>
+      • <strong>Opcionais (comuns):</strong> porta, caminho e recurso<br>
+      • <strong>Extras (raros):</strong> Query/QueryString (parâmetros chave-valor, iniciada por "?" e separados por "&"), Fragmento (parte específica da página, após "#"; não é enviado ao servidor — processado só pelo navegador) e Nome de usuário (autenticação)<br>
+      • <strong>Esquemas/protocolos suportados:</strong> HTTP, HTTPS, FTP, FILE (recursos locais — começa com "file://") e MAILTO (criar e-mail para destinatário específico)<br>
+      • Exemplo: <code>https://www.estrategiaconcursos.com.br/app/dashboard/cursos/aulas/aula1.pdf</code> → protocolo https; domínio estrategiaconcursos.com.br; porta 443 (padrão, omitida); caminho /app/dashboard/cursos/aulas; recurso aula1.pdf<br>
+      • <strong>URL ≠ Domínio:</strong> mudar o recurso da URL gera outra URL, mas o domínio permanece o mesmo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Hierarquia, registro e Whois</div>
+    <div class="card-text">
+      • <strong>ICANN</strong> é a entidade global responsável pelo registro e manutenção de domínios; define domínios nacionais (.br Brasil, .pt Portugal, .jp Japão, .es Espanha)<br>
+      • No Brasil, o <strong>Registro.br</strong> gerencia os domínios .br; há subcategorias como <strong>.com.br</strong> (atividades comerciais) e <strong>.org.br</strong> (organizações não-governamentais sem fins lucrativos)<br>
+      • <strong>Regras do Registro.br:</strong> (1) domínio deve ter entre <strong>2 e 26 caracteres</strong> (não incluindo a categoria — www.x.com.br é inválido, só 1 caractere); (2) composto por caracteres <strong>alfanuméricos</strong> (www.123.com.br é inválido); (3) não pode começar ou terminar com <strong>hífen</strong>, mas pode ter acentuação e cedilha desde 2008<br>
+      • <strong>Whois:</strong> serviço que permite consultar informações sobre os <strong>responsáveis por domínios e blocos de IP</strong> registrados na internet (ex.: identificar um invasor após tentativa bloqueada por firewall; consulta de domínio .br via registro.br)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Protocolos web: HTTP e HTTPS <span class="tag tag-red">Altíssima incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">HTTP (HyperText Transfer Protocol)</div>
+    <div class="card-text">
+      Protocolo da camada de aplicação utilizado para <strong>carregar páginas da web</strong>, enviar formulários, realizar transações online e obter recursos. Baseado em um modelo de <strong>requisição-resposta</strong> entre cliente (Navegador Web) e servidor (Servidor Web): mensagens do cliente = <strong>solicitações/requisições (Requests)</strong>; mensagens do servidor = <strong>respostas (Responses)</strong>.<br>
+      • Originalmente focado em hipertexto (textos com links); hoje abrange <strong>hipermídia</strong> (hipertexto + multimídia: texto, áudio, imagem, vídeo)<br>
+      • <strong>HTTP é Protocolo; HTML é Linguagem</strong> (linguagem de criação de páginas web)<br>
+      • Toda solicitação retorna um <strong>código de status de três dígitos</strong>, divididos em cinco categorias
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Código</th><th>Categoria</th><th>Significado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1XX</strong></td><td>Informação</td><td>100 = o servidor concorda em atender à requisição</td></tr>
+        <tr><td><strong>2XX</strong></td><td>Sucesso</td><td>200 = requisição bem-sucedida; 204 = página sem conteúdo</td></tr>
+        <tr><td><strong>3XX</strong></td><td>Redirecionamento</td><td>301 = página movida; 304 = página em cache ainda é válida</td></tr>
+        <tr><td><strong>4XX</strong></td><td>Erro do Cliente</td><td>403 = página proibida; 404 = página não encontrada</td></tr>
+        <tr><td><strong>5XX</strong></td><td>Erro do Servidor</td><td>500 = erro interno; 503 = tentar novamente mais tarde</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Erro 404</strong> é da categoria <strong>Erro do Cliente</strong> (página não encontrada — não existe, foi removida ou mudou de nome). O <strong>erro 5XX</strong> indica falha <strong>nos servidores</strong> (o servidor não consegue completar a solicitação).
+  </div>
+
+  <div class="card">
+    <div class="card-title">HTTPS (HyperText Transfer Protocol Secure)</div>
+    <div class="card-text">
+      Versão <strong>segura do HTTP</strong>, com uma camada adicional de segurança entre cliente e servidor. Adiciona segurança usando os protocolos <strong>SSL/TLS</strong>, proporcionando <strong>criptografia, autenticação e integridade</strong> aos dados transmitidos.<br>
+      • Dados criptografados tornam-se <strong>ilegíveis se interceptados</strong><br>
+      • Exige <strong>certificados digitais</strong> para autenticar a identidade do servidor; o navegador verifica a autenticidade do certificado com autoridades certificadoras — certificado inválido, expirado ou revogado gera aviso<br>
+      • Ex.: site de banco exibe "https://" e <strong>cadeado</strong> na barra de endereço, indicando conexão segura e certificado válido<br>
+      • Não é garantia absoluta de segurança, mas oferece uma camada significativa de proteção
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Protocolo FTP <span class="tag tag-red">Altíssima incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">FTP (File Transfer Protocol)</div>
+    <div class="card-text">
+      Protocolo da camada de aplicação, baseado no modelo cliente/servidor, utilizado para a <strong>transferência de arquivos</strong> entre sistemas. Permite transferir diversos tipos de dados (binários e texto), <strong>upload e download</strong> de arquivos e comandos para manipulação de diretórios. Requer <strong>autenticação</strong> (nome de usuário e senha), embora possa ter acesso anônimo.<br>
+      • Estabelece <strong>duas conexões</strong> entre cliente e servidor: uma para a <strong>transferência de dados</strong> (Porta TCP <strong>20</strong>) e outra para a <strong>troca de informações de controle</strong> (Porta TCP <strong>21</strong>)<br>
+      • Definições já cobradas em prova: protocolo de transferência de arquivos entre computadores / entre dois computadores conectados à internet / de arquivos remotos / que permite a cópia de arquivos / responsável pelo download/upload / que permite upload para servidor remoto
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Modo de transmissão</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Fluxo contínuo (stream)</strong></td><td>O arquivo é enviado por um fluxo contínuo de bytes ao TCP, que separa em porções de tamanho adequado — é o <strong>modo-padrão</strong></td></tr>
+        <tr><td><strong>Blocado</strong></td><td>Dados entregues em blocos, cada um precedido por um cabeçalho de três bytes (1º byte = descritor; os 2 seguintes definem o tamanho do bloco)</td></tr>
+        <tr><td><strong>Comprimido</strong></td><td>Para arquivos muito grandes, os dados são comprimidos com um algoritmo antes do envio</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Download × Upload e o "cuidado" com o FTP</div>
+    <div class="card-text">
+      • <strong>Download:</strong> obtenção de conteúdo da internet (do servidor para o cliente)<br>
+      • <strong>Upload:</strong> operação inversa — envio de conteúdo à internet (do cliente para o servidor)<br>
+      • <strong>O objetivo principal do FTP é transferir arquivos</strong>, mas nem toda transferência de arquivos ocorre por FTP: é possível transferir arquivos por e-mail (SMTP/MIME) ou por página web (HTTP/HTTPS). O objetivo principal desses outros protocolos não é a transferência de arquivos<br>
+      • O FTP tem sido cada vez menos utilizado após a popularização do <strong>armazenamento em nuvem (Cloud Storage)</strong>, mas continua sendo bastante cobrado em prova
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>FTP é o protocolo de transferência de ARQUIVOS</strong>; o protocolo de transferência de <strong>hipertexto é o HTTP</strong>. Assertiva que diga que "o FTP transfere hipertexto" está errada (QUADRIX/CRF-GO 2022).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Protocolos diversos <span class="tag tag-green">baixíssima incidência</span>
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Protocolo</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>TELNET</strong></td><td>Cliente/servidor para comunicação remota via texto interativo bidirecional (terminal virtual — só comandos, não interface gráfica). <strong>NÃO garante comunicação segura</strong> (dados e senhas em texto livre). Obsoleto por problemas de segurança. Porta 23</td></tr>
+        <tr><td><strong>SSH</strong></td><td>Cliente/servidor de acesso remoto com <strong>autenticação de chave pública</strong> e <strong>criptografia</strong> — garante confidencialidade e integridade sobre rede insegura. Ex.: PuTTY. Porta 22</td></tr>
+        <tr><td><strong>IRC</strong></td><td>Cliente/servidor para <strong>bate-papo</strong> e troca de arquivos (Internet Relay Chat), conversa em grupo ou privada. Cliente mais comum era o mIRC. Porta 194</td></tr>
+        <tr><td><strong>SNMP</strong></td><td>Protocolo para <strong>monitoramento e gerenciamento</strong> de dispositivos (roteadores, computadores, servidores); coleta métricas. Opera sobre <strong>UDP na Porta 161</strong>; atualmente na terceira versão (SNMPv3)</td></tr>
+        <tr><td><strong>RTP</strong></td><td>Protocolo para transmissão de <strong>áudio e vídeo em tempo real</strong> sobre redes IP (Real-time Transport Protocol), comum em aplicações VoIP; opera sobre UDP. Há polêmica sobre a camada (transporte ou aplicação)</td></tr>
+        <tr><td><strong>NNTP</strong></td><td>Protocolo da camada de aplicação para <strong>grupos de discussão</strong> (especificar, buscar, recuperar e postar artigos com transmissão confiável). Obsoleto e em desuso, mas vez ou outra cai em prova</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>TELNET</th><th>SSH</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Criptografia</strong></td><td>NÃO! Não tem criptografia</td><td>SIM! Tem criptografia</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    VoIP, Convergência de Redes e Videoconferência <span class="tag tag-amber">VoIP: média incidência</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">VoIP (Voice over Internet Protocol)</div>
+    <div class="card-text">
+      Tecnologia que permite a <strong>transmissão de voz e comunicações multimídia</strong> (chamadas telefônicas, videotelefonia, conferências) através da internet. O VoIP transforma sinais de voz em dados digitais encapsulados em pacotes pelo Protocolo IP.<br>
+      • Usa <strong>comutação por pacotes</strong> (mais eficiente), ao contrário da telefonia convencional (PSTN), que usava comutação por circuitos<br>
+      • <strong>VoIP utiliza UDP</strong>, juntamente com protocolos como <strong>SIP ou H.323</strong> para estabelecer conexões<br>
+      • Aplicação <strong>orientada à conexão e não-confiável</strong>, priorizando simplicidade e agilidade na comunicação<br>
+      • Ex.: envio de áudio com perda de pacotes → se você precisa receber o dado completo, use <strong>TCP</strong>; em ligação (tempo real), perdas são aceitáveis → use <strong>UDP</strong><br>
+      • <strong>Vantagens:</strong> ligações em LAN ou WAN, para fixos/celulares (com adaptadores/gateways), compartilha canal de comunicação com outros serviços, instalação escalável sem linhas dedicadas<br>
+      • <strong>Desvantagens:</strong> qualidade pode oscilar sem conexão eficiente, menos confiável que a telefonia convencional em quedas de energia, problemas de latência/atraso/interrupção/cortes, menor disponibilidade de canal
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Convergência de Redes e Videoconferência</div>
+    <div class="card-text">
+      • <strong>Convergência de Redes:</strong> tendência de <strong>unificar diversas redes distintas em uma única rede</strong>, capaz de fornecer os serviços antes oferecidos separadamente. Uma rede convergente suporta <strong>voz, imagem e dados</strong> em uma só rede digital, com gestão mais eficiente e custos reduzidos. O <strong>VoIP</strong> é um exemplo-chave<br>
+      • <strong>Videoconferência:</strong> interação visual e sonora entre pessoas em locais diferentes, criando a sensação de estarem no mesmo local. <strong>Webconferências</strong> são mais simples (ambientes domésticos, Hangouts e Skype); <strong>videoconferências</strong> são corporativas (equipamentos sofisticados, Zoom e Teams)<br>
+      • Conexões <strong>ponto-a-ponto</strong> envolvem duas câmeras; sistemas <strong>multiponto</strong> conectam três ou mais câmeras, geralmente com um <strong>MCU</strong> (Unidade de Controle Multiponto)<br>
+      • Dois modos: <strong>Modo VAS</strong> (Switch Ativado por Voz — janela do falante em destaque) e <strong>Modo Presença Contínua</strong> (todas as câmeras simultâneas)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PORTAS PADRÃO                                        -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Portas padrão</div>
+  </div>
+  <div class="sec-subtitle">Em vermelho, os protocolos cujo número de porta mais caem em prova</div>
+
+  <div class="card">
+    <div class="card-title">O que são portas</div>
+    <div class="card-text">
+      Portas funcionam como <strong>identificadores para processos específicos</strong> em um computador. Assim como uma casa tem um único endereço mas vários quartos, um computador tem um único IP, mas <strong>múltiplos processos</strong>, cada um acessível por uma porta distinta. Quando um pacote chega, o <strong>número da porta</strong> identifica o processo destinatário.<br>
+      • Na camada de enlace usa-se o <strong>Endereço MAC</strong>; na camada de rede, o <strong>Endereço IP</strong>; na camada de transporte, o <strong>Número da Porta</strong><br>
+      • As portas variam de <strong>0 a 65535</strong> — até 65.536 serviços diferentes simultaneamente em um servidor com um único IP<br>
+      • O protocolo HTTP padrão da web utiliza a porta <strong>80</strong>, definido pela <strong>IANA</strong> (Internet Assigned Number Authority)<br>
+      • A combinação <strong>Protocolo + Endereço IP + Número da Porta</strong> é chamada de <strong>Socket</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Protocolo (aplicação)</th><th>Protocolo (transporte)</th><th>Número da porta</th></tr></thead>
+      <tbody>
+        <tr><td><strong>HTTP</strong></td><td>TCP</td><td><span class="tag tag-red">80</span></td></tr>
+        <tr><td><strong>HTTPS</strong></td><td>TCP</td><td><span class="tag tag-red">443</span></td></tr>
+        <tr><td><strong>POP3</strong></td><td>TCP</td><td><span class="tag tag-red">110</span></td></tr>
+        <tr><td><strong>SMTP</strong></td><td>TCP</td><td><span class="tag tag-red">25/587</span></td></tr>
+        <tr><td><strong>IMAP4</strong></td><td>TCP</td><td><span class="tag tag-red">143</span></td></tr>
+        <tr><td><strong>FTP</strong></td><td>TCP</td><td><span class="tag tag-red">20/21</span></td></tr>
+        <tr><td><strong>TELNET</strong></td><td>TCP</td><td>23</td></tr>
+        <tr><td><strong>SSH</strong></td><td>TCP</td><td>22</td></tr>
+        <tr><td><strong>DNS</strong></td><td>TCP/UDP</td><td>53</td></tr>
+        <tr><td><strong>DHCP</strong></td><td>UDP</td><td>67/68</td></tr>
+        <tr><td><strong>IRC</strong></td><td>TCP</td><td>194</td></tr>
+        <tr><td><strong>IMAPS</strong> (IMAP seguro)</td><td>—</td><td>993 (e não 143)</td></tr>
+        <tr><td><strong>SNMP</strong></td><td>UDP</td><td>161</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>SMTP:</strong> via de regra, o padrão respaldado pela RFC é a <strong>porta 25</strong>; excepcionalmente, o Brasil adotou a porta <strong>587</strong> para evitar SPAM. Tentar acessar um serviço na porta errada (ex.: usar a porta 21, do FTP, para acessar um site HTTP) resulta em erro, pois o pacote não está destinado ao processo correto.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — PONTOS QUE MAIS CAEM EM PROVA                         -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>DNS (Altíssima):</strong> traduz nomes de domínio em endereços IP; agenda telefônica da internet; "Dá Nome Ao Site"<br>
+      • <strong>HTTP/HTTPS (Altíssima):</strong> requisição-resposta; códigos 1XX–5XX (404 = erro do cliente, 5XX = servidor); HTTP é Protocolo, HTML é Linguagem; HTTPS usa SSL/TLS + certificados<br>
+      • <strong>FTP (Altíssima):</strong> transferência de arquivos; duas conexões (dados porta 20, controle porta 21); <strong>NÃO é</strong> protocolo de hipertexto<br>
+      • <strong>IP (Altíssima):</strong> não confiável (melhor esforço) e sem conexão; fragmentação/MTU; IPv4 (32 bits) × IPv6 (128 bits, hexa, ::); classes A–E; IP privado × público × NAT<br>
+      • <strong>TCP/IP (ALTA):</strong> conjunto padrão da internet; TCP confiável/orientado à conexão (Three-Way Handshake) vs UDP sem conexão<br>
+      • <strong>E-mail (ALTA):</strong> SMTP envia (Sua Mensagem Tá Partindo); POP3 baixa e (em regra) exclui do servidor; IMAP mantém no servidor e sincroniza (portas 110 × 143)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Camadas OSI (mnemônico):</strong> FLAMENGO ENSACOU NA REDE TRÊS SAPECADAS NO ATLÉTICO E AVAÍ (Física→Aplicação); inverso: "Até A Sua Tia Ri Enquanto Fofoca"<br>
+      • <strong>OSI é teórico/didático; na prática usa-se o TCP/IP</strong> (4 camadas pela RFC 1122; híbrido de 5: física, enlace, rede, transporte, aplicação)<br>
+      • <strong>Tipos de comunicação:</strong> Nó a Nó (enlace) · Host a Host (rede) · Fim a Fim (transporte)<br>
+      • <strong>UDP é da camada de transporte</strong>; ideal para streaming, jogos e VoIP; tolera perdas, não tolera atrasos<br>
+      • <strong>Portas:</strong> 80 (HTTP), 443 (HTTPS), 110 (POP3), 25/587 (SMTP), 143 (IMAP), 20/21 (FTP), 53 (DNS), 67/68 (DHCP); Socket = Protocolo + IP + Porta
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Webmail usa HTTP/HTTPS, não IMAP</strong> (navegadores não suportam IMAP)<br>
+      • <strong>Compressão e criptografia</strong> são funções da camada de <strong>Apresentação</strong>; recuperação de erros é da <strong>Transporte</strong><br>
+      • O IP é <strong>host-a-host</strong>; o TCP é <strong>fim-a-fim</strong><br>
+      • <strong>Nem toda transferência de arquivo é via FTP</strong> — também via HTTP/HTTPS e SMTP/MIME<br>
+      • <strong>TELNET não tem criptografia; SSH tem</strong><br>
+      • Endereços de classe D e E <strong>não são utilizados na internet</strong>; 127 é loopback e 0 é indefinido<br>
+      • O endereço <strong>192.168.x.x é privado</strong> (não existe na internet); o NAT traduz privado para público<br>
+      • <strong>SMTP entre servidores</strong> também recebe e-mails (caso específico); em regra, SMTP só envia
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine as duas tabelas de maior retorno: (1) as 7 camadas do OSI com o mnemônico e as funções de cada uma; (2) a tabela de portas padrão (as marcadas em vermelho). Para os protocolos, decore a tríade "para que serve / camada / porta" de HTTP, HTTPS, FTP, SMTP, POP3, IMAP, DNS e DHCP — são os mais cobrados.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — INCIDÊNCIA DE TEMAS (TEC)                             -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AP Aula 01: Teoria Geral da Administração?v=Aula01TGA</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AP — Aula 01</div>
+  <div class="sidebar-sub">Teoria Geral da Administração</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Taylor</a>
+  <a href="#sec2">2. Fayol</a>
+  <a href="#sec3">3. Mayo</a>
+  <a href="#sec4">4. Weber</a>
+  <a href="#sec5">5. Estruturalismo</a>
+  <a href="#sec6">6. Neoclássica</a>
+  <a href="#sec7">7. Sistemas</a>
+  <a href="#sec8">8. Contingência</a>
+  <a href="#sec9">9. Questões</a>
+  <hr class="sidebar-divider">
+  <a href="../../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+</aside>
+
+<div class="main">
+
+<div class="header">
+  <h1>🏛️ AP — Aula 01: Teoria Geral da Administração</h1>
+  <p>Taylor · Fayol · Mayo · Weber · Estruturalismo · Neoclássica · Sistemas · Contingência · 40 questões comentadas · Material: Estratégia Concursos · Stefan Fantini</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Administração Científica — Taylor</div></div>
+  <div class="sec-subtitle">Foco nas tarefas, eficiência e ORT</div>
+
+  <div class="card" style="border-left: 4px solid var(--teal);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Essência</div></div>
+    <div class="card-text">
+      <strong>Objetivo:</strong> eliminar desperdícios e aumentar produtividade por meio de métodos científicos.<br>
+      <strong>Método:</strong> estudo dos tempos e movimentos → encontrar a “melhor maneira” de fazer cada tarefa.<br>
+      <strong>Resultado:</strong> Organização Racional do Trabalho (ORT).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🧰</div><div class="card-title">Fundamentos da ORT</div></div>
+    <div class="card-text">
+      • Análise do trabalho e tempos/movimentos<br>
+      • Estudo da fadiga humana<br>
+      • Divisão do trabalho e especialização<br>
+      • Desenho de cargos e tarefas<br>
+      • Incentivos salariais / prêmios de produção<br>
+      • Homo economicus (homem movido pelo dinheiro)<br>
+      • Condições ambientais de trabalho<br>
+      • Padronização de métodos e máquinas<br>
+      • Supervisão funcional (vários supervisores)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Aspecto</th><th>Administração Científica</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Foco</strong></td><td>Tarefas / chão de fábrica</td></tr>
+        <tr><td><strong>Abordagem</strong></td><td>Analítica, prescritiva, sistema fechado</td></tr>
+        <tr><td><strong>Homem</strong></td><td>Homo economicus</td></tr>
+        <tr><td><strong>Supervisão</strong></td><td>Funcional (vários supervisores)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> a banca pode confundir “tempos e movimentos” com “fadiga humana”. Tempos/movimentos = método de análise. Fadiga = cansaço decorrente de movimentos mal planejados.</div></div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Teoria Clássica — Fayol</div></div>
+  <div class="sec-subtitle">Foco na estrutura organizacional e 14 princípios</div>
+
+  <div class="card" style="border-left: 4px solid var(--blue);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Essência</div></div>
+    <div class="card-text">
+      <strong>Objetivo:</strong> aumentar a eficiência por meio da estrutura organizacional.<br>
+      <strong>Funções do administrador:</strong> Prever, Organizar, Comandar, Coordenar, Controlar (POC3).<br>
+      <strong>Princípios:</strong> 14 princípios gerais, universais e maleáveis.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">14 Princípios de Fayol</div></div>
+    <div class="card-text">
+      1) Divisão do trabalho<br>
+      2) Autoridade e responsabilidade<br>
+      3) Disciplina<br>
+      4) Unidade de comando<br>
+      5) Unidade de direção<br>
+      6) Subordinação dos interesses individuais aos gerais<br>
+      7) Remuneração do pessoal<br>
+      8) Centralização<br>
+      9) Cadeia escalar<br>
+      10) Ordem<br>
+      11) Equidade<br>
+      12) Estabilidade do pessoal<br>
+      13) Iniciativa<br>
+      14) Espírito de equipe
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Atenção CESPE/CEBRASPE:</strong> a banca usa “Teoria Clássica” para se referir a Taylor + Fayol juntos. Em outras bancas, “Teoria Clássica” = só Fayol.</div></div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Teoria das Relações Humanas — Mayo</div></div>
+  <div class="sec-subtitle">Foco nas pessoas — Experiência de Hawthorne</div>
+
+  <div class="card" style="border-left: 4px solid var(--purple);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Experiência de Hawthorne</div></div>
+    <div class="card-text">
+      Elton Mayo (Harvard) pesquisou variação de luminosidade em fábrica Western Eletric (Chicago).<br>
+      <strong>Descoberta:</strong> aumento de produtividade não veio da luz, mas da <span class="highlight">atenção psicológica</span> dada aos empregados.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Principais conclusões</div></div>
+    <div class="card-text">
+      • Nível de produção = resultado da integração social<br>
+      • Comportamento social dos empregados (age como membro de grupo)<br>
+      • Organização informal existe e influencia<br>
+      • Homem social (homo social) — motivado por reconhecimento, não só dinheiro<br>
+      • Supervisão cooperativa aumenta eficiência
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Aspecto</th><th>Teoria Clássica</th><th>Relações Humanas</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Foco</strong></td><td>Estrutura</td><td>Pessoas</td></tr>
+        <tr><td><strong>Organização</strong></td><td>Máquina</td><td>Grupo de pessoas</td></tr>
+        <tr><td><strong>Autoridade</strong></td><td>Centralizada</td><td>Delegação</td></tr>
+        <tr><td><strong>Homem</strong></td><td>Homo economicus</td><td>Homo social</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Teoria da Burocracia — Weber</div></div>
+  <div class="sec-subtitle">Modelo ideal de organização racional-legal</div>
+
+  <div class="card" style="border-left: 4px solid var(--amber);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Características ideais</div></div>
+    <div class="card-text">
+      • Legalidade das normas<br>
+      • Formalidade nas comunicações (escrito)<br>
+      • Racionalidade e divisão do trabalho<br>
+      • Impessoalidade<br>
+      • Hierarquia funcional<br>
+      • Padronização e previsibilidade<br>
+      • Meritocracia e competência técnica<br>
+      • Especialização e profissionalização
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Dominação racional-legal</div></div>
+    <div class="card-text">
+      O poder está no <span class="highlight">cargo</span>, não na pessoa. Você obedece ao chefe porque a norma diz que ele é o chefe.
+    </div>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> disfunções da burocracia ≠ características da burocracia. A banca troca propositalmente. Disfunções = excesso de formalismo, rigidez, apego às normas, despersonalização.</div></div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Teoria Estruturalista</div></div>
+  <div class="sec-subtitle">Síntese: formal + informal, sistema aberto</div>
+
+  <div class="card" style="border-left: 4px solid var(--green);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Essência</div></div>
+    <div class="card-text">
+      Busca integrar Teoria Clássica + Relações Humanas + Burocracia.<br>
+      <strong>Abordagem:</strong> sistema aberto, considera ambiente externo.<br>
+      <strong>Homem:</strong> homem organizacional — participa de várias organizações, flexível, adia recompensas.<br>
+      <strong>Incentivos:</strong> mistos (salariais + sociais + simbólicos).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Teóricos principais</div></div>
+    <div class="card-text">
+      James Thompson e Amitai Etzioni.
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Teoria Neoclássica — Drucker</div></div>
+  <div class="sec-subtitle">Pragmatismo, eficiência e eficácia, PODC</div>
+
+  <div class="card" style="border-left: 4px solid var(--blue);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Características</div></div>
+    <div class="card-text">
+      • Pragmatismo — voltada para resultados práticos<br>
+      • Reafirmação dos princípios clássicos de forma flexível<br>
+      • Ênfase em objetivos e resultados<br>
+      • Conceitos ecléticos (absorve outras teorias)<br>
+      • Processo administrativo: <span class="highlight">Planejamento, Organização, Direção, Controle (PODC)</span>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Conceito</th><th>Significado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Eficiência</strong></td><td>Fazer bem, utilizar recursos da melhor forma — foco interno, meios e custos</td></tr>
+        <tr><td><strong>Eficácia</strong></td><td>Fazer a coisa certa, atingir objetivos — foco externo, fins</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Teoria dos Sistemas — Bertalanffy</div></div>
+  <div class="sec-subtitle">Organização como sistema aberto</div>
+
+  <div class="card" style="border-left: 4px solid var(--purple);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Conceito central</div></div>
+    <div class="card-text">
+      Sistema = conjunto de unidades reciprocamente relacionadas, com <span class="highlight">propósito</span> e <span class="highlight">globalismo</span>.<br>
+      A organização é um sistema aberto em constante interação com o ambiente.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Características do sistema aberto</div></div>
+    <div class="card-text">
+      • Importação (entradas), transformação, exportação (saídas)<br>
+      • Ciclos repetitivos<br>
+      • Entropia negativa (reabastecimento de energia)<br>
+      • Feedback negativo (retroação)<br>
+      • Homeostase dinâmica (equilíbrio)<br>
+      • Diferenciação<br>
+      • Equifinalidade (vários caminhos para o mesmo resultado)<br>
+      • Fronteiras do sistema
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Mnemônico:</strong> <span class="tag tag-blue">I</span>mporta → <span class="tag tag-green">T</span>ransforma → <span class="tag tag-amber">E</span>xpõe → <span class="tag tag-red">H</span>omeostase → <span class="tag tag-teal">E</span>quifinalidade</div></div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Teoria da Contingência</div></div>
+  <div class="sec-subtitle">“Tudo depende” — ambiente e tecnologia determinam a estrutura</div>
+
+  <div class="card" style="border-left: 4px solid var(--teal);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Essência</div></div>
+    <div class="card-text">
+      Não existe uma “fórmula mágica” universal. A estrutura e o funcionamento dependem da <span class="highlight">interação com o ambiente externo</span> e da tecnologia.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Tipo</th><th>Ambiente</th><th>Característica</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Mecanicista</strong></td><td>Estável e previsível</td><td>Hierárquica, rígida, formal</td></tr>
+        <tr><td><strong>Orgânica</strong></td><td>Dinâmico e imprevisível</td><td>Flexível, descentralizada, adaptativa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Adhocracia</div></div>
+    <div class="card-text">
+      Modelo oposto à burocracia: equipes temporárias, autônomas, multidisciplinares, poucas regras, responsabilidades mutáveis.
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">💡</div><div><strong>Dica de prova:</strong> contingência = tudo é relativo. Homem = homem complexo. Não há modelo único.</div></div>
+</section>
+
+<!-- SECAO 9 -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Questões Comentadas</div></div>
+  <div class="sec-subtitle">40 questões de multibancas (FGV) — comentário direto + gabarito</div>
+
+  <div class="question">
+    <div class="question-header">1) FGV — AMAZUL / Analista de Administração / 2026</div>
+    <div class="question-text">Na Administração Científica, movimentos mal planejados produzem cansaço e reduzem a eficiência. Esse princípio denomina-se:</div>
+    <div class="answer"><strong>Gabarito: A (fadiga humana).</strong> “Tempos e movimentos” é o método de análise; a fadiga é o resultado dos movimentos mal planejados.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">2) FGV — DPE-RO / Analista em Administração / 2025</div>
+    <div class="question-text">Quais dos seguintes princípios são de Fayol: I. Unidade de Comando. II. Equidade. III. Estabilidade de pessoal.</div>
+    <div class="answer"><strong>Gabarito: E (I, II e III).</strong> Todos são princípios da Teoria Clássica.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">3) FGV — DPE-RO / Analista em Administração / 2025</div>
+    <div class="question-text">Sobre as teorias da administração: I. Abordagem explicativa e descritiva. II. Valoriza impessoalidade. III. Defende meritocracia. Qual teoria?</div>
+    <div class="answer"><strong>Gabarito: A (apenas I).</strong> A assertiva I é da Teoria Comportamental. Impessoalidade e meritocracia são da Burocracia.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">4) FGV — DPE-RO / Analista em Administração / 2025</div>
+    <div class="question-text">Para a Teoria da Contingência, o indivíduo é compreendido como:</div>
+    <div class="answer"><strong>Gabarito: A (Homem Complexo).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">5) FGV — TJRR / Analista Judiciário / 2024</div>
+    <div class="question-text">Qual teoria administrativa tem ênfase nas tarefas?</div>
+    <div class="answer"><strong>Gabarito: A (Administração Científica).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">6) FGV — TJMS / Analista Judiciário / 2024</div>
+    <div class="question-text">O ser humano que desempenha papéis, inter-relaciona-se e mantém expectativas é:</div>
+    <div class="answer"><strong>Gabarito: B (homem funcional; de sistemas).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">7) FGV — TJ-AP / Analista Judiciário / 2024</div>
+    <div class="question-text">O estruturalismo apoia-se em um ser humano flexível, resistente à frustração, capaz de adiar recompensas. Esse conceito é:</div>
+    <div class="answer"><strong>Gabarito: C (homem organizacional).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">8) FGV — TJ-AP / Analista Judiciário / 2024</div>
+    <div class="question-text">Fayol — princípio que incentiva harmonia e união do pessoal:</div>
+    <div class="answer"><strong>Gabarito: C (espírito de equipe).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">9) FGV — TJ-AP / Analista Judiciário / 2024</div>
+    <div class="question-text">Entre as críticas à escola de relações humanas, está:</div>
+    <div class="answer"><strong>Gabarito: A (correlação simplista entre satisfação e produtividade).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">10) FGV — DNIT / Analista Administrativo / 2024</div>
+    <div class="question-text">Princípio de Fayol: capacidade de visualizar um plano e assegurar pessoalmente seu sucesso.</div>
+    <div class="answer"><strong>Gabarito: B (iniciativa).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">11) FGV — DNIT / Analista Administrativo / 2024</div>
+    <div class="question-text">Max Weber — característica da burocracia:</div>
+    <div class="answer"><strong>Gabarito: C (hierarquia da autoridade).</strong> As demais são disfunções.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">12) FGV — BH / Auditor / 2024</div>
+    <div class="question-text">Relacione: racionalidade; interface com ambiente; características democráticas; racionalização das tarefas.</div>
+    <div class="answer"><strong>Gabarito: D (4–3–2–1).</strong> Racionalidade = burocrática; interface = contingencial; democráticas = humanística; racionalização = clássica.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">13) FGV — Fortaleza / Analista de Gestão / 2024</div>
+    <div class="question-text">Sobre os princípios gerais de Fayol, é correto afirmar que a teoria preconiza:</div>
+    <div class="answer"><strong>Gabarito: A (espírito de equipe).</strong> As demais alternativas trazem conceitos de Taylor ou da Contingência.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">14) FGV — Fortaleza / Analista de Gestão / 2024</div>
+    <div class="question-text">A Teoria Comportamental trouxe uma concepção conhecida como:</div>
+    <div class="answer"><strong>Gabarito: D (Homem Administrativo).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">15) FGV — Fortaleza / Analista de Gestão / 2024</div>
+    <div class="question-text">I. Sinergia = todo maior que a soma das partes. II. Homeostase = manutenção do equilíbrio. III. Entropia negativa = importar energia para sobreviver.</div>
+    <div class="answer"><strong>Gabarito: E (I, II e III).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">16) FGV — AL-MA / Técnico de Gestão / 2023</div>
+    <div class="question-text">Holismo = todo maior que a soma das partes.</div>
+    <div class="answer"><strong>Gabarito: A.</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">17) FGV — AL-MA / Técnico de Gestão / 2023</div>
+    <div class="question-text">A escola de relações humanas teve como principal impulso a experiência de Hawthorne.</div>
+    <div class="answer"><strong>Gabarito: C (deu luz à importância dos grupos informais).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">18) FGV — AL-MA / Técnico de Gestão / 2023</div>
+    <div class="question-text">Ernesto decide basear-se na ORT para modificações radicais. Assinale a ação que se coaduna com a ORT.</div>
+    <div class="answer"><strong>Gabarito: B (estudo minucioso sobre a fadiga humana).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">19) FGV — Banco do Brasil / Analista / 2023</div>
+    <div class="question-text">Característica da Teoria Estruturalista:</div>
+    <div class="answer"><strong>Gabarito: E (integrar conceitos de diversas outras teorias).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">20) FGV — DPE-RS / Analista / 2023</div>
+    <div class="question-text">Katz e Kahn: multiplicação e elaboração de funções, substituindo padrões gerais por especializadas.</div>
+    <div class="answer"><strong>Gabarito: D (diferenciação).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">21) FGV — DPEPGM / Niterói / 2023</div>
+    <div class="question-text">Katz e Kahn: não existe uma única maneira de a organização atingir um estado estável.</div>
+    <div class="answer"><strong>Gabarito: B (equifinalidade).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">22) FGV — AGENERSA / Assistente Técnico / 2023</div>
+    <div class="question-text">Administração Científica: fundamento que melhorou o trabalho e a vida dos trabalhadores:</div>
+    <div class="answer"><strong>Gabarito: C (condições ambientais de trabalho).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">23) FGV — AGENERSA / Analista Técnico / 2023</div>
+    <div class="question-text">Valéria decide aplicar equifinalidade. Em que teoria se inspirou?</div>
+    <div class="answer"><strong>Gabarito: C (Teoria dos Sistemas).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">24) FGV — AGENERSA / Analista Técnico / 2023</div>
+    <div class="question-text">Diferenças entre Teoria Clássica e Administração Científica:</div>
+    <div class="answer"><strong>Gabarito: B.</strong> Clássica = abordagem sintética/global. Científica = analítica/concreta.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">25) FGV — Prefeitura de Manaus / Administrador / 2022</div>
+    <div class="question-text">Experiência de Hawthorne — resultado:</div>
+    <div class="answer"><strong>Gabarito: A (nível de produção relacionado à integração social).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">26) FGV — Prefeitura de Manaus / Administrador / 2022</div>
+    <div class="question-text">Sobre a Teoria Clássica, assinale a afirmativa correta.</div>
+    <div class="answer"><strong>Gabarito: A (valorizava equidade e espírito de equipe).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">27) FGV — MPE-SC / Analista em Administração / 2022</div>
+    <div class="question-text">Estruturalismo — conceito de ser humano:</div>
+    <div class="answer"><strong>Gabarito: E (homem organizacional).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">28) FGV — MPE-SC / Auxiliar do MP / 2022</div>
+    <div class="question-text">Fayol — princípios da administração:</div>
+    <div class="answer"><strong>Gabarito: D (estabilidade do pessoal; divisão do trabalho; equidade).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">29) FGV — SEFAZ-AM / Assistente Administrativo / 2022</div>
+    <div class="question-text">I. Administração Científica — modelo orgânico e autonomia decisória. II. Burocracia — impessoalidade e padronização. III. Comportamental — tempos e movimentos.</div>
+    <div class="answer"><strong>Gabarito: B (apenas II).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">30) FGV — Senado Federal / Analista Legislativo / 2022</div>
+    <div class="question-text">Relacione: Abordagem clássica; estruturalista; comportamental; sistêmica; contingencial.</div>
+    <div class="answer"><strong>Gabarito: B (1, 5, 4, 2 e 3).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">31) FGV — CGU / Técnico / 2022</div>
+    <div class="question-text">Dois órgãos atingem o mesmo objetivo por caminhos diferentes (licitação vs. concurso). Qual conceito?</div>
+    <div class="answer"><strong>Gabarito: E (equifinalidade).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">32) FGV — IMBEL / Administrador / 2021</div>
+    <div class="question-text">Experiência de Hawthorne — teoria que aumentou a importância da integração social:</div>
+    <div class="answer"><strong>Gabarito: E (Escola das Relações Humanas).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">33) FGV — IMBEL / Analista / 2021</div>
+    <div class="question-text">Escola que introduziu a versão tradicional da motivação, com incentivos materiais, baseando-se no homem econômico.</div>
+    <div class="answer"><strong>Gabarito: B (clássica – tradicional – homem econômico).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">34) FGV — IMBEL / Supervisor / 2021</div>
+    <div class="question-text">Sistema aberto ajusta-se às mudanças para manter equilíbrio. Conceito:</div>
+    <div class="answer"><strong>Gabarito: D (homeostase).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">35) FGV — IMBEL / Supervisor / 2021</div>
+    <div class="question-text">Teoria Neoclássica prioriza:</div>
+    <div class="answer"><strong>Gabarito: B (pragmatismo, conceitos ecléticos e resultados).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">36) FGV — FUNSAÚDE / Analista Administrativo / 2021</div>
+    <div class="question-text">Organização Racional do Trabalho — fundamento característico:</div>
+    <div class="answer"><strong>Gabarito: B (desenho de cargos e salários).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">37) FGV — FUNSAÚDE / Analista Administrativo / 2021</div>
+    <div class="question-text">Modelo burocrático — nova característica:</div>
+    <div class="answer"><strong>Gabarito: B (rotinas padronizadas e bem definidas).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">38) FGV — IMBEL / Analista Especializado / 2021</div>
+    <div class="question-text">Teoria Estruturalista — principal conceito:</div>
+    <div class="answer"><strong>Gabarito: A (ideia de homem organizacional).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">39) FGV — IMBEL / Analista Especializado / 2021</div>
+    <div class="question-text">Teoria da Burocracia — proposta importante:</div>
+    <div class="answer"><strong>Gabarito: D (formalização das competências técnicas).</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">40) Questão adicional — Teoria Estruturalista / Sistemas / Contingência</div>
+    <div class="question-text">Teoria que sintetiza as abordagens anteriores, considera sistema aberto e introduz o homem organizacional:</div>
+    <div class="answer"><strong>Gabarito: Teoria Estruturalista.</strong></div>
+  </div>
+</section>
+
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progressFill').style.width = progress + '%';
+  });
+</script>
+
+</body>
+</html>

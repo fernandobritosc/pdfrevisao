@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AP Aula 00: Conceitos Introdutórios (TDAH-friendly) <!-- v3 --> <!-- v4 --></title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AP — Aula 00</div>
+  <div class="sidebar-sub">Administração Pública e Geral — Conceitos Introdutórios</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Administração</a>
+  <a href="#sec2">2. Organização</a>
+  <a href="#sec3">3. Ambientes</a>
+  <a href="#sec4">4. Estruturas</a>
+  <a href="#sec5">5. Níveis</a>
+  <a href="#sec6">6. PODC</a>
+  <a href="#sec7">7. Mintzberg</a>
+  <a href="#sec8">8. Katz</a>
+  <a href="#sec9">9. Questões</a>
+  <hr class="sidebar-divider">
+  <a href="../../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+</aside>
+
+<div class="main">
+
+<div class="header">
+  <h1>🏛️ AP — Aula 00: Conceitos Introdutórios</h1>
+  <p>Administração · Organização · Processo administrativo · Mintzberg · Katz · 32 questões comentadas · Material: Estratégia Concursos · Stefan Fantini</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">O que é Administração?</div></div>
+  <div class="sec-subtitle">Conceitos fundamentais — base para toda a matéria</div>
+
+  <div class="card" style="border-left: 4px solid var(--blue);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Definição essencial</div></div>
+    <div class="card-text">
+      <strong>Administração = alcançar objetivos por meio de pessoas e recursos, de forma coordenada.</strong><br><br>
+      É a utilização de todos os recursos organizacionais — pessoas, equipamentos, dinheiro, informação — de forma <span class="highlight">planejada, organizada, dirigida e controlada</span>, para o alcance dos objetivos da organização.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Chiavenato</div></div>
+    <div class="card-text">
+      “Administração constitui a maneira pela qual se utilizam os diversos recursos organizacionais — humanos, materiais, financeiros, de informação e de tecnologia — para alcançar objetivos e atingir elevado desempenho.”
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Maximiano</div></div>
+    <div class="card-text">
+      “Administração é um processo dinâmico de tomar decisões sobre a utilização de recursos, para possibilitar a realização de objetivos.”
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Dica de prova:</strong> todas as definições convergem para o mesmo núcleo. Decore a essência: <span class="highlight">administração = objetivos + recursos + coordenação</span>.</div></div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">O que é Organização?</div></div>
+  <div class="sec-subtitle">Três sentidos — atenção para pegadinhas</div>
+
+  <div class="card" style="border-left: 4px solid var(--green);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">3 sentidos da palavra "organização"</div></div>
+    <div class="card-text">
+      <strong>1) Entidade Estruturada:</strong> conjunto de pessoas e recursos trabalhando juntos para objetivos comuns.<br><br>
+      <strong>2) Função Administrativa:</strong> estruturar, dividir e sequenciar o trabalho (faz parte do PODC).<br><br>
+      <strong>3) Sentido de Ordem:</strong> "um lugar para cada coisa e cada coisa em seu lugar" — ordem material e humana.
+    </div>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha CESPE:</strong> a banca usa o sentido de "ordem" para confundir. Quando a questão falar de "organização" como capacidade individual de arrumar a mesa, emails em dia etc., está se referindo ao <span class="highlight">sentido de ordem</span>, não à função administrativa.</div></div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Ambientes Organizacionais</div></div>
+  <div class="sec-subtitle">Geral, operacional e interno</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>🌍 Ambiente</th><th>Característica</th><th>Exemplos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Geral</strong></td><td>Macro ambiente — influência <span class="highlight">indireta</span></td><td>economia, política, tecnologia, demografia</td></tr>
+        <tr><td><strong>Operacional</strong></td><td>Ambiente competitivo — influência <span class="highlight">direta</span></td><td>clientes, fornecedores, concorrentes, agências</td></tr>
+        <tr><td><strong>Interno</strong></td><td>Elementos internos da organização</td><td>funcionários, equipamentos, cultura</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Ambiente Geral — modelo PESTEL</div></div>
+    <div class="card-text">
+      O ambiente geral/macro é composto por 6 dimensões clássicas, lembradas pelo acrônimo <strong>PESTEL</strong>:<br><br>
+      <span class="tag tag-blue">P</span> <strong>Político:</strong> governo, políticas públicas, estabilidade política<br>
+      <span class="tag tag-green">E</span> <strong>Econômico:</strong> inflação, juros, crescimento, mercado de trabalho<br>
+      <span class="tag tag-amber">S</span> <strong>Sócio-cultural:</strong> valores sociais, demografia, educação, cultura<br>
+      <span class="tag tag-red">T</span> <strong>Tecnológico:</strong> inovações, automação, transformação digital<br>
+      <span class="tag tag-teal">E</span> <strong>Ecológico/Ambiental:</strong> sustentabilidade, mudanças climáticas, regulamentos ambientais<br>
+      <span class="tag tag-purple">L</span> <strong>Legal:</strong> leis, regulamentações, justiça, direitos trabalhistas<br><br>
+      <em>Essas dimensões influenciam a organização de forma indireta, mas são essenciais para o planejamento estratégico.</em>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Macete</div>
+    <div class="mnemonic-content">
+      <strong>G</span>eral = <span class="tag tag-blue">G</span>rande (macro, indireto)<br>
+      <strong>O</span>peracional = <span class="tag tag-green">O</span>lho no olho (direto)<br>
+      <strong>I</span>nterno = <span class="tag tag-amber">I</span>nterno (dentro de casa)
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Estruturas Organizacionais</div></div>
+  <div class="sec-subtitle">Formal vs. Informal — banca adora cobrar</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Aspecto</th><th>📋 Formal</th><th>🎲 Informal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Origem</strong></td><td>Criada propositalmente</td><td>Surge naturalmente</td></tr>
+        <tr><td><strong>Base</strong></td><td>Racionalidade e lógica</td><td>Afinidade e relações pessoais</td></tr>
+        <tr><td><strong>Planejamento</strong></td><td>Planejada e estruturada</td><td>Não é planejada</td></tr>
+        <tr><td><strong>Regras</strong></td><td>Regras e regulamentos</td><td>Não existem regras formais</td></tr>
+        <tr><td><strong>Representação</strong></td><td>Aparece no organograma</td><td>Não aparece no organograma</td></tr>
+        <tr><td><strong>Objetivos</strong></td><td>Pré-estabelecidos</td><td>Não possui objetivos claros</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> a organização informal <span class="highlight">transcende</span> a formal — não está sujeita a horários, regras ou local físico. É o "grupo do café" que aparece no orgranograma.</div></div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Níveis Organizacionais</div></div>
+  <div class="sec-subtitle">Estratégico, tático e operacional</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Nível</th><th>Quem está lá</th><th>Prazo</th><th>Foco principal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Estratégico</strong></td><td>Diretores, Presidentes, CEOs</td><td>Longo prazo</td><td>Temas gerais, ambiente externo</td></tr>
+        <tr><td><strong>Tático</strong></td><td>Gerentes, chefes de departamento</td><td>Médio prazo</td><td>Unidades específicas, elo de articulação</td></tr>
+        <tr><td><strong>Operacional</strong></td><td>Supervisores</td><td>Curto prazo</td><td>Tarefas rotineiras, execução</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-left: 4px solid var(--amber);">
+    <div class="card-header"><div class="card-icon">🧠</div><div class="card-title">Mnemônico</div></div>
+    <div class="card-text">
+      <strong>E</strong>stratégico = <span class="highlight">E</span>terno (longo prazo)<br>
+      <strong>T</strong>ático = <span class="highlight">T</span>ransição (médio prazo)<br>
+      <strong>O</span>peracional = <span class="highlight">O</span>ra! (curto prazo, já!)
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Dica:</strong> o nível tático é o "<strong>elo de articulação e tradução</strong>" — ele pega as diretrizes macro e genéricas da cúpula estratégica e as converte em planos de ação específicos e divisacionais para o operacional executar. É onde estão os gerentes, que precisam saber um pouquinho de tudo.</div></div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Processo Administrativo — PODC</div></div>
+  <div class="sec-subtitle">Planejamento, Organização, Direção, Controle</div>
+
+  <div class="card" style="border-left: 4px solid var(--blue);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">PODC na prática</div></div>
+    <div class="card-text">
+      <strong>P</strong>lanejamento → <span class="highlight">o que fazer?</span><br>
+      <strong>O</strong>rganização → <span class="highlight">como estruturar?</span><br>
+      <strong>D</strong>ireção → <span class="highlight">quem faz?</span><br>
+      <strong>C</strong>ontrole → <span class="highlight">está certo?</span>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Função</th><th>Foco</th><th>Palavra-chave</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Planejamento</strong></td><td>Ideias</td><td>estabelecer objetivos e meios</td></tr>
+        <tr><td><strong>Organização</strong></td><td>Coisas/recursos</td><td>dividir trabalho, alocar recursos</td></tr>
+        <tr><td><strong>Direção</strong></td><td>Pessoas</td><td>liderar, motivar, coordenar</td></tr>
+        <tr><td><strong>Controle</strong></td><td>Resultados</td><td>monitorar e corrigir</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha clássica:</strong> "designar pessoas" pertence à <span class="highlight">Direção</span>, não à Organização. A Organização designa <span class="highlight">tarefas</span>, não pessoas. A banca adora inverter isso.</div></div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Mintzberg — 10 Papéis</div></div>
+  <div class="sec-subtitle">Interpessoais, Informacionais e Decisórios</div>
+
+  <div class="card" style="border-left: 4px solid var(--purple);">
+    <div class="card-header"><div class="card-icon">🧠</div><div class="card-title">Mnemônico das 3 categorias</div></div>
+    <div class="card-text">
+      <strong>INTER</strong>pessoais = relações (Símbolo, Liderança, Ligação)<br>
+      <strong>INFORM</strong>acionais = dados (Monitor, Disseminador, Porta-voz)<br>
+      <strong>DECIS</strong>órios = escolhas (Empreendedor, Conflitos, Alocador, Negociador)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Categoria</th><th>Papéis</th><th>O que fazem</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Interpessoais</strong></td><td>Símbolo, Liderança, Ligação</td><td>Representam, orientam, conectam</td></tr>
+        <tr><td><strong>Informacionais</strong></td><td>Monitor, Disseminador, Porta-voz</td><td>Coletam, compartilham, transmitem</td></tr>
+        <tr><td><strong>Decisórios</strong></td><td>Empreendedor, Conflitos, Alocador, Negociador</td><td>Iniciam mudanças, resolvem problemas, alocam, negociam</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> porta-voz transmite para o <span class="highlight">meio externo</span>; disseminador compartilha <span class="highlight">internamente</span>. A banca troca esses dois constantemente.</div></div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Katz — 3 Habilidades</div></div>
+  <div class="sec-subtitle">Técnicas, Humanas e Conceituais</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Habilidade</th><th>O que é</th><th>Predomínio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Técnicas</strong></td><td>Conhecimento especializado para executar — "fazer"</td><td><span class="tag tag-blue">Operacional</span></td></tr>
+        <tr><td><strong>Humanas</strong></td><td>Relacionamento interpessoal — liderar, motivar</td><td><span class="tag tag-green">Tático</span></td></tr>
+        <tr><td><strong>Conceituais</strong></td><td>Visão sistêmica, abstração — "pensar"</td><td><span class="tag tag-amber">Estratégico</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-left: 4px solid var(--green);">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Regra de ouro</div></div>
+    <div class="card-text">
+      Todas as habilidades são usadas em todos os níveis. O que muda é a <span class="highlight">predominância</span>.<br><br>
+      <strong>Nível tático</strong> = mais equilibrado — "tem que saber um pouquinho de tudo".
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 9 -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Questões Comentadas</div></div>
+  <div class="sec-subtitle">32 questões de multibancas — Gabarito no final</div>
+
+  <div class="question">
+    <div class="question-header">1) FGV / PC-RN / Agente / 2021</div>
+    <div class="question-text">Um gerente definiu objetivos e avaliou desempenho. Quais funções?</div>
+    <div class="answer"><strong>Gabarito: C (planejamento; controle)</strong> — Definir objetivos = planejamento. Avaliar desempenho = controle.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">2) FGV / IBGE / Coordenador / 2019</div>
+    <div class="question-text">Atribuições: desenho de treinamento; definição de tarefas; avaliação de desempenho. Quais funções?</div>
+    <div class="answer"><strong>Gabarito: B (organização; organização; controle)</strong> — Treinamento e definição de tarefas = organização. Avaliação = controle.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">3) FGV / TRT 12ª / Analista / 2017</div>
+    <div class="question-text">Em relação à função organização, é correto afirmar que:</div>
+    <div class="answer"><strong>Gabarito: A</strong> — A função organização faz a distribuição das tarefas, autoridades e recursos.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">4) FGV / Câmara Salvador / Analista / 2018</div>
+    <div class="question-text">Vereador divulgava andamento de projeto para a sociedade. Qual papel?</div>
+    <div class="answer"><strong>Gabarito: B (porta-voz)</strong> — Porta-voz transmite informações para o meio externo.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">5) FGV / AOCP-SUSIPE / Assistente / 2018</div>
+    <div class="question-text">Profissional no nível operacional será mais exigido em conhecimentos específicos. Que habilidade é essa?</div>
+    <div class="answer"><strong>Gabarito: D (técnicas)</strong> — Habilidades técnicas estão relacionadas ao "fazer" e predominam no nível operacional.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">6) FGV / TRT 12ª / Técnico / 2017</div>
+    <div class="question-text">Servidores planejaram e, ao final, verificaram se foram cumpridos. Que função é essa?</div>
+    <div class="answer"><strong>Gabarito: C (controle)</strong> — Monitorar e comparar resultados com o planejado = controle.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">7) FGV / SEPOG-RO / Técnico / 2017</div>
+    <div class="question-text">V-V-V-V: Planejamento formula objetivos; Organização desenha trabalho; Direção designa pessoas; Controle monitora e corrige.</div>
+    <div class="answer"><strong>Gabarito: A (V-V-V-V)</strong> — Todas corretas, com ressalvas: "coordenação de atividades" na organização e "designar pessoas" na direção são pegadinhas.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">8) FGV / TRT 12ª / Técnico / 2017</div>
+    <div class="question-text">Diretor dedicava tempo à identificação de novos projetos. Qual papel?</div>
+    <div class="answer"><strong>Gabarito: A (empreendedor)</strong> — Identificar novas ideias e oportunidades = papel empreendedor (decisório).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">9) FGV / SUSAM / Técnico / 2014</div>
+    <div class="question-text">Associe: objetivos gerais; foco em unidades; planos genéricos; tarefas rotineiras; procedimentos específicos; médio prazo.</div>
+    <div class="answer"><strong>Gabarito: B (1-2-1-3-3-2)</strong> — Estratégico = objetivos gerais e planos genéricos. Tático = unidades específicas e médio prazo. Operacional = tarefas e procedimentos.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">10) UFDC-UFSC / Assistente / 2019</div>
+    <div class="question-text">João transmite informações para externos, direciona para internos e levanta informações. Quais papéis?</div>
+    <div class="answer"><strong>Gabarito: D (somente II)</strong> — Porta-voz (externo), Disseminador (interno), Monitor (coleta). São informacionais, não interpessoais.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">11) FCC / DPE-AM / Assistente / 2018</div>
+    <div class="question-text">Administrador corrige atuação de subordinados para atingir metas. Que função?</div>
+    <div class="answer"><strong>Gabarito: A (controle)</strong> — Monitorar e corrigir = controle.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">12) FAPESE-UFS / Assistente / 2018</div>
+    <div class="question-text">Qual função trata do monitoramento dos resultados?</div>
+    <div class="answer"><strong>Gabarito: A (Controle)</strong> — Monitorar resultados = controle.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">13) FAPESE-UFS / Assistente / 2018</div>
+    <div class="question-text">Tarefa principal da Direção?</div>
+    <div class="answer"><strong>Gabarito: E</strong> — Orientar pessoas a utilizarem os recursos para atingir objetivos = direção.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">14) AOCP-SUSIPE / Assistente / 2018</div>
+    <div class="question-text">Quais são as três habilidades de Katz?</div>
+    <div class="answer"><strong>Gabarito: C (técnicas, humanas, conceituais)</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">15) CESPE / STM / Analista / 2018</div>
+    <div class="question-text">Alocar recursos e designá-los a indivíduos corresponde à função direção.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong> — Alocação de recursos = função organização.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">16) FCC / SABESP / Técnico / 2018</div>
+    <div class="question-text">João tem conhecimentos especializados, prefere trabalhar sozinho. Habilidade predominante?</div>
+    <div class="answer"><strong>Gabarito: B (técnica)</strong> — Conhecimentos especializados = habilidade técnica.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">17) FUMARC / CEMIG / Técnico / 2018</div>
+    <div class="question-text">Dirigir significa:</div>
+    <div class="answer"><strong>Gabarito: C</strong> — Interpretar planos e dar instruções sobre como executá-los, em direção aos objetivos = direção.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">18) CESPE / IPHAN / Analista / 2018</div>
+    <div class="question-text">Organização é a função que envolve avaliação de desempenho e monitoramento.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong> — Avaliação e monitoramento = controle.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">19) FAPESE-UFS / Assistente / 2018</div>
+    <div class="question-text">O que são habilidades conceituais?</div>
+    <div class="answer"><strong>Gabarito: D (perceber a organização como um todo)</strong> — Habilidades conceituais envolvem visão sistêmica.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">20) FCC / ARTESP / Especialista / 2017</div>
+    <div class="question-text">Qual papel é decisório?</div>
+    <div class="answer"><strong>Gabarito: C (Negociador)</strong> — Negociador é um papel decisório.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">21) FCC / ARTESP / Especialista / 2017</div>
+    <div class="question-text">Quais são as funções do processo administrativo?</div>
+    <div class="answer"><strong>Gabarito: D (Planejamento, organização, direção e controle)</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">22) FEPESE / JUCESC / Técnico / 2017</div>
+    <div class="question-text">Categorias de comportamento gerencial segundo Mintzberg?</div>
+    <div class="answer"><strong>Gabarito: B (papéis gerenciais)</strong> — Mintzberg identificou 10 papéis gerenciais divididos em 3 categorias.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">23) CESPE / SEDF / Professor / 2017</div>
+    <div class="question-text">Planejamento estratégico requer alto nível de habilidades técnicas.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong> — Planejamento estratégico requer habilidades conceituais.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">24) UFMT-UFSBA / Administrador / 2017</div>
+    <div class="question-text">Quais são os três papéis principais de Mintzberg?</div>
+    <div class="answer"><strong>Gabarito: C (interpessoais, informacionais e decisoriais)</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">25) FEPESE / JUCESC / Técnico / 2017</div>
+    <div class="question-text">Qual função executa o processo de liderar, motivar e coordenar?</div>
+    <div class="answer"><strong>Gabarito: A (Direção)</strong></div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">26) IBFC / UFSBA / Administrador / 2016</div>
+    <div class="question-text">Papel de planejar mudanças controladas denomina-se:</div>
+    <div class="answer"><strong>Gabarito: B (Empreendedor)</strong> — Empreendedor é o papel decisório relacionado a iniciar mudanças.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">27) UFRJ / Administrador Hospitalar / 2016</div>
+    <div class="question-text">Prioritariamente: estratégico = ?, tático = ?, operacional = ?</div>
+    <div class="answer"><strong>Gabarito: D</strong> — Estratégico = conceituais; tático = humanas; operacional = técnicas.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">28) AOCP / Juiz de Fora / Técnico / 2016</div>
+    <div class="question-text">Qual afirmação é correta sobre as funções da administração?</div>
+    <div class="answer"><strong>Gabarito: D</strong> — É função da Direção influenciar pessoas para que realizem suas tarefas e alcancem objetivos.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">29) FARERP / SeMAE / Agente / 2015</div>
+    <div class="question-text">Capacidade para administrar conflitos, entender necessidades e ser bom ouvinte designa:</div>
+    <div class="answer"><strong>Gabarito: C (habilidade humana)</strong> — Relacionamento interpessoal, comunicação e empatia.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">30) UFSM / Administrador / 2015</div>
+    <div class="question-text">Associe níveis: desenvolver estratégia; monitorar clientes; assegurar cumprimento legal; mapear ambiente; implementar mudança.</div>
+    <div class="answer"><strong>Gabarito: C (1-3-2-1-3)</strong> — Estratégico = estratégia e mapeamento. Tático = cumprimento legal na unidade. Operacional = monitorar clientes e implementar.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">31) IESES / TRT 14ª / Analista / 2014</div>
+    <div class="question-text">Condições tecnológicas, legais, políticas, econômicas, demográficas são chamadas de:</div>
+    <div class="answer"><strong>Gabarito: D (Ambiente Geral)</strong> — Macro ambiente com influência indireta.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">32) IBFC / HEMOMINAS / Administrador / 2013</div>
+    <div class="question-text">Nível que consolida interação entre aspectos internos e externos denomina-se:</div>
+    <div class="answer"><strong>Gabarito: B (Nível estratégico)</strong> — Interage com ambiente externo e define rumo da organização.</div>
+  </div>
+</section>
+
+
+
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progressFill').style.width = progress + '%';
+  });
+</script>
+
+</body>
+</html>

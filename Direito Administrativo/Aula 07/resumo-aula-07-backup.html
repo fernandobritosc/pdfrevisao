@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 07: Licitações Públicas · Lei 14.133/2021</title>
+<style>
+:root {
+  --bg: #0f172a;
+  --sidebar: #0a0f1c;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --blue: #3b82f6;
+  --amber: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --purple: #8b5cf6;
+  --teal: #14b8a6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  z-index: 100;
+  overflow-y: auto;
+}
+.sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+}
+.sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.sidebar-nav a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  padding: .35rem .6rem;
+  border-radius: 6px;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.sidebar-nav a:hover { background: #1e3a5f; color: #fff; }
+.sidebar-nav a.active { background: #1e40af; color: #fff; }
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.sidebar-footer a:hover { color: #fff; background: #1e3a5f; }
+
+/* MAIN */
+.main {
+  margin-left: 260px;
+  padding: 2rem;
+  max-width: 960px;
+  flex: 1;
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(15, 23, 42, .85);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--green));
+  border-radius: 4px;
+  transition: width .3s;
+}
+.progress-label {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: .3rem;
+  font-weight: 600;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #0a0f1c, #172554, #1e40af);
+  color: #fff;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: #93c5fd; font-size: .9rem; margin-top: .3rem; }
+
+/* SECTIONS */
+.section {
+  margin-bottom: 2.5rem;
+}
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.section-subtitle {
+  font-size: .85rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+}
+
+/* CARDS */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+  transition: all .2s;
+}
+.card:hover { border-color: #60a5fa; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,.15); }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .95rem; font-weight: 700; color: var(--blue); }
+.card-text { font-size: .85rem; color: var(--text2); line-height: 1.65; }
+.card-text strong { color: var(--text); }
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .85rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+.callout-info { background: #1e3a5f; border: 1px solid #1e40af; color: #93c5fd; }
+.callout-warn { background: #451a03; border: 1px solid #92400e; color: #fcd34d; }
+.callout-danger { background: #450a0a; border: 1px solid #991b1b; color: #fca5a5; }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #1e1b4b;
+  border: 1px solid #4c1d95;
+  border-left: 4px solid var(--purple);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+.mnemonic-label {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--purple);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: .4rem;
+}
+.mnemonic-content {
+  font-size: .85rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  font-size: .82rem;
+}
+thead {
+  background: linear-gradient(135deg, #172554, #1e40af);
+  color: #fff;
+}
+th, td {
+  padding: .65rem .9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.55;
+}
+tr:hover { background: rgba(59, 130, 246, .08); }
+td strong { color: var(--text); }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .15rem .45rem;
+  border-radius: 5px;
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.tag-blue { background: #1e40af; color: #93c5fd; }
+.tag-green { background: #065f46; color: #6ee7b7; }
+.tag-amber { background: #92400e; color: #fcd34d; }
+.tag-red { background: #991b1b; color: #fca5a5; }
+.tag-purple { background: #4c1d95; color: #c4b5fd; }
+.tag-teal { background: #134e4a; color: #5eead4; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: #fef08a;
+  color: #0f172a;
+  padding: .05rem .25rem;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* QUESTIONS */
+.question {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.question-header {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: .4rem;
+  font-weight: 600;
+}
+.question-text {
+  font-size: .85rem;
+  color: var(--text);
+  margin-bottom: .75rem;
+  line-height: 1.65;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  margin-bottom: .75rem;
+}
+.option {
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct {
+  background: #064e3b;
+  border-color: #10b981;
+  color: #6ee7b7;
+}
+.answer {
+  background: #1e3a5f;
+  border: 1px solid #1e40af;
+  border-radius: 8px;
+  padding: .75rem 1rem;
+  font-size: .82rem;
+  color: #93c5fd;
+  line-height: 1.65;
+}
+.answer strong { color: #fff; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar { width: 100%; height: auto; position: relative; }
+  .main { margin-left: 0; padding: 1rem; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div>
+    <div class="sidebar-brand">📚 PDF Revisão</div>
+    <div class="sidebar-sub">Resumos estruturados</div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a href="../../../index.html">← Voltar ao índice</a>
+    <a href="#s1" class="active">1. Conceito e legislação</a>
+    <a href="#s2">2. Âmbito de aplicação</a>
+    <a href="#s3">3. Princípios expressos</a>
+    <a href="#s4">4. Objetivos da licitação</a>
+    <a href="#s5">5. Planejamento e plano de contratação</a>
+    <a href="#s5.1">5.1. Termo de referência</a>
+    <a href="#s6">6. Igualdade e competitividade</a>
+    <a href="#s7">7. Publicidade e sigilo</a>
+    <a href="#s8">8. Segregação de funções</a>
+    <a href="#s9">9. Vinculação ao edital</a>
+    <a href="#s10">10. Julgamento objetivo</a>
+    <a href="#s11">11. Desenv. sustentável</a>
+    <a href="#s12">12. Adjudicação compulsória</a>
+    <a href="#s13">13. Fases do procedimento</a>
+    <a href="#s14">14. Agentes da licitação</a>
+    <a href="#s15">15. Modalidades</a>
+    <a href="#s15.1">15.1. Contratação direta</a>
+    <a href="#s15.2">15.2. Procedimentos auxiliares</a>
+    <a href="#s16">16. Critérios de julgamento</a>
+    <a href="#s17">17. Diálogo competitivo</a>
+    <a href="#s17.1">17.1. Prorrogação e alteração contratual</a>
+    <a href="#s17.2">17.2. Execução contratual</a>
+    <a href="#s17.3">17.3. Sanções contratuais</a>
+    <a href="#s17.4">17.4. Recursos e irresignação</a>
+    <a href="#s17.5">17.5. Controle e fiscalização dos contratos</a>
+    <a href="#s17.6">17.6. Fiscalização e gestão de contratos</a>
+    <a href="#s17.7">17.7. Vigência e vacatio da Lei 14.133/2021</a>
+    <a href="#s18">18. Questões — pegadinhas</a>
+    <a href="#s19">19. Dicas e bizus</a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div style="font-size:.7rem;color:var(--text2);">DA Aula 07 · Licitações Públicas</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label">Progresso: <span id="pct">0%</span></div>
+    <div class="progress-track">
+      <div class="progress-fill" id="bar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>DA Aula 07 — Licitações Públicas</h1>
+    <p>Lei 14.133/2021 · Princípios · Modalidades · Julgamento · Execução contratual · Sanções</p>
+  </div>
+
+<!-- 1 -->
+  <div class="section" id="s1">
+    <h2>1 · Conceito e legislação</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> Licitação é procedimento administrativo que liga a Administração ao contrato com terceiro. Abre competitividade a todos os interessados que atendam ao edital. Objetivo final: celebração de contrato.
+    </div>
+    <p>Regra constitucional: contratação pública <strong>precisa de licitação</strong>, salvo exceções legais (CF, art. 37, XXI).</p>
+
+    <h3>Legislação — duas normas gerais</h3>
+    <table>
+      <tr><th>Lei</th><th>Aplica-se a</th></tr>
+      <tr><td><strong>14.133/2021</strong></td><td>Admin direta, autárquica, fundacional</td></tr>
+      <tr><td><strong>13.303/2016</strong></td><td>Empresas estatais</td></tr>
+    </table>
+    <div class="callout callout-info">
+      <strong>Pegadinha:</strong> empresas estatais <strong>fazem licitação</strong>, mas seguem a Lei 13.303/2016. A Lei 14.133/2021 só se aplica a elas nas <strong>disposições penais</strong> (art. 178 → art. 185).
+    </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="s2">
+    <h2>2 · Âmbito de aplicação</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> Aplica-se a administrações diretas, autárquicas e fundacionais (de direito público <strong>ou</strong> privado), em todos os entes da Federação, quando em função administrativa.
+    </div>
+
+    <h3>Destinatários</h3>
+    <ul>
+      <li>Admin direta, autárquica, fundacional (pública ou privada)</li>
+      <li>Todos os entes: União, Estados, DF, Municípios</li>
+      <li>Legislativo e Judiciário, <strong>quando em função administrativa</strong></li>
+      <li>Fundos especiais e entidades controladas direta/indiretamente</li>
+    </ul>
+
+    <h3>Casos especiais</h3>
+    <div class="callout callout-danger">
+      <strong>Não se aplica (em regra):</strong> repartições no exterior (só princípios básicos + regulamento ministerial); recursos de agências internacionais (regras próprias); reservas internacionais (regulamento do BACEN).
+    </div>
+
+    <h3>Aplicação subsidiária</h3>
+    <ul>
+      <li>Concessão de serviços públicos → Lei 8.987/1995</li>
+      <li>PPPs → Lei 11.079/2004</li>
+      <li>Publicidade → Lei 12.232/2010</li>
+    </ul>
+    <div class="callout callout-warn">
+      <strong>Exclusões do art. 3º:</strong> operações de crédito e gestão de dívida pública; contratações sujeitas a legislação própria.
+    </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="s3">
+    <h2>3 · Princípios expressos (art. 5º)</h2>
+    <div class="mnemonic">
+      <strong>Mnemônico oficial:</strong> <em>JoVeM, SEMPRE LICITE Com Planejamento Pro PaÍS Desenvolver Sustentavelmente</em>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-header"><div class="card-icon">J</div><div class="card-title">Julgamento objetivo</div></div>
+        <div class="card-text">Critérios do edital, sem subjetividade</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">Ve</div><div class="card-title">Vinculação ao edital</div></div>
+        <div class="card-text">Edital é a lei interna da licitação</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">M</div><div class="card-title">Motivação</div></div>
+        <div class="card-text">Atos justificados com fato e direito</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">S</div><div class="card-title">Segregação de funções</div></div>
+        <div class="card-text">Mesmo agente não acumula funções de risco</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">E</div><div class="card-title">Eficiência</div></div>
+        <div class="card-text">Resultados positivos para a população</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">M</div><div class="card-title">Moralidade</div></div>
+        <div class="card-text">Bons costumes, equidade, honestidade</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">P</div><div class="card-title">Publicidade</div></div>
+        <div class="card-text">Divulgar para participação e fiscalização</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">R</div><div class="card-title">Razoabilidade</div></div>
+        <div class="card-text">Vedação a excessos</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">E</div><div class="card-title">Eficácia</div></div>
+        <div class="card-text">Cumprimento dos objetivos</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">L</div><div class="card-title">Legalidade</div></div>
+        <div class="card-text">Administração segue as regras de lei</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">I</div><div class="card-title">Impessoalidade</div></div>
+        <div class="card-text">Interesse público como finalidade</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">C</div><div class="card-title">Celeridade</div></div>
+        <div class="card-text">Prazo razoável</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">I</div><div class="card-title">Igualdade</div></div>
+        <div class="card-text">Sem favorecimentos, isonomia</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">T</div><div class="card-title">Transparência</div></div>
+        <div class="card-text">Divulgação clara e compreensível</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">E</div><div class="card-title">Economicidade</div></div>
+        <div class="card-text">Minimização de custos sem perder qualidade</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">C</div><div class="card-title">Competitividade</div></div>
+        <div class="card-text">Sem restrições indevidas</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">P</div><div class="card-title">Planejamento</div></div>
+        <div class="card-text">Contratações planejadas em todos os níveis</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">r → Pro</div><div class="card-title">Probidade administrativa</div></div>
+        <div class="card-text">Honestidade, boa administração</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">o → Pa</div><div class="card-title">Interesse público</div></div>
+        <div class="card-text">Finalidade da atuação administrativa</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">P → Í</div><div class="card-title">Segurança jurídica</div></div>
+        <div class="card-text">Estabilidade e uniformidade</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">a → S</div><div class="card-title">Desenvolvimento nacional sustentável</div></div>
+        <div class="card-text">Econômico, social e ambiental</div>
+      </div>
+    </div>
+
+    <div class="callout callout-info">
+      <strong>Aviso:</strong> além dos expressos, a L14133 remete à LINDB (Decreto-Lei 4.657/1942).
+    </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="s4">
+    <h2>4 · Objetivos da licitação (art. 11)</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> assegurar proposta mais vantajosa (ciclo de vida do objeto), tratamento isonômico, evitar sobrepreço/superfaturamento, incentivar inovação e desenvolvimento sustentável.
+    </div>
+
+    <h3>Sobrepreço vs Superfaturamento</h3>
+    <table>
+      <tr><th>Sobrepreço</th><th>Superfaturamento</th></tr>
+      <tr>
+        <td>Preço orçado <strong>acima do mercado</strong>. Dano potencial, não efetivo.</td>
+        <td>Dano <strong>efetivo</strong> ao patrimônio público: medições falsas, deficiência na execução, aditamento desequilibrado, etc.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="s5">
+    <h2>5 · Planejamento e plano de contratação anual</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text">o plano de contratação anual é elaborado pelos órgãos responsáveis pelo planejamento de cada ente federativo, com o objetivo de racionalizar as contratações, garantir alinhamento com o planejamento estratégico e subsidiar a elaboração das leis orçamentárias (Lei 14.133/2021, art. 12, VII).</div>
+    </div>
+    <ul>
+      <li><strong>Objetivo principal:</strong> racionalizar as contratações dos órgãos e entidades sob sua competência</li>
+      <li><strong>Alinhamento:</strong> com o planejamento estratégico do ente</li>
+      <li><strong>Subsídio:</strong> para elaboração das leis orçamentárias</li>
+      <li><strong>Divulgação:</strong> obrigatória em sítio eletrônico oficial (art. 12, § 1º)</li>
+    </ul>
+
+    <div class="callout callout-info">
+      <strong>Ponto de prova:</strong> a assertiva que disser que o plano de contratação anual visa à racionalização das contratações está <strong>CERTA</strong>.
+    </div>
+    </div>
+  </div>
+
+  <!-- 5b -->
+  <div class="section" id="s5.1">
+    <h2>5.1 · Termo de referência</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> o termo de referência é o documento que deve conter a especificação do produto ou serviço, observados os requisitos de qualidade, rendimento, compatibilidade, durabilidade e segurança (Lei 14.133/2021, art. 40, § 1º).
+    </div>
+    <ul>
+      <li><strong>Finalidade:</strong> definir o objeto da contratação de forma clara e objetiva</li>
+      <li><strong>Elementos obrigatórios:</strong> especificação do produto/serviço, requisitos de qualidade, rendimento, compatibilidade, durabilidade e segurança</li>
+      <li><strong>Fundamento:</strong> art. 40, § 1º da Lei 14.133/2021</li>
+    </ul>
+
+    <div class="callout callout-info">
+      <strong>Ponto de prova:</strong> a assertiva que disser que o termo de referência deve conter especificação do produto observados qualidade, rendimento, compatibilidade, durabilidade e segurança está <strong>CERTA</strong>.
+    </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="s6">
+    <h2>6 · Igualdade e competitividade</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> Igualdade veda discriminações e favorecimentos. Competitividade exige que apenas restrições <strong>imprescindíveis</strong> sejam exigidas. Não admitir marca/modelo, salvo justificativa.
+    </div>
+
+    <h3>Vedações ao agente público (art. 9º)</h3>
+    <ul>
+      <li>Não comprometer, restringir ou frustrar caráter competitivo</li>
+      <li>Não estabelecer preferências por naturalidade, sede ou domicílio</li>
+      <li>Não exigir condições impertinentes ou irrelevantes</li>
+      <li>Não dar tratamento diferenciado entre empresas brasileiras e estrangeiras</li>
+      <li>Não opor resistência injustificada ao andamento do processo</li>
+    </ul>
+
+    <h3>Conflito de interesses</h3>
+    <div class="callout callout-danger">
+      <strong>Pegadinha:</strong> agente público <strong>não pode participar</strong> da licitação nem da execução do contrato. O art. 9º, § 1º, veda ao agente de órgão/entidade licitante ou contratante participar, direta ou indiretamente, por conflito de interesses. A vedação alcança até terceiros assessores: empresa que elaborou projeto básico não pode licitar nem executar (art. 9º, § 2º).
+    </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="s7">
+    <h2>7 · Publicidade, transparência e sigilo</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> Publicidade é o dever de divulgar. Transparência é divulgar de forma clara. Regra: atos públicos. Exceção: sigilo imprescindível à segurança da sociedade e do Estado. Publicidade diferida: propostas até a abertura; orçamento pode ser sigiloso se justificado.
+    </div>
+
+    <h3>Sigilo do orçamento</h3>
+    <ul>
+      <li>Discricionário, exige justificativa</li>
+      <li>Não vale para órgãos de controle interno/externo</li>
+      <li>Administração deve divulgar quantitativos e dados para elaboração das propostas</li>
+      <li>No critério <strong>maior desconto</strong>, o preço estimado/máximo <strong>consta no edital</strong></li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Crime:</strong> violar sigilo de proposta = detenção de 2 a 3 anos + multa (art. 337-J).
+    </div>
+
+    <h3>Publicidade diferida</h3>
+    <ul>
+      <li><strong>Conteúdo das propostas:</strong> até a respectiva abertura</li>
+      <li><strong>Orçamento da Administração:</strong> nos termos do art. 24</li>
+    </ul>
+  </div>
+
+  <!-- 8 -->
+  <div class="section" id="s8">
+    <h2>8 · Segregação de funções</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text">separar autorização, aprovação, execução, controle e contabilização. Mesmo agente não pode acumular funções simultâneas sujeitas a risco, especialmente se puder cometer e ocultar fraudes.</div>
+    </div>
+    <ul>
+      <li>Aplica-se também a <strong>terceiros</strong>: empresa que elabora projeto básico não pode participar da licitação nem do contrato</li>
+      <li><strong>Homologação</strong> é forma de segregação: autoridade distinta da comissão/agente que conduziu</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha de prova:</strong> a segregação de funções é por <strong>agente</strong>, não por órgão. O art. 8º prevê que o mesmo agente não pode acumular funções de autorização, aprovação, execução, controle e contabilização dentro do mesmo processo. O mesmo órgão pode ter funções separadas (ex.: Setor de Obras aprova orçamento; Setor de Licitações conduz certame) sem ferir o princípio. A violação ocorre quando um <strong>mesmo agente</strong> pratica múltiplas atribuições sujeitas a risco dentro do mesmo processo.
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>Exemplo clássico:</strong> chefe do Setor de Licitações elabora o projeto básico <strong>e</strong> atua como Pregoeiro no mesmo certame. Isso fere a segregação de funções, pois o mesmo agente acumula funções suscetíveis a risco.
+    </div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="section" id="s9">
+    <h2>9 · Vinculação ao edital</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> edital é a lei interna da licitação. Vincula administração e licitantes. Descumprimento pela Administração → anulação. Descumprimento pelo licitante → desclassificação.
+    </div>
+    <ul>
+      <li>Usado também para pré-qualificação, credenciamento, manifestação de interesse, registro de preços</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha:</strong> o edital define obrigações do <strong>licitante/contratado</strong>. As obrigações do <strong>contratante</strong> (Administração) são definidas no <strong>contrato administrativo</strong> (art. 89, § 2º). O edital é a lei interna da licitação, mas não substitui o contrato. Qualquer assertiva que disser que o edital deve prever obrigações do contratante está <strong>ERRADA</strong>.
+    </div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="section" id="s10">
+    <h2>10 · Princípio do julgamento objetivo</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> análise objetiva por critérios <strong>prefixados no edital</strong>. Elimina subjetividade e preferências pessoais. Critérios definidos no art. 33; edital escolhe qual adotar.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha:</strong> julgamento objetivo ≠ competitividade. O art. 5º da L14133 prevê ambos como princípios separados. Julgamento objetivo = análise por critérios objetivos pré-fixados no edital, sem subjetividade. Competitividade = não restringir a participação além do necessário. Uma assertiva que disser que o julgamento objetivo se confunde com competitividade, ou que um exclui o outro, está <strong>ERRADA</strong>.
+    </div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="section" id="s11">
+    <h2>11 · Desenvolvimento nacional sustentável</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> licitação não é só menor preço; busca resultado mais vantajoso. Flexibiliza isonomia para margem de preferência (produtos nacionais, recicláveis) e práticas ambientais. ETP deve conter impactos ambientais e medidas mitigadoras.
+    </div>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="section" id="s12">
+    <h2>12 · Adjudicação compulsória</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> adjudicação é ato declaratório que garante que, se houver contrato, será com o vencedor. <strong>Não</strong> garante direito subjetivo à assinatura do contrato. Administração pode deixar de contratar por anulação, revogação ou motivos supervenientes.
+    </div>
+    <div class="callout callout-danger">
+      <strong>Pegadinha:</strong> adjudicação ≠ contrato. A adjudicação é fase da licitação em que a Administração declara o vencedor. Ela gera expectativa de direito, mas não direito subjetivo à assinatura. O contrato só nasce com a assinatura das partes (art. 89). A Administração pode deixar de contratar por anulação, revogação ou motivos supervenientes. Qualquer assertiva que disser que o adjudicatário tem direito automático ao contrato está <strong>ERRADA</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Recusa injustificada do adjudicatário (art. 90, § 5º):</strong> só caracteriza quebra total do compromisso e perda da garantia se a recusa for <strong>injustificada</strong>. Recusa justificada não acarreta essas penalidades. Pegadinha do Cebraspe.
+    </div>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="section" id="s13">
+    <h2>13 · Fases do procedimento licitatório</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> a L14133 e a IN SEGES/ME 73/2022 definem a ordem clássica das fases no art. 8º. A regra é que a habilitação sucede o julgamento. A exceção é que a habilitação pode anteceder a apresentação de propostas e lances e o julgamento, se previsto no edital e motivado.
+    </div>
+
+    <h3>Ordem regular (art. 17 / IN 73/2022, art. 8º)</h3>
+    <ol>
+      <li>preparatória</li>
+      <li>divulgação do edital de licitação</li>
+      <li>apresentação de propostas e lances</li>
+      <li>julgamento</li>
+      <li>habilitação</li>
+      <li>recursal</li>
+      <li>homologação</li>
+    </ol>
+
+    <h3>Exceção — inversão da habilitação</h3>
+    <div class="callout callout-danger">
+      <strong>Pegadinha de prova:</strong> em regra, a habilitação sucede o julgamento. Qualquer assertiva que inverter essa ordem estará <strong>ERRADA</strong>, exceto se o edital expressamente prever e a Administração motivar os benefícios da inversão (IN 73/2022, art. 8º, § 1º).
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe:</strong> a fase recursal é única para todo o procedimento, não por tipo de julgamento. O art. 165 prevê que cabem recursos contra atos da Administração decorrentes da aplicação desta Lei, e o prazo é único após a habilitação. Após a habilitação, abre-se prazo para recurso contra decisões de habilitação, julgamento ou classificação. Questões que disserem que há fase recursal separada para cada tipo de decisão estão <strong>ERRADAS</strong>.
+    </div>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="section" id="s14">
+    <h2>14 · Agentes da licitação</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> agente público (L14133) = pessoa física em pessoa jurídica da Administração. Requisitos: servidor efetivo/empregado permanente (preferencial), qualificação, sem parentesco até 3º grau com licitantes.
+    </div>
+
+    <h3>Agente de contratação</h3>
+    <ul>
+      <li>Conduz a licitação até a homologação</li>
+      <li>Responde <strong>individualmente</strong> por seus atos</li>
+      <li>No pregão = <strong>pregoeiro</strong></li>
+    </ul>
+
+    <h3>Comissão de contratação</h3>
+    <ul>
+      <li>Substitui agente em bens/serviços <strong>especiais</strong> ou no <strong>diálogo competitivo</strong></li>
+      <li>Mínimo 3 membros; responsabilidade <strong>solidária</strong></li>
+      <li>Voto divergente fundamentado em ata exonera o membro</li>
+    </ul>
+
+    <h3>Banca de avaliação</h3>
+    <ul>
+      <li>Apenas para dar nota em melhor técnica/técnica e preço</li>
+      <li>Pode incluir profissionais externos contratados por renome técnico</li>
+    </ul>
+  </div>
+
+  <!-- 15 -->
+  <div class="section" id="s15">
+    <h2>15 · Modalidades de licitação</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text">modalidade define o rito. O que define a modalidade é a <strong>natureza do objeto</strong>, não o valor. Não existem tomada de preços, convite nem combinação de modalidades (art. 28, § 2º).</div>
+    </div>
+
+    <table>
+      <tr>
+        <th>Modalidade / Regime</th>
+        <th>Objeto</th>
+        <th>Critério de julgamento</th>
+        <th>Rito</th>
+      </tr>
+      <tr>
+        <td><strong>Concorrência</strong></td>
+        <td>Bens/serviços especiais, obras, serviços de engenharia (comuns e especiais)</td>
+        <td>Todos, exceto maior lance</td>
+        <td>Comum (art. 17)</td>
+      </tr>
+      <tr>
+        <td><strong>Pregão</strong></td>
+        <td>Bens e serviços comuns + serviços comuns de engenharia</td>
+        <td>Menor preço ou maior desconto</td>
+        <td>Comum (art. 17)</td>
+      </tr>
+      <tr>
+        <td><strong>Concurso</strong></td>
+        <td>Trabalho técnico, científico ou artístico</td>
+        <td>Melhor técnica ou conteúdo artístico</td>
+        <td>Especial (edital; antecedência mínima 35 dias úteis; autor cede direitos patrimoniais)</td>
+      </tr>
+      <tr>
+        <td><strong>Leilão</strong></td>
+        <td>Alienação de bens móveis ou imóveis</td>
+        <td>Maior lance</td>
+        <td>Especial (regulamento; antecedência mínima 15 dias úteis)</td>
+      </tr>
+      <tr>
+        <td><strong>Diálogo competitivo</strong></td>
+        <td>Obras, serviços, compras com inovação/desenvolvimento de solução</td>
+        <td>Critérios objetivos do edital</td>
+        <td>Especial</td>
+      </tr>
+      <tr>
+        <td><strong>Dispensa</strong></td>
+        <td>Contratações diretas previstas em lei (art. 75), exceção à regra do dever de licitar</td>
+        <td>Não se aplica (contratação direta)</td>
+        <td>Administrativo (justificativa + documento)</td>
+      </tr>
+      <tr>
+        <td><strong>Inexigibilidade</strong></td>
+        <td>Contratações em que inviável a competição (art. 74): fornecedor exclusivo, notória especialização, objeto exclusivo, etc.</td>
+        <td>Não se aplica (contratação direta)</td>
+        <td>Administrativo (justificativa + prova de exclusividade/inviabilidade)</td>
+      </tr>
+    </table>
+
+    <div class="callout callout-warn">
+      <strong>Regra de ouro:</strong> o que define a modalidade é a <strong>natureza do objeto</strong>, não o valor. Não existem tomada de preços, convite nem combinação de modalidades (art. 28, § 2º).
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pregão não cabe para:</strong> obras, serviços técnicos especializados intelectuais, serviços especiais de engenharia, bens/serviços especiais, alienações, locações imobiliárias.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Garantia adicional em obras/serviços de engenharia (art. 59, §5º):</strong> se a proposta for inferior a <strong>85%</strong> do valor orçado, <strong>será exigida</strong> garantia adicional do vencedor, equivalente à diferença entre o orçado e o valor da proposta. Não é faculdade da Administração; é obrigatória.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Garantia geral nas contratações (art. 96):</strong> a regra geral é a <strong>facultatividade</strong>. A Administração <strong>poderá</strong> exigir garantia, a seu critério, mediante previsão no edital. Não é obrigatória. Se exigida, o contratado escolhe a modalidade: seguro-garantia, fiança bancária, caução em dinheiro/títulos da dívida pública ou título de capitalização (Lei 14.770/2023, art. 96, § 1º).
+    </div>
+
+    <div class="callout callout-info">
+      <strong>Leilão:</strong> serve para <strong>qualquer alienação</strong> (móvel ou imóvel), independentemente de valor. Maior lance é o único critério.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Inexigibilidade — fornecedor exclusivo (art. 74, I e §1º):</strong> é cabível quando o bem/serviço só pode ser fornecido por produtor, empresa ou representante comercial exclusivo, desde que a Administração demonstre a inviabilidade de competição com documento idôneo. <strong>Não</strong> pode preferir marca específica.
+    </div>
+    </div>
+  </div>
+
+  <!-- 15.1 -->
+  <div class="section" id="s15.1">
+    <h2>15.1 · Contratação direta — dispensa e inexigibilidade</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> a regra é licitar. A exceção é a contratação direta, que divide-se em dispensa (art. 75) e inexigibilidade (art. 74). Ambas exigem justificativa e processo administrativo instruído.
+    </div>
+
+    <h3>Documentos obrigatórios (art. 72)</h3>
+    <ul>
+      <li><strong>I:</strong> documento de formalização de demanda, estudo técnico, análise de riscos, termo de referência ou projeto básico/executivo</li>
+      <li><strong>II:</strong> estimativa de despesa (art. 23)</li>
+      <li><strong>III:</strong> parecer jurídico e parecer técnico</li>
+      <li><strong>IV:</strong> comprovação de compatibilidade orçamentária</li>
+      <li><strong>V:</strong> prova de habilitação do contratado</li>
+      <li><strong>VI:</strong> razão da escolha da contratada</li>
+      <li><strong>VII:</strong> justificativa de preço</li>
+      <li><strong>VIII:</strong> autorização da autoridade competente</li>
+    </ul>
+
+    <div class="callout callout-info">
+      <strong>Ponto de prova:</strong> a assertiva que listar documentos como formalização de demanda, razão da escolha, justificativa de preço e autorização da autoridade está <strong>CERTA</strong> (art. 72).
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Dispensa ≠ Inexigibilidade:</strong> dispensa = licitação possível, mas dispensada por lei; inexigibilidade = licitação impossível por inviabilidade de competição.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Subcontratação na inexigibilidade (art. 74, §4º):</strong> nas contratações com fundamento no inciso III (serviços técnicos especializados com notória especialização), é <strong>vedada</strong> a subcontratação de empresas ou a atuação de profissionais distintos daqueles que justificaram a inexigibilidade.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Publicidade da contratação direta (art. 72, parágrafo único):</strong> o ato que autoriza a contratação direta ou o extrato do contrato deve ser divulgado e mantido à disposição em <strong>sítio eletrônico oficial</strong>, não na sede física da repartição.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 16:</strong> a <strong>locabilidade com a administração pública</strong> não se confunde com contrato administrativo. O contrato de locação em que a Administração é inquilina mantém natureza de direito privado, mas sujeita-se à L14133 por força do art. 2º, II. Qualquer assertiva que disser que a natureza é administrativa está <strong>ERRADA</strong>.
+    </div>
+    </div>
+  </div>
+
+  <!-- 15.2 -->
+  <div class="section" id="s15.2">
+    <h2>15.2 · Procedimentos auxiliares (art. 78)</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> instrumentos para organizar a Administração antes da licitação. Não são modalidades; não substituem o dever de licitar.
+    </div>
+
+    <ul>
+      <li><strong>Credenciamento:</strong> cadastra interessados para contratações repetitivas. Fica aberto durante a vigência do edital. Última fase = divulgação da lista de credenciados. Pode ser adotado nas hipóteses do art. 3º do Decreto 11.878/2024:
+        <ul>
+          <li><strong>I - paralela e não excludente:</strong> viável e vantajosa a contratações simultâneas em condições padronizadas</li>
+          <li><strong>II - seleção a critério de terceiros:</strong> a seleção do contratado fica a cargo do beneficiário direto da prestação</li>
+          <li><strong>III - mercados fluidos:</strong> flutuação constante do valor da prestação inviabiliza seleção por licitação</li>
+        </ul>
+      </li>
+      <li><strong>Pré-qualificação:</strong> seleciona interessados que atendam a requisitos objetivos antes da licitação.</li>
+      <li><strong>Manifestação de interesse:</strong> convoca interessados a apresentar estudos/propostas para definir o objeto.</li>
+      <li><strong>Sistema de registro de preços:</strong> cadastra fornecedores para contratações futuras por pregão/concorrência.</li>
+      <li><strong>Registro cadastral:</strong> cadastro único de fornecedores para uso em licitações.</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha:</strong> <strong>adjudicação não é procedimento auxiliar</strong>; é uma fase da licitação. O art. 78 lista os procedimentos auxiliares: credenciamento, pré-qualificação, manifestação de interesse, sistema de registro de preços e registro cadastral. Credenciamento fica aberto durante a vigência do edital e sua última fase é a divulgação da lista de credenciados, não a recursal. Pegadinha clássica do Cebraspe.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Credenciamento é faculdade, não obrigação (art. 79):</strong> a lei diz "poderá utilizar o credenciamento", não "deverá". Qualquer assertiva que transformar "poderá" em "deverá" estará <strong>ERRADA</strong>. Pegadinha clássica do Cebraspe.
+    </div>
+    </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="section" id="s16">
+    <h2>16 · Critérios de julgamento</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> menor preço e maior desconto geram o menor dispêndio. Técnica e preço é excepcional, com ponderação máxima de 70% para técnica. Maior lance é exclusivo do leilão.
+    </div>
+
+    <table>
+      <tr>
+        <th>Critério</th>
+        <th>Conceito</th>
+        <th>Modalidade</th>
+      </tr>
+      <tr>
+        <td><strong>Menor preço</strong></td>
+        <td>Valor nominal mais baixo</td>
+        <td>Pregão, Concorrência</td>
+      </tr>
+      <tr>
+        <td><strong>Maior desconto</strong></td>
+        <td>Maior desconto sobre referência</td>
+        <td>Pregão, Concorrência</td>
+      </tr>
+      <tr>
+        <td><strong>Melhor técnica / conteúdo artístico</strong></td>
+        <td>Só proposta técnica; prêmio fixado pela Administração</td>
+        <td>Concurso, Concorrência</td>
+      </tr>
+      <tr>
+        <td><strong>Técnica e preço</strong></td>
+        <td>Ponderação entre técnica e preço; técnica máx 70%</td>
+        <td>Concorrência</td>
+      </tr>
+      <tr>
+        <td><strong>Maior retorno econômico</strong></td>
+        <td>Maior economia para Administração; remuneração = percentual sobre economia</td>
+        <td>Concorrência</td>
+      </tr>
+      <tr>
+        <td><strong>Maior lance</strong></td>
+        <td>Valor mais alto pelo bem alienado</td>
+        <td>Leilão</td>
+      </tr>
+    </table>
+
+    <div class="callout callout-warn">
+      <strong>Lembre-se:</strong> concorrência admite todos os critérios, exceto maior lance. Leilão e maior lance são um casal inseparável.
+    </div>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="section" id="s17">
+    <h2>17 · Diálogo competitivo</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> modalidade excepcional para desenvolver soluções inovadoras quando a Administração não sabe definir o objeto. Etapas: pré-seleção (25 dias) → diálogos (atas/gravações) → fase competitiva (60 dias). Obrigatoriamente comissão de contratação.
+    </div>
+
+    <h3>Requisitos (art. 32)</h3>
+    <ol>
+      <li>Inovação tecnológica/técnica OU impossibilidade de adaptar soluções de mercado OU impossibilidade de definir especificações com precisão</li>
+      <li>Necessidade de definir: solução técnica, requisitos técnicos, estrutura jurídica/financeira</li>
+    </ol>
+
+    <h3>Etapas</h3>
+    <ol>
+      <li>Edital de pré-seleção: <strong>25 dias úteis</strong> para manifestação de interesse</li>
+      <li>Pré-seleção por requisitos objetivos</li>
+      <li>Diálogos com licitantes pré-selecionados (atas e gravações obrigatórias)</li>
+      <li>Edital da fase competitiva: solução escolhida + critérios objetivos</li>
+      <li>Propostas finais: <strong>60 dias úteis</strong></li>
+    </ol>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha:</strong> no diálogo competitivo, a comissão de contratação é <strong>obrigatória</strong> (mínimo 3 servidores efetivos). Não se admite agente de contratação individual.
+    </div>
+    </div>
+  </div>
+
+  <!-- 17.1 -->
+  <div class="section" id="s17.1">
+    <h2>17.1 · Prorrogação e alteração contratual</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> a regra é a vigência do contrato pelo prazo contratual. Prorrogação e alteração são excepcionais e dependem de previsão legal e justificativa.
+    </div>
+
+    <h3>Prorrogação (art. 111)</h3>
+    <ul>
+      <li><strong>Natureza:</strong> automática quando o objeto não for concluído no período firmado no contrato, desde que a contratação preveja conclusão de escopo predefinido</li>
+      <li><strong>Culpa do contratado:</strong> se a não conclusão decorrer de culpa do contratado, ele será constituído em mora e sujeito a sanções administrativas; a Administração poderá optar pela extinção do contrato</li>
+      <li><strong>Fundamento:</strong> art. 111 da Lei 14.133/2021</li>
+      <li><strong>Não</strong> há limite de 25% no art. 111; esse percentual pertence às alterações unilaterais (art. 125)</li>
+    </ul>
+
+    <h3>Alteração contratual (arts. 124, 125, 126 e 130)</h3>
+    <ul>
+      <li><strong>Unilateral pela Administração (art. 124, I):</strong>
+        <ul>
+          <li><strong>a)</strong> modificação do projeto ou das especificações, para melhor adequação técnica a seus objetivos</li>
+          <li><strong>b)</strong> modificação do valor contratual em decorrência de acréscimo ou diminuição quantitativa de seu objeto, nos limites permitidos por esta Lei</li>
+        </ul>
+      </li>
+      <li><strong>Por acordo entre as partes (art. 124, II):</strong>
+        <ul>
+          <li><strong>a)</strong> substituição da garantia de execução</li>
+          <li><strong>b)</strong> modificação do regime de execução da obra ou do serviço, bem como do modo de fornecimento, em face de verificação técnica da inaplicabilidade dos termos contratuais originários</li>
+          <li><strong>c)</strong> modificação da forma de pagamento por imposição de circunstâncias supervenientes, mantido o valor inicial atualizado e vedada a antecipação do pagamento em relação ao cronograma financeiro fixado sem a correspondente contraprestação de fornecimento de bens ou execução de obra ou serviço</li>
+          <li><strong>d)</strong> restabelecer o equilíbrio econômico-financeiro inicial do contrato em caso de força maior, caso fortuito ou fato do príncipe, ou em decorrência de fatos imprevisíveis ou previsíveis de consequências incalculáveis, que inviabilizem a execução do contrato tal como pactuado, respeitada, em qualquer caso, a repartição objetiva de risco estabelecida no contrato</li>
+        </ul>
+      </li>
+      <li><strong>Limite para alterações unilaterais (art. 125):</strong> acréscimos/supressões de até <strong>25%</strong> do valor inicial atualizado; no caso de reforma de edifício ou equipamento, o limite é de <strong>50%</strong></li>
+      <li><strong>Não</strong> pode transfigurar o objeto da contratação (art. 126)</li>
+      <li><strong>Preços unitários não previstos (art. 127):</strong> se o contrato não contemplar preços unitários para obras ou serviços cujo aditamento se fizer necessário, esses serão fixados por meio da aplicação da relação geral entre os valores da proposta e o do orçamento-base da Administração sobre os preços referenciais ou de mercado vigentes na data do aditamento, respeitados os limites estabelecidos no art. 125</li>
+      <li><strong>Diferença percentual em obras/serviços de engenharia (art. 128):</strong> a diferença percentual entre o valor global do contrato e o preço global de referência não poderá ser reduzida em favor do contratado em decorrência de aditamentos que modifiquem a planilha orçamentária</li>
+      <li><strong>Supressão de obras, bens ou serviços (art. 129):</strong> se o contratado já houver adquirido os materiais e os colocado no local dos trabalhos, estes deverão ser pagos pela Administração pelos custos de aquisição regularmente comprovados e monetariamente reajustados, podendo caber indenização por outros danos eventualmente decorrentes da supressão, desde que regularmente comprovados</li>
+    </ul>
+
+    <h3>Equilíbrio econômico-financeiro (art. 130)</h3>
+    <ul>
+      <li>Se houver alteração unilateral que aumente ou diminua os encargos do contratado, a Administração deverá restabelecer, no mesmo termo aditivo, o equilíbrio econômico-financeiro inicial do contrato</li>
+      <li><strong>Não</strong> se confunde com limite percentual; trata-se de compensação por ônus contratual desproporcional</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe/FCC:</strong> alteração unilateral para melhor adequação técnica (art. 124, I, a) é <strong>CERCA</strong> da lei, não depende de acordo com a contratada. Prorrogação (art. 111) pode ser automática se o objeto não for concluído no prazo. Alteração (arts. 124/125) tem limite de 25% para acréscimos/supressões unilaterais (50% para reforma). Art. 130 trata de equilíbrio econômico-financeiro, não de limite percentual.
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>Resumo prático:</strong> prorrogação = prazo; alteração = objeto/preço. Prorrogação pode ser automática (art. 111). Alteração unilateral tem limite de 25% (50% para reforma) e não pode transfigurar o objeto (art. 126). Equilíbrio econômico-financeiro (art. 130) é distinto de limite percentual.
+    </div>
+    </div>
+  </div>
+
+  <!-- 17.2 -->
+  <div class="section" id="s17.2">
+    <h2>17.2 · Execução contratual</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> durante a execução, o contratado deve manter preposto (pessoa física indicada pelo contratado para representá-lo no local da execução) aceito pela Administração, é responsável por danos causados diretamente, e a Administração deve decidir explicitamente sobre solicitações e reclamações.
+    </div>
+
+    <h3>Preposto (art. 118)</h3>
+    <ul>
+      <li><strong>Obrigatoriedade:</strong> contratado deverá manter <strong>UM preposto</strong> aceito pela Administração no local da obra ou do serviço</li>
+      <li><strong>Função:</strong> representar o contratado na execução do contrato</li>
+      <li><strong>Aceite:</strong> o preposto deve ser aceito pela Administração, mas a lei não cria um dever incondicional de aceitar qualquer indicação; a Administração pode recusar se houver incompatibilidade com as exigências do contrato</li>
+    </ul>
+
+    <h3>Responsabilidade por danos (art. 117)</h3>
+    <ul>
+      <li><strong>Regra:</strong> contratado é responsável por danos causados diretamente à Administração ou a terceiros em razão da execução do contrato</li>
+      <li><strong>Não</strong> há mitigação dessa responsabilidade pela fiscalização ou acompanhamento pela Administração</li>
+      <li><strong>Fiscalização:</strong> é obrigatória, mas não exclui a responsabilidade do contratado</li>
+    </ul>
+
+    <h3>Extinção contratual por inadimplemento da Administração (art. 137, § 2º)</h3>
+    <ul>
+      <li><strong>Direito do contratado:</strong> ter direito à extinção do contrato nas seguintes hipóteses:
+        <ul>
+          <li><strong>I:</strong> supressão, por parte da Administração, de obras, serviços ou compras que acarrete modificação do valor inicial do contrato além do limite permitido no art. 125</li>
+          <li><strong>II:</strong> suspensão de execução do contrato, por ordem escrita da Administração, por prazo superior a 3 (três) meses</li>
+          <li><strong>III:</strong> repetidas suspensões que totalizem 90 (noventa) dias úteis</li>
+          <li><strong>IV:</strong> atraso superior a 2 (dois) meses, contado da emissão da nota fiscal, dos pagamentos ou de parcelas de pagamentos devidos pela Administração por despesas de obras, serviços ou fornecimentos</li>
+          <li><strong>V:</strong> não liberação pela Administração, nos prazos contratuais, de área, local ou objeto, para execução de obra, serviço ou fornecimento</li>
+        </ul>
+      </li>
+      <li><strong>Opção do contratado:</strong> nas hipóteses dos incisos II, III e IV do § 2º, o contratado pode optar pela <strong>suspensão do cumprimento das obrigações assumidas</strong> até a normalização da situação, admitido o restabelecimento do equilíbrio econômico-financeiro do contrato (art. 137, § 3º, II)</li>
+      <li><strong>Não</strong> é necessário aguardar 4 meses; o direito surge após 2 meses de atraso na forma da disciplina contratual</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe/FCC:</strong> atraso de pagamento superior a 2 meses (contado da emissão da nota fiscal) dá direito ao contratado de <strong>suspender a prestação dos serviços</strong>, não apenas de rescindir. A Administração não pode obrigar o contratado a continuar prestando sem receber. Rescisão é uma opção; suspensão é outra.
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>Resumo prático:</strong> inadimplemento da Administração por mais de 2 meses permite ao contratado <strong>suspender a prestação</strong>, não só rescindir. Não é necessário aguardar 4 meses.
+    </div>
+    </div>
+  </div>
+
+  <!-- 17.3 -->
+  <div class="section" id="s17.3">
+    <h2>17.3 · Sanções contratuais</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> o contratado que der causa à inexecução parcial do contrato pode ser apenado com sanção de multa, calculada na forma do edital ou do contrato, nos limites de 0,5% a 30% do valor do contrato.
+    </div>
+
+    <h3>Infrações administrativas (art. 155)</h3>
+    <ul>
+      <li>Inexecução total ou parcial do contrato</li>
+      <li>Descumprimento de obrigações contratuais</li>
+      <li>Atraso injustificado na execução</li>
+      <li>Subcontratação não autorizada</li>
+      <li>Recusa injustificada do adjudicatário</li>
+    </ul>
+
+    <h3>Sanções aplicáveis (art. 156)</h3>
+    <ul>
+      <li><strong>I:</strong> advertência</li>
+      <li><strong>II:</strong> multa (calculada na forma do edital ou do contrato)</li>
+      <li><strong>III:</strong> impedimento de licitar e contratar</li>
+      <li><strong>IV:</strong> declaração de inidoneidade para licitar ou contratar</li>
+    </ul>
+
+    <h3>Multa (art. 156, § 3º)</h3>
+    <ul>
+      <li><strong>Base de cálculo:</strong> forma do edital ou do contrato</li>
+      <li><strong>Limite mínimo:</strong> 0,5% do valor do contrato</li>
+      <li><strong>Limite máximo:</strong> 30% do valor do contrato</li>
+      <li><strong>Aplicação:</strong> pode ser aplicada a qualquer das infrações do art. 155</li>
+      <li><strong>Cumulação:</strong> pode ser aplicada cumulativamente com outras sanções (art. 156, § 7º)</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe/FCC:</strong> a multa é calculada na forma do edital ou do contrato, não por percentual fixo da lei. Os limites são 0,5% a 30%, mas o cálculo específico segue o edital/contrato. A multa pode ser cumulada com outras sanções. A assertiva que disser que a multa é calculada por percentual fixo legal está ERRADA.
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>Resumo prático:</strong> infrações = art. 155. Sanções = advertência, multa, impedimento, inidoneidade. Multa = 0,5% a 30%, calculada no edital/contrato, cumulável. Não há percentual fixo legal.
+    </div>
+    </div>
+  </div>
+
+  <!-- 17.4 -->
+  <div class="section" id="s17.4">
+    <h2>17.4 · Recursos e irresignação</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> o licitante pode se manifestar contra atos do procedimento licitatório por meio de pedidos de reconsideração e recursos. O acolhimento de recurso implica invalidação apenas do ato insuscetível de aproveitamento (art. 165, § 3º).
+    </div>
+
+    <h3>Tipos de manifestação</h3>
+    <ul>
+      <li><strong>Pedido de reconsideração:</strong> apresentado para a mesma autoridade que proferiu o ato; não tem efeito suspensivo automático</li>
+      <li><strong>Recurso:</strong> apresentado para autoridade hierarquicamente superior; também não tem efeito suspensivo automático</li>
+    </ul>
+
+    <h3>Efeito suspensivo</h3>
+    <ul>
+      <li><strong>Regra:</strong> recursos não têm efeito suspensivo automático</li>
+      <li><strong>Exceção:</strong> a lei pode prever efeito suspensivo para casos específicos</li>
+      <li><strong>Pegadinha:</strong> assertiva que disser que recursos têm efeito suspensivo automático está ERRADA</li>
+    </ul>
+
+    <h3>Revogação de licitação</h3>
+    <ul>
+      <li><strong>Natureza:</strong> ato de conveniência e oportunidade da Administração</li>
+      <li><strong>Controle:</strong> não está imune a controle; pode ser revista judicialmente se houver desvio de poder ou violação de princípios</li>
+      <li><strong>Pegadinha:</strong> assertiva que disser que revogação não se submete a nenhum controle está ERRADA</li>
+    </ul>
+
+    <h3>Efeito do provimento do recurso (art. 165, § 3º)</h3>
+    <ul>
+      <li><strong>Regra:</strong> o acolhimento do recurso implica invalidação <strong>apenas do ato insuscetível de aproveitamento</strong></li>
+      <li><strong>Não</strong> implica invalidação automática de todo o procedimento</li>
+      <li><strong>Ato suscetível de aproveitamento:</strong> pode ser mantido; apenas o vício é sanado</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe/FCC:</strong> recurso ≠ pedido de reconsideração. Recurso vai para autoridade superior; pedido de reconsideração fica com a mesma autoridade. Nenhum tem efeito suspensivo automático. Revogação pode ser controlada judicialmente. Acolhimento de recurso invalida apenas o ato insuscetível de aproveitamento, não todo o procedimento.
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>Resumo prático:</strong> pedido de reconsideração = mesma autoridade; recurso = autoridade superior. Nenhum dos dois tem efeito suspensivo automático. Acolhimento de recurso invalida apenas o ato insuscetível de aproveitamento (art. 165, § 3º).
+    </div>
+    </div>
+  </div>
+
+  <!-- 17.5 -->
+  <div class="section" id="s17.5">
+    <h2>17.5 · Controle e fiscalização dos contratos</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text">os órgãos de controle adotam critérios de oportunidade, materialidade, relevância e risco na fiscalização dos contratos (art. 170), e consideram as razões dos órgãos responsáveis e os resultados obtidos, observado o art. 169.</div>
+    </div>
+
+    <h3>Critérios de fiscalização (art. 170)</h3>
+    <ul>
+      <li><strong>Oportunidade:</strong> momento adequado para fiscalizar</li>
+      <li><strong>Materialidade:</strong> importância econômica e social do contrato</li>
+      <li><strong>Relevância:</strong> impacto do contrato para a Administração</li>
+      <li><strong>Risco:</strong> probabilidade de irregularidades ou danos</li>
+    </ul>
+
+    <h3>Considerações dos órgãos de controle</h3>
+    <ul>
+      <li>Devem considerar as razões apresentadas pelos órgãos e entidades responsáveis</li>
+      <li>Devem considerar os resultados obtidos com a contratação</li>
+      <li>Observado o disposto no § 3º do art. 169</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe/FCC:</strong> os órgãos de controle NÃO fiscalizam todos os contratos indiscriminadamente. Usam critérios de oportunidade, materialidade, relevância e risco. Qualquer assertiva que disser que a fiscalização é obrigatória para todos os contratos, sem critérios, está ERRADA.
+    </div>
+    </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="section" id="s18">
+    <h2>18 · Questões — pegadinhas</h2>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 1:</strong> repartições no exterior não seguem todo o procedimento da L14133. O art. 1º, § 2º, dispõe que essas contratações obedecem apenas aos princípios básicos da lei, sob regulamentação específica do ministro de Estado. Questões que disserem que se aplica integralmente a L14133 estão <strong>ERRADAS</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 2:</strong> a publicidade não é absoluta. O art. 13 prevê que os atos são públicos, ressalvados os casos de sigilo imprescindível à segurança da sociedade e do Estado. Duas nuances frequentes: (i) sigilo das propostas até a abertura; (ii) orçamento estimado pode ser mantido sigiloso se a divulgação implicar risco à segurança nacional/ataque cibernético, mas isso <strong>não</strong> impede o acesso dos órgãos de controle. Qualquer assertiva que disser que a licitação é sempre 100% transparente sem exceções está <strong>ERRADA</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 3:</strong> adjudicação ≠ contrato. A adjudicação é apenas a fase em que a Administração declara quem venceu, gerando expectativa de direito, mas não um direito subjetivo à assinatura. O contrato só nasce com a assinatura (art. 89). Questões que disserem que o adjudicatário tem direito automático ao contrato estão <strong>ERRADAS</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 4:</strong> licitação não busca apenas o menor preço. O objetivo é a proposta mais vantajosa (art. 11), que pode envolver técnica, prazo, sustentabilidade etc. O menor preço é apenas um critério de julgamento, não o único objetivo. Qualquer assertiva que reduzir a licitação a "sempre menor valor" está <strong>ERRADA</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 5:</strong> para obras, a modalidade correta é a <strong>concorrência</strong>, independentemente do valor estimado. O art. 29, parágrafo único, veda expressamente o pregão para obras. Qualquer assertiva que disser que obra pode ser feita por pregão está <strong>ERRADA</strong>, não importa o valor.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 6:</strong> o leilão serve para <strong>qualquer alienação</strong> de bens da Administração — móveis ou imóveis — independentemente de valor. A L14133 alterou a regra anterior: não existe mais limite de valor nem distinção entre móvel e imóvel para essa modalidade. O art. 6º, XL, menciona "bens móveis inservíveis ou legalmente apreendidos", mas o art. 76, I, prevê leilão para imóveis. Qualquer assertiva que limitar o leilão a móveis ou que exigir valor mínimo estará <strong>ERRADA</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 7:</strong> o sistema de registro de preços é <strong>procedimento auxiliar</strong> (art. 78), não modalidade de licitação. Ele serve para contratações repetitivas e fica registrado no sistema próprio. A modalidade usada para adesão pode ser pregão ou concorrência, conforme o objeto. Questões que classificarem o registro de preços como modalidade estão <strong>ERRADAS</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 8:</strong> o pregão é modalidade <strong>obrigatória</strong> para bens e serviços comuns (art. 6º, XLI, e art. 29). Não é uma opção da Administração; se o objeto for comum, o pregão é o caminho. A única exceção é quando o valor couber em dispensa por valor (art. 75, II). Questões que disserem que a Administração pode escolher outra modalidade para bens/serviços comuns estão <strong>ERRADAS</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 9:</strong> o plano de contratações anual (PCA) é instrumento de planejamento obrigatório para órgãos e entidades da Administração Pública. O art. 12, § 1º, prevê sua divulgação e manutenção em sítio eletrônico oficial. Ele não é um edital nem uma licitação, mas seu descumprimento pode gerar nulidade do processo licitatório. Qualquer assertiva que disser que o PCA é facultativo ou desnecessário está <strong>ERRADA</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 10:</strong> na avaliação da proposta mais vantajosa, a Administração deve considerar o <strong>ciclo de vida do objeto</strong> (art. 11, § 1º). Isso significa que o menor preço na aquisição pode não ser a opção mais vantajosa se o custo de manutenção for muito alto ao longo do tempo. Questões que desconsiderarem o custo pós-aquisição na avaliação de vantajosidade estão <strong>ERRADAS</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 11:</strong> o <strong>concurso</strong> como modalidade de licitação não tem relação com o <strong>concurso público</strong> para cargos efetivos. O primeiro (art. 6º, XXXIX) serve para escolher trabalho técnico, científico ou artístico, com prêmio/remuneração ao vencedor. O segundo é seleção para cargo público. Questões que confundirem os dois institutos estão <strong>ERRADAS</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 12:</strong> julgamento objetivo ≠ competitividade. O art. 5º prevê ambos como princípios separados. Julgamento objetivo = análise por critérios do edital, sem subjetividade. Competitividade = não restringir a participação além do necessário. Uma assertiva que disser que o julgamento objetivo se confunde com competitividade, ou que um exclui o outro, está <strong>ERRADA</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 13:</strong> o art. 78 lista os procedimentos auxiliares: credenciamento, pré-qualificação, manifestação de interesse, sistema de registro de preços e registro cadastral. A <strong>adjudicação</strong> não é procedimento auxiliar — é uma <strong>fase da licitação</strong>. Questões que incluírem adjudicação no rol dos procedimentos auxiliares estão <strong>ERRADAS</strong>. Pegadinha clássica do Cebraspe.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 14:</strong> as fases do credenciamento terminam com a <strong>divulgação da lista de credenciados</strong>, não com a fase recursal. O credenciamento fica aberto durante a vigência do edital (art. 79). A recursal é apenas uma das fases, não a última. Questões que disserem que a última fase do credenciamento é a recursal estão <strong>ERRADAS</strong>. Pegadinha do Cebraspe.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha 15:</strong> a validade da proposta (art. 90, § 3º) é regra de segurança jurídica para o licitante. Se a Administração não convocar o vencedor dentro do prazo de validade indicado no edital, os licitantes ficam <strong>liberados dos compromissos assumidos</strong>. Questões que disserem que a Administração pode convocar após o prazo sem nova licitação ou prorrogação motivada estão <strong>ERRADAS</strong>.
+    </div>
+    </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="section" id="s19">
+    <h2>19 · Dicas e bizus</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text"> foco nos artigos “quentes” da Lei 14.133/2021 e nas diferenças em relação à lei anterior. Revise também dispensa/inexigibilidade, registro de preços e cláusulas exorbitantes.
+    </div>
+
+    <h3>Artigos prioritários</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-header"><div class="card-icon">Art. 155</div><div class="card-title">Infrações</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">Art. 156</div><div class="card-title">Sanções</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">Art. 169</div><div class="card-title">Linhas de defesa</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">Art. 174</div><div class="card-title">PNCP</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">Art. 178</div><div class="card-title">Crimes em licitações e contratos</div></div>
+      </div>
+    </div>
+
+    <h3>Checklist de revisão</h3>
+    <ol>
+      <li><strong>Principais diferenças</strong> trazidas pela Lei nº 14.133/2021 em relação à lei anterior.</li>
+      <li><strong>Dispensa e inexigibilidade</strong> de licitação — memorize as hipóteses e os limites.</li>
+      <li><strong>Registro de Preços</strong> — instituto auxiliar, não modalidade.</li>
+      <li><strong>Diálogo competitivo</strong> — duas fases: (1) diálogo para soluções; (2) edital competitivo. Concebido para flexibilizar inovações. Leitura importante: <strong>art. 32</strong>.</li>
+      <li><strong>Indicação de marcas</strong> — atenção à <strong>Súmula TCU 270</strong>.</li>
+      <li><strong>Critérios de julgamento</strong> — leitura atenta dos arts. <strong>34, 35 e 36</strong>.</li>
+      <li><strong>Cláusulas exorbitantes</strong> — elenco no <strong>art. 104</strong> (prerrogativas da Administração).</li>
+      <li><strong>Instrumento do contrato</strong> — obrigatório, exceto nos casos do <strong>art. 95</strong>. Possibilidade de substituição por documento hábil (hipótese já prevista no art. 62 da Lei 8.666/1993).</li>
+      <li><strong>Alteração unilateral</strong> — leitura atenta dos arts. <strong>125, 126 e 130</strong>.</li>
+      <li><strong>Extinção do contrato</strong> — hipóteses no <strong>art. 138</strong>; extinção unilateral nos arts. <strong>138 e 139</strong>.</li>
+      <li><strong>Tema quente de prova:</strong> <strong>Art. 103, §1º</strong> — atenção ao trecho: <em>“em compatibilidade com as obrigações e os encargos atribuídos às partes no contrato, a natureza do risco, o beneficiário das prestações a que se vincula e a capacidade de cada setor para melhor gerenciá-lo.”</em></li>
+      <li><strong>Inexigibilidade:</strong> <strong>Art. 74, V</strong> — aquisição ou locação de imóvel cujas características de instalações e de localização tornem necessária sua escolha.</li>
+      <li>Leitura da Lei nº 14.133/21 como um todo — muitos detalhes caem em prova.</li>
+    </ol>
+
+    <div class="callout callout-danger">
+      <strong>Atenção:</strong> a Lei 14.133/2021 possui muitos detalhes que são cobrados com frequência. A leitura atenta dos artigos indicados é fundamental para não perder pontos em questões de concurso.
+    </div>
+    </div>
+  </div>
+
+  <!-- 17.6 -->
+  <div class="section" id="s17.6">
+    <h2>17.6 · Fiscalização e gestão de contratos</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text">a execução do contrato deve ser acompanhada e fiscalizada por servidor ou empregado público designado pela autoridade competente. Fiscalização é obrigatória, mas não exclui a responsabilidade do contratado por danos causados.</div>
+    </div>
+
+    <h3>Fiscal do contrato</h3>
+    <ul>
+      <li><strong>Designação:</strong> pela autoridade competente</li>
+      <li><strong>Requisitos (art. 7º):</strong>
+        <ul>
+          <li>Preferencialmente, servidor efetivo ou empregado público do quadro permanente</li>
+          <li>Qualificação compatível ou certificação profissional</li>
+          <li>Sem parentesco até 3º grau ou vínculo com licitantes/contratados</li>
+        </ul>
+      </li>
+      <li><strong>Importante:</strong> o art. 7º usa “preferencialmente”, não “deverá”. Questões que disserem que o fiscal obrigatoriamente precisa ser servidor concursado estão <strong>ERRADAS</strong></li>
+      <li><strong>Não confundir com agente de contratação:</strong> este sim é necessariamente servidor efetivo ou empregado público do quadro permanente (art. 6º, LX)</li>
+    </ul>
+
+    <h3>Responsabilidade por danos (art. 117)</h3>
+    <ul>
+      <li>Contratado é responsável por danos causados diretamente à Administração ou a terceiros em razão da execução do contrato</li>
+      <li>Fiscalização é obrigatória, mas não exclui a responsabilidade do contratado</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe/FCC:</strong> fiscal do contrato ≠ agente de contratação. Fiscal é preferencialmente servidor concursado; agente de contratação é necessariamente servidor concursado. Qualquer assertiva que disser que o fiscal obrigatoriamente precisa ser servidor efetivo está <strong>ERRADA</strong>.
+    </div>
+    </div>
+  </div>
+
+  <!-- 17.7 -->
+  <div class="section" id="s17.7">
+    <h2>17.7 · Vigência e vacatio da Lei 14.133/2021</h2>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Raiz</div></div>
+      <div class="card-text">a Lei 14.133/2021 entrou em vigor na data de sua publicação (art. 194). A Lei 8.666/1993 permaneceu em vigor até 30 de dezembro de 2023. Durante esse período, a Administração poderia optar por licitar/contratar conforme a lei antiga ou a nova, desde que expressamente indicado no edital.</div>
+    </div>
+
+    <h3>Vigência (art. 194)</h3>
+    <ul>
+      <li><strong>Entrada em vigor:</strong> data da publicação (1º de abril de 2021)</li>
+      <li><strong>Revogação da lei anterior:</strong> 30 de dezembro de 2023</li>
+      <li><strong>Período de transição:</strong> até 30/12/2023, Administração poderia optar por lei antiga ou nova, desde que indicado expressamente no edital</li>
+      <li><strong>Vedação:</strong> aplicação combinada das normas (art. 191)</li>
+    </ul>
+
+    <h3>Aplicação às empresas estatais</h3>
+    <ul>
+      <li><strong>Regra:</strong> empresas públicas, sociedades de economia mista e subsidiárias seguem a Lei 13.303/2016 (art. 1º, § 1º)</li>
+      <li><strong>Exceção:</strong> disposições penais da L14133 aplicam-se às estatais (art. 178)</li>
+      <li><strong>Não se aplica:</strong> empresas estatais em regra não seguem a L14133, salvo disposições penais</li>
+    </ul>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe:</strong> a L14133 entrou em vigor na data da publicação (art. 194), não na data da revogação da lei anterior. A Lei 8.666/1993 permaneceu em vigor até 30/12/2023. Questões que disserem que a nova lei entrou em vigor apenas após a revogação da antiga estão <strong>ERRADAS</strong>.
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>Pegadinha Cebraspe:</strong> empresas estatais não seguem a L14133 em regra; seguem a Lei 13.303/2016. A exceção são as disposições penais (art. 178). Questões que disserem que empresas estatais seguem integralmente a L14133 estão <strong>ERRADAS</strong>.
+    </div>
+    </div>
+  </div>
+
+
+
+
+</main>
+
+<script>
+  const links = document.querySelectorAll('.sidebar-nav a');
+  const sections = [];
+  links.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({id, el, a});
+  });
+
+  function activate(id) {
+    sections.forEach(s => {
+      s.a.classList.toggle('active', s.id === id);
+    });
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) activate(entry.target.id);
+    });
+  }, {rootMargin: '-20% 0px -70% 0px'});
+
+  sections.forEach(s => observer.observe(s.el));
+
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = scrollHeight > 0 ? Math.round((scrollTop / scrollHeight) * 100) : 0;
+    const bar = document.getElementById('bar');
+    const label = document.getElementById('pct');
+    if (bar) bar.style.width = pct + '%';
+    if (label) label.textContent = pct + '%';
+  });
+</script>
+
+</body>
+</html>

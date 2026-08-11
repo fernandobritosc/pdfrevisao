@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Informática Aula 04: Redes Sociais</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Informática — Aula 04</div>
+  <div class="sidebar-sub">Redes Sociais · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito de redes sociais</a>
+  <a href="#sec2">2. Principais plataformas e funcionalidades</a>
+  <a href="#sec3">3. Contexto profissional e administrativo</a>
+  <a href="#sec4">4. Segurança, privacidade e responsabilidade</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO DE REDES SOCIAIS                           -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de redes sociais</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-blue">baixa</span></div>
+
+  <div class="card">
+    <div class="card-title">Definição</div>
+    <div class="card-text">
+      Redes sociais são <strong>estruturas sociais compostas por pessoas ou organizações</strong> — conectadas por um ou vários tipos de relações — que <strong>compartilham valores e objetivos comuns</strong>.<br><br>
+      No mundo virtual, são <strong>serviços, plataformas, aplicativos ou portais</strong> em que usuários (pessoas físicas e/ou jurídicas) podem <strong>criar perfis</strong> contendo informações privadas, profissionais, etc., para se relacionarem e compartilharem informações entre si.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Níveis de operação das redes sociais</div>
+    <div class="card-text">
+      • <strong>Redes de relacionamento</strong>: Facebook, Twitter, Instagram, Google+, Youtube, MySpace, Badoo, entre outros<br>
+      • <strong>Redes profissionais</strong>: LinkedIn<br>
+      • <strong>Redes comunitárias</strong>: redes de bairros ou cidades para compartilhamento de informações comuns<br>
+      • <strong>Redes políticas ou militares</strong>, entre outras
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Avatar</div><div class="card-text">Figura digital que representa a pessoa ou usuário nas redes sociais.</div></div>
+    <div class="card"><div class="card-title">Perfis</div><div class="card-text">Criação de perfis sobre assuntos de interesse coletivo.</div></div>
+    <div class="card"><div class="card-title">Comunicação</div><div class="card-text">Comunicação <strong>assíncrona</strong> e <strong>síncrona</strong> entre usuários, além do compartilhamento de dados pessoais.</div></div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Windows</strong> é um <strong>sistema operacional</strong> — NÃO é rede social. Facebook, YouTube, WhatsApp e Twitter são redes sociais (FACAPE/Petrolina 2014).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Google e Bing</strong> são <strong>motores de busca</strong>; <strong>Gmail</strong> é um <strong>serviço de e-mail</strong>. Nenhum deles é rede social (CESPE 2023).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — PRINCIPAIS PLATAFORMAS E FUNCIONALIDADES            -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Principais plataformas e funcionalidades</div>
+  </div>
+  <div class="sec-subtitle">Objetivo de cada rede social é o ponto mais cobrado em prova</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Facebook
+  </h3>
+  <div class="sec-subtitle" style="margin-top:0;">Incidência em prova: <span class="tag tag-blue">baixa</span></div>
+
+  <div class="card">
+    <div class="card-text">
+      Criado por <strong>Mark Zuckerberg</strong>, é a <strong>maior rede social virtual do planeta</strong>. Criada em <strong>2004</strong>, possui quase <strong>2,5 bilhões de usuários</strong> (pessoas físicas e jurídicas). Espaço público e gratuito que permite a troca livre de informações entre usuários cadastrados, via postagens que podem ser <strong>curtidas, comentadas ou compartilhadas</strong>. Existem configurações que garantem maior privacidade das publicações.<br><br>
+      • <strong>Perfil</strong>: conjunto de dados pessoais — o modo como o usuário se apresenta aos demais<br>
+      • <strong>Linha do Tempo (Timeline)</strong>: local onde o usuário vê suas publicações (e as nas quais foi marcado), organizadas por data; guarda todas as postagens desde o cadastro<br>
+      • <strong>Análise da Linha do Tempo</strong>: recurso que permite escolher se as publicações nas quais você está marcado aparecerão na sua Linha do Tempo (marcação de quem não é amigo vai automaticamente para a análise)<br>
+      • <strong>Feed de Notícias (Newsfeed)</strong>: mostra novidades e atualizações dos amigos; fica na parte central da página inicial; as histórias são influenciadas pelas conexões e atividades do usuário<br>
+      • <strong>Plataforma convergente</strong>: permite integração de páginas web, dispositivos móveis, feeds, blogs, Twitter, Instagram, etc.<br>
+      • <strong>Central de Aplicativos</strong>: local para acessar os aplicativos; a maioria é criada por desenvolvedores externos (que hospedam e respondem pelas informações usadas)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Componente</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Feed</strong></td><td>Página principal com postagens de amigos, páginas e grupos seguidos, em ordem cronológica ou por relevância (algoritmo).</td></tr>
+        <tr><td><strong>Stories</strong></td><td>Postagens temporárias de fotos/vídeos que desaparecem após 24 horas.</td></tr>
+        <tr><td><strong>Perfil</strong></td><td>Página pessoal com foto, capa, biografia, amigos, postagens e atividades.</td></tr>
+        <tr><td><strong>Linha do tempo</strong></td><td>Área do perfil com postagens do usuário e marcações, em ordem cronológica.</td></tr>
+        <tr><td><strong>Grupos</strong></td><td>Espaços para comunidades com interesses comuns.</td></tr>
+        <tr><td><strong>Páginas</strong></td><td>Perfis públicos para empresas, organizações, marcas e figuras públicas.</td></tr>
+        <tr><td><strong>Marketplace</strong></td><td>Plataforma de compra e venda de produtos entre usuários da mesma região.</td></tr>
+        <tr><td><strong>Messenger</strong></td><td>Mensagens instantâneas privadas (texto, imagens, vídeos, reações, chamadas de voz e vídeo).</td></tr>
+        <tr><td><strong>Eventos</strong></td><td>Criação e promoção de eventos, com confirmação de presença e notificações.</td></tr>
+        <tr><td><strong>Curtidas e reações</strong></td><td>Curtir, amar, rir ou expressar outras emoções em postagens.</td></tr>
+        <tr><td><strong>Comentários e compartilhamentos</strong></td><td>Deixar opiniões ou compartilhar postagens com a rede de amigos.</td></tr>
+        <tr><td><strong>Notificações</strong></td><td>Alertas sobre curtidas, comentários, mensagens, marcações e atualizações.</td></tr>
+        <tr><td><strong>Anúncios</strong></td><td>Publicidade paga no feed, stories, Messenger e outras áreas.</td></tr>
+        <tr><td><strong>Facebook Watch</strong></td><td>Seção de vídeos, com recomendações personalizadas.</td></tr>
+        <tr><td><strong>Facebook Gaming</strong></td><td>Plataforma de transmissão de jogos ao vivo.</td></tr>
+        <tr><td><strong>Facebook Insights</strong></td><td>Ferramentas analíticas para páginas (desempenho, engajamento, alcance).</td></tr>
+        <tr><td><strong>Atalhos de segurança e privacidade</strong></td><td>Gerenciar quem vê atividades, alertas de segurança e preferências de login.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Instagram
+  </h3>
+  <div class="sec-subtitle" style="margin-top:0;">Incidência em prova: <span class="tag tag-blue">baixa</span> — rede pouquíssimo cobrada</div>
+
+  <div class="card">
+    <div class="card-text">
+      Rede social <strong>online de compartilhamento de fotos e vídeos</strong> entre usuários, com aplicação de <strong>filtros digitais</strong> e possibilidade de compartilhar em outros serviços (Facebook, Twitter, Tumblr e Flickr). Pode ser usado para fins pessoais ou profissionais.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Componente</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Feed</strong></td><td>Página principal com postagens (fotos e vídeos) das contas seguidas.</td></tr>
+        <tr><td><strong>Stories</strong></td><td>Postagens temporárias que desaparecem após 24 horas (enquetes, stickers, música).</td></tr>
+        <tr><td><strong>Reels</strong></td><td>Vídeos curtos e editáveis, semelhantes ao TikTok, para engajamento e alcance.</td></tr>
+        <tr><td><strong>Explorer</strong></td><td>Descoberta de novas contas, postagens, Reels e Stories por interesse.</td></tr>
+        <tr><td><strong>Mensagens diretas</strong></td><td>Sistema de mensagens privadas (textos, fotos, vídeos, posts e stories).</td></tr>
+        <tr><td><strong>Likes e comentários</strong></td><td>Interação com postagens de outros usuários.</td></tr>
+        <tr><td><strong>Seguidores e seguindo</strong></td><td>Contadores que determinam o conteúdo visto no feed.</td></tr>
+        <tr><td><strong>Perfis</strong></td><td>Páginas de usuários e empresas (bio, posts, stories em destaque).</td></tr>
+        <tr><td><strong>Tags e hashtags</strong></td><td>Categorização de conteúdos e busca por temas de interesse.</td></tr>
+        <tr><td><strong>Filtros e efeitos</strong></td><td>Edição visual de fotos e vídeos antes da publicação.</td></tr>
+        <tr><td><strong>Anúncios</strong></td><td>Conteúdos patrocinados no feed, stories, explorar e reels.</td></tr>
+        <tr><td><strong>Insights</strong></td><td>Análises para contas comerciais e de criador (desempenho e engajamento).</td></tr>
+        <tr><td><strong>Shopping</strong></td><td>Compra de produtos diretamente pela plataforma.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    X (ex-Twitter)
+  </h3>
+  <div class="sec-subtitle" style="margin-top:0;">Incidência em prova: <span class="tag tag-blue">baixa</span></div>
+
+  <div class="card">
+    <div class="card-text">
+      Rede social que funciona como um <strong>microblog</strong>, em que usuários interagem em tempo real por meio de <strong>tweets</strong> de até <strong>280 caracteres</strong> (antigamente 140; até 4.000 para assinantes do Twitter Blue). Não possui solicitações de amizade — uma pessoa pode seguir suas publicações sem que você faça o mesmo.<br><br>
+      • <strong>Retweet (RT)</strong>: compartilhamento da postagem de outra pessoa<br>
+      • <strong>Menções</strong>: usa-se o símbolo <strong>@</strong> antes do perfil citado<br>
+      • <strong>Hashtags</strong>: ao segui-las, acessa-se posts sobre determinado assunto<br>
+      • <strong>Mensagens diretas</strong>: privadas<br>
+      • <strong>Seguidores</strong>: adicionaram o usuário à rede; o que eles escrevem aparece na sua página inicial<br><br>
+      <strong>Atualização (outubro/2022)</strong>: Elon Musk anunciou a mudança de nome Twitter → <strong>X</strong>, com novo logotipo. Agora é possível <strong>editar tweets</strong> após a publicação.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Componente</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tweet</strong></td><td>Postagem de até 280 caracteres (4.000 para assinantes), com texto, imagens, vídeos, links e menções.</td></tr>
+        <tr><td><strong>Retweet</strong></td><td>Compartilha o tweet de outro usuário, com opção de adicionar comentário.</td></tr>
+        <tr><td><strong>Curtir</strong></td><td>Reação em forma de coração aos tweets.</td></tr>
+        <tr><td><strong>Thread</strong></td><td>Série de tweets encadeados para expandir o pensamento.</td></tr>
+        <tr><td><strong>Menções</strong></td><td>Marcar outros usuários com notificação direta.</td></tr>
+        <tr><td><strong>Hashtags</strong></td><td>Palavras-chave precedidas por "#" que categorizam o tweet.</td></tr>
+        <tr><td><strong>Trending topics</strong></td><td>Tópicos mais comentados em uma região ou globalmente.</td></tr>
+        <tr><td><strong>Mensagens diretas</strong></td><td>Mensagens privadas, com opção de grupos.</td></tr>
+        <tr><td><strong>Timeline</strong></td><td>Feed principal com tweets das contas seguidas.</td></tr>
+        <tr><td><strong>Seguir e seguidores</strong></td><td>Acompanhar contas e acumular seguidores.</td></tr>
+        <tr><td><strong>Listas</strong></td><td>Organização de contas seguidas em grupos temáticos.</td></tr>
+        <tr><td><strong>Explorar</strong></td><td>Descoberta de tweets, tendências e contas populares.</td></tr>
+        <tr><td><strong>Spaces</strong></td><td>Salas de áudio ao vivo (públicas ou fechadas).</td></tr>
+        <tr><td><strong>Moments</strong></td><td>Coleções de tweets sobre um tema ou evento.</td></tr>
+        <tr><td><strong>Anúncios e tweets promovidos</strong></td><td>Publicidade paga no feed e no Explorar.</td></tr>
+        <tr><td><strong>Selo de verificação</strong></td><td>Ícone azul (ou assinatura paga) que indica autenticidade do perfil.</td></tr>
+        <tr><td><strong>Agendamento de tweets</strong></td><td>Programação de publicações em horários específicos (contas empresariais).</td></tr>
+        <tr><td><strong>Twitter Analytics</strong></td><td>Estatísticas de desempenho dos tweets.</td></tr>
+        <tr><td><strong>Modo escuro</strong></td><td>Configuração de aparência para ambientes com pouca luz.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    YouTube
+  </h3>
+  <div class="sec-subtitle" style="margin-top:0;">Incidência em prova: <span class="tag tag-blue">baixa</span></div>
+
+  <div class="card">
+    <div class="card-text">
+      Fundado em <strong>2005</strong>, é um <strong>site dedicado a vídeos</strong>, no qual pessoas (físicas ou jurídicas) divulgam — por compartilhamento — vídeos em formato digital. Formatos suportados: .mov, .mpeg4, .mp4, .avi, .wmv, .mpegs, .flv, 3gpp, WebM, DNxHR, ProRes, CineForm, HEVC (h265). É o site mais popular do seu tipo; pode ser considerado rede social porque há interação entre usuários.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Componente</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Vídeos</strong></td><td>Conteúdo principal da plataforma.</td></tr>
+        <tr><td><strong>Canal</strong></td><td>Perfil do criador com vídeos, listas de reprodução e informações.</td></tr>
+        <tr><td><strong>Assinaturas</strong></td><td>Seguir canais para receber notificações.</td></tr>
+        <tr><td><strong>Feed de inscrições</strong></td><td>Vídeos recentes dos canais inscritos.</td></tr>
+        <tr><td><strong>Likes e deslikes</strong></td><td>Reações que influenciam o algoritmo de recomendação.</td></tr>
+        <tr><td><strong>Comentários</strong></td><td>Interação com o vídeo e entre usuários.</td></tr>
+        <tr><td><strong>Compartilhamento</strong></td><td>Envio de vídeos para outras redes e apps.</td></tr>
+        <tr><td><strong>Listas de reprodução</strong></td><td>Coleções de vídeos em sequência.</td></tr>
+        <tr><td><strong>Explorer</strong></td><td>Descoberta de conteúdos populares por categoria.</td></tr>
+        <tr><td><strong>Trending (em alta)</strong></td><td>Vídeos populares em uma região ou globalmente.</td></tr>
+        <tr><td><strong>YouTube Shorts</strong></td><td>Vídeos curtos (até 60 segundos), como TikTok e Reels.</td></tr>
+        <tr><td><strong>Live streaming</strong></td><td>Transmissões em tempo real com chat ao vivo.</td></tr>
+        <tr><td><strong>Superchat e superstickers</strong></td><td>Espectadores pagam para destacar comentários ao vivo.</td></tr>
+        <tr><td><strong>YouTube Premium</strong></td><td>Serviço pago sem anúncios, com segundo plano e YouTube Music.</td></tr>
+        <tr><td><strong>Monetização e AdSense</strong></td><td>Receita com anúncios nos vídeos.</td></tr>
+        <tr><td><strong>YouTube Studio</strong></td><td>Painel de controle para criadores.</td></tr>
+        <tr><td><strong>Analytics</strong></td><td>Estatísticas de desempenho de vídeos e canal.</td></tr>
+        <tr><td><strong>Modo escuro</strong></td><td>Configuração de aparência.</td></tr>
+        <tr><td><strong>Comunidade</strong></td><td>Interação com assinantes por enquetes, textos, imagens e atualizações.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    LinkedIn
+  </h3>
+  <div class="sec-subtitle" style="margin-top:0;">Incidência em prova: <span class="tag tag-amber">média</span> — a mais cobrada</div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Rede social profissional por excelência</div>
+    <div class="card-text">
+      Lançada em <strong>2003</strong>, é uma <strong>rede de negócios para fins profissionais</strong>, em que outros profissionais da mesma empresa podem <strong>endossar</strong> o conteúdo, dando credibilidade. Visa a divulgação de informações profissionais e permite a criação de um <strong>currículo online</strong> e contato com colegas, empresas e networking. Permite <strong>upload de currículos em .DOC ou .PDF de até 5Mb</strong>. Missão: conectar profissionais do mundo todo, tornando-os mais produtivos e bem-sucedidos. Acesso via navegador web (dados na nuvem).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Componente</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Perfil</strong></td><td>Currículo digital com experiência, habilidades, educação e certificações.</td></tr>
+        <tr><td><strong>Feed de notícias</strong></td><td>Página principal com atualizações, postagens e artigos das conexões.</td></tr>
+        <tr><td><strong>Conexões</strong></td><td>Sistema de rede para conectar-se a outros profissionais.</td></tr>
+        <tr><td><strong>Recomendações e endossos</strong></td><td>Conexões recomendam habilidades ou deixam depoimentos.</td></tr>
+        <tr><td><strong>Mensagens</strong></td><td>Comunicação privada entre conexões, com documentos e links.</td></tr>
+        <tr><td><strong>Vagas de emprego</strong></td><td>Oportunidades publicadas pelas empresas; candidatura direta.</td></tr>
+        <tr><td><strong>Recrutamento e seleção</strong></td><td>Ferramenta de contratação para recrutadores e empresas.</td></tr>
+        <tr><td><strong>Publicações</strong></td><td>Postagens com texto, imagens, vídeos, links, artigos e documentos.</td></tr>
+        <tr><td><strong>Artigos</strong></td><td>Blog integrado para conteúdo de formato longo.</td></tr>
+        <tr><td><strong>LinkedIn Learning</strong></td><td>Cursos online e certificações.</td></tr>
+        <tr><td><strong>Grupos</strong></td><td>Comunidades de profissionais com interesses comuns.</td></tr>
+        <tr><td><strong>Empresas e páginas corporativas</strong></td><td>Perfis de empresas com novidades e vagas.</td></tr>
+        <tr><td><strong>Eventos</strong></td><td>Webinars e conferências com RSVP.</td></tr>
+        <tr><td><strong>Hashtags</strong></td><td>Categorização de postagens por temas.</td></tr>
+        <tr><td><strong>LinkedIn Premium</strong></td><td>Assinatura com insights de perfil, InMail e ferramentas de busca.</td></tr>
+        <tr><td><strong>InMail</strong></td><td>Mensagens a pessoas fora da rede (assinantes Premium).</td></tr>
+        <tr><td><strong>Analytics</strong></td><td>Dados de visualizações, engajamento e demografia.</td></tr>
+        <tr><td><strong>Quem viu seu perfil</strong></td><td>Mostra quem visualizou o perfil recentemente.</td></tr>
+        <tr><td><strong>Modo criador</strong></td><td>Aumenta presença com métricas de engajamento.</td></tr>
+        <tr><td><strong>LinkedIn Stories</strong></td><td>Postagens temporárias visíveis por 24 horas.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    TikTok
+  </h3>
+  <div class="sec-subtitle" style="margin-top:0;">Incidência em prova: <span class="tag tag-amber">baixíssima</span></div>
+
+  <div class="card">
+    <div class="card-text">
+      Rede social <strong>chinesa</strong> para criar e compartilhar <strong>vídeos curtos</strong>, geralmente com músicas em segundo plano, que podem ser acelerados, desacelerados ou editados com filtros. Para criar um videoclipe, escolhe-se música de fundo e grava-se vídeo com ajustes de velocidade antes de compartilhar no TikTok ou em outras plataformas.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Componente</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Feed "para você"</strong></td><td>Vídeos recomendados pelo algoritmo, conforme interesses e comportamento.</td></tr>
+        <tr><td><strong>Feed "seguindo"</strong></td><td>Vídeos das contas seguidas.</td></tr>
+        <tr><td><strong>Vídeos</strong></td><td>Vídeos curtos de 15 segundos a 10 minutos.</td></tr>
+        <tr><td><strong>Curtidas, comentários e compartilhamentos</strong></td><td>Interação que aumenta engajamento e visibilidade.</td></tr>
+        <tr><td><strong>Explorar</strong></td><td>Busca por vídeos, hashtags, sons e usuários.</td></tr>
+        <tr><td><strong>Hashtags</strong></td><td>Categorização e descoberta de vídeos.</td></tr>
+        <tr><td><strong>Desafios e tendências</strong></td><td>Temas virais que incentivam novos vídeos.</td></tr>
+        <tr><td><strong>Efeitos e filtros</strong></td><td>Edição visual dos vídeos.</td></tr>
+        <tr><td><strong>Sons e músicas</strong></td><td>Biblioteca de áudios que influencia tendências.</td></tr>
+        <tr><td><strong>Duetos (duet)</strong></td><td>Gravar um vídeo ao lado de outro já publicado.</td></tr>
+        <tr><td><strong>Reagir (react)</strong></td><td>Reações gravadas em sobreposição ao vídeo original.</td></tr>
+        <tr><td><strong>Lives</strong></td><td>Transmissões ao vivo com presentes virtuais.</td></tr>
+        <tr><td><strong>Presentes virtuais e moedas</strong></td><td>Recompensas compradas e enviadas a criadores.</td></tr>
+        <tr><td><strong>Perfil</strong></td><td>Página do usuário com vídeos, seguidores e biografia.</td></tr>
+        <tr><td><strong>TikTok Pro e Analytics</strong></td><td>Dados de visualizações, engajamento e desempenho.</td></tr>
+        <tr><td><strong>Mensagens diretas</strong></td><td>Comunicação privada entre usuários.</td></tr>
+        <tr><td><strong>TikTok Ads</strong></td><td>Plataforma de publicidade para empresas.</td></tr>
+        <tr><td><strong>Listas de favoritos</strong></td><td>Salvar vídeos, sons, hashtags e efeitos.</td></tr>
+        <tr><td><strong>Modo escuro</strong></td><td>Configuração de aparência.</td></tr>
+        <tr><td><strong>Tempo de uso e restrições</strong></td><td>Monitorar e limitar o tempo na plataforma.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Outras plataformas
+  </h3>
+  <div class="sec-subtitle" style="margin-top:0;">Incidência em prova: <span class="tag tag-amber">baixíssima</span></div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Snapchat</div><div class="card-text">Aplicativo de mensagens com base de imagens: tirar fotos, gravar vídeos, adicionar textos e desenhos, e escolher o tempo (1 a 10 s) em que a imagem ficará no visor. Após aberto, a imagem é excluída do dispositivo e dos servidores.</div></div>
+    <div class="card"><div class="card-title">Flickr</div><div class="card-text">Página web de hospedagem e compartilhamento de imagens (fotografias, desenhos e ilustrações). Permite criar álbuns e contatar usuários do mundo todo. Adquirida pela Yahoo! no início de 2005.</div></div>
+    <div class="card"><div class="card-title">Pinterest</div><div class="card-text">Rede social de compartilhamento de fotos. Assemelha-se a um quadro de inspirações, com coleções ou quadros (boards). Afiliado ao Twitter e Facebook.</div></div>
+    <div class="card"><div class="card-title">WhatsApp</div><div class="card-text">Aplicativo multiplataforma de smartphones para troca de mensagens instantâneas via internet, com criação de grupos — pode ser considerado rede social.</div></div>
+    <div class="card"><div class="card-title">Telegram</div><div class="card-text">Serviço de mensagens instantâneas baseado na nuvem, semelhante ao WhatsApp. Envia fotos, vídeos, stickers e arquivos de qualquer tipo. Criptografia ponta-a-ponta <strong>opcional</strong>.</div></div>
+    <div class="card"><div class="card-title">Foursquare</div><div class="card-text">Rede geossocial e de microblogging que permite indicar onde o utilizador está e procurar contatos próximos desse local.</div></div>
+    <div class="card"><div class="card-title">Tumblr</div><div class="card-text">Plataforma de blogging que permite publicar textos, imagens, vídeo, links, citações, áudio e diálogos.</div></div>
+    <div class="card"><div class="card-title">Google+</div><div class="card-text">Rede social e serviço de identidade mantido pelo Google, <strong>descontinuado em 2019</strong>.</div></div>
+    <div class="card"><div class="card-title">MySpace e Badoo</div><div class="card-text">Redes de relacionamento citadas entre os exemplos clássicos de redes sociais.</div></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — CONTEXTO PROFISSIONAL E ADMINISTRATIVO              -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Redes sociais no contexto profissional e administrativo</div>
+  </div>
+  <div class="sec-subtitle">Uso corporativo e a atuação dos órgãos públicos</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Redes sociais e a Administração Pública
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Os atos da Administração devem ser pautados pela lei e um de seus princípios é a <strong>publicidade</strong> — tudo deve ser disponibilizado, de preferência online, e transparente. As redes sociais são um dos melhores meios de <strong>engajar o público</strong> e divulgar conhecimentos, informações e dados.<br><br>
+      Por isso, as redes sociais são uma das melhores estratégias para os órgãos públicos estarem de acordo com a <strong>Lei de Acesso à Informação</strong> e a <strong>Lei da Transparência</strong>. Empresas e órgãos públicos as utilizam como ambiente de divulgação de suas ações, tornando-as um relevante meio de comunicação para as instituições.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Caso de sucesso — Governo de São Paulo:</strong> o portal permite compartilhar conteúdo (fotos, vídeo, áudios), comentar notícias, disponibiliza botões de compartilhamento e possui até podcast com o Governador. Redes usadas: Facebook (558.548 seguidores), Instagram (24.700), Twitter (364.000), YouTube (18.758 inscritos) e Flickr (26.829 fotos publicadas).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      Outros exemplos: muitos órgãos possuem contas no Twitter para anunciar medidas, novidades e mudanças — como a <strong>Polícia Militar do Rio de Janeiro</strong>, que realiza postagens em seu twitter oficial. Assim, o Governo amplia o público que acessa e conhece suas ações e permite a participação ativa da comunidade.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Redes sociais corporativas
+  </h3>
+  <div class="sec-subtitle" style="margin-top:0;">Incidência em prova: <span class="tag tag-blue">baixa</span></div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Conceito</div>
+    <div class="card-text">
+      Rede social <strong>privada</strong> que reúne — em um ambiente digital — <strong>colaboradores, fornecedores, clientes e parceiros</strong> de uma empresa, com o objetivo de melhorar a comunicação entre todos estes componentes. Disponibiliza os principais recursos das redes sociais tradicionais: perfil, avatar, interação síncrona ou assíncrona, grupos de trabalho e compartilhamento de documentos.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Yammer</strong>: empresa adquirida pela <strong>Microsoft em 2012</strong>, desenvolveu uma ferramenta de rede social similar ao Facebook, porém focada no <strong>mercado corporativo</strong> — rede privada focada em <strong>produtividade</strong>, em que grupos de trabalho se integram e conversam sobre projetos, melhorando e agilizando a comunicação interna.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      Essas ferramentas se integram com diversos serviços e plataformas, utilizando os conceitos de <strong>computação em nuvem, colaboração, serviços e procedimentos de backup, recursos de segurança, conformidade e gerenciamento</strong> — além de poderem ser acessadas por computadores, smartphones ou tablets com acesso à internet.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Redes sociais corporativas <strong>NÃO são públicas</strong> — são redes <strong>privadas</strong> com diversos recursos de segurança e backup (TRT/ES 2013). Assertiva que as trate como públicas ou como "ponto frágil de segurança" está errada.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Análise de sentimento social (IBM)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Tecnologia criada pela <strong>IBM</strong> que interpreta o <strong>sentimento</strong> que gerou um comentário em uma rede social, através de um complexo algoritmo que analisa reações em torno de um tema, marca ou pessoa, <strong>sem a necessidade de uma hashtag</strong>, com imensa capacidade de processamento em tempo real.<br><br>
+      É possível identificar, filtrar e analisar textos em português contidos nos comentários sobre um tema, "ensinar" o sistema a interpretar palavras-chave segundo o perfil dos usuários, determinar padrões de comportamento e compreender até gírias, expressões informais, abreviaturas do Twitter e memes.<br><br>
+      Usos: indústrias acompanham a percepção do consumidor sobre suas marcas, governos ouvem as demandas dos cidadãos e emissoras de TV medem a aceitação de seus programas.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — SEGURANÇA, PRIVACIDADE E RESPONSABILIDADE           -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Segurança, privacidade e responsabilidade</div>
+  </div>
+  <div class="sec-subtitle">Ferramentas de proteção e combate à desinformação trazidas pelas plataformas</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    X (ex-Twitter): segurança e combate a fake news
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Verificação em duas etapas</strong>: agora <strong>obrigatória</strong> para todos os usuários — mudança para aumentar a segurança da rede social<br>
+      • <strong>Limites</strong>: para mensagens diretas, seguidores e outros recursos, com o objetivo de evitar sobrecarga do sistema<br>
+      • <strong>Edição de tweets</strong>: agora é possível editar tweets após a publicação, para corrigir erros ou inserir informações adicionais<br>
+      • <strong>Twitter Blue</strong>: assinatura premium (R$40/mês no Brasil) com temas personalizados, visualização de tweets sem anúncios, desfazer tweets, resumo de leitura e pasta de itens salvos
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Notas da Comunidade:</strong> recurso que dá aos usuários a opção de <strong>apontar informações falsas na plataforma (fake news)</strong>. Alertas sobre a veracidade de informações compartilhadas passam a aparecer logo abaixo dos tweets. O Twitter anexa automaticamente notas em tweets com informações potencialmente falsas; as notas são avaliadas pelo impacto de escrita, medido pelo rastreamento da frequência com que um avaliador de conteúdo ganha o status de <strong>"útil"</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Facebook: privacidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Todo conteúdo postado pode ser visualizado por outros usuários cadastrados em qualquer lugar do mundo, apesar de existirem <strong>configurações que garantam maior privacidade</strong> das publicações. É possível restringir a visualização de postagens <strong>somente a amigos, a uma pessoa específica ou a um grupo específico de amigos</strong>. Os <strong>Atalhos de segurança e privacidade</strong> permitem gerenciar quem pode ver suas atividades, configurar alertas de segurança e ajustar preferências de login.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    WhatsApp: autenticação e privacidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>WhatsApp Web:</strong> a conexão do celular com computadores de mesa ou notebooks passa por um processo de <strong>reconhecimento e autenticação</strong> por questões de segurança, que envolve <strong>escanear com a câmera do celular um QR Code exibido na tela do computador</strong> (site web.whatsapp.com).<br><br>
+      <strong>Privacidade:</strong> o usuário pode ocultar a informação de "visto por último" e enviar <strong>mensagens temporárias</strong>, excluídas automaticamente após um determinado período. A <strong>criptografia de ponta a ponta é padrão e NÃO pode ser desativada</strong> pelo usuário.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    No WhatsApp, <strong>não</strong> é possível: apresentar "visto por último" em intervalos específicos (ex.: a cada oito horas), bloquear automaticamente grupos com muitas mensagens, controlar quem pode tornar o usuário off-line ou desativar a criptografia de ponta a ponta (CESGRANRIO/BB 2023).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Telegram: criptografia
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O Telegram possui <strong>criptografia ponta-a-ponta opcional</strong> — diferentemente do WhatsApp, em que a criptografia é padrão e não pode ser desativada.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Não existe tamanho padrão de medidas para imagens em redes sociais</strong> — cada uma utiliza uma política própria. Assertiva que afirme existir padrão único de imagem para todas as mídias está errada (CESPE/ANATEL 2014).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova — multibancas</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>LinkedIn = rede social profissional</strong> (IBGP, FUNCAB, FGV, IADES, FUNRIO, COSEAC)<br>
+      • <strong>Twitter = microblog</strong> (tweets, retweet, menção com @, hashtag) — FUNRIO, FUMARC<br>
+      • <strong>Avatar</strong> = representação gráfica do internauta em ambiente virtual (AOCP)<br>
+      • <strong>Facebook</strong>: criada por Mark Zuckerberg; plataforma convergente que permite outros aplicativos interagirem com seus recursos internos (CESPE/CEF)<br>
+      • <strong>YouTube</strong> = site de compartilhamento de vídeo; <strong>LinkedIn</strong> = rede social (FUNCAB/PRF)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Facebook × Twitter:</strong> só o Facebook tem solicitação de "amigos", só o Twitter tem trending topics e limite de caracteres; o Facebook permite editar mensagens postadas, o Twitter originalmente não — o ponto em <strong>comum é seguir outros usuários</strong> (CESGRANRIO/BB)<br>
+      • <strong>WhatsApp e Telegram</strong> são redes sociais (mensageiros); <strong>Windows</strong> é sistema operacional; <strong>Google/Bing</strong> são buscadores; <strong>Gmail</strong> é e-mail<br>
+      • <strong>Análise de sentimento social (IBM)</strong>: algoritmo que analisa reações sem precisar de hashtag, em tempo real (CESPE/ANATEL)<br>
+      • Redes sociais corporativas são <strong>privadas</strong>, com recursos de segurança e backup (TRT/ES)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> em geral os itens são fáceis e questionam apenas o <strong>objetivo de cada rede social</strong>. Decore o propósito de cada plataforma (LinkedIn profissional, Twitter microblog, YouTube vídeo, Instagram fotos/vídeos, TikTok vídeos curtos) e as pegadinhas de identificação (qual é ou não é rede social).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

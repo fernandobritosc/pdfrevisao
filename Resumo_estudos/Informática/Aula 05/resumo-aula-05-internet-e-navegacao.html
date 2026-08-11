@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Informática Aula 05: Internet e Navegação</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Informática — Aula 05</div>
+  <div class="sidebar-sub">Internet e Navegação · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito de internet e evolução</a>
+  <a href="#sec2">2. Navegadores e elementos de interface</a>
+  <a href="#sec3">3. Abas, favoritos, histórico e downloads</a>
+  <a href="#sec4">4. Cookies, cache, sessões e privacidade</a>
+  <a href="#sec5">5. Segurança na navegação e atalhos úteis</a>
+  <a href="#sec6">6. Pontos que mais caem em prova</a>
+  <a href="#sec7">7. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO DE INTERNET E EVOLUÇÃO                      -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de internet e evolução</div>
+  </div>
+  <div class="sec-subtitle">Conceitos básicos de navegadores, web e os protocolos por trás da navegação (incidência ALTA)</div>
+
+  <div class="card">
+    <div class="card-title">Navegador Web (Web Browser)</div>
+    <div class="card-text">
+      É o <strong>software cliente</strong> responsável por disponibilizar diversas ferramentas para acesso aos serviços oferecidos na internet.
+      As definições que já caíram em prova giram em torno do mesmo núcleo: é um <strong>programa/aplicativo/software</strong>; permite a <strong>interação dos usuários com páginas ou sites</strong>; e possibilita a <strong>navegação web na internet</strong>.<br><br>
+      • "Aplicativo que disponibiliza ferramentas simples para acesso à internet"<br>
+      • "Aplicativo que um usuário invoca para acessar e exibir uma página web"<br>
+      • "Espécie de ponte entre usuário e conteúdo virtual na internet"<br>
+      • Definição mais simples: <strong>ferramenta utilizada para a visualização ou consumo de conteúdo web</strong><br><br>
+      O verbo inglês <em>To Browse</em> significa "procurar" — que é o que mais fazemos na internet. Em 2018, o Chrome estava presente em 66,9% dos computadores pessoais, seguido do Firefox (11,4%) e do Internet Explorer (7,13%).
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Arquitetura cliente/servidor</div>
+    <div class="card-text">
+      A internet funciona baseada na arquitetura <strong>cliente/servidor</strong>: computadores ou softwares que <strong>consomem serviços</strong> (clientes) e computadores ou softwares que <strong>fornecem serviços</strong> (servidores).<br><br>
+      • <strong>Cliente web</strong> (navegador): faz uma requisição por uma página HTML ao servidor<br>
+      • <strong>Servidor web</strong>: computador ou software especializado no <strong>fornecimento de páginas web</strong>; processa e retorna a resposta com a página solicitada<br>
+      • <strong>Web (World Wide Web – WWW)</strong>: sistema de informações que <strong>interliga documentos hipermídia por meio de hiperlinks</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Conceito</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hipermídia</strong></td><td>Documentos em forma de hipertextos, imagens, sons e/ou vídeos</td></tr>
+        <tr><td><strong>Hipertextos</strong></td><td>Textos cujo acesso se dá por meio de ligações digitais denominadas hiperlinks</td></tr>
+        <tr><td><strong>Hiperlinks</strong></td><td>Referências dentro de um hipertexto para esse ou outro hipertexto</td></tr>
+        <tr><td><strong>Recurso</strong></td><td>Qualquer documento, arquivo ou dispositivo endereçável (página web, arquivo de multimídia, periférico etc.)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Exemplo prático (cliente/servidor):</strong> você acessa o site do Estratégia → consome <strong>conteúdo web</strong>; faz isso pelo navegador → usa um <strong>cliente web</strong>; a página tem hipertextos, vídeos, sons e imagens → é um <strong>documento hipermídia</strong>; esses conteúdos estão conectados → há <strong>hiperlinks</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Protocolos e linguagens da web
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sigla</th><th>Significado</th><th>Papel</th></tr></thead>
+      <tbody>
+        <tr><td><strong>HTTP</strong></td><td>HyperText Transfer Protocol</td><td>Protocolo padrão para transferência de páginas web; comunicação entre cliente web e servidor web. Na criação (1990) as páginas só continham texto</td></tr>
+        <tr><td><strong>HTTPS</strong></td><td>HyperText Transfer Protocol Secure</td><td>Implementação do HTTP com mais segurança; ao acessar um site por HTTPS, é exibido um <strong>cadeado na barra de endereços</strong></td></tr>
+        <tr><td><strong>HTML</strong></td><td>HyperText Markup Language</td><td>Linguagem de marcação de hipertexto; é o <strong>formato padrão de uma página web</strong></td></tr>
+        <tr><td><strong>FTP</strong></td><td>File Transfer Protocol</td><td>Protocolo para transferência de arquivos; quase não é mais usado porque o HTTP/HTTPS passou a permitir download/upload — o suporte foi descontinuado na maioria dos navegadores</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      O navegador é sempre o CLIENTE — ele solicita a página ao servidor. Nunca o contrário.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O HTTP é protocolo de transferência de <strong>hipertexto</strong>, e não de hipermídia, porque em 1990 (época da sua criação) as páginas web só continham <strong>textos</strong> — imagens, sons e vídeos passaram a existir depois.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    URL (Uniform Resource Locator)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A URL é o <strong>endereço virtual de um recurso em uma rede</strong>, oferecendo uma maneira uniforme e padronizada de localizar recursos na web. Ao digitar uma URL no navegador, ele localiza o recurso na internet e o recupera para o browser.<br><br>
+      <strong>Estrutura básica:</strong> <code>protocolo-ou-esquema://ip-ou-domínio:porta/caminho</code><br>
+      <strong>Sintaxe completa:</strong> <code>protocolo://nome-de-usuário@ip-ou-domínio:porta/caminho/recurso?query#fragmento</code>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Componente</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Protocolo</strong></td><td>Também chamado de esquema; protocolo utilizado para acessar o recurso</td></tr>
+        <tr><td><strong>IP / Domínio</strong></td><td>Número de IP ou nome do domínio do servidor que hospeda o recurso (Host)</td></tr>
+        <tr><td><strong>Porta</strong></td><td>Ponto lógico que permite criar uma conexão em um processo (ex.: porta padrão do HTTPS é 443)</td></tr>
+        <tr><td><strong>Caminho</strong></td><td>Estrutura de diretórios dentro do servidor que armazena o recurso</td></tr>
+        <tr><td><strong>Recurso</strong></td><td>Componente físico ou lógico disponível em um sistema computacional</td></tr>
+        <tr><td><strong>Query / QueryString</strong></td><td>Passa parâmetros adicionais ao servidor em formato chave-valor (iniciada por "?"; pares separados por "&")</td></tr>
+        <tr><td><strong>Fragmento (âncora)</strong></td><td>Segue o caractere "#"; navega diretamente para uma seção específica de uma página. <strong>Não é enviado ao servidor</strong> — é processado exclusivamente pelo navegador</td></tr>
+        <tr><td><strong>Nome de usuário</strong></td><td>Usado em contextos que exigem autenticação para acessar recursos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Componentes obrigatórios × opcionais</div>
+    <div class="card-text">
+      • <strong>Obrigatórios:</strong> apenas <strong>Protocolo e Domínio</strong><br>
+      • <strong>Comuns, mas opcionais:</strong> Porta, Caminho e Recurso<br>
+      • <strong>Raros, opcionais (sintaxe completa):</strong> Query, Fragmento e Nome de Usuário<br><br>
+      <strong>Parâmetros UTM</strong> (padrão do Google para rastrear campanhas no Google Analytics): <code>utm_source</code> (origem de tráfego), <code>utm_medium</code> (meio/tipo de tráfego — ex.: cpc = anúncio pago), <code>utm_campaign</code> (nome da campanha), <code>utm_term</code> (palavras-chave), <code>utm_content</code> (versão do anúncio).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>URL ≠ domínio.</strong> Se você muda o nome do recurso de <em>Aula1.pdf</em> para <em>Aula2.pdf</em>, a URL muda, mas o domínio permanece o mesmo. Exemplo resolvido: <code>https://www.estrategiaconcursos.com.br/app/dashboard/cursos/aulas/aula1.pdf</code> → protocolo <strong>https</strong>, domínio <strong>estrategiaconcursos.com.br</strong> (o <em>www</em> é só um prefixo que pode ser omitido), porta <strong>443</strong> (omitida), caminho <strong>/app/dashboard/cursos/aulas</strong>, recurso <strong>aula1.pdf</strong>.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    DNS e domínios
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O <strong>DNS (Domain Name System)</strong> é um protocolo cliente/servidor que <strong>traduz, transforma, resolve um Nome/Domínio em um Endereço IP e vice-versa</strong>, com estrutura <strong>hierárquica e distribuída</strong>. O espaço de nomes é um conjunto organizado de possíveis nomes — os nomes devem ser <strong>exclusivos</strong>, assim como os endereços IP.<br><br>
+      • <strong>ICANN</strong>: entidade que controla o registro e a manutenção de domínios em nível <strong>global</strong> (define que .br pertence ao Brasil, .pt a Portugal, .jp ao Japão, .es à Espanha)<br>
+      • <strong>Registro.br</strong>: entidade responsável pelo registro e manutenção de domínios <strong>brasileiros</strong><br>
+      • Subcategorias .br: <strong>.com.br</strong> (atividade comercial) e <strong>.org.br</strong> (organização não-governamental sem fins lucrativos); algumas categorias exigem comprovação documental
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Um site <strong>.br</strong> está <strong>registrado</strong> no Brasil — isso <strong>não significa</strong> que ele esteja hospedado fisicamente no Brasil.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — NAVEGADORES E ELEMENTOS DE INTERFACE                 -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Navegadores e elementos de interface</div>
+  </div>
+  <div class="sec-subtitle">Barras e elementos gráficos da interface do navegador</div>
+
+  <div class="card">
+    <div class="card-title">Navegadores mais conhecidos</div>
+    <div class="card-text">
+      Internet Explorer, Mozilla Firefox, Google Chrome, Microsoft Edge, Opera, Safari, Shiira, Konqueror — sendo os quatro primeiros os <strong>campeões de questões de prova</strong>. Navegadores são softwares comerciais que permitem navegar por sites na internet, exibindo conteúdo hipermídia para melhorar a experiência do usuário. Eles são atualizados quase todo mês (na década de 2010-2019 foram lançadas 78 versões do Chrome — quase oito por ano).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Barra</th><th>Incidência</th><th>Função</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Barra de Guias/Abas</strong></td><td><span class="tag tag-amber">média</span></td><td>Elemento horizontal no topo; alterna entre páginas web em uma única instância do browser. Todos os navegadores permitem múltiplas abas</td></tr>
+        <tr><td><strong>Barra de Navegação</strong></td><td><span class="tag tag-blue">baixa</span></td><td>Acomoda botões/atalhos que auxiliam a navegação (avançar, voltar, atualizar)</td></tr>
+        <tr><td><strong>Barra de Endereço</strong></td><td><span class="tag tag-blue">baixa</span></td><td>Permite inserir o endereço das páginas que se deseja acessar</td></tr>
+        <tr><td><strong>Barra de Pesquisa/Busca</strong></td><td><span class="tag tag-blue">baixa</span></td><td>Permite realizar buscas por meio de mecanismos de pesquisa (Google, Yahoo!, Bing)</td></tr>
+        <tr><td><strong>Barra de Menu</strong></td><td><span class="tag tag-blue">baixíssima</span></td><td>Menus de funcionalidades/configurações (Arquivo, Edição, Exibição, Histórico, Ferramentas, Favoritos, Ajuda)</td></tr>
+        <tr><td><strong>Barra de Favoritos</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Atalhos para as páginas preferidas do usuário; organizável em pastas</td></tr>
+        <tr><td><strong>Barra de Status</strong></td><td><span class="tag tag-blue">baixíssima</span></td><td>Parte inferior; hoje é omitida e exibida apenas ao passar o mouse sobre um link, mostrando o endereço do link</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Barra de Menu: omitir × retirar</div>
+    <div class="card-text">
+      Os navegadores atuais seguem a tendência de <strong>omitir</strong> ou <strong>retirar</strong> a Barra de Menu:<br>
+      • <strong>Omitir</strong> (vem oculta por padrão): Mozilla Firefox e Internet Explorer — pressione a tecla <strong>ALT</strong> para exibi-la<br>
+      • <strong>Retirar</strong>: Google Chrome e Microsoft Edge — <strong>NÃO EXISTE</strong> barra de menu
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A maioria das bancas considera <strong>Barra de Navegação, Barra de Endereço e Barra de Pesquisa</strong> como três elementos <strong>diferentes</strong>; outras consideram todos como Barra de Navegação. Além disso, todos os navegadores permitem realizar buscas <strong>diretamente na barra de endereço</strong>, sem necessidade de barra de pesquisa separada.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ao posicionar o cursor do mouse sobre um link, o cursor vira uma <strong>mãozinha</strong> e a Barra de Status surge exibindo o endereço do link — isso indica que aquele local é um link.
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Iconografia:</strong> para exibir ou adicionar uma página como favorita, procure o ícone de <strong>estrela</strong> ao lado direito da barra de endereço (estrela cheia = página já é favorita). O ícone da <strong>casinha</strong> retorna à página inicial; o cadeado indica acesso seguro via HTTPS.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ABAS, FAVORITOS, HISTÓRICO E DOWNLOADS               -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Abas, favoritos, histórico e downloads</div>
+  </div>
+  <div class="sec-subtitle">Funcionalidades comuns de navegação e gerenciamento</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Abas (guias)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A Barra de Guias/Abas fornece a capacidade de alternar entre diferentes páginas web em <strong>uma única instância</strong> do browser. A quantidade máxima de abas abertas depende do <strong>recurso computacional disponível</strong>, passando de cinquenta com facilidade.<br><br>
+      • <strong>Fixar guia</strong>: clicar com o botão direito na guia → <strong>Fixar Guia</strong>. As guias fixadas ficam à esquerda, com tamanho reduzido. <strong>O Internet Explorer é o único dos quatro grandes que NÃO possui esse recurso</strong><br>
+      • Versões recentes do Mozilla Firefox chamam as abas/guias de <strong>separador</strong>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Agrupamento de abas</div>
+    <div class="card-text">
+      Permite organizar e agrupar abas abertas, facilitando o gerenciamento de múltiplas abas. Passos: clicar com o botão direito em uma guia → <strong>"Adicionar Guia ao Novo Grupo"</strong> → dar nome/rótulo e escolher uma cor (ou adicionar a um grupo já existente). É possível desagrupar ou fechar todas, e "sanfonar" o grupo (aberto/fechado).<br><br>
+      • <strong>Google Chrome</strong>: adicionado na versão 88 (janeiro de 2021)<br>
+      • <strong>Microsoft Edge</strong>: adotado a partir da versão 92 (2021)<br>
+      • <strong>Mozilla Firefox e Internet Explorer</strong>: <strong>NÃO possuem</strong> o recurso nativamente (Firefox removeu; oferece a extensão "Tab Groups")
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ao organizar muitas guias para acessar diariamente (ex.: webmails e bancos), o recurso usado no Chrome é o <strong>agrupamento de guias</strong> — não fixar guias, pois guias fixadas ficam pequenas e à esquerda da barra de guias.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Favoritos, histórico e downloads
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Funcionalidade</th><th>Incidência</th><th>Descrição</th><th>Atalho</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Favoritos</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Atalhos para as páginas preferidas; podem ser organizados em pastas; ícone da estrela. Também chamados de <strong>marcadores</strong> no Chrome</td><td><strong>CTRL+D</strong> (adicionar site aos favoritos)</td></tr>
+        <tr><td><strong>Histórico de Navegação</strong></td><td><span class="tag tag-amber">média</span></td><td>Permite visualizar os sites visitados anteriormente (exceto em navegação privada); dá para apagar páginas ou todo o histórico, impedir o registro e pesquisar no histórico</td><td><strong>CTRL+H</strong></td></tr>
+        <tr><td><strong>Downloads</strong></td><td><span class="tag tag-amber">média</span></td><td>Permite salvar arquivos, pausar/cancelar downloads, visualizar a lista e alterar o local de salvamento. No Windows, por padrão: <code>C:\Usuários\&lt;Nome de Usuário&gt;\Downloads</code>; no Linux: <code>/home/username/download</code></td><td><strong>CTRL+J</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Histórico ≠ pasta de downloads.</strong> O histórico é um <strong>registro das páginas visitadas</strong> (URLs, datas, horários), não uma pasta que armazena os arquivos baixados. Favoritos guardam apenas o <strong>link (URL)</strong> — para acessá-los é preciso conexão com a internet; a página <strong>não fica gravada localmente para acesso offline</strong>.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    No modo de navegação anônima, os <strong>arquivos baixados e os favoritos criados são mantidos</strong> após o fechamento das janelas — só o histórico, cookies e dados de formulários não são salvos.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Página inicial e impressão
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Página Inicial</strong> (ALTA): página aberta ao clicar no ícone da <strong>casinha</strong>. Chrome e Edge diferenciam <strong>página inicial</strong> (ícone da casinha; só é possível configurar <strong>uma</strong> página) de <strong>página de inicialização</strong> (exibida ao abrir o navegador; é possível configurar <strong>várias</strong> páginas, cada uma em uma nova guia). Atalho: <strong>ALT+HOME</strong><br>
+      • <strong>Impressão</strong> (média): todos os navegadores permitem imprimir páginas web — trechos específicos, páginas individuais (vírgula ou ponto-e-vírgula) ou intervalo (hífen). Atalho: <strong>CTRL+P</strong> (<strong>P</strong> de <strong>P</strong>rint). O Internet Explorer só permite imprimir uma única página ou um único intervalo<br>
+      • <strong>Modo Tela Cheia</strong> (baixa): <strong>F11</strong> — o site ocupa todo o monitor, sem botões, menus ou barras
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      CTRL+D = favorito · CTRL+H = Histórico · CTRL+J = downloads (J de Jail/downloads) · CTRL+P = Print (imprimir) · CTRL+F = Find (localizar) · CTRL+T = Tab (nova guia) · CTRL+W = fecha guia
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — COOKIES, CACHE, SESSÕES E PRIVACIDADE                 -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Cookies, cache, sessões e privacidade</div>
+  </div>
+  <div class="sec-subtitle">Temas de incidência Altíssima — os mais cobrados em prova</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Cookies (incidência Altíssima)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Cookies</strong> são <strong>pequenos arquivos de texto</strong> capazes de armazenar informações básicas sobre o visitante de um site: nome, idioma, estado de autenticação, registros de navegação, carrinho de compra, lista de produtos etc. São <strong>enviados por servidores web</strong> ao visitante e armazenados em uma pasta local no computador do usuário para melhorar a experiência de navegação.<br><br>
+      Ficam armazenados até perderem a validade (minutos ou anos). Em acessos futuros, o navegador recupera as informações do cookie e as reenvia ao site, aplicando automaticamente as configurações salvas (ex.: escolher o idioma uma vez e não precisar escolher de novo). Cada página tem seu próprio cookie — um site similar <strong>não acessa</strong> os dados do cookie de outro site.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Cookies de Sessão</th><th>Cookies Persistentes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Armazenamento</strong></td><td>Em <strong>memória</strong> (não gravados em disco)</td><td>No <strong>disco rígido</strong></td></tr>
+        <tr><td><strong>Duração</strong></td><td>Existem somente enquanto a <strong>sessão está ativa</strong>; apagados ao fechar o navegador</td><td>Persistem mesmo após o encerramento da sessão</td></tr>
+        <tr><td><strong>Validade</strong></td><td><strong>Não têm</strong> data de validade</td><td><strong>Têm</strong> data de validade</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Função do cookie</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Funções técnicas</strong></td><td>Controlam o tráfego do site, identificam os usuários e suas sessões de uso, armazenam conteúdos</td></tr>
+        <tr><td><strong>Personalização</strong></td><td>Ajustam o site ao idioma, tipo de navegador e configuração regional do usuário</td></tr>
+        <tr><td><strong>Monitoramento</strong></td><td>Acompanham e registram o comportamento do público para medir e analisar a atividade do site</td></tr>
+        <tr><td><strong>Publicidade</strong></td><td>Administram espaços publicitários e exibem anúncios conforme o perfil de cada usuário</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Cookies <strong>não são spam nem vírus</strong> e <strong>não conseguem capturar dados do computador</strong> — só coletam informações de navegação. O usuário pode bloqueá-los ou personalizar a lista de sites que podem usá-los; esse bloqueio pode impedir que algumas páginas sejam exibidas corretamente.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Na <strong>navegação anônima</strong> são utilizados <strong>cookies de sessão</strong>: a página continua instalando cookies, mas tudo é deletado ao fechar o navegador.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Cache (incidência Altíssima)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Ao navegar na internet, os navegadores <strong>armazenam temporariamente no computador imagens e partes de sites visitados</strong> para acelerar a navegação, carregando as páginas mais rapidamente — isso é o <strong>Cache (Web Cache)</strong>. Em vez de pedir ao servidor para preparar e enviar outra página, o navegador envia uma cópia de uma versão já em cache.<br><br>
+      • <strong>Web Cache</strong>: recurso de armazenamento temporário e local no disco rígido de cópias de páginas web, imagens e outros documentos, com o objetivo de exibir a página mais rapidamente<br>
+      • <strong>Memória Cache</strong>: dispositivo de acesso que opera mais rápido que a Memória RAM — <strong>não tem nada a ver</strong> com Web Cache
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>CACHE</th><th>COOKIES</th></tr></thead>
+      <tbody>
+        <tr><td>Armazena temporariamente o <strong>conteúdo de páginas web</strong> para acelerar o carregamento em visitas futuras</td><td>Armazena dados sobre <strong>escolhas pessoais (preferências)</strong> dos usuários</td></tr>
+        <tr><td>Conteúdo armazenado <strong>apenas no computador cliente</strong></td><td>Conteúdo armazenado <strong>no computador cliente e no servidor</strong></td></tr>
+        <tr><td>Geralmente <strong>expira manualmente</strong></td><td>Geralmente <strong>expira automaticamente</strong></td></tr>
+        <tr><td>Consome <strong>grande espaço</strong> de armazenamento</td><td>Consome <strong>menos espaço</strong> de armazenamento</td></tr>
+        <tr><td>Armazena conteúdo como páginas HTML, imagens, JavaScript, CSS</td><td>Armazena sessões de navegação e dados de rastreamento do usuário</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Para apagar as imagens e partes de sites que aceleram o carregamento, limpe o dado de navegação denominado <strong>CACHE</strong> — e não cookies, favoritos ou dados de formulário.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Navegação privativa (incidência Altíssima)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Em navegação normal, o navegador guarda informações para facilitar a vida do usuário: histórico de páginas visitadas, buscas realizadas, informações de formulários (nome, endereço, telefone, CPF). Em computadores compartilhados, o recomendável é a <strong>navegação privativa</strong> — também chamada de <strong>navegação anônima</strong> (Chrome) ou <strong>InPrivate</strong> (Edge/IE).<br><br>
+      Ao término da navegação, são removidas do computador as informações sobre a navegação realizada: <strong>histórico de navegação e de pesquisas, cookies, dados de formulários</strong>. Não salva senhas, não mantém informações inseridas em formulários e não salva permissões concedidas a sites.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Navegador</th><th>Atalho (janela privativa)</th></tr></thead>
+      <tbody>
+        <tr><td>Google Chrome</td><td><strong>CTRL + SHIFT + N</strong></td></tr>
+        <tr><td>MS-Edge</td><td><strong>CTRL + SHIFT + N</strong></td></tr>
+        <tr><td>Mozilla Firefox</td><td><strong>CTRL + SHIFT + P</strong></td></tr>
+        <tr><td>Internet Explorer</td><td><strong>CTRL + SHIFT + P</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Não te torna anônimo na internet!</strong> O usuário fica anônimo <strong>para o navegador</strong>, não para a página visitada (a página continua instalando cookies, apagados ao fechar). O <strong>provedor de acesso ainda pode rastrear as páginas visitadas</strong>, e a atividade também permanece visível para os sites visitados.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Plug-ins, extensões e complementos
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Plug-ins</strong>: programas ou <strong>componentes externos</strong> instalados no navegador que permitem utilizar recursos não disponíveis nativamente (multimídia, tipos especiais de conteúdo). Ex.: Adobe Flash Player (vídeos/jogos), Plugin do Java (Internet Banking). São arquivos executáveis externos, praticamente não utilizados atualmente<br>
+      • <strong>Extensões</strong>: pequenos programas <strong>integrados à lógica de aplicação</strong> do navegador, que adicionam novos recursos e personalizam a experiência. Instalam-se <strong>do próprio navegador</strong> (não há download de outro local)<br>
+      • <strong>Complementos (ou Add-On)</strong>, no Firefox: conjunto de <strong>Extensões + Temas + Plug-ins</strong>. Temas alteram a aparência do navegador (botões, imagem de fundo)
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Proteção contra rastreamento e Do Not Track (DNT):</strong> a Proteção contra Rastreamento ajuda a evitar que informações sobre a sua navegação sejam enviadas a provedores de conteúdo terceirizados, limitando o que esses terceiros coletam. O <strong>Do Not Track (DNT)</strong> é um mecanismo <strong>passivo</strong> que <em>solicita</em> ao site não rastrear — alguns sites respeitam, a maioria não. Todos os navegadores possuem "Não Rastrear"; todos, <strong>exceto o Google Chrome</strong>, possuem Proteção contra Rastreamento nativa (no Chrome é preciso extensão). O Firefox bloqueia por padrão rastreadores de mídias sociais, cookies de rastreamento entre sites, criptomineradores e fingerprinters.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Pop-ups não são vírus</strong> — são pequenas janelas que se abrem sobre a janela principal, geralmente com anúncios. O <strong>bloqueador de pop-up</strong> impede que essas janelas apareçam, oferecendo mais controle; hoje já vem habilitado por padrão nos navegadores.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — SEGURANÇA NA NAVEGAÇÃO E ATALHOS ÚTEIS                -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Segurança na navegação e atalhos úteis</div>
+  </div>
+  <div class="sec-subtitle">Filtros antimalware, phishing, sandbox, sincronização e tabela de atalhos (incidência Altíssima)</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Filtro Antimalware
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Todos os navegadores possuem um recurso que ajuda a <strong>detectar sites de phishing</strong> e proteger contra download e instalação de malwares. A proteção ocorre de três maneiras:<br><br>
+      1) Durante a navegação, <strong>analisa páginas</strong> em busca de características suspeitas → exibe mensagem sugerindo cautela<br>
+      2) <strong>Compara os sites visitados</strong> com uma lista dinâmica de sites de phishing e mal-intencionados → exibe aviso de site bloqueado<br>
+      3) <strong>Verifica os arquivos baixados</strong> contra listas de softwares mal-intencionados → avisa que o download foi bloqueado<br><br>
+      No <strong>Internet Explorer e MS-Edge</strong>, o filtro se chama <strong>Filtro SmartScreen</strong> — verifica os downloads comparando com uma lista de arquivos conhecidos e funciona indiretamente como gerenciador de downloads, bloqueando os arriscados.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">XSS (Cross-Site Scripting)</div>
+    <div class="card-text">
+      Navegadores ajudam a evitar ataques maliciosos por vulnerabilidades de páginas web, como o <strong>Cross-Site Scripting (XSS)</strong>. Ataques desse tipo visam o <strong>código (script) de uma página executado no navegador do usuário</strong>, ao invés de no servidor — é uma tentativa de inserir scripts maliciosos no navegador. A maioria tem como objetivo coletar dados pessoais, redirecionar vítimas para sites controlados pelo atacante ou fazer o computador executar operações comandadas pelo atacante. Os navegadores buscam identificar e bloquear a inicialização desses scripts automaticamente.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Phishing</strong> é um tipo de <strong>golpe/ataque</strong> (sites falsos que imitam sites reais para roubar dados, ex.: <em>www.bb.com.br</em> × <em>www.bb.net.br</em>), <strong>não</strong> é o nome da funcionalidade de proteção — o recurso que combate isso é o filtro antimalware/antiphishing. A extensão de domínio também é indício de mensagem forjada (ex.: ONU usa <em>.org</em>, não <em>.com</em>).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Sandbox (Google Chrome)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O <strong>Sandbox</strong> é um recurso para melhorar a segurança do navegador. No Chrome, <strong>cada guia/página aberta é um processo separado e independente</strong> (monitorados separadamente pelo SO). Se uma guia travar, o navegador e as outras guias não são afetados. O Sandbox fornece uma <strong>camada de proteção isolada</strong> para cada processo: se uma página maliciosa for aberta, o código malicioso fica contido no Sandbox e não afeta outras guias nem o computador.<br><br>
+      Todas as páginas exibidas são verificadas pelo Sandbox, e alguns plugins também são integrados a ele — mas um plugin instalado <strong>fora da caixa de areia</strong> pode acessar recursos sensíveis do computador. O <strong>Google Chrome foi o primeiro navegador a implementar o Sandbox</strong>; depois Firefox e Internet Explorer também o fizeram.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Sincronização e gerenciamento de senhas
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Navegador</th><th>Serviço</th><th>Características</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Google Chrome</strong></td><td>Chrome Sync</td><td>Armazena dados em <strong>servidores do Google</strong>; sincroniza favoritos, históricos, guias abertas, senhas, formulários, informações de pagamento e extensões entre todos os dispositivos logados na mesma conta</td></tr>
+        <tr><td><strong>Mozilla Firefox</strong></td><td>Firefox Sync</td><td>Armazena dados em <strong>servidores da Mozilla</strong>; sincroniza favoritos, históricos, preferências, senhas, formulários, complementos e abas; dados criptografados — <strong>nem a própria Mozilla acessa</strong> as informações</td></tr>
+        <tr><td><strong>Microsoft Edge</strong></td><td>Sincronização (Perfis)</td><td>Sincroniza senhas e dados com a conta Microsoft; a opção Sincronizar fica em <strong>Perfis</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Gerenciador de senhas:</strong> armazenam senhas com <strong>criptografia</strong>, permitem <strong>preenchimento automático</strong> de login, <strong>sincronização entre dispositivos</strong>, <strong>sugestão/geração de senhas fortes</strong> e <strong>verificação de segurança</strong> (Check-up de Senhas — verifica se senhas salvas foram expostas em violações de dados conhecidas, de forma criptografada e privada).<br><br>
+      • <strong>Firefox — Senha Principal</strong> (antiga Senha Mestra): protege nomes de usuário e senhas armazenadas; o navegador solicita a senha a cada nova sessão. Por padrão, o Firefox não a utiliza<br>
+      • <strong>Edge</strong>: para desativar "Oferecer para salvar senhas" → menu (Alt+F) → Configurações → <strong>Perfis → Senhas</strong>. Importante em dispositivos compartilhados ou públicos
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A sincronização de favoritos/histórico/senhas <strong>só ocorre se a opção de sincronização estiver ativada</strong> — salvar um favorito não o sincroniza automaticamente em todos os dispositivos.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Configuração por URL e histórico dos navegadores
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Navegador</th><th>URLs de configuração</th><th>Contexto histórico</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Google Chrome</strong></td><td><code>chrome://settings</code> (configurações gerais), <code>chrome://version</code> (versão do navegador), <code>chrome://extensions</code>, <code>chrome://bookmarks</code> (favoritos), <code>chrome://history</code> (histórico + limpar dados de navegação), <code>chrome://downloads</code></td><td>Lançado em <strong>2 de setembro de 2008</strong>; leve, minimalista e seguro; foi o primeiro a implementar o Sandbox</td></tr>
+        <tr><td><strong>Microsoft Edge</strong></td><td><code>edge://settings</code>, <code>edge://settings/privacy</code>, <code>edge://settings/appearance</code>, <code>edge://settings/onStartup</code>, <code>edge://settings/downloads</code>, <code>edge://settings/languages</code>, entre outros</td><td>Anunciado em <strong>março de 2015</strong>; padrão no Windows 10; integração com a <strong>Cortana</strong>; <strong>não oferece suporte a ActiveX</strong>; leitor nativo de PDF. Em 2019/2020 passou a se basear no <strong>Chromium</strong> (código aberto do Google) — extensões do Chrome funcionam no Edge; também disponível para Linux</td></tr>
+        <tr><td><strong>Mozilla Firefox</strong></td><td><code>about:preferences</code> (configurações genéricas), <code>about:preferences#privacy</code>, <code>about:preferences#search</code>, <code>about:preferences#sync</code> etc.</td><td><strong>Código aberto</strong> (40% escrito por colaboradores voluntários); lançado em <strong>2004</strong> como alternativa multiplataforma ao IE (Windows, Linux, MacOS); extensibilidade via complementos</td></tr>
+        <tr><td><strong>Internet Explorer</strong></td><td>Opções de Internet (Guia Geral: páginas iniciais, histórico, aparência; Guia Segurança: zonas e níveis de segurança)</td><td>Lançado em <strong>1995</strong> pela Microsoft; nativo do Windows; <strong>descontinuado em 2016</strong> (falhas de segurança e lentidão excessiva), mas ainda suportado em versões antigas do Windows; código <strong>proprietário</strong>; possuía Filtragem ActiveX e Realce de Domínio (destaca o domínio na barra de endereços)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Tabela de atalhos — principais (incidência Altíssima)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Atalho</th><th>Função</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CTRL+D</strong></td><td>Adicionar o site atual aos favoritos</td></tr>
+        <tr><td><strong>CTRL+E / CTRL+K</strong></td><td>Pesquisar a partir da barra de endereço</td></tr>
+        <tr><td><strong>CTRL+F</strong></td><td>Localizar palavras na página (F de Find)</td></tr>
+        <tr><td><strong>CTRL+G</strong></td><td>Localizar palavras na página e percorrê-las (no IE: exibir feeds)</td></tr>
+        <tr><td><strong>CTRL+H</strong></td><td>Abrir/exibir o histórico</td></tr>
+        <tr><td><strong>CTRL+J</strong></td><td>Abrir/exibir downloads</td></tr>
+        <tr><td><strong>CTRL+N</strong></td><td>Abrir uma nova janela</td></tr>
+        <tr><td><strong>CTRL+P</strong></td><td>Imprimir a página atual (P de Print)</td></tr>
+        <tr><td><strong>CTRL+R / F5</strong></td><td>Atualizar a página atual</td></tr>
+        <tr><td><strong>CTRL+T</strong></td><td>Abrir uma nova guia (T de Tab)</td></tr>
+        <tr><td><strong>CTRL+W</strong></td><td>Fechar a guia atual</td></tr>
+        <tr><td><strong>CTRL+TAB</strong></td><td>Avançar para a próxima guia</td></tr>
+        <tr><td><strong>CTRL+ENTER</strong></td><td>Adicionar www. ao início e .com ao fim do texto digitado na barra de endereços</td></tr>
+        <tr><td><strong>CTRL+SHIFT+N</strong></td><td>Abrir nova janela de navegação anônima (Chrome/Edge)</td></tr>
+        <tr><td><strong>CTRL+SHIFT+P</strong></td><td>Abrir nova janela de navegação privativa (Firefox/IE)</td></tr>
+        <tr><td><strong>CTRL+SHIFT+T</strong></td><td>Reabrir a última guia fechada (não funciona para navegação anônima no Chrome)</td></tr>
+        <tr><td><strong>CTRL+SHIFT+DEL</strong></td><td>Limpar dados de navegação / excluir histórico</td></tr>
+        <tr><td><strong>ALT+HOME</strong></td><td>Ir para a página inicial</td></tr>
+        <tr><td><strong>F1</strong></td><td>Obter ajuda e suporte</td></tr>
+        <tr><td><strong>F6</strong></td><td>Posicionar o cursor na barra de endereços</td></tr>
+        <tr><td><strong>F11</strong></td><td>Alternar entre tela cheia e exibição comum</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Atalhos extras que caíram em prova:</strong> <strong>CTRL+9</strong> vai para a última guia à direita (Chrome); <strong>CTRL+SHIFT+A</strong> mostra abas abertas/recentemente fechadas (Chrome); <strong>CTRL+SHIFT+K</strong> duplica a guia (Edge); <strong>CTRL+SHIFT+I</strong> abre as ferramentas de desenvolvedor (Chrome); <strong>CTRL+clic</strong> em um link abre o link em nova aba; <strong>ALT+F</strong> abre o menu do Edge; <strong>Shift+Esc</strong> abre o Gerenciador de Tarefas do Chrome.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Com apenas <strong>uma aba aberta</strong>, <strong>CTRL+W e ALT+F4 têm o mesmo efeito</strong> (fechar a janela do navegador). Com mais de uma aba, CTRL+W fecha só a aba ativa e ALT+F4 fecha a janela inteira.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O texto de um link <strong>não reflete, necessariamente, a URL</strong> que será aberta — o texto exibido pode ser qualquer nome (ex.: link com texto "Vasco" abrindo <em>www.flamengo.com.br</em>). Por isso, um link com texto HTTPS não garante que o site aberto seja seguro.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PONTOS QUE MAIS CAEM EM PROVA                         -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Cookies e Cache</strong> (Altíssima): conceitos, tipos de cookie (sessão × persistente) e diferenças entre cache e cookies<br>
+      • <strong>Navegação privativa</strong> (Altíssima): o que salva/não salva e a pegadinha de que <strong>não torna anônimo</strong> (provedor rastreia)<br>
+      • <strong>Tabela de atalhos</strong> (Altíssima): CTRL+T, CTRL+W, CTRL+SHIFT+T, CTRL+H, CTRL+J, CTRL+P, F11, CTRL+SHIFT+N/P<br>
+      • <strong>Página inicial</strong> (ALTA): ícone da casinha, ALT+HOME, página inicial × página de inicialização<br>
+      • <strong>Barra de Favoritos</strong> (ALTA): estrela, CTRL+D, organização em pastas<br>
+      • <strong>Conceitos básicos</strong> (ALTA): navegador = cliente; hipermídia, hipertexto, hiperlink, HTTP, HTML
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Navegador é o CLIENTE</strong> na arquitetura cliente/servidor (solicita página ao servidor)<br>
+      • <strong>HTTPS</strong> = HTTP com segurança → cadeado na barra de endereços; porta padrão 443<br>
+      • URL: <strong>só protocolo e domínio são obrigatórios</strong>; fragmento (#) é processado só pelo navegador; query (?) passa parâmetros chave=valor separados por &<br>
+      • <strong>DNS</strong> traduz domínio ↔ IP; ICANN (global) × Registro.br (Brasil)<br>
+      • Navegação anônima usa <strong>cookies de sessão</strong>; downloads e favoritos criados são mantidos<br>
+      • <strong>Chrome Sync</strong> (servidores Google) × <strong>Firefox Sync</strong> (servidores Mozilla, criptografado) — ambos sincronizam dados entre dispositivos<br>
+      • <strong>Filtro SmartScreen</strong> = filtro antimalware no IE e no Edge
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • Cookies <strong>não são vírus</strong> e não capturam dados do computador<br>
+      • Histórico não é pasta de arquivos baixados; favoritos não garantem acesso offline<br>
+      • Pop-ups <strong>não são vírus</strong> — são janelas sobre a página<br>
+      • <strong>.br</strong> = registrado no Brasil, não hospedado no Brasil<br>
+      • <strong>Web Cache ≠ Memória Cache</strong><br>
+      • URL ≠ domínio (mudar o recurso não muda o domínio)<br>
+      • O texto de um link não define a URL de destino
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine os conceitos de cookie/cache, navegação privativa, a tabela de atalhos e as distinções de interface (barra de navegação × endereço × pesquisa; página inicial × inicialização). Essas são as pegadinhas recorrentes de Cebraspe, FCC, FGV e Vunesp.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — INCIDÊNCIA DE TEMAS (TEC)                             -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

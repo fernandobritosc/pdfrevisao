@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO Aula 03: Ciclo Orçamentário <!-- cache-bust --> <!-- cb --></title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 03</div>
+  <div class="sidebar-sub">Ciclo Orçamentário</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Introdução</a>
+  <a href="#sec2">2. Elaboração/Planejamento</a>
+  <a href="#sec3">3. Discussão/Aprovação</a>
+  <a href="#sec4">4. Execução orçamentária</a>
+  <a href="#sec5">5. Avaliação e controle</a>
+  <a href="#sec6">6. Emendas impositivas</a>
+  <a href="#sec7">7. Mnemônico</a>
+  <a href="#sec8">8. Questões comentadas</a>
+  <a href="#sec9">9. Tabela comparativa</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+</aside>
+
+<div class="main">
+<div class="header">
+  <h1>🔄 AFO — Aula 03: Ciclo Orçamentário</h1>
+  <p>Elaboração → Discussão → Execução → Avaliação/Controle · Emendas impositivas · Controle interno/externo · Material base: simplificado + completo · Estratégia Concursos · Luciana de Paula Marinho</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Introdução — Ciclo Orçamentário</div></div>
+  <div class="sec-subtitle">Conceito, fases e ciclo ampliado</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">
+      O ciclo orçamentário é o encadeamento das atividades típicas do orçamento público, albergando quatro etapas: <strong>elaboração/planejamento</strong>, <strong>discussão/estudo/aprovação</strong>, <strong>execução orçamentária e financeira</strong> e <strong>avaliação/controle</strong>. É um processo contínuo, dinâmico e flexível.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Exercício financeiro</div></div>
+    <div class="card-text">
+      Coincide com o ano civil: inicia-se em 1º de janeiro e encerra-se em 31 de dezembro.
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 34:</strong> "O exercício financeiro coincidirá com o ano civil, ou seja, inicia-se em 1º de janeiro e se encerra em 31 de dezembro de cada ano."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Ciclo orçamentário ampliado</div></div>
+    <div class="card-text">
+      Considera o ciclo conjunto do <strong>PPA</strong>, <strong>LDO</strong> e <strong>LOA</strong>, totalizando oito fases:
+    </div>
+    <div class="legal-block">
+      1. Formulação do planejamento plurianual, pelo Executivo;<br>
+      2. Apreciação e adequação do plano, pelo Legislativo;<br>
+      3. Proposição de metas e prioridades pelo Executivo;<br>
+      4. Apreciação e adequação da LDO, pelo Legislativo;<br>
+      5. Elaboração da proposta de orçamento, pelo Executivo;<br>
+      6. Apreciação, adequação e autorização legislativa;<br>
+      7. Execução dos orçamentos aprovados;<br>
+      8. Avaliação da execução e julgamento das contas.
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha 1:</strong> o ciclo orçamentário é contínuo, não descontínuo. Cada etapa serve de parâmetro para a seguinte.</div></div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Pegadinha 2:</strong> a duração do ciclo tende a superar um exercício anual, pois envolve no mínimo três exercícios financeiros.</div></div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Elaboração/Planejamento</div></div>
+  <div class="sec-subtitle">Iniciativa, prazos e conteúdo da proposta</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Iniciativa do Poder Executivo</div></div>
+    <div class="card-text">
+      As leis do <strong>PPA</strong>, <strong>LDO</strong> e <strong>LOA</strong> são de iniciativa do Poder Executivo: Presidente, Governadores e Prefeitos. Os demais Poderes elaboram propostas parciais e encaminham ao Executivo, que consolida a proposta final.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 165, caput:</strong> "Leis de iniciativa do Poder Executivo estabelecerão: I – o plano plurianual; II – as diretrizes orçamentárias; III – os orçamentos anuais."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Autonomia dos demais Poderes</div></div>
+    <div class="card-text">
+      <strong>Poder Judiciário (art. 99):</strong> autonomia administrativa e financeira; elabora propostas dentro dos limites da LDO. Se não encaminhar no prazo, o Executivo usa a LOA vigente ajustada.<br>
+      <strong>Ministério Público (art. 127):</strong> autonomia funcional e administrativa; elabora proposta dentro dos limites da LDO.<br>
+      <strong>Defensorias Públicas (art. 134, §§ 2º e 3º):</strong> autonomia funcional e administrativa; iniciativa de proposta orçamentária dentro dos limites da LDO.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Prazos — esfera federal (ADCT, art. 35)</div></div>
+    <div class="card-text">
+      Enquanto a lei complementar do art. 165, § 9º, não for editada, os prazos federais são:<br>
+      • <strong>PPA:</strong> encaminhado até 4 meses antes do encerramento do 1º exercício financeiro; devolvido para sanção até o encerramento da sessão legislativa.<br>
+      • <strong>LDO:</strong> encaminhada até 8 meses e meio antes do encerramento do exercício financeiro; devolvida para sanção até o encerramento do 1º período da sessão legislativa.<br>
+      • <strong>LOA:</strong> encaminhada até 4 meses antes do encerramento do exercício financeiro; devolvida para sanção até o encerramento da sessão legislativa.
+    </div>
+    <div class="legal-block">
+      <strong>ADCT, art. 35, § 2º:</strong><br>
+      "I – o projeto do plano plurianual, para vigência até o final do primeiro exercício financeiro do mandato presidencial subsequente, será encaminhado até quatro meses antes do encerramento do primeiro exercício financeiro e devolvido para sanção até o encerramento da sessão legislativa;<br><br>
+      II – o projeto de lei de diretrizes orçamentárias será encaminhado até oito meses e meio antes do encerramento do exercício financeiro e devolvido para sanção até o encerramento do primeiro período da sessão legislativa;<br><br>
+      III – o projeto de lei orçamentária da União será encaminhado até quatro meses antes do encerramento do exercício financeiro e devolvido para sanção até o encerramento da sessão legislativa."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Lei Complementar — art. 165, § 9º, CF/88</div></div>
+    <div class="card-text">
+      Cabe à lei complementar dispor sobre o exercício financeiro, a vigência, os prazos, a elaboração e a organização do PPA, LDO e LOA, além de estabelecer normas de gestão financeira e patrimonial.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 165, § 9º:</strong><br>
+      "Cabe à lei complementar:<br>
+      I – dispor sobre o exercício financeiro, a vigência, os prazos, a elaboração e a organização do plano plurianual, da lei de diretrizes orçamentárias e da lei orçamentária anual;<br>
+      II – estabelecer normas de gestão financeira e patrimonial da administração direta e indireta bem como condições para a instituição e funcionamento de fundos.<br>
+      III - dispor sobre critérios para a execução equitativa, além de procedimentos que serão adotados quando houver impedimentos legais e técnicos, cumprimento de restos a pagar e limitação das programações de caráter obrigatório, para a realização do disposto nos § 11 e 12 do art. 166."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conteúdo da proposta orçamentária — Lei 4.320/64, art. 22</div></div>
+    <div class="card-text">
+      A proposta orçamentária compõe-se de:<br>
+      • <strong>Mensagem:</strong> exposição da situação econômico-financeira, dívida fundada e flutuante, saldos de créditos especiais, restos a pagar, justificativa da política econômico-financeira.<br>
+      • <strong>Projeto de Lei de Orçamento.</strong><br>
+      • <strong>Tabelas explicativas:</strong> receitas e despesas de vários anos para comparação.<br>
+      • <strong>Especificação de programas especiais:</strong> metas, custo das obras e serviços.
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> se o Legislativo não receber a proposta no prazo, considera-se como proposta a LOA vigente (Lei 4.320/64, art. 32).</div></div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Discussão/Estudo/Aprovação</div></div>
+  <div class="sec-subtitle">Emendas parlamentares, CMO, sanção e veto</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Comissão Mista de Planos, Orçamentos Públicos e Fiscalização (CMO)</div></div>
+    <div class="card-text">
+      Composta por senadores e deputados, compete-lhe examinar e emitir parecer sobre os projetos relativos ao PPA, LDO, LOA e créditos adicionais, além de exercer acompanhamento e fiscalização orçamentária.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 166, § 1º:</strong><br>
+      "Caberá a uma Comissão mista permanente de Senadores e Deputados:<br>
+      I – examinar e emitir parecer sobre os projetos referidos neste artigo e sobre as contas apresentadas anualmente pelo Presidente da República;<br>
+      II – examinar e emitir parecer sobre os planos e programas nacionais, regionais e setoriais previstos nesta Constituição e exercer o acompanhamento e a fiscalização orçamentária, sem prejuízo da atuação das demais comissões do Congresso Nacional e de suas Casas, criadas de acordo com o art. 58."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Emendas parlamentares — regras gerais</div></div>
+    <div class="card-text">
+      As emendas ao projeto de lei do orçamento anual ou aos projetos que o modifiquem somente podem ser aprovadas caso:
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 166, § 3º:</strong><br>
+      "As emendas ao projeto de lei do orçamento anual ou aos projetos que o modifiquem somente podem ser aprovadas caso:<br>
+      I - sejam compatíveis com o plano plurianual e com a lei de diretrizes orçamentárias;<br>
+      II – indiquem os recursos necessários, admitidos apenas os provenientes de anulação de despesa, excluídas as que incidam sobre:<br>
+      a) dotações para pessoal e seus encargos;<br>
+      b) serviço da dívida;<br>
+      c) transferências tributárias constitucionais para Estados, Municípios e Distrito Federal; ou<br>
+      III – sejam relacionadas:<br>
+      a) com a correção de erros ou omissões; ou<br>
+      b) com os dispositivos do texto do projeto de lei."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Mensagem presidencial para modificação</div></div>
+    <div class="card-text">
+      O Presidente da República poderá enviar mensagem ao Congresso Nacional para propor modificação nos projetos do PPA, LDO, LOA e créditos adicionais enquanto não iniciada a votação, na Comissão mista, da parte cuja alteração é proposta.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 166, § 5º:</strong><br>
+      "O Presidente da República poderá enviar mensagem ao Congresso Nacional para propor modificação nos projetos a que se refere este artigo enquanto não iniciada a votação, na Comissão mista, da parte cuja alteração é proposta."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Aprovação e sanção</div></div>
+    <div class="card-text">
+      • <strong>Aprovação:</strong> maioria simples, pois são leis ordinárias.<br>
+      • <strong>Sessão legislativa:</strong> não será interrompida sem a aprovação da LDO (CF/88, art. 57, § 2º).<br>
+      • <strong>Sanção:</strong> aquiescência do Executivo ao projeto aprovado.<br>
+      • <strong>Veto:</strong> discordância do Executivo com o projeto aprovado.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 166, § 7º:</strong><br>
+      "Aplicam-se às matérias de que trata este artigo as demais disposições relativas ao processo legislativo."
+    </div>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> a LDO não aprovada impede o recesso parlamentar. Já a LOA e o PPA pendentes não impedem o recesso.</div></div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Execução Orçamentária e Financeira</div></div>
+  <div class="sec-subtitle">Relatórios bimestrais, duodécimos e limitação de empenho</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Relatório resumido da execução orçamentária</div></div>
+    <div class="card-text">
+      O Poder Executivo publicará, até 30 dias após o encerramento de cada bimestre, relatório resumido da execução orçamentária.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 165, § 3º:</strong><br>
+      "O Poder Executivo publicará, até trinta dias após o encerramento de cada bimestre, relatório resumido da execução orçamentária."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Duodécimos</div></div>
+    <div class="card-text">
+      Os recursos correspondentes às dotações orçamentárias, compreendidos os créditos suplementares e especiais, destinados aos órgãos dos Poderes Legislativo e Judiciário, do Ministério Público e da Defensoria Pública, ser-lhes-ão entregues em duodécimos, até o dia 20 de cada mês. É vedada a transferência a fundos de recursos financeiros oriundos de repasses duodecimais.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 168, caput:</strong><br>
+      "Os recursos correspondentes às dotações orçamentárias, compreendidos os créditos suplementares e especiais, destinados aos órgãos dos Poderes Legislativo e Judiciário, do Ministério Público e da Defensoria Pública, ser-lhes-ão entregues, em duodécimos, até o dia 20 de cada mês, na forma da lei complementar."<br><br>
+      <strong>CF/88, art. 168, § 1º:</strong><br>
+      "É vedada a transferência a fundos de recursos financeiros oriundos de repasses duodecimais."<br><br>
+      <strong>CF/88, art. 168, § 2º:</strong><br>
+      "O saldo financeiro decorrente dos recursos entregues na forma do caput deste artigo deve ser restituído ao caixa único do Tesouro do ente federativo, ou terá seu valor deduzido das primeiras parcelas duodecimais do exercício seguinte."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Limitação de empenho e movimentação financeira (LRF, art. 9º)</div></div>
+    <div class="card-text">
+      Se verificado, ao final de um bimestre, que a realização da receita poderá não comportar o cumprimento das metas de resultado primário ou nominal, os Poderes e o Ministério Público promoverão limitação de empenho e movimentação financeira, segundo os critérios fixados pela LDO. A limitação também será promovida pelo ente que ultrapassar o limite para a dívida consolidada.
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Calamidade pública:</strong> na vigência de calamidade pública reconhecida pelo Congresso Nacional, serão dispensados o atingimento dos resultados fiscais e a limitação de empenho prevista no art. 9º da LRF (art. 65 da LRF).</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> a limitação de empenho ocorre por frustração de <strong>receita</strong>, não por excesso de despesa. O gestor só pode limitar empenho quando a arrecadação comprometer as metas fiscais.</div></div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Avaliação e Controle</div></div>
+  <div class="sec-subtitle">Controle interno, controle externo e TCU</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Avaliação orçamentária</div></div>
+    <div class="card-text">
+      Analisa a eficácia e a eficiência dos cursos de ação cumpridos, proporcionando elementos para adoção de medidas tendentes à consecução dos objetivos e à otimização do uso dos recursos. Tem foco <strong>prospectivo</strong> e retroalimenta o ciclo orçamentário.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Controle orçamentário</div></div>
+    <div class="card-text">
+      Verifica a conformidade da execução orçamentária, propõe ações corretivas e tem foco <strong>retrospectivo</strong>. A CF/88 e a Lei 4.320/64 determinam dois sistemas: <strong>controle interno</strong> e <strong>controle externo</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Controle interno — CF/88, art. 74</div></div>
+    <div class="card-text">
+      Mantido pelos Poderes Legislativo, Executivo e Judiciário, de forma integrada, com as finalidades de:<br>
+      I – avaliar o cumprimento das metas do PPA, execução dos programas de governo e dos orçamentos;<br>
+      II – comprovar a legalidade e avaliar resultados quanto à eficácia e eficiência da gestão orçamentária, financeira e patrimonial;<br>
+      III – exercer o controle das operações de crédito, avais e garantias;<br>
+      IV – apoiar o controle externo.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 74:</strong><br>
+      "Os Poderes Legislativo, Executivo e Judiciário manterão, de forma integrada, sistema de controle interno com a finalidade de:<br>
+      I – avaliar o cumprimento das metas previstas no plano plurianual, a execução dos programas de governo e dos orçamentos da União;<br>
+      II – comprovar a legalidade e avaliar os resultados, quanto à eficácia e eficiência, da gestão orçamentária, financeira e patrimonial nos órgãos e entidades da administração federal, bem como da aplicação de recursos públicos por entidades de direito privado;<br>
+      III – exercer o controle das operações de crédito, avais e garantias, bem como dos direitos e haveres da União;<br>
+      IV – apoiar o controle externo no exercício de sua missão institucional."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Controle externo — CF/88, arts. 70 e 71</div></div>
+    <div class="card-text">
+      Exercido pelo Congresso Nacional, com auxílio do Tribunal de Contas da União (TCU). A fiscalização contábil, financeira, orçamentária, operacional e patrimonial da União será exercida mediante controle externo e pelo sistema de controle interno de cada Poder.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 70, caput:</strong><br>
+      "A fiscalização contábil, financeira, orçamentária, operacional e patrimonial da União e das entidades da Administração direta e indireta, quanto à legalidade, legitimidade, economicidade, aplicação das subvenções e renúncia de receitas, será exercida pelo Congresso Nacional, mediante controle externo, e pelo sistema de controle interno de cada Poder."<br><br>
+      <strong>CF/88, art. 71, I:</strong><br>
+      "O controle externo, a cargo do Congresso Nacional, será exercido com o auxílio do Tribunal de Contas da União, ao qual compete: I - apreciar as contas prestadas anualmente pelo Presidente da República, mediante parecer prévio que deverá ser elaborado em sessenta dias a contar de seu recebimento;"
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Controle na Lei 4.320/64 — art. 75</div></div>
+    <div class="card-text">
+      O controle da execução orçamentária compreenderá:<br>
+      I – a legalidade dos atos de que resultem a arrecadação da receita ou a realização da despesa;<br>
+      II – a fidelidade funcional dos agentes da administração;<br>
+      III – o cumprimento do programa de trabalho expresso em termos monetários e físicos.
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 75:</strong><br>
+      "O controle da execução orçamentária compreenderá:<br>
+      I – a legalidade dos atos de que resultem a arrecadação da receita ou a realização da despesa, o nascimento ou a extinção de direitos e obrigações;<br>
+      II – a fidelidade funcional dos agentes da administração, responsáveis por bens e valores públicos;<br>
+      III – o cumprimento do programa de trabalho expresso em termos monetários e em termos de realização de obras e prestação de serviços."
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Emendas Parlamentares Impositivas</div></div>
+  <div class="sec-subtitle">EC 86/2015, EC 100/2019 e EC 126/2022</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Regra geral — art. 166, CF/88</div></div>
+    <div class="card-text">
+      As emendas individuais ao projeto de lei orçamentária serão aprovadas no limite de <strong>2% da RCL</strong> do exercício anterior ao do encaminhamento do projeto. Desse percentual, <strong>1,55%</strong> caberá às emendas de Deputados e <strong>0,45%</strong> às de Senadores. Metade desse percentual será destinada a ações e serviços públicos de saúde.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 166, § 9º:</strong><br>
+      "As emendas individuais ao projeto de lei orçamentária serão aprovadas no limite de 2% (dois por cento) da receita corrente líquida do exercício anterior ao do encaminhamento do projeto, observado que a metade desse percentual será destinada a ações e serviços públicos de saúde."<br><br>
+      <strong>CF/88, art. 166, § 9º-A:</strong><br>
+      "Do limite a que se refere o § 9º deste artigo, 1,55% (um inteiro e cinquenta e cinco centésimos por cento) caberá às emendas de Deputados e 0,45% (quarenta e cinco centésimos por cento) às de senadores."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Execução obrigatória — art. 166, §§ 10 a 20</div></div>
+    <div class="card-text">
+      • <strong>§ 10:</strong> execução do montante destinado a saúde será computada para fins do cumprimento do mínimo de 15% da RCL, vedada destinação para pagamento de pessoal.<br>
+      • <strong>§ 11:</strong> obrigatória a execução orçamentária e financeira das programações oriundas de emendas individuais, no limite de 2% da RCL.<br>
+      • <strong>§ 12:</strong> aplica-se também às emendas de bancada estadual, no montante de até 1% da RCL realizada no exercício anterior.<br>
+      • <strong>§ 13:</strong> não serão de execução obrigatória nos casos de impedimentos de ordem técnica.<br>
+      • <strong>§ 17:</strong> restos a pagar provenientes das programações poderão ser considerados até o limite de 1% da RCL para emendas individuais e 0,5% para emendas de bancada.
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Transferência especial (EC 105/2019):</strong> emendas impositivas podem alocar recursos a Estados/DF/Municípios por transferência especial (sem convênio) ou transferência com finalidade definida (vinculada a programas do Executivo).</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> emendas impositivas não são "orçamento impositivo" tradicional. Apenas parte da LOA passou a ser de execução obrigatória. O restante continua discricionário.</div></div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Mnemônico e Dicas de Prova</div></div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemônico — Ciclo Orçamentário</div>
+    <div class="mnemonic-content">
+      E – Elaboração (Executivo elabora, LDO limita)<br>
+      D – Discussão (CMO + emendas + CF art. 166)<br>
+      E – Execução (duodécimos, RREO, limitação de empenho)<br>
+      A – Avaliação/Controle (interno art. 74 + externo art. 71)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🧠</div><div class="card-title">Pegadinhas frequentes</div></div>
+    <div class="card-text">
+      1. <strong>Iniciativa do Executivo:</strong> PPA, LDO e LOA são de iniciativa do Executivo. Os demais Poderes enviam propostas parciais.<br>
+      2. <strong>CMO:</strong> comissão mista de Senadores e Deputados, não comissões separadas.<br>
+      3. <strong>LDO aprovada:</strong> impede recesso parlamentar; LOA e PPA pendentes não impedem.<br>
+      4. <strong>Emendas impositivas:</strong> 2% da RCL para individuais; 1% da RCL para bancada.<br>
+      5. <strong>Recursos para emendas:</strong> apenas anulação de despesa, excluindo pessoal, dívida e transferências constitucionais.<br>
+      6. <strong>Duodécimos:</strong> até o dia 20 de cada mês; vedada transferência a fundos.<br>
+      7. <strong>Limitação de empenho:</strong> ocorre por frustração de receita, não por excesso de despesa.
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Questões Comentadas — Multibancas</div></div>
+
+  <div class="question">
+    <div class="question-header">1) CESPE / TCE-RJ / 2022</div>
+    <div class="question-text">O ciclo orçamentário corresponde ao período de tempo em que se processam as atividades típicas do orçamento público, desde sua concepção até sua apreciação final.</div>
+    <div class="answer"><strong>Gabarito: Correta</strong><br>
+O ciclo orçamentário engloba concepção inicial, gestão e avaliação. A apreciação final ocorre por meio da prestação de contas do Executivo pelo Legislativo, com auxílio do TC.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">2) CEBRASPE / ICMBio / Analista Administrativo / 2025</div>
+    <div class="question-text">Compete à Comissão de Finanças e Tributação, na Câmara dos Deputados, e à Comissão de Assuntos Econômicos, no Senado Federal, examinar e emitir parecer sobre os projetos de lei de matérias orçamentárias e de créditos adicionais.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+Compete à <strong>Comissão Mista (CMO)</strong>, composta por Senadores e Deputados, examinar e emitir parecer sobre os projetos orçamentários (CF/88, art. 166, § 1º).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">3) CEBRASPE / TRF 6 / Analista Judiciário / 2025</div>
+    <div class="question-text">O Presidente da República poderá enviar mensagem ao Congresso Nacional propondo modificação no projeto de LOA enquanto não iniciada a votação, na Comissão Mista de Orçamentos, da parte cuja alteração é proposta.</div>
+    <div class="answer"><strong>Gabarito: Certo</strong><br>
+CF/88, art. 166, § 5º: o Presidente pode propor modificações enquanto não iniciada a votação na Comissão mista da parte cuja alteração é proposta.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">4) FGV / TCE/AM / 2021</div>
+    <div class="question-text">O processo orçamentário é cíclico. Uma particularidade é que: a) os atos estão sujeitos a controle interno e externo; b) as competências dos poderes são alternadas; c) o ciclo começa com a aprovação da LDO; d) a execução do PPA coincide com um mandato eletivo; e) os prazos são os mesmos para todos os entes.</div>
+    <div class="answer"><strong>Gabarito: A</strong><br>
+Letra A: correta — há controle interno e externo (CF/88, art. 70). Letras B-E: erradas por motivos variados (competências não são alternadas; ciclo começa com elaboração; PPA dura dois mandatos; prazos variam por ente).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">5) CEBRASPE / PC-DF / Agente Administrativo / 2025</div>
+    <div class="question-text">A atual redação da CF/1988 expressamente impõe a obrigatoriedade da execução orçamentária das emendas individuais e das emendas de bancada estadual, salvo quando existirem impedimentos de ordem técnica.</div>
+    <div class="answer"><strong>Gabarito: Certo</strong><br>
+CF/88, art. 166, §§ 11, 12 e 13. A execução obrigatória não é absoluta: pode ser obstada por impedimento de ordem técnica.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">6) CEBRASPE / TRF 6 / Analista Judiciário / 2025</div>
+    <div class="question-text">A fase de execução do ciclo orçamentário se encerra imediatamente após o final da vigência da LOA, sendo este o momento em que se inicia a fase de controle.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+A fase de controle não depende do encerramento da LOA. Começa durante a execução (controle concomitante), pode ser prévia (art. 77 da Lei 4.320/64) e prossegue após o exercício com auditorias e prestação de contas.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">7) FCC / Analista Judiciário / TRF/4 / 2019</div>
+    <div class="question-text">O Presidente da República poderá propor modificação nos projetos de lei relativos ao PPA, LDO e LOA, desde que não iniciada a votação do projeto respectivo, na Comissão mista permanente.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>
+O Presidente pode enviar mensagem propondo modificação enquanto <strong>não iniciada a votação na Comissão mista da parte cuja alteração é proposta</strong> (art. 166, § 5º). A assertiva diz "não iniciada a votação do projeto respectivo", o que é mais amplo do que a CF permite.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">8) FGV / TJ/DFT / 2022</div>
+    <div class="question-text">Sobre a fase de avaliação do ciclo orçamentário: a) verifica conformidade e propõe ações corretivas (retrospectivo); b) define prioridades (retrospectivo); c) analisa conveniência da execução (prospectivo); d) estima recursos (prospectivo); e) visa ao aperfeiçoamento da gestão e avalia resultados (prospectivo).</div>
+    <div class="answer"><strong>Gabarito: E</strong><br>
+Avaliação = foco prospectivo, visa aperfeiçoamento da gestão e avaliação de resultados. Controle = foco retrospectivo, verificação de conformidade.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">9) CESPE / CGM/JP / 2018</div>
+    <div class="question-text">O ciclo orçamentário inicia-se com a elaboração do projeto de lei orçamentária e se encerra com a publicação da lei do orçamento pelo Poder Executivo.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>
+O ciclo orçamentário não se encerra com a publicação da LOA. Continua com as fases de execução e controle.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">10) CEBRASPE / ANM / Analista Administrativo / 2025</div>
+    <div class="question-text">Depois de iniciada a votação da LOA na CMO, é defeso ao Presidente da República propor modificação na proposta, ainda que não discutida a parte na qual incidiria tal modificação.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+A CF/88 permite que o Presidente envie mensagem propondo modificações enquanto <strong>não iniciada a votação na CMO da parte cuja alteração é proposta</strong> (art. 166, § 5º).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">11) CEBRASPE / TRT10 / Analista Judiciário / 2025</div>
+    <div class="question-text">O projeto de LOA do primeiro exercício financeiro do mandato do Presidente deverá ser enviado ao Congresso dois meses e meio após o envio do PPA.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+A LOA deve ser encaminhada até 31 de agosto de cada ano, inclusive no primeiro ano de mandato, sem necessidade de esperar dois meses e meio após o envio do PPA.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">12) FGV / Advogado Legislativo / CM Salvador / 2018</div>
+    <div class="question-text">O Vereador João apresentou emenda compatível com o PPA e a LDO. Para apresentá-la, deveria indicar os recursos necessários. À luz da sistemática constitucional, esses recursos podem advir da anulação de despesas que digam respeito a dotações para pessoal.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>
+As emendas ao projeto de LOA admitem recursos apenas de anulação de despesa, <strong>excluídas</strong> as que incidam sobre dotações para pessoal e encargos, serviço da dívida e transferências tributárias constitucionais (art. 166, § 3º, II).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">13) CEBRASPE / Pref. Aracaju / Proc Mun / 2025</div>
+    <div class="question-text">Segundo jurisprudência do STF, é legítima a previsão em Constituição estadual que veda a inscrição em restos a pagar das despesas decorrentes de emendas parlamentares impositivas.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+No julgamento da ADI 7060, o STF declarou inconstitucional norma que veda a inscrição em restos a pagar de despesas de emendas impositivas. A CF permite essa inscrição nos limites dos §§ 11 e 12 do art. 166.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">14) CEBRASPE / TRF 6 / Analista Judiciário / 2025</div>
+    <div class="question-text">Caberá a comissões permanentes específicas da Câmara dos Deputados e do Senado Federal, separadamente, examinar e emitir parecer sobre projetos de lei relativos às leis orçamentárias.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+Compete à <strong>Comissão Mista (CMO)</strong>, composta por Senadores e Deputados, examinar e emitir parecer sobre os projetos orçamentários (art. 166, § 1º).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">15) FGV / Câmara Municipal de Salvador / 2018</div>
+    <div class="question-text">A fiscalização contábil, financeira, orçamentária, operacional e patrimonial da União será exercida pelo Congresso Nacional, mediante controle interno e pelo sistema de controle externo de cada Poder.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>
+A fiscalização é exercida pelo Congresso Nacional, mediante <strong>controle externo</strong>, e pelo sistema de <strong>controle interno</strong> de cada Poder (art. 70, caput). A assertiva inverteu os conceitos.</div>
+  </div>
+</section>
+
+<!-- SECAO 9 -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Tabela Comparativa — Fases do Ciclo Orçamentário</div></div>
+  <div class="card" style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:.82rem;color:var(--text2);">
+      <thead>
+        <tr style="background:#f4f7fb;color:var(--blue);">
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Fase</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Ator principal</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Prazo federal</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Ato principal</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Base legal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;"><strong>Elaboração</strong></td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Executivo</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">4 meses antes</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Envia proposta ao Legislativo</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF art. 165; ADCT art. 35</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;"><strong>Discussão</strong></td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Legislativo/CMO</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Sessão legislativa</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Emendas + parecer CMO</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF art. 166</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;"><strong>Aprovação</strong></td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Legislativo</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Maioria simples</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Votação e sanção</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF art. 166, § 7º</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;"><strong>Execução</strong></td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Executivo</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Exercício financeiro</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Arrecadação + despesa</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF art. 165, § 3º; art. 168</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;"><strong>Avaliação/Controle</strong></td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Interno + TCU</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Permanente</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Prestação de contas</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF arts. 70, 71, 74; Lei 4.320 arts. 75-82</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica final:</strong> decore os arts. 165, 166, 167, 168, 70, 71, 74 da CF/88, além dos arts. 32, 33, 34, 75 da Lei 4.320/64.</div></div>
+</section>
+
+</div>
+
+</body>
+</html>

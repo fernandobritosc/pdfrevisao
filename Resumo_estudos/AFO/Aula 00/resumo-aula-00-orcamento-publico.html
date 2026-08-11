@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO Aula 00: Orçamento Público</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 00</div>
+  <div class="sidebar-sub">Orçamento Público · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito de orçamento público</a>
+  <a href="#sec2">2. Orçamento na visão da doutrina</a>
+  <a href="#sec3">3. Normas gerais de direito financeiro</a>
+  <a href="#sec4">4. Atividade financeira do Estado</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO DE ORÇAMENTO PÚBLICO                        -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de orçamento público</div>
+  </div>
+  <div class="sec-subtitle">A Lei Orçamentária Anual é o orçamento por excelência — o orçamento propriamente dito</div>
+
+  <div class="card">
+    <div class="card-title">O que é o orçamento</div>
+    <div class="card-text">
+      O orçamento público é o instrumento pelo qual o Poder Público <strong>prevê a arrecadação de receitas</strong> e <strong>fixa a realização de despesas</strong> para o período de um ano. A <strong>Lei Orçamentária Anual (LOA)</strong> é o <strong>"orçamento por excelência"</strong> — o orçamento propriamente dito (aula 00, AFO).<br><br>
+      • Os recursos são <strong>escassos</strong> e as necessidades da sociedade <strong>ilimitadas</strong> → são necessárias escolhas na elaboração dos instrumentos de planejamento e orçamento; alguns setores serão mais beneficiados, conforme as ideias dominantes dos governantes daquele momento<br>
+      • As despesas executadas pelos órgãos públicos <strong>não podem ser desviadas</strong> do que está autorizado na LOA, tampouco podem conflitar com o interesse público
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Vedações que moldam o conceito (CF/88)</div>
+    <div class="card-text">
+      A CF/1988 <strong>veda o início de programas ou projetos não incluídos na LOA</strong> (art. 167, I) e <strong>proíbe a concessão ou utilização de créditos ilimitados</strong> (art. 167, VII).<br><br>
+      Também veda a utilização, <strong>sem autorização legislativa específica</strong>, de recursos do orçamento fiscal e da seguridade social para suprir necessidade ou cobrir déficit de empresas, fundações e fundos, inclusive daqueles que compõem os próprios orçamentos previstos na LOA (art. 167, VIII).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípio orçamentário constitucional da exclusividade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A LOA deve conter <strong>apenas matérias atinentes à previsão das receitas e à fixação das despesas</strong>. Em caráter de <strong>exceção</strong>, são liberadas as autorizações para <strong>créditos suplementares</strong> e <strong>operações de crédito, inclusive por antecipação de receita orçamentária</strong> (art. 165, § 8º, CF/88).<br><br>
+      A finalidade do princípio é <strong>preservar a pureza orçamentária</strong>, concentrando o debate e a aprovação da LOA exclusivamente em arrecadação e aplicação dos recursos. Historicamente, decorre de práticas abusivas: a inserção na LOA de matérias alheias ao orçamento — os chamados <strong>"jabutis", "orçamentos rabilongos" ou "caudas orçamentárias"</strong> — para aproveitar a tramitação prioritária da peça no Congresso.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Crédito <strong>especial</strong> <strong>não</strong> precisa de autorização prévia na LOA — a exceção à exclusividade alcança os <strong>créditos suplementares</strong> e as <strong>operações de crédito</strong> (inclusive por antecipação de receita). A banca troca "suplementares" por "especiais" (FGV TJ/DFT 2022).
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Finalidade da LOA:</strong> concretizar os objetivos e metas estabelecidos no PPA — é o cumprimento ano a ano das etapas do PPA, em consonância com a LDO. O PPA é plano prévio à LDO, e a LDO é plano prévio à LOA.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — ORÇAMENTO NA VISÃO DA DOUTRINA                       -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Orçamento na visão da doutrina</div>
+  </div>
+  <div class="sec-subtitle">A visão de James Giacomoni (Orçamento Público) sobre o modelo brasileiro</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Integração entre planejamento e orçamento
+  </h3>
+
+  <div class="card">
+    <div class="card-title">O orçamento anual como instrumento de curto prazo</div>
+    <div class="card-text">
+      Segundo Giacomoni, no modelo de integração entre planejamento e orçamento, "o orçamento anual constitui-se em instrumento, <strong>de curto prazo</strong>, que operacionaliza os <strong>programas setoriais e regionais de médio prazo</strong>, os quais, por sua vez, cumprem o marco fixado pelos <strong>planos nacionais</strong> em que estão definidos os grandes objetivos e metas, os projetos estratégicos e as políticas básicas".<br><br>
+      Os principais elementos e informações a serem usados na elaboração da proposta orçamentária são buscados em <strong>componentes do sistema de planejamento</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">A visão sobre os investimentos</div>
+    <div class="card-text">
+      "No Brasil, é conhecida a reverência dedicada aos investimentos, desconhecendo-se, quase sempre, que, <strong>a partir de sua conclusão, todo e qualquer investimento demandará, para sempre, recursos de operação e manutenção</strong>."<br><br>
+      Demonstrando sensibilidade para esse aspecto, o constituinte de 1988 introduziu regra capaz de aperfeiçoar tradicionais padrões e práticas decisórias — daí o PPA incluir as despesas de capital <strong>e as outras delas decorrentes</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">A visão sobre a LDO</div>
+    <div class="card-text">
+      "Significando efetiva inovação no sistema orçamentário brasileiro, a <strong>LDO representa uma colaboração positiva</strong> no esforço de tornar o processo orçamentário mais transparente e, especialmente, contribui para <strong>ampliar a participação do Poder Legislativo</strong> no disciplinamento das finanças públicas."<br><br>
+      Uma lei de diretrizes aprovada previamente, composta de prioridades, metas, investimentos, metas fiscais, mudanças na legislação sobre tributos e políticas de fomento a cargo de bancos oficiais, possibilita a <strong>compreensão partilhada entre Executivo e Legislativo</strong>, facilitando a elaboração da proposta orçamentária e sua discussão e aprovação.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Antecedentes históricos: o Orçamento Plurianual de Investimentos (OPI)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O <strong>OPI</strong> foi inovação introduzida pela <strong>Constituição de 1967</strong> e pela <strong>EC nº 1/1969</strong>: orçamento com <strong>vigência de três anos</strong>, ajustado anualmente, destinado a investimentos de grande porte (obras de infraestrutura, projetos industriais, programas de desenvolvimento nacional). Era a expressão financeira da programação dos Planos Nacionais de Desenvolvimento.<br><br>
+      Conforme Giacomoni, "apesar de a experiência ter sido longa — de 20 anos — o OPI constituía-se em <strong>mera formalidade</strong>, não cumprindo a função de guia plurianual que dele se esperava", porque:<br>
+      • Abrangia <strong>exclusivamente as despesas de capital</strong> (investimentos), não contemplando despesas correntes a elas associadas — mas decisão de despesa e avaliação de resultados devem considerar conjuntamente gastos de capital e correntes<br>
+      • A programação <strong>não implicava autorização para execução plurianual automática</strong> — o Executivo ainda precisava da autorização do Legislativo por lei orçamentária anual, a cada ano<br>
+      • Por não portar autorização plurianual e ser anualmente revisto, era elaborado de maneira <strong>burocrática e sem maior empenho</strong><br><br>
+      A votação do OPI era feita pelo Legislativo, mas este <strong>não tinha poder de emendar</strong> a programação das despesas (Regime Militar) — havia apenas a formalização da autorização legislativa.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O OPI <strong>não autorizava a execução plurianual automática</strong>: mesmo aprovado, o Executivo precisava de autorização legislativa anual (lei orçamentária) para alocar recursos e executar. Além disso, o OPI cobria <strong>apenas despesas de capital</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — NORMAS GERAIS DE DIREITO FINANCEIRO                  -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Normas gerais de direito financeiro</div>
+  </div>
+  <div class="sec-subtitle">Lei 4.320/1964, art. 165/167 da CF/1988 e ADCT — marcos normativos citados na aula</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Lei 4.320/1964
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Conteúdo da LOA e exercício financeiro</div>
+    <div class="card-text">
+      • <strong>Art. 2º:</strong> a LOA conterá a <strong>discriminação da receita e despesa</strong>, de forma a evidenciar a política econômico-financeira e o <strong>programa de trabalho do Governo</strong><br>
+      • <strong>Art. 34:</strong> o <strong>exercício financeiro coincide com o ano civil</strong> (1º de janeiro a 31 de dezembro)<br><br>
+      • <strong>Art. 12:</strong> as <strong>despesas de capital</strong> englobam <strong>investimentos, inversões financeiras e transferências de capital</strong>. As transferências de capital representam recursos repassados a outros entes federativos para aplicação em despesas de capital
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Investimento — linguagem orçamentária ≠ linguagem do dia a dia</div>
+    <div class="card-text">
+      <strong>No dia a dia:</strong> aplicação ou aquisição que proporciona retorno financeiro (ex.: ações na bolsa).<br>
+      <strong>Na linguagem orçamentária (definição clássica, Lei 4.320/64):</strong> investimentos são as "dotações para o <strong>planejamento e a execução de obras</strong>, inclusive as destinadas à aquisição de imóveis considerados necessários à realização destas últimas, bem como para os <strong>programas especiais de trabalho</strong>, aquisição de <strong>instalações, equipamentos e material permanente</strong> e constituição ou aumento do capital de empresas que não sejam de caráter comercial ou financeiro".<br><br>
+      <strong>Definição mais atual (MTO 2025 e MCASP 11ª ed.):</strong> investimentos são "despesas orçamentárias com <strong>softwares</strong> e com o planejamento e a execução de obras, inclusive com a aquisição de imóveis considerados necessários à realização destas últimas, e com a aquisição de instalações, equipamentos e material permanente".
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Despesa</th><th>Conceito</th><th>Exemplo (fonte)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Despesas de capital</strong></td><td>Contribuem, <strong>diretamente</strong>, para a formação ou aquisição de um bem de capital</td><td>Construção de uma rodovia (investimento público)</td></tr>
+        <tr><td><strong>Despesas correntes</strong></td><td><strong>Não</strong> contribuem diretamente para a formação ou aquisição de um bem de capital</td><td>Pessoal, encargos sociais, custeio, manutenção</td></tr>
+        <tr><td><strong>Despesas decorrentes da de capital</strong></td><td>Despesas correntes geradas após a realização da despesa de capital, ainda dentro da vigência do PPA</td><td>Custeio da manutenção da rodovia após a pavimentação</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>No PPA:</strong> tanto a construção da rodovia (despesa de capital) quanto o custeio de sua manutenção durante a vigência do Plano (despesa corrente relacionada à de capital) deverão estar <strong>previstos no Plano Plurianual</strong>. É o que o constituinte de 1988 aperfeiçoou frente à "reverência aos investimentos" criticada por Giacomoni.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Investimentos plurianuais (art. 167, § 1º, CF/88)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      "Nenhum investimento cuja execução <strong>ultrapasse um exercício financeiro</strong> poderá ser iniciado sem <strong>prévia inclusão no plano plurianual, ou sem lei que autorize a inclusão</strong>, sob pena de <strong>crime de responsabilidade</strong>."<br><br>
+      • Se o gestor conseguir finalizar a obra dentro de um exercício financeiro, <strong>não há obrigatoriedade</strong> de constar no PPA<br>
+      • Se ultrapassar o exercício, <strong>deve constar</strong> no PPA (ou em lei que autorize a inclusão = emenda ao PPA)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A regra do art. 167, § 1º, aplica-se <strong>apenas</strong> aos investimentos cuja execução ultrapasse um exercício financeiro — assertiva que omita essa condição está errada (FGV SEFAZ/AM 2022). E a inclusão exigida é no <strong>PPA</strong>, não nas diretrizes orçamentárias (FGV SEFIN/RO 2018). Crédito <strong>extraordinário</strong> não supre a ausência de previsão no PPA para programa de infraestrutura (só atende despesas imprevisíveis e urgentes — guerra, comoção interna ou calamidade pública).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Art. 165 da CF/1988 — os três instrumentos
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      As leis do art. 165 são de <strong>iniciativa do Poder Executivo</strong> (art. 165, <em>caput</em>): I – o plano plurianual; II – as diretrizes orçamentárias; III – os orçamentos anuais. O envio ao Congresso é <strong>competência privativa do Presidente da República</strong> (art. 84, XXIII), <strong>não delegável</strong> (não está no rol de delegação do parágrafo único) — por isso a doutrina a classifica como <strong>exclusiva</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Instrumento</th><th>Dispositivo</th><th>Conteúdo essencial</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PPA</strong></td><td>Art. 165, § 1º</td><td>De forma <strong>regionalizada</strong>, diretrizes, objetivos e metas da APF para as <strong>despesas de capital</strong>, outras delas decorrentes e para as relativas aos <strong>programas de duração continuada</strong></td></tr>
+        <tr><td><strong>LDO</strong></td><td>Art. 165, § 2º</td><td>Metas e prioridades da APF; diretrizes de <strong>política fiscal</strong> e metas em consonância com a <strong>trajetória sustentável da dívida pública</strong>; orienta a elaboração da LOA; dispõe sobre <strong>alterações na legislação tributária</strong>; política de aplicação das <strong>agências financeiras oficiais de fomento</strong></td></tr>
+        <tr><td><strong>LOA</strong></td><td>Art. 165, § 5º</td><td>Orçamento <strong>fiscal</strong>, orçamento de <strong>investimento das estatais</strong> e orçamento da <strong>seguridade social</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Art. 165, § 9º:</strong> cabe a <strong>lei complementar</strong> (i) dispor sobre exercício financeiro, vigência, prazos, elaboração e organização do PPA, da LDO e da LOA; e (ii) estabelecer normas de gestão financeira e patrimonial da administração direta e indireta e condições para instituição e funcionamento de fundos. <strong>Ainda não editada</strong> — por isso os prazos seguem no <strong>ADCT</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Prazos do ciclo orçamentário federal (ADCT, art. 35, § 2º)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Instrumento</th><th>Encaminhamento (Executivo → Legislativo)</th><th>Devolução (para sanção)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PPA</strong> (inciso I)</td><td>Até 4 meses antes do encerramento do <strong>1º exercício financeiro</strong> (31 de agosto)</td><td>Até o encerramento da <strong>sessão legislativa</strong> (22 de dezembro)</td></tr>
+        <tr><td><strong>LDO</strong> (inciso II)</td><td>Até <strong>8 meses e meio</strong> antes do encerramento do exercício financeiro (15 de abril)</td><td>Até o encerramento do <strong>1º período</strong> da sessão legislativa (17 de julho)</td></tr>
+        <tr><td><strong>LOA</strong> (inciso III)</td><td>Até 4 meses antes do término do exercício financeiro (31 de agosto)</td><td>Até o encerramento da <strong>sessão legislativa</strong> (22 de dezembro)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      PPA 31/08 · LDO 15/04 · LOA 31/08 — "o PPA e a LOA saem no fim do ano; a LDO sai em abril" · Devolução: PPA e LOA até 22/12 (fim da sessão); LDO até 17/07 (fim do 1º período)
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>A sessão legislativa não será interrompida sem a aprovação da LDO</strong> (art. 57, § 2º, CF/88) — o Congresso não pode entrar em recesso em julho sem aprovar a Lei de Diretrizes Orçamentárias.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — ATIVIDADE FINANCEIRA DO ESTADO                       -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Atividade financeira do Estado</div>
+  </div>
+  <div class="sec-subtitle">Planejamento (PPA), orientação (LDO) e operação (LOA) — o elo entre o estratégico e o operacional</div>
+
+  <div class="card">
+    <div class="card-title">O sistema de planejamento e orçamento</div>
+    <div class="card-text">
+      A CF/1988 estruturou a atividade financeira do Estado em três instrumentos integrados:<br><br>
+      <strong>PPA</strong> = planejamento <strong>estratégico</strong>, de <strong>médio prazo</strong> (4 anos) → define diretrizes, objetivos e metas<br>
+      <strong>LDO</strong> = plano <strong>tático</strong>, o <strong>elo</strong> entre o PPA e a LOA → metas e prioridades para orientar a elaboração da LOA<br>
+      <strong>LOA</strong> = planejamento <strong>operacional</strong>, o orçamento anual → previsão de receitas e fixação de despesas
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    O PPA na CF/1988
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Conceito e vigência</div>
+    <div class="card-text">
+      O PPA é o instrumento de planejamento do Governo Federal que estabelece, de forma regionalizada, as diretrizes, objetivos e metas da Administração Pública Federal para as despesas de capital, outras delas decorrentes e para os programas de duração continuada (art. 165, § 1º).<br><br>
+      • Todos os entes (Estados, DF e Municípios) têm seus PPAs — por força do <strong>princípio do paralelismo ou simetria constitucional</strong>, mas as diretrizes/objetivos/metas do PPA federal <strong>não precisam ser refletidos</strong> nos PPAs dos demais entes (é política pública)<br>
+      • <strong>Iniciativa</strong> de elaboração do projeto de PPA: sempre do <strong>Poder Executivo</strong> de cada ente (competência exclusiva)<br>
+      • Vigência de <strong>4 anos</strong>: inicia no <strong>2º exercício financeiro do mandato</strong> do chefe do Executivo e termina no <strong>1º exercício do mandato subsequente</strong> — não coincide com o mandato eletivo<br>
+      • Por ser lei, só pode ser revisado ou alterado por <strong>outra lei</strong> (inclusão, exclusão ou alteração de programas)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O PPA é elaborado no <strong>1º ano do mandato</strong>, mas entra em vigor no <strong>2º ano</strong>. Ex.: mandato 2023–2026 → PPA com vigência <strong>2024 a 2027</strong>. Assertiva que faz o PPA coincidir com o mandato está errada (FGV SEFAZ/ES 2021; CESPE CGM/JP 2018).
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regionalização</div>
+    <div class="card-text">
+      O PPA deve ser elaborado <strong>de forma regionalizada</strong>. A Lei 14.802/2024 (PPA 2024–2027) define regionalização da meta como a <strong>distribuição das metas estipuladas para o programa no território</strong>, e os critérios de regionalização têm como objetivo a <strong>redução das desigualdades regionais</strong>.<br><br>
+      • Na prática, os últimos PPAs distribuem a programação entre as <strong>5 regiões</strong> (Norte, Nordeste, Centro-Oeste, Sudeste e Sul)<br>
+      • <strong>Não há regra constitucional específica</strong> detalhando os critérios de regionalização — pode haver outros recortes que não sejam por macrorregiões (muito cobrado em prova)
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Diretrizes</div><div class="card-text">Declaração(ões) que orientam os programas abrangidos no PPA, com fundamento nas demandas da população. Normas gerais, amplas, estratégicas — mostram o caminho da gestão dos recursos pelos próximos 4 anos</div></div>
+    <div class="card"><div class="card-title">🎯 Objetivos</div><div class="card-text">O que será perseguido com maior ênfase no período do Plano. Declaração de resultado a ser alcançado: o que deve ser feito para a transformação de determinada realidade</div></div>
+    <div class="card"><div class="card-title">📊 Metas</div><div class="card-text">Declaração de resultado a ser alcançado, de natureza <strong>quantitativa ou qualitativa</strong>, que contribui para o alcance do objetivo</div></div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Programas do PPA 2024–2027</div>
+    <div class="card-text">
+      O programa é o conjunto de políticas públicas financiadas por <strong>ações orçamentárias e não orçamentárias</strong>, instrumento de organização da ação governamental para concretizar os objetivos, mensurado por indicadores.<br><br>
+      • <strong>Programa Finalístico:</strong> conjunto coordenado de ações financiadas por recursos orçamentários e não orçamentários com vistas à concretização do objetivo (integram-no entregas e medidas institucionais e normativas)<br>
+      • <strong>Programa de Gestão:</strong> ações relacionadas à gestão da atuação governamental ou à manutenção da capacidade produtiva das empresas estatais, não passíveis de associação aos programas finalísticos
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Planos e programas nacionais, regionais e setoriais (art. 165, § 4º):</strong> serão elaborados <strong>em consonância com o PPA</strong> e apreciados pelo Congresso Nacional. Apesar de muitos terem duração superior ao PPA (ex.: PNE 2014–2024, Lei 13.005/2014, com 10 anos), em tese devem seguir o PPA. Na prática, vale a lei sancionada primeiro.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    A LDO — elo entre estratégia e operação
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A LDO surgiu com a CF/1988 para ser o <strong>elo entre o planejamento estratégico (PPA) e o operacional (LOA)</strong>, diminuindo a distância entre o plano estratégico e as LOAs. Funções (art. 165, § 2º):<br><br>
+      • Definir as <strong>metas e prioridades</strong> da APF<br>
+      • Estabelecer as <strong>diretrizes de política fiscal</strong> e respectivas metas, em consonância com a trajetória sustentável da dívida pública (trecho incorporado pela <strong>EC 109/2021</strong>)<br>
+      • <strong>Orientar a elaboração da LOA</strong><br>
+      • Dispor sobre as <strong>alterações na legislação tributária</strong><br>
+      • Estabelecer a <strong>política de aplicação das agências financeiras oficiais de fomento</strong> (ex.: BNDES, BB, CAIXA)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A LDO <strong>não pode criar, aumentar, suprimir, diminuir ou autorizar tributos</strong> — isso deve ser feito por outras leis, e não existe regra de que sejam aprovadas antes da LDO (CESPE STJ 2018). A LDO trata apenas de <strong>alterações na legislação tributária</strong>. Também <strong>não orienta o PPA</strong> — ela orienta a <strong>LOA</strong>.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Vigência e dever de execução</div>
+    <div class="card-text">
+      A LDO é <strong>anual</strong> (a cada ano há uma LDO), mas sua <strong>vigência extrapola o exercício financeiro</strong>: aprovada até 17/07, orienta a elaboração da LOA no segundo semestre e estabelece regras executadas no exercício seguinte.<br><br>
+      • <strong>Art. 165, § 10:</strong> a administração tem o <strong>dever de executar as programações orçamentárias</strong>, adotando os meios e medidas necessários para garantir a efetiva entrega de bens e serviços à sociedade<br>
+      • <strong>Art. 165, § 11:</strong> esse dever (i) subordina-se ao cumprimento de dispositivos constitucionais e legais que estabeleçam metas fiscais ou limites de despesas e não impede o cancelamento necessário à abertura de créditos adicionais; (ii) não se aplica em casos de impedimentos de ordem técnica devidamente justificados; (iii) aplica-se <strong>exclusivamente às despesas primárias discricionárias</strong><br>
+      • <strong>Art. 165, § 17 (EC 135/2024):</strong> o Executivo poderá <strong>reduzir ou limitar</strong>, na elaboração e na execução das leis orçamentárias, as despesas com <strong>subsídios, subvenções e benefícios de natureza financeira</strong>, inclusive indenizações e restituições por perdas econômicas, observado o <strong>ato jurídico perfeito</strong><br>
+      • <strong>Art. 165, § 12:</strong> integra a LDO, para o exercício a que se refere e, pelo menos, para os <strong>dois exercícios subsequentes</strong>, anexo com previsão de <strong>agregados fiscais</strong> e a proporção dos recursos para investimentos alocados na LOA para continuidade daqueles em andamento. Aplica-se <strong>exclusivamente aos orçamentos fiscal e da seguridade social</strong> (§ 13)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Despesas primárias — obrigatórias × discricionárias</div>
+    <div class="card-text">
+      Despesas primárias são gastos necessários para promover serviços públicos à sociedade, <strong>desconsiderando o pagamento de empréstimos e financiamentos</strong>. Exemplos: pessoal, encargos sociais, transferências a outros entes e investimentos.<br><br>
+      • <strong>Primárias obrigatórias:</strong> despesas com pessoal e previdência, por exemplo<br>
+      • <strong>Primárias discricionárias:</strong> execução sujeita à avaliação de oportunidade pelo gestor — o dever de executar do § 10 aplica-se <strong>exclusivamente</strong> a elas
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    A LOA — os três orçamentos
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Orçamento</th><th>Abrangência (art. 165, § 5º)</th><th>Notas da aula</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Orçamento fiscal</strong> (I)</td><td>Poderes da União, fundos, órgãos e entidades da administração <strong>direta e indireta</strong>, inclusive fundações instituídas e mantidas pelo Poder Público</td><td>É <strong>residual</strong> (tudo que não está nos outros dois) e o <strong>mais abrangente</strong></td></tr>
+        <tr><td><strong>Orçamento de investimento das estatais</strong> (II)</td><td>Empresas em que a União, direta ou indiretamente, detenha a <strong>maioria do capital social com direito a voto</strong></td><td>Só <strong>investimentos</strong>; não as despesas de custeio. Estatais <strong>dependentes</strong> ficam fora</td></tr>
+        <tr><td><strong>Orçamento da seguridade social</strong> (III)</td><td>Todas as entidades e órgãos vinculados à seguridade (saúde, previdência e assistência social), administração direta ou indireta, fundos e fundações</td><td>Inclui órgãos vinculados <strong>independentemente da natureza da despesa</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Redução de desigualdades inter-regionais (art. 165, § 7º):</strong> os orçamentos <strong>fiscal e de investimento das estatais</strong>, compatibilizados com o PPA, terão entre suas funções a de reduzir desigualdades inter-regionais, segundo <strong>critério populacional</strong>. O orçamento da seguridade social <strong>não possui essa função</strong> (CESPE TSE 2024).</div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Estatais dependentes × não dependentes (LRF)</div>
+    <div class="card-text">
+      <strong>Empresa controlada</strong> (LRF, art. 2º, II): sociedade cuja maioria do capital social com direito a voto pertença, direta ou indiretamente, a ente da Federação.<br>
+      <strong>Empresa estatal dependente</strong> (LRF, art. 2º, III): empresa controlada que receba do ente controlador recursos financeiros para pagamento de despesas com <strong>pessoal ou de custeio em geral ou de capital</strong>, excluídos os provenientes de aumento de participação acionária.<br><br>
+      • Estatal <strong>dependente</strong> → compõe o <strong>Orçamento Fiscal ou da Seguridade Social</strong> (tratamento de órgão da administração direta)<br>
+      • Estatal <strong>não dependente</strong> (independente) → compõe o <strong>Orçamento de Investimento das Estatais</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O orçamento de investimento <strong>não</strong> engloba "as estatais dependentes" — é alternativas que fala em "investimento nas estatais dependentes" está errada (FCC 2026). E o orçamento de investimento <strong>não abrange todas as despesas</strong> das estatais: as despesas operacionais vão para o <strong>Programa de Dispêndios Globais (PDG)</strong>, aprovado por decreto.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Orçamento da seguridade social</div>
+    <div class="card-text">
+      A seguridade social compreende um conjunto integrado de ações destinadas a assegurar os direitos relativos à <strong>saúde, previdência e assistência social</strong>.<br><br>
+      • A proposta do orçamento da seguridade social será elaborada de forma <strong>integrada</strong> pelos órgãos responsáveis por saúde, previdência e assistência, tendo em vista as metas e prioridades da LDO, assegurada a cada área a gestão de seus recursos (art. 195, CF)<br>
+      • As receitas dos Estados, do DF e dos municípios destinadas à seguridade <strong>não integram o orçamento da União</strong><br>
+      • Órgãos <strong>diretamente vinculados</strong> à seguridade → integram o orçamento da seguridade <strong>independentemente da natureza da despesa</strong> (ex.: pagamento de empréstimo para construir prédio do Ministério da Saúde)<br>
+      • Órgãos <strong>não vinculados diretamente</strong> → somente as <strong>despesas típicas</strong> da seguridade social integram o orçamento da seguridade (ex.: assistência médica de servidores do MEC)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Execução, transparência e controle
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📄 Demonstrativo regionalizado (§ 6º)</div><div class="card-text">O projeto de LOA será acompanhado de demonstrativo regionalizado do efeito, sobre receitas e despesas, decorrente de <strong>isenções, anistias, remissões, subsídios e benefícios</strong> de natureza financeira, tributária e creditícia</div></div>
+    <div class="card"><div class="card-title">📊 Previsões plurianuais (§ 14)</div><div class="card-text">A LOA poderá conter <strong>previsões</strong> de despesas para exercícios seguintes, com especificação dos investimentos plurianuais e em andamento — não viola a <strong>anualidade</strong> (é previsão, não autorização)</div></div>
+    <div class="card"><div class="card-title">📈 Registro de investimentos (§ 15)</div><div class="card-text">A União manterá <strong>registro centralizado de projetos de investimento</strong>, por Estado ou DF, com análises de viabilidade, estimativas de custos e execução física e financeira</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Avaliação de políticas públicas e controle externo</div>
+    <div class="card-text">
+      As leis do art. 165 devem observar, no que couber, os resultados do <strong>monitoramento e da avaliação das políticas públicas</strong> previstos no art. 37, § 16, da CF/1988 — resposta à exigência de gestão pública baseada em <strong>evidências</strong>, com alocação racional de recursos, avaliação da efetividade dos gastos e ampliação da transparência.<br><br>
+      O <strong>controle externo</strong> (art. 71, CF) é exercido pelo Congresso Nacional com auxílio do TCU, que aprecia, por exemplo, a compatibilidade entre o PPA e a LOA. O <strong>caráter estratégico do PPA não o dispensa do controle externo</strong> — ao contrário, reforça sua importância (CESPE TCE MS 2025).
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Discrepância no 1º ano de mandato:</strong> a LDO do primeiro ano (enviada até 15/04) é elaborada conforme o <strong>PPA vigente em seu último ano</strong>; o novo PPA só é apresentado até 31/08. Ocorre um desencontro natural entre os instrumentos de planejamento.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Art. 165, § 1º (PPA):</strong> diretrizes, objetivos e metas, de forma regionalizada, para despesas de capital, outras delas decorrentes e programas de duração continuada<br>
+      • <strong>PPA NÃO se restringe</strong> aos programas de duração continuada (CESPE TRF 6 2025)<br>
+      • <strong>Art. 167, § 1º:</strong> investimento plurianual só começa com prévia inclusão no PPA ou lei autorizativa — sob pena de <strong>crime de responsabilidade</strong><br>
+      • <strong>Vigência do PPA:</strong> 4 anos, do 2º ano do mandato ao 1º ano do mandato seguinte (não coincide com o mandato)<br>
+      • <strong>LDO (art. 165, § 2º):</strong> metas e prioridades + política fiscal + orienta a LOA + alterações tributárias + agências de fomento<br>
+      • <strong>LOA (art. 165, § 5º):</strong> orçamento fiscal, de investimento das estatais e da seguridade social
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Prazos (ADCT):</strong> PPA 31/08 → 22/12 · LDO 15/04 → 17/07 · LOA 31/08 → 22/12<br>
+      • <strong>Sessão legislativa não é interrompida sem a aprovação da LDO</strong> (art. 57, § 2º)<br>
+      • <strong>Regionalização:</strong> obrigatória no PPA, mas <strong>sem regra constitucional</strong> detalhando critérios; na prática, por 5 regiões<br>
+      • <strong>Despesas de capital (Lei 4.320/64, art. 12):</strong> investimentos, inversões financeiras e transferências de capital<br>
+      • <strong>Exercício financeiro (art. 34, Lei 4.320/64):</strong> ano civil (1º/01 a 31/12)<br>
+      • <strong>Art. 167, VIII:</strong> vedada a utilização de recursos do orçamento fiscal e da seguridade para cobrir déficit de empresas/fundos sem autorização legislativa<br>
+      • <strong>Emendas (art. 166):</strong> emendas à LOA exigem compatibilidade com o PPA e a LDO; emendas à LDO não podem ser incompatíveis com o PPA
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Crédito especial ≠ exceção à exclusividade</strong> — a exceção é para créditos <strong>suplementares</strong> e operações de crédito<br>
+      • <strong>LDO não cria nem autoriza tributos</strong> — só dispõe sobre alterações na legislação tributária<br>
+      • <strong>LDO não orienta o PPA</strong> — orienta a elaboração da LOA<br>
+      • <strong>LDO define diretrizes de política FISCAL, não monetária</strong> (CESPE 2026)<br>
+      • <strong>Orçamento da seguridade não reduz desigualdades inter-regionais</strong> — só fiscal e de investimento (art. 165, § 7º)<br>
+      • <strong>Estatais dependentes fora do orçamento de investimento</strong><br>
+      • <strong>Orçamento fiscal é residual</strong> — tudo que não está na seguridade nem no investimento das estatais<br>
+      • <strong>Plano decenal não adapta o PPA</strong> — os planos e programas é que são elaborados em consonância com o PPA (CESPE ANM 2025)<br>
+      • <strong>PPA não veda despesas correntes</strong> — veda apenas exigir sua inclusão, salvo as decorrentes de capital<br>
+      • <strong>Previsões plurianuais na LOA não violam a anualidade</strong> — são previsão, não autorização
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine a literalidade do art. 165 (PPA, LDO e LOA), as vedações do art. 167, os prazos do ADCT e as distinções orçamento fiscal × seguridade × investimento das estatais, incluindo estatais dependentes/independentes. Essas são as pegadinhas recorrentes de Cebraspe, FCC, FGV e AOCP.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

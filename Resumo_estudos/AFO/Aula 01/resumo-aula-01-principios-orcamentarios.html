@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO Aula 01: Princípios Orçamentários</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 01</div>
+  <div class="sidebar-sub">Princípios Orçamentários</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Universalidade</a>
+  <a href="#sec2">2. Unidade / Totalidade</a>
+  <a href="#sec3">3. Anualidade</a>
+  <a href="#sec4">4. Orçamento Bruto</a>
+  <a href="#sec5">5. Discriminação</a>
+  <a href="#sec6">6. Exclusividade</a>
+  <a href="#sec7">7. Não Vinculação</a>
+  <a href="#sec8">8. Proibição do Estorno</a>
+  <a href="#sec9">9. Equilíbrio</a>
+  <a href="#sec10">10. Quantificação</a>
+  <a href="#sec11">11. Outros Princípios</a>
+  <a href="#sec12">12. Tabela Comparativa</a>
+  <a href="#sec13">13. Pontos de Prova</a>
+  <a href="#sec14">14. Questões Comentadas</a>
+  <a href="#sec15">15. Gabarito Final</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">Fontes: simplificado + completo<br>Estratégia Concursos</div>
+</aside>
+
+<div class="main">
+
+<div class="header">
+  <h1>💰 AFO — Aula 01: Princípios Orçamentários</h1>
+  <p>Princípios na Lei 4.320/1964 e CF/88 · Material base: simplificado + completo · Estratégia Concursos · Luciana de Paula Marinho</p>
+</div>
+
+<!-- CONTEÚDO -->
+
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Universalidade / Globalização</div></div>
+  <div class="sec-subtitle">Conceito e base legal</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">O orçamento deve conter <strong>todas</strong> as receitas e despesas referentes aos Poderes do ente, seus fundos, órgãos e entidades da Administração direta e indireta.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text">
+      <strong>Lei 4.320/64:</strong> arts. 2º, 3º e 4º<br>
+      <strong>CF/88:</strong> art. 165, § 5º
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 2º:</strong> "A Lei do Orçamento conterá a discriminação da receita e despesa de forma a evidenciar a política econômica financeira e o programa de trabalho do Governo, obedecidos os princípios de unidade, universalidade e anualidade."<br><br>
+      <strong>Art. 3º:</strong> "A Lei de Orçamentos compreenderá todas as receitas, inclusive as de operações de crédito autorizadas em lei."<br><br>
+      <strong>Art. 4º:</strong> "A Lei de Orçamento compreenderá todas as despesas próprias dos órgãos do Governo e da administração centralizada, ou que, por intermédio deles se devam realizar, observado o disposto no art. 2º."<br><br>
+      <strong>CF/88, art. 165, § 5º:</strong> "A Lei Orçamentária anual compreenderá: I – o orçamento fiscal referente aos Poderes da União, seus fundos, órgãos e entidades da administração direta e indireta, inclusive fundações instituídas e mantidas pelo Poder Público; II – o orçamento de investimento das empresas em que a União, direta ou indiretamente, detenha a maioria do capital social com direito a voto; III – o orçamento da seguridade social, abrangendo todas as entidades e órgãos a ela vinculados, da administração direta ou indireta."
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>O objetivo é permitir que o Poder Legislativo conheça, <strong>a priori</strong>, todas as receitas e despesas do governo.</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha 1:</strong> a Lei 4.320/64, art. 3º, inclui <strong>operações de crédito</strong> como receitas. Portanto, não há exclusão de receitas de operações de crédito da LOA.</div></div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha 2:</strong> não confundir com <strong>totalidade</strong>. Universalidade = abrangência completa de receitas/despesas. Totalidade = consolidação de múltiplos orçamentos.</div></div>
+</section>
+
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Unidade / Totalidade</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Unidade</div></div>
+    <div class="card-text">O orçamento deve ser <strong>uno</strong>: apenas um orçamento por ente da Federação em cada exercício financeiro. Elimina orçamentos paralelos.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Totalidade</div></div>
+    <div class="card-text">Permite a coexistência de múltiplos orçamentos que devem sofrer <strong>consolidação</strong>: orçamento fiscal, seguridade social e investimentos das estatais.</div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>A CF/1988 adotou modelo de <strong>totalidade</strong>, não de unidade estrita. Cada ente federativo tem sua própria LOA, não há orçamento nacional único.</div></div>
+</section>
+
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Anualidade / Periodicidade</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">O orçamento deve ser elaborado e autorizado para um período de <strong>um ano</strong>. No Brasil, coincide com o ano civil (1º jan a 31 dez).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text">
+      <strong>Lei 4.320/64:</strong> art. 2º e art. 34<br>
+      <strong>CF/88:</strong> art. 165, I, II, III
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 2º:</strong> "A Lei do Orçamento conterá a discriminação da receita e despesa de forma a evidenciar a política econômica financeira e o programa de trabalho do Governo, obedecidos os princípios de unidade, universalidade e anualidade."<br><br>
+      <strong>Art. 34:</strong> "O exercício financeiro coincidirá com o ano civil."<br><br>
+      <strong>CF/88, art. 165:</strong> "Leis de iniciativa do Poder Executivo estabelecerão: I – o plano plurianual; II – as diretrizes orçamentárias; III – os orçamentos anuais."
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> anualidade orçamentária ≠ anterioridade tributária. Anualidade é princípio orçamentário; anterioridade é princípio tributário (não é orçamentário).</div></div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Exceção:</strong> créditos adicionais especiais e extraordinários autorizados nos últimos 4 meses podem ser reabertos no exercício seguinte por seus saldos.</div></div>
+</section>
+
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Orçamento Bruto</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">Receitas e despesas constam da LOA pelos seus <strong>totais</strong>, vedadas quaisquer deduções. Não importa se o saldo líquido será positivo ou negativo.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text"><strong>Lei 4.320/64:</strong> art. 6º, caput e § 1º</div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 6º:</strong> "Todas as receitas e despesas constarão da Lei de Orçamento pelos seus totais, vedadas quaisquer deduções. § 1º As cotas de receitas que uma entidade pública deva transferir a outra incluir-se-ão, como despesa, no orçamento da entidade obrigada a transferência e, como receita, no orçamento da que as deva receber."
+    </div>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Não confundir:</strong> orçamento bruto ≠ discriminação. Orçamento bruto = incluir totais sem deduções. Discriminação = detalhar origem e aplicação dos recursos.</div></div>
+</section>
+
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Especificação / Discriminação / Especialização</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">Receitas e despesas devem ser <strong>discriminadas</strong>, demonstrando origem e aplicação. Veda “ações guarda-chuva” e dotações globais.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text">
+      <strong>Lei 4.320/64:</strong> art. 5º<br>
+      <strong>LRF:</strong> art. 5º, § 4º
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 5º:</strong> "A Lei de Orçamento não consignará dotações globais destinadas a atender indiferentemente a despesas de pessoal, material, serviços de terceiros, transferências ou quaisquer outras, ressalvado o disposto no artigo 20 e seu parágrafo único."<br><br>
+      <strong>LRF, art. 5º, § 4º:</strong> "É vedada a consignação de crédito orçamentário com finalidade imprecisa, exigindo a especificação da despesa."
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Exceções:</strong> programas especiais de trabalho (ex.: proteção a testemunhas) e reserva de contingência. Não têm status constitucional, mas são válidas por lei infraconstitucional.</div></div>
+</section>
+
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Exclusividade</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">A LOA não pode conter matéria estranha à previsão de receitas e fixação de despesas. Evita “caudas orçamentárias” ou “orçamentos rabilongos”.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text">
+      <strong>CF/88:</strong> art. 165, § 8º<br>
+      <strong>Lei 4.320/64:</strong> art. 7º
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 165, § 8º:</strong> "A lei orçamentária anual não conterá dispositivo estranho à previsão da receita e à fixação da despesa, não se incluindo na proibição a autorização para abertura de créditos suplementares e contratação de operações de crédito, ainda que por antecipação de receita, nos termos da lei."<br><br>
+      <strong>Lei 4.320/64, art. 7º:</strong> "A Lei de Orçamento poderá conter autorização ao Executivo para: I – Abrir créditos suplementares até determinada importância obedecidas as disposições do artigo 43; II – Realizar em qualquer mês do exercício financeiro, operações de crédito por antecipação da receita, para atender a insuficiências de caixa."
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Exceções:</strong> autorização para abertura de créditos suplementares e contratação de operações de crédito, inclusive por ARO.</div></div>
+</section>
+
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Não Afetação / Não Vinculação de Receitas</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">Nenhuma receita de <strong>impostos</strong> pode ser reservada ou comprometida para certos gastos, salvo ressalvas constitucionais. Objetiva aumentar a flexibilidade na alocação.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text">
+      <strong>CF/88:</strong> art. 167, IV e § 4º<br>
+      <strong>LRF:</strong> art. 8º, parágrafo único
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 167, IV:</strong> "São vedados: ... IV – a vinculação de receita de impostos a órgão, fundo ou despesa, ressalvadas a repartição do produto da arrecadação dos impostos a que se referem os arts. 158 e 159, a destinação de recursos para as ações e serviços públicos de saúde, para manutenção e desenvolvimento do ensino e para realização de atividades da administração tributária, como determinado, respectivamente, pelos arts. 198, § 2º, 212 e 37, XXII, e a prestação de garantias às operações de crédito por antecipação de receita, previstas no art. 165, § 8º, bem como o disposto no § 4º deste artigo."<br><br>
+      <strong>CF/88, art. 167, § 4º:</strong> "É permitida a vinculação das receitas a que se referem os arts. 155, 156, 157, 158 e as alíneas 'a', 'b', 'd' e 'e' do inciso I e o inciso II do caput do art. 159 desta Constituição para pagamento de débitos com a União e para prestar-lhe garantia ou contragarantia."<br><br>
+      <strong>LRF, art. 8º, parágrafo único:</strong> "Os recursos legalmente vinculados à finalidade específica serão utilizados exclusivamente para atender ao objeto de sua vinculação, ainda que em exercício diverso daquele em que ocorrer o ingresso."
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> CF/1988 veda vinculação de <strong>impostos</strong>, não de tributos em geral. Apenas impostos não podem ser vinculados por lei infraconstitucional.</div></div>
+</section>
+
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Proibição do Estorno</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">Vedada a transposição, remanejamento ou transferência de recursos de uma categoria de programação para outra sem prévia autorização legislativa.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text"><strong>CF/88:</strong> art. 167, VI e § 5º</div>
+    <div class="legal-block">
+      <strong>CF/88, art. 167, VI:</strong> "São vedados: ... VI – a transposição, o remanejamento ou a transferência de recursos de uma categoria de programação para outra ou de um órgão para outro, sem prévia autorização legislativa."<br><br>
+      <strong>CF/88, art. 167, § 5º:</strong> "A transposição, o remanejamento ou a transferência de recursos de uma categoria de programação para outra poderão ser admitidos, no âmbito das atividades de ciência, tecnologia e inovação, com o objetivo de viabilizar os resultados de projetos restritos a essas funções, mediante ato do Poder Executivo, sem necessidade da prévia autorização legislativa prevista no inciso VI deste artigo."
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Exceção EC 85/2015:</strong> no âmbito de ciência, tecnologia e inovação, o Executivo pode transpor/remanejar/transferir sem autorização legislativa.</div></div>
+</section>
+
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Equilíbrio Orçamentário</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+    <div class="card-text">As despesas autorizadas não devem ser superiores à previsão das receitas na LOA. Contabilmente, o orçamento sempre estará equilibrado porque eventuais déficits aparecem nas operações de crédito.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Regra de ouro</div></div>
+    <div class="card-text">
+      <strong>CF/88:</strong> art. 167, III<br>
+      Operações de crédito não podem exceder o montante das despesas de capital.
+    </div>
+    <div class="legal-block">
+      <strong>CF/88, art. 167, III:</strong> "São vedados: ... III – a realização de operações de créditos que excedam o montante das despesas de capital, ressalvadas as autorizadas mediante créditos suplementares ou especiais com finalidade precisa, aprovados pelo Poder Legislativo por maioria absoluta."<br><br>
+      <strong>LRF, art. 4º, I, a:</strong> "A lei de diretrizes orçamentárias atenderá o disposto no § 2º do art. 165 da Constituição e: I – disporá também sobre: a) equilíbrio entre receitas e despesas."
+    </div>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> a “regra de ouro” veda empréstimos para gastos correntes. A exceção é válida apenas durante a execução orçamentária, não na aprovação da LOA.</div></div>
+</section>
+
+<section id="sec10">
+  <div class="sec-header"><div class="sec-num">10</div><div class="sec-title">Quantificação dos Créditos Orçamentários</div></div>
+  <div class="card">
+    <div class="card-text">Veda a concessão ou utilização de créditos ilimitados. Todo crédito na LOA deve ser autorizado com uma dotação limitada. Não há exceções.</div>
+  </div>
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Lei 4.320/64:</strong> art. 59 — “O empenho da despesa não poderá exceder o limite dos créditos concedidos.”</div></div>
+</section>
+
+<section id="sec11">
+  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Demais Princípios Orçamentários</div></div>
+
+  <div class="card">
+    <div class="card-title">Legalidade</div>
+    <div class="card-text">O orçamento deve ser objeto de lei, resultante de processo legislativo completo. Iniciativa do Executivo.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Publicidade</div>
+    <div class="card-text">Divulgação em veículos oficiais para conhecimento público. Condição de eficácia do ato orçamentário.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Transparência</div>
+    <div class="card-text">Ampla divulgação em meio eletrônico, prestação de contas, relatórios e incentivo à participação popular.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Programação</div>
+    <div class="card-text">O orçamento deve expressar realizações e objetivos de forma programada, vinculando-se ao PPA.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Clareza</div>
+    <div class="card-text">Apresentação em linguagem clara, ordenada e completa.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Uniformidade / Consistência</div>
+    <div class="card-text">Padronização mínima na apresentação dos dados para permitir comparações entre exercícios.</div>
+  </div>
+</section>
+
+<section id="sec12">
+  <div class="sec-header"><div class="sec-num">12</div><div class="sec-title">Tabela Comparativa dos Princípios</div></div>
+  <div class="card" style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:.82rem;color:var(--text2);">
+      <thead>
+        <tr style="background:#f4f7fb;color:var(--blue);">
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Princípio</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Essência</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Base legal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Universalidade</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Todas as receitas e despesas na LOA</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Lei 4.320/64, arts. 2º, 3º, 4º; CF/88, art. 165, § 5º</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Unidade</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Um orçamento por ente por exercício</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Lei 4.320/64, art. 2º</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Totalidade</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Múltiplos orçamentos consolidados</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF/88, art. 165</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Anualidade</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Exercício de 1 ano, coincide com ano civil</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Lei 4.320/64, art. 2º e 34; CF/88, art. 165</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Orçamento Bruto</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Totais sem deduções</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Lei 4.320/64, art. 6º</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Discriminação</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Detalhamento de receitas e despesas</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Lei 4.320/64, art. 5º; LRF, art. 5º, § 4º</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Exclusividade</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Sem matéria estranha ao orçamento</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF/88, art. 165, § 8º; Lei 4.320/64, art. 7º</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Não Vinculação</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Receitas de impostos sem vinculação</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF/88, art. 167, IV e § 4º; LRF, art. 8º</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Proibição do Estorno</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Sem transposição/remanejamento sem autorização</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF/88, art. 167, VI e § 5º</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Equilíbrio</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Despesas ≤ receitas; regra de ouro</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF/88, art. 167, III; LRF, art. 4º, I, a</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Quantificação</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Créditos sempre limitados</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CF/88, art. 167, VII; Lei 4.320/64, art. 59</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="sec13">
+  <div class="sec-header"><div class="sec-num">13</div><div class="sec-title">Pontos que mais caem em prova</div></div>
+  <div class="card">
+    <div class="card-text">
+      • <strong>Universalidade:</strong> LOA deve conter todas as receitas e despesas de todos os Poderes, órgãos, entidades, fundações e fundos.<br>
+      • <strong>Unidade:</strong> um orçamento por ente, mas a CF adotou totalidade (tripartição: fiscal + seguridade + investimentos).<br>
+      • <strong>Anualidade:</strong> não se confunde com anterioridade tributária. PPA de 4 anos não excepciona a anualidade.<br>
+      • <strong>Orçamento bruto:</strong> totais sem deduções. Não é o mesmo que equilíbrio.<br>
+      • <strong>Discriminação:</strong> veda dotações globais. Exceções: programas especiais e reserva de contingência.<br>
+      • <strong>Exclusividade:</strong> LOA não pode conter matéria estranha. Exceções: créditos suplementares e operações de crédito, inclusive ARO.<br>
+      • <strong>Não vinculação:</strong> veda vinculação de <strong>impostos</strong>, não de tributos em geral. Exceções na CF/88.<br>
+      • <strong>Proibição do estorno:</strong> transposição/remanejamento/transferência sem autorização legislativa. Exceção: ciência, tecnologia e inovação.<br>
+      • <strong>Equilíbrio:</strong> regra de ouro = operações de crédito não podem exceder despesas de capital.<br>
+      • <strong>Quantificação:</strong> não há créditos ilimitados. Dotação sempre limitada.
+    </div>
+  </div>
+</section>
+
+<section id="sec14">
+  <div class="sec-header"><div class="sec-num">14</div><div class="sec-title">Questões Comentadas — Multibancas</div></div>
+
+  <div class="question">
+    <div class="question-header">IBFC - Ana Esp (IMBEL)/2024</div>
+    <div class="question-text">______ não conterá dispositivo estranho à previsão da receita e à fixação da despesa, não se incluindo na proibição a autorização para abertura de créditos suplementares e contratação de operações de crédito, ainda que por antecipação de receita, nos termos da lei.</div>
+    <div class="answer"><strong>Gabarito: B (Lei Orçamentária Anual)</strong><br>Princípio da exclusividade, previsto no § 8º do art. 165 da CF/88.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC - Analista de Gestão Contábil - Pref. de Recife/PE/2019</div>
+    <div class="question-text">De acordo com o princípio da discriminação, a Lei Orçamentária Anual não conterá dispositivo estranho à previsão da receita e à fixação da despesa, exceto a autorização para a abertura de crédito suplementar.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>O correto é princípio da <strong>exclusividade</strong>, não da discriminação. Além disso, a exceção também inclui operações de crédito, inclusive por ARO.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC - Contador - Câmara de Fortaleza/CE/2019</div>
+    <div class="question-text">De acordo com o princípio da periodicidade, o orçamento deve ser elaborado e autorizado para um determinado período, geralmente um ano.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>Princípio da anualidade ou periodicidade. No Brasil, o exercício financeiro coincide com o ano civil (Lei 4.320/64, art. 34).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">CESPE - Técnico Judiciário – STM/2018</div>
+    <div class="question-text">O princípio orçamentário da unidade estabelece que a lei orçamentária anual deve conter todas as receitas e despesas de todos os poderes, órgãos, entidades, fundações e fundos.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>Isso é o princípio da <strong>universalidade</strong>, não da unidade. Unidade = um orçamento por ente. Universalidade = abrangência total de receitas e despesas.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC - APOG - Pref. de Recife/PE/2019</div>
+    <div class="question-text">Um dos princípios que informam a elaboração do orçamento público é o da discriminação, o qual impede a inclusão de dotações globais ou inespecíficas, não afastando, contudo, a previsão de reserva de contingência.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>Discriminação veda dotações globais. Reserva de contingência é exceção prevista na LRF, art. 5º, III.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC - Técnico Fazendário - Pref. de Manaus/AM/2019</div>
+    <div class="question-text">No que concerne às autorizações para realização de despesas públicas previstas na LOA, não são admissíveis dotações inespecíficas e globais. Constitui exceção a tal princípio, além dos programas especiais de trabalho, também a reserva de contingência.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>Exceções ao princípio da especificação: programas especiais de trabalho e reserva de contingência.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC - Analista de Gestão Contábil - Pref. de Recife/PE/2019</div>
+    <div class="question-text">De acordo com o princípio orçamentário do orçamento bruto, um ente público municipal deve registrar receitas e despesas na LOA pelo valor total e bruto, vedadas quaisquer deduções.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>Princípio do orçamento bruto — art. 6º da Lei 4.320/64.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">CESPE - Oficial Técnico de Inteligência - ABIN/2018</div>
+    <div class="question-text">De acordo com o princípio do orçamento bruto, todas as receitas e despesas devem constar da lei de orçamento anual pelos seus totais, vedadas quaisquer deduções.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>Art. 6º, caput, da Lei 4.320/64.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC - Assistente Técnico de TI - Pref. de Manaus/AM/2019</div>
+    <div class="question-text">De acordo com o princípio orçamentário do orçamento bruto, um ente público municipal deve registrar as receitas e as despesas na LOA pelo valor total e bruto, vedadas quaisquer deduções.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>Mesmo conteúdo do item anterior, confirmando o entendimento.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">CESPE - Auditor de Contas Públicas - TCE/PB/2018</div>
+    <div class="question-text">A vedação à inclusão das chamadas caudas orçamentárias na lei que fixa as receitas e despesas decorre do princípio da universalidade.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>Caudas orçamentárias são matéria estranha ao orçamento. Isso viola o princípio da <strong>exclusividade</strong>, não da universalidade.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC – Analista Judiciário – TRT/11/2017</div>
+    <div class="question-text">O princípio do orçamento bruto determina que, na lei orçamentária, deverá existir equilíbrio entre os montantes totais de receitas e despesas.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>Isso é o princípio do <strong>equilíbrio</strong>, não do orçamento bruto. Orçamento bruto = incluir totais sem deduções.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC - Consultor Técnico Legislativo - Câmara de Fortaleza/CE/2019</div>
+    <div class="question-text">À luz do que estabelece a Constituição Federal acerca dos orçamentos, é vedada a vinculação de receita de impostos a órgão, fundo ou despesa, ainda que para a destinação de recursos para as ações e serviços públicos de saúde.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>A CF/88 permite a vinculação de receitas de impostos para saúde (art. 198, § 2º), educação (art. 212) e administração tributária (art. 37, XXII).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FCC - Analista de Gestão Contábil - Pref. de Recife/PE/2019</div>
+    <div class="question-text">De acordo com o princípio orçamentário da especificação, a Lei Orçamentária Anual não conterá dispositivo estranho à previsão da receita e à fixação da despesa, exceto a autorização para a abertura de crédito suplementar.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>Novamente confundindo discriminação com exclusividade. O correto é que a <strong>exclusividade</strong> trata de dispositivo estranho, e a exceção inclui também operações de crédito.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FGV – Analista Legislativo – Câmara Municipal de Salvador/2018</div>
+    <div class="question-text">Quando da elaboração do orçamento público anual de um ente municipal, os orçamentos das receitas e despesas dos poderes Executivo e Legislativo são consubstanciados em uma única proposta de Lei Orçamentária. Trata-se de uma prática que obedece ao princípio da unidade.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>Unidade = um orçamento por ente federativo por exercício.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">FGV – Contador – SEFIN/RO/2018</div>
+    <div class="question-text">Uma entidade pública adquiriu computadores novos no valor de R$ 50.000. Desse valor, R$ 40.000 serão pagos em dinheiro e o restante será pago por meio da entrega dos computadores antigos. No orçamento foram incluídos apenas os R$ 40.000. O princípio orçamentário atingido foi o da universalidade.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>Universalidade exige que todas as receitas e despesas constem na LOA. Deveria constar o valor total de R$ 50.000, não apenas R$ 40.000.</div>
+  </div>
+</section>
+
+<section id="sec15">
+  <div class="sec-header"><div class="sec-num">15</div><div class="sec-title">Gabarito Final das Questões</div></div>
+  <div class="card" style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+      <thead>
+        <tr style="background:#f4f7fb;color:var(--green);">
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">#</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Banca / Ano</th>
+          <th style="padding:.5rem;text-align:center;border-bottom:2px solid var(--border);">Gabarito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">1</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">IBFC/IMBEL/2024</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">B</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">2</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FCC/Recife/2019</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--red);font-weight:700;">Errada</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">3</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FCC/Fortaleza/2019</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">Certa</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">4</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CESPE/STM/2018</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--red);font-weight:700;">Errada</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">5</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FCC/Recife/2019</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">Certa</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">6</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FCC/Manaus/2019</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">Certa</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">7</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FCC/Recife/2019</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">Certa</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">8</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CESPE/ABIN/2018</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">Certa</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">9</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FCC/Manaus/2019</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">Certa</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">10</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">CESPE/TCE-PB/2018</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--red);font-weight:700;">Errada</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">11</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FCC/TRT/2017</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--red);font-weight:700;">Errada</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">12</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FCC/Fortaleza/2019</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--red);font-weight:700;">Errada</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">13</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FGV/Salvador/2018</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">Certa</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">14</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">FGV/SEFIN-RO/2018</td><td style="padding:.5rem;text-align:center;border-bottom:1px solid #cbd5e1;color:var(--green);font-weight:700;">Certa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica final:</strong> decore os arts. 2º, 3º, 4º, 5º, 6º e 7º da Lei 4.320/64, além dos arts. 165 e 167 da CF/88. Esses são os mais cobrados.</div></div>
+</section>
+
+</div>
+
+</body>
+</html>

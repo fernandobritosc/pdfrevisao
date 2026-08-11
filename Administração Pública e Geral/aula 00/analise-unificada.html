@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Administração Geral e Pública — Análise unificada</title>
+<style>
+  :root {
+    --sidebar: 260px;
+    --accent: #0f172a;
+    --accent-soft: #f1f5f9;
+    --highlight: #b45309;
+    --callout: #fff7ed;
+    --callout-border: #f97316;
+    --gotcha: #fef2f2;
+    --gotcha-border: #ef4444;
+    --mnemonic: #f0fdf4;
+    --mnemonic-border: #22c55e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #1f2937;
+    background: #ffffff;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  aside {
+    width: var(--sidebar);
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 28px 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+
+  aside h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    color: #fbbf24;
+    font-weight: 700;
+  }
+
+  aside h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin: 24px 0 10px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+
+  aside a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 7px 10px;
+    border-radius: 8px;
+    margin-bottom: 3px;
+    font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  aside a:hover {
+    background: #1e293b;
+    color: #fff;
+  }
+
+  main {
+    margin-left: var(--sidebar);
+    flex: 1;
+    padding: 36px 44px 56px;
+    max-width: 960px;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    color: #b45309;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.15s ease;
+  }
+
+  .back:hover {
+    color: #0f172a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .meta {
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 40px;
+    margin-bottom: 14px;
+    padding-left: 14px;
+    border-left: 4px solid #f59e0b;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 26px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    text-align: justify;
+    color: #1f2937;
+  }
+
+  ul {
+    margin-left: 24px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+
+  li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .callout {
+    background: var(--callout);
+    border-left: 4px solid var(--callout-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+    font-size: 15px;
+  }
+
+  .callout b {
+    color: #9a3412;
+  }
+
+  .gotcha {
+    background: var(--gotcha);
+    border-left: 4px solid var(--gotcha-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+  }
+
+  .gotcha b {
+    color: #991b1b;
+  }
+
+  .mnemonic {
+    background: var(--mnemonic);
+    border-left: 4px solid var(--mnemonic-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+  }
+
+  .mnemonic b {
+    color: #166534;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    font-size: 14px;
+  }
+
+  th, td {
+    border: 1px solid #e2e8f0;
+    padding: 11px 14px;
+    text-align: left;
+  }
+
+  th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  td {
+    color: #1f2937;
+  }
+
+  .footer {
+    margin-top: 56px;
+    font-size: 12px;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+    font-weight: 500;
+  }
+
+  .section {
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 768px) {
+    aside {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+    main {
+      margin-left: 0;
+      padding: 24px 20px 40px;
+    }
+  }
+
+* { box-sizing: border-box; }
+body { margin: 0; padding: 32px; font-family: Georgia, "Times New Roman", serif; background: #fff; color: #111; max-width: 960px; margin: 0 auto; line-height: 1.6; }
+h1 { font-size: 24px; text-align: center; margin-bottom: 4px; }
+.sub { text-align: center; color: #555; font-size: 13px; margin-bottom: 18px; }
+h2 { font-size: 17px; margin-top: 28px; border-bottom: 2px solid #111; padding-bottom: 8px; letter-spacing: 0.3px; }
+h3 { font-size: 15px; margin-top: 18px; color: #222; }
+.box { border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin: 14px 0; background: #fafafa; page-break-inside: avoid; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+th { background: #e5e5e5; }
+tr:nth-child(even) { background: #f7f7f7; }
+.pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: bold; background: #e5e5e5; color: #111; }
+.ok { background: #d4f7d4; color: #064; }
+.warn { background: #fff3cd; color: #856404; }
+.bad { background: #f7d4d4; color: #721c24; }
+.rule { background: #fff8e1; border-left: 4px solid #f9a825; padding: 12px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+.trap { background: #ffe7e7; border-left: 4px solid #c62828; padding: 12px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+.flip { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 12px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+pre { white-space: pre-wrap; font-family: monospace; font-size: 13px; background: #f5f5f5; padding: 14px; border-radius: 8px; overflow: auto; }
+blockquote { border-left: 4px solid #f9a825; padding-left: 12px; margin: 10px 0; background: #fff8e1; padding: 10px; border-radius: 0 8px 8px 0; }
+.q-box { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 14px; margin-top: 12px; }
+.q-meta { font-size: 12px; color: #555; margin-bottom: 6px; }
+.q-enunciado { font-size: 14px; margin-bottom: 8px; }
+.q-alt { font-family: monospace; font-size: 13px; background: #f5f5f5; padding: 10px; border-radius: 8px; white-space: pre-wrap; }
+.q-res { font-size: 13px; margin-top: 10px; color: #222; }
+ul { padding-left: 22px; }
+li { margin: 6px 0; }
+.pdf-ref { font-size: 13px; color: #333; background: #f0f0f0; padding: 10px; border-radius: 8px; margin: 8px 0; border-left: 4px solid #4a90e2; }
+.kpi { font-size: 22px; font-weight: bold; text-align: center; }
+.kpi-label { font-size: 12px; color: #555; text-align: center; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+@media print { body { padding: 0; } .box { break-inside: avoid; } h2 { break-after: avoid; } }
+</style>
+</head>
+<body>
+
+<h1>Administração Geral e Pública — Análise unificada</h1>
+<div class="sub">Período: todo o histórico · Matéria: Administração Geral e Pública · 411 questões · taxa global 76,9%</div>
+
+<h2>1. Assuntos abaixo de 80%</h2>
+<div class="box">
+  <div class="grid3" style="margin-bottom:12px">
+    <div><div class="kpi">411</div><div class="kpi-label">Questões</div></div>
+    <div><div class="kpi">76,9%</div><div class="kpi-label">Acerto global</div></div>
+    <div><div class="kpi">11</div><div class="kpi-label">Assuntos &lt; 80%</div></div>
+  </div>
+  <p>Tabela ordenada por <strong>erros absolutos DESC</strong>, depois <strong>taxa ASC</strong>.</p>
+  <table>
+    <tr><th>#</th><th>Assunto</th><th>Questões</th><th>Acertos</th><th>Taxa</th><th>Erros</th></tr>
+    <tr><td>1</td><td>Planejamento Estratégico</td><td>92</td><td>70</td><td><span class="pill warn">76,1%</span></td><td>22</td></tr>
+    <tr><td>2</td><td>Departamentalização (Conceitos e Tipos)</td><td>51</td><td>35</td><td><span class="pill warn">68,6%</span></td><td>16</td></tr>
+    <tr><td>3</td><td>Processo Organizacional e Funções Administrativas</td><td>50</td><td>38</td><td><span class="pill warn">76,0%</span></td><td>12</td></tr>
+    <tr><td>4</td><td>Introdução ao Processo de Planejamento (Diretrizes, Princípios, Características, Etapas, Níveis)</td><td>18</td><td>9</td><td><span class="pill bad">50,0%</span></td><td>9</td></tr>
+    <tr><td>5</td><td>Escola da Teoria Clássica</td><td>18</td><td>13</td><td><span class="pill warn">72,2%</span></td><td>5</td></tr>
+    <tr><td>6</td><td>Eficiência, Eficácia e Efetividade</td><td>14</td><td>10</td><td><span class="pill warn">71,4%</span></td><td>4</td></tr>
+    <tr><td>7</td><td>Administração</td><td>7</td><td>4</td><td><span class="pill bad">57,1%</span></td><td>3</td></tr>
+    <tr><td>8</td><td>Teoria Estruturalista (Abordagem Estruturalista da Administração)</td><td>7</td><td>4</td><td><span class="pill bad">57,1%</span></td><td>3</td></tr>
+    <tr><td>9</td><td>Processo de Controle e Avaliação</td><td>7</td><td>4</td><td><span class="pill bad">57,1%</span></td><td>3</td></tr>
+    <tr><td>10</td><td>Desenho Organizacional (Conceitos, Tipos, Centralização e Descentralização)</td><td>7</td><td>4</td><td><span class="pill bad">57,1%</span></td><td>3</td></tr>
+    <tr><td>11</td><td>Teoria Comportamental</td><td>2</td><td>0</td><td><span class="pill bad">0,0%</span></td><td>2</td></tr>
+  </table>
+  <p style="margin-top: 10px; font-size: 13px;">Foco principal: <strong>Planejamento Estratégico</strong> e <strong>Departamentalização</strong>. O pior ponto absoluto é <strong>Teoria Comportamental</strong>.</p>
+</div>
+
+<h2>2. Regras que mais caem</h2>
+<div class="box">
+  <div class="rule"><strong>Planejamento Estratégico</strong><br>Missão, visão, valores, objetivos, análise SWOT, vantagem competitiva, formulação, execução e controle.</div>
+  <div class="rule"><strong>Departamentalização</strong><br>Tipos: funcional, por produtos, por clientes, geográfica, por processos. Cada tipo com critérios e impactos organizacionais.</div>
+  <div class="rule"><strong>Funções Administrativas</strong><br>Planejamento, organização, direção, controle — sequência e vínculo entre elas.</div>
+  <div class="rule"><strong>Eficiência / Eficácia / Efetividade</strong><br>Eficiência = fazer certo; eficácia = fazer o que deve ser feito; efetividade = resultado final.</div>
+  <div class="rule"><strong>Teorias Clássica, Estruturalista, Comportamental</strong><br>Diferenças entre abordagens, autores e pressupostos básicos.</div>
+</div>
+
+<h2>3. Anti-armadilha</h2>
+<div class="box">
+  <div class="grid2">
+    <div>
+      <div class="label">Pegadinha 1: Planejamento estratégico</div>
+      <div class="trap">Não confunda “estratégico” com “tático/operacional”. Estratégico = longo prazo, macro.</div>
+      <div class="label" style="margin-top:10px">Pegadinha 2: SWOT</div>
+      <div class="trap">Forças e fraquezas são internas; oportunidades e ameaças são externas.</div>
+    </div>
+    <div>
+      <div class="label">Pegadinha 3: Eficiência vs Eficácia</div>
+      <div class="trap">Eficiência é custo-benefício; eficácia é alcance de objetivo; efetividade é resultado no mundo real.</div>
+      <div class="label" style="margin-top:10px">Pegadinha 4: Departamentalização</div>
+      <div class="trap">Funcional agrupa por especialidade; por produtos agrupa por linha; por clientes agrupa por público-alvo.</div>
+    </div>
+  </div>
+</div>
+
+<h2>4. Plano de revisão</h2>
+<div class="box">
+  <div class="rule"><strong>Hoje (30 min):</strong> Planejamento Estratégico + Departamentalização. Faça 10 questões desses assuntos.</div>
+  <div class="rule"><strong>Amanhã (20 min):</strong> Funções Administrativas + Eficiência/Eficácia/Efetividade.</div>
+  <div class="rule"><strong>Dia seguinte (15 min):</strong> Revisão ativa dos pontos fracos e retomada dos .md das aulas 02, 03 e 04.</div>
+</div>
+
+<h2>5. Conexão com seus PDFs</h2>
+<div class="box">
+  <p><strong>Regra aplicada:</strong> recortes reais dos arquivos <code>.md</code> convertidos em 21/07. Sem frases genéricas.</p>
+  <ul>
+    <li><strong>Planejamento Estratégico</strong><br><em>aula-03-planejamentos estratégico, tático e operacional-simplificado.md</em>: <blockquote>Ferramentas Estratégicas e Diagnóstico organizacional.</blockquote></li>
+    <li><strong>Departamentalização</strong><br><em>aula-04-Organização-simplificado.md</em>: <blockquote>Tipos de departamentalização ligados a estrutura organizacional.</blockquote></li>
+    <li><strong>Processo Organizacional e Funções Administrativas</strong><br><em>aula 00-Conceitos Introdutórios...md</em>: <blockquote>Processo administrativo: planejamento, organização, direção e controle.</blockquote></li>
+    <li><strong>Introdução ao Processo de Planejamento</strong><br><em>aula-02-Planejamento-simplificado.md</em>: <blockquote>Planejamento como atividade básica da administração.</blockquote></li>
+  </ul>
+</div>
+
+<script>window.addEventListener('afterprint', () => console.log('print done'));</script>
+</body>
+</html>

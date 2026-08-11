@@ -1,0 +1,41 @@
+ESTRATÉGIA CONCURSOS
+DIREITO FINANCEIRO
+DÍVIDA ATIVA NA LEI 4320/1964
+DÍVIDA
+ATIVA
+❑NÃO SE CONFUNDE COM DÍVIDA PÚBLICA
+❑SÃO CRÉDITOS EM FAVOR DA FAZENDA
+❑TEM CARÁTER ORÇAMENTÁRIO
+❑É COBRADA POR MEIO DA EMISSÃO DA CERTIDÃO DA DÍVIDA ATIVA
+❑PODE TER NATUREZA
+❑TODOS OS VALORES INSCRITOS EM DÍVIDA ATIVA SÃO CRÉDITOS VENCIDOS A FAVOR DA FAZENDA PÚBLICA
+❑NÃO ESTÁ SUJEITA A SIGILO FISCAL
+❑GESTÃO ADMINISTRATIVA E JUDICIAL: É FEITA PELA ADVOCACIA PÚBLICA
+❑FORMA DE RECEBIMENTO
+❑O ABATIMENTO OU ANISTIA DEPENDE DE AUTORIZAÇÃO LEGISLATIVA
+•
+Obrigações
+do
+Ente
+Público
+para
+com
+terceiros (passivo)
+•
+Tributária
+•
+Não tributária
+União
+•
+Adjudicação
+•
+Dação em pagamento
+AGU
+•
+PGFN: dívida ativa tributária
+•
+PGF: dívida ativa das autarquias e fundações públicas federais
+Demais entes:
+•
+Procuradorias ou Advocacias dos estados e municípios
+95298789153 - Sibeli Maria Linhares Santos

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DPT Aula 03: Prazos, Custas, Nulidades e Petição Inicial</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Processual do Trabalho — Aula 03</div>
+  <div class="sidebar-sub">Prazos, Custas, Nulidades e Petição Inicial · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Prazos processuais</a>
+  <a href="#sec2">2. Custas processuais</a>
+  <a href="#sec3">3. Nulidades processuais</a>
+  <a href="#sec4">4. Petição inicial</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos — Bruno Klippel
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — PRAZOS PROCESSUAIS                                   -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Prazos processuais</div>
+  </div>
+  <div class="sec-subtitle">Atos processuais (art. 770 CLT) · classificação · prerrogativas · contagem e suspensão dos prazos</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Atos processuais: horários (arts. 770 e 813 da CLT)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Regra geral (art. 770, CLT):</strong> os atos processuais são <strong>públicos</strong>, salvo quando o contrário determinar o <strong>interesse social</strong>, e realizar-se-ão nos <strong>dias úteis, das 6h às 20h</strong>.<br><br>
+      <strong>Exceção (parágrafo único):</strong> a <strong>penhora</strong> poderá realizar-se em <strong>domingo ou dia feriado</strong>, mediante <strong>autorização expressa do juiz ou presidente</strong>.<br><br>
+      <strong>Diferente — audiência (art. 813, CLT):</strong> públicas, na sede do Juízo ou Tribunal, em dias úteis previamente fixados, <strong>entre 8h e 18h</strong>, não podendo ultrapassar <strong>5 horas seguidas</strong>, salvo matéria urgente.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Saber a diferença:</strong> atos processuais são das <strong>6h às 20h</strong>; <strong>audiências</strong> são das <strong>8h às 18h</strong>. As bancas (FCC/TRT) trocam os horários para derrubar candidato.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A lei <strong>nada fala sobre o sábado</strong> quanto à penhora. A doutrina entende que no sábado <strong>não é necessária</strong> a autorização expressa do juiz. Em <strong>domingos e feriados</strong> a autorização expressa é indispensável.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Demais regras sobre atos e termos processuais</div>
+    <div class="card-text">
+      • <strong>Art. 771:</strong> podem ser escritos <strong>a tinta, datilografados ou a carimbo</strong><br>
+      • <strong>Art. 772:</strong> quando a parte, por motivo justificado, não puder assinar, o ato será <strong>firmado a rogo</strong>, na presença de <strong>2 testemunhas</strong>, sempre que não houver procurador constituído<br>
+      • <strong>Art. 773:</strong> os termos relativos ao movimento dos processos constarão de <strong>simples notas, datadas e rubricadas</strong> pelos secretários ou escrivães
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Classificação dos prazos
+  </h3>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      QUEM CRIA? L-J-C → Legal (lei) · Judicial (juiz) · Convencional (partes) ··· ALTERA? D-P → Dilatório · Peremptório ··· PARA QUEM? P-I → Próprio (partes) · Impróprio (Estado)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Critério</th><th>Espécies</th><th>Características / base legal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Quem determina</strong></td><td><strong>Legais · Judiciais · Convencionais</strong></td><td>Lei (regra), Juiz (ato concreto — art. 218, §1º, CPC: complexidade do ato) ou convenção das partes (máx. 6 meses — art. 313, §4º, CPC)</td></tr>
+        <tr><td><strong>Natureza</strong></td><td><strong>Dilatórios · Peremptórios</strong></td><td>Dilatórios admitem prorrogação (art. 222, CPC: até 2 meses onde difícil transporte; calamidade pública pode exceder). Peremptórios: regra, não podem ser reduzidos sem anuência das partes (art. 222, §1º, CPC) — prazos recursais</td></tr>
+        <tr><td><strong>Destinatário</strong></td><td><strong>Próprios · Impróprios</strong></td><td>Próprios = partes, sujeitos à preclusão temporal (art. 223, CPC). Impróprios = Estado (juiz, MP fiscal da lei, perito), <strong>sem preclusão</strong> (ex.: sentença em 30 dias — art. 226, III, CPC)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Preclusão temporal e justa causa (art. 223, CPC)</div>
+    <div class="card-text">
+      Decorrido o prazo, <strong>extingue-se o direito</strong> de praticar ou emendar o ato, <strong>independentemente de declaração judicial</strong>, assegurado à parte provar que não o realizou por <strong>justa causa</strong>.<br><br>
+      <strong>Justa causa</strong> (art. 223, §1º, CPC): evento <strong>imprevisível</strong>, que trouxe consequências negativas à parte e que não podia ser evitado (ex.: chuva que inunda a cidade no último dia do prazo). Reconhecida, o juiz <strong>releva a pena</strong> e assina novo prazo, que pode ser igual ou diferente do originário.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Ausência de estipulação do prazo (art. 218, CPC)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Silêncio da <strong>lei</strong> + silêncio do <strong>juiz</strong> → prazo automático de <strong>5 dias</strong> para a prática do ato a cargo da parte (art. 218, §3º, CPC). Ex.: intimação para "juntar aos autos o contrato social da reclamada" → 5 dias.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Prerrogativas de prazo
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Sujeito</th><th>Prerrogativa</th><th>Base legal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Pessoas jurídicas de direito público</strong> (União, Estados, Municípios, autarquias e fundações públicas)</td><td>Prazo em <strong>quádruplo</strong> para contestar e em <strong>dobro</strong> para recorrer</td><td><strong>Decreto-Lei 779/69</strong> (não se aplica o CPC)</td></tr>
+        <tr><td><strong>Ministério Público</strong></td><td>Prazo em <strong>dobro</strong> (defesa e recurso — ex.: recurso em 16 dias, se o prazo é de 8)</td><td>Art. 180, CPC (subsidiário)</td></tr>
+        <tr><td><strong>Empresas públicas e SEM</strong></td><td><strong>Nenhuma</strong> — mesmos prazos dos particulares</td><td>Personalidade de direito privado</td></tr>
+        <tr><td><strong>Litisconsortes</strong></td><td><strong>Sem dobra</strong> — prazo sempre <strong>simples</strong>, ainda que com procuradores diferentes</td><td><strong>OJ 310, SDI-1, TST</strong> (art. 229, CPC inaplicável)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A prerrogativa de prazo <strong>não alcança as contrarrazões</strong>, que são sempre simples — a prerrogativa existe quando o ente <strong>interpõe</strong> recurso, não quando <strong>responde</strong> ao apelo. Há, porém, entendimentos doutrinários contrários (aplicando o CPC).
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Na prática trabalhista:</strong> a defesa é apresentada <strong>em audiência</strong>, designada com intervalo mínimo de <strong>5 dias</strong> da notificação (particulares). Para as <strong>PJ de direito público</strong>, o intervalo mínimo é de <strong>20 dias</strong> (quádruplo). O art. 229 do CPC (prazo em dobro para litisconsortes) <strong>não se aplica</strong> ao processo do trabalho — OJ 310, SDI-1, TST.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Contagem dos prazos (art. 775, CLT + reforma trabalhista)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Com a <strong>Lei 13.467/17</strong> (reforma trabalhista), os prazos passam a ser contados <strong>em dias úteis</strong>, igual ao processo civil. <strong>Art. 775, CLT:</strong> contagem em <strong>dias úteis</strong>, com <strong>exclusão do dia do começo</strong> e <strong>inclusão do dia do vencimento</strong>.<br><br>
+      <strong>Diferente do CPC na fonte:</strong> não se precisa "trazer" o art. 219 do CPC para o processo do trabalho — a <strong>própria CLT</strong> (art. 775) prevê a contagem em dias úteis.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Início do prazo × início da contagem (Súmulas 1 e 262, TST)</div>
+    <div class="card-text">
+      • <strong>Início do prazo:</strong> dá-se com a <strong>ciência do ato</strong> (recebimento da notificação). Intimação na sexta → o início do prazo é a própria sexta<br>
+      • <strong>Início da contagem:</strong> ocorre no <strong>primeiro dia útil seguinte</strong> ao início do prazo<br><br>
+      <strong>Súmula 1, TST:</strong> intimação na sexta-feira → prazo contado da <strong>segunda-feira imediata, inclusive</strong>, salvo se não houver expediente.<br>
+      <strong>Súmula 262, TST:</strong> intimação no <strong>sábado</strong> → início do prazo no <strong>primeiro dia útil imediato</strong> e contagem no <strong>subsequente</strong>. O recesso forense e as férias coletivas dos Ministros do TST <strong>suspendem os prazos recursais</strong>.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial — 5 regras de contagem</div>
+    <div class="mnemonic-content">
+      Intimado na sexta? Exclui a sexta, conta da segunda ··· Sábado? Presume-se intimado na segunda, conta da terça
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Regra</th><th>Enunciado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1ª</strong></td><td>Exclui-se o <strong>primeiro dia</strong> (da ciência) e inclui-se o <strong>último</strong> — o ato pode ser praticado até o fim do expediente do último dia</td></tr>
+        <tr><td><strong>2ª</strong></td><td>Primeiro e último dia do prazo devem ser <strong>dias úteis</strong>; se terminar em sábado/domingo/feriado, prorroga-se para o <strong>primeiro dia útil seguinte</strong></td></tr>
+        <tr><td><strong>3ª</strong></td><td>É dia não útil aquele em que o <strong>expediente não for completo</strong> (ex.: falta de luz, suspeita de bomba) → prorroga-se para o próximo dia útil</td></tr>
+        <tr><td><strong>4ª</strong></td><td>Sábado, domingo ou feriado <strong>no curso do prazo</strong> não são contados — só os <strong>dias úteis</strong> contam (art. 775, CLT)</td></tr>
+        <tr><td><strong>5ª</strong></td><td>Intimação em <strong>dia sem expediente</strong> (ex.: sábado) → considera-se intimado no <strong>primeiro dia útil seguinte</strong>, exclui-se esse dia e inicia-se a contagem no <strong>subsequente</strong> (Súmula 262, TST)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Intimado no <strong>sábado</strong>, o prazo <strong>não</strong> começa na segunda! Presume-se a intimação na segunda (primeiro dia útil) e a <strong>contagem inicia na terça</strong>. A tendência é pensar que começa na segunda — erro clássico cobrado pela FCC.
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Processo eletrônico:</strong> disponibilização em um dia → publicação no <strong>dia útil seguinte</strong> → início do prazo no <strong>subsequente</strong>. Cuidado quando a publicação é feita com data retroativa: vale a data da <strong>disponibilização</strong> (publicação no dia útil seguinte), como na questão da FCC sobre o recurso de revista.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Suspensão dos prazos (art. 775-A, CLT)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Suspende-se o curso do prazo processual nos dias entre 20 de dezembro e 20 de janeiro, inclusive.</strong> Durante a suspensão, <strong>não se realizam audiências nem sessões de julgamento</strong> (§2º). Juízes, MP, Defensoria Pública, Advocacia Pública e auxiliares da Justiça <strong>exercem suas atribuições</strong> no período, ressalvadas as férias individuais e os feriados legais (§1º).<br><br>
+      <strong>Efeito prático:</strong> os prazos são contados até <strong>19 de dezembro</strong> e voltam a fluir no <strong>dia 21 de janeiro</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O art. 775-A <strong>proíbe apenas audiências e sessões de julgamento</strong> no período de 20/12 a 20/01 — <strong>outros atos processuais</strong> (como a penhora, com autorização judicial) <strong>podem ser praticados</strong>. Também: é <strong>suspensão</strong>, não interrupção; e o período é 20/12 a 20/01, <strong>inclusive</strong> (não 19/01 nem 07/01).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Prazos trabalhistas específicos
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Prazo</th><th>Base legal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Recurso ordinário</strong> e demais recursos trabalhistas (regra)</td><td><strong>8 dias</strong> da intimação (art. 895, I, CLT)</td></tr>
+        <tr><td><strong>Embargos de declaração</strong></td><td><strong>5 dias</strong> (art. 897-A, CLT)</td></tr>
+        <tr><td><strong>Razões finais</strong> em audiência</td><td><strong>10 minutos</strong> para cada parte, oralmente (art. 850, CLT)</td></tr>
+        <tr><td><strong>Contestação</strong></td><td>Apresentada <strong>em audiência</strong>, no prazo de <strong>20 minutos</strong> (art. 847, CLT)</td></tr>
+        <tr><td><strong>Redução a termo da petição oral</strong></td><td><strong>5 dias</strong> (art. 786, CLT), sob pena de perempção</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Feriado local e ausência de expediente (Súmula 385, TST)</div>
+    <div class="card-text">
+      Incumbe à <strong>parte o ônus de provar</strong>, na interposição do recurso, a existência de <strong>feriado local</strong> que autorize a prorrogação do prazo recursal. Não comprovando, o relator concede <strong>5 dias</strong> para sanar o vício, sob pena de não conhecimento. No feriado <strong>forense</strong>, a autoridade que proferir a decisão certifica o expediente nos autos. Na ausência de comprovação, consideram-se apenas os <strong>feriados nacionais</strong>, podendo o recurso ser tido por intempestivo.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Prazo do quinquídio do fax (Lei 9.800/99 + Súmula 387, TST):</strong> ato processual por fax exige protocolo dos originais em <strong>5 dias</strong>. Se o recurso é enviado por fax <strong>antes do último dia</strong>, a contagem do quinquídio só começa com o <strong>término do prazo recursal</strong>. Se enviado em <strong>sexta-feira</strong>, o prazo de 5 dias inicia no <strong>sábado</strong>, segundo o TST.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CUSTAS PROCESSUAIS                                    -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Custas processuais</div>
+  </div>
+  <div class="sec-subtitle">Cálculo das custas no processo de conhecimento (art. 789, CLT) e hipóteses de condenação</div>
+
+  <div class="card">
+    <div class="card-title">Regra de cálculo (art. 789, CLT)</div>
+    <div class="card-text">
+      Nos dissídios individuais e coletivos do trabalho, nas ações de competência da Justiça do Trabalho, as <strong>custas relativas ao processo de conhecimento</strong> incidirão à base de <strong>dois por cento (2%)</strong>, observado o <strong>mínimo de R$ 10,64</strong> e o <strong>máximo de quatro vezes o limite máximo dos benefícios do Regime Geral de Previdência Social</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Acordo entre as partes (art. 789, §3º, CLT)</div>
+    <div class="card-text">
+      Sempre que houver <strong>acordo</strong>, se de outra forma não for convencionado, o pagamento das custas caberá <strong>em partes iguais aos litigantes</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Hipótese</th><th>Consequência quanto às custas</th><th>Base legal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Rito sumaríssimo</strong> — não atendimento dos requisitos do pedido (certo/determinado com valor) ou do nome/endereço do reclamado</td><td><strong>Arquivamento</strong> da reclamação e <strong>condenação ao pagamento de custas sobre o valor da causa</strong></td><td>Art. 852-B, §1º, CLT</td></tr>
+        <tr><td><strong>Emenda da petição inicial não cumprida</strong> pelo autor</td><td>Indeferimento da inicial + condenação ao pagamento das <strong>custas processuais</strong>, <strong>salvo se beneficiária da justiça gratuita</strong></td><td>Art. 321, CPC (aplicável) + Súmula 263, TST</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    No <strong>rito sumaríssimo</strong> não cabe emenda: o não cumprimento dos requisitos do art. 852-B, I e II, da CLT importa <strong>arquivamento com condenação em custas sobre o valor da causa</strong> (art. 852-B, §1º). A condenação em custas por emenda não cumprida admite exceção: o <strong>beneficiário da justiça gratuita</strong> fica isento.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — NULIDADES PROCESSUAIS                                 -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Nulidades processuais</div>
+  </div>
+  <div class="sec-subtitle">Princípios (arts. 794 a 798, CLT) e espécies de invalidade — do menor para o maior grau</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Fórmula-chave</div>
+    <div class="mnemonic-content">
+      NULIDADE = ERRO DE FORMA + PREJUÍZO
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      Nulidade processual é a <strong>sanção</strong> imposta a quem descumpre a formalidade prevista para determinado ato, retirando do ato viciado os seus efeitos jurídicos. As invalidades podem ocorrer em <strong>graus</strong>, conforme o interesse tutelado (privado ou público).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípios relacionados às nulidades
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Princípio</th><th>Conteúdo</th><th>Base legal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Instrumentalidade das formas</strong> (finalidade)</td><td>Atingir a <strong>finalidade</strong> do ato é mais importante que a forma; se a finalidade foi alcançada mesmo com desrespeito à forma, o ato é <strong>válido</strong></td><td>Arts. 188 e 277, CPC</td></tr>
+        <tr><td><strong>Transcendência</strong> (prejuízo)</td><td>Só haverá nulidade quando dos atos resultar <strong>manifesto prejuízo às partes</strong></td><td>Art. 794, CLT</td></tr>
+        <tr><td><strong>Preclusão / convalidação</strong></td><td>A parte deve alegar o vício na <strong>primeira oportunidade</strong> de falar em audiência ou nos autos, sob pena de preclusão (aplica-se às nulidades relativas)</td><td>Art. 795, CLT</td></tr>
+        <tr><td><strong>Economia processual</strong></td><td>A nulidade é <strong>última opção</strong>; não se pronuncia quando possível <strong>suprir a falta ou repetir o ato</strong></td><td>Art. 796, "a", CLT</td></tr>
+        <tr><td><strong>Interesse</strong></td><td>Quem <strong>deu causa</strong> à nulidade não pode arguí-la ("ninguém se vale da própria torpeza")</td><td>Art. 796, "b", CLT</td></tr>
+        <tr><td><strong>Utilidade / causalidade / interdependência</strong></td><td>A nulidade de um ato <strong>não prejudica senão os posteriores que dele dependam ou sejam consequência</strong>; atos independentes são preservados</td><td>Art. 798, CLT + art. 281, CPC</td></tr>
+        <tr><td><strong>Aproveitamento</strong> (art. 797, CLT)</td><td>Quem declara a nulidade deve <strong>declarar os atos a que ela se estende</strong>, aproveitando os atos úteis não contaminados</td><td>Art. 797, CLT + art. 282, CPC</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Art. 795, §1º, CLT:</strong> deverá ser declarada <strong>de ofício</strong> a nulidade fundada em <strong>incompetência de foro</strong>; nessa hipótese, serão considerados nulos <strong>os atos decisórios</strong>.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O princípio da transcendência, pela doutrina, aplica-se <strong>somente às nulidades relativas</strong> — nas <strong>absolutas</strong> o prejuízo é <strong>presumido</strong>, pois a regra violada é de interesse do Estado.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Exemplo clássico de convalidação: ação ajuizada no <strong>Rio de Janeiro</strong> por quem trabalhou em <strong>São Paulo</strong>. A reclamada comparece à audiência, contesta e <strong>não alega</strong> a incompetência territorial (nulidade relativa, via exceção — art. 800, CLT). Com a inércia, o juízo <strong>antes incompetente torna-se competente</strong> (prorrogação de competência).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Espécies de nulidades (do menor para o maior grau)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Espécie</th><th>Conceito</th><th>Exemplos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Irregularidade</strong></td><td>Vício de forma <strong>sem consequência negativa</strong>; o ato produz efeitos normalmente. Pode ser ignorado ou corrigido de ofício ou a requerimento</td><td>Despacho a lápis; folha não numerada; sentença proferida fora do prazo de 30 dias (art. 226, CPC); erros materiais (arts. 833, CLT e 494, CPC)</td></tr>
+        <tr><td><strong>Nulidade relativa</strong> (anulabilidade)</td><td>Desrespeito a norma de <strong>interesse privado</strong>; <strong>só a parte</strong> pode alegar, <strong>não</strong> pode ser reconhecida de ofício; <strong>preclui</strong> se não alegada no momento; <strong>vício sanável</strong></td><td><strong>Incompetência relativa</strong> (territorial) — Súmula 33, STJ (não pode ser declarada de ofício); via exceção (art. 800, CLT)</td></tr>
+                        <tr><td><strong>Nulidade absoluta</strong></td><td>Violação a norma de <strong>ordem pública</strong> (interesse do Estado); reconhecível <strong>de ofício</strong> ou a requerimento, <strong>a qualquer tempo e grau de jurisdição</strong> (exceto recursos extraordinários, que exigem prequestionamento); <strong>não preclui</strong>; também chamadas de <strong>objeções processuais</strong></td><td><strong>Incompetência absoluta</strong> (critérios pessoal, material, hierárquico e funcional) — art. 64, CPC</td></tr>
+        <tr><td><strong>Inexistência</strong></td><td>Espécie mais grave: o ato <strong>sequer nasce</strong>, não produzindo qualquer efeito jurídico; <strong>não sanável</strong></td><td>Sentença <strong>sem assinatura do juiz</strong>; ato praticado por <strong>fac-símile</strong> sem encaminhamento dos originais em 5 dias (Lei 9.800/99)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Efeito de cada grau:</strong> na irregularidade, o ato produz efeitos (vício ínfimo); na nulidade relativa, produz efeitos até ser arguida pela parte; na nulidade absoluta, produz efeitos <strong>até ser declarada nula</strong> — não há nulidade "de pleno direito" que dispense pronunciamento judicial. Mesmo a nulidade absoluta, enquanto não reconhecida, <strong>deixa o ato produzindo efeitos</strong> (ex.: ação cível ajuizada na Justiça do Trabalho — incompetência absoluta — segue produzindo efeitos até o reconhecimento do vício).
+    </div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Diferença em relação ao CPC/73:</strong> no CPC/2015, declarada a incompetência absoluta (art. 64, §4º), as decisões <strong>mantêm-se íntegras e produzem efeitos</strong> até nova decisão do juízo competente, salvo determinação em contrário. No <strong>processo do trabalho</strong>, a doutrina entende que <strong>não se aplica</strong> esse §4º (a CLT não é omissa — aplica-se o art. 795, §1º): são considerados <strong>nulos os atos decisórios</strong>.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Toda nulidade — inclusive a absoluta — <strong>precisa ser reconhecida/declarada</strong> no processo para desfazer o ato. Enquanto não pronunciada, o ato continua produzindo efeitos. Só não se exige reconhecimento para o ato <strong>inexistente</strong>, que jamais produziu efeitos.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — PETIÇÃO INICIAL                                       -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Petição inicial</div>
+  </div>
+  <div class="sec-subtitle">Requisitos (art. 840, CLT) · indeferimento · emenda · aditamento · desistência</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Forma: escrita ou verbal (art. 840, CLT)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A reclamação poderá ser <strong>escrita ou verbal</strong> — particularidade do processo do trabalho (no CPC, a forma oral só existe nos juizados especiais). A forma oral decorre do <strong>princípio da proteção</strong>: privilegia o acesso ao Judiciário, inclusive de quem não sabe escrever (jus postulandi — art. 791, CLT).
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Requisitos da petição escrita (art. 840, §1º, CLT)</div>
+    <div class="card-text">
+      <strong>1. Designação do juízo</strong> (indicação da autoridade competente — regras do art. 651, CLT)<br>
+      <strong>2. Qualificação das partes</strong> (individualiza os limites subjetivos da lide)<br>
+      <strong>3. Breve exposição dos fatos</strong> de que resulte o dissídio (causa de pedir)<br>
+      <strong>4. O pedido</strong>, que deverá ser <strong>certo, determinado e com indicação de seu valor</strong> (princípio da congruência — extra/ultra/citra petita)<br>
+      <strong>5. Valor da causa</strong> (novidade da reforma trabalhista)<br>
+      <strong>6. Data e assinatura</strong> do reclamante ou de seu representante
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      J-Q-F-P-V-D — Juízo · Qualificação · Fatos · Pedido (certo, determinado, com valor) · Valor · Data/assinatura
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Petição verbal (art. 840, §2º, CLT)</div>
+    <div class="card-text">
+      Se verbal, a reclamação será <strong>reduzida a termo</strong>, em <strong>duas vias datadas e assinadas</strong> pelo escrivão ou secretário, observado, no que couber, o disposto no §1º.<br><br>
+      <strong>Ordem importante:</strong> a petição oral é <strong>primeiro distribuída</strong> e, <strong>depois</strong>, reduzida a termo. O reclamante deve comparecer à Vara no prazo de <strong>5 dias</strong> para a redução a termo (art. 786, CLT); a ausência importa em <strong>perempção</strong> — perda, por <strong>6 meses</strong>, do direito de reclamar (art. 731, CLT). No processo do trabalho a perempção é <strong>provisória</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Duas situações em que a petição inicial é obrigatoriamente escrita:</strong> o <strong>inquérito para apuração de falta grave</strong> (art. 853, CLT — reclamação por escrito, em 30 dias da suspensão do empregado estável) e o <strong>dissídio coletivo</strong> (art. 856, CLT — instaurado mediante representação escrita).
+  </div>
+
+  <div class="card">
+    <div class="card-title">Jus postulandi (art. 791, CLT)</div>
+    <div class="card-text">
+      Empregados e empregadores podem reclamar e acompanhar suas reclamações <strong>pessoalmente</strong>, sem advogado, até o final.<br><br>
+      <strong>Limites (Súmula 425, TST):</strong> limita-se às <strong>Varas e TRTs</strong> — <strong>não alcança</strong> a ação rescisória, a ação cautelar, o mandado de segurança e os recursos de competência do <strong>TST</strong>. No procedimento de homologação de <strong>acordo extrajudicial</strong>, a parte deve estar <strong>assistida por advogado</strong> (art. 855-B, CLT).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Requisitos do CPC (art. 319) que não se aplicam
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Requisito do CPC</th><th>Como é no processo do trabalho</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Fundamentos jurídicos</strong></td><td>Necessários (fatos <strong>e</strong> fundamentos jurídicos), mas o <strong>fundamento legal</strong> (indicação do artigo) é dispensável — o juiz conhece o direito (<em>iura novit curia</em>), salvo direito municipal, estadual, estrangeiro ou consuetudinário (art. 376, CPC)</td></tr>
+        <tr><td><strong>Pedido de notificação do reclamado</strong></td><td><strong>Dispensado</strong> — a notificação é <strong>automática</strong>, feita pelo escrivão ou chefe de secretaria, independentemente de pedido da parte</td></tr>
+        <tr><td><strong>Provas</strong></td><td><strong>Dispensado o pedido</strong> — as provas são produzidas em audiência; testemunhas comparecem <strong>sem intimação</strong> (art. 825, CLT); a perícia pode ser deferida de ofício (art. 370, CPC)</td></tr>
+        <tr><td><strong>Valor da causa</strong></td><td><strong>Obrigatório</strong> desde a reforma trabalhista (Lei 13.467/17), mas o pedido <strong>pode ser por estimativa</strong> (IN 41/18, TST) — antes, a IN 39/16 já aplicava o art. 292, V, CPC (ações indenizatórias)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Pedido certo e determinado com valor ≠ pedido "líquido".</strong> A FCC já cobrou que o <strong>pedido a ser liquidado em fase de execução</strong> contraria o art. 840, §1º, da CLT (pedido deve ser certo, determinado e com indicação de valor). Ao mesmo tempo, o <strong>TST (IN 41/18)</strong> admite que o pedido seja <strong>por estimativa</strong> — não se exige valor certo para cada pedido.
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Art. 840, §3º, CLT:</strong> os pedidos que não atendam ao disposto no §1º (sem valor da causa) serão <strong>julgados extintos sem resolução do mérito</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Indeferimento da petição inicial
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Regra (Súmula 263, TST):</strong> o indeferimento <strong>somente é cabível</strong> se, após intimada para <strong>suprir a irregularidade em 15 dias</strong>, mediante <strong>indicação precisa</strong> do que deve ser corrigido ou completado, a parte <strong>não o fizer</strong> — salvo nas hipóteses do art. 330 do CPC.<br><br>
+      <strong>Exceção (art. 330, CPC):</strong> petição inepta; parte manifestamente ilegítima; ausência de interesse processual; não atendidas as prescrições dos arts. 106 e 321 do CPC → indeferimento direto, com extinção com ou sem resolução do mérito (arts. 487 e 485, CPC).<br><br>
+      <strong>Inépcia (art. 330, §1º):</strong> falta de pedido ou causa de pedir; pedido indeterminado (salvo hipóteses legais de pedido genérico); da narração dos fatos não decorrer logicamente a conclusão; pedidos incompatíveis entre si.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Onde e como se dá o indeferimento</div>
+    <div class="card-text">
+      O indeferimento poderá ocorrer <strong>na própria audiência</strong> — pelo procedimento da CLT, o juiz dificilmente tem contato com os autos antes dela.<br><br>
+      <strong>Rito sumaríssimo (art. 852-B, §1º, CLT):</strong> não atendidos os requisitos (pedido certo/determinado com valor; nome e endereço corretos do reclamado — não há notificação por edital), ocorre o <strong>arquivamento</strong> da reclamação + <strong>custas sobre o valor da causa</strong>. <strong>Não cabe emenda</strong> nesse caso.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Recurso contra o indeferimento</div>
+    <div class="card-text">
+      Cabe <strong>recurso ordinário</strong> (art. 895, I, CLT — 8 dias), com as peculiaridades do art. 331 do CPC:<br>
+      • O juiz poderá <strong>retratar-se</strong> em <strong>5 dias</strong><br>
+      • Não havendo retratação, o juiz manda <strong>citar o réu para responder ao recurso</strong> (contrarrazões) — os autos não sobem de imediato ao Tribunal<br>
+      • Reformada a sentença, o prazo para contestação corre da <strong>intimação do retorno dos autos</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Não confundir com improcedência liminar (art. 332, CPC):</strong> o indeferimento extingue o processo sem analisar o mérito; a <strong>improcedência liminar</strong> julga <strong>improcedente o mérito</strong> — sentença de <strong>total improcedência</strong>, sem citação do réu, quando o pedido contrariar: (I) enunciado de súmula do STF ou do STJ; (II) acórdão do STF/STJ em recursos repetitivos; (III) IRDR ou assunção de competência; (IV) súmula de tribunal de justiça sobre direito local. Também por <strong>decadência ou prescrição</strong> (§1º).<br><br>
+    No processo do trabalho (art. 7º, IN 39/16, TST): a improcedência liminar refere-se apenas à <strong>decadência</strong> (não à prescrição), e inclui súmula do <strong>TST</strong>, acórdão do TST em recursos repetitivos, e súmula do <strong>TRT</strong> sobre direito local, CCT, ACT, sentença normativa ou regulamento empresarial na área do Tribunal. O verbo é <strong>julgará</strong> (dever, não mera faculdade). Recurso: <strong>RO</strong>; retratação em 5 dias; se não reconsiderar, cita o réu para <strong>contrarrazões em 8 dias</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Emenda da petição inicial (art. 321, CPC)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A emenda é <strong>sempre a primeira opção</strong> no processo do trabalho: antes de indeferir, o juiz <strong>determinará</strong> (obrigatoriedade — norma de ordem pública, ligada à celeridade/economia) que o autor emende ou complete a inicial, <strong>indicando com precisão</strong> o que deve ser corrigido, no prazo de <strong>15 dias</strong> da intimação.<br><br>
+      <strong>Consequência da inércia:</strong> indeferimento da inicial, com extinção sem resolução do mérito, e condenação ao pagamento das <strong>custas processuais</strong>, <strong>salvo</strong> se beneficiário da justiça gratuita.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A Súmula 263, TST foi alterada em 2016: o prazo de emenda passou de <strong>10</strong> para <strong>15 dias</strong>, e o juiz deve indicar <strong>com precisão</strong> o que corrigir (é <strong>proibida a determinação genérica</strong> de emenda). A Súmula 299, TST aplica a mesma regra à <strong>ação rescisória</strong> (prazo de 15 dias para juntar a certidão do trânsito em julgado) — mas o trânsito em julgado deve ter ocorrido <strong>antes do ajuizamento</strong> (não há rescisória preventiva).
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Súmula 415, TST:</strong> no <strong>mandado de segurança</strong>, exige-se <strong>prova documental pré-constituída</strong>; portanto, o art. 321 do CPC é <strong>inaplicável</strong> — a ausência de documento indispensável leva à <strong>extinção sem resolução do mérito</strong>, sem emenda para juntada posterior.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Aditamento da petição inicial (art. 329, CPC, com adaptações)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Momento</th><th>Possibilidade de aditamento</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Na audiência, antes da defesa do réu</strong></td><td><span class="tag tag-green">Permitido, sem consentimento do reclamado</span></td></tr>
+        <tr><td><strong>Após a apresentação da defesa</strong></td><td><span class="tag tag-amber">Permitido, desde que o reclamado consinta</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Não confundir com o CPC:</strong> no processo civil, (1) até a <strong>citação</strong> o aditamento é livre; (2) após a citação e <strong>até o saneamento</strong>, exige consentimento do réu; (3) <strong>após o saneamento</strong>, é impossível, mesmo com consentimento. No processo do trabalho a referência é a <strong>audiência</strong> e a <strong>defesa</strong> (sem citação/saneamento como marcos).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Desistência da ação (art. 841, §3º, CLT)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Oferecida a <strong>contestacão</strong> (ainda que eletronicamente), o reclamante <strong>não poderá desistir da ação sem o consentimento do reclamado</strong>. Se ainda não houve defesa, o autor pode requerer a desistência, com extinção sem resolução do mérito.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                          -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova (FCC, FAFIPA, IESES, Instituto Access, OBJETIVA)</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Art. 770, CLT:</strong> atos processuais em dias úteis, <strong>6h às 20h</strong>, públicos salvo interesse social; penhora em <strong>domingo/feriado com autorização expressa do juiz</strong>; audiências das <strong>8h às 18h</strong> (art. 813)<br>
+      • <strong>Suspensão 20/12 a 20/01, inclusive</strong> (art. 775-A): sem audiências e sessões de julgamento; prazos voltam em <strong>21/01</strong>; outros atos podem ser praticados<br>
+      • <strong>Contagem em dias úteis</strong>, exclusão do primeiro dia, inclusão do último (art. 775, CLT); intimação no <strong>sábado</strong> → contagem começa na <strong>terça</strong> (Súmula 262, TST)<br>
+      • <strong>Prerrogativas:</strong> PJ de direito público em <strong>quádruplo</strong> para defesa e <strong>dobro</strong> para recurso (DL 779/69); MP em <strong>dobro</strong> (art. 180, CPC); contrarrazões <strong>sempre simples</strong>; litisconsortes <strong>sem dobra</strong> (OJ 310, SDI-1, TST)<br>
+      • <strong>Nulidade = erro de forma + prejuízo</strong> (art. 794, CLT — princípio da transcendência); quem deu causa não argui (art. 796, "b")<br>
+      • <strong>Art. 840, §1º:</strong> pedido certo, determinado e com valor; falta de valor → extinção sem resolução do mérito (§3º); pedido <strong>por estimativa</strong> admitido (IN 41/18, TST)<br>
+      • <strong>Emenda:</strong> 15 dias, com indicação precisa (Súmula 263, TST); sem emenda → indeferimento + custas, salvo justiça gratuita
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Silêncio da lei e do juiz</strong> → prazo de <strong>5 dias</strong> (art. 218, §3º, CPC)<br>
+      • <strong>Preclusão temporal:</strong> automática (art. 223, CPC), exceto <strong>justa causa</strong> (evento imprevisível)<br>
+      • <strong>Nulidades:</strong> irregularidade → nulidade relativa → nulidade absoluta → inexistência (grau crescente); absoluta reconhecida de ofício a qualquer tempo; inexistência = ato que não nasce (sentença sem assinatura; fac-símile sem originais em 5 dias)<br>
+      • <strong>Jus postulandi</strong> não alcança: ação rescisória, ação cautelar, mandado de segurança e recursos ao TST (Súmula 425, TST); acordo extrajudicial exige advogado (art. 855-B)<br>
+      • <strong>Petição verbal:</strong> distribuída antes de reduzida a termo; comparecimento em 5 dias; ausência → perempção por 6 meses (provisória)<br>
+      • <strong>Escrita obrigatória:</strong> inquérito para apuração de falta grave (30 dias) e dissídio coletivo<br>
+      • <strong>Aditamento:</strong> na audiência antes da defesa, livre; após a defesa, com consentimento do reclamado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • Ato processual (6h–20h) <strong>≠</strong> audiência (8h–18h)<br>
+      • Período de suspensão é <strong>20/12 a 20/01</strong> (não 07/01, não 19/01) e é <strong>suspensão</strong>, não interrupção<br>
+      • <strong>Contrarrazões</strong> não gozam da dobra de prazo<br>
+      • Empresas públicas e SEM <strong>não</strong> têm prazo em quádruplo<br>
+      • Litisconsortes com procuradores diferentes: prazo <strong>simples</strong> no processo do trabalho<br>
+      • Improcedência liminar no trabalho refere-se apenas à <strong>decadência</strong>, não à prescrição (IN 39/16)<br>
+      • No rito sumaríssimo não cabe <strong>emenda</strong> — arquivamento + custas (art. 852-B, §1º)<br>
+      • Sábado: a <strong>penhora não precisa</strong> de autorização judicial (domingo/feriado precisam)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine o art. 770 (horários + penhora), o art. 775-A (suspensão 20/12–20/01), a contagem em dias úteis com as Súmulas 1 e 262 do TST, o princípio da transcendência (art. 794), os requisitos do art. 840 (§1º e §3º) e a emenda de 15 dias. São os campeões de cobrança da FCC.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                              -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

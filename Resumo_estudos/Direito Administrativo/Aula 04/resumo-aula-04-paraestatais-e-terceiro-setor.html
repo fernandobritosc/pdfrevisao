@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 04: Paraestatais e Terceiro Setor</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 04</div>
+  <div class="sidebar-sub">Paraestatais e Terceiro Setor · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito de paraestatais e terceiro setor</a>
+  <a href="#sec2">2. Serviços sociais autônomos (Sistema S)</a>
+  <a href="#sec3">3. Organizações Sociais (OS)</a>
+  <a href="#sec4">4. OSCIP</a>
+  <a href="#sec5">5. Marco Regulatório das OSC — Lei 13.019/2014</a>
+  <a href="#sec6">6. Quadro comparativo</a>
+  <a href="#sec7">7. Pontos que mais caem em prova</a>
+  <a href="#sec8">8. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO                                            -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de paraestatais e terceiro setor</div>
+  </div>
+  <div class="sec-subtitle">Maria Sylvia Zanella Di Pietro — conceito mais cobrado (Cebraspe e FCC)</div>
+
+  <div class="card">
+    <div class="card-title">Terceiro setor</div>
+    <div class="card-text">
+      O termo terceiro setor designa as <strong>entidades privadas que não integram a Administração Pública</strong>, mas que com ela colaboram. É formado pelas entidades privadas da sociedade civil que prestam <strong>atividade de interesse social, sem finalidade lucrativa</strong>.<br><br>
+      • <strong>1º setor</strong>: o próprio Estado<br>
+      • <strong>2º setor</strong>: o mercado<br>
+      • <strong>3º setor</strong>: organizações da sociedade civil, sem fins lucrativos — não integram o Estado nem exploram atividade econômica
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Entidades paraestatais (conceito de Di Pietro)</div>
+    <div class="card-text">
+      <em>"[...] pessoas privadas que colaboram com o Estado desempenhando atividade não lucrativa e às quais o Poder Público dispensa especial proteção, colocando a serviço delas manifestações do seu poder de império, como o tributário por exemplo; não abrangem as entidades da Administração Indireta; trata-se de pessoas privadas que exercem função típica (embora não exclusiva do Estado), como as de amparo aos hipossuficientes, de assistência social, de formação profissional."</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      As entidades paraestatais são <strong>pessoas jurídicas de direito privado, sem fins lucrativos, instituídas por particulares</strong> — portanto, <strong>não integrantes da Administração Pública</strong> — que atuam em colaboração ou apoio ao Estado na prestação de atividades de utilidade pública. Recebem incentivos do Estado na forma de <strong>fomento</strong> (recursos do orçamento, permissão de uso de bens públicos) e, por isso, <strong>sujeitam-se ao controle direto ou indireto da Administração e ao controle do Tribunal de Contas</strong>.<br><br>
+      Nem toda entidade do terceiro setor é paraestatal: o conceito de <strong>terceiro setor é mais amplo</strong>. Só se fala em entidade paraestatal quando há <strong>vínculo com o Poder Público</strong> (ex.: contrato de gestão ou termo de parceria).
+    </div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Não confundir:</strong> as entidades paraestatais <strong>não fazem parte da Administração Pública direta nem indireta</strong> — fazem parte do terceiro setor. Como são privadas, <strong>não existe entidade paraestatal de direito público</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">São entidades paraestatais</div>
+    <div class="card-text">
+      a) os serviços sociais autônomos (Sistema S);<br>
+      b) as organizações sociais (OS);<br>
+      c) as organizações da sociedade civil de interesse público (OSCIP);<br>
+      d) as "entidades de apoio";<br>
+      e) as organizações da sociedade civil.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Entidades de apoio
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Pessoas jurídicas de <strong>direito privado, sem fins lucrativos, instituídas por servidores públicos em nome próprio</strong>, sob a forma de <strong>fundação, associação ou cooperativa</strong>, para a prestação, em caráter privado, de serviços sociais não exclusivos do Estado, mantendo vínculo jurídico com entidades da administração direta ou indireta, <strong>em regra por meio de convênio</strong>. Atuam mais comumente em <strong>hospitais públicos e universidades públicas</strong>.<br><br>
+      Não há lei geral sobre entidades de apoio. Há regramento específico: a <strong>Lei 8.958/1994</strong> (regulamentada pelo Decreto 7.423/2010) disciplina as <strong>fundações de apoio às Instituições Federais de Ensino Superior (IFES) e Instituições Científicas e Tecnológicas (ICTs)</strong>, que devem apoiar projetos de ensino, pesquisa, extensão, desenvolvimento institucional, científico e tecnológico e estímulo à inovação (art. 1º). A celebração de convênios e contratos entre essas fundações e as IFES/ICTs pode ocorrer por <strong>dispensa de licitação</strong>, adotando regulamento próprio.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Entidade paraestatal <strong>não é criada pelo Estado</strong>: ainda que alguns casos dependam de <strong>autorização legislativa</strong>, a instituição é realizada por <strong>particulares</strong> (Cebraspe/CAPES 2024). Também não confunda: entidades paraestatais atuam em serviços de interesse público <strong>não privativos do Estado</strong> — não podem, por exemplo, regular serviços públicos.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — SERVIÇOS SOCIAIS AUTÔNOMOS (SISTEMA S)              -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Serviços sociais autônomos (Sistema S)</div>
+  </div>
+  <div class="sec-subtitle">Pessoas jurídicas de direito privado criadas por autorização legal</div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      São pessoas jurídicas com <strong>personalidade de Direito Privado, sem fins lucrativos, criadas por meio de autorização legal</strong>, para ministrar <strong>assistência ou ensino a certas categorias sociais ou grupos profissionais</strong>, mantidas por <strong>dotações orçamentárias ou contribuições parafiscais</strong>. São entes paraestatais, com administração e patrimônio próprios, revestindo a forma de instituições particulares sem fins lucrativos convencionais (associações civis e fundações privadas).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exemplos — "Sistema S"</div>
+    <div class="card-text">
+      Serviço Nacional de Aprendizagem Industrial (SENAI) · Serviço Social do Comércio (SESC) · Serviço Social da Indústria (SESI) · Serviço Nacional de Aprendizagem do Comércio (SENAC) · SEBRAE.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Característica</th><th>Regra</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Criação</strong></td><td>Autorizada em lei, mas efetivada por atos complementares de particulares</td></tr>
+        <tr><td><strong>Área de atuação</strong></td><td>Assistência ou ensino a certas categorias sociais ou grupos profissionais</td></tr>
+        <tr><td><strong>Recursos</strong></td><td>Contribuições parafiscais, recolhidas compulsoriamente, e dotações orçamentárias do Poder Público</td></tr>
+        <tr><td><strong>Regime de pessoal</strong></td><td>Empregados privados, sujeitos à CLT; seleção <strong>não depende de concurso público</strong> (processo seletivo); equiparados a "funcionário público" para fins penais e de improbidade administrativa</td></tr>
+        <tr><td><strong>Contratações</strong></td><td><strong>Não dependem de licitação</strong>; seguem regulamento próprio, observados os princípios constitucionais da Administração</td></tr>
+        <tr><td><strong>Controle</strong></td><td>Devem prestar contas ao TCU; foro competente na <strong>Justiça Estadual</strong></td></tr>
+        <tr><td><strong>"Novo modelo"</strong></td><td>Criados pelo Poder Executivo, após autorização legal; presidente nomeado pelo Presidente da República; firmam contrato de gestão; sofrem supervisão ministerial; podem receber dotações consignadas diretamente no orçamento geral da União</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Imunidade tributária:</strong> em geral, essas entidades prestam serviços de educação e assistência social sem fins lucrativos e, por isso, gozam da imunidade sobre <strong>impostos</strong> (CF, art. 150, VI, "c"). Não gozam dos privilégios processuais da Fazenda Pública (prazos dilatados) nem se submetem ao sistema de precatórios.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Os serviços sociais autônomos <strong>não são criados por decreto</strong> — a criação é <strong>autorizada em lei</strong>, mas as entidades são instituídas por particulares (Cebraspe/CGE CE 2019). Eles <strong>não prestam serviço público delegado pelo Estado</strong>, mas atividade de interesse público (Di Pietro). Não se submetem à Lei de Licitações, mas a <strong>regulamento próprio</strong> pautado nos princípios gerais licitatórios e da Administração (Cebraspe/DPE AC 2017).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ORGANIZAÇÕES SOCIAIS (OS)                           -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Organizações Sociais (OS)</div>
+  </div>
+  <div class="sec-subtitle">Lei 9.637/1998 — qualificação outorgada pelo Poder Público + contrato de gestão</div>
+
+  <div class="card">
+    <div class="card-title">Conceito (Di Pietro)</div>
+    <div class="card-text">
+      <em>"Organização social é a qualificação jurídica dada a pessoa jurídica de direito privado, sem fins lucrativos, instituída por iniciativa de particulares, e que recebe delegação do Poder Público, mediante contrato de gestão, para desempenhar serviço público de natureza social. Nenhuma entidade nasce com o nome de organização social; a entidade é criada como associação ou fundação e, habilitando-se perante o Poder Público, recebe a qualificação; trata-se de título jurídico outorgado e cancelado pelo Poder Público."</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Natureza da qualificação</div>
+    <div class="card-text">
+      As OS são <strong>entidades públicas não estatais</strong>: <strong>públicas</strong> porque prestam serviços públicos e administram patrimônio público; <strong>não estatais</strong> porque <strong>não integram nem a administração direta nem a indireta</strong>. A OS não é uma nova forma de pessoa jurídica — é uma <strong>qualificação outorgada pelo Poder Público</strong> às associações civis ou fundações privadas.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Requisitos de qualificação (Lei 9.637/1998, art. 1º)</div>
+    <div class="card-text">
+      a) ter <strong>personalidade jurídica de direito privado</strong>;<br>
+      b) <strong>não ter finalidade lucrativa</strong>;<br>
+      c) atuar nas atividades de <strong>ensino, pesquisa científica, desenvolvimento tecnológico, proteção e preservação do meio ambiente, cultura ou saúde</strong>;<br>
+      d) firmar <strong>contrato de gestão</strong> com o Poder Público.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Aprovação da qualificação — ato discricionário</div>
+    <div class="card-text">
+      A qualificação da OS passa por <strong>duas etapas</strong>, ambas com juízo <strong>discricionário</strong>: (i) aprovação pelos <strong>ministros de Estado envolvidos</strong> (ato conjunto do ministro supervisor, do Ministro da Economia e da autoridade supervisora); (ii) proposta enviada ao <strong>Presidente da República</strong>, que poderá efetuar a qualificação (art. 2º, II).<br><br>
+      Mesmo que a entidade preencha os requisitos, <strong>não é certo que será qualificada</strong>. A qualificação, conforme o STF (ADI 1.923), configura hipótese de <strong>credenciamento</strong>, no qual não incide licitação.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conselho de administração e diretoria</div>
+    <div class="card-text">
+      • <strong>Conselho de administração</strong>: órgão de deliberação superior, formado por representantes da <strong>Administração, da sociedade e da própria entidade</strong>. Membros <strong>não recebem remuneração</strong>, salvo ajuda de custo para participação nas reuniões.<br>
+      • <strong>Diretoria</strong>: órgão que efetivamente <strong>gerencia</strong> a OS. Os membros <strong>podem ser remunerados</strong>, cabendo ao conselho de administração fixar o valor.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Contrato de gestão
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Instrumento firmado entre o Poder Público e a entidade qualificada como OS, com vistas à formação de <strong>parceria para fomento e execução</strong> de atividades nas áreas de ensino, pesquisa científica, desenvolvimento tecnológico, proteção e preservação do meio ambiente, cultura e saúde (art. 5º). Deve discriminar as atribuições, responsabilidades e obrigações das partes (art. 6º) e observar os princípios da <strong>legalidade, impessoalidade, moralidade, publicidade e economicidade</strong>, além dos preceitos do art. 7º (programa de trabalho, metas e prazos de execução).
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Dois tipos de contrato de gestão:</strong> (a) como requisito para qualificação de <strong>autarquia/fundação como agência executiva</strong> — com base no art. 37, § 8º, da CF (ampliação da autonomia gerencial mediante metas de desempenho); (b) como exigência para qualificação da entidade do <strong>terceiro setor como organização social</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fomento (formas de incentivo — arts. 11 a 14)</div>
+    <div class="card-text">
+      As OS são declaradas entidades de <strong>interesse social e utilidade pública</strong> e recebem incentivos:<br>
+      a) <strong>recursos orçamentários</strong> necessários ao cumprimento do contrato de gestão (art. 12);<br>
+      b) <strong>bens públicos</strong>, mediante <strong>permissão de uso</strong>, dispensada licitação, conforme cláusula expressa do contrato de gestão (art. 12, § 3º);<br>
+      c) <strong>cessão especial de servidor público</strong>, com <strong>ônus para o órgão de origem</strong> do servidor (art. 14).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contratações — não precisam licitar</div>
+    <div class="card-text">
+      Pela <strong>ADI 1.923 (STF)</strong>, os contratos de gestão possuem <strong>natureza de parceria</strong>, não se aplicando o dever de licitar — a licitação é para contratos com empresas, não para parcerias. Os contratos das OS com terceiros, com recursos públicos, devem ser conduzidos de forma <strong>pública, objetiva e impessoal</strong>, observados os princípios do art. 37, caput, da CF, nos termos de <strong>regulamento próprio</strong> de cada entidade.<br><br>
+      ⚠️ A <strong>Lei 14.133/2021 não trouxe</strong> hipótese expressa de dispensa de licitação para a contratação de organizações sociais (regra que existia no art. 24, XXIV, da antiga Lei 8.666/1993) — mas, por serem parcerias, <strong>continuam não dependendo de licitação</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fiscalização</div>
+    <div class="card-text">
+      Ocorre em <strong>três níveis</strong>: (i) pelo órgão ou entidade <strong>supervisor(a)</strong> da área de atuação correspondente à atividade fomentada (art. 8º); (ii) pelo <strong>Tribunal de Contas</strong> e outros órgãos estatais (como o Ministério Público); (iii) pela <strong>sociedade</strong>. Os responsáveis pela fiscalização devem dar ciência ao TCU de eventuais irregularidades, sob pena de <strong>responsabilidade solidária</strong> (art. 9º).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Desqualificação (art. 16)</div>
+    <div class="card-text">
+      O Poder Executivo poderá desqualificar a entidade quando <strong>constatado o descumprimento do contrato de gestão</strong>. A desqualificação será precedida de <strong>processo administrativo</strong>, assegurados contraditório e ampla defesa; os dirigentes respondem <strong>individual e solidariamente</strong> pelos danos decorrentes de ação ou omissão. Importa <strong>reversão dos bens permitidos e dos valores</strong> entregues à utilização da OS (art. 16, § 2º).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A qualificação como OS é ato <strong>discricionário</strong> (ao contrário da OSCIP, que é vinculada). Os empregados das OS são <strong>empregados privados</strong> (regime CLT), contratados por <strong>processo seletivo objetivo e impessoal</strong> — não há concurso público (STF, ADI 1.923). OS presta serviço público <strong>por delegação</strong> (sentido amplo, sem contrato de concessão/permissão e sem licitação).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — OSCIP                                               -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Organizações da Sociedade Civil de Interesse Público (OSCIP)</div>
+  </div>
+  <div class="sec-subtitle">Lei 9.790/1999 — qualificação vinculada + termo de parceria</div>
+
+  <div class="card">
+    <div class="card-title">Conceito (Di Pietro)</div>
+    <div class="card-text">
+      <em>"Trata-se de qualificação jurídica dada a pessoas jurídicas de direito privado, sem fins lucrativos, instituídas por iniciativa de particulares, para desempenhar serviços sociais não exclusivos do Estado com incentivo e fiscalização do Poder Público, mediante vínculo jurídico instituído por meio de termo de parceria."</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Requisitos de qualificação (art. 1º)</div>
+    <div class="card-text">
+      Podem qualificar-se como OSCIP as <strong>pessoas jurídicas de direito privado, sem fins lucrativos</strong>, constituídas e em funcionamento regular há, no mínimo, <strong>três anos</strong>, desde que os objetivos sociais e normas estatutárias atendam aos requisitos legais. Devem atuar nas áreas do art. 3º, entre as quais: <strong>assistência social; cultura, defesa e conservação do patrimônio histórico e artístico; promoção gratuita da educação; promoção gratuita da saúde; segurança alimentar e nutricional; meio ambiente; voluntariado</strong>, entre outras.<br><br>
+      <strong>Sem fins lucrativos</strong> = a pessoa jurídica que <strong>não distribui</strong> excedentes operacionais, dividendos, bonificações, participações ou parcelas do patrimônio e os <strong>aplica integralmente</strong> na consecução do objeto social (art. 1º, parágrafo único).
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Quem NÃO pode se qualificar (art. 2º)</div>
+    <div class="card-text">
+      <strong>Não</strong> podem ser qualificadas como OSCIP, entre outras: as <strong>instituições religiosas</strong> ou voltadas para a disseminação de credos, cultos, práticas e visões devocionais e confessionais; as <strong>organizações sociais</strong>; as <strong>sociedades comerciais</strong> (empresárias); os <strong>sindicatos e entidades de classe</strong>; as <strong>escolas privadas</strong>; as <strong>cooperativas</strong>; as <strong>fundações públicas</strong>; e as entidades criadas por órgão público.<br><br>
+      <strong>Exceção:</strong> não constituem impedimento à qualificação as operações destinadas a <strong>microcrédito</strong> realizadas com instituições financeiras, na forma de recebimento de repasses, venda de operações ou atuação como mandatárias (art. 2º, parágrafo único).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Aprovação da qualificação — ato vinculado</div>
+    <div class="card-text">
+      O interessado formula <strong>requerimento escrito ao Ministério da Justiça</strong>. Verificando o cumprimento dos requisitos, o pedido é <strong>deferido</strong> e expedido o certificado de qualificação. Trata-se de competência <strong>vinculada</strong>: cabe ao Ministro da Justiça apenas verificar se os requisitos foram atendidos e, se positivo, <strong>deverá conceder</strong> a qualificação. Só poderá indeferir se: (a) enquadrar-se nas hipóteses do art. 2º; (b) não atender aos requisitos dos arts. 3º e 4º; (c) a documentação estiver incompleta.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Termo de parceria
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      É o instrumento firmado entre o Poder Público e as entidades qualificadas como OSCIP, destinado à formação de <strong>vínculo de cooperação</strong> para o fomento e a execução das atividades de interesse público (art. 9º). É um instrumento de <strong>contratualização de resultados</strong>, estabelecendo objetivos, metas e prazos, critérios de avaliação, previsões de receitas e despesas e obrigações da OSCIP.<br><br>
+      A escolha da OSCIP para a celebração do termo de parceria deverá ser feita por <strong>publicação de edital de concurso de projetos</strong> pelo órgão estatal parceiro (Decreto 3.100/1999, art. 23), excepcionado apenas mediante decisão fundamentada do titular do órgão (ex.: emergência ou calamidade pública). Instaurado o concurso, é <strong>vedado</strong> celebrar termo de parceria para o mesmo objeto fora do concurso.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contratações — regulamento próprio</div>
+    <div class="card-text">
+      A OSCIP deve elaborar, no prazo máximo de <strong>30 dias</strong>, contado da assinatura do termo de parceria, <strong>regulamento próprio</strong> contendo os procedimentos para contratação de obras e serviços e compras com emprego de recursos públicos, observados os princípios da legalidade, impessoalidade, moralidade, publicidade, economicidade e eficiência (art. 14). <strong>Não se submetem à Lei de Licitações</strong> (entendimento confirmado pelo TCU — Acórdão 1.777/2005).<br><br>
+      ⚠️ Diferentemente das OS (no regime do art. 24, XXIV, da Lei 8.666/1993), <strong>a contratação de OSCIP não é hipótese de dispensa de licitação</strong>. Mas isso não significa licitar: a seleção ocorre por <strong>concurso de projetos</strong>, e não por licitação.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fiscalização</div>
+    <div class="card-text">
+      A execução do objeto do termo de parceria será acompanhada e fiscalizada por <strong>órgão do Poder Público</strong> da área de atuação correspondente à atividade fomentada e pelos <strong>Conselhos de Políticas Públicas</strong> das áreas correspondentes, em cada nível de governo. Os termos de parceria sujeitam-se aos <strong>mecanismos de controle social</strong> previstos na legislação.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Desqualificação</div>
+    <div class="card-text">
+      A entidade poderá perder a qualificação se deixar de cumprir as exigências da lei e do termo de parceria. A perda poderá ocorrer: (a) <strong>a pedido</strong>; ou (b) mediante <strong>decisão proferida em processo administrativo ou judicial, de iniciativa popular ou do Ministério Público</strong>, com ampla defesa e devido contraditório. Qualquer cidadão é parte legítima para requerer a perda da qualificação, vedado o anonimato e exigidas <strong>fundadas evidências de erro ou fraude</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Uma entidade <strong>não pode ser qualificada concomitantemente como OS e OSCIP</strong> (Lei 9.790/1999, art. 2º, IX). A OSCIP firma <strong>parceria</strong>, mas não recebe delegação de serviço público no sentido próprio das OS. Instituição religiosa com programa educacional <strong>não</strong> pode se qualificar como OSCIP (Cebraspe/STJ 2018).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — MARCO REGULATÓRIO DAS OSC — LEI 13.019/2014          -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Marco Regulatório das OSC — Lei 13.019/2014</div>
+  </div>
+  <div class="sec-subtitle">Regime jurídico das parcerias entre a administração pública e as organizações da sociedade civil</div>
+
+  <div class="card">
+    <div class="card-title">Noções preliminares</div>
+    <div class="card-text">
+      A Lei 13.019/2014 instituiu o <strong>regime jurídico das parcerias</strong> entre a administração pública e as organizações da sociedade civil — regime de <strong>mútua cooperação</strong>, destinado à consecução de finalidades de interesse público e recíproco, mediante execução de atividades ou projetos previamente estabelecidos em <strong>planos de trabalho</strong> inseridos em <strong>termos de colaboração, termos de fomento ou acordos de cooperação</strong>. A <strong>parceria</strong> é o conjunto de direitos, responsabilidades e obrigações decorrentes da relação jurídica estabelecida formalmente (art. 2º, III).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Âmbito de aplicação</div>
+    <div class="card-text">
+      A expressão "administração pública" alcança <strong>União, estados, DF e municípios</strong> e respectivas autarquias, fundações, empresas públicas e sociedades de economia mista prestadoras de serviço público, e suas subsidiárias <strong>que recebam recursos do ente instituidor</strong> para pagamento de despesas com pessoal e custeio em geral (art. 2º, II).<br><br>
+      Empresas públicas e SEM <strong>"independentes"</strong> (que não recebem repasses para custeio ou pessoal) <strong>não</strong> estão abrangidas pela lei.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Não se aplica a (art. 3º)</div>
+    <div class="card-text">
+      a) transferências de recursos homologadas pelo Congresso Nacional ou autorizadas pelo Senado Federal, naquilo em que conflitarem com esta Lei;<br>
+      b) <strong>contratos de gestão celebrados com organizações sociais</strong>, cumpridos os requisitos da Lei 9.637/1998;<br>
+      c) convênios e contratos celebrados com <strong>entidades filantrópicas e sem fins lucrativos</strong> nos termos do § 1º do art. 199 da CF;<br>
+      d) <strong>termos de parceria celebrados com OSCIP</strong>, cumpridos os requisitos da Lei 9.790/1999;<br>
+      e) parcerias entre a administração pública e os <strong>serviços sociais autônomos</strong>.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Não confundir os regimes:</strong> a Lei 13.019/2014 <strong>não</strong> se aplica aos contratos de gestão (OS) nem aos termos de parceria (OSCIP), que seguem legislação própria. As parcerias da Lei 13.019 usam <strong>termo de colaboração, termo de fomento e acordo de cooperação</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Definição de organização da sociedade civil (art. 2º, I)</div>
+    <div class="card-text">
+      Três grupos de entidades se enquadram:<br>
+      a) <strong>entidades privadas sem fins lucrativos</strong> que não distribuam resultados/sobras/excedentes e apliquem integralmente na consecução do objeto social;<br>
+      b) <strong>sociedades cooperativas</strong> previstas na Lei 9.867/1999 (as integradas por pessoas em risco/vulnerabilidade, as alcançadas por programas de combate à pobreza e geração de trabalho e renda, as voltadas para fomento/educação/capacitação de trabalhadores rurais, entre outras);<br>
+      c) <strong>organizações religiosas</strong> que se dediquem a atividades ou projetos de interesse público e de cunho social, distintas das destinadas a fins exclusivamente religiosos.<br><br>
+      As OSC <strong>não integram a administração pública</strong> — são entidades privadas.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Atividade × projeto
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Atividade</div><div class="card-text">Conjunto de operações de modo <strong>contínuo ou permanente</strong> (ex.: prestação de auxílio a crianças com necessidades especiais)</div></div>
+    <div class="card"><div class="card-title">Projeto</div><div class="card-text">Conjunto de operações <strong>limitadas no tempo</strong>, com início e fim (ex.: evento de conscientização sobre inclusão social)</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Plano de trabalho</div>
+    <div class="card-text">
+      Documento que efetivamente estabelece o que será realizado (atividade ou projeto), as <strong>metas</strong>, os <strong>recursos necessários</strong>, etc. Consta dentro de cada instrumento jurídico de formalização do vínculo.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Instrumentos de formalização da parceria
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Instrumento</th><th>Iniciativa</th><th>Transferência de recursos financeiros</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Termo de colaboração</strong></td><td>Administração pública</td><td><span class="tag tag-green">Sim</span></td></tr>
+        <tr><td><strong>Termo de fomento</strong></td><td>Organização da sociedade civil</td><td><span class="tag tag-green">Sim</span></td></tr>
+        <tr><td><strong>Acordo de cooperação</strong></td><td>Administração ou organização da sociedade civil</td><td><span class="tag tag-red">Não</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Termos = tem RECURSO (colaboração: iniciativa da Administração · fomento: iniciativa da OSC) · Acordo de cooperação = SEM recursos, iniciativa irrelevante
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O tema mais cobrado da Lei 13.019/2014 é a distinção entre os três instrumentos. Cuidado: <strong>convênios foram substituídos</strong> pelos termos de colaboração e fomento nas parcerias com OSC; a partir da vigência da Lei 13.019, convênios somente podem ser celebrados <strong>entre entes federados ou pessoas jurídicas a eles vinculadas</strong> (FCC/TRT 21 2017). O <strong>acordo de cooperação</strong> é o instrumento para parceria sem repasse de recursos.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Fundamentos e princípios
+  </h3>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      LIMPE + ELE — Legalidade, Impessoalidade, Moralidade, Publicidade, Eficiência (constitucionais expressos) + Economicidade, Legitimidade e Eficácia
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      O Regime de Parcerias fundamenta-se (art. 5º) na <strong>gestão pública democrática</strong>, na <strong>participação social</strong>, no <strong>fortalecimento da sociedade civil</strong>, na <strong>transparência na aplicação dos recursos públicos</strong> e em determinados princípios administrativos.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Chamamento público
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O <strong>chamamento público</strong> (art. 2º, XII) é o procedimento destinado a selecionar a OSC para firmar parceria por meio de <strong>termo de colaboração ou de fomento</strong>, garantindo a isonomia, legalidade, impessoalidade, moralidade, igualdade, publicidade, probidade administrativa, vinculação ao instrumento convocatório e julgamento objetivo.<br><br>
+      É semelhante aos processos licitatórios, mas <strong>com eles não se confunde</strong>: a licitação seleciona empresas para contratos; o chamamento público seleciona OSC para parcerias. O <strong>edital</strong> deve ser divulgado em sítio oficial na internet com antecedência mínima de <strong>30 dias</strong> (art. 26).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Situação</th><th>Chamamento público</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Termos de colaboração e de fomento</strong></td><td>Regra: <strong>realizar</strong>. Exceção: casos de <strong>dispensa, inexigibilidade e emendas parlamentares</strong> (art. 29)</td></tr>
+        <tr><td><strong>Acordo de cooperação</strong></td><td>Regra: <strong>não realizar</strong>. Exceção: quando o objeto envolver <strong>comodato, doação de bens ou outra forma de compartilhamento de recurso patrimonial</strong> (art. 29)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Dispensa × inexigibilidade do chamamento</div>
+    <div class="card-text">
+      <strong>Dispensável</strong> (art. 30 — faculdade da Administração): urgência por paralisação ou iminência de paralisação de atividades de relevante interesse público (até 180 dias); guerra, calamidade pública, grave perturbação da ordem pública ou ameaça à paz social; programa de proteção a pessoas ameaçadas; atividades de <strong>educação, saúde e assistência social</strong> executadas por OSC previamente credenciadas.<br><br>
+      <strong>Inexigível</strong> (art. 31 — inviabilidade de competição pela natureza singular do objeto ou quando as metas só puderem ser atingidas por entidade específica). Exemplos: objeto constituir incumbência prevista em acordo/ato/compromisso internacional com instituições indicadas; parceria decorrente de transferência autorizada em lei com entidade expressamente identificada (ex.: subvenção social).<br><br>
+      A ausência de chamamento será <strong>justificada pelo administrador</strong>, com publicação do extrato (obrigatória na internet), podendo ser impugnada em <strong>5 dias</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Requisitos para celebração dos termos de colaboração e de fomento
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A OSC deve ser regida por normas internas que prevejam (art. 33): objetivos voltados à promoção de atividades e finalidades de <strong>relevância pública e social</strong>; transferência do patrimônio líquido em caso de dissolução; escrituração contábil conforme princípios fundamentais; e tempo mínimo de existência. Exige-se ainda <strong>experiência prévia</strong> no objeto e <strong>capacidade técnica e operacional</strong>.<br><br>
+      <strong>Acordo de cooperação:</strong> exige-se apenas o primeiro requisito. <strong>Organizações religiosas:</strong> dispensadas das letras "a" e "b". <strong>Sociedades cooperativas:</strong> atendem à legislação específica e às normas contábeis.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ente federativo</th><th>Tempo mínimo de atividade da OSC</th></tr></thead>
+      <tbody>
+        <tr><td>Municípios</td><td><strong>1 ano</strong></td></tr>
+        <tr><td>Estados ou Distrito Federal</td><td><strong>2 anos</strong></td></tr>
+        <tr><td>União</td><td><strong>3 anos</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Providências da administração pública (art. 35)</div>
+    <div class="card-text">
+      • realização de <strong>chamamento público</strong>, ressalvadas as hipóteses legais;<br>
+      • indicação expressa de <strong>prévia dotação orçamentária</strong>;<br>
+      • demonstração da <strong>compatibilidade</strong> dos objetivos e da capacidade técnica e operacional da OSC;<br>
+      • <strong>aprovação do plano de trabalho</strong>;<br>
+      • emissão de <strong>parecer técnico</strong>;<br>
+      • emissão de <strong>parecer jurídico</strong> acerca da possibilidade de celebração da parceria.
+    </div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Contrapartida:</strong> é <strong>vedada</strong> a exigência de <strong>contrapartida financeira</strong> como requisito para firmar a parceria. Faculta-se exigir <strong>contrapartida em bens e serviços</strong>, que deve ser expressa em equivalente monetário e identificada no instrumento (art. 35, § 1º).</div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Incompatibilidades e vedações à celebração (art. 39)</div>
+    <div class="card-text">
+      Ficam <strong>impedidas</strong> de firmar parcerias as OSC:<br>
+      • cujos dirigentes tenham sido <strong>condenados por atos de improbidade administrativa</strong>, <strong>independentemente do tipo</strong> de improbidade (art. 39, VII, "b");<br>
+      • que tenham sofrido <strong>qualquer uma</strong> das sanções de suspensão de participação em licitação, impedimento de contratar com a administração ou declaração de inidoneidade — a proibição <strong>não exige cumulação</strong> das penalidades (art. 39, V);<br>
+      • cujas <strong>contas tenham sido julgadas irregulares pelo Tribunal de Contas nos últimos 8 anos</strong> (art. 39, VI);<br>
+      • com <strong>decisão final condenatória</strong> que julgue irregularidade insanável na prestação de contas — a mera acusação em representação ao TC <strong>não</strong> basta (art. 39, VII, "a").
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A celebração da parceria <strong>não obriga o poder público</strong>: a homologação do chamamento <strong>não gera direito</strong> à celebração (art. 27, § 6º) — a entidade tem mera expectativa. Também é <strong>vedado condicionar</strong> o chamamento ou a parceria à prévia realização de Procedimento de Manifestação de Interesse Social (art. 21, § 2º).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — QUADRO COMPARATIVO                                   -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Quadro comparativo</div>
+  </div>
+  <div class="sec-subtitle">OS × OSCIP — diferenças mais exploradas pelas bancas</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>OS — Lei 9.637/1998</th><th>OSCIP — Lei 9.790/1999</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Natureza</strong></td><td>Pessoa privada, não integrante da administração pública (entidade paraestatal)</td><td>Pessoa privada, não integrante da administração pública (entidade paraestatal)</td></tr>
+        <tr><td><strong>Finalidade</strong></td><td colspan="2">Atuação em áreas de interesse social especificadas em lei; vedada finalidade de lucro</td></tr>
+        <tr><td><strong>Idealização</strong></td><td>Substituir órgãos/entidades da administração que seriam extintos, com atividades "absorvidas"</td><td><strong>Não</strong> foram idealizadas para substituir órgãos ou entidades da administração</td></tr>
+        <tr><td><strong>Instrumento de parceria</strong></td><td><strong>Contrato de gestão</strong> (condição indispensável ao fomento)</td><td><strong>Termo de parceria</strong> (condição indispensável ao fomento)</td></tr>
+        <tr><td><strong>Qualificação</strong></td><td><span class="tag tag-amber">Ato discricionário</span></td><td><span class="tag tag-green">Ato vinculado</span></td></tr>
+        <tr><td><strong>Autoridade que qualifica</strong></td><td>Presidente da República, mediante proposta do Ministro de Estado ou titular de órgão supervisor/regulador da área</td><td>Ministério da Justiça</td></tr>
+        <tr><td><strong>Conselhos</strong></td><td>Conselho de administração com representantes do poder público; <strong>não exige</strong> conselho fiscal</td><td>Conselho fiscal; <strong>não exige</strong> conselho de administração; sem exigência de representantes do poder público</td></tr>
+        <tr><td><strong>Desqualificação</strong></td><td>Pelo Poder Executivo, quando constatado descumprimento do <strong>contrato de gestão</strong>; processo administrativo com contraditório e ampla defesa</td><td>Perda da qualificação por decisão em processo administrativo ou judicial, de iniciativa popular ou do Ministério Público</td></tr>
+        <tr><td><strong>Cessão de servidores</strong></td><td><strong>Há</strong> previsão de cessão especial de servidor público (ônus na origem)</td><td><strong>Não há</strong> previsão de cessão de servidor</td></tr>
+        <tr><td><strong>Contratações</strong></td><td colspan="2">Regulamento próprio, público, objetivo e impessoal (não licitam)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Impossível cumulação:</strong> uma entidade <strong>não pode ser qualificada concomitantemente como OS e OSCIP</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Instrumentos e regime aplicável
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Parceria</th><th>Instrumento</th><th>Regime legal</th></tr></thead>
+      <tbody>
+        <tr><td>Com organização social (OS)</td><td>Contrato de gestão</td><td>Lei 9.637/1998</td></tr>
+        <tr><td>Com OSCIP</td><td>Termo de parceria</td><td>Lei 9.790/1999</td></tr>
+        <tr><td>Com OSC — iniciativa da administração + recursos</td><td>Termo de colaboração</td><td>Lei 13.019/2014</td></tr>
+        <tr><td>Com OSC — iniciativa da OSC + recursos</td><td>Termo de fomento</td><td>Lei 13.019/2014</td></tr>
+        <tr><td>Com OSC — sem recursos financeiros</td><td>Acordo de cooperação</td><td>Lei 13.019/2014</td></tr>
+        <tr><td>Entidades de apoio × IFES/ICTs</td><td>Convênio (em regra)</td><td>Lei 8.958/1994</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>OS ≠ OSCIP:</strong> contrato de gestão (discricionária) × termo de parceria (vinculada); qualificação pelo Presidente da República × Ministério da Justiça<br>
+      • <strong>Paraestatais não integram a administração</strong> direta nem indireta — são do terceiro setor; não existe paraestatal de direito público<br>
+      • <strong>Diferença entre os 3 instrumentos da Lei 13.019/2014:</strong> colaboração (Administração + recursos) × fomento (OSC + recursos) × acordo de cooperação (sem recursos)<br>
+      • <strong>Requisitos de qualificação da OS</strong> (ensino, pesquisa, desenvolvimento tecnológico, meio ambiente, cultura e saúde + contrato de gestão + sem fins lucrativos + direito privado)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Serviços sociais autônomos:</strong> autorização legal (não decreto), CLT sem concurso, não licitam, prestam contas ao TCU, foro na Justiça Estadual<br>
+      • <strong>Conselho de administração da OS:</strong> não remunerado (salvo ajuda de custo); diretoria pode ser remunerada<br>
+      • <strong>OSCIP:</strong> 3 anos de funcionamento; rol do art. 2º veda instituições religiosas, OS, cooperativas, fundações públicas etc.; exceção do microcrédito<br>
+      • <strong>Fomento à OS:</strong> recursos orçamentários, bens públicos por permissão de uso (sem licitação) e cessão especial de servidor (ônus na origem)<br>
+      • <strong>Tempo mínimo de atividade (Lei 13.019):</strong> 1 ano (municípios), 2 anos (estados/DF), 3 anos (União)<br>
+      • <strong>LIMPE + ELE:</strong> princípios do Regime de Parcerias; chamamento público é regra para colaboração e fomento (edital com 30 dias de antecedência)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • OS <strong>não pode</strong> ser OSCIP ao mesmo tempo<br>
+      • OSCIP <strong>não</strong> é contratada por dispensa de licitação; mas também <strong>não licita</strong> (concurso de projetos + regulamento próprio)<br>
+      • Lei 14.133/2021 <strong>não</strong> traz dispensa para contratar OS — ainda assim não se licita (parceria, ADI 1.923)<br>
+      • Convênio, na Lei 13.019, é substituído pelos termos — só entre entes federados<br>
+      • Entidade paraestatal é <strong>criada por particulares</strong>, ainda que com autorização legislativa<br>
+      • Qualificação como OS é <strong>credenciamento</strong> (STF): não incide licitação pela inexistência de competição
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine os conceitos de Di Pietro (mais cobrados), a distinção OS × OSCIP (contrato de gestão × termo de parceria, discricionária × vinculada) e a diferença entre termo de colaboração, termo de fomento e acordo de cooperação. Essas são as pegadinhas recorrentes de Cebraspe e FCC.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

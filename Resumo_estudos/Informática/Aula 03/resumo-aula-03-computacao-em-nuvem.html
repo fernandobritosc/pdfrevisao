@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Informática Aula 03: Computação em Nuvem</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Informática — Aula 03</div>
+  <div class="sidebar-sub">Computação em Nuvem · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. O que é computação em nuvem</a>
+  <a href="#sec2">2. Características essenciais</a>
+  <a href="#sec3">3. Modelos de serviço (IaaS, PaaS, SaaS)</a>
+  <a href="#sec4">4. Modelos de implantação</a>
+  <a href="#sec5">5. Vantagens e desvantagens/riscos</a>
+  <a href="#sec6">6. Pontos que mais caem em prova</a>
+  <a href="#sec7">7. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: simplificado + completo + marcação do aprovado<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — O QUE É COMPUTAÇÃO EM NUVEM                          -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">O que é computação em nuvem</div>
+  </div>
+  <div class="sec-subtitle">Conceitos básicos · Incidência em prova: <span class="tag tag-red">Altíssima</span></div>
+
+  <div class="card">
+    <div class="card-title">Nuvem = metáfora para a internet</div>
+    <div class="card-text">
+      O termo <strong>"nuvem"</strong> na tecnologia é uma <strong>metáfora para a internet</strong>. Historicamente, em diagramas de redes de computadores, a internet era representada por um símbolo de nuvem — devido à sua natureza abstrata, em que a complexidade da infraestrutura subjacente (servidores, redes e centros de dados) é simplificada em diagramas por uma nuvem.<br><br>
+      Em uma definição mais genérica, a computação em nuvem refere-se ao <strong>uso dessa infraestrutura abstrata da internet para oferecer recursos virtuais</strong> como hardware, plataformas de desenvolvimento, serviços e servidores, <strong>distribuídos geograficamente pelo mundo</strong>. Esses recursos são acessados e utilizados por meio de aplicações online, geralmente através de um <strong>navegador web</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Definição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ambiente de computação</strong> baseado em uma imensa rede de servidores (físicos ou virtuais) — conjunto de recursos como capacidade de processamento, armazenamento, conectividade, plataformas, aplicações e serviços disponibilizados na Internet</td></tr>
+        <tr><td><strong>Modelo de acesso via rede</strong> a recursos de computação configuráveis (redes, servidores, armazenamento de dados, aplicações e serviços em geral), com acesso <strong>onipresente, conveniente e sob demanda</strong></td></tr>
+        <tr><td><strong>Distribuição de serviços de computação</strong> (servidores, armazenamento, bancos de dados, redes, software, análises, inteligência) proporcionando inovações mais rápidas, recursos flexíveis e <strong>economia na escala</strong></td></tr>
+        <tr><td><strong>Entrega sob demanda</strong> de poder computacional, armazenamento de banco de dados, aplicações e outros recursos de TI via Internet, com <strong>preço conforme o uso</strong></td></tr>
+        <tr><td><strong>Conjunto de recursos</strong> que permitem a um usuário de Internet, em qualquer lugar, com qualquer sistema operacional e qualquer dispositivo de hardware, utilizar recursos na Internet como se estivessem instalados em sua própria máquina</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      INTERNET → NUVEM · "Nuvem" é só uma metáfora para a internet
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>NIST:</strong> a agência americana <strong>NIST (National Institute of Standards and Technology)</strong> publicou em <strong>2011</strong> um documento que define aspectos da computação em nuvem, reconhecido no meio acadêmico e em concursos. O estudo se divide em: <strong>cinco características essenciais</strong>, <strong>três modelos de serviço</strong> e <strong>quatro modelos de implantação</strong> (tipos de nuvem).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Principal vantagem: redução de custos</div>
+    <div class="card-text">
+      A principal vantagem é a <strong>redução de custos</strong>, tanto para empresas quanto para indivíduos. Antes, as empresas precisavam de seus próprios <strong>Centros de Processamento de Dados (CPDs)</strong>, com despesas de espaço físico, equipamentos, manutenção e pessoal especializado — a nuvem elimina a necessidade de manter essa infraestrutura.<br><br>
+      • <strong>Para empresas:</strong> liberação do espaço físico para outros fins, transferência de manutenção e operação para provedores remotos, economia de energia e redução de despesas com pessoal<br>
+      • <strong>Para indivíduos:</strong> acesso a serviços em diversos dispositivos sem comprar múltiplas licenças de software ou versões atualizadas (ex.: MS-Office em diferentes dispositivos, sem custos adicionais)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Em regra, a responsabilidade por <strong>armazenamento, atualização, backup e manutenção</strong> da aplicação na nuvem é <strong>terceirizada para a prestadora do serviço de nuvem</strong> — não cabe ao usuário. A nuvem permite à TI focar em projetos <strong>estratégicos</strong>, e não em manter provedores funcionando.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CARACTERÍSTICAS ESSENCIAIS                           -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Características essenciais</div>
+  </div>
+  <div class="sec-subtitle">As cinco características definidas pelo NIST</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      MEARA — MEnsuração · Elasticidade rápida · Amplo acesso à rede · Recursos (agrupamento) · Autosserviço sob demanda
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Serviços Mensurados (Measured Service)</div><div class="card-text"><strong>Incidência: baixa</strong><br><br>Serviços de nuvem <strong>monitoram todos os recursos de tecnologia</strong> (armazenamento, memória, processamento, vídeo, largura de banda, etc.) de modo a <strong>otimizá-los</strong> — sem excesso de recursos ociosos nem escassez — de forma <strong>transparente</strong> tanto para o fornecedor quanto para o consumidor.</div></div>
+    <div class="card"><div class="card-title">Elasticidade Rápida (Rapid Elasticity)</div><div class="card-text">Capacidade de o sistema <strong>se ajustar automaticamente às variações na carga de trabalho</strong>, aumentando ou diminuindo recursos conforme necessário, de forma <strong>transparente</strong> — o usuário tem a sensação de recursos ilimitados. Paga-se apenas pelo que é utilizado (<strong>pay-per-use</strong>).</div></div>
+    <div class="card"><div class="card-title">Amplo Acesso à Rede (Broad Network Access)</div><div class="card-text">Todas as funcionalidades estão disponíveis através da rede e são acessíveis por <strong>plataformas heterogêneas</strong> (smartphones, laptops, tablets, etc.), de forma <strong>padronizada</strong>, em diversos equipamentos, sistemas operacionais, navegadores e arquiteturas — desde que haja conectividade com a Internet. <em>Também traduzido como Ampla Disponibilidade ou Acesso à Rede Ubíqua.</em></div></div>
+    <div class="card"><div class="card-title">Agrupamento de Recursos (Resource Pooling)</div><div class="card-text">"Pool" = agrupamento de recursos para uso <strong>eficiente e compartilhado</strong>. Recursos (armazenamento, processamento, memória, largura de banda, máquinas virtuais) são <strong>compartilhados entre muitos clientes</strong>, alocados e realocados dinamicamente, sem que o cliente tenha controle/conhecimento da localização exata. Aumenta eficiência e reduz custos.</div></div>
+    <div class="card"><div class="card-title">Autosserviço sob Demanda (On-Demand Self-Service)</div><div class="card-text">Capacidade de fornecer funcionalidades computacionais <strong>automaticamente, sem interação com o provedor</strong>. O consumidor pode, <strong>unilateralmente</strong>, requerer ou dispensar capacidades de computação (tempo de servidor, armazenamento, etc.) conforme necessário.</div></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Autosserviço sob demanda × Elasticidade rápida:</strong> o autosserviço diz respeito a <strong>fornecer um serviço como e quando necessário</strong> (aquisição de <strong>novos</strong> recursos). A elasticidade enfoca <strong>aumentar ou diminuir o serviço com base na demanda</strong>, dentro dos limites dos recursos <strong>já provisionados</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Escalabilidade × Elasticidade
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Escalabilidade</th><th>Elasticidade</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Definição</strong></td><td>Capacidade de aumentar ou diminuir os recursos de computação para atender às mudanças na demanda</td><td>Capacidade de alocar e liberar recursos dinamicamente, de forma automática, para se adaptar a variações <strong>imprevisíveis</strong> na demanda</td></tr>
+        <tr><td><strong>Formas</strong></td><td><strong>Vertical</strong> (aumentar capacidade de um servidor — mais memória/CPU) ou <strong>horizontal</strong> (adicionar mais servidores)</td><td>Flexibilidade do sistema para se ajustar rapidamente — em geral, automática, com base na carga, em modelo <strong>pay-per-use</strong> e por curto período</td></tr>
+        <tr><td><strong>Foco</strong></td><td>Lidar com crescimento (ou redução) a <strong>longo prazo</strong> na demanda (semanas, meses, anos)</td><td>Agilidade para se adaptar a <strong>flutuações repentinas e imprevisíveis</strong></td></tr>
+        <tr><td><strong>Exemplo</strong></td><td>Empresa que planeja expandir o e-commerce e aumenta capacidade/servidores <strong>antes</strong> de uma grande promoção</td><td>Site de notícias que <strong>automaticamente</strong> aloca mais recursos durante uma notícia de última hora e reduz quando a demanda volta ao normal</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A banca usa os termos <strong>elasticidade</strong> e <strong>escalabilidade</strong> de forma indiscriminada, mas há diferença: <strong>escalabilidade</strong> = suportar aumento de carga no <strong>longo prazo</strong> (vertical/horizontal); <strong>elasticidade</strong> = ajuste <strong>automático e quase instantâneo</strong> a variações da demanda (ex.: Black Friday). Em geral, não se reserva recurso — a nuvem provisiona conforme a necessidade.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Amplo acesso à rede" também pode aparecer como "<strong>Acesso por Banda Larga</strong>" — tradução ruim de <strong>Broad Network Access</strong>, mas que ainda é característica essencial (CESPE/CNJ 2013). Não deixe de reconhecer a característica por causa da tradução.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — MODELOS DE SERVIÇO                                   -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Modelos de serviço: IaaS, PaaS e SaaS</div>
+  </div>
+  <div class="sec-subtitle">Modelos tradicionais — os que mais caem em prova · Incidência: <span class="tag tag-red">Altíssima</span></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Modelo</th><th>O que é</th><th>Quem gerencia</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>IaaS</strong><br>Infrastructure as a Service</td><td>Capacidade de o provedor oferecer uma <strong>infraestrutura de processamento e armazenamento</strong> de forma transparente. O usuário não controla a infraestrutura física, mas, via <strong>virtualização</strong>, controla <strong>máquinas virtuais</strong>, aplicativos instalados e, possivelmente, controle limitado de recursos de rede</td><td>Provedor: hardware e virtualização<br>Cliente: máquinas virtuais, aplicativos, SO, dados</td><td><strong>Amazon Web Services</strong></td></tr>
+        <tr><td><strong>PaaS</strong><br>Platform as a Service</td><td>Capacidade de o provedor oferecer o <strong>desenvolvimento de aplicativos</strong> que serão executados e disponibilizados na nuvem — plataforma de alto nível de integração para <strong>implementar e testar</strong> aplicações. Fornece linguagens de programação e ambientes de desenvolvimento</td><td>Provedor: infraestrutura subjacente (rede, servidores, SO, armazenamento)<br>Cliente: aplicações implantadas e suas configurações</td><td><strong>Google AppEngine</strong> e <strong>Microsoft Azure</strong></td></tr>
+        <tr><td><strong>SaaS</strong><br>Software as a Service</td><td>Aplicativos de interesse de grande quantidade de clientes <strong>hospedados na nuvem</strong> como alternativa ao processamento local. Acessados pelo cliente via <strong>navegador</strong>, sem instalar o aplicativo na máquina local</td><td>Provedor: tudo (rede, SO, servidores, armazenamento, dados)</td><td><strong>Google Apps, SalesForce, Google Drive, OneDrive, iCloud</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Relação entre os modelos:</strong> o modelo <strong>IaaS suporta o PaaS</strong>, que <strong>suporta o SaaS</strong>. A IaaS fornece recursos computacionais (hardware ou software) para a PaaS; a PaaS fornece recursos, tecnologias e ferramentas para desenvolvimento e execução dos softwares a serem disponibilizados como SaaS. Uma organização provedora <strong>não precisa obrigatoriamente</strong> disponibilizar os três modelos.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">On-premises (fora da nuvem)</div>
+    <div class="card-text">
+      Recursos <strong>on-premises</strong> = infraestrutura armazenada <strong>localmente</strong>, e não na nuvem. Sem usar nuvem, o usuário precisa gerenciar: <strong>rede, armazenamento, servidores, virtualização, sistema operacional, middlewares, ambientes de execução, dados e aplicações</strong> — comprando toda a infraestrutura e instalando cada camada manualmente.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Sistema Operacional — teoria × prática:</strong> na <strong>teoria</strong>, o SO é considerado parte das responsabilidades do <strong>PaaS</strong>; na <strong>prática</strong>, é considerado parte das responsabilidades do <strong>IaaS</strong>. Em prova, vale mais a <strong>teoria</strong>.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Se o enunciado diz que o órgão gerencia <strong>sistema operacional, middleware e aplicativos</strong> enquanto a nuvem cuida de <strong>armazenamento, rede e virtualização</strong> → é <strong>IaaS</strong>. No SaaS, <strong>o provedor cuida de tudo</strong> — o cliente só abre o navegador e usa.
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Armazenamento em nuvem (cloud storage) = SaaS, não IaaS</div>
+    <div class="card-text">
+      Muitos interpretam o <strong>armazenamento em nuvem</strong> (Google Drive, OneDrive, Dropbox, iCloud) como <strong>IaaS</strong>. Errado! O <strong>IaaS</strong> destina-se a <strong>desenvolvedores e empresas</strong> que necessitam de máquinas virtuais com capacidades computacionais específicas e sistemas operacionais para desenvolvimento de aplicações. Ao usar o Google Drive, você apenas <strong>consome um software de armazenamento virtualizado na nuvem</strong> — logo, é <strong>SaaS</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Outros modelos de serviço ("as a Service")
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Modelo</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CaaS — Communication as a Service</strong></td><td>Solução de <strong>comunicação corporativa terceirizada</strong>, alugada de um único fornecedor: voz sobre IP (VoIP), mensagens instantâneas (IM), colaboração e videoconferência. Evoluiu nas mesmas linhas do SaaS.</td></tr>
+        <tr><td><strong>DevaaS — Development as a Service</strong></td><td>Compartilhamento de <strong>ferramentas de desenvolvimento e serviço</strong>, permitindo mesclar conteúdo de diversas fontes para criar um novo serviço.</td></tr>
+        <tr><td><strong>EaaS — Enterprise as a Service</strong></td><td>Modelo avançado que incorpora ofertas de <strong>software, infraestrutura e plataforma</strong> com gerenciamento adicional de processos de negócios e camadas de serviço corporativo.</td></tr>
+        <tr><td><strong>BDaaS — Big Data as a Service</strong></td><td>Entrega de <strong>ferramentas ou informações de análise estatística</strong> por fornecedor externo, ajudando a usar percepções de grandes conjuntos de informações para vantagem competitiva.</td></tr>
+        <tr><td><strong>DaaS — Data as a Service</strong></td><td>Fornecimento de <strong>informações ou dados sob demanda</strong>, independentemente da localização do usuário. Flexibilidade para expandir o banco de dados e compartilhar informações.</td></tr>
+        <tr><td><strong>TaaS — Testing as a Service</strong></td><td>Modelo de terceirização no qual as <strong>atividades de teste</strong> de negócios são executadas por um provedor de serviços e não por funcionários.</td></tr>
+        <tr><td><strong>FaaS — Function as a Service</strong></td><td>Permite executar <strong>trechos de código em resposta a eventos</strong>, sem provisionar ou gerenciar servidores — aplicações baseadas em eventos.</td></tr>
+        <tr><td><strong>CAAS — Container as a Service</strong></td><td>Serviço de nuvem que fornece <strong>ambiente de hospedagem gerenciado para implantação de contêineres</strong>, com orquestração e gestão da vida útil dos contêineres, automação e escalabilidade.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Azure (Microsoft):</strong> lançado em <strong>2008</strong>, classificado inicialmente como <strong>PaaS</strong> — hoje já é capaz de oferecer <strong>IaaS e SaaS</strong> também. Não o fixe como "só PaaS" nem como "só IaaS".
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — MODELOS DE IMPLANTAÇÃO                               -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Modelos de implantação</div>
+  </div>
+  <div class="sec-subtitle">Tipos de nuvem · Incidência: <span class="tag tag-red">Altíssima</span> (pública em específico: <span class="tag tag-amber">baixa</span>)</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Modelo</th><th>Descrição</th><th>Vantagens</th><th>Desvantagens</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Nuvem pública</strong></td><td>Serviços oferecidos por <strong>terceiros à Internet pública</strong>, disponíveis a qualquer pessoa que queira utilizá-los ou comprá-los (gratuitamente ou mediante pagamento)</td><td>Custos reduzidos (sem investimento em hardware), alta escalabilidade, manutenção e atualizações gerenciadas pelo provedor</td><td>Menor controle sobre a infraestrutura e potencialmente menos segurança em comparação com nuvens privadas (dependendo do caso de uso)</td></tr>
+        <tr><td><strong>Nuvem privada</strong></td><td>Serviços oferecidos pela Internet ou por <strong>rede interna privada</strong>, somente a <strong>usuários selecionados</strong>, não ao público geral</td><td>Maior controle e personalização, segurança aprimorada, melhor conformidade com políticas internas e regulamentações externas</td><td>Custos mais elevados (comprar e manter a infraestrutura), menos escalabilidade que as nuvens públicas</td></tr>
+        <tr><td><strong>Nuvem híbrida</strong></td><td><strong>Combinação de outros modelos</strong> de implantação, permitindo que dados e aplicativos sejam compartilhados entre elas (com <strong>portabilidade de dados e aplicações</strong>)</td><td>Maior flexibilidade para escolher onde colocar os recursos, equilíbrio entre controle e escalabilidade, otimização de custos</td><td>Pode ser mais complexa de gerenciar e requer integração eficaz entre ambas as plataformas</td></tr>
+        <tr><td><strong>Nuvem comunitária</strong></td><td>Compartilhada por <strong>várias organizações com requisitos e interesses comuns</strong> (missão, política, segurança)</td><td>Custos compartilhados, atende a requisitos específicos do setor/comunidade, pode oferecer melhor segurança que a nuvem pública</td><td>Menos escalável que a nuvem pública; custos podem ser maiores que na nuvem privada se a comunidade for pequena</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Detalhes por modelo</div>
+    <div class="card-text">
+      • <strong>Pública:</strong> aberta ao público em geral, gratuitamente ou mediante pagamento; pode ser gerenciada por empresas, órgãos governamentais ou combinações — existe nas instalações do provedor (Ex.: Google Drive, Dropbox, OneDrive, Office 365)<br>
+      • <strong>Privada:</strong> acessível a um grupo exclusivo e restrito de uma organização; pode estar em ambiente próprio da entidade, não necessariamente no perímetro físico, protegida por <strong>firewall</strong> e administrada pelos funcionários da corporação<br>
+      • <strong>Híbrida:</strong> combinação de duas ou mais nuvens distintas (privadas, comunitárias ou públicas) que permanecem como entidades únicas, unidas por tecnologias padronizadas ou proprietárias — <strong>sem portabilidade de dados e aplicações, são apenas duas nuvens separadas</strong><br>
+      • <strong>Comunitária:</strong> exclusiva e restrita a grupos com interesses e preocupações em comum (cooperativas, instituições de segurança, seguradoras, blocos políticos, grupos empresariais)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Nuvem pública ≠ gratuita:</strong> é pública por estar <strong>aberta ao público em geral</strong>, gratuitamente ou mediante pagamento. Não confundir com "nuvem gratuita". Também não é "uso exclusivo da administração pública".
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Nuvem comunitária ≠ nuvem pública:</strong> a comunitária é <strong>compartilhada por organizações com interesses em comum</strong> e com <strong>acesso restrito</strong> a não participantes. A pública é aberta a qualquer pessoa. A banca troca os conceitos (ABIN 2018, TCE-PA 2016).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Cloud storage ≠ nuvem privada:</strong> o armazenamento em nuvem (cloud storage) é um serviço que <strong>independe da classificação em pública ou privada</strong> — nuvens públicas também exigem autenticação/autorização e é possível armazenar dados em nuvens públicas ou privadas (Polícia Federal 2012).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — VANTAGENS E DESVANTAGENS/RISCOS                      -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Vantagens e desvantagens/riscos</div>
+  </div>
+  <div class="sec-subtitle">Benefícios gerais e riscos apontados pelas fontes</div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Vantagens</div>
+    <div class="card-text">
+      • <strong>Redução de custos</strong> (principal vantagem) — sem CPD próprio, sem investimento em hardware, sem múltiplas licenças de software<br>
+      • <strong>Liberação do espaço físico</strong> para outros fins<br>
+      • <strong>Transferência de responsabilidades</strong> (manutenção, atualização, backup, escalonamento) para o provedor<br>
+      • <strong>Redução do consumo de energia</strong> e <strong>redução da folha salarial</strong> (menos pessoal especializado)<br>
+      • <strong>Otimização de recursos</strong> — paga-se apenas pelo que é utilizado (pay-per-use)<br>
+      • <strong>Elasticidade/adaptabilidade</strong> a picos de demanda (ex.: Black Friday) sem interrupções ou degradação<br>
+      • <strong>Acesso a partir de qualquer lugar</strong>, com qualquer sistema operacional e dispositivo (mobilidade)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Desvantagens / riscos (por modelo de implantação)</div>
+    <div class="card-text">
+      • <strong>Nuvem pública:</strong> menor controle sobre a infraestrutura e potencialmente menos segurança (comparada à privada)<br>
+      • <strong>Nuvem privada:</strong> custos mais elevados (comprar e manter a infraestrutura) e menos escalabilidade que a pública<br>
+      • <strong>Nuvem híbrida:</strong> mais complexa de gerenciar e requer integração eficaz entre as plataformas<br>
+      • <strong>Nuvem comunitária:</strong> menos escalável que a pública; custos maiores que na privada se a comunidade for pequena
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Armazenamento em nuvem (Backup Online) · Incidência: <span class="tag tag-amber">ALTA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O <strong>armazenamento em nuvem</strong> (ou <strong>Backup Online</strong>) refere-se ao armazenamento <strong>virtualizado</strong> de dados. Permite que usuários da Internet acessem e armazenem arquivos online, de qualquer lugar, com qualquer sistema operacional ou dispositivo. Arquivos (músicas, textos, vídeos, planilhas) ficam em <strong>servidores de Internet</strong> e são sincronizados de forma fácil e rápida, especialmente com <strong>conexão de banda larga</strong>. Muitos usuários armazenam dados em múltiplas plataformas (Google Drive, OneDrive, Dropbox e iCloud) para segurança adicional. Os serviços oferecem <strong>sincronização automática e backup</strong> dos arquivos salvos/modificados em uma pasta específica no dispositivo.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Serviço</th><th>Características</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Google Drive</strong></td><td>Serviço de <strong>armazenamento e computação em nuvem</strong>: armazenamento e edição de arquivos, compartilhamento (dispensa envio por e-mail) e criação de documentos, planilhas e apresentações</td></tr>
+        <tr><td><strong>Dropbox</strong></td><td>Programa de <strong>armazenamento em nuvem</strong> de documentos, fotos e vídeos, acessíveis de qualquer computador/dispositivo conectado à Internet, com compartilhamento seguro</td></tr>
+        <tr><td><strong>OneDrive</strong></td><td>Serviço de armazenamento da <strong>Microsoft</strong> (antigo <strong>SkyDrive</strong>), pré-instalado no <strong>Windows 10</strong>; com conta de empresa/escola chama-se <strong>OneDrive for Business</strong></td></tr>
+        <tr><td><strong>iCloud</strong></td><td>Serviço de armazenamento da <strong>Apple</strong>, lançado em <strong>2011</strong>, para dispositivos Apple (iPhone, iPad, Mac, iPod) com sincronização automática e acesso via web em Windows</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Serviços de armazenamento em nuvem <strong>não garantem espaço ilimitado</strong> nem <strong>gratuidade</strong> — o iCloud, por exemplo, oferece espaço gratuito com <strong>limitação</strong>; para mais espaço, paga-se (CESPE/TJ-AC 2012). A característica própria do cloud storage é a <strong>mobilidade facilitada</strong> ao usuário (acesso de qualquer dispositivo).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Ferramentas colaborativas · Incidência: <span class="tag tag-blue">baixíssima</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Baseadas em computação em nuvem, as <strong>ferramentas colaborativas</strong> permitem que usuários <strong>acessem e manipulem simultaneamente um mesmo documento</strong> — aplicações cuja principal finalidade é o compartilhamento de arquivos de trabalho entre usuários de uma organização para desenvolver uma tarefa em comum.<br><br>
+      <strong>Benefícios:</strong> aumento da produtividade, redução de custos, facilidade de utilização, aumento da mobilidade, aumento da segurança e reforço da cultura de trabalho em equipe.<br><br>
+      <strong>Principais ferramentas:</strong> Google Workspace (Documentos, Planilhas, Agenda, Apresentações, Drive), Office 365 (versão online por assinatura do Microsoft Office), Trello (método Kanban), Zoom (videoconferência), Microsoft Teams, Slack, Asana.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>IaaS × PaaS × SaaS:</strong> quem gerencia o quê — no IaaS o cliente controla máquinas virtuais/aplicativos; no PaaS controla apenas as aplicações; no SaaS o provedor cuida de tudo<br>
+      • <strong>Sistema Operacional:</strong> teoria = PaaS; prática = IaaS (em prova vale a teoria)<br>
+      • <strong>Cloud storage = SaaS</strong>, não IaaS (Google Drive, OneDrive, Dropbox, iCloud)<br>
+      • <strong>Armazenamento em nuvem = Backup Online</strong> — acesso de qualquer lugar/dispositivo, sincronização automática<br>
+      • <strong>Nuvem pública ≠ gratuita</strong> (aberta ao público, grátis ou paga)<br>
+      • <strong>Nuvem comunitária</strong> = organizações com interesses comuns, acesso restrito (não é pública)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>MEARA:</strong> as 5 características essenciais (NIST) — Mensurados, Elasticidade, Amplo acesso, Recursos agrupados, Autosserviço<br>
+      • <strong>Escalabilidade:</strong> longo prazo, vertical (CPU/memória) ou horizontal (mais servidores) × <strong>Elasticidade:</strong> automática, imprevisível, pay-per-use<br>
+      • <strong>Autosserviço sob demanda:</strong> adquirir novos recursos sem interação com o provedor × <strong>Elasticidade:</strong> ajustar recursos já provisionados<br>
+      • <strong>Nuvem híbrida:</strong> combinação de 2+ nuvens com <strong>portabilidade de dados e aplicações</strong> (sem portabilidade, são só nuvens separadas)<br>
+      • <strong>Azure:</strong> lançado em 2008 como PaaS; hoje oferece também IaaS e SaaS
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • Responsabilidade por armazenamento/atualização/backup é do <strong>provedor</strong>, não do usuário<br>
+      • Cloud storage <strong>independe</strong> de ser nuvem pública ou privada; nuvens públicas também exigem autenticação<br>
+      • Não há garantia de espaço ilimitado nem gratuidade nos serviços de armazenamento<br>
+      • "Acesso por banda larga" = má tradução de <strong>Broad Network Access</strong> (Amplo Acesso à Rede)<br>
+      • Suíte de escritório na nuvem (Office 365) = <strong>SaaS</strong>; desenvolvimento/teste de software = <strong>PaaS</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine a tabela IaaS/PaaS/SaaS (quem gerencia cada camada), as 5 características do NIST e a tabela de modelos de implantação com vantagens/desvantagens. Essas são as cobranças recorrentes (CESPE e multibancas) sobre computação em nuvem.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — INCIDÊNCIA DE TEMAS (TEC)                            -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

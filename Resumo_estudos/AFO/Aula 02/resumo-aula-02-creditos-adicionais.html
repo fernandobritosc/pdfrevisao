@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO Aula 02: Créditos Ordinários e Adicionais</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 02</div>
+  <div class="sidebar-sub">Créditos Ordinários e Adicionais</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Introdução</a>
+  <a href="#sec2">2. Suplementares</a>
+  <a href="#sec3">3. Especiais</a>
+  <a href="#sec4">4. Extraordinários</a>
+  <a href="#sec5">5. Fontes de abertura</a>
+  <a href="#sec6">6. Superávit financeiro</a>
+  <a href="#sec7">7. Excesso de arrecadação</a>
+  <a href="#sec8">8. Anulação + reserva</a>
+  <a href="#sec9">9. Processo legislativo</a>
+  <a href="#sec10">10. Mnemônico</a>
+  <a href="#sec11">11. Questões comentadas</a>
+  <a href="#sec12">12. Tabela comparativa</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+</aside>
+
+<div class="main">
+<div class="header">
+  <h1>💰 AFO — Aula 02: Créditos Ordinários e Adicionais</h1>
+  <p>Suplementares, especiais e extraordinários · Fontes de abertura · Superávit financeiro · Excesso de arrecadação · Material base: simplificado + completo · Estratégia Concursos · Luciana de Paula Marinho</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Créditos Ordinários e Adicionais — Introdução</div></div>
+  <div class="sec-subtitle">Conceito de crédito orçamentário, dotação e créditos adicionais</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Crédito Orçamentário Ordinário / Inicial</div></div>
+    <div class="card-text">
+      É o crédito aprovado na <strong>LOA</strong>, constante dos orçamentos fiscal, da seguridade social e de investimento das empresas estatais. O orçamento anual consignará importância para atender determinada despesa, denominada <strong>dotação orçamentária</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Crédito orçamentário vs. dotação orçamentária</div></div>
+    <div class="card-text">
+      • <strong>Crédito orçamentário:</strong> conjunto de categorias classificatórias e contas que especificam ações e operações autorizadas pela LOA, para execução dos programas de governo.<br>
+      • <strong>Dotação orçamentária:</strong> montante de recursos financeiros com que conta o crédito. É o limite de recurso financeiro autorizado.<br>
+      • <strong>Relação:</strong> o crédito orçamentário é portador de uma dotação; esta constitui o limite de recurso financeiro autorizado.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Crédito Adicional</div></div>
+    <div class="card-text">
+      Alteração qualitativa e quantitativa do orçamento. As dotações inicialmente aprovadas na LOA podem revelar-se insuficientes ou pode ocorrer necessidade de despesa inicialmente não autorizada. Assim, a LOA poderá ser alterada no decorrer de sua execução por meio de <strong>créditos adicionais</strong>.
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 40</strong><br>
+      "São créditos adicionais as autorizações de despesas não computadas ou insuficientemente dotadas na Lei de Orçamento."<br><br>
+      <strong>Lei 4.320/64, art. 46</strong><br>
+      "O ato que abrir crédito adicional indicará a importância, a espécie do mesmo e a classificação da despesa, até onde for possível."<br><br>
+      <strong>CF/88, art. 166, caput</strong><br>
+      "Os projetos de lei relativos ao plano plurianual, às diretrizes orçamentárias, ao orçamento anual e aos créditos adicionais serão apreciados pelas duas Casas do Congresso Nacional, na forma do regimento comum."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📂</div><div class="card-title">Classificação dos créditos adicionais</div></div>
+    <div class="card-text">
+      <strong>Lei 4.320/64, art. 41</strong><br>
+      "Os créditos adicionais classificam-se em: I – suplementares; II – especiais; III – extraordinários."
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 41, I</strong><br>
+      "Os créditos suplementares são os destinados a reforço de dotação orçamentária."<br><br>
+      <strong>Lei 4.320/64, art. 41, II</strong><br>
+      "Os créditos especiais são os destinados a despesas para as quais não haja dotação orçamentária específica."<br><br>
+      <strong>Lei 4.320/64, art. 41, III</strong><br>
+      "Os créditos extraordinários são os destinados a despesas urgentes e imprevisíveis, como em caso de guerra, comoção interna ou calamidade pública."
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha 1:</strong> créditos adicionais também são apreciados pelas duas Casas do Congresso, assim como PPA, LDO e LOA (CF/88, art. 166).</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha 2:</strong> o ato que abre crédito adicional deve indicar: importância, espécie e classificação da despesa (art. 46, Lei 4.320/64).</div></div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Créditos Suplementares</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito e finalidade</div></div>
+    <div class="card-text">
+      Destinados a <strong>reforço de dotação orçamentária</strong> já existente. Incorporam-se ao orçamento, adicionando-se à dotação que deva reforçar. <strong>Vigência:</strong> limitada ao exercício em que forem autorizados.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text">
+      <strong>Lei 4.320/64:</strong> arts. 41, I, 42, 43, caput e 46<br>
+      <strong>CF/88:</strong> arts. 165, § 8º e 167, V
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 41, I</strong><br>
+      "Os créditos suplementares são os destinados a reforço de dotação orçamentária."<br><br>
+      <strong>Lei 4.320/64, art. 42</strong><br>
+      "Os créditos suplementares e especiais serão autorizados por lei e abertos por decreto executivo."<br><br>
+      <strong>Lei 4.320/64, art. 43, caput</strong><br>
+      "A abertura dos créditos suplementares e especiais depende da existência de recursos disponíveis para ocorrer à despesa e será precedida de exposição justificativa."<br><br>
+      <strong>CF/88, art. 165, § 8º</strong><br>
+      "A lei orçamentária anual não conterá dispositivo estranho à previsão da receita e à fixação da despesa, não se incluindo na proibição a autorização para abertura de créditos suplementares e a contratação de operações de crédito, ainda que por antecipação de receita, nos termos da lei."
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Exceção ao princípio da exclusividade:</strong> o crédito suplementar é a única espécie que excetua a vedação de matéria estranha na LOA (CF/88, art. 165, § 8º).</div></div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Regra de abertura:</strong> a LOA pode autorizar o Executivo a abrir créditos suplementares até determinada importância/percentual, sem nova submissão ao Legislativo. São autorizados por lei (podendo ser a própria LOA ou outra lei especial), porém são abertos por decreto do Poder Executivo.</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Exemplo prático</div></div>
+    <div class="card-text">
+      Considere que os valores aprovados na LOA sejam insuficientes para a duplicação do número de provas do ENEM. O Ministério da Educação poderá solicitar ao Poder Executivo a abertura de crédito suplementar para reforçar a dotação orçamentária correspondente.
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Créditos Especiais</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito e finalidade</div></div>
+    <div class="card-text">
+      Destinados a despesas para as quais <strong>não haja dotação orçamentária específica</strong>. Conservam sua especificidade, demonstrando-se as despesas realizadas à conta destes separadamente. O reforço de um crédito especial deve dar-se pela regra prevista no respectivo crédito ou, na omissão, pela abertura de novos créditos especiais.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text">
+      <strong>Lei 4.320/64:</strong> arts. 41, II, 42 e 43<br>
+      <strong>CF/88:</strong> art. 167, § 2º
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 41, II</strong><br>
+      "Os créditos especiais são os destinados a despesas para as quais não haja dotação orçamentária específica."<br><br>
+      <strong>Lei 4.320/64, art. 42</strong><br>
+      "Os créditos suplementares e especiais serão autorizados por lei e abertos por decreto executivo."<br><br>
+      <strong>CF/88, art. 167, § 2º</strong><br>
+      "Os créditos especiais e extraordinários terão vigência no exercício financeiro em que forem autorizados, salvo se o ato de autorização for promulgado nos últimos quatro meses daquele exercício, caso em que, reabertos nos limites de seus saldos, serão incorporados ao orçamento do exercício financeiro subsequente."
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha 1:</strong> créditos especiais precisam de <strong>lei especial</strong> — não podem ser autorizados na própria LOA. A reabertura no exercício seguinte é <strong>facultativa</strong> e limitada ao saldo remanescente.</div></div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Exceção à anualidade:</strong> se o ato for promulgado nos últimos 4 meses, os saldos podem ser reabertos no exercício seguinte. Isso faz dos créditos especiais uma exceção ao princípio da anualidade.</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Exemplo prático</div></div>
+    <div class="card-text">
+      O Ministério da Educação planeje criar uma nova ação para fomentar a educação profissional, não prevista na LOA. A abertura de crédito especial poderá suprir a dotação orçamentária do montante necessário.
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Créditos Extraordinários</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito e finalidade</div></div>
+    <div class="card-text">
+      Destinados a despesas <strong>urgentes e imprevisíveis</strong>, como guerra, comoção interna ou calamidade pública. A <strong>indicação de fonte de recursos é facultativa</strong>. Conservam sua especificidade, demonstrando-se as despesas realizadas à conta destes separadamente.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Base legal</div></div>
+    <div class="card-text">
+      <strong>Lei 4.320/64:</strong> art. 41, III<br>
+      <strong>CF/88:</strong> art. 167, § 2º e § 3º
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 41, III</strong><br>
+      "Os créditos extraordinários são os destinados a despesas urgentes e imprevisíveis, como em caso de guerra, comoção interna ou calamidade pública."<br><br>
+      <strong>CF/88, art. 167, § 3º</strong><br>
+      "Os créditos extraordinários poderão ser abertos por medida provisória, no caso federal, e por decreto do Poder Executivo, nos demais entes, dando imediato conhecimento deles ao Poder Legislativo."<br><br>
+      <strong>CF/88, art. 167, § 2º</strong><br>
+      "Os créditos especiais e extraordinários terão vigência no exercício financeiro em que forem autorizados, salvo se o ato de autorização for promulgado nos últimos quatro meses daquele exercício, caso em que, reabertos nos limites de seus saldos, serão incorporados ao orçamento do exercício financeiro subsequente."
+    </div>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Não confundir:</strong> créditos extraordinários dispensam autorização legislativa prévia, mas são posteriormente apreciados pelo Congresso Nacional (no caso federal, por meio de MP).</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha 1:</strong> a CF usa "como" (exemplificativo), não rol taxativo. Guerra, comoção interna e calamidade pública são exemplos, não exaustivos.</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha 2:</strong> o crédito extraordinário <strong>NÃO precisa de indicação de recursos</strong>. É o único crédito adicional com essa característica.</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha 3:</strong> comoção interna ≠ comoção intestina. A Lei 4.320/64 usa "comoção intestina" como termo arcaico, mas a CF/88 adota "comoção interna".</div></div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Fontes para Abertura de Créditos Adicionais</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Regra geral</div></div>
+    <div class="card-text">
+      Para abertura de <strong>créditos suplementares e especiais</strong>, é necessária a existência de recursos disponíveis e exposição justificada. Créditos extraordinários dispensam essa exigência.
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 43, caput</strong><br>
+      "A abertura dos créditos suplementares e especiais depende da existência de recursos disponíveis para ocorrer à despesa e será precedida de exposição justificativa."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📋</div><div class="card-title">Fontes legais — art. 43, § 1º, Lei 4.320/64</div></div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 43, § 1º, I</strong><br>
+      "Consideram-se recursos para o fim deste artigo, desde que não comprometidos: I - o superávit financeiro apurado em balanço patrimonial do exercício anterior;"<br><br>
+      <strong>Lei 4.320/64, art. 43, § 1º, II</strong><br>
+      "II - os provenientes de excesso de arrecadação;"<br><br>
+      <strong>Lei 4.320/64, art. 43, § 1º, III</strong><br>
+      "III - os resultantes de anulação parcial ou total de dotações orçamentárias ou de créditos adicionais, autorizados em Lei;"<br><br>
+      <strong>Lei 4.320/64, art. 43, § 1º, IV</strong><br>
+      "IV - o produto de operações de crédito autorizadas, em forma que juridicamente possibilite ao Poder Executivo realizá-las."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">CF/88, art. 166, § 8º</div></div>
+    <div class="card-text">
+      <div class="legal-block">
+        <strong>CF/88, art. 166, § 8º</strong><br>
+        "Os recursos que, em decorrência de veto, emenda ou rejeição do projeto de lei orçamentária anual, ficarem sem despesas correspondentes poderão ser utilizados, conforme o caso, mediante créditos especiais ou suplementares, com prévia e específica autorização legislativa."
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Reserva de contingência:</strong> prevista na LRF, art. 5º, III. Destina-se a passivos contingentes e riscos fiscais imprevistos. Pode ser usada para abertura de créditos adicionais, se definida na LDO.</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> créditos extraordinários abertos no exercício são deduzidos do excesso de arrecadação, não do superávit financeiro.</div></div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Superávit Financeiro — Apuração Detalhada</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🧮</div><div class="card-title">Fórmula completa</div></div>
+    <div class="card-text">
+      <strong>Superávit Financeiro = AF - PF - CR + OCV</strong><br>
+      Onde:<br>
+      • <strong>AF:</strong> Ativo Financeiro<br>
+      • <strong>PF:</strong> Passivo Financeiro<br>
+      • <strong>CR:</strong> Créditos Adicionais transferidos<br>
+      • <strong>OCV:</strong> Operações de Crédito vinculadas
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🧮</div><div class="card-title">Excesso de Arrecadação</div></div>
+    <div class="card-text">
+      <strong>Excesso de Arrecadação = (Receita Arrecadada - Prevista) - CEA</strong><br>
+      Onde <strong>CEA</strong> = Créditos Extraordinários Abertos no exercício.
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 43, § 2º</strong><br>
+      "Entende-se por superávit financeiro a diferença positiva entre o ativo financeiro e o passivo financeiro, conjugando-se, ainda, os saldos dos créditos adicionais transferidos e as operações de crédito a eles vinculadas."<br><br>
+      <strong>Lei 4.320/64, art. 43, § 3º</strong><br>
+      "Entende-se por excesso de arrecadação o saldo positivo das diferenças acumuladas mês a mês entre a arrecadação prevista e a realizada, considerando-se, ainda, a tendência do exercício."<br><br>
+      <strong>Lei 4.320/64, art. 43, § 4º</strong><br>
+      "Ressalta-se, ainda, que para o fim de apurar os recursos utilizáveis, provenientes de excesso de arrecadação, deduzir-se-á a importância dos créditos extraordinários abertos no exercício."
+    </div>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha crucial:</strong> créditos extraordinários são deduzidos do <strong>excesso de arrecadação</strong>, NÃO do superávit financeiro. O superávit financeiro inclui apenas créditos adicionais transferidos + operações de crédito vinculadas.</div></div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Excesso de Arrecadação — Aplicação Prática</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🧮</div><div class="card-title">Cálculo passo a passo</div></div>
+    <div class="card-text">
+      1. Calcular a diferença acumulada mês a mês entre arrecadação prevista e realizada.<br>
+      2. Considerar a tendência do exercício.<br>
+      3. Deduzir os créditos extraordinários abertos no exercício.<br>
+      4. O resultado é o excesso de arrecadação disponível como fonte de recursos.
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>MTO 2023/2024:</strong> o Manual de Orientações Técnicas da Prestação de Contas considera que a tendência do exercício deve ser avaliada pelo gestor, projetando-se a arrecadação até dezembro.</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> superávit financeiro é apurado no balanço patrimonial do exercício <strong>anterior</strong> (31/12 do ano anterior). Não se pode usar superávit do próprio exercício em curso para abertura de créditos adicionais.</div></div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Anulação de Dotações e Reserva de Contingência</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Anulação de dotações</div></div>
+    <div class="card-text">
+      A <strong>anulação parcial ou total</strong> de dotações orçamentárias ou créditos adicionais autorizados é fonte de recursos. Condição essencial: a dotação não pode estar <strong>comprometida</strong> com empenhos emitidos. Se houver empenho, a anulação violaria o princípio da responsabilidade fiscal.
+    </div>
+    <div class="legal-block">
+      <strong>Lei 4.320/64, art. 43, § 1º, III</strong><br>
+      "Os resultantes de anulação parcial ou total de dotações orçamentárias ou de créditos adicionais, autorizados em Lei."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Reserva de contingência</div></div>
+    <div class="card-text">
+      A <strong>LRF, art. 5º, III</strong> prevê que a LOA conterá reserva de contingência, cuja forma de utilização e montante, definido com base na receita corrente líquida, será estabelecida na LDO. Destina-se ao atendimento de passivos contingentes e outros riscos e eventos fiscais imprevistos. Pode ser utilizada para abertura de créditos adicionais.
+    </div>
+    <div class="legal-block">
+      <strong>Decreto-Lei 200/1967, art. 91</strong><br>
+      "Sob a denominação de Reserva de Contingência, o orçamento anual poderá conter dotação global não especificamente destinada a determinado órgão, unidade orçamentária, programa ou categoria econômica, cujos recursos serão utilizados para abertura de créditos adicionais."
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Resumo das fontes:</strong> superávit financeiro, excesso de arrecadação, anulação de dotações, operações de crédito, reserva de contingência, recursos sem despesas correspondentes (CF/88, art. 166, § 8º).</div></div>
+</section>
+
+<!-- SECAO 9 -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Processo Legislativo e Formas de Abertura</div></div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Crédito suplementar</div></div>
+    <div class="card-text">
+      • <strong>Autorização:</strong> lei (LOA ou lei especial)<br>
+      • <strong>Abertura:</strong> decreto do Poder Executivo<br>
+      • <strong>Recursos:</strong> obrigatória indicação<br>
+      • <strong>Vigência:</strong> exercício autorizado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Crédito especial</div></div>
+    <div class="card-text">
+      • <strong>Autorização:</strong> lei especial (NÃO pode ser na LOA)<br>
+      • <strong>Abertura:</strong> decreto do Poder Executivo<br>
+      • <strong>Recursos:</strong> obrigatória indicação<br>
+      • <strong>Vigência:</strong> exercício + reabertura se últimos 4 meses
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Crédito extraordinário</div></div>
+    <div class="card-text">
+      • <strong>Autorização:</strong> não precisa (abertura direta)<br>
+      • <strong>Abertura:</strong> MP (federal) ou decreto do Executivo (demais entes)<br>
+      • <strong>Recursos:</strong> facultativa indicação<br>
+      • <strong>Vigência:</strong> exercício + reabertura se últimos 4 meses
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Poderes Legislativo e Judiciário:</strong> créditos suplementares autorizados na LOA também podem ser abertos por atos próprios dos Poderes Legislativo e Judiciário, do MPU e DPU, desde que haja indicação de recursos compensatórios dos órgãos favorecidos.</div></div>
+</section>
+
+<!-- SECAO 10 -->
+<section id="sec10">
+  <div class="sec-header"><div class="sec-num">10</div><div class="sec-title">Mnemônico e Dicas de Prova</div></div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemônico — SEE</div>
+    <div class="mnemonic-content">
+      S — Suplementar: reforça dotação existente<br>
+      E — Especial: sem dotação específica<br>
+      E — Extraordinário: urgência e imprevisibilidade
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🧠</div><div class="card-title">Pegadinhas frequentes em prova</div></div>
+    <div class="card-text">
+      1. <strong>Crédito especial ≠ suplementar:</strong> especial = sem dotação; suplementar = dotação insuficiente.<br>
+      2. <strong>Extraordinário não precisa de lei:</strong> é o único que pode ser aberto diretamente por MP/decreto.<br>
+      3. <strong>Extraordinário não precisa de recursos:</strong> é o único crédito adicional sem exigência de indicação de fontes.<br>
+      4. <strong>Reabertura:</strong> apenas especiais e extraordinários podem ser reabertos no exercício seguinte (se autorizados nos últimos 4 meses).<br>
+      5. <strong>Exceção à exclusividade:</strong> apenas o crédito suplementar excetua o princípio da exclusividade.<br>
+      6. <strong>Superávit financeiro:</strong> vem do balanço do exercício anterior, não do exercício corrente.
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica de prova:</strong> quando a questão mencionar "crédito adicional para obra pública sem urgência e sem dotação na LOA", a resposta é sempre <strong>crédito especial</strong>.</div></div>
+</section>
+
+<!-- SECAO 11 -->
+<section id="sec11">
+  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Questões Comentadas — Multibancas</div></div>
+
+  <div class="question">
+    <div class="question-header">1) VUNESP / TCE-SP / Auditor / 2025</div>
+    <div class="question-text">As autorizações de despesas não computadas ou insuficientemente dotadas na LOA são denominadas créditos adicionais, que:<br>
+a) devem ser previamente autorizados por lei e abertos por decreto executivo.<br>
+b) têm vigência somente durante o exercício financeiro em que foram abertos.<br>
+c) podem ser abertos por anulação de dotações, no caso de especiais e extraordinários, e não de suplementares.<br>
+d) podem ter como fontes de recursos a reserva de contingência.<br>
+e) dependem da existência de recursos disponíveis e precedem de justificativa.</div>
+    <div class="answer"><strong>Gabarito: D</strong><br>
+a) Errado — extraordinários não exigem autorização legislativa prévia.<br>
+b) Errado — suplementares e especiais têm vigência no exercício, salvo reabertura.<br>
+c) Errado — anulação serve para suplementares também.<br>
+d) <strong>Certo</strong> — reserva de contingência pode ser fonte para créditos adicionais (LRF, art. 5º, III).<br>
+e) Errado — créditos extraordinários independem de recursos disponíveis.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">2) FGV / CAGE-RS / SEFAZ-RS / 2025</div>
+    <div class="question-text">Créditos suplementares reforçam dotações existentes e requerem justificativa e autorização legislativa. Créditos especiais destinam-se a despesas não previstas. Créditos extraordinários dispensam prévia autorização legislativa e são utilizados para despesas urgentes e imprevistas.</div>
+    <div class="answer"><strong>Gabarito: B (I e II, apenas)</strong><br>
+III está errada porque a banca considerou o termo "autorizados" inadequado — são "abertos" diretamente pelo Executivo (decreto/MP).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">3) CEBRASPE / ICMBio / Analista Administrativo / 2025</div>
+    <div class="question-text">A abertura de crédito extraordinário somente será admitida para atendimento de despesas imprevistas e urgentes, definidas taxativamente como decorrentes de guerra e calamidade pública.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+A CF/88 usa "como" (exemplificativo), não rol taxativo. Há margem de discricionariedade para outras situações excepcionais.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">4) CEBRASPE / TRT10 / Técnico Judiciário / 2025</div>
+    <div class="question-text">Os créditos especiais são utilizados para atender despesa insuficientemente dotada na LOA.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+Isso é crédito <strong>suplementar</strong>. Especial = despesa <strong>sem dotação</strong> específica.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">5) CEBRASPE / ANM / Analista Administrativo / 2025</div>
+    <div class="question-text">Os créditos especiais são destinados a despesas sem dotação orçamentária específica, e seus saldos serão incorporados ao orçamento do exercício seguinte se o ato for promulgado nos últimos 4 meses.</div>
+    <div class="answer"><strong>Gabarito: Certo</strong><br>
+CF/88, art. 167, § 2º. Reabertura é facultativa, limitada ao saldo remanescente.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">6) CEBRASPE / TRT10 / Analista Judiciário / 2025</div>
+    <div class="question-text">Para cálculo do excesso de arrecadação disponível, deve-se subtrair o valor dos créditos extraordinários abertos no exercício.</div>
+    <div class="answer"><strong>Gabarito: Certo</strong><br>
+Fonte Excesso de Arrecadação = (Receita Arrecadada - Prevista) - CEA. Os créditos extraordinários consomem parte da arrecadação real.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">7) CEBRASPE / TRF 6 / Analista Judiciário / 2025</div>
+    <div class="question-text">A anulação de dotações orçamentárias deve ser preferencialmente usada como fonte de recursos para abertura de créditos adicionais quando não houver superávit financeiro do exercício anterior.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+A Lei 4.320/64 não estabelece hierarquia entre as fontes. Todas são igualmente válidas.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">8) CEBRASPE / TRF 6 / Analista Judiciário / 2025</div>
+    <div class="question-text">As falhas de previsibilidade no orçamento devem ser corrigidas exclusivamente com a abertura de créditos extraordinários.</div>
+    <div class="answer"><strong>Gabarito: Errado</strong><br>
+Falhas podem ser corrigidas por suplementares (dotação insuficiente) ou especiais (dotação inexistente).</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">9) CEBRASPE / TRF 6 / Analista Judiciário / 2025</div>
+    <div class="question-text">A abertura de crédito relativo a obra pública sem previsão na LOA e sem urgência deve ser realizada por meio de lei que crie crédito especial.</div>
+    <div class="answer"><strong>Gabarito: Certo</strong><br>
+Crédito especial é para despesas sem dotação específica na LOA. Requer lei especial + decreto de abertura.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">10) FGV / TJ/TO / 2022</div>
+    <div class="question-text">Um fator que deve ser objeto de análise para verificar a conformidade da abertura de créditos extraordinários é a necessidade de autorização prévia do Poder Legislativo.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>
+Apenas créditos suplementares e especiais exigem autorização prévia. Extraordinários dispensam, mas a MP é posteriormente apreciada pelo Congresso.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">11) CEBRASPE / ANM / Especialista em Recursos Minerais / 2025</div>
+    <div class="question-text">Os créditos adicionais classificam-se em suplementares, especiais e extraordinários, sendo exigido, nos casos dos dois primeiros, autorização legislativa e indicação da fonte de recurso.</div>
+    <div class="answer"><strong>Gabarito: Certo</strong><br>
+Art. 42, Lei 4.320/64. Créditos suplementares e especiais exigem prévia autorização legislativa e indicação de fontes.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">12) FGV / SEFAZ/AM / 2022</div>
+    <div class="question-text">Dos créditos adicionais, aqueles que são incorporados ao orçamento, adicionando-se à dotação orçamentária que é reforçada, são os créditos suplementares, apenas.</div>
+    <div class="answer"><strong>Gabarito: Certa</strong><br>
+A palavra-chave é "dotação orçamentária que é reforçada". Esta é justamente a natureza do crédito adicional suplementar.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">13) FGV / MP/SC / 2022</div>
+    <div class="question-text">Configura condição suficiente para prorrogar a vigência de um crédito especial a previsão na LDO e saldo a empenhar.</div>
+    <div class="answer"><strong>Gabarito: Errada</strong><br>
+A reabertura no exercício seguinte depende de o ato ter sido promulgado nos últimos 4 meses do exercício anterior. A LDO não é condição para prorrogação.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">14) CEBRASPE / PC-DF / Agente Administrativo / 2025</div>
+    <div class="question-text">Os créditos orçamentários ordinários são aqueles previstos na LOA para o atendimento das despesas públicas regulares, enquanto créditos adicionais são autorizações de despesas não computadas ou insuficientemente dotadas na LOA.</div>
+    <div class="answer"><strong>Gabarito: Certo</strong><br>
+Crédito ordinário = crédito inicial da LOA. Créditos adicionais = instrumentos retificadores para ajustar a LOA durante a execução.</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">15) FGV / Pref. São José dos Campos / 2024</div>
+    <div class="question-text">Devido ao apreço do Prefeito por atividades culturais, ele aloca despesa específica para um evento. Com a autorização do orçamento, começa os preparativos, e logo evidencia-se que a dotação seria insuficiente. O crédito adicional a ser aberto é:<br>
+a) Suplementar, dependendo da indicação de recursos e justificativa.<br>
+b) Especial, que pode ser reaberto no exercício seguinte caso seja autorizado no último quadrimestre.<br>
+c) Extraordinário, independente de autorização prévia do Legislativo.<br>
+d) Suplementar, necessitando de aprovação em lei específica alheia ao orçamento.</div>
+    <div class="answer"><strong>Gabarito: A</strong><br>
+O evento já possuía dotação no orçamento, mas insuficiente. Crédito suplementar = reforço de dotação existente, com indicação de recursos e justificativa.</div>
+  </div>
+</section>
+
+<!-- SECAO 12 -->
+<section id="sec12">
+  <div class="sec-header"><div class="sec-num">12</div><div class="sec-title">Tabela Comparativa dos Créditos Adicionais</div></div>
+  <div class="card" style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:.82rem;color:var(--text2);">
+      <thead>
+        <tr style="background:#f4f7fb;color:var(--blue);">
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Espécie</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Finalidade</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Autorização</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Abertura</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Fonte</th>
+          <th style="padding:.5rem;text-align:left;border-bottom:2px solid var(--border);">Vigência</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;"><strong>Suplementar</strong></td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Reforço de dotação existente</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Lei (LOA ou especial)</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Decreto do Executivo</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Obrigatória</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Exercício autorizado</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;"><strong>Especial</strong></td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Despesa sem dotação específica</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Lei especial (não LOA)</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Decreto do Executivo</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Obrigatória</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Exercício + reabertura se últimos 4 meses</td></tr>
+        <tr><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;"><strong>Extraordinário</strong></td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Despesa urgente e imprevisível</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Não precisa (MP ou decreto)</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">MP (federal) ou Decreto</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Facultativa</td><td style="padding:.5rem;border-bottom:1px solid #cbd5e1;">Exercício + reabertura se últimos 4 meses</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica final:</strong> decore os arts. 40, 41, 42, 43 e 46 da Lei 4.320/64, além dos arts. 165, § 8º, e 167, §§ 2º, 3º, V, da CF/88.</div></div>
+</section>
+
+</div>
+
+</body>
+</html>

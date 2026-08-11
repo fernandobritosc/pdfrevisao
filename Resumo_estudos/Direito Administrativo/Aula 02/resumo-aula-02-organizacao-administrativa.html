@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 02: Organização Administrativa</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 02</div>
+  <div class="sidebar-sub">Organização Administrativa · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito de organização administrativa</a>
+  <a href="#sec2">2. Centralização × Descentralização · Concentração × Desconcentração</a>
+  <a href="#sec3">3. Administração direta × indireta</a>
+  <a href="#sec4">4. Autarquias, agências reguladoras e executivas</a>
+  <a href="#sec5">5. Órgãos públicos</a>
+  <a href="#sec6">6. Hierarquia × vinculação</a>
+  <a href="#sec7">7. Pontos que mais caem em prova</a>
+  <a href="#sec8">8. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO DE ORGANIZAÇÃO ADMINISTRATIVA                -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de organização administrativa</div>
+  </div>
+  <div class="sec-subtitle">Entidades (pessoas jurídicas) · órgãos (centros de decisão) · agentes (pessoas físicas)</div>
+
+  <div class="card">
+    <div class="card-title">Administração como instrumento do Estado</div>
+    <div class="card-text">
+      A Administração Pública é o <strong>instrumental de que dispõe o Estado</strong> para colocar em prática as opções políticas do Governo. Enquanto o <strong>Governo</strong> é o responsável pelo estabelecimento de <strong>diretrizes e planos</strong>, a <strong>Administração</strong> é o aparelhamento utilizado para pôr em prática essas decisões.<br><br>
+      A atuação estatal ocorre por meio de:<br>
+      • <strong>Entidades</strong> — pessoas jurídicas<br>
+      • <strong>Órgãos</strong> — centros de decisão<br>
+      • <strong>Agentes</strong> — pessoas físicas investidas em cargos e funções (não são objeto desta aula)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Definição legal de entidade</div>
+    <div class="card-text">
+      A Lei 9.784/1999 define entidade como <strong>"a unidade de atuação dotada de personalidade jurídica"</strong> (art. 1º, § 2º, II). Possuir personalidade jurídica significa poder, <strong>em nome próprio, adquirir direitos e contrair obrigações</strong>.<br><br>
+      <strong>Duas consequências da personalidade jurídica:</strong><br>
+      • Capacidade de <strong>estar em juízo</strong> (quem tem direitos pode defendê-los; quem contrai obrigações responde por elas)<br>
+      • Possuir <strong>patrimônio</strong> (pode realizar compras, contrair dívidas etc.)
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Distinção essencial:</strong> a principal característica das <strong>entidades</strong> é serem pessoas jurídicas; os <strong>órgãos</strong> não possuem personalidade jurídica; os <strong>agentes</strong> são pessoas físicas.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Entidades políticas × entidades administrativas
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="card-title">Entidades políticas (entes federativos)</div>
+      <div class="card-text">
+        Pessoas jurídicas de <strong>direito público</strong> que integram a estrutura do Estado e recebem suas competências <strong>diretamente da Constituição</strong>. São a <strong>União, os estados, o DF e os municípios</strong>. Possuem <strong>autonomia política plena</strong>.<br><br>
+        <strong>Autogoverno:</strong> organizar os próprios Poderes Executivo, Legislativo e Judiciário (CF, arts. 27, 28 e 125) — os municípios <strong>não possuem Poder Judiciário próprio</strong>.<br>
+        <strong>Auto-organização (autolegislação):</strong> organizar-se na forma de sua legislação própria — capacidade de <strong>legislar</strong>.<br>
+        <strong>Autoadministração:</strong> prestar seus serviços (saúde, educação, assistência etc.), conforme a CF (arts. 18 e 25 a 28).
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Entidades administrativas</div>
+      <div class="card-text">
+        Pessoas jurídicas, de <strong>direito público ou de direito privado</strong>, criadas por lei pelas entidades políticas para exercer <strong>parte da capacidade de autoadministração</strong>. Possuem somente <strong>capacidade administrativa específica e restrita</strong> (criadas para especializar a Administração).<br><br>
+        São elas: <strong>autarquias, fundações públicas, empresas públicas e sociedades de economia mista</strong> — que juntas formam a <strong>Administração Indireta (descentralizada)</strong>. Ex.: universidades federais são autarquias; a Petrobrás é sociedade de economia mista.
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Entidade política</th><th>Entidade administrativa</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Autonomia</strong></td><td>Autonomia política plena (autogoverno, auto-organização, autoadministração)</td><td>Só autoadministração (capacidade administrativa específica)</td></tr>
+        <tr><td><strong>Competências</strong></td><td>Recebe da <strong>Constituição</strong></td><td>Recebe da <strong>lei que a cria</strong> (ou que autoriza a criação)</td></tr>
+        <tr><td><strong>Legislar</strong></td><td>Pode editar atos normativos que inovam a ordem jurídica</td><td><span class="tag tag-red">Não</span> — ex.: a Petrobrás pode explorar petróleo, mas não pode editar lei sobre o setor</td></tr>
+        <tr><td><strong>Exemplos</strong></td><td>União, estados, DF e municípios</td><td>Autarquias, fundações públicas, empresas públicas e sociedades de economia mista</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Somente as entidades políticas possuem autonomia política.</strong> As entidades administrativas não possuem capacidade para editar atos normativos que criem direitos e obrigações.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CENTRALIZAÇÃO × DESCENTRALIZAÇÃO; CONCENTRAÇÃO ×      -->
+<!--          DESCONCENTRAÇÃO                                        -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Centralização × Descentralização · Concentração × Desconcentração</div>
+  </div>
+  <div class="sec-subtitle">Formas de prestação dos serviços públicos e técnicas de organização interna</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Centralização
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Quando o Estado presta os serviços <strong>pelos órgãos e agentes que compõem as pessoas políticas</strong> (União, estados, DF e municípios), o serviço é prestado de forma <strong>centralizada</strong>. Os serviços são prestados pelos <strong>órgãos despersonalizados integrantes da própria entidade política</strong>.<br><br>
+      Ex.: ministérios, secretarias estaduais e municipais e seus órgãos subordinados. A Secretaria da Receita Federal do Brasil é órgão do Ministério da Economia — seus serviços são prestados de forma <strong>centralizada</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Descentralização
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Para Maria Sylvia Zanella Di Pietro, a descentralização é a <strong>distribuição de competências de uma para outra pessoa, física ou jurídica</strong>. A entidade política pode transferir a terceiro a competência para determinada atividade administrativa. Envolve sempre <strong>duas pessoas distintas</strong>: o Estado (União, estados, DF, municípios) e a pessoa que executará o serviço.<br><br>
+      • <strong>Descentralização política:</strong> a CF atribui competências aos estados, DF e municípios — distribuição de competências no nível <strong>constitucional</strong>; dá origem à federação.<br>
+      • <strong>Descentralização administrativa:</strong> o Estado não executa o serviço pela Administração direta; envolve duas pessoas distintas.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">Três formas de descentralização administrativa</div>
+    <div class="card-text">
+      <strong>Outorga</strong> (por serviços, técnica ou funcional) · <strong>Delegação</strong> (ou colaboração) · <strong>Territorial</strong> (ou geográfica). Em <strong>nenhuma</strong> delas há relação hierárquica entre as pessoas envolvidas.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Por outorga (por serviços, técnica ou funcional)</th><th>Por delegação ou colaboração</th><th>Territorial ou geográfica</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Como ocorre</strong></td><td>Estado <strong>cria entidade</strong> com personalidade jurídica própria, por <strong>lei ou autorização legal</strong></td><td>Entidade política ou administrativa transfere a <strong>execução</strong> a pessoa jurídica de direito privado <strong>preexistente</strong>, por ato administrativo (unilateral) ou contrato administrativo (bilateral)</td><td>União cria pessoa jurídica com <strong>limites territoriais determinados</strong> e competências administrativas genéricas (territórios federais — art. 18, § 2º, CF)</td></tr>
+        <tr><td><strong>O que se transfere</strong></td><td><strong>Titularidade e execução</strong> do serviço</td><td><strong>Somente a execução</strong> — o delegatário presta em seu próprio nome, por sua conta e risco, sob fiscalização do Estado; o Estado mantém a titularidade</td><td>Competências administrativas <strong>genéricas</strong></td></tr>
+        <tr><td><strong>Prazo / estabilidade</strong></td><td><strong>Presunção de definitividade</strong>; só por lei a titularidade pode ser retirada</td><td>Ato (autorização): <strong>precariedade</strong>, revogável a qualquer tempo, em geral sem indenização. Contrato (concessão/permissão): <strong>prazo determinado</strong></td><td>—</td></tr>
+        <tr><td><strong>Controle</strong></td><td><strong>Vinculação</strong> — tutela, supervisão ministerial ou controle finalístico, nos termos da lei</td><td>Controles mais amplos (alteração unilateral e fiscalização do serviço)</td><td>—</td></tr>
+        <tr><td><strong>Efeito / exemplo</strong></td><td>Dá origem à <strong>Administração Indireta</strong> (autarquias, fundações públicas, EP e SEM). Ex.: Anatel (Lei 9.472/1997); EPL (Lei 12.404/2011)</td><td>Dá origem aos <strong>delegatários</strong> (concessão, permissão ou autorização). Ex.: telefonia (Oi, Tim, Claro, Vivo)</td><td>Territórios federais — não integram a federação; personalidade de direito público; sem capacidade política (autarquias territoriais); hoje <strong>não existem</strong> no Brasil</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Outorga transfere titularidade + execução (por lei, com presunção de definitividade). Delegação transfere somente a execução</strong> — o Estado conserva a titularidade e, por isso, pode alterar unilateralmente as condições de execução do serviço.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Desconcentração × Concentração
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Diferentemente da descentralização, a <strong>desconcentração</strong> ocorre <strong>dentro de uma mesma pessoa jurídica</strong>, como técnica administrativa para <strong>distribuir internamente as competências</strong>. Para Meirelles, é técnica de <strong>simplificação e aceleração</strong> do serviço dentro da mesma entidade (a descentralização é técnica de <strong>especialização</strong>). <strong>Por meio da desconcentração surgem os órgãos públicos.</strong><br><br>
+      Ocorre quando a União se organiza em ministérios ou quando uma autarquia ou empresa pública se organiza em departamentos — portanto, alcança pessoas políticas <strong>e</strong> entidades da Administração Indireta. Realiza-se dentro de estrutura <strong>hierarquizada</strong>, com relação de <strong>subordinação</strong> entre os níveis (controle hierárquico: comando, fiscalização, revisão, punição, delegação, avocação, solução de conflitos de competência).<br><br>
+      <strong>Três formas de desconcentração:</strong> em razão da <strong>matéria</strong> (Ministério da Educação, da Saúde); por <strong>hierarquia ou grau</strong> (ministérios, superintendências, delegacias); <strong>territorial ou geográfica</strong> (Superintendência Regional do INSS do Norte, do Nordeste).<br><br>
+      O <strong>inverso</strong> é a <strong>concentração</strong>: a pessoa jurídica <strong>extingue órgãos</strong>, reunindo as competências em número menor de unidades (ex.: secretaria municipal reduz o número de subsecretarias).
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">descOncentração cria Órgãos · descentralização cria Entidades (ou delega a particulares)</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Descentralização</th><th>Desconcentração</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Número de pessoas</strong></td><td><strong>Duas ou mais pessoas jurídicas distintas</strong></td><td><strong>Uma única pessoa jurídica</strong> (distribuição interna)</td></tr>
+        <tr><td><strong>Relação</strong></td><td><span class="tag tag-green">Não há hierarquia</span> — apenas vinculação (controle finalístico)</td><td><span class="tag tag-amber">Há hierarquia e subordinação</span> — controle hierárquico</td></tr>
+        <tr><td><strong>O que surge</strong></td><td>Entidades (Administração Indireta) ou delegatários</td><td><strong>Órgãos públicos</strong></td></tr>
+        <tr><td><strong>Técnica</strong></td><td>Especialização (retirada do serviço e transferência a outra pessoa)</td><td>Simplificação e aceleração dentro da mesma entidade</td></tr>
+        <tr><td><strong>Exemplos</strong></td><td>Criação de autarquia; concessão a empresa de telefonia</td><td>Criação de secretaria municipal; divisão de autarquia em departamentos regionais</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Não são conceitos excludentes:</strong> um serviço pode ser prestado de forma <strong>centralizada mediante desconcentração</strong> (órgão da Administração Direta — ex.: delegacia regional da Receita Federal) ou <strong>descentralizadamente mediante desconcentração</strong> (unidade da Administração Indireta — ex.: Superintendência Regional do INSS).</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Distribuição de competências <strong>dentro de uma mesma pessoa jurídica</strong> é <strong>desconcentração</strong>; entre <strong>pessoas jurídicas distintas</strong> é <strong>descentralização</strong>. Também não confunda: <strong>descentralização territorial</strong> (origina os territórios federais) com <strong>desconcentração territorial</strong> (órgãos com atribuição em região específica, como unidade da Receita Federal para a "região sul").
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ADMINISTRAÇÃO DIRETA × INDIRETA                       -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Administração direta × indireta</div>
+  </div>
+  <div class="sec-subtitle">Conjunto de órgãos × conjunto de entidades · art. 37, XIX e XX, CF · DL 200/1967</div>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="card-title">Administração Direta</div>
+      <div class="card-text">
+        Conjunto de <strong>órgãos</strong> que integra as entidades políticas (União, estados, DF e municípios) e exerce as atividades administrativas de forma <strong>centralizada</strong> — serviços prestados diretamente pelas entidades políticas, por meio de seus órgãos internos.<br><br>
+        Existem órgãos da Administração Direta em <strong>todos os Poderes e em todas as esferas da federação</strong> (art. 37, caput, CF). Ex.: Presidência da República, Casa Civil, ministérios, Secretaria da Receita Federal, Polícia Federal, Polícia Rodoviária Federal, juízos singulares, TRFs, secretarias estaduais e municipais.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Administração Indireta</div>
+      <div class="card-text">
+        Composta pelas <strong>entidades administrativas</strong>: <strong>autarquias, fundações públicas, empresas públicas e sociedades de economia mista</strong>. Possuem personalidade jurídica própria, executam atividades de forma <strong>descentralizada</strong>, não possuem autonomia política e estão <strong>vinculadas</strong> à Administração Direta (na prática, quase sempre ao Poder Executivo).
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Natureza da atividade:</strong> autarquias e fundações públicas <strong>sempre</strong> têm o objetivo de desempenhar atividades administrativas de forma descentralizada. Já algumas estatais exploram <strong>atividade econômica em sentido estrito</strong> (art. 173, CF) — não prestam serviço público nem exercem atividade típica, mas <strong>mesmo assim integram a Administração Indireta</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Consórcios públicos (Lei 11.107/2005)
+  </h3>
+  <div class="card">
+    <div class="card-text">
+      Podem adquirir personalidade jurídica de <strong>direito público</strong> ou de <strong>direito privado</strong>:
+      <br>• <strong>Direito público</strong> → considerados <strong>associações públicas</strong>, integrando a Administração Indireta como <strong>espécie de autarquia</strong> (art. 6º, § 1º).
+      <br>• <strong>Direito privado</strong> → <strong>não integram formalmente</strong> a Administração Pública e não são uma nova espécie de entidade administrativa.
+      <br><br>Há discussão entre estudiosos se seriam uma "quinta forma" de pessoa jurídica da Administração Indireta.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Características gerais da Administração Indireta
+  </h3>
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">a) Personalidade própria</div><div class="card-text">Responsáveis por seus atos; patrimônio e receita próprios; <strong>autonomia técnica, administrativa e financeira</strong>.</div></div>
+    <div class="card"><div class="card-title">b) Previsão legal</div><div class="card-text">Criação e extinção condicionadas à previsão legal — <strong>a lei cria ou autoriza a criação</strong> (art. 37, XIX, CF).</div></div>
+    <div class="card"><div class="card-title">c) Finalidade específica</div><div class="card-text">Finalidade definida pela lei de criação — <strong>princípio da especialidade</strong>. Atuar fora do escopo previsto torna a atuação ilegal.</div></div>
+    <div class="card"><div class="card-title">d) Vinculação, não subordinação</div><div class="card-text">Não há hierarquia com a Administração Direta; há <strong>vinculação + controle finalístico</strong> (tutela / supervisão ministerial).</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Objetivos do controle da Administração Indireta (DL 200/1967, art. 26)</div>
+    <div class="card-text">
+      • Assegurar o cumprimento dos <strong>objetivos fixados no ato de criação</strong>;<br>
+      • Harmonizar a atuação com a <strong>política e programação do Governo</strong>;<br>
+      • Assegurar a <strong>eficiência administrativa</strong>;<br>
+      • Assegurar a <strong>autonomia administrativa, operacional e financeira</strong>.<br><br>
+      Além do controle finalístico, as entidades se submetem a <strong>controle interno</strong> (sobre os próprios atos) e <strong>controle externo</strong> (Tribunais de Contas, MP, sociedade).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Instituição das entidades da Administração Indireta
+  </h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Entidade</th><th>Natureza jurídica</th><th>Aquisição da personalidade</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Autarquias</strong></td><td>Direito público</td><td><strong>Vigência da lei de criação</strong> — criadas diretamente por lei específica</td></tr>
+        <tr><td><strong>Fundações públicas</strong></td><td>Direito público <em>ou</em> privado</td><td>Direito público: vigência da lei. Direito privado: <strong>registro do ato constitutivo</strong>, após autorização legislativa</td></tr>
+        <tr><td><strong>Empresas públicas e SEM</strong></td><td>Direito privado</td><td><strong>Registro do ato constitutivo</strong> (decreto do Executivo → Junta Comercial / Registro Civil de PJ), após autorização legislativa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Extinção das entidades</div>
+    <div class="card-text">
+      • <strong>Direito público</strong> → extintas <strong>diretamente por lei</strong>. <strong>Autarquias e fundações públicas:</strong> extinção pela <strong>mesma forma da criação</strong> (princípio da simetria / paridade de formas).<br>
+      • <strong>Direito privado</strong> → dependem de <strong>lei para autorizar</strong> a extinção. <strong>Empresas estatais:</strong> em regra, basta <strong>autorização legislativa genérica</strong> (ex.: PND — Lei 9.491/1997; STF, ADI 6241). <strong>Exceção:</strong> quando a própria lei de criação exigir <strong>lei específica</strong> para autorizar a extinção.<br>
+      • <strong>Iniciativa:</strong> em regra, do chefe do Poder Executivo de cada esfera (Presidente, governadores e prefeitos), embora, teoricamente, cada Poder tenha iniciativa para criar entidades vinculadas a si.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Autarquias e fundações públicas de direito público só são extintas por lei específica</strong> (paridade de formas). Já as <strong>empresas estatais</strong> podem ser extintas com base em <strong>autorização legislativa genérica</strong> — regra reconhecida pelo STF (ADI 6241), salvo se a lei de criação exigir lei específica.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — AUTARQUIAS, AGÊNCIAS REGULADORAS E EXECUTIVAS         -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Autarquias, agências reguladoras e executivas</div>
+  </div>
+  <div class="sec-subtitle">Autarquias comuns e sob regime especial · agências reguladoras (Lei 13.848/2019) · agências executivas (Lei 9.649/1998)</div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      Segundo José dos Santos Carvalho Filho, autarquia é a <strong>"pessoa jurídica de direito público, integrante da Administração Indireta, criada por lei para desempenhar funções que, despidas de caráter econômico, sejam próprias e típicas do Estado"</strong>.<br><br>
+      Como realizam atividades típicas de Estado, as autarquias são a <strong>personificação de um serviço retirado da Administração Direta</strong> — também chamadas de <strong>serviço público personalizado</strong> ou serviço autônomo. Representam uma extensão da Administração Direta, criadas para fins de especialização, com capacidade de autoadministração. São <strong>vinculadas</strong> (não subordinadas) à pessoa política que as criou — sujeitas à tutela/controle finalístico, sem controle hierárquico.
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Criação e extinção</div><div class="card-text">Por <strong>lei específica</strong> (art. 37, XIX, CF), de iniciativa privativa do chefe de cada Poder (Presidente, governadores, prefeitos). "Nascem" com a vigência da lei de criação.</div></div>
+    <div class="card"><div class="card-title">Características</div><div class="card-text">Criação por lei · personalidade de direito público · capacidade de autoadministração · especialização dos fins (podem exercer atividades exclusivas de Estado) · sujeição a controle ou tutela.</div></div>
+    <div class="card"><div class="card-title">Atividades</div><div class="card-text">Executam atividades <strong>típicas de Estado</strong> (regra que cai em prova). Exceção: também exercem atividades sociais não exclusivas — ex.: universidades federais são autarquias (ensino não é exclusivo de Estado). Ex.: DNIT executa/fiscaliza obras.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regime jurídico — pessoal e patrimônio</div>
+    <div class="card-text">
+      <strong>Pessoal:</strong> sem obrigatoriedade de regime jurídico único — pode ser <strong>estatutário ou celetista</strong> (predominante o estatutário). Em qualquer caso: concurso público (art. 37, II), proibição de acumulação (art. 37, XVII), teto remuneratório (art. 37, XI), remédios constitucionais, controle de improbidade e são considerados funcionários públicos para fins penais. Se estatutários e concursados: estabilidade (art. 41) e aposentadoria (art. 40).<br><br>
+      <strong>Patrimônio:</strong> bens de natureza de <strong>bens públicos</strong> — <strong>impenhorabilidade</strong> (débitos quitados por precatórios — art. 100, CF), <strong>imprescritibilidade</strong> (não se adquirem por usucapião) e restrições à alienação. O patrimônio inicial vem de transferências do ente criador; na extinção, os bens retornam à pessoa política.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Prerrogativas das autarquias</div>
+    <div class="card-text">
+      a) <strong>Imunidade tributária recíproca</strong> — vedada a instituição de impostos sobre patrimônio, renda e serviços das autarquias (art. 150, § 2º c/c VI, "a", CF);<br>
+      b) <strong>Impenhorabilidade</strong> de bens e rendas (débitos judiciais por <strong>precatórios</strong> — art. 100, CF);<br>
+      c) <strong>Imprescritibilidade</strong> dos bens (não podem ser usucapidos);<br>
+      d) <strong>Prescrição quinquenal</strong> para créditos contra a autarquia;<br>
+      e) Créditos sujeitos à <strong>execução fiscal</strong> (dívida ativa — Lei 6.830/1980);<br>
+      f) Situações processuais específicas: <strong>prazo em dobro</strong> para manifestações processuais (CPC, art. 183) e <strong>duplo grau de jurisdição obrigatório</strong> (com exceções no art. 496, § 3º, CPC).
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="card-title">Responsabilidade civil</div>
+      <div class="card-text">
+        As autarquias são pessoas jurídicas de direito público e respondem na forma do <strong>art. 37, § 6º, CF</strong>: responsabilidade <strong>objetiva</strong>, pela <strong>teoria do risco administrativo</strong>, pelos danos que seus agentes causarem a terceiros.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Juízo competente (foro)</div>
+      <div class="card-text">
+        Autarquia <strong>federal</strong> → <strong>Justiça Federal</strong> (art. 109, I, CF), inclusive MS contra atos de seus agentes (art. 109, VIII). Autarquias <strong>estaduais e municipais</strong> → <strong>Justiça Estadual</strong>. Causas de <strong>relação de trabalho</strong>: regime estatutário → Justiça Federal/Estadual conforme o ente; regime <strong>celetista</strong> → <strong>Justiça do Trabalho</strong> (art. 114, CF).
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Atos, contratos e licitação</div>
+      <div class="card-text">
+        Praticam atos e contratos <strong>administrativos</strong> (atributos como presunção de veracidade/legitimidade, imperatividade, autoexecutoriedade; cláusulas exorbitantes). Em algumas hipóteses, atos e contratos de <strong>direito privado</strong> (ex.: compra e venda). Contratos submetem-se previamente à <strong>licitação</strong> (art. 37, XXI, CF; Lei 14.133/2021), com as ressalvas de dispensa e inexigibilidade.
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Conselhos de fiscalização de profissão
+  </h3>
+  <div class="card">
+    <div class="card-text">
+      Os conselhos federais e regionais de fiscalização profissional (CFM/CRM, CFN/CRN etc.) são <strong>autarquias federais</strong> (autarquias corporativas ou profissionais): criados por lei, personalidade de direito público, autonomia administrativa e financeira, exercem atividade tipicamente pública e devem <strong>prestar contas ao TCU</strong>. Os conselhos <strong>"regionais"</strong> são entidades <strong>federais</strong> (não pertencem aos estados).<br><br>
+      <strong>Exceção — OAB:</strong> para o STF, a <strong>OAB não integra a Administração Pública</strong>, sendo <strong>serviço público independente</strong> (entidade de direito privado). Não se submete aos deveres de (i) realizar concurso, (ii) licitar e (iii) prestar contas ao TCU.<br><br>
+      Apesar da natureza autárquica, o STF trata os conselhos como <strong>autarquias sui generis</strong> (regime híbrido): contratam pessoal via <strong>CLT</strong> (empregados públicos) e <strong>não se submetem ao regime de precatórios</strong> (RE 938.837). Prestam contas ao TCU (RE 539.224/CE).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Autarquias não se submetem a controle hierárquico</strong> — apenas a tutela/controle finalístico. Conselhos de classe prestam contas ao TCU (natureza autárquica), mas <strong>a OAB não integra a Administração Pública</strong>.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Autarquias sob regime especial e agências reguladoras
+  </h3>
+  <div class="card">
+    <div class="card-text">
+      Autarquias <strong>comuns</strong> não possuem especificidades em seu regime. As autarquias <strong>sob regime especial</strong> têm disciplina própria que lhes confere prerrogativas diferenciadas, sobretudo <strong>mandato fixo e estabilidade dos dirigentes</strong>, com o objetivo de lhes dar <strong>maior autonomia</strong> em relação ao ente instituidor. O exemplo mais comum são as <strong>agências reguladoras</strong>; algumas universidades, consórcios públicos e conselhos profissionais também recebem a designação.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">Agências reguladoras</div>
+    <div class="card-text">
+      São <strong>autarquias sob regime especial</strong>, integrantes da Administração Indireta, criadas por lei, com autonomia financeira e orçamentária, organizadas em colegiado com <strong>mandato fixo</strong>, para regular e fiscalizar a prestação de serviços públicos. <strong>Não representam uma nova entidade administrativa</strong> — são apenas uma forma especial de autarquia.<br><br>
+      Lei 13.848/2019, art. 3º: a natureza especial é caracterizada pela <strong>ausência de tutela ou de subordinação hierárquica</strong>, pela <strong>autonomia funcional, decisória, administrativa e financeira</strong> e pela <strong>investidura a termo dos dirigentes</strong> com estabilidade durante os mandatos.
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Mandato e exoneração</div><div class="card-text">Dirigentes nomeados pelo <strong>Presidente da República após aprovação do Senado Federal</strong>; mandato de <strong>5 anos</strong> (federal, Lei 13.848/2019), <strong>vedada a recondução</strong>. Não podem ser exonerados <strong>ad nutum</strong> — diferentemente dos dirigentes das autarquias comuns.</div></div>
+    <div class="card"><div class="card-title">Perda do mandato (Lei 9.986/2000, art. 9º)</div><div class="card-text">Somente por: a) <strong>renúncia</strong>; b) <strong>condenação judicial transitada em julgado</strong>; c) <strong>condenação em PAD</strong>; d) infringência das vedações do art. 8º-B da Lei 9.986/2000.</div></div>
+    <div class="card"><div class="card-title">Quarentena</div><div class="card-text">Após exoneração ou término do mandato: <strong>6 meses</strong> impedidos de atuar/prestar serviços no setor regulado, com <strong>remuneração compensatória</strong>. Violação = crime de <strong>advocacia administrativa</strong> (Lei 9.986/2000, art. 8º).</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Características essenciais</div>
+    <div class="card-text">
+      a) pessoas jurídicas de direito público; b) atividades típicas do Poder Público; c) autarquias sob regime especial; d) integram a administração indireta; e) <strong>maior autonomia</strong> que as demais entidades; f) colegiado com mandato fixo, vedada exoneração ad nutum; g) <strong>não se submetem à tutela nem ao controle hierárquico</strong> do ente central; h) em casos específicos, admite-se <strong>controle hierárquico impróprio</strong> ou <strong>avocação</strong> de competências pelo Presidente (Parecer AGU 51/2006 — por motivo relevante de interesse público; recurso hierárquico impróprio só quando a decisão fugir das finalidades ou das políticas públicas do setor); i) <strong>vinculadas ao ministério</strong> do setor correspondente.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Dupla função das agências:</strong> (1) atuam em nome do <strong>poder concedente</strong> nos contratos de concessão (licitar, contratar, fiscalizar, punir, rescindir, encampar); (2) exercem a <strong>regulação propriamente dita</strong> (estabelecer regras, fiscalizar, reprimir, resolver conflitos, garantir a competição). Algumas, além disso, exercem <strong>poder de polícia</strong> em áreas sem concessão (Anvisa, ANS, ANA). As agências se submetem ao controle externo (TCU e Poder Legislativo), ao controle interno (CGU) e à supervisão ministerial. O Bacen e a CVM não são agências reguladoras em sentido estrito.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Agências executivas
+  </h3>
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Qualificação, não nova entidade</div>
+    <div class="card-text">
+      Segundo Di Pietro, agência executiva é a <strong>qualificação dada à autarquia ou fundação</strong> que celebre <strong>contrato de gestão</strong> com o órgão da Administração Direta a que se acha vinculada, para melhoria da eficiência e redução de custos. <strong>Não é nova forma de entidade</strong> — é entidade <strong>preexistente</strong> que recebe (e pode perder) a qualificação.<br><br>
+      <strong>Requisitos (Lei 9.649/1998, arts. 51 e 52):</strong> plano estratégico de reestruturação e de desenvolvimento institucional em andamento + contrato de gestão com o ministério supervisor. A qualificação é outorgada por <strong>decreto</strong> do Poder Executivo e é <strong>ato discricionário</strong> ("poderá qualificar").<br><br>
+      O contrato de gestão tem <strong>periodicidade mínima de 1 ano</strong> e fixa objetivos, metas e indicadores de desempenho. Com a qualificação, a entidade ganha maior autonomia — ex.: <strong>limite duplicado</strong> para dispensa de licitação (art. 75, § 2º, Lei 14.133/2021). Uma agência executiva pode ser autarquia <strong>ou</strong> fundação pública.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A qualificação como <strong>agência executiva</strong> ocorre por <strong>decreto</strong> (não por lei). O contrato de gestão é requisito para a <strong>qualificação</strong>; já a <strong>criação</strong> da autarquia/fundação continua dependendo de lei específica.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — ÓRGÃOS PÚBLICOS                                      -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Órgãos públicos</div>
+  </div>
+  <div class="sec-subtitle">Centros de competência despersonalizados · criados por desconcentração · capacidade processual excepcional</div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      Os órgãos públicos são <strong>centros de competências, sem personalidade jurídica própria</strong>, que atuam, por meio dos agentes neles lotados, <strong>em nome da entidade política ou administrativa</strong> que integram. Como não têm personalidade, o desempenho de suas atribuições é <strong>imputado à pessoa jurídica</strong> a que pertencem.<br><br>
+      Ex.: a União se organiza por ministérios (órgãos) — a atuação de cada ministério é atribuída à União; a Superintendência Regional do INSS atua em nome do INSS (autarquia). O órgão é a <strong>parte de um todo</strong> — mesmo despersonalizado, pode exercer funções de direção ou funções meramente executivas.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">Capacidade processual — regra e exceções</div>
+    <div class="card-text">
+      Para figurar em juízo (autor ou réu) é preciso personalidade jurídica. Logo, em regra, os órgãos <strong>não possuem capacidade processual</strong>. Exceções:<br><br>
+      a) <strong>Órgãos de estatura constitucional</strong> — aqueles que recebem competências <strong>diretamente da Constituição</strong> (Presidência da República, Senado Federal, STF, TCU, MPU e seus simétricos nos demais entes) podem impetrar <strong>mandado de segurança</strong> para defesa de suas competências violadas por outro órgão;<br>
+      b) <strong>CDC</strong> (Lei 8.078/1990, art. 82, III) — autorização a entidades e órgãos destinados à defesa dos consumidores para promover a liquidação e execução de indenização.<br><br>
+      <strong>Súmula 525/STJ:</strong> "A Câmara de Vereadores não possui personalidade jurídica, apenas <strong>personalidade judiciária</strong>, somente podendo demandar em juízo para defender os seus direitos institucionais" (ex.: MS contra o prefeito que não repassa os duodécimos).
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="card-title">Criação e extinção — regra</div>
+      <div class="card-text">Em regra, os órgãos são criados e extintos <strong>por lei</strong>: no Executivo (art. 61, § 1º, II, "e", CF), Judiciário (art. 96, II, "c" e "d"), Ministério Público (art. 127, § 2º) e Tribunal de Contas (art. 73, caput).</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Criação e extinção — exceção</div>
+      <div class="card-text">O Poder Legislativo dispõe por <strong>atos próprios de cada Casa</strong> sobre a criação, organização, funcionamento e extinção de seus órgãos: Câmara (art. 51, IV, CF) e Senado (art. 52, XIII, CF).</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Em qual esfera?</div>
+      <div class="card-text">Existem órgãos na <strong>Administração Direta e na Indireta</strong>, em todos os Poderes e em todas as esferas da federação. Têm competência definida em lei e distribuição interna hierarquizada.</div>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Órgãos não têm personalidade jurídica nem vontade própria</strong> — suas manifestações são imputadas ao ente de que fazem parte. Por isso, não podem, em regra, processar alguém para ressarcir o erário, mas órgãos de estatura constitucional podem defender judicialmente suas prerrogativas (personalidade judiciária).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — HIERARQUIA × VINCULAÇÃO                             -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Hierarquia × vinculação</div>
+  </div>
+  <div class="sec-subtitle">Controle hierárquico (subordinação) × controle finalístico (tutela / supervisão ministerial)</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Hierarquia</th><th>Vinculação</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Relação</strong></td><td><strong>Subordinação</strong> entre órgãos de uma mesma pessoa jurídica</td><td><strong>Não há subordinação</strong> — mera supervisão entre pessoas jurídicas distintas</td></tr>
+        <tr><td><strong>Onde ocorre</strong></td><td>Dentro da Administração Direta e da Indireta (desconcentração)</td><td>Entre a <strong>Administração Direta</strong> (órgão central) e as <strong>entidades da Administração Indireta</strong> (autarquias, fundações, EP e SEM)</td></tr>
+        <tr><td><strong>Instrumentos</strong></td><td><strong>Controle hierárquico</strong>: comando, fiscalização, revisão, punição, <strong>delegação</strong>, <strong>avocação</strong>, solução de conflitos de competência</td><td><strong>Controle finalístico</strong> (tutela administrativa / supervisão ministerial): verificar o cumprimento dos fins legais</td></tr>
+        <tr><td><strong>Fundamento</strong></td><td>Poder hierárquico (implícito à organização interna)</td><td><strong>Expressa previsão legal</strong> — a lei define os meios, os aspectos e as ocasiões do controle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Nenhuma entidade administrativa é subordinada a ministério.</strong> Existe somente <strong>vinculação</strong>. Logo, afirmativas como "o INSS é subordinado ao Ministério..." estão <strong>erradas</strong> — o correto é <strong>vinculado</strong>. Essa pegadinha é recorrente em provas (INSS/2022, ANAC/2024, DPE DF/2022...).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Controle finalístico — limites</div>
+    <div class="card-text">
+      É um <strong>controle limitado</strong> exercido pela Administração Direta sobre a Indireta, para garantir que a entidade realize adequadamente a atividade para a qual foi criada. Necessita de <strong>expressa previsão legal</strong> que determine os meios de controle, os aspectos a serem controlados e as ocasiões em que ocorrerá. Não pode invadir a autonomia administrativa, técnica e financeira da entidade.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Compilado das questões comentadas da aula (Cebraspe, FCC)</div>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="card-title">Outorga × delegação</div>
+      <div class="card-text"><strong>Outorga</strong>: titularidade + execução, por lei, dá origem à Administração Indireta (autarquias, fundações, EP, SEM). <strong>Delegação</strong>: só a execução, a particulares preexistentes, por ato ou contrato (concessão/permissão/autorização).</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Desconcentração ≠ descentralização</div>
+      <div class="card-text">Desconcentração = <strong>distribuição interna</strong> de competências, na <strong>mesma pessoa jurídica</strong>, com hierarquia, origem dos órgãos. Descentralização = entre <strong>pessoas jurídicas distintas</strong>, sem hierarquia.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Direta × Indireta</div>
+      <div class="card-text"><strong>Direta = centralizada</strong> (órgãos das entidades políticas). <strong>Indireta = descentralizada</strong> (entidades com personalidade própria). Empresas estatais que exploram atividade econômica <strong>continuam integrando a Administração Indireta</strong>.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Lei específica × decreto</div>
+      <div class="card-text">Autarquia é <strong>criada e extinta por lei específica</strong> (art. 37, XIX, CF; paridade de formas). Estatais: criação autorizada por lei específica, mas <strong>extinção pode usar autorização legislativa genérica</strong> (PND; ADI 6241).</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Órgãos em juízo</div>
+      <div class="card-text">Sem personalidade jurídica → sem capacidade processual (regra). Exceções: órgãos de estatura constitucional em MS pela própria competência e órgãos de defesa do consumidor (CDC, art. 82, III). <strong>Súmula 525/STJ.</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Vinculação, não subordinação</div>
+      <div class="card-text">Autarquias, fundações, EP e SEM não são <strong>subordinadas</strong> à Administração Direta — são <strong>vinculadas</strong> (controle finalístico / supervisão ministerial). Afirmativa "subordinada" está errada.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Agências reguladoras</div>
+      <div class="card-text">Autarquias <strong>sob regime especial</strong>, integram a <strong>Administração Indireta</strong> (não a direta). Dirigentes: mandato de <strong>5 anos sem recondução</strong>, nomeação com aprovação do Senado, vedada exoneração ad nutum. Não se submetem a tutela nem a controle hierárquico.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Agências executivas</div>
+      <div class="card-text">Qualificação por <strong>decreto</strong> (não lei) de autarquia ou fundação com <strong>plano estratégico</strong> em andamento + <strong>contrato de gestão</strong> com o ministério supervisor. É ato <strong>discricionário</strong>.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Conselhos profissionais</div>
+      <div class="card-text">Natureza <strong>autárquica</strong> → prestam contas ao TCU, fazem concurso e licitação, mas não pagam por precatórios (regime híbrido). <strong>OAB não integra a Administração Pública</strong> (STF).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Contadores de temas com base nas questões coladas do TEC Concursos</div>
+
+  <div class="card">
+    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento. Cole aqui as questões resolvidas no TEC Concursos e a incidência será registrada automaticamente, destacando os temas 🔴 Alta incidência para priorizar a revisão.
+    </div>
+  </div>
+</section>
+
+<!-- FIM DO CONTEÚDO -->
+
+</div>
+</body>
+</html>

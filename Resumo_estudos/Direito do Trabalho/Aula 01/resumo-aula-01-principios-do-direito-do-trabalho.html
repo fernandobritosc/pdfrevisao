@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DT Aula 01: Princípios do Direito do Trabalho</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito do Trabalho — Aula 01</div>
+  <div class="sidebar-sub">Princípios do Direito do Trabalho · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Função e classificação dos princípios</a>
+  <a href="#sec2">2. Princípio da proteção (e subprincípios)</a>
+  <a href="#sec3">3. Primazia da realidade</a>
+  <a href="#sec4">4. Continuidade da relação de emprego</a>
+  <a href="#sec5">5. Irrenunciabilidade de direitos</a>
+  <a href="#sec6">6. Inalterabilidade contratual lesiva e intangibilidade salarial</a>
+  <a href="#sec7">7. Demais princípios trazidos pelas fontes</a>
+  <a href="#sec8">8. Pontos que mais caem em prova</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos · Antonio Daud
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — FUNÇÃO E CLASSIFICAÇÃO DOS PRINCÍPIOS                -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Função e classificação dos princípios</div>
+  </div>
+  <div class="sec-subtitle">Fundamento: o Direito do Trabalho protege o polo mais fraco da relação — incidência em prova: <span class="tag tag-amber">BAIXA</span></div>
+
+  <div class="card">
+    <div class="card-title">Por que existem princípios no Direito do Trabalho</div>
+    <div class="card-text">
+      Nas relações empregatícias há sempre o <strong>conflito entre o detentor do capital (empregador)</strong> e o <strong>detentor da mão de obra (empregado)</strong>. Essa relação é <strong>naturalmente desequilibrada</strong> em função do poder econômico dos detentores de capital — o empregado é <strong>hipossuficiente</strong> e não poderia negociar livremente sua força de trabalho.<br><br>
+      Para atenuar esse desequilíbrio entre capital e trabalho, criou-se o Direito do Trabalho, <strong>alicerçado no princípio protetor (ou princípio da proteção)</strong>. A proteção do trabalhador relaciona-se, hoje, ao <strong>princípio da dignidade da pessoa humana</strong>, de sede constitucional.<br><br>
+      Informalmente, é a "regra de ouro": <em>quem tem o ouro faz as regras</em>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Classificação do princípio protetor (Américo Plá Rodriguez)</div>
+    <div class="card-text">
+      Conforme a doutrina capitaneada pelo jurista <strong>Américo Plá Rodriguez</strong>, o princípio protetor pode ser subdividido em três subprincípios:
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Subprincípio 1</div><div class="card-text"><strong>Princípio da norma mais favorável</strong></div></div>
+    <div class="card"><div class="card-title">📌 Subprincípio 2</div><div class="card-text"><strong>Princípio da condição mais benéfica</strong></div></div>
+    <div class="card"><div class="card-title">📌 Subprincípio 3</div><div class="card-text"><strong>Princípio in dubio pro operario</strong></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Função normativa dos princípios</div>
+    <div class="card-text">
+      Há controvérsia doutrinária sobre os <strong>princípios gerais de direito</strong> serem ou não fontes formais do Direito. O Ministro Maurício Godinho Delgado entende que a doutrina recente confere aos princípios <strong>função normativa</strong> — a que chama de <strong>"função normativa concorrente"</strong> — e que, nessa óptica, os princípios seriam <strong>fonte formal</strong> de direito.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Tentativas de esvaziamento:</strong> o princípio protetor tem sofrido tentativas de esvaziamento, como na <strong>reforma trabalhista (Lei 13.467/2017)</strong> e na <strong>"lei da terceirização" (Lei 13.429/2017)</strong>, com a ampliação das hipóteses admitidas.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — PRINCÍPIO DA PROTEÇÃO E SUBPRINCÍPIOS                -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Princípio da proteção e seus subprincípios</div>
+  </div>
+  <div class="sec-subtitle">Núcleo do Direito Individual do Trabalho — subdivisão de Plá Rodriguez</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípio da norma mais favorável
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Havendo <strong>mais de uma norma em vigor regendo o mesmo assunto</strong>, deve-se aplicar ao caso concreto <strong>a que seja mais favorável ao empregado</strong>. Pela aplicação deste princípio — respeitadas as regras de Hermenêutica Jurídica — busca-se a aplicação da norma mais favorável ao obreiro.<br><br>
+      O princípio aplica-se <strong>mesmo antes de as normas trabalhistas entrarem em vigor</strong>, ou seja, <strong>durante a sua elaboração</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tríplice dimensão (Maurício Godinho Delgado)</div>
+    <div class="card-text">
+      • <strong>Elaboração da regra</strong> (princípio orientador da elaboração legislativa / dimensão informadora) — auxilia a política legislativa para que as futuras leis assegurem ou ampliem o rol de direitos trabalhistas<br>
+      • <strong>Confronto de regras concorrentes</strong> (princípio orientador do processo de hierarquização de normas) — cabem aqui a <strong>teoria da acumulação</strong> e a <strong>teoria do conglobamento</strong><br>
+      • <strong>Interpretação das regras jurídicas</strong> (princípio orientador do processo de revelação do sentido da regra) — diante de mais de um resultado válido, o intérprete opta pela norma mais favorável ao trabalhador
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Teoria de hierarquização</th><th>Como funciona</th><th>Posição da doutrina</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Acumulação</strong></td><td>Utiliza-se, no caso concreto, mais de um texto normativo, <strong>fragmentando seus dispositivos</strong> e selecionando os mais favoráveis ao empregado</td><td>Criticada — criaria "ordens jurídicas próprias e provisórias" a cada caso</td></tr>
+        <tr><td><strong>Conglobamento</strong></td><td>As disposições sobre a matéria são analisadas <strong>globalmente dentro de cada texto normativo</strong>; aplica-se o conjunto mais benéfico ao empregado</td><td><span class="tag tag-green">Dominante na doutrina</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Exceções ao princípio da norma mais favorável
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Exceção</th><th>Fundamento</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Preceitos de ordem pública</strong> (normas proibitivas estatais)</td><td>Ex.: <strong>prescrição</strong> — prazo constitucional de 2 e 5 anos; um ACT não poderia prever prazo prescricional de 30 anos, que não prevaleceria sobre o prazo constitucional</td></tr>
+        <tr><td>2</td><td><strong>Matérias do art. 611-A da CLT</strong></td><td>Regra de ACT pode prevalecer sobre a lei, <strong>ainda que a regra legal seja mais favorável ao empregado</strong> — esvaziamento do princípio</td></tr>
+        <tr><td>3</td><td><strong>Art. 620 da CLT</strong> (reforma trabalhista)</td><td>Condições do <strong>ACT sempre prevalecem</strong> sobre as da <strong>CCT</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O princípio da norma mais favorável <strong>não é absoluto</strong>: não se aplica, por exemplo, quando existirem <strong>leis de ordem pública</strong> a respeito da matéria. O princípio é <strong>ofuscado quando presentes normas de acordos ou convenções coletivas</strong> do trabalho (ACT/CCT).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípio da condição mais benéfica
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Relaciona-se às <strong>cláusulas contratuais</strong> (do contrato de trabalho ou do <strong>regulamento da empresa</strong>) que, sendo mais vantajosas ao trabalhador, devem ser <strong>preservadas durante a vigência do vínculo empregatício</strong>. É <strong>inválida a supressão</strong> de cláusula de contrato de trabalho que prejudique o empregado.<br><br>
+      É a aplicação da regra do <strong>direito adquirido</strong> (CF/88, art. 5º, XXXVI): vantagens já conquistadas, mais benéficas, não podem ser modificadas para pior.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">⚖️</div>
+    <div><strong>Base legal:</strong> CLT, art. 468 — nos contratos individuais de trabalho só é lícita a alteração das respectivas condições <strong>por mútuo consentimento</strong>, e ainda assim desde que <strong>não resultem, direta ou indiretamente, prejuízos ao empregado</strong>, sob pena de nulidade da cláusula infringente desta garantia.</div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Súmula 51 do TST — norma regulamentar e opção pelo novo regulamento (art. 468 CLT)</div>
+    <div class="card-text">
+      <strong>I —</strong> As cláusulas regulamentares, que revoguem ou alterem vantagens deferidas anteriormente, <strong>só atingirão os trabalhadores admitidos após a revogação ou alteração</strong> do regulamento.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípio in dubio pro operario
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Diante de <strong>duas opções igualmente válidas</strong>, o intérprete do Direito do Trabalho deve aplicar a <strong>opção mais vantajosa ao trabalhador</strong>. Também é conhecido como <strong>princípio in dubio pro misero</strong>.<br><br>
+      Fundamenta-se na necessidade de equilibrar a relação entre capital e trabalho <strong>também no aspecto processual</strong> — o que, atualmente, <strong>atrita com a teoria do ônus da prova</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O princípio in dubio pro operario é <strong>criticado pelo Ministro Godinho</strong>: entraria em conflito com o princípio do <strong>juiz natural</strong> (CF/88, art. 5º, XXXVII e LIII). Havendo dúvida do juiz, ele deverá decidir <strong>em desfavor da parte que tenha o ônus da prova</strong> naquele tópico duvidoso — e não segundo a diretriz genérica <em>in dubio pro operario</em>. O princípio <strong>não se aplica integralmente ao processo do trabalho</strong>: verifica-se quem tem o ônus da prova no caso concreto (CPC, art. 373; CLT, art. 818).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Os três subprincípios em quadro comparativo
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Princípio</th><th>Hipótese de aplicação</th><th>O que se escolhe</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Norma mais favorável</strong></td><td>Havendo mais de uma norma em vigor regendo o mesmo assunto</td><td>Uma <strong>norma</strong>, dentre duas ou mais</td><td>Possível <strong>inversão da pirâmide normativa tradicional</strong></td></tr>
+        <tr><td><strong>Condição mais benéfica</strong></td><td>Cláusulas contratuais ou de regulamento da empresa mais benéficas, diante de alterações que diminuam a proteção</td><td>Preservação das <strong>cláusulas mais benéficas</strong></td><td>Cláusulas aderem ao contrato — ligado ao <strong>direito adquirido</strong></td></tr>
+        <tr><td><strong>In dubio pro operario</strong></td><td>Diante de duas ou mais interpretações sobre a <strong>mesma norma</strong></td><td>Uma <strong>interpretação</strong>, dentre duas ou mais</td><td>Diretriz para interpretação do Direito do Trabalho de modo amplo</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — PRIMAZIA DA REALIDADE                                -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Primazia da realidade</div>
+  </div>
+  <div class="sec-subtitle">A realidade prevalece sobre a forma — também chamado de princípio do contrato realidade</div>
+
+  <div class="card">
+    <div class="card-title">Ideia central</div>
+    <div class="card-text">
+      Busca-se <strong>priorizar a realidade em detrimento da forma</strong>. No Direito do Trabalho, <strong>os fatos são mais importantes que os ajustes formais</strong>.
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Contrato de estágio mascarado</div><div class="card-text">Típica relação de emprego mascarada por contrato de estágio (estagiário não é empregado): por aplicação do princípio, a <strong>relação empregatícia deverá ser reconhecida</strong></div></div>
+    <div class="card"><div class="card-title">📌 "Prestador de serviços"</div><div class="card-text">Empresa contrata "prestador de serviços" que, na realidade, é autêntico empregado (presentes todos os elementos da relação de emprego): será <strong>desconstituída a relação de direito civil</strong> e reconhecida a relação de emprego</div></div>
+    <div class="card"><div class="card-title">📌 Aplicação em favor do empregador</div><div class="card-text">O princípio <strong>também pode ser usado em benefício do empregador</strong> (ex.: dispensa do recolhimento do FGTS em julgado do TST — E-RR-21696-44.2015.5.04.0030, SBDI-I, 2020)</div></div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">⚖️</div>
+    <div><strong>Base legal:</strong> CLT, art. 9º — <em>serão nulos de pleno direito os atos praticados com o objetivo de desvirtuar, impedir ou fraudar a aplicação dos preceitos contidos na presente Consolidação.</em> O art. 9º e o princípio da primazia da realidade são <strong>importantes ferramentas para combater a fraude</strong> nas relações trabalhistas.</div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">Fraude nas relações de trabalho × fraude na legislação civil</div>
+    <div class="card-text">
+      Para parte da doutrina, é <strong>indiferente</strong> para o Direito do Trabalho a presença ou não do <em>consilium fraudis</em> entre as partes ou mesmo da <em>conscientia fraudis</em> do empregador, com a consequente nulidade dos atos fraudulentos e o reconhecimento da relação de emprego.<br><br>
+      A caracterização da relação de emprego ocorre <strong>independentemente do animus fraudandi</strong> do empregador: basta identificar a presença material dos elementos da relação de emprego em contratos como de <strong>parceria, arrendamento, prestação de serviços autônomos, cooperado, sociedade, estágio, representação comercial autônoma</strong>, etc.<br><br>
+      A fraude trabalhista possui <strong>transcendência social, econômica e política</strong> (repercute na arrecadação do FGTS e previdenciária, precariza relações, eleva demandas judiciais, pode caracterizar concorrência desleal) e pode resultar em <strong>condenação por danos morais coletivos e sociais</strong> (natureza reparatória, repressiva e pedagógica).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — CONTINUIDADE DA RELAÇÃO DE EMPREGO                   -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Continuidade da relação de emprego</div>
+  </div>
+  <div class="sec-subtitle">Valoriza a permanência do empregado no mesmo vínculo — presunção favorável ao empregado</div>
+
+  <div class="card">
+    <div class="card-text">
+      Valoriza a <strong>permanência do empregado no mesmo vínculo empregatício</strong>, dadas as vantagens que isso representa: com o passar do tempo no mesmo emprego, o trabalhador recebe <strong>capacitação, realiza cursos, recebe aumentos salariais e vantagens remuneratórias</strong> como <strong>anuênios e quinquênios</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Súmula 212 do TST — despedimento e ônus da prova</div>
+    <div class="card-text">
+      O ônus de provar o término do contrato de trabalho, quando negados a prestação de serviço e o despedimento, <strong>é do empregador</strong>, pois o princípio da continuidade da relação de emprego <strong>constitui presunção favorável ao empregado</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regra: contrato por prazo indeterminado</div>
+    <div class="card-text">
+      Com base no princípio, a <strong>regra é que os contratos trabalhistas sejam firmados com prazo indeterminado</strong>. Contratos com <strong>prazo determinado representam exceção</strong> e só terão lugar nos casos legalmente definidos.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">⚖️</div>
+    <div><strong>Base legal:</strong> CLT, art. 448 — <em>a mudança na propriedade ou na estrutura jurídica da empresa não afetará os contratos de trabalho dos respectivos empregados</em> (sucessão de empregadores).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Três repercussões favoráveis ao empregado (Maurício Godinho Delgado)
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Tendencial elevação dos direitos</div><div class="card-text">Quanto mais tempo dura o contrato, maiores benefícios o empregado tende a alcançar (aumento de salário, anuênios, progressão na carreira)</div></div>
+    <div class="card"><div class="card-title">📌 Investimento educacional e profissional</div><div class="card-text">O empregador tende a investir mais na educação e aperfeiçoamento dos empregados que permanecem mais tempo na empresa</div></div>
+    <div class="card"><div class="card-title">📌 Afirmação social do indivíduo</div><div class="card-text">A maioria depende do salário para sobreviver; o contrato de longa duração dá maiores possibilidades de afirmação social (ao contrário de contratos curtos, temporários e do desemprego)</div></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — IRRENUNCIABILIDADE DE DIREITOS                       -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Irrenunciabilidade de direitos</div>
+  </div>
+  <div class="sec-subtitle">Também chamado de princípio da indisponibilidade e da imperatividade das normas trabalhistas</div>
+
+  <div class="card">
+    <div class="card-text">
+      É uma <strong>limitação à autonomia das partes</strong> no Direito do Trabalho. No direito civil, as partes têm autonomia para negociar cláusulas — o que, no Direito do Trabalho, poderia fazer o trabalhador <strong>abrir mão de direitos</strong> para conquistar ou manter o emprego. Em razão do desequilíbrio entre capital e trabalho, <strong>as partes não podem negociar livremente cláusulas trabalhistas</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">Relação com a renúncia e a transação</div>
+    <div class="card-text">
+      O princípio está relacionado à <strong>impossibilidade, em regra, da renúncia</strong> no Direito do Trabalho (ato pelo qual o empregado, por simples vontade, abriria mão de direitos assegurados pela legislação).<br><br>
+      O Ministro Godinho adverte que a expressão <strong>"irrenunciabilidade"</strong> não revela bem a amplitude do princípio: <strong>renúncia é ato unilateral</strong>, e o princípio vai além, interferindo também nos <strong>atos bilaterais de disposição de direitos (transação)</strong>. Para a ordem justrabalhista, <strong>não serão válidas nem a renúncia nem a transação que importem objetivamente em prejuízo ao trabalhador</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Redução da incidência após a reforma trabalhista
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Com a <strong>Lei 13.467/2017 (reforma trabalhista)</strong>, o princípio foi <strong>apequenado</strong>, a exemplo das situações em que o negociado pode prevalecer sobre o legislado (<strong>CLT, art. 611-A</strong>).<br><br>
+      Além disso, os chamados <strong>"altos empregados"</strong> — aqueles com <strong>nível superior</strong> e que recebem <strong>salários superiores a duas vezes o teto do RGPS</strong> — poderão negociar diretamente com seus empregadores, <strong>sem intermediação do sindicato profissional</strong> (CLT, art. 444, parágrafo único). Para esses empregados, eles próprios poderão <strong>transacionar direitos</strong>, havendo redução na incidência do princípio.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Direito de indisponibilidade</th><th>Regra</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Indisponibilidade relativa</strong> (caráter privado, não previstos em lei/CF)</td><td>Admitem <strong>flexibilização</strong> (ex.: direitos estipulados em acordo ou convenção coletiva, ou no regulamento da empresa)</td></tr>
+        <tr><td><strong>Indisponibilidade absoluta</strong> (ligados à dignidade humana)</td><td><span class="tag tag-red">Proibida a flexibilização</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Flexibilização × desregulamentação:</strong> na <strong>flexibilização</strong>, o Estado mantém sua intervenção nas relações de trabalho, autorizando regras menos rígidas, mas mantendo o <strong>"mínimo existencial"</strong>. Na <strong>desregulamentação</strong>, fenômeno mais radical, o Estado <strong>deixa de intervir</strong>, deixando as partes negociarem livremente — situação <strong>incompatível</strong> com o Direito do Trabalho.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INALTERABILIDADE CONTRATUAL LESIVA E INTANGIBILIDADE -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Inalterabilidade contratual lesiva e intangibilidade salarial</div>
+  </div>
+  <div class="sec-subtitle">Duas garantias que protegem o empregado contra alterações e contra o atingimento do salário</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípio da inalterabilidade contratual lesiva
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Também está expresso no <strong>art. 468 da CLT</strong>, como o princípio da condição mais benéfica. Tem origem no princípio geral do direito civil da <strong>inalterabilidade dos contratos (pacta sunt servanda)</strong>.<br><br>
+      O princípio <strong>não impede alterações contratuais trabalhistas</strong>, que são comuns na prática. O que se restringe são as <strong>alterações lesivas, em que o empregado é prejudicado</strong>.<br><br>
+      O empregador possui <strong>poder diretivo</strong> para gerenciar seu negócio — o chamado <strong>jus variandi do empregador</strong>. Pequenas alterações que <strong>não frustrem direitos trabalhistas</strong> podem ser implementadas, devendo-se analisar o <strong>caso concreto</strong>.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">⚖️</div>
+    <div><strong>Base legal:</strong> CLT, art. 468 — <em>nos contratos individuais de trabalho só é lícita a alteração das respectivas condições por mútuo consentimento, e ainda assim desde que não resultem, direta ou indiretamente, prejuízos ao empregado, sob pena de nulidade da cláusula infringente desta garantia.</em></div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Entendimento do TST (insalubridade e direito adquirido)</div>
+    <div class="card-text">
+      A <strong>fixação de base de cálculo de adicional de insalubridade mais vantajosa ao empregado, por mera liberalidade do empregador</strong>, caracteriza <strong>direito adquirido</strong>, não podendo ser posteriormente reduzida. O empregador não pode, a pretexto de ajustar-se à Súmula Vinculante 4 do STF, passar a usar o salário mínimo como base, <strong>em detrimento do salário básico anteriormente adotado</strong>, sob pena de <strong>alteração contratual lesiva</strong> (art. 468 da CLT) e afronta ao princípio da <strong>irredutibilidade salarial</strong> (TST-E-ARR-11693-79.2015.5.18.0017, SBDI-I, 2018).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Negociação coletiva e flexibilização</div>
+    <div class="card-text">
+      Algumas cláusulas contratuais podem ser negociadas <strong>com intermediação da representação sindical obreira</strong>, por meio de negociação coletiva. É possível, então, que <strong>certas cláusulas sejam flexibilizadas com vistas a evitar mal maior</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípio da intangibilidade salarial
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Confere ao salário <strong>diversas garantias jurídicas</strong>, visto que este possui <strong>natureza alimentar</strong>. A intangibilidade salarial abrange <strong>não apenas a irredutibilidade nominal</strong> do seu valor, mas também a <strong>vedação a descontos indevidos</strong>, a <strong>tempestividade no pagamento</strong>, etc.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">⚖️</div>
+    <div><strong>Base legal (CF/88 e CLT):</strong><br>
+      • <strong>CF/88, art. 7º, VI</strong> — irredutibilidade do salário, salvo o disposto em convenção ou acordo coletivo<br>
+      • <strong>CLT, art. 459</strong> — o pagamento do salário, qualquer que seja a modalidade do trabalho, não deve ser estipulado por período superior a 1 (um) mês, salvo quanto a comissões, percentagens e gratificações<br>
+      • <strong>CLT, art. 462</strong> — ao empregador é vedado efetuar qualquer desconto nos salários, salvo quando resultar de adiantamentos, de dispositivos de lei ou de contrato coletivo<br>
+      • <strong>CLT, art. 465</strong> — o pagamento dos salários será efetuado em dia útil e no local do trabalho, dentro do horário do serviço ou imediatamente após o encerramento deste, salvo quando efetuado por depósito em conta bancária</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — DEMAIS PRINCÍPIOS TRAZIDOS PELAS FONTES              -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Demais princípios trazidos pelas fontes</div>
+  </div>
+  <div class="sec-subtitle">Princípios relacionados à aplicação das normas e à interpretação, mencionados na aula</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípios da irretroatividade e do efeito imediato das normas trabalhistas
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A aplicação das normas trabalhistas no tempo é regida pelos <strong>Princípios da Irretroatividade e do Efeito Imediato</strong>.<br><br>
+      • <strong>Irretroatividade</strong>: a lei trabalhista <strong>não alcança os atos praticados antes do início de sua vigência</strong> — a lei nova não se aplica aos contratos de trabalho já terminados. Máxima constitucional: a lei não retroage para prejudicar a <strong>coisa julgada, o direito adquirido e o ato jurídico perfeito</strong> (CF/88, art. 5º, XXXVI)<br>
+      • <strong>Efeito imediato</strong>: apesar de não retroagir, a nova lei trabalhista é aplicada <strong>de modo imediato às relações trabalhistas em curso</strong>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Reforma trabalhista (Lei 13.467/2017) — aplicação a contratos em curso</div>
+    <div class="card-text">
+      O TST fixou tese (Incidente de Recursos Repetitivos 23, novembro de 2024): a Lei 13.467/2017 possui <strong>aplicação imediata aos contratos de trabalho em curso</strong>, passando a regular os direitos decorrentes de lei cujos <strong>fatos geradores tenham se efetivado a partir de sua vigência</strong>.<br><br>
+      Exceção: a <strong>Lei do Estágio (Lei 11.788/2008)</strong> não se aplica aos contratos de estágio firmados sob a égide da Lei 6.494/1977, ainda que em execução quando de sua entrada em vigor (com base no art. 5º, XXXVI, da CF e no art. 6º da LINDB).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Princípio da razoabilidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Conforme destacado na aula, o <strong>princípio da razoabilidade não é específico do Direito do Trabalho</strong> — diferentemente do princípio da proteção, que se subdivide nos princípios da norma mais favorável, da condição mais benéfica e do <em>in dubio pro operario</em>.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>O princípio protetor se subdivide em três</strong> (Plá Rodriguez): norma mais favorável, condição mais benéfica e <em>in dubio pro operario</em><br>
+      • <strong>Teoria do conglobamento</strong> é a dominante na doutrina para hierarquizar normas (não a acumulação)<br>
+      • <strong>Três exceções à norma mais favorável:</strong> preceitos de ordem pública (ex.: prescrição constitucional), matérias do <strong>art. 611-A da CLT</strong> e <strong>art. 620 da CLT</strong> (ACT sempre prevalece sobre CCT)<br>
+      • <strong>Condição mais benéfica</strong> e <strong>inalterabilidade contratual lesiva</strong> — ambos fundados no <strong>art. 468 da CLT</strong> (alteração só por mútuo consentimento e sem prejuízo ao empregado)<br>
+      • <strong>Súmula 51, I, TST</strong>: cláusulas regulamentares novas só atingem os admitidos após a revogação/alteração<br>
+      • <strong>Primazia da realidade</strong> = princípio do contrato realidade; <strong>art. 9º da CLT</strong>; pode beneficiar até o empregador
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Continuidade:</strong> Súmula 212 TST — ônus de provar o término do contrato é do <strong>empregador</strong> (presunção favorável ao empregado); regra é contrato por <strong>prazo indeterminado</strong>; <strong>art. 448 CLT</strong> (sucessão de empregadores não afeta contratos)<br>
+      • <strong>Irrenunciabilidade:</strong> princípio da indisponibilidade/imperatividade; renúncia é ato <strong>unilateral</strong> e o princípio alcança também a <strong>transação</strong> (atos bilaterais)<br>
+      • <strong>Esvaziamento pós-reforma:</strong> art. 611-A CLT (negociado sobre legislado) e <strong>"altos empregados"</strong> (nível superior + salário acima de 2× o teto do RGPS) — <strong>art. 444, parágrafo único, CLT</strong><br>
+      • <strong>Intangibilidade salarial:</strong> natureza alimentar; CF/88 art. 7º, VI; CLT arts. 459, 462 e 465<br>
+      • <strong>Flexibilização</strong> (Estado intervém, mínimo existencial) × <strong>desregulamentação</strong> (incompatível com o DT)<br>
+      • <strong>In dubio pro operario = in dubio pro misero</strong>; não se aplica integralmente ao processo do trabalho (ônus da prova — CPC art. 373; CLT art. 818)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • Prescrição é tema de <strong>ordem pública</strong> — ACT não pode ampliar o prazo prescricional (2 e 5 anos da CF)<br>
+      • <strong>Condição mais benéfica ≠ norma mais favorável:</strong> uma escolhe norma entre duas ou mais; a outra preserva <strong>cláusulas</strong> (direito adquirido — art. 5º, XXXVI, CF)<br>
+      • <em>In dubio pro operario</em> é criticado por Godinho (conflito com o <strong>juiz natural</strong> — art. 5º, XXXVII e LIII, CF)<br>
+      • A primazia da realidade <strong>também pode ser usada em favor do empregador</strong> (dispensa de FGTS)<br>
+      • Na fraude trabalhista, é <strong>indiferente o animus fraudandi</strong>: basta a presença material dos elementos da relação de emprego
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> decore a subdivisão do princípio protetor (Plá Rodriguez), as exceções à norma mais favorável, o art. 468 da CLT (condição mais benéfica + inalterabilidade lesiva) e as súmulas 51 e 212 do TST. São os pontos recorrentes nas provas de Direito do Trabalho.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

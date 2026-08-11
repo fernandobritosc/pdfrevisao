@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 03: Fundações, Empresas Públicas e S.E.M.</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 03</div>
+  <div class="sidebar-sub">Fundações, Empresas Públicas e S.E.M. · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Considerações gerais (admin. indireta)</a>
+  <a href="#sec2">2. Fundações públicas</a>
+  <a href="#sec3">3. Empresas públicas</a>
+  <a href="#sec4">4. Sociedades de economia mista</a>
+  <a href="#sec5">5. Quadro comparativo EP × SEM × Fundação</a>
+  <a href="#sec6">6. Pontos que mais caem em prova</a>
+  <a href="#sec7">7. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONSIDERAÇÕES GERAIS DA ADMINISTRAÇÃO INDIRETA       -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Considerações gerais da administração indireta</div>
+  </div>
+  <div class="sec-subtitle">Criação por lei específica e registro do ato constitutivo — art. 37, XIX e XX, CF</div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">⚖️</div>
+    <div><strong>Art. 37, XIX, CF:</strong> "somente por lei específica poderá ser <strong>criada autarquia</strong> e <strong>autorizada a instituição de empresa pública, de sociedade de economia mista e de fundação</strong>, cabendo à <strong>lei complementar</strong>, neste último caso, definir as áreas de sua atuação".</div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Criada por lei</div><div class="card-text"><strong>Autarquia</strong> — a lei específica já a cria diretamente, com aquisição de personalidade jurídica na vigência da lei.</div></div>
+    <div class="card"><div class="card-title">📌 Apenas autorizada por lei</div><div class="card-text"><strong>Empresa pública, sociedade de economia mista e fundação</strong> — a lei apenas autoriza; a criação depende de atos complementares e do registro do ato constitutivo.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Lei específica</div>
+    <div class="card-text">
+      Não significa que a lei deva tratar tão somente da criação da entidade, mas sim que a <strong>matéria</strong> da lei deve ser relacionada com as competências da nova entidade (finalidade, diretrizes, estrutura, etc.). Não pode uma lei tratar de assunto genérico e, de passagem, autorizar a criação de uma empresa pública.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Registro do ato constitutivo</div>
+    <div class="card-text">
+      • <strong>EP e SEM:</strong> após a edição da lei autorizativa, é elaborado o ato constitutivo, cujo <strong>registro no órgão competente significa o início da personalidade jurídica</strong> (o decreto de publicidade do estatuto, por si, não cria a entidade — serve apenas para transparência)<br>
+      • <strong>Fundação pública de direito público:</strong> criada por lei, com personalidade na vigência da lei instituidora (dispensa registro)<br>
+      • <strong>Fundação pública de direito privado:</strong> autorizada por lei, mas só adquire personalidade com o <strong>registro do ato constitutivo no Registro Civil de Pessoas Jurídicas</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "As empresas públicas são criadas por lei" — <strong>ERRADO.</strong> A criação não é realizada por lei, mas apenas <strong>autorizada</strong>; efetiva-se com o registro do ato constitutivo (TRE PE/2017).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Extinção e desestatização
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A extinção de EP e SEM <strong>não exige lei específica</strong>. Segundo o STF, basta uma <strong>autorização legislativa genérica</strong>, prevista em lei que veicule programa de desestatização. Exemplos: <strong>PND (Lei 9.491/1997)</strong> e <strong>Programa de Parceria de Investimentos (Lei 13.334/2016)</strong>.<br><br>
+      Exceção: será exigida autorização legislativa específica quando a própria lei que autorizou a criação assim exigir. Em qualquer caso, o Poder Executivo <strong>não</strong> pode extinguir EP/SEM por ato próprio — sempre reclamará a autorização do Poder Legislativo (genérica ou específica).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Subsidiárias e participação em empresa privada (art. 37, XX, CF)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O inc. XX do art. 37 exige <strong>autorização legislativa, em cada caso</strong>, para a criação de subsidiárias das entidades da administração indireta e para a participação de qualquer delas em empresa privada.<br><br>
+      • O STF entende que basta uma <strong>autorização genérica em lei</strong> — não é preciso uma lei para cada subsidiária (pode constar na própria lei de criação)<br>
+      • <strong>Subsidiária</strong> é empresa controlada pela matriz, com personalidade jurídica própria (ex.: Caixa Seguridade e Caixa Cartões, subsidiárias da CEF) — não se confunde com órgão, unidade ou filial<br>
+      • As subsidiárias são controladas indiretamente pelo Poder Público e <strong>não integram o conceito formal de Administração Pública</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Alienação de controle</th><th>Autorização legislativa</th><th>Licitação</th></tr></thead>
+      <tbody>
+        <tr><td><strong>EP e SEM</strong></td><td><span class="tag tag-green">SIM</span> (pode ser genérica)</td><td><span class="tag tag-green">SIM</span></td></tr>
+        <tr><td><strong>Subsidiárias e controladas</strong></td><td><span class="tag tag-red">NÃO</span></td><td><span class="tag tag-red">NÃO</span> (desde que garantida competitividade e observados os princípios do art. 37)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A transferência do controle de <strong>subsidiárias</strong> não exige autorização legislativa nem licitação (pode ocorrer, ex., por venda de ações em bolsa). Já a alienação do controle acionário da <strong>própria EP/SEM</strong> exige autorização legislativa e licitação (ADI 5.624; ADI 6.241).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — FUNDAÇÕES PÚBLICAS                                   -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Fundações públicas</div>
+  </div>
+  <div class="sec-subtitle">Patrimônio personalizado destinado a atividades de interesse social — podem ser de direito público ou de direito privado</div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      No meio privado, a fundação resulta da iniciativa de um particular (pessoa física ou jurídica) que destaca parte de seu patrimônio, destinando-o a uma finalidade social — é um <strong>patrimônio personalizado</strong> (educação, saúde, pesquisa, cultura, etc.).<br><br>
+      A <strong>fundação pública</strong> diferencia-se pela figura do <strong>instituidor</strong>: é instituída pelo <strong>Estado</strong>, que separa uma dotação patrimonial e destina recursos orçamentários ao desempenho de atividade de interesse social. Parte da dotação pode vir de particulares, mas, no momento da doação, o patrimônio passa a ser público.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Características (Di Pietro)</div>
+    <div class="card-text">
+      a) <strong>Dotação patrimonial</strong><br>
+      b) <strong>Personalidade jurídica própria, pública ou privada</strong><br>
+      c) Desempenho de atividade atribuída pelo Estado no âmbito social<br>
+      d) <strong>Capacidade de autoadministração</strong><br>
+      e) Sujeição ao <strong>controle administrativo (tutela)</strong> por parte da Administração Direta, nos limites da lei
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Natureza jurídica
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Direito público</div><div class="card-text">Tem natureza de <strong>autarquia</strong> (fundações autárquicas / autarquias fundacionais) e submete-se ao regime jurídico de direito público.</div></div>
+    <div class="card"><div class="card-title">Direito privado</div><div class="card-text">Segue <strong>regime híbrido</strong>: regras de direito privado derrogadas parcialmente pelo direito público (concurso público, dever de licitar, contratos administrativos).</div></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Criação e extinção
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fundação pública</th><th>Criação</th><th>Aquisição da personalidade jurídica</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Direito público</strong></td><td><span class="tag tag-green">Criada por lei</span></td><td>Vigência da lei instituidora (dispensa registro)</td></tr>
+        <tr><td><strong>Direito privado</strong></td><td><span class="tag tag-amber">Autorizada por lei</span></td><td>Registro do ato constitutivo no Registro Civil de Pessoas Jurídicas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    As fundações públicas <strong>não são exclusivamente de direito público</strong> — podem ser de direito público ou de direito privado (TRE BA/2017). Tampouco são "órgãos despersonalizados": são <strong>entidades com personalidade jurídica própria</strong> integrantes da administração indireta (CAPES/2024).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Atividade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Os fins das fundações públicas devem sempre ter <strong>caráter social</strong>: assistência social; assistência médica e hospitalar; educação e ensino; pesquisa; e atividades culturais.<br><br>
+      • <strong>Não podem ser criadas para exploração de atividade econômica em sentido estrito</strong> — para isso, o Estado cria EP ou SEM<br>
+      • A CF exige <strong>lei complementar</strong> para definir a área de atuação das fundações públicas — até hoje <strong>não foi editada</strong>
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Regime jurídico — quadro de prerrogativas
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Prerrogativa</th><th>Fundação Pública de Direito Público</th><th>Fundação Pública de Direito Privado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Imunidade tributária</strong> (art. 150, § 2º, CF)</td><td><span class="tag tag-green">Sim</span></td><td><span class="tag tag-green">Sim</span></td></tr>
+        <tr><td><strong>Prerrogativas processuais</strong> (prazos em dobro; duplo grau de jurisdição obrigatório)</td><td><span class="tag tag-green">Sim</span></td><td><span class="tag tag-red">Não</span></td></tr>
+        <tr><td><strong>Regime de precatórios</strong> (art. 100, CF)</td><td><span class="tag tag-green">Sim</span></td><td><span class="tag tag-red">Não</span></td></tr>
+        <tr><td><strong>Patrimônio</strong></td><td>Bens públicos (impenhorabilidade, imprescritibilidade, restrições à alienação)</td><td>Bens privados em regra; impenhoráveis quando empregados na prestação de serviços públicos (continuidade)</td></tr>
+        <tr><td><strong>Licitações e contratos</strong></td><td>Lei 14.133/2021 (integralmente)</td><td>Lei 14.133/2021 (integralmente)</td></tr>
+        <tr><td><strong>Regime de pessoal</strong></td><td>Estatutário ou celetista (predomina o estatutário)</td><td>Celetista (empregados públicos)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Licitações e contratos</div>
+    <div class="card-text">
+      A <strong>Lei 14.133/2021 aplica-se integralmente às fundações públicas</strong>, independentemente da natureza jurídica (direito público ou direito privado). Diferentemente das EP e SEM, que seguem a Lei 13.303/2016, as fundações não foram excluídas do alcance da Nova Lei de Licitações.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regime de pessoal</div>
+    <div class="card-text">
+      • <strong>Direito público:</strong> com a EC 19/1998, o RJU deixou de ser obrigatório (STF considerou constitucional a extinção da obrigatoriedade). O regime será <strong>estatutário</strong> (servidores públicos) ou <strong>celetista</strong> (empregados públicos), conforme a lei das carreiras de cada entidade — hoje ainda predomina o estatutário<br>
+      • <strong>Direito privado:</strong> regime <strong>celetista</strong>, ocupando seus agentes <strong>empregos públicos</strong> (ex.: Funpresp-Exe, Jud e Leg — Lei 12.618/2012)<br><br>
+      Independentemente do regime, aplicam-se: vedação à acumulação de cargos e empregos (art. 37, XVII), prévia aprovação em concurso público (art. 37, II) e teto constitucional remuneratório (art. 37, XI).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Foro competente
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Direito público da União:</strong> Justiça Federal (art. 109, I, CF)<br>
+      • <strong>Direito público estadual e municipal:</strong> Justiça Estadual<br>
+      • <strong>Direito privado federal:</strong> a <strong>doutrina</strong> entende que o foro é o da Justiça Estadual; a <strong>jurisprudência (STJ)</strong> entende que as fundações públicas federais de direito privado equiparam-se às empresas públicas, competindo à <strong>Justiça Federal</strong> julgar as suas causas
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Fundações públicas de direito privado <strong>não exercem poder de império</strong>, atribuído às entidades de direito público (FUNPRESP-EXE/2022). E não realizam atividades de interesse privado — destinam-se a atividades do Estado de ordem social, sem fins lucrativos (TRF 6/2025).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — EMPRESAS PÚBLICAS                                    -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Empresas públicas</div>
+  </div>
+  <div class="sec-subtitle">Capital 100% público · qualquer forma admitida em direito · Justiça Federal (entidades federais)</div>
+
+  <div class="card">
+    <div class="card-title">Conceito legal (Lei 13.303/2016, art. 3º)</div>
+    <div class="card-text">
+      "Empresa pública é a entidade dotada de <strong>personalidade jurídica de direito privado</strong>, com <strong>criação autorizada por lei</strong> e com <strong>patrimônio próprio</strong>, cujo <strong>capital social é integralmente detido pela União, pelos Estados, pelo Distrito Federal ou pelos Municípios</strong>".<br><br>
+      <strong>Parágrafo único:</strong> desde que a <strong>maioria do capital votante</strong> permaneça em propriedade da União, do Estado, do DF ou do Município, admite-se no capital da EP a participação de <strong>outras pessoas jurídicas de direito público interno</strong> e de <strong>entidades da administração indireta</strong> (inclusive de direito privado, como outra EP ou até mesmo uma SEM).
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Forma jurídica</div><div class="card-text"><strong>Qualquer forma admitida em direito</strong> — unipessoal, pluripessoal ou até sociedade anônima, desde que o capital seja público.</div></div>
+    <div class="card"><div class="card-title">Capital</div><div class="card-text"><strong>Totalmente público</strong>; exige-se que o ente político instituidor detenha a maioria do capital votante.</div></div>
+    <div class="card"><div class="card-title">Foro (federais)</div><div class="card-text">Em regra, causas tramitam na <strong>Justiça Federal</strong> (art. 109, I, CF).</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exemplos</div>
+    <div class="card-text">
+      Empresa Brasileira de Correios e Telégrafos (EBCT) · Caixa Econômica Federal (CEF) · Banco Nacional de Desenvolvimento Econômico e Social (BNDES) · Serviço Federal de Processamento de Dados (Serpro).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Capital <strong>inteiramente público</strong> (entes federativos + PJs de direito público interno + entidades da administração indireta) = <strong>empresa pública</strong>, e não SEM, pois esta admite capital privado (SEFIN RO/2018). A EP não é "criada por lei" e não tem personalidade de direito público (STM/2018).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — SOCIEDADES DE ECONOMIA MISTA                         -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Sociedades de economia mista</div>
+  </div>
+  <div class="sec-subtitle">Capital público + privado · sempre sociedade anônima (S/A) · Justiça Estadual (entidades federais)</div>
+
+  <div class="card">
+    <div class="card-title">Conceito legal (Lei 13.303/2016, art. 4º)</div>
+    <div class="card-text">
+      "Sociedade de economia mista é a entidade dotada de <strong>personalidade jurídica de direito privado</strong>, com <strong>criação autorizada por lei</strong>, sob a forma de <strong>sociedade anônima</strong>, cujas <strong>ações com direito a voto pertençam em sua maioria</strong> à União, aos Estados, ao Distrito Federal, aos Municípios ou a entidade da administração indireta".
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Forma jurídica</div><div class="card-text"><strong>Obrigatoriamente sociedade anônima (S/A)</strong> (art. 5º, Lei 13.303/2016); reguladas pela Lei 6.404/1976 (arts. 235-240).</div></div>
+    <div class="card"><div class="card-title">Capital</div><div class="card-text"><strong>Público e privado</strong>, mas o controle acionário permanece com o ente instituidor — a <strong>maioria do capital votante é pública</strong>.</div></div>
+    <div class="card"><div class="card-title">Foro (federais)</div><div class="card-text">Em regra, causas tramitam na <strong>Justiça Estadual</strong> (Súmula 556/STF).</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exemplos</div>
+    <div class="card-text">
+      Banco do Brasil S.A. · Banco da Amazônia · Petróleo Brasileiro S.A. (Petrobrás).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A SEM <strong>somente</strong> pode ser constituída como sociedade anônima — não pode ser sociedade limitada (TRE BA/2017). Apesar do tipo societário, a SEM tem <strong>personalidade jurídica de direito privado</strong> (MPE PI/2018). Empresa com controle acionário privado e participação minoritária estatal <strong>não é SEM</strong> — é empresa privada (TST/2012).
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Súmula 517/STF:</strong> as sociedades de economia mista só têm foro na Justiça Federal quando a União intervém como assistente ou opoente. Resguardada a competência da Justiça do Trabalho para as causas trabalhistas.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — QUADRO COMPARATIVO + REGIME JURÍDICO DAS ESTATAIS    -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Quadro comparativo EP × SEM × Fundação</div>
+  </div>
+  <div class="sec-subtitle">Diferenças entre EP e SEM (apenas três) + regime jurídico comum das estatais</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      EP × SEM — diferenças são só três: FORMA jurídica · COMPOSIÇÃO do capital · FORO processual (só para entidades federais)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dimensões</th><th>Empresa Pública</th><th>Sociedade de Economia Mista</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Forma jurídica</strong></td><td>Qualquer forma admitida em direito</td><td><span class="tag tag-blue">Somente sociedade anônima (S/A)</span></td></tr>
+        <tr><td><strong>Capital</strong></td><td><span class="tag tag-blue">Totalmente público</span> (maioria do capital votante com o ente instituidor)</td><td>Admite capital público e privado (maioria do capital votante pública)</td></tr>
+        <tr><td><strong>Foro (entidades federais)</strong></td><td>Em regra, Justiça Federal (art. 109, I, CF)</td><td>Em regra, Justiça Estadual (Súmula 556/STF)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Traços comuns entre EP e SEM (Di Pietro)</div>
+    <div class="card-text">
+      a) Criação e extinção <strong>autorizadas por lei</strong><br>
+      b) <strong>Personalidade jurídica de direito privado</strong><br>
+      c) Sujeição ao <strong>controle estatal</strong><br>
+      d) <strong>Derrogação parcial</strong> do regime de direito privado por normas de direito público (regime híbrido/misto)<br>
+      e) Vinculação aos fins definidos na <strong>lei instituidora</strong><br>
+      f) Desempenho de atividade de natureza econômica
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Fundação pública: direito público × direito privado
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Fundação Pública de Direito Público</th><th>Fundação Pública de Direito Privado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Criação</strong></td><td>Criada por lei (sem registro)</td><td>Autorizada por lei + registro do ato constitutivo</td></tr>
+        <tr><td><strong>Personalidade</strong></td><td>Direito público</td><td>Direito privado (regime híbrido)</td></tr>
+        <tr><td><strong>Imunidade tributária</strong></td><td><span class="tag tag-green">Sim</span></td><td><span class="tag tag-green">Sim</span></td></tr>
+        <tr><td><strong>Prerrogativas processuais / precatórios</strong></td><td><span class="tag tag-green">Sim</span></td><td><span class="tag tag-red">Não</span></td></tr>
+        <tr><td><strong>Bens</strong></td><td>Públicos</td><td>Privados (impenhoráveis se afetados ao serviço público)</td></tr>
+        <tr><td><strong>Licitações</strong></td><td>Lei 14.133/2021</td><td>Lei 14.133/2021</td></tr>
+        <tr><td><strong>Regime de pessoal</strong></td><td>Estatutário ou celetista</td><td>Celetista</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Empresa Pública</th><th>Sociedade de Economia Mista</th><th>Fundação Pública</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Personalidade</strong></td><td>Direito privado</td><td>Direito privado</td><td>Direito público <em>ou</em> privado</td></tr>
+        <tr><td><strong>Criação</strong></td><td>Autorizada por lei + registro</td><td>Autorizada por lei + registro</td><td>Direito público: criada por lei · Direito privado: autorizada por lei + registro</td></tr>
+        <tr><td><strong>Capital</strong></td><td><span class="tag tag-blue">100% público</span></td><td>Público + privado (maioria pública)</td><td>Dotação patrimonial (pode receber doações de particulares, tornando-se público)</td></tr>
+        <tr><td><strong>Licitações</strong></td><td>Lei 13.303/2016</td><td>Lei 13.303/2016</td><td><span class="tag tag-green">Lei 14.133/2021</span></td></tr>
+        <tr><td><strong>Imunidade tributária</strong></td><td>Regra: não · STF: sim, se prestadora de serviço público (sem distribuição de lucros)</td><td>Idem EP</td><td><span class="tag tag-green">Sim</span> (art. 150, § 2º, CF)</td></tr>
+        <tr><td><strong>Precatórios</strong></td><td>Regra: não · sim para prestadoras de serviço público próprio do Estado em regime não concorrencial</td><td>Idem EP</td><td>Somente direito público</td></tr>
+        <tr><td><strong>Regime de pessoal</strong></td><td>CLT (empregados públicos)</td><td>CLT (empregados públicos)</td><td>Direito público: estatutário/celetista · Direito privado: celetista</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Regime jurídico comum das estatais (EP e SEM)
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Personalidade de direito privado e regime híbrido</div>
+    <div class="card-text">
+      EP e SEM <strong>sempre</strong> possuem personalidade jurídica de direito privado (criadas com o registro do ato constitutivo). O regime jurídico, porém, é <strong>sempre híbrido</strong>: o que define a preponderância é a <strong>natureza da atividade</strong> desenvolvida.<br><br>
+      • <strong>Exploradora de atividade econômica:</strong> predomínio das regras de <strong>direito privado</strong> (art. 173, § 1º, II, CF — regime próprio das empresas privadas quanto às obrigações civis, comerciais, trabalhistas e tributárias)<br>
+      • <strong>Prestadora de serviço público:</strong> predomínio das regras de <strong>direito público</strong> (ex.: princípio da continuidade)<br>
+      • <strong>Prestadora de serviço público próprio do Estado em regime não concorrencial:</strong> aplicação do direito público ainda mais acentuada, equiparando a estatal à fazenda pública em diversas situações — fenômeno da <strong>"autarquização das empresas estatais"</strong> (poder de polícia, precatórios, imunidade tributária)<br><br>
+      As questões de concurso costumam aceitar a afirmação genérica de "regime de direito privado" para as estatais, embora o termo técnico seja <strong>regime híbrido</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regras de direito público aplicáveis (mesmo às exploradoras de atividade econômica)</div>
+    <div class="card-text">
+      • Princípios gerais da Administração Pública (legalidade, impessoalidade, moralidade, publicidade e eficiência — art. 37, caput, CF)<br>
+      • <strong>Concurso público</strong> para contratação de pessoal (art. 37, II, CF)<br>
+      • <strong>Licitação</strong> (art. 37, XXI; art. 173, § 1º, III; Lei 13.303/2016, art. 28)<br>
+      • Prestação de contas e controle pelos Tribunais de Contas (arts. 70 e 71, CF) e pelo Congresso Nacional (art. 49, X, CF)<br>
+      • Criação, extinção e criação de subsidiárias autorizadas por lei (art. 37, XIX e XX, CF)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Atividades desenvolvidas</div>
+    <div class="card-text">
+      As estatais podem: <strong>explorar atividade econômica</strong> ou <strong>prestar serviço público</strong>. A regra geral é a exploração de atividade econômica, admitida quando necessária aos <strong>imperativos da segurança nacional</strong> ou a <strong>relevante interesse coletivo</strong> (art. 173, caput, CF).<br><br>
+      • A definição do interesse coletivo ou do imperativo de segurança nacional na lei autorizativa representa a <strong>função social</strong> da estatal (Lei 13.303/2016)<br>
+      • Em regra, as estatais <strong>não exercem atividades típicas de Estado</strong> (reservadas às PJs de direito público). Exceção: o STF reconhece o <strong>poder de polícia</strong>, inclusive no aspecto sancionatório, às estatais prestadoras de serviço público próprio do Estado em regime não concorrencial (RE 633.782)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Responsabilidade civil (conforme a atividade)</div>
+    <div class="card-text">
+      • <strong>Prestadora de serviço público:</strong> regida pelo <strong>direito público</strong> — teoria do risco administrativo, responsabilidade <strong>objetiva</strong> pelos danos causados a terceiros por seus agentes<br>
+      • <strong>Exploradora de atividade econômica:</strong> regida pelo <strong>direito privado</strong> — em regra, responsabilidade <strong>subjetiva</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Atividade</th><th>Regime</th><th>Responsabilidade</th></tr></thead>
+      <tbody>
+        <tr><td>Prestadora de serviço público</td><td>Direito público</td><td><span class="tag tag-green">Objetiva (regra)</span></td></tr>
+        <tr><td>Exploradora de atividade econômica</td><td>Direito privado</td><td><span class="tag tag-amber">Subjetiva (regra)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Patrimônio (bens)</div>
+    <div class="card-text">
+      Em regra, os bens de EP e SEM são <strong>bens privados</strong> — não possuem impenhorabilidade nem imprescritibilidade, podendo ser penhorados.<br><br>
+      Exceção: nas <strong>prestadoras de serviço público</strong>, os bens <strong>diretamente afetados à prestação do serviço</strong> gozam dos mesmos atributos dos bens públicos, em razão do princípio da <strong>continuidade dos serviços públicos</strong> (ex.: EBCT — impenhorabilidade e sujeição ao regime de precatórios, RE 220.906).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Falência</div>
+    <div class="card-text">
+      A Lei 11.101/2005 <strong>não se aplica às EP e SEM</strong>, independentemente da atividade desempenhada (art. 2º, I). Elas <strong>não se sujeitam ao regime falimentar</strong>.<br><br>
+      Quando a entidade não puder arcar com danos causados a terceiros, o <strong>ente instituidor responde subsidiariamente</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Privilégios fiscais (art. 173, § 2º, CF)</div>
+    <div class="card-text">
+      As EP e SEM exploradoras de atividade econômica <strong>não podem gozar de privilégios fiscais não extensivos às empresas do setor privado</strong>. O dispositivo não veda toda concessão — veda apenas o privilégio <strong>exclusivo</strong> das estatais.<br><br>
+      <strong>Exceções:</strong><br>
+      • Privilégios <strong>extensivos ao setor privado</strong> (concedidos a todas as empresas do setor)<br>
+      • Estatal que atua em <strong>monopólio</strong> (não há empresas do ramo no setor privado)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Imunidade tributária</div>
+    <div class="card-text">
+      Pela literalidade da CF (art. 150, VI, "a" e § 2º), a imunidade recíproca <strong>não se aplica</strong> às EP e SEM. Contudo, o <strong>STF estendeu</strong> a imunidade às EP e SEM <strong>prestadoras de serviço público</strong>, desde que não façam distribuição de lucros (ex.: Correios — RE 407.099; Infraero — RE 363.412).<br><br>
+      <strong>Requisitos (STF, ACO 3410/SE):</strong> a) prestação de um serviço público; b) ausência do intuito de lucro; c) atuação em regime de exclusividade (sem concorrência).<br><br>
+      <strong>Não</strong> há imunidade quando a entidade for exploradora de atividade econômica ou quando distribuir lucros aos acionistas (ex.: SEM com ações negociadas em bolsa voltada à remuneração do capital — RE 600.867, Tema 508).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prescrição</div>
+    <div class="card-text">
+      As dívidas e os direitos de terceiros contra <strong>autarquias</strong> prescrevem em <strong>5 anos</strong> (Decreto 20.910/1932). Já as EP e SEM seguem o <strong>Código Civil</strong>: a prescrição ocorre em <strong>10 anos</strong> quando a lei não fixar prazo menor (art. 205, CC). As estatais <strong>não se submetem ao prazo quinquenal</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regime de pessoal</div>
+    <div class="card-text">
+      O regime é o de <strong>emprego público</strong>, regido pela <strong>CLT</strong>, com vínculo formado por contrato de trabalho (relação bilateral). Peculiaridades:<br><br>
+      • Contratação depende de <strong>concurso público</strong> (art. 37, II, CF), mas os empregados <strong>não têm estabilidade</strong><br>
+      • O STF exige <strong>motivação formal</strong> para a demissão de empregados concursados, sem exigir processo administrativo ou contraditório, nem enquadramento em justa causa (RE 688.267)<br>
+      • Vedação à <strong>acumulação remunerada</strong> de cargos, empregos e funções (art. 37, XVI e XVII, CF)<br>
+      • <strong>Teto constitucional</strong> (art. 37, XI e § 9º): aplica-se quando a estatal recebe recursos do ente para despesas de pessoal ou custeio; não se aplica quando a entidade não depende desse apoio (ex.: Petrobrás)<br>
+      • Sujeitos ao <strong>RGPS</strong> (art. 40, § 13, CF); litígios trabalhistas na <strong>Justiça do Trabalho</strong> (art. 114, CF)<br>
+      • Considerados <strong>agentes públicos</strong> para fins de improbidade administrativa (Lei 8.429/92, art. 3º) e equiparados a funcionários públicos para fins penais (CP, art. 327, § 1º)<br><br>
+      <strong>Dirigentes:</strong> quando não são da carreira, exercem posto de <strong>livre nomeação e exoneração</strong> (sem concurso), em regime especial regido pela Lei 13.303/2016, pela legislação comercial e pelo estatuto — não são celetistas nem estatutários.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Licitações e contratações</div>
+    <div class="card-text">
+      As EP e SEM <strong>não se submetem, em regra, à Lei 14.133/2021</strong> — o seu regime de licitação consta na <strong>Lei 13.303/2016</strong> (antes dela, seguiam a revogada Lei 8.666/1993). Algumas regras da 14.133 se aplicam às estatais: as disposições <strong>penais</strong> (art. 178), a modalidade <strong>pregão</strong> e alguns <strong>critérios de desempate</strong>.<br><br>
+      Nem todas as contratações dependem de licitação. A Lei 13.303/2016 prevê:<br>
+      • <strong>Licitação dispensada</strong> (inaplicáveis as exigências formais): (i) comercialização, prestação ou execução direta de produtos, serviços ou obras <strong>relacionados aos objetos sociais</strong> (ex.: Petrobrás vendendo petróleo; BB/Caixa oferecendo crédito); (ii) escolha de parceiro associada a características particulares, vinculada a <strong>oportunidades de negócio</strong> definidas e específicas (ex.: compra de ações para obter controle acionário)<br>
+      • <strong>Licitação dispensável</strong> e <strong>inexigibilidade</strong>: casos semelhantes aos da Lei 14.133/2021, com formalidades mínimas (justificativa de preços e razão da escolha do fornecedor)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dispensa de licitação por baixo valor (Lei 13.303/2016, art. 29, I e II)</th><th>Valores</th></tr></thead>
+      <tbody>
+        <tr><td>Obras e serviços de engenharia</td><td><strong>Até R$ 100 mil</strong></td></tr>
+        <tr><td>Compras e demais serviços</td><td><strong>Até R$ 50 mil</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — diferenças de valores entre a Lei 13.303/16 e a Lei 14.133/21</div>
+    A 14.133/2021 exige valores <strong>"inferiores"</strong> a R$ 100/50 mil; a 13.303/2016 admite <strong>"até"</strong> R$ 100/50 mil. A 14.133 fixa o valor alto (R$ 100 mil) também para serviços de manutenção de veículos; a 13.303 só para obras e serviços de engenharia. Os valores da 14.133 são atualizados anualmente por decreto; na 13.303, cada estatal pode alterá-los por deliberação do <strong>Conselho de Administração</strong> (art. 29, § 3º).
+  </div>
+
+  <div class="card">
+    <div class="card-title">Controle e supervisão ministerial</div>
+    <div class="card-text">
+      As estatais submetem-se à <strong>tutela do ente instituidor</strong>, por intermédio do ministério do setor correspondente (como autarquias e fundações). <strong>Não há hierarquia</strong> entre a entidade e o ente instituidor — apenas <strong>vinculação</strong> para fins de tutela/supervisão ministerial.<br><br>
+      • O STF superou o entendimento antigo e fixou que EP e SEM <strong>sujeitam-se à fiscalização do Tribunal de Contas</strong> e têm dever de prestar contas (MS 25.092)<br>
+      • A Lei 13.303/2016 (arts. 85 e 87) prevê que os órgãos de <strong>controle externo e interno</strong> fiscalizarão as estatais, inclusive as domiciliadas no exterior<br>
+      • A supervisão e as ações de fiscalização <strong>não podem reduzir a autonomia</strong> das entidades nem significar ingerência em suas competências (arts. 89 e 90, Lei 13.303/2016)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Não há hierarquia entre a estatal e o ente que a criou, mas isso <strong>não afasta o controle do Tribunal de Contas</strong> (SEDF/2017). E o regime de direito privado das estatais é apenas parcial: a derrogação é <strong>parcial</strong>, com aplicação simultânea de normas de direito público e privado (FUB/2015).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>EP = capital 100% público</strong> (qualquer forma admitida em direito) × <strong>SEM = capital público + privado</strong> (sempre S/A)<br>
+      • <strong>Criação autorizada por lei</strong> (EP, SEM e fundação) + <strong>registro do ato constitutivo</strong>; autarquia é criada por lei<br>
+      • <strong>Personalidade de direito privado</strong> das EP e SEM, com <strong>regime jurídico híbrido</strong><br>
+      • Fundação pública pode ser de <strong>direito público ou privado</strong> (não é exclusivamente de direito público)<br>
+      • EP e SEM <strong>não se sujeitam à falência</strong> (Lei 11.101/2005, art. 2º, I)<br>
+      • <strong>Imunidade tributária</strong>: regra não se aplica; STF estende às prestadoras de serviço público sem distribuição de lucros
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Diferenças EP × SEM (FCF):</strong> forma jurídica, composição do capital e foro processual (só para federais)<br>
+      • <strong>Foro:</strong> EP federal → Justiça Federal; SEM federal → Justiça Estadual<br>
+      • <strong>Responsabilidade civil:</strong> prestadora de serviço público → objetiva (direito público); exploradora de atividade econômica → subjetiva (direito privado)<br>
+      • <strong>Bens:</strong> privados em regra; impenhoráveis quando afetados à prestação de serviço público (continuidade)<br>
+      • <strong>Pessoal:</strong> CLT, sem estabilidade, concurso público, teto conforme dependência de recursos, motivação da demissão de concursados<br>
+      • <strong>Licitação:</strong> Lei 13.303/2016 (não a 14.133/2021); dispensa por baixo valor até R$ 100 mil (engenharia) e até R$ 50 mil (compras/serviços)<br>
+      • <strong>Extinção:</strong> autorização legislativa genérica (PND e PPI) é suficiente<br>
+      • <strong>Subsidiárias:</strong> criação com autorização genérica; alienação do controle sem autorização legislativa nem licitação
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • "As empresas públicas são criadas por lei" — <strong>errado</strong>: são apenas <strong>autorizadas</strong><br>
+      • "SEM pode ser sociedade limitada" — <strong>errado</strong>: somente S/A<br>
+      • "Fundação pública é órgão despersonalizado" — <strong>errado</strong>: é entidade com personalidade jurídica<br>
+      • "EP e SEM têm personalidade de direito público" — <strong>errado</strong>: sempre de direito privado<br>
+      • "Empresa com capital totalmente público = SEM" — <strong>errado</strong>: é EP<br>
+      • "SEM e EP se sujeitam ao regime falimentar" — <strong>errado</strong><br>
+      • "Fundações públicas seguem a Lei 13.303/2016" — <strong>errado</strong>: aplica-se a Lei 14.133/2021 integralmente
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> memorize as três diferenças EP × SEM (forma, capital e foro), o trinômio "criada por lei (autarquia e fundação de direito público) × autorizada por lei (EP, SEM e fundação de direito privado)" e o regime jurídico híbrido das estatais, com a responsabilidade civil variando conforme a atividade. Essas são as pegadinhas recorrentes de Cebraspe e FCC.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — INCIDÊNCIA DE TEMAS (TEC)                            -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

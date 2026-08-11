@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda de Estudo — Concurso</title>
+<style>
+  :root {
+    --sidebar: 260px;
+    --accent: #0f172a;
+    --accent-soft: #f1f5f9;
+    --highlight: #b45309;
+    --callout: #fff7ed;
+    --callout-border: #f97316;
+    --gotcha: #fef2f2;
+    --gotcha-border: #ef4444;
+    --mnemonic: #f0fdf4;
+    --mnemonic-border: #22c55e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #1f2937;
+    background: #ffffff;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  aside {
+    width: var(--sidebar);
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 28px 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+
+  aside h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    color: #fbbf24;
+    font-weight: 700;
+  }
+
+  aside h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin: 24px 0 10px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+
+  aside a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 7px 10px;
+    border-radius: 8px;
+    margin-bottom: 3px;
+    font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  aside a:hover {
+    background: #1e293b;
+    color: #fff;
+  }
+
+  main {
+    margin-left: var(--sidebar);
+    flex: 1;
+    padding: 36px 44px 56px;
+    max-width: 960px;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    color: #b45309;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.15s ease;
+  }
+
+  .back:hover {
+    color: #0f172a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .meta {
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 40px;
+    margin-bottom: 14px;
+    padding-left: 14px;
+    border-left: 4px solid #f59e0b;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 26px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    text-align: justify;
+    color: #1f2937;
+  }
+
+  ul {
+    margin-left: 24px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+
+  li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .callout {
+    background: var(--callout);
+    border-left: 4px solid var(--callout-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+    font-size: 15px;
+  }
+
+  .callout b {
+    color: #9a3412;
+  }
+
+  .gotcha {
+    background: var(--gotcha);
+    border-left: 4px solid var(--gotcha-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+  }
+
+  .gotcha b {
+    color: #991b1b;
+  }
+
+  .mnemonic {
+    background: var(--mnemonic);
+    border-left: 4px solid var(--mnemonic-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+  }
+
+  .mnemonic b {
+    color: #166534;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    font-size: 14px;
+  }
+
+  th, td {
+    border: 1px solid #e2e8f0;
+    padding: 11px 14px;
+    text-align: left;
+  }
+
+  th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  td {
+    color: #1f2937;
+  }
+
+  .footer {
+    margin-top: 56px;
+    font-size: 12px;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+    font-weight: 500;
+  }
+
+  .section {
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 768px) {
+    aside {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+    main {
+      margin-left: 0;
+      padding: 24px 20px 40px;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f1f5f9;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #38bdf8, #818cf8);
+    display: grid; place-items: center;
+    font-weight: 800; color: #0f172a;
+  }
+  h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.2px; }
+  .stats {
+    display: flex;
+    gap: 12px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    backdrop-filter: blur(8px);
+  }
+  .stat strong { color: #38bdf8; margin-right: 4px; }
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #38bdf8, #2563eb);
+    color: white;
+  }
+  .btn-primary:hover { transform: translateY(-1px); opacity: .95; }
+  .btn-ghost {
+    background: rgba(255,255,255,0.06);
+    color: #e2e8f0;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+  .btn-ghost.active { background: rgba(56,189,248,0.15); color: #38bdf8; border-color: rgba(56,189,248,0.3); }
+  .search {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: #f1f5f9;
+    font-size: 14px;
+    outline: none;
+  }
+  .search:focus { border-color: rgba(56,189,248,0.4); }
+
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 18px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .tab {
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    background: rgba(255,255,255,0.04);
+    color: #94a3b8;
+    font-weight: 500;
+    transition: all .2s;
+  }
+  .tab:hover { background: rgba(255,255,255,0.08); color: #e2e8f0; }
+  .tab.active {
+    background: rgba(56,189,248,0.15);
+    color: #38bdf8;
+    border-color: rgba(56,189,248,0.25);
+    font-weight: 600;
+  }
+
+  .subject-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .subject-title { font-size: 16px; font-weight: 600; color: #e2e8f0; }
+  .counts { display: flex; gap: 10px; font-size: 13px; }
+  .c-pend { color: #fbbf24; }
+  .c-ok { color: #34d399; }
+
+  .task-list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+  .task {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 18px;
+    border-radius: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: all .2s;
+  }
+  .task:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+  }
+  .task.done {
+    opacity: .6;
+    background: rgba(255,255,255,0.02);
+  }
+  .task.done strong { text-decoration: line-through; color: #94a3b8; }
+
+  .task input[type="checkbox"] {
+    width: 20px; height: 20px;
+    accent-color: #38bdf8;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .info { flex: 1; min-width: 0; }
+  .info strong {
+    display: block;
+    font-size: 14px;
+    color: #f1f5f9;
+    margin-bottom: 4px;
+    word-break: break-word;
+  }
+  .question-list {
+    display: inline-block;
+    background: rgba(56,189,248,0.1);
+    color: #38bdf8;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .meta {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 4px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .meta a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .meta a:hover { text-decoration: underline; }
+
+  .actions { display: flex; gap: 8px; }
+  .btn-danger {
+    background: rgba(239,68,68,0.1);
+    color: #fca5a5;
+    border: 1px solid rgba(239,68,68,0.2);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-danger:hover { background: rgba(239,68,68,0.2); }
+
+  .empty {
+    text-align: center;
+    color: #64748b;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 14px;
+    border: 1px dashed rgba(255,255,255,0.08);
+  }
+
+  .modal-bg {
+    position: fixed; inset: 0;
+    background: rgba(15,23,42,0.8);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: #1e293b;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 500px;
+    margin: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+  }
+  .modal h3 { margin-bottom: 16px; font-size: 16px; }
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-size: 12px; color: #94a3b8; margin-bottom: 4px; font-weight: 500; }
+  .form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.2);
+    color: #f1f5f9;
+    font-size: 14px;
+    outline: none;
+  }
+  .form-group input:focus { border-color: rgba(56,189,248,0.4); }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="brand-mark">AE</div>
+      <h1>Agenda de Estudo</h1>
+    </div>
+    <div class="stats" id="stats">
+      <div class="stat"><strong id="statTotal">0</strong>tarefas</div>
+      <div class="stat"><strong id="statPend">0</strong>pendentes</div>
+      <div class="stat"><strong id="statOk">0</strong>concluídas</div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <input class="search" id="search" placeholder="Buscar tarefa..." oninput="setSearch(this.value)">
+    <button class="btn btn-primary" onclick="openModal()">+ Nova tarefa</button>
+    <button class="btn btn-ghost" data-filter="all" onclick="setFilter('all')">Todas</button>
+    <button class="btn btn-ghost" data-filter="pend" onclick="setFilter('pend')">Pendentes</button>
+    <button class="btn btn-ghost" data-filter="done" onclick="setFilter('done')">Concluídas</button>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div class="subject-header" id="subjectHeader" style="display:none">
+    <div class="subject-title" id="subjectTitle"></div>
+    <div class="counts">
+      <span class="c-pend" id="countPend"></span>
+      <span class="c-ok" id="countOk"></span>
+    </div>
+  </div>
+
+  <ul class="task-list" id="app"></ul>
+</div>
+
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h3>Nova tarefa</h3>
+    <div class="form-group">
+      <label>Matéria</label>
+      <input id="fSubject" placeholder="Ex: Português">
+    </div>
+    <div class="form-group">
+      <label>Descrição</label>
+      <input id="fDesc" placeholder="Ex: Meta 11 — Pronomes">
+    </div>
+    <div class="form-group">
+      <label>Questões (ex: 01 a 40)</label>
+      <input id="fQuestions" placeholder="01 a 40">
+    </div>
+    <div class="form-group">
+      <label>Páginas</label>
+      <input id="fPages" placeholder="Ex: 42 a 59">
+    </div>
+    <div class="form-group">
+      <label>Quantidade</label>
+      <input id="fCount" type="number" placeholder="40">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveNew()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const LS = 'agenda_tarefas_v3';
+const SEED = [
+  {id:'pt1',subject:'Português',description:'Meta 11 (#26) — Classes de palavras IV: pronomes, colocação pronominal e verbos — Caderno 03',questions:'01 a 40',pages:'—',count:40,done:false,link:'https://www.tecconcursos.com.br/s/Q4QvCc'},
+  {id:'pt2',subject:'Português',description:'Meta 11 (#26) — Classes de palavras IV: pronomes, colocação pronominal e verbos — Caderno 10',questions:'01 a 40',pages:'—',count:40,done:false,link:'https://www.tecconcursos.com.br/s/Q4QvC2'},
+  {id:'agp1',subject:'Administração Geral e Pública',description:'Aula 00 — Resolver questões 1 a 20',questions:'1 a 20',pages:'51 a 54',count:20,done:false},
+  {id:'agp2',subject:'Administração Geral e Pública',description:'Aula 00 — Resolver questões 21 a 43',questions:'21 a 43',pages:'54 a 60',count:23,done:false},
+  {id:'agp3',subject:'Administração Geral e Pública',description:'Aula 01 — Resolver questões 1 a 20',questions:'1 a 20',pages:'59 a 62',count:20,done:false},
+  {id:'agp4',subject:'Administração Geral e Pública',description:'Aula 01 — Resolver questões 21 a 40',questions:'21 a 40',pages:'62 a 67',count:20,done:false},
+  {id:'agp5',subject:'Administração Geral e Pública',description:'Aula 02 — Resolver questões 1, 2, 3, 4, 6, 7, 8, 10, 11, 13, 14, 15, 16, 18, 19, 21, 22, 25, 28, 30, 31, 32, 33, 35 e 37',questions:'1, 2, 3, 4, 6, 7, 8, 10, 11, 13, 14, 15, 16, 18, 19, 21, 22, 25, 28, 30, 31, 32, 33, 35, 37',pages:'72 a 84',count:25,done:false},
+  {id:'agp6',subject:'Administração Geral e Pública',description:'Aula 03 — Resolver questões 1, 2, 3, 4, 5, 6, 7, 10, 12, 13, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 35 e 36',questions:'1, 2, 3, 4, 5, 6, 7, 10, 12, 13, 14, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 35, 36',pages:'65 a 80',count:30,done:false},
+  {id:'agp7',subject:'Administração Geral e Pública',description:'Aula 04 — Resolver questões 1, 3, 4, 7, 9, 10, 12, 14, 21, 23, 24, 25, 26, 27, 31, 34, 36, 38, 39 e 441',questions:'1, 3, 4, 7, 9, 10, 12, 14, 21, 23, 24, 25, 26, 27, 31, 34, 36, 38, 39, 441',pages:'96 a 115',count:20,done:false},
+  {id:'agp8',subject:'Administração Geral e Pública',description:'LS - Adm Geral e Pub - CADERNO 11 — questões 01 a 30',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4eTtS'},
+  {id:'dc1',subject:'Direito Constitucional',description:'Meta 12 — LS - Tribunais 11G - Dir. Constitucional Experiente - Caderno 9',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4R1tp'},
+  {id:'dc2',subject:'Direito Constitucional',description:'Meta 12 — LS - Tribunais 11G - Dir. Constitucional Experiente - Caderno 10',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4R1vL'},
+  {id:'dc3',subject:'Direito Constitucional',description:'Meta 12 — LS - Tribunais 11G - Dir. Constitucional Experiente - Caderno 11',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4VtDl'},
+  {id:'pt3',subject:'Português',description:'Meta 12 — LS - INICIANTE TRIBUNAIS - PORTUGUÊS IN. - Caderno 03',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4QvCc'},
+  {id:'pt4',subject:'Português',description:'Meta 12 — LS - INICIANTE TRIBUNAIS - PORTUGUÊS - Caderno 07',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4Qv7q'},
+  {id:'pt5',subject:'Português',description:'Meta 12 — LS - INICIANTE TRIBUNAIS - PORTUGUÊS - Caderno 08',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4Qv9Y'},
+  {id:'pt6',subject:'Português',description:'Meta 12 — LS - INICIANTE TRIBUNAIS - PORTUGUÊS - Caderno 09',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4QvAB'},
+  {id:'pt7',subject:'Português',description:'Meta 12 — LS - INICIANTE TRIBUNAIS - PORTUGUÊS - Caderno 10',questions:'01 a 30',pages:'—',count:30,done:false,link:'https://www.tecconcursos.com.br/s/Q4QvC2'}
+];
+
+let state = { tasks: [], tab: null, filter: 'all', search: '' };
+
+function load(){
+  try{
+    const raw = localStorage.getItem(LS);
+    const stored = raw ? JSON.parse(raw) : [];
+    const today = new Date().toISOString().slice(0,10);
+    const seed = SEED.map(t => ({...t, createdAt: t.createdAt || today}));
+    const storedIds = new Set(stored.map(t => t.id));
+    const merged = stored.map(t => ({...t, createdAt: t.createdAt && t.createdAt !== '2026-01-01' ? t.createdAt : today}))
+      .concat(seed.filter(t => !storedIds.has(t.id)));
+    state.tasks = merged;
+    save();
+  }catch(e){ state.tasks = JSON.parse(JSON.stringify(SEED)); }
+}
+function save(){ try{ localStorage.setItem(LS, JSON.stringify(state.tasks)); }catch(e){} }
+function uid(){ return 't'+Date.now()+'_'+Math.floor(Math.random()*10000); }
+function esc(s){ if(s==null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;'); }
+function fmtDate(d){ if(!d) return ''; const dt = new Date(d+'T00:00:00'); if(isNaN(dt)) return ''; return dt.toLocaleDateString('pt-BR'); }
+
+function subjects(){
+  const map = new Map();
+  state.tasks.forEach(t=>{ map.set(t.subject, (map.get(t.subject)||0)+1); });
+  return Array.from(map.keys()).sort();
+}
+
+function renderTabs(){
+  const subs = subjects();
+  if(!state.tab || !subs.includes(state.tab)) state.tab = subs[0] || '';
+  const wrap = document.getElementById('tabs');
+  wrap.innerHTML = subs.map(s=>`<button class="tab ${s===state.tab?'active':''}" onclick="setTab('${esc(s)}')">${esc(s)}</button>`).join('');
+}
+
+function render(){
+  renderTabs();
+  const app = document.getElementById('app');
+  const current = state.tasks.filter(t => t.subject === state.tab);
+  const filtered = current.filter(t => {
+    if(state.filter==='done') return t.done;
+    if(state.filter==='pend') return !t.done;
+    return true;
+  }).filter(t => {
+    if(!state.search) return true;
+    const q = state.search.toLowerCase();
+    return (t.description||'').toLowerCase().includes(q) || (t.questions||'').toLowerCase().includes(q);
+  });
+  const total = current.length;
+  const done = current.filter(t=>t.done).length;
+  const pend = total - done;
+
+  document.getElementById('statTotal').textContent = state.tasks.length;
+  document.getElementById('statPend').textContent = state.tasks.filter(t=>!t.done).length;
+  document.getElementById('statOk').textContent = state.tasks.filter(t=>t.done).length;
+
+  const header = document.getElementById('subjectHeader');
+  if(!state.tab){ header.style.display='none'; }
+  else {
+    header.style.display='flex';
+    document.getElementById('subjectTitle').textContent = state.tab;
+    document.getElementById('countPend').textContent = pend + ' pendentes';
+    document.getElementById('countOk').textContent = done + ' concluídas';
+  }
+
+  let html = '';
+  if(filtered.length){
+    filtered.forEach(t=>{
+      const qText = t.questions ? `Questões: <span class="question-list">${esc(t.questions)}</span>` : '';
+      const pagesText = t.pages ? `Páginas <strong>${esc(t.pages)}</strong>` : '';
+      const link = t.link ? `<a href="${esc(t.link)}" target="_blank" rel="noopener">Abrir caderno no TEC</a>` : '';
+      html += `<li class="task ${t.done?'done':''}">
+        <input type="checkbox" ${t.done?'checked':''} onchange="toggle('${t.id}')">
+        <div class="info">
+          <strong>${esc(t.description)}</strong>
+          <div>${qText}</div>
+          <div class="meta">${pagesText} • ${t.count} questões ${link ? '• ' + link : ''} ${t.createdAt ? '• 📅 ' + fmtDate(t.createdAt) : ''}</div>
+        </div>
+        <div class="actions">
+          <button class="btn-danger" onclick="removeTask('${t.id}')">Excluir</button>
+        </div>
+      </li>`;
+    });
+  }else{
+    html += `<li class="empty">Nenhuma tarefa encontrada para este filtro.</li>`;
+  }
+  app.innerHTML = html;
+}
+
+function toggle(id){
+  const t = state.tasks.find(x=>x.id===id);
+  if(t){ t.done = !t.done; save(); render(); }
+}
+function removeTask(id){
+  if(!confirm('Remover esta tarefa?')) return;
+  state.tasks = state.tasks.filter(x=>x.id!==id);
+  save(); render();
+}
+function setTab(s){ state.tab = s; render(); }
+function setFilter(f){
+  state.filter = f;
+  document.querySelectorAll('.btn-ghost').forEach(btn=>{
+    btn.classList.toggle('active', btn.getAttribute('data-filter')===f);
+  });
+  render();
+}
+function setSearch(v){ state.search = v; render(); }
+
+function openModal(){ document.getElementById('modalBg').classList.add('open'); }
+function closeModal(){ document.getElementById('modalBg').classList.remove('open'); document.getElementById('addForm').reset(); }
+function saveNew(){
+  const task = {
+    id: uid(),
+    subject: document.getElementById('fSubject').value.trim(),
+    description: document.getElementById('fDesc').value.trim(),
+    questions: document.getElementById('fQuestions').value.trim(),
+    pages: document.getElementById('fPages').value.trim(),
+    count: parseInt(document.getElementById('fCount').value||'0',10),
+    createdAt: new Date().toISOString().slice(0,10),
+    done: false
+  };
+  if(!task.subject || !task.description) return;
+  state.tasks.unshift(task);
+  save(); closeModal(); render();
+}
+
+load();
+render();
+</script>
+</body>
+</html>

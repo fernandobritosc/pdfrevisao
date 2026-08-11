@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DC Aula 00: Natureza, Conceito e Interpretação</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Constitucional — Aula 00</div>
+  <div class="sidebar-sub">Natureza, Conceito e Interpretação · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Natureza e conceito do DC</a>
+  <a href="#sec2">2. Objeto, sentidos e classificações</a>
+  <a href="#sec3">3. Métodos de interpretação</a>
+  <a href="#sec4">4. Princípios de interpretação</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: natureza/conceito + métodos e princípios de interpretação<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — NATUREZA E CONCEITO DO DIREITO CONSTITUCIONAL        -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Natureza e conceito do Direito Constitucional</div>
+  </div>
+  <div class="sec-subtitle">Posição do DC no sistema jurídico, conceito doutrinário e conteúdo científico (José Afonso da Silva e Paulo Bonavides)</div>
+
+  <div class="card">
+    <div class="card-title">O Direito em geral</div>
+    <div class="card-text">
+      Em acepção mais comum, a expressão Direito designa o <strong>conjunto de prescrições com que se disciplina e se organiza a vida em sociedade</strong>. Onde houver sociedade, lá estará o direito (<em>ubi societas, ibi ius</em>), que reciprocamente também a pressupõe (<em>ubi ius, ibi societas</em>).<br><br>
+      • Essas prescrições se cristalizam em regras dotadas de <strong>juridicidade</strong>: caráter jurídico que as diferencia das demais regras de comportamento social e lhes confere eficácia garantida pelo Estado<br>
+      • <strong>Juridicidade</strong> é o atributo que distingue a regra do direito das demais regras de comportamento social, atuando como fronteira entre o jurídico e o não jurídico<br>
+      • Para <strong>José Afonso da Silva</strong>, o Direito é fenômeno histórico-cultural, realidade ordenada, ordenação normativa da conduta; é sistema normativo, estudável por <strong>unidades estruturais</strong> (ramos da ciência jurídica)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ramo do Direito</th><th>Disciplinas</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Público</strong></td><td>Constitucional · Administrativo · Urbanístico · Econômico · Financeiro · Tributário · Processual · Penal · Internacional (público e privado)</td></tr>
+        <tr><td><strong>Social</strong></td><td>Do Trabalho · Previdenciário</td></tr>
+        <tr><td><strong>Privado</strong></td><td>Civil · Comercial (empresarial)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Divisão não pacífica na doutrina.</strong> Existem divergências pontuais entre os juristas sobre a classificação de determinadas disciplinas. A divisão acima é a da obra de José Afonso da Silva.</div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Natureza do Direito Constitucional: Direito Público fundamental</div>
+    <div class="card-text">
+      O DC pertence à divisão de <strong>Direito Público</strong>. Segundo José Afonso da Silva, é um <strong>Direito Público fundamental</strong> porque se refere diretamente à <strong>organização e funcionamento do Estado</strong>, à articulação dos <strong>elementos primários do Estado</strong> e ao estabelecimento das <strong>bases da estrutura política</strong>.<br><br>
+      • As normas de DC constituem a ordem em que repousam a harmonia e a vida do grupo, equilibrando seus elementos — todas as demais disciplinas jurídicas centram nele seu ponto de apoio<br>
+      • O Direito Constitucional é o <strong>tronco</strong> do qual se separam os demais ramos do Direito
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conceito (José Afonso da Silva)</div>
+    <div class="card-text">
+      Direito Constitucional é <strong>o ramo do Direito Público que expõe, interpreta e sistematiza os princípios e normas fundamentais do Estado</strong>. Como esses princípios e normas compõem o conteúdo das constituições, pode-se afirmar que o DC é a <strong>ciência positiva das constituições</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Objeto (Paulo Bonavides)</div>
+    <div class="card-text">
+      Para Bonavides, o DC tem por objeto <strong>determinar a forma de Estado, a forma de governo e o reconhecimento dos direitos individuais</strong>. O objeto do DC contemporâneo envolve o estabelecimento de poderes supremos, a distribuição da competência, a transmissão e o exercício da autoridade e a formulação dos direitos e das garantias individuais e sociais.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Objeto (José Afonso da Silva)</div>
+    <div class="card-text">
+      Cabe ao DC o <strong>estudo sistemático das normas que integram a constituição do Estado</strong>. Sendo ciência, é conhecimento sistematizado sobre determinado objeto: as <strong>normas fundamentais da organização do Estado</strong> — estrutura do Estado, forma de governo, modo de aquisição e exercício do poder, estabelecimento de seus órgãos, limites de sua atuação, direitos fundamentais do homem e respectivas garantias e regras básicas da ordem econômica e social.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Conteúdo científico do Direito Constitucional
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Disciplina</th><th>Objeto</th></tr></thead>
+      <tbody>
+        <tr><td><strong>DC Positivo (ou Particular)</strong></td><td>Estudo dos princípios e normas de uma <strong>constituição concreta</strong>, de um Estado determinado. Abrange interpretação, sistematização e crítica das normas jurídico-constitucionais desse Estado.</td></tr>
+        <tr><td><strong>DC Comparado</strong></td><td>Estudo teórico das normas jurídico-constitucionais <strong>positivas de vários Estados (países)</strong>, destacando singularidades e contrastes. Método que coteja instituições políticas e jurídicas para extrair semelhanças entre elas.</td></tr>
+        <tr><td><strong>DC Geral</strong></td><td>Disciplina que delineia uma série de princípios, conceitos e instituições que se acham <strong>em vários direitos positivos</strong> (ou grupos deles), para classificá-los e sistematizá-los numa visão unitária.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — OBJETO: SENTIDOS E CLASSIFICAÇÕES DE CONSTITUIÇÃO    -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Objeto: sentidos e classificações de Constituição</div>
+  </div>
+  <div class="sec-subtitle">Constituição como norma suprema · sentidos sociológico, político e jurídico · estrutura, elementos e classificações</div>
+
+  <div class="card">
+    <div class="card-title">Constituição como objeto de estudo</div>
+    <div class="card-text">
+      Objeto de estudo do DC, a Constituição é a <strong>lei fundamental e suprema de um Estado</strong>, criada pela vontade soberana do povo. É <strong>norma de ordem superior e suprema</strong>, fundamento de validade de todo o ordenamento jurídico — o <strong>estatuto do poder político</strong>. Determina a organização político-jurídica do Estado, as limitações ao poder estatal e enumera direitos e garantias fundamentais.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Sentidos de Constituição
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Sentido sociológico — Ferdinand Lassalle</div><div class="card-text">Busca o que a Constituição "realmente é" (sentido material), irrelevante a forma. Coexistem duas constituições: a <strong>real/efetiva</strong> (soma dos fatores reais de poder — fato social) e a <strong>escrita</strong> (mera "folha de papel"). No conflito, prevalece a Constituição <strong>real (efetiva)</strong>.</div></div>
+    <div class="card"><div class="card-title">📌 Sentido político — Carl Schmitt (1920)</div><div class="card-text">Constituição é <strong>fruto da vontade do povo</strong>, titular do poder constituinte — teoria <strong>decisionista ou voluntarista</strong>. Validade vem da decisão política, não da justiça das normas. Distingue <strong>Constituição</strong> (matérias de grande relevância) de <strong>leis constitucionais</strong> (matérias de menor importância, formalmente no texto).</div></div>
+    <div class="card"><div class="card-title">📌 Sentido jurídico — Hans Kelsen</div><div class="card-text">Constituição como <strong>norma jurídica pura</strong>, sem consideração sociológica, política ou filosófica. Ordenamento em <strong>escalonamento hierárquico</strong>: normas inferiores (fundadas) retiram validade das superiores (fundantes). A Constituição retira seu fundamento de validade da <strong>norma hipotética fundamental</strong>.</div></div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">Kelsen: os dois sentidos da Constituição</div>
+    <div class="card-text">
+      • <strong>Sentido lógico-jurídico</strong>: a Constituição é a <strong>norma hipotética fundamental</strong> — não real, mas pressuposta/imaginada; fundamento lógico-transcendental da validade da Constituição em sentido jurídico-positivo. "É como se dissesse: <em>obedeça-se à constituição positiva!</em>"<br>
+      • <strong>Sentido jurídico-positivo</strong>: a <strong>norma positiva suprema</strong> que regula a criação de todas as outras; documento solene, alterável somente por procedimento especial. No Brasil, a atual é a <strong>CF/88</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Força normativa da Constituição — Konrad Hesse</div>
+    <div class="card-text">
+      Para Hesse (obra <em>A força normativa da Constituição</em>), a Constituição deve ser considerada <strong>norma jurídica, com força normativa</strong>. Quanto mais o conteúdo corresponder à <strong>natureza do seu tempo</strong>, mais segura será sua força normativa — deve incorporar elementos sociais, políticos e econômicos dominantes e o <strong>estado espiritual do seu tempo</strong>, assegurando apoio da consciência geral da população.<br><br>
+      O DC tem a tarefa de <strong>concretização da força normativa</strong> da Constituição, evitando que as questões constitucionais se convertam em questões de poder.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (CRP/MA 2021)</div>
+    Assertiva dizendo que, para <strong>Konrad Hesse</strong>, a Constituição escrita que não espelha os fatores reais de poder não passa de "pedaço de papel" está <strong>ERRADA</strong> — isso é o sentido sociológico de <strong>Lassalle</strong>. Hesse é o jurista da força normativa da Constituição.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Concepção ideal de Constituição (J. J. Canotilho)</div>
+    <div class="card-text">
+      Concepção de caráter liberal, com os seguintes elementos:<br>
+      a) Deve ser <strong>escrita</strong><br>
+      b) Deve conter um <strong>sistema de direitos fundamentais individuais</strong> (liberdades negativas)<br>
+      c) Deve conter a definição e o reconhecimento do princípio da <strong>separação dos Poderes</strong><br>
+      d) Deve adotar um <strong>sistema democrático formal</strong>
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Estrutura das constituições
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Parte</th><th>Função</th><th>Natureza jurídica</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Preâmbulo</strong></td><td>Antecede o texto; define as intenções do legislador constituinte; integra os artigos e orienta sua interpretação; sintetiza a ideologia do poder constituinte originário</td><td><strong>Não é norma constitucional</strong> (STF): não serve de parâmetro para inconstitucionalidade, não limita o Poder Constituinte Derivado e não é de reprodução obrigatória pelas Constituições Estaduais</td></tr>
+        <tr><td><strong>Parte dogmática</strong></td><td>Texto constitucional propriamente dito; corpo permanente da Carta (CF/88: art. 1º ao 250); modifica-se por emenda constitucional</td><td>Normas constitucionais</td></tr>
+        <tr><td><strong>Disposições transitórias</strong></td><td>Integram a ordem jurídica antiga à nova, garantindo segurança jurídica (ADCT); modificáveis por reforma constitucional; servem de paradigma para o controle de constitucionalidade</td><td><strong>Formalmente constitucionais</strong>, com numeração própria</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (FUB 2022)</div>
+    O <strong>preâmbulo não possui força normativa de reprodução obrigatória</strong> nas constituições estaduais (STF — ADI 2.076). Não é norma central da Constituição.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Elementos das constituições (José Afonso da Silva)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Elemento</th><th>Conteúdo</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Orgânicos</strong></td><td>Normas que regulam a estrutura do Estado e do poder</td><td>Título III (Organização do Estado) e IV (Organização dos Poderes e Sistema de Governo)</td></tr>
+        <tr><td><strong>Limitativos</strong></td><td>Normas dos direitos e garantias fundamentais, limitando o poder estatal. <strong>Direitos sociais não se enquadram aqui</strong></td><td>Título II, exceto o Capítulo II (Direitos Sociais)</td></tr>
+        <tr><td><strong>Socioideológicos</strong></td><td>Normas que traduzem o compromisso das constituições modernas com o bem-estar social (Estado social, intervencionista, prestacionista)</td><td>Cap. II do Título II; Títulos VII e VIII</td></tr>
+        <tr><td><strong>De estabilização constitucional</strong></td><td>Normas de solução de conflitos constitucionais e defesa da Constituição, do Estado e das instituições democráticas</td><td>Art. 102, I, "a" (ADI) e arts. 34 a 36 (intervenção)</td></tr>
+        <tr><td><strong>Formais de aplicabilidade</strong></td><td>Normas que estabelecem regras de aplicação da constituição</td><td>Preâmbulo, disposições transitórias e art. 5º, § 1º (aplicação imediata)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Classificação das constituições
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Espécies</th><th>Descrição / Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="3"><strong>Origem</strong></td><td><span class="tag tag-red">Outorgadas</span></td><td>Impostas, sem participação popular; ato unilateral da classe/pessoa dominante. Ex.: 1824, 1937, 1967 e EC 1/69</td></tr>
+        <tr><td><span class="tag tag-green">Democráticas (promulgadas/votadas)</span></td><td>Nascem com participação popular, por processo democrático (Assembleia Constituinte). Ex.: 1891, 1934, 1946 e 1988</td></tr>
+        <tr><td><span class="tag tag-blue">Cesaristas (bonapartistas)</span></td><td>Outorgadas, mas necessitam de referendo popular (povo apenas ratifica)</td></tr>
+        <tr><td><strong>Forma</strong></td><td>Escritas (instrumentais) × Não escritas (costumeiras)</td><td>Escritas: documento solene (CF/88). Não escritas: normas em várias fontes — leis, costumes, jurisprudência (Constituição Inglesa). As não escritas também possuem normas escritas</td></tr>
+        <tr><td rowspan="2"><strong>Modo de elaboração</strong></td><td><span class="tag tag-blue">Dogmáticas (sistemáticas)</span></td><td>Escritas, elaboradas em determinado momento, segundo dogmas em voga. <strong>Ortodoxas</strong>: uma só ideologia; <strong>heterodoxas (ecléticas)</strong>: ideologias distintas. A CF/88 é dogmática eclética (pluralismo político, art. 1º)</td></tr>
+        <tr><td><span class="tag tag-blue">Históricas (costumeiras)</span></td><td>Não escritas, criadas lentamente pelas tradições; mais estáveis que as dogmáticas. Ex.: Constituição Inglesa</td></tr>
+        <tr><td rowspan="4"><strong>Estabilidade</strong></td><td><span class="tag tag-red">Imutáveis</span></td><td>Texto não pode ser modificado jamais; alguns autores não admitem sua existência</td></tr>
+        <tr><td><span class="tag tag-blue">Super-rígidas</span></td><td>Núcleo intangível (cláusulas pétreas, art. 60, § 4º) + demais normas por processo diferenciado. Classificação de Alexandre de Moraes para a CF/88</td></tr>
+        <tr><td><span class="tag tag-green">Rígidas</span></td><td>Procedimento mais dificultoso que o das demais leis; sempre escritas (a recíproca não é verdadeira). CF/88: 2 turnos, 3/5 em cada Casa (art. 60, § 2º). Ex.: 1891, 1934, 1937, 1946, 1967, 1988</td></tr>
+        <tr><td><span class="tag tag-amber">Semirrígidas / semiflexíveis</span></td><td>Parte com processo dificultoso, parte pelo ordinário. Ex.: Carta Imperial de 1824</td></tr>
+        <tr><td><strong>Conteúdo</strong></td><td>Material × Formal</td><td>Material: normas (escritas ou não) que regulam aspectos essenciais da vida estatal. Formal: normas inseridas no texto de constituição rígida, independentemente do conteúdo</td></tr>
+        <tr><td><strong>Extensão</strong></td><td>Analíticas × Sintéticas</td><td>Analíticas: conteúdo extenso, com normas apenas formalmente constitucionais (CF/88). Sintéticas: só elementos substancialmente constitucionais (EUA — 7 artigos)</td></tr>
+        <tr><td><strong>Finalidade</strong></td><td>Garantia × Dirigente × Balanço</td><td>Garantia: protege liberdades (1ª geração; negativas). Dirigente: diretrizes para a ação estatal, normas programáticas (<strong>CF/88 é dirigente</strong>). Balanço: rege o ordenamento por certo tempo; típica de regimes socialistas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Da rigidez decorre a supremacia da Constituição.</strong> Em razão do processo legislativo especial, as normas constitucionais estão em patamar hierárquico superior; normas incompatíveis são inconstitucionais, fiscalizadas pelo controle de constitucionalidade, que tem como pressuposto a <strong>rigidez constitucional</strong>. Maior ou menor rigidez, porém, não assegura estabilidade — ela se relaciona com o amadurecimento da sociedade e das instituições.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>CF/88 é rígida, não semirrígida</strong> (UEG 2015). Semirrígida foi a Constituição de 1824. Normas apenas formalmente constitucionais também só se alteram por emenda na CF/88.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Constituições ditas <strong>"legais ou inorgânicas"</strong> não são as que contêm normas apenas formalmente constitucionais — sua característica central é ter o conteúdo <strong>disperso em diversos documentos solenes</strong> (TCE-PI 2014). E nem toda constituição escrita é rígida.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Normas materialmente × formalmente constitucionais</div>
+    <div class="card-text">
+      • <strong>Materialmente constitucionais</strong>: conteúdo tipicamente constitucional (forma de Estado, forma de governo, estrutura do Estado, organização do poder e direitos fundamentais), estejam ou não no texto escrito. Formam a "Constituição material" do Estado.<br>
+      • <strong>Formalmente constitucionais</strong>: todas as normas contidas em documento escrito elaborado solenemente pelo órgão constituinte — avalia-se apenas o <strong>processo de elaboração</strong>, não o conteúdo.<br>
+      • <strong>Pressuposto</strong> da norma formalmente constitucional: existência de constituição <strong>rígida</strong> (em Estado de constituição flexível não há normas formalmente constitucionais).<br>
+      • Ex.: art. 242, § 2º (Colégio Pedro II) é apenas formalmente constitucional; art. 5º, III (vedação à tortura) é material e formalmente constitucional.<br>
+      • Normas materialmente constitucionais <strong>fora do texto</strong>: tratados de direitos humanos aprovados pelo rito de emenda (art. 5º, § 3º).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — MÉTODOS DE INTERPRETAÇÃO CONSTITUCIONAL               -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Métodos de interpretação constitucional</div>
+  </div>
+  <div class="sec-subtitle">Hermenêutica × interpretação · normas de primeiro e segundo grau · seis métodos</div>
+
+  <div class="card">
+    <div class="card-title">Hermenêutica × interpretação</div>
+    <div class="card-text">
+      • <strong>Hermenêutica jurídica</strong>: "ciência auxiliar do direito" que estabelece princípios e regras tendentes a tornar possíveis a interpretação e a explicação do direito como sistema (Dicionário Jurídico da ABLJ). Para <strong>Celso Ribeiro Bastos</strong>, é a responsável pelo fornecimento de subsídios e regras da atividade interpretativa.<br>
+      • <strong>Interpretação</strong>: reporta-se ao <strong>caso concreto</strong> — a atividade prática do aplicador (analista, magistrado, membro do Parquet). Para <strong>Carlos Maximiliano</strong>, interpretação é a aplicação da hermenêutica.<br>
+      • Os princípios e métodos de interpretação <strong>não são normas jurídicas</strong> — foram desenvolvidos para acessar o núcleo semântico da norma.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Normas de primeiro e de segundo grau
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Norma de 1º grau</th><th>Distinção fraca (minoritária)</th><th>Distinção forte (dominante)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Princípios</strong></td><td>Elevado grau de abstração e generalidade; alto subjetivismo do intérprete</td><td>São normas aplicadas mediante <strong>ponderação</strong> (atribuição de dimensão de peso diante do caso concreto)</td></tr>
+        <tr><td><strong>Regras</strong></td><td>Pouco ou nenhum grau de abstração e generalidade; aplicação com pouca subjetividade</td><td>Estabelecem o obrigatório/permitido/proibido; aplicação mediante <strong>subsunção</strong> (confronto entre realidade e hipótese normativa)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Normas de segundo grau — Postulados normativos (metanormas)</div>
+    <div class="card-text">
+      Normas <strong>sobre a aplicação de outras normas</strong>, dirigidas ao intérprete e ao aplicador do direito. Dividem-se em:<br>
+      • <strong>Hermenêuticos</strong>: necessários à compreensão interna e abstrata dos princípios e regras — ex.: unidade do ordenamento, hierarquia e coerência<br>
+      • <strong>Aplicativos</strong>: solucionam questões na aplicação do direito (antinomias ou aparentes conflitos) — ex.: ponderação de bens, concordância prática, proibição de excesso, igualdade, razoabilidade e proporcionalidade
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Método</th><th>Mentor / Base</th><th>Palavra-chave</th><th>Como interpreta</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Jurídico ou hermenêutico-clássico</strong></td><td>Ernst Forsthof · Savigny</td><td>Métodos clássicos da lei</td><td>Constituição interpretada como lei, com os elementos <strong>genético</strong> (origens dos conceitos), <strong>filológico</strong> (literal/gramatical), <strong>lógico</strong> (sistemático), <strong>histórico</strong> (contexto de elaboração), <strong>sistemático</strong> (contexto normativo) e <strong>teleológico</strong> (finalidade da norma)</td></tr>
+        <tr><td><strong>Tópico-problemático</strong></td><td>Theodor Viehweg (Tópica e Jurisprudência) · Peter Häberle</td><td><span class="tag tag-amber">Do problema para a norma</span></td><td>Caráter prático; normas com caráter fragmentário, aberto e indeterminado; participam todos os legitimados da "sociedade aberta dos intérpretes"</td></tr>
+        <tr><td><strong>Hermenêutico-concretizador</strong></td><td>Konrad Hesse (inspirado em Viehweg e Luhmann)</td><td><span class="tag tag-green">Primazia da norma</span></td><td>Parte da <strong>pré-compreensão</strong> do intérprete e do <strong>círculo hermenêutico</strong> (vai e volta entre norma e caso); da norma para o problema</td></tr>
+        <tr><td><strong>Científico-espiritual ou sociológico</strong></td><td>Rudolf Smend</td><td>Valores subjacentes</td><td>Leva em conta os valores subjacentes à Constituição (econômicos, sociais, políticos, culturais) e a integração com a realidade espiritual da comunidade; interpretação elástica e flexível</td></tr>
+        <tr><td><strong>Normativo-estruturante</strong></td><td>Friedrich Müller</td><td>Programa normativo × domínio normativo</td><td>Não há identidade entre norma e texto; norma é <strong>resultado</strong> da interpretação, unindo o <strong>programa normativo</strong> (Constituição) ao <strong>âmbito/domínio normativo</strong> (demais normas e realidade regulada)</td></tr>
+        <tr><td><strong>Comparação constitucional</strong></td><td>Uadi Lammêgo Bulos · Peter Häberle ("quinto método")</td><td>Direito comparado</td><td>Compara institutos jurídicos em vários ordenamentos, identificando semelhanças e diferenças</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Tópico-problemático</strong>: parte do <strong>problema para a norma</strong>. <strong>Hermenêutico-concretizador</strong>: parte da <strong>norma para o problema</strong> (via pré-compreensão e círculo hermenêutico). As bancas adoram inverter esses dois sentidos.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (QUADRIX/CFO 2020)</div>
+    No <strong>normativo-estruturante</strong>, a norma <strong>não é pressuposto, mas resultado</strong> da interpretação — assertiva dizendo que o texto é a "baliza" e que a norma se edifica a partir dele está <strong>errada</strong> (o método rejeita a leitura apenas literal e não identifica norma com texto).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — PRINCÍPIOS DE INTERPRETAÇÃO CONSTITUCIONAL            -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Princípios de interpretação constitucional</div>
+  </div>
+  <div class="sec-subtitle">Referência: José Gomes Canotilho + demais princípios de aplicação (interpretação conforme, proporcionalidade, etc.)</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      UNIDADE · CONFORMIDADE FUNCIONAL · CONCORDÂNCIA PRÁTICA · MÁXIMA EFETIVIDADE · FORÇA NORMATIVA · EFEITO INTEGRADOR (Canotilho)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Princípio</th><th>Palavras-chave</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Unidade da Constituição</strong></td><td>Sem antinomias verdadeiras</td><td>Texto interpretado para evitar contradições; constituição como sistema unitário de regras e princípios, sem "fratura constitucional". Consequências: não há antinomias verdadeiras; todas as normas têm igual dignidade; <strong>não existem normas constitucionais originárias inconstitucionais</strong>. Retoma o método sistemático.</td></tr>
+        <tr><td><strong>Conformidade funcional</strong></td><td>Justeza / correção funcional</td><td>Intérprete não pode chegar a posição que <strong>subverta, altere ou perturbe o esquema organizatório-funcional</strong> da Constituição (ex.: separação dos poderes); corrige desvios na distribuição de competências.</td></tr>
+        <tr><td><strong>Concordância prática (harmonização)</strong></td><td>Igual dignidade dos bens</td><td>Coordena e combina os <strong>bens jurídicos em conflito</strong>, evitando o sacrifício total de uns em relação aos outros; sacrifícios parciais recíprocos. Ex.: interceptação de correspondências de presidiários (STF) — sigilo não acoberta atividades ilícitas.</td></tr>
+        <tr><td><strong>Máxima efetividade</strong></td><td>Eficiência / imperatividade</td><td>Desenvolvido por Canotilho; subprincípio da força normativa; interpretar para <strong>otimizar a eficácia</strong> sem alterar o conteúdo; a lei não emprega palavras inúteis; proíbe nulificação, ainda que parcial, da norma. <strong>Não é interpretação ampliativa</strong>.</td></tr>
+        <tr><td><strong>Força normativa</strong></td><td>Konrad Hesse</td><td>Escolher a alternativa que garanta <strong>maior aplicabilidade e permanência</strong> das normas; valoriza soluções que possibilitem atualização normativa, eficácia e perenidade.</td></tr>
+        <tr><td><strong>Efeito integrador</strong></td><td>Interpretação efetiva (Rudolf Smend)</td><td>Preferir critérios que favoreçam a <strong>integração social e a unidade política</strong>, mantendo a coesão sociopolítica.</td></tr>
+        <tr><td><strong>Harmonização integrativa</strong></td><td>Conciliação integrativa</td><td>Diante de dispositivos conflitantes, adota a <strong>posição conciliatória ou a excludente do princípio menor</strong> (Ives Gandra Martins: teoria da ineficácia da norma inintegrável).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Interpretação conforme à Constituição
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Conceito e limites</div>
+    <div class="card-text">
+      Situada no âmbito do <strong>controle de constitucionalidade</strong> e das técnicas de decisão. Diante de norma com <strong>múltiplos significados</strong> (polissêmica), escolhe-se o sentido que a torne <strong>constitucional</strong>, evitando a declaração de inconstitucionalidade ou a supressão do texto. Não se usa quando o sentido é unívoco.<br><br>
+      <strong>Limites</strong> (doutrina e jurisprudência do STF):<br>
+      I) o intérprete não pode subverter o sentido da norma nem seu sentido literal para "salvar a lei à custa da constituição"<br>
+      II) só se utiliza quando houver espaço de decisão com mais de uma alternativa válida de interpretação (sem polissemia não há pressuposto)<br>
+      III) se for possível interpretação constitucional válida, não se declara a inconstitucionalidade (<strong>princípio da conservação das normas</strong>)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Com e sem redução de texto</div>
+    <div class="card-text">
+      • <strong>Interpretação conforme com redução de texto</strong>: equivale à declaração de inconstitucionalidade parcial — parte do texto é extirpada (ex.: ADI 1.127 — expressão "ou desacato", art. 7º, § 2º, Lei 8.906/94).<br>
+      • <strong>Declaração de inconstitucionalidade sem redução de texto</strong>: afasta hipóteses de aplicação que levariam à inconstitucionalidade, sem alterar o texto (ex.: ADI 1.946 — teto previdenciário do RGPS, excluído o salário maternidade).<br>
+      • Para o <strong>STF</strong>, interpretação conforme e declaração de nulidade parcial sem redução de texto possuem <strong>os mesmos efeitos</strong>, sem distinção prática.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Proporcionalidade e razoabilidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      São decorrência <strong>implícita do princípio do devido processo legal</strong> (art. 5º, LIV, CF) em seu sentido material ou substantivo. O princípio da proporcionalidade é também chamado de <strong>vedação do excesso</strong>. Três sub-regras:<br>
+      • <strong>Adequação</strong>: a medida deve ser adequada à busca dos fins almejados<br>
+      • <strong>Necessidade</strong>: não há outra medida menos gravosa para alcançar a finalidade<br>
+      • <strong>Proporcionalidade em sentido estrito</strong>: sopesamento entre a intensidade da restrição ao direito fundamental atingido e a importância da realização do direito que colide com a medida
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Razoabilidade × proporcionalidade (Virgílio Afonso da Silva).</strong> A razoabilidade corresponde à exigência de <strong>compatibilidade entre meios e fins</strong> — apenas a primeira sub-regra (adequação). A <strong>proporcionalidade é mais ampla</strong>, não se esgota no exame da compatibilidade entre meios e fins. O STF por vezes as confunde.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Relatividade ou convivência das liberdades públicas
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Não existem princípios absolutos</strong>: todos encontram limites em outros princípios também consagrados na Constituição, com ascendência e cedência recíprocas. Corolário: a <strong>teoria dos limites dos limites</strong> dos direitos fundamentais — podem ser relativizados, desde que <strong>não atingido o núcleo essencial</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Não confundir <strong>princípios com regras</strong>: a vedação à pena de morte, à tortura e a tratamento desumano ou degradante são <strong>regras</strong>, não princípios. O princípio da dignidade humana encerra os valores dos quais aquelas regras decorrem. Hoje os princípios assumem força normativa próxima à das normas positivadas.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Demais princípios
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Princípio</th><th>Palavra-chave</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Supremacia da Constituição</strong></td><td>Pirâmide de Kelsen</td><td>Todas as demais normas devem obediência à Constituição, não podendo contrariá-la material ou formalmente, sob pena de exclusão do sistema mediante controle de constitucionalidade.</td></tr>
+        <tr><td><strong>Simetria constitucional</strong></td><td>Observância pelas unidades federadas</td><td>Regras estruturantes da Carta são de <strong>observância obrigatória pelos estados-membros</strong> (ex.: separação de poderes), inclusive pelos Municípios via Leis Orgânicas.</td></tr>
+        <tr><td><strong>Presunção de constitucionalidade das normas</strong></td><td>Presunção relativa (iuris tantum)</td><td>Todas as normas já nascem com presunção <strong>relativa</strong> de constitucionalidade, só retiradas do sistema por processo específico de controle.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Máxima efetividade ≠ interpretação ampliativa.</strong> A máxima efetividade visa não enfraquecer/empobrecer a Constituição; não se trata de ampliar o sentido da norma. Assertiva que a iguale à interpretação ampliativa está errada.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    No <strong>princípio da unidade</strong>: <strong>não existem normas constitucionais originárias inconstitucionais</strong> — não se pode declarar a inconstitucionalidade de norma originária. Isso não se confunde com o controle em abstrato de normas do <strong>Poder Constituinte Derivado</strong> (emendas), cujo parâmetro está nas normas originárias.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Sentidos de Constituição:</strong> Lassalle (sociológico — fatores reais de poder, "folha de papel") · Schmitt (político — decisionista/voluntarista) · Kelsen (jurídico — norma hipotética fundamental) · Hesse (força normativa)<br>
+      • <strong>Classificação da CF/88:</strong> promulgada (origem) · escrita (forma) · dogmática eclética (modo de elaboração) · rígida (estabilidade) · formal (conteúdo) · analítica (extensão) · dirigente (finalidade)<br>
+      • <strong>Preâmbulo não é norma constitucional</strong> — não é parâmetro de inconstitucionalidade nem de reprodução obrigatória (STF)<br>
+      • <strong>Conteúdo científico:</strong> DC Positivo (uma constituição concreta) · Comparado (vários Estados) · Geral (princípios comuns)<br>
+      • <strong>Tópico-problemático</strong> (problema → norma) × <strong>hermenêutico-concretizador</strong> (norma → problema, pré-compreensão)<br>
+      • <strong>Interpretação conforme</strong>: exige norma polissêmica; limites do uso; com e sem redução de texto
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Unidade:</strong> sem normas originárias inconstitucionais; igual dignidade; corolários: conformidade funcional e concordância prática<br>
+      • <strong>Proporcionalidade:</strong> adequação + necessidade + proporcionalidade em sentido estrito; razoabilidade = compatibilidade meios-fins (adequação)<br>
+      • <strong>Postulados normativos (2º grau):</strong> hermenêuticos (unidade, hierarquia, coerência) × aplicativos (ponderação, concordância prática, proporcionalidade, razoabilidade...)<br>
+      • <strong>Princípios e métodos não são normas jurídicas</strong><br>
+      • <strong>Relatividade das liberdades públicas:</strong> limites dos limites, núcleo essencial
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Alteração da Constituição: interpretação × modificação formal
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Espécie</th><th>Natureza</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Mutação constitucional</strong></td><td><span class="tag tag-amber">Informal</span></td><td>Mudança <strong>silenciosa, contínua, sem alteração textual</strong>; muda-se o conteúdo/sentido sem mudar o teor da norma. Relaciona-se ao <strong>poder constituinte difuso</strong>. Ex.: STF muda entendimento (usos e costumes)</td></tr>
+        <tr><td><strong>Revisão constitucional</strong></td><td><span class="tag tag-blue">Formal</span></td><td>Art. 3º do ADCT — procedimento simplificado, sessão unicameral, maioria absoluta; ocorreu <strong>uma única vez (1993)</strong>; eficácia exaurida</td></tr>
+        <tr><td><strong>Emenda constitucional</strong></td><td><span class="tag tag-blue">Formal</span></td><td>Art. 60 da CF — procedimento rígido: <strong>2 turnos, 3/5 dos votos em cada Casa</strong>; poder constituinte derivado reformador</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Exemplos clássicos de mutação constitucional (STF):</strong> proteção do estrangeiro não residente (HC 74.051-3/SC); abrangência de "casa" para incluir domicílio profissional (RE 251.445/GO); adoção impositiva das regras do processo legislativo federal pelos Estados (RE 197.917-8/SP). Se a prova falar em "poder constituinte difuso", pense em <strong>mutação constitucional</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Decisões interpretativas do STF</div>
+    <div class="card-text">
+      • <strong>Interpretação conforme à Constituição</strong>: mantém a norma, restringindo a interpretação para compatibilizá-la com a CF<br>
+      • <strong>Decisão aditiva (efeitos aditivos)</strong>: a Corte acrescenta conteúdo à norma (age como legislador positivo); só possível quando a CF não dá margem de discricionariedade ao legislador<br>
+      • <strong>Decisão substitutiva</strong>: declara inconstitucionalidade parcial e <strong>substitui a regra por outra criada pelo Tribunal</strong> (produção heterônoma de atos legislativos)<br>
+      • <strong>Sentença interpretativa de rechaço (recusa)</strong>: não anula a norma, mas <strong>indica a interpretação</strong> que deve ser seguida, proibindo interpretação diversa da conforme à Constituição<br>
+      • <strong>Sentença interpretativa de aceitação (acolhimento)</strong>: declara inválida uma das interpretações (anula a decisão de instância inferior), sem anular o dispositivo<br>
+      • <strong>Norma em trânsito para a inconstitucionalidade</strong>: a Corte mantém temporariamente a lei em vigor até o momento apropriado de retirá-la
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • "Constituição que não espelha fatores reais de poder" = <strong>Lassalle</strong>, jamais Hesse<br>
+      • "Pedaço/papel" × <strong>Hesse</strong>: a Constituição tem força para modificar a realidade, não é apenas reflexo<br>
+      • CF/88 é <strong>rígida</strong> (não semirrígida); semirrígida foi a de 1824<br>
+      • Direitos sociais <strong>não</strong> são elementos limitativos da constituição<br>
+      • Máxima efetividade <strong>não é</strong> interpretação ampliativa<br>
+      • <strong>Preâmbulo</strong>: não é norma de reprodução obrigatória pelos Estados (ADI 2.076)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

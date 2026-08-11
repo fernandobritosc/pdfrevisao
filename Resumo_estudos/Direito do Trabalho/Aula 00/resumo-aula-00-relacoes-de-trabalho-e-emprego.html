@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DT Aula 00: Relações de Trabalho e Emprego</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito do Trabalho — Aula 00</div>
+  <div class="sidebar-sub">Relações de Trabalho e Emprego · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Relação de trabalho × relação de emprego</a>
+  <a href="#sec2">2. Requisitos da relação de emprego (art. 3º CLT)</a>
+  <a href="#sec3">3. Empregador (art. 2º CLT)</a>
+  <a href="#sec4">4. Figuras conexas (relações de trabalho lato sensu)</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fonte: simplificado (meta 03)<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — RELAÇÃO DE TRABALHO × RELAÇÃO DE EMPREGO            -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Relação de trabalho × relação de emprego</div>
+  </div>
+  <div class="sec-subtitle">A relação de emprego é espécie do gênero relações de trabalho</div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Relação de trabalho (gênero)</div><div class="card-text">Expressão <strong>ampla</strong>, que engloba os mais diversos tipos de labor do ser humano: relações empregatícias, estagiários, trabalhadores avulsos, trabalhadores autônomos, etc.</div></div>
+    <div class="card"><div class="card-title">Relação de emprego (espécie)</div><div class="card-text">Tem lugar quando estão presentes os seus <strong>pressupostos (elementos) fático-jurídicos indispensáveis</strong>. É uma <strong>espécie</strong> do gênero relações de trabalho.</div></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Relações de trabalho (gênero)</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Relações de emprego</strong></td><td>Empregado urbano · Empregado rural · Empregado doméstico · Aprendiz · etc.</td></tr>
+        <tr><td><strong>Demais relações de trabalho</strong></td><td>Trabalhador avulso · Trabalhador autônomo · Trabalhador eventual · Estagiário · etc.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A relação de emprego é <strong>espécie</strong> do gênero relações de trabalho — a banca adora inverter essa relação de gênero e espécie.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — REQUISITOS DA RELAÇÃO DE EMPREGO (ART. 3º CLT)      -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Requisitos da relação de emprego</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: 🔴 ALTA · Elementos fático-jurídicos (art. 3º da CLT)</div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>CLT, art. 3º</strong> — "Considera-se empregado toda pessoa física que prestar serviços de natureza não eventual a empregador, sob a dependência deste e mediante salário." É o artigo a decorar para provas discursivas.</div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      PPOSE — Pessoa física · Pessoalidade · Onerosidade · Subordinação · não Eventualidade
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Elemento</th><th>Essência</th><th>Detalhe que cai em prova</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Pessoa física</strong></td><td>Prestação de serviço por pessoa física</td><td>Serviço de PJ para PJ não atrai normas justrabalhistas; mascaração com PJ é desconstituída pela <strong>primazia da realidade</strong></td></tr>
+        <tr><td><strong>Pessoalidade</strong></td><td>Prestação <em>intuitu personae</em> — não pode se fazer substituir</td><td>Vínculo com caráter de <strong>infungibilidade</strong> quanto ao empregado; quanto ao empregador há <strong>fungibilidade</strong></td></tr>
+        <tr><td><strong>Subordinação</strong></td><td>Poder diretivo: dirigir, coordenar e fiscalizar</td><td>Elemento <strong>mais marcante</strong>; hoje o consenso é a subordinação de viés <strong>jurídico</strong></td></tr>
+        <tr><td><strong>Onerosidade</strong></td><td>Contraprestação salarial</td><td>Atraso/inadimplemento do salário <strong>não</strong> retira o caráter oneroso; análise do <em>animus contrahendi</em></td></tr>
+        <tr><td><strong>Não eventualidade</strong></td><td>Prestação permanente, com ânimo definitivo</td><td><strong>Não exige</strong> trabalhar todos os dias nem exclusividade</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Pessoalidade e infungibilidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A pessoalidade confere ao vínculo caráter de <strong>infungibilidade</strong> (o bem fungível é o que pode ser substituído por outro da mesma espécie, como o dinheiro — o empregado <strong>não</strong> pode mandar um amigo ou parente em seu lugar).<br><br>
+      No contrato de trabalho:<br>
+      • <strong>Empregado</strong> → <strong>infungibilidade</strong> (pessoalidade, prestação <em>intuitu personae</em>)<br>
+      • <strong>Empregador</strong> → <strong>fungibilidade</strong> (ex.: sucessão de empregadores — CLT, art. 448)<br><br>
+      <strong>Afastamentos legais</strong> (mandato de dirigente sindical, férias, licenças) interrompem ou suspendem o contrato, mas <strong>não prejudicam a pessoalidade</strong> do trabalhador.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Subordinação
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A doutrina já conferiu à subordinação as dimensões <strong>técnica, econômica e jurídica</strong>: técnica (o empregador teria o conhecimento técnico do processo produtivo); econômica (o empregado dependeria do poder econômico do empregador); jurídica (o contrato e o poder diretivo têm caráter jurídico). <strong>Atualmente há consenso de que a subordinação da relação empregatícia tem viés jurídico.</strong><br><br>
+      O art. 3º da CLT fala em "dependência", que era o enfoque das ópticas de dependência técnica e econômica; hoje o mais adequado é falar em <strong>subordinação (jurídica)</strong>.<br><br>
+      <strong>CLT, art. 6º, parágrafo único</strong> (alterado em 2011): os <strong>meios telemáticos e informatizados</strong> de comando, controle e supervisão se equiparam, para fins de subordinação jurídica, aos meios pessoais e diretos de comando, controle e supervisão do trabalho alheio.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Onerosidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O trabalhador coloca sua força de trabalho à disposição do empregador para receber <strong>contraprestação salarial</strong>. A legislação prevê diferentes possibilidades: pagamento em <strong>dinheiro, utilidades, parcelas fixas, parcelas variáveis</strong>, e prazos de pagamento <strong>diário, semanal, mensal</strong> — em todos esses casos há onerosidade.<br><br>
+      O <strong>atraso (ou inadimplemento) do salário não retira o caráter oneroso</strong> da relação. Quando o empregador não paga salários (ou impõe servidão disfarçada), deve-se analisar o <strong><em>animus contrahendi</em></strong>: a intenção das partes (notadamente do prestador) ao firmar a relação. Se o empregado disponibilizou sua força de trabalho com <strong>interesse econômico</strong>, configura-se a onerosidade (mesmo que o empregador não tenha cumprido sua parte). Sem intenção onerosa (ex.: trabalho voluntário), não há vínculo de emprego.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Não eventualidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A prestação deve ser <strong>permanente</strong>, ao longo do tempo, com ânimo definitivo. <strong>Não é impositivo trabalhar todos os dias</strong> — ex.: bares e restaurantes que só abrem de quarta a sábado ou em finais de semana, ou empregados que não laboram em todos os dias da semana. Há prestação em caráter permanente para o mesmo empregador.<br><br>
+      • <strong>Não se exige exclusividade</strong>: a mesma pessoa física pode ter mais de uma relação de emprego com empregadores distintos<br>
+      • <strong>Jornada menor que a legal, ou em poucos dias na semana, não desconstitui a permanência</strong>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Alteridade (princípio da alteridade)</div>
+    <div class="card-text">
+      Requisito existente nas relações de emprego, pouco explorado em provas. Relaciona-se ao <strong>risco do negócio, que deve ser assumido pelo empregador</strong> — não se admite transferir ao empregado os riscos do empreendimento. Encontra-se no <strong>caput do art. 2º da CLT</strong>, ao mencionar que o empregador assume "os riscos da atividade econômica".
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    O que NÃO afasta a relação de emprego
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Situação</th><th>Consequência</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Local de prestação</strong> (domicílio do empregado, a distância — CLT, art. 6º)</td><td>Não obsta o reconhecimento da relação de emprego</td></tr>
+        <tr><td><strong>Exclusividade</strong></td><td>Não é exigida; pode haver relação de emprego com mais de um empregador</td></tr>
+        <tr><td><strong>Policial militar</strong> — SUM-386 TST</td><td>Legítimo o reconhecimento de vínculo com empresa privada, mesmo com eventual penalidade disciplinar no Estatuto do PM</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Exclusividade e local da prestação não são requisitos da relação de emprego.</strong> Para configurá-la basta a presença dos elementos fático-jurídicos (pessoa física, pessoalidade, subordinação, onerosidade e não eventualidade). O trabalho no domicílio do empregado tem o mesmo tratamento do trabalho no estabelecimento (CLT, art. 6º).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>SUM-386 TST</strong> — preenchidos os requisitos do art. 3º da CLT, é legítimo o reconhecimento de relação de emprego entre <strong>policial militar e empresa privada</strong>, independentemente do eventual cabimento de penalidade disciplinar prevista no Estatuto do Policial Militar.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — EMPREGADOR (ART. 2º CLT)                            -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Figura jurídica do empregador</div>
+  </div>
+  <div class="sec-subtitle">Art. 2º da CLT · despersonalização · grupo econômico · sucessão · sócio</div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>CLT, art. 2º</strong> — "Considera-se empregador a empresa, individual ou coletiva, que, assumindo os riscos da atividade econômica, admite, assalaria e dirige a prestação pessoal de serviço. § 1º — Equiparam-se ao empregador, para os efeitos exclusivos da relação de emprego, os profissionais liberais, as instituições de beneficência, as associações recreativas ou outras instituições sem fins lucrativos, que admitirem trabalhadores como empregados."</div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Empregado é sempre pessoa física; empregador pode ser pessoa física ou jurídica.</strong> Por isso, a definição da CLT no sentido de que "empregador é empresa" não foi muito adequada. <strong>Se a prova trouxer o texto literal do art. 2º, a alternativa provavelmente estará correta.</strong> Alguns entendem que a definição celetista reforça a <strong>despersonalização do empregador</strong>: a alteração de propriedade da empresa não afeta os contratos de trabalho (alinhada à sucessão de empregadores).<br><br>
+      Para Delgado, "empregador define-se como a pessoa física, jurídica ou ente despersonificado que contrata a uma pessoa física a prestação de seus serviços, efetuados com pessoalidade, onerosidade, não eventualidade e sob sua subordinação". A noção de empregador é <strong>essencialmente relacional</strong> à de empregado.
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Despersonalização</div><div class="card-text">Mantém o contrato de trabalho válido mesmo com a modificação do sujeito passivo (sucessão). O conceito de empregado se relaciona à <strong>pessoalidade</strong>; o de empregador, à <strong>impessoalidade</strong>. (CLT, art. 448)</div></div>
+    <div class="card"><div class="card-title">⚡ Assunção de riscos (alteridade)</div><div class="card-text">Risco do empreendimento deve ser suportado <strong>integralmente pelo empregador</strong> — não pode transferir o risco aos empregados. Prejuízo não autoriza deixar de pagar salários e demais direitos.</div></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Grupo econômico <span class="tag tag-red">Incidência em prova: ALTA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O conceito surgiu para aumentar as chances de garantir o <strong>crédito trabalhista</strong>. Base legal: <strong>CLT, art. 2º, §§ 2º e 3º</strong> (alterados pela Lei 13.467/2017).<br><br>
+      <strong>§ 2º</strong> — Sempre que uma ou mais empresas, tendo, embora, cada uma delas, personalidade jurídica própria, estiverem sob a direção, controle ou administração de outra, <strong>ou ainda quando, mesmo guardando cada uma sua autonomia, integrem grupo econômico</strong>, serão <strong>responsáveis solidariamente pelas obrigações decorrentes da relação de emprego</strong>.<br><br>
+      <strong>§ 3º</strong> — <strong>Não caracteriza grupo econômico a mera identidade de sócios</strong>, sendo necessárias a demonstração do <strong>interesse integrado</strong>, a <strong>efetiva comunhão de interesses</strong> e a <strong>atuação conjunta</strong> das empresas dele integrantes.
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Grupo por subordinação (vertical)</div><div class="card-text">Há subordinação jurídica entre as empresas — "sob a direção, controle ou administração de outra". Ex.: <strong>holding</strong> que controla as empresas do grupo.</div></div>
+    <div class="card"><div class="card-title">Grupo por coordenação (horizontal)</div><div class="card-text">Sem subordinação entre as empresas; basta a <strong>coordenação interempresarial</strong>. Com a reforma trabalhista, foi alçado ao texto celetista — exige interesse integrado + comunhão de interesses + atuação conjunta (ex.: setor de RH comum, promoções conjuntas).</div></div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Mera identidade de sócios não caracteriza grupo econômico</strong> (art. 2º, § 3º, CLT). Não se exige forma jurídica de outros ramos do direito (holdings, consórcios, pools) — o conceito da CLT <strong>não se estende</strong> a outros ramos (tributário, civil).
+  </div>
+
+  <div class="card">
+    <div class="card-title">Efeitos do grupo econômico</div>
+    <div class="card-text">
+      • <strong>Solidariedade passiva</strong>: os créditos trabalhistas podem ser exigidos de <strong>qualquer</strong> das empresas integrantes do grupo<br>
+      • <strong>SUM-129 TST</strong>: a prestação de serviços a mais de uma empresa do mesmo grupo econômico, durante a mesma jornada, <strong>não caracteriza a coexistência de mais de um contrato de trabalho</strong>, salvo ajuste em contrário<br>
+      • Com a reforma, a solidariedade ficou restrita às "obrigações decorrentes da relação de emprego", esvaziando a antiga <strong>solidariedade ativa</strong><br>
+      • Previsto também no trabalho rural: <strong>Lei 5.889/73, art. 3º, § 2º</strong>
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Sucessão de empregadores <span class="tag tag-red">Incidência em prova: ALTA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Sinônimo de <strong>sucessão trabalhista</strong> e de <strong>alteração subjetiva do contrato</strong> (altera-se o sujeito empregador). Fundamentos: <strong>CLT, arts. 10 e 448</strong> — qualquer alteração na estrutura jurídica da empresa não afetará os direitos adquiridos por seus empregados, nem os contratos de trabalho.<br><br>
+      Há transferência dos créditos e dívidas trabalhistas: se uma livraria é vendida, os contratos dos empregados continuam; o mesmo vale para mudança de tipo societário e para <strong>fusão, cisão ou incorporação</strong>.<br><br>
+      Requisitos: transferência de <strong>unidade econômico-jurídica</strong> + <strong>continuidade da atividade empresarial</strong>. Alterações singulares (ex.: venda de algumas máquinas da filial) não ensejam, em princípio, a sucessão — salvo se as alterações forem significativas a ponto de afetar os contratos.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Art. 448-A CLT (reforma trabalhista)</th><th>Responsabilidade</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sucessão típica</strong></td><td>Responsabilidade <strong>exclusiva do sucessor</strong> — inclusive pelas obrigações contraídas à época em que os empregados trabalhavam para a empresa sucedida</td></tr>
+        <tr><td><strong>Sucessão com fraude comprovada</strong> (art. 448-A, parágrafo único)</td><td>Corresponsabilização da empresa sucedida: sucessor e sucedida respondem <strong>solidariamente</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Na sucessão <strong>fraudulenta</strong>, a empresa sucedida responde <strong>solidariamente</strong> com a sucessora (art. 448-A, parágrafo único) — e não subsidiariamente, como a banca adora trocar.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Responsabilidade do sócio <span class="tag tag-amber">Incidência em prova: MÉDIA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>CLT, art. 10-A</strong> — O sócio retirante responde <strong>subsidiariamente</strong> pelas obrigações trabalhistas da sociedade relativas ao período em que figurou como sócio, <strong>somente em ações ajuizadas até 2 (dois) anos depois de averbada a modificação do contrato</strong>, observada a seguinte <strong>ordem de preferência</strong>:<br><br>
+      I — a empresa devedora; II — os sócios atuais; III — os sócios retirantes.<br><br>
+      • <strong>Marco temporal dos 2 anos</strong>: a <strong>averbação</strong> da alteração do quadro societário — até que ocorra a averbação, não inicia a contagem<br>
+      • O que importa é a <strong>data do ajuizamento da ação</strong>, não a data de inserção do sócio no polo passivo<br>
+      • Para cobrar dos sócios, usa-se o <strong>art. 855-A da CLT</strong> (desconsideração da personalidade jurídica no âmbito trabalhista)<br>
+      • <strong>Retirada com fraude comprovada</strong> (art. 10-A, parágrafo único): o sócio retirante responde <strong>solidariamente</strong> com os demais
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — FIGURAS CONEXAS (RELAÇÕES DE TRABALHO LATO SENSU)   -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Figuras conexas — relações de trabalho <em>lato sensu</em></div>
+  </div>
+  <div class="sec-subtitle">Relações de trabalho que não configuram relação de emprego</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Estágio <span class="tag tag-blue">Incidência em prova: BAIXA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Regulado pela <strong>Lei 11.788/08</strong>: estágio é "ato educativo escolar supervisionado, desenvolvido no ambiente de trabalho, que visa à preparação para o trabalho produtivo de educandos que estejam frequentando o ensino regular". <strong>Atendidos os requisitos formais e materiais da lei, o estagiário não será considerado empregado.</strong><br><br>
+      <strong>Lei 11.788/08, art. 3º</strong> — o estágio não cria vínculo empregatício de qualquer natureza, observados: <strong>I</strong> matrícula e frequência regular do educando; <strong>II</strong> celebração de <strong>termo de compromisso</strong> entre educando, parte concedente e instituição de ensino; <strong>III</strong> compatibilidade entre as atividades e o termo de compromisso.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Relação trilateral</div>
+    <div class="card-text">
+      O estágio subentende uma <strong>relação trilateral</strong>: estagiário · parte concedente do estágio · instituição de ensino. <strong>Agentes de integração</strong> (públicos ou privados) têm funções auxiliares: identificar oportunidades, ajustar condições, acompanhamento administrativo, negociação de seguros contra acidentes e cadastro dos estudantes (art. 5º) — é <strong>vedada a cobrança de qualquer valor dos estudantes</strong> (§ 2º).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Descumprimento dos requisitos = vínculo de emprego.</strong> Se não há termo de compromisso ou instituição de ensino, estamos diante de relação de emprego (art. 3º, § 2º, e art. 15 da Lei 11.788/08). Na prática, é comum verdadeiros empregados serem admitidos como "estagiários" para retirar direitos (férias, FGTS, 13º).
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Outras regras do estágio</div>
+    <div class="card-text">
+      • <strong>Duração máxima de 2 anos</strong> na mesma parte concedente, exceto estagiário <strong>portador de deficiência</strong><br>
+      • Estágio ≥ <strong>1 ano</strong>: direito a <strong>recesso de 30 dias</strong> (art. 13), preferencialmente nas férias escolares — atenção: é <strong>"recesso", e não "férias"</strong>, pois o estagiário não é empregado CLT<br>
+      • <strong>Por que não há vínculo?</strong> Mesmo havendo pessoalidade, onerosidade (estágio remunerado), subordinação e não eventualidade, a lei retirou do estágio a proteção trabalhista porque o estágio visa integrar o <strong>itinerário formativo do educando</strong> (art. 1º, § 2º)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Trabalhador autônomo <span class="tag tag-amber">Incidência em prova: MÉDIA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Labora <strong>sem subordinação</strong> — é a falta desse elemento que impede falar em relação empregatícia. O termo "autônomo" reflete a autonomia para exercer as funções, sem poder de direção de um empregador. <strong>O elemento diferenciador entre empregado e trabalhador autônomo é a subordinação.</strong> No trabalho autônomo, <strong>não existe, em regra, a pessoalidade</strong>.<br><br>
+      Exemplos: <strong>empreitada</strong> (CC, arts. 610 a 626) e <strong>representação comercial autônoma</strong> (Lei 4.886/65, art. 1º). O autônomo pode, contudo, pactuar cláusula de rígida pessoalidade (médicos, advogados, artistas) — sem prejuízo da ausência de subordinação.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Autônomo exclusivo (art. 442-B CLT — Lei 13.467/2017)</div>
+    <div class="card-text">
+      <strong>CLT, art. 442-B</strong> — a contratação do autônomo, cumpridas por este todas as formalidades legais, <strong>com ou sem exclusividade, de forma contínua ou não, afasta a qualidade de empregado</strong> prevista no art. 3º. Assim, empresas podem contratar trabalhadores com continuidade e exclusividade sem vínculo de emprego. Para que a contratação seja legal, deve <strong>inexistir subordinação</strong> — cabendo à Justiça do Trabalho avaliar a efetiva inexistência da subordinação, ante o princípio da <strong>primazia da realidade</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O <strong>autônomo exclusivo e contínuo não é empregado</strong>: a exclusividade, que não é requisito para o empregado, também não gera vínculo para o autônomo contratado com todas as formalidades legais (art. 442-B da CLT).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Trabalho eventual <span class="tag tag-blue">Incidência em prova: BAIXÍSSIMA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Há a <strong>ausência do elemento não eventualidade</strong>: o trabalho é prestado de forma eventual, esporádica, por isso não se configura vínculo empregatício. Caracterização do trabalho de natureza eventual (Delgado):<br><br>
+      • <strong>Descontinuidade</strong> da prestação (não permanência na organização com ânimo definitivo)<br>
+      • <strong>Não fixação jurídica a uma única fonte</strong> de trabalho (pluralidade variável de tomadores)<br>
+      • <strong>Curta duração</strong> do trabalho prestado<br>
+      • Natureza do trabalho tendente a <strong>evento certo, determinado e episódico</strong><br>
+      • Natureza do trabalho tendente a <strong>não corresponder aos fins normais do empreendimento</strong><br><br>
+      Exemplos (Amauri Mascaro Nascimento): o "<strong>bóia-fria</strong>", volante rural, que cada dia trabalha numa fazenda diferente; o "<strong>chapa</strong>", que faz carga e descarga recebendo de um motorista ou empresa diferente; e a <strong>diarista</strong>, que vai de vez em quando limpar a residência.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Cooperados <span class="tag tag-blue">Incidência em prova: BAIXÍSSIMA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>CLT, art. 442, § 1º</strong> — "qualquer que seja o ramo de atividade da sociedade cooperativa, <strong>não existe vínculo empregatício entre ela e seus associados, nem entre estes e os tomadores de serviços daquela</strong>." O verdadeiro cooperado é um <strong>trabalhador autônomo</strong>, pois não é subordinado à cooperativa.<br><br>
+      A verdadeira relação cooperativista deve atender aos princípios:<br>
+      • <strong>Dupla qualidade</strong>: o cooperado se utiliza da cooperativa para vender produtos/serviços e também é cliente dela, recebendo benefícios dessa condição<br>
+      • <strong>Retribuição pessoal diferenciada</strong>: vantagens econômicas superiores às que obteria atuando isoladamente
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A tentativa de <strong>mascarar relação de emprego sob a roupagem de cooperado</strong> é desconstituída: presentes os elementos fático-jurídicos da relação de emprego, estará <strong>descaracterizada a situação de cooperado</strong>. Obs.: o art. 442, § 1º, da CLT continua vigente mesmo com a Lei 12.690/2012 (cooperativas de trabalho).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Trabalhador avulso <span class="tag tag-blue">Incidência em prova: BAIXA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Espécie de trabalhador <strong>eventual</strong> (não há não eventualidade: presta serviços a diversos tomadores em curtos intervalos). Ex.: carga e descarga de mercadorias em navios e armazéns de portos. Diferença marcante: a intermediação de uma entidade representativa — o <strong>Órgão Gestor de Mão de Obra (OGMO)</strong>, no trabalho portuário (Lei 12.815/2013, art. 32), que administra o fornecimento de mão de obra, seleciona, registra e repassa a remuneração dos avulsos.<br><br>
+      <strong>CF/88, art. 7º, XXXIV</strong> — igualdade de direitos entre o trabalhador com vínculo empregatício permanente e o trabalhador avulso. Por isso os avulsos têm direito a <strong>FGTS, repouso semanal, 13º, adicional noturno</strong>, etc. O <strong>STF (RE 597.124, Tema 222, junho/2020)</strong> fixou: "sempre que for pago ao trabalhador com vínculo permanente, o <strong>adicional de risco</strong> é devido, nos mesmos termos, ao trabalhador portuário avulso".<br><br>
+      <strong>Avulso não portuário</strong> (movimentação de mercadorias em geral): regido pela <strong>Lei 12.023/09</strong>, com intermediação <strong>obrigatória do sindicato da categoria</strong>, por meio de Acordo ou Convenção Coletiva de Trabalho (art. 2º define as atividades de movimentação de mercadorias).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Trabalho voluntário <span class="tag tag-blue">Incidência em prova: BAIXÍSSIMA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Lei 9.608/98, art. 1º</strong> — serviço voluntário é a atividade <strong>não remunerada</strong> prestada por pessoa física a entidade pública de qualquer natureza ou a <strong>instituição privada de fins não lucrativos</strong> com objetivos cívicos, culturais, educacionais, científicos, recreativos ou de assistência à pessoa. <strong>Parágrafo único:</strong> o serviço voluntário <strong>não gera vínculo empregatício, nem obrigação de natureza trabalhista, previdenciária ou afim</strong>.<br><br>
+      Aqui há falta do elemento <strong>onerosidade</strong>. O exercício deve ser precedido da celebração de um <strong>termo de adesão</strong> (art. 2º), que se difere de um "contrato de trabalho".
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Se o "voluntário" tem <strong>interesse econômico</strong> (recebia "ajuda de custo" mensal, laborava com pessoalidade, subordinação e não eventualidade), há <strong>relação de emprego dissimulada</strong> — aplica-se o princípio da primazia da realidade sobre a forma. E atenção: a Lei 9.608/98 <strong>não admite trabalho voluntário em empresas privadas com fins lucrativos</strong>.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Trabalhador de empreitada <span class="tag tag-blue">Incidência em prova: BAIXA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A <strong>empreitada (locatio operis)</strong> é contrato típico do Direito Civil (CC, art. 610 e seguintes), em que o <strong>empreiteiro</strong>, mediante remuneração do <strong>dono da obra</strong>, obriga-se a realizar determinada obra, pessoalmente ou por meio de terceiros, <strong>sem relação de subordinação</strong>. Bastante utilizado na construção civil; o empreiteiro pode contratar terceiros (pessoas físicas, com contratos de trabalho, ou empresas, com subempreitada).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>OJ 191 da SDI-I do TST:</strong> o contrato de empreitada de construção civil entre o dono da obra e o empreiteiro <strong>não enseja responsabilidade solidária ou subsidiária</strong> nas obrigações trabalhistas do empreiteiro, <strong>salvo se o dono da obra for empresa construtora ou incorporadora</strong> (aí há corresponsabilização).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Dirigentes e assessores de partido político <span class="tag tag-blue">Incidência em prova: BAIXA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A <strong>Lei 13.877/2019</strong> inseriu o <strong>art. 44-A na Lei 9.096/1995</strong> e a <strong>alínea "f" no art. 7º da CLT</strong>: as atividades de direção exercidas nos órgãos partidários e em suas fundações e institutos, bem como as de assessoramento e de apoio político-partidário, <strong>não geram vínculo de emprego</strong>, não sendo aplicável o regime da CLT.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A descaracterização do vínculo exige uma <strong>condição</strong>: remuneração <strong>igual ou superior a 2 (duas) vezes o teto do RGPS</strong> (art. 44-A da Lei 9.096/1995). A banca adora omitir essa condição na assertiva.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Religiosos <span class="tag tag-blue">Incidência em prova: BAIXA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A <strong>Lei 14.647/2023</strong> (agosto/2023) inseriu o <strong>art. 442, § 2º, da CLT</strong>: <strong>não existe vínculo empregatício</strong> entre entidades religiosas de qualquer denominação ou natureza ou instituições de ensino vocacional e <strong>ministros de confissão religiosa, membros de instituto de vida consagrada, de congregação ou de ordem religiosa</strong>, ou quem a eles se equipare — <strong>ainda que se dediquem parcial ou integralmente</strong> a atividades de administração da entidade, ou estejam em formação ou treinamento.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O afastamento do vínculo se dá <strong>mesmo com dedicação integral</strong>. Porém, <strong>não prevalece</strong> se identificado <strong>desvirtuamento da finalidade religiosa e voluntária</strong> do trabalho (art. 442, § 3º, da CLT).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Elementos fático-jurídicos da relação de emprego</strong> (art. 3º CLT): pessoa física, pessoalidade, subordinação, onerosidade e não eventualidade — decorar <strong>PPOSE</strong><br>
+      • <strong>Relação de emprego é espécie</strong> do gênero relações de trabalho<br>
+      • <strong>Grupo econômico</strong> (art. 2º, §§ 2º e 3º): responsabilidade solidária; mera identidade de sócios não basta; grupos por subordinação e por coordenação<br>
+      • <strong>Sucessão de empregadores</strong> (arts. 10, 448 e 448-A): obrigações do sucessor; fraude comprovada → responsabilidade <strong>solidária</strong> da sucedida
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Subordinação</strong> é o elemento <strong>mais marcante</strong> e o diferenciador entre empregado e autônomo; viés <strong>jurídico</strong> (a CLT fala em "dependência")<br>
+      • <strong>Infungibilidade</strong> quanto ao empregado; <strong>fungibilidade</strong> quanto ao empregador<br>
+      • <strong>Onerosidade</strong>: inadimplemento não retira o caráter oneroso; <strong><em>animus contrahendi</em></strong> define nos casos-limite<br>
+      • <strong>Alteridade</strong>: riscos da atividade econômica assumidos pelo empregador (art. 2º, caput)<br>
+      • <strong>Meios telemáticos e informatizados</strong> equiparam-se aos pessoais/diretos para fins de subordinação jurídica (art. 6º, parágrafo único)<br>
+      • <strong>Sócio retirante</strong>: subsidiário, ações ajuizadas até 2 anos da averbação; ordem de preferência empresa → sócios atuais → sócios retirantes; fraude → solidário
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Exclusividade e local da prestação NÃO são requisitos</strong> da relação de emprego (nem jornada menor que a legal)<br>
+      • <strong>SUM-386 TST</strong>: policial militar + empresa privada = vínculo legítimo<br>
+      • Autônomo <strong>exclusivo e contínuo</strong> não gera vínculo (art. 442-B)<br>
+      • Estágio sem termo de compromisso / sem instituição de ensino → <strong>vínculo de emprego</strong>; recesso ≠ férias<br>
+      • Voluntário: sem fins lucrativos; "ajuda de custo" com subordinação = emprego dissimulado<br>
+      • OJ 191: dono da obra (empreitada) não responde, <strong>salvo construtora/incorporadora</strong><br>
+      • Dirigente partidário sem vínculo exige remuneração <strong>≥ 2× o teto do RGPS</strong><br>
+      • Religiosos: sem vínculo mesmo com dedicação integral; <strong>desvirtuamento</strong> restaura o vínculo
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> decore e entenda os elementos fático-jurídicos da relação de emprego e os artigos 2º (e §§), 3º e 6º da CLT. Em seguida, domine as pegadinhas de grupo econômico (mera identidade de sócios), sucessão (fraude = solidária) e as figuras que a lei afastou do vínculo (autônomo exclusivo, estagiário, cooperado, avulso, voluntário, partidário e religioso).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

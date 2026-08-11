@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DPT Aula 01: Competência da Justiça do Trabalho</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Processual do Trabalho — Aula 01</div>
+  <div class="sidebar-sub">Competência da Justiça do Trabalho · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Noções gerais de competência</a>
+  <a href="#sec2">2. Competência material (art. 114 CF)</a>
+  <a href="#sec3">3. Competência em razão da pessoa e do lugar</a>
+  <a href="#sec4">4. Competência funcional e hierárquica</a>
+  <a href="#sec5">5. Conflitos de competência</a>
+  <a href="#sec6">6. Pontos que mais caem em prova</a>
+  <a href="#sec7">7. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — NOÇÕES GERAIS DE COMPETÊNCIA                        -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Noções gerais de competência</div>
+  </div>
+  <div class="sec-subtitle">Jurisdição × competência, critérios absolutos/relativos, perpetuação e modificação</div>
+
+  <div class="card">
+    <div class="card-title">Jurisdição × competência</div>
+    <div class="card-text">
+      <strong>Jurisdição</strong> é o poder-dever-função do Estado de dizer o direito no caso concreto, quando provocado. Todo juízo (órgão jurisdicional) possui jurisdição.<br><br>
+      <strong>Competência</strong> é a <strong>medida da jurisdição</strong>: demonstra em que situações pode o Magistrado exercer a sua jurisdição. <strong>Todo juízo possui jurisdição, mas nem todo juízo possui competência</strong>, pois esta restringe aquela.<br><br>
+      • Ex.: Juiz Estadual (família) e Juiz do Trabalho (vínculo de emprego) — ambos dizem o direito, mas cada um tem competência para determinados pedidos.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Absolutos = MAPEF (Material, Pessoal e Funcional) · Relativos = TV (Territorial e Valor da causa)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Critérios absolutos × relativos</div>
+    <div class="card-text">
+      <strong>Absolutos</strong>: criados no <strong>interesse do Estado</strong> (interesse público) — as partes não podem alterá-los; apenas a lei.<br>
+      <strong>Relativos</strong>: criados levando-se em conta o <strong>interesse das partes</strong> (comodidade) — ex.: para o Estado tanto faz julgar em Vitória/ES ou Salvador/BA.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th></th><th>Absolutos</th><th>Relativos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Interesse</strong></td><td>Estado</td><td>Partes</td></tr>
+        <tr><td><strong>Critérios</strong></td><td>Material, pessoal e funcional</td><td>Territorial e valor da causa</td></tr>
+        <tr><td><strong>Legitimidade</strong></td><td>Juiz de ofício ou partes a requerimento</td><td>Somente as partes</td></tr>
+        <tr><td><strong>Momento</strong></td><td>A qualquer tempo e grau de jurisdição</td><td>Até 5 dias a contar do recebimento da notificação (antes da audiência)</td></tr>
+        <tr><td><strong>Forma</strong></td><td>Simples petição</td><td>Exceção de incompetência</td></tr>
+        <tr><td><strong>Consequências</strong></td><td>Remessa dos autos ao juízo competente</td><td>Remessa dos autos ao juízo competente — no processo do trabalho, o local da prestação dos serviços</td></tr>
+        <tr><td><strong>Preclusão</strong></td><td>Não há (norma de ordem pública)</td><td>Sim — pela não apresentação da exceção (prorrogação da competência)</td></tr>
+        <tr><td><strong>Ação rescisória</strong></td><td>Cabe, se proferida por juízo absolutamente incompetente</td><td>Não cabe (houve preclusão)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Incompetência absoluta</strong>: declarada de ofício ou alegada a qualquer tempo e grau de jurisdição, por simples petição (art. 64, §§1º e 2º, CPC). Verificada após o trânsito em julgado, cabe <strong>ação rescisória em 2 anos</strong> (arts. 966, II e 975, CPC).<br>
+      • <strong>Incompetência relativa</strong>: não pode ser declarada de ofício (<strong>Súmula 33 STJ</strong>); alegada por <strong>exceção de incompetência</strong> no prazo de <strong>5 dias a contar da notificação, antes da audiência</strong>, em peça que sinalize a exceção (art. 800 CLT). Não apresentada a exceção, ocorre a <strong>prorrogação da competência</strong> (art. 65 CPC).
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Procedimento da exceção (art. 800 CLT):</strong> protocolada a petição, o processo é suspenso e a audiência (art. 843) não se realiza até a decisão; reclamante e litisconsortes são intimados para manifestação em prazo comum de 5 dias; se necessária prova oral, o juízo designa audiência, garantindo a oitiva do excipiente e testemunhas por carta precatória no juízo indicado como competente; decidida a exceção, o processo retoma o curso perante o juízo competente.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A exceção de incompetência territorial é o único meio para arguir a incompetência relativa no processo do trabalho: prazo de <strong>5 dias da notificação, antes da audiência, por escrito</strong> (art. 800 CLT). Não é preliminar de contestação em prazo de 10 dias e não pode ser alegada oralmente em audiência como "defesa". Tema recorrente da FCC (TRT 18ª, PGE-AM, TRT 5ª — 2022/2023).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Perpetuação da competência
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Regra do <strong>art. 43 do CPC</strong>: a competência é fixada <strong>no momento do registro ou da distribuição da petição inicial</strong>, sendo irrelevantes as modificações do estado de fato ou de direito ocorridas posteriormente (mudança de endereço, emprego, interdição etc.).<br><br>
+      <strong>Exceções</strong> (modificam a competência): alterações em critérios <strong>absolutos</strong> (material, pessoal e funcional) ou <strong>supressão do órgão judiciário</strong>.<br><br>
+      Ex.: com a EC nº 45/2004, as lides sobre acidente de trabalho foram da Justiça Comum para a especializada — as que já tinham <strong>sentença</strong> permaneceram na Justiça Comum; as demais foram remetidas à Justiça do Trabalho (<strong>Súmula Vinculante nº 22 do STF</strong> e Súmula 367 STJ).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Modificação de competência
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Prevista no <strong>art. 54 do CPC</strong>, relaciona-se apenas aos critérios <strong>relativos</strong>. No processo do trabalho o valor da causa não define competência (só o procedimento), então o que importa é a competência territorial. São três hipóteses:
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hipótese</th><th>Conceito</th><th>Base legal</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Inércia do réu</strong></td><td>Não apresentação da exceção de incompetência territorial → prorrogação da competência (o juízo incompetente passa a ser competente)</td><td>Arts. 800 CLT e 65 CPC</td></tr>
+        <tr><td><strong>Conexão</strong></td><td>Duas ou mais ações com a <strong>mesma causa de pedir ou o mesmo pedido</strong> → reunião para decisão conjunta (evita sentenças contraditórias); <strong>não exige identidade de partes</strong></td><td>Arts. 55 e 58 CPC (reunião no juízo prevento)</td></tr>
+        <tr><td><strong>Continência</strong></td><td><strong>Identidade de partes e causa de pedir</strong>, mas o pedido de uma (mais ampla) abrange o das demais; ajuizada a continente antes da contida, a contida é <strong>extinta</strong>; caso contrário, há reunião</td><td>Art. 56 CPC</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ação de danos materiais e ação de danos morais pelo <strong>mesmo acidente de trabalho</strong>, em varas diferentes, são <strong>conexas</strong> (mesma causa de pedir): a ação distribuída depois é remetida à vara <strong>preventa</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — COMPETÊNCIA MATERIAL DA JT (ART. 114 CF)             -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Competência material da JT (art. 114 CF)</div>
+  </div>
+  <div class="sec-subtitle">Rol ampliado pela Emenda Constitucional nº 45/2004</div>
+
+  <div class="card">
+    <div class="card-text">
+      A competência material da Justiça do Trabalho sofreu importantes alterações com a <strong>EC nº 45/2004</strong>, que modificou/incluiu diversos incisos do art. 114 da CRFB/88. A competência em razão da matéria leva em consideração a <strong>natureza da relação jurídica controvertida</strong> (ex.: art. 114 CF e art. 652 CLT).
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Inciso I</div><div class="card-text"><strong>Relação de trabalho</strong> — ações oriundas da relação de trabalho, abrangidos os entes de direito público externo e da administração pública direta e indireta da União, Estados, DF e Municípios</div></div>
+    <div class="card"><div class="card-title">📌 Inciso II</div><div class="card-text"><strong>Greve</strong> — ações que envolvam o exercício do direito de greve</div></div>
+    <div class="card"><div class="card-title">📌 Inciso III</div><div class="card-text"><strong>Representação sindical</strong> — ações sobre representação sindical, entre sindicatos, entre sindicatos e trabalhadores e entre sindicatos e empregadores</div></div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Inciso IV</div><div class="card-text"><strong>MS, HC e habeas data</strong> — quando o ato questionado envolver matéria sujeita à sua jurisdição</div></div>
+    <div class="card"><div class="card-title">📌 Inciso V</div><div class="card-text"><strong>Conflitos de competência</strong> — entre órgãos com jurisdição trabalhista</div></div>
+    <div class="card"><div class="card-title">📌 Inciso VI</div><div class="card-text"><strong>Dano moral e patrimonial</strong> — decorrentes da relação de trabalho, inclusive acidente de trabalho</div></div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Inciso VII</div><div class="card-text"><strong>Penalidades administrativas</strong> — ações relativas às penalidades impostas aos empregadores pelos órgãos de fiscalização das relações de trabalho</div></div>
+    <div class="card"><div class="card-title">📌 Inciso VIII</div><div class="card-text"><strong>Execução de contribuições</strong> — de ofício, das contribuições sociais previstas no art. 195, I, "a" e II, da CF e acréscimos legais</div></div>
+    <div class="card"><div class="card-title">📌 §§ 2º e 3º</div><div class="card-text"><strong>Dissídios coletivos</strong> — econômicos (§2º) e de greve em serviço essencial (§3º)</div></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Inciso I — Relação de trabalho × relação de emprego
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Antes da EC nº 45/2004, o dispositivo fazia menção à <strong>relação de emprego</strong> (empregado × empregador, com os requisitos do art. 3º da CLT), excluindo autônomos, eventuais e prestadores de serviços — a JT era tida como "Justiça do Empregado". A substituição de "relação de emprego" por "<strong>relação de trabalho</strong>" ampliou a competência: <strong>relação de trabalho é gênero, e a relação de emprego é espécie</strong>.<br><br>
+      Assim, basta a afirmação na petição inicial de <strong>vínculo jurídico entre autor e réu + prestação de labor</strong> para a JT analisar o conflito.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Requisitos do vínculo de emprego (art. 3º CLT): Pessoa física + Pessoalidade + Habitualidade + Subordinação + Onerosidade
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Relação de consumo ≠ competência da JT:</strong> o entendimento majoritário é no sentido de que a Justiça Laboral <strong>não possui competência</strong> para ações fundadas em relação de consumo. <strong>Súmula nº 363 STJ:</strong> compete à Justiça estadual processar e julgar a ação de cobrança ajuizada por <strong>profissional liberal contra cliente</strong> (relação de consumo).</div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Servidores estatutários (ADI nº 3.395, STF):</strong> a liminar suspendeu toda e qualquer interpretação do inciso I que inclua na competência da JT o julgamento de ações de <strong>servidores públicos estatutários</strong>. Cabe à JT apenas o julgamento de ações de <strong>empregados públicos (regime celetista)</strong>. Atenção: as bancas consideram correta a <strong>literalidade do inciso I</strong> quando cobrada em provas.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Acidentes de trabalho — duas situações
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Situação</th><th>Competência</th><th>Fundamento</th></tr></thead>
+      <tbody>
+        <tr><td>Ação do <strong>empregado contra o empregador</strong> (indenização por acidente de trabalho)</td><td><span class="tag tag-blue">Justiça do Trabalho</span></td><td>Art. 114, I CF + Súmula Vinculante nº 22 STF</td></tr>
+        <tr><td>Ação <strong>contra o INSS</strong> (reconhecimento do acidente, incapacidade, pagamento de verbas)</td><td><span class="tag tag-green">Justiça Comum Estadual</span></td><td>Art. 109, I, parte final CF; Súmulas 15 STJ e 235 e 501 STF</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      • Apesar de o INSS ser autarquia federal, a competência não é da Justiça Federal, e sim da <strong>Justiça Comum Estadual</strong> (art. 109, I, parte final, CF) — distribuída à <strong>Vara de Acidentes de Trabalho</strong>, caso exista.<br>
+      • <strong>Dano em ricochete</strong> (falecimento do empregado; ação de viúva e filhos): a Súmula 366 STJ (Justiça Comum Estadual) foi <strong>cancelada</strong>; o entendimento majoritário atual reconhece a competência da <strong>Justiça Laboral</strong>. Há discussão sobre o art. 223-B da CLT ("titulares exclusivos do direito à reparação") e sua relação com o dano em ricochete — aguarda posicionamento da jurisprudência.<br>
+      • <strong>Súmula Vinculante nº 22 STF</strong>: a JT é competente para ações de indenização por danos morais e patrimoniais decorrentes de acidente de trabalho propostas por <strong>empregado contra empregador</strong>, inclusive as que ainda não possuíam sentença de mérito quando da promulgação da EC 45/04. <strong>Súmula 367 STJ</strong>: a competência da EC 45/04 não alcança processos já sentenciados.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ação de <strong>auxílio-doença acidentário</strong> contra o INSS = <strong>Justiça Comum Estadual</strong>, mesmo sendo o INSS autarquia federal (exceção do art. 109, I, CF). Já a ação indenizatória contra o <strong>empregador</strong> por falta de EPI = <strong>Justiça do Trabalho</strong>.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Competência criminal — não existe
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A Justiça do Trabalho <strong>não possui competência criminal</strong>, mesmo após a EC nº 45/2004 (<strong>ADI 3684 MC, STF</strong> — interpretação conforme aos incisos I, IV e IX do art. 114). Havendo crime contra a organização do trabalho ou nos autos de processo trabalhista, a competência penal é da <strong>Justiça Comum Federal</strong> (art. 109, VI, CF).<br><br>
+      Ex.: falso testemunho em processo que tramita na JT é julgado pela Justiça Comum Federal — a JT não possui competência criminal.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Inciso II — Direito de greve
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O texto constitucional é genérico de propósito, retirando o tema da Justiça Comum. A competência da JT para greve <strong>independe de esta ser legal ou ilegal</strong>. Podem ser ajuizadas demandas individuais (cautelares para manutenção do mínimo à população, indenizações por atos do movimento paredista) e coletivas (dissídios coletivos).<br><br>
+      <strong>Súmula Vinculante nº 23 STF:</strong> a JT é competente para processar e julgar ação possessória ajuizada em decorrência do exercício do direito de greve pelos trabalhadores da iniciativa privada.<br><br>
+      <strong>Art. 114, §3º CF:</strong> em greve em atividade essencial, com possibilidade de lesão ao interesse público, o <strong>MPT pode ajuizar dissídio coletivo</strong>, competindo à JT decidir o conflito.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ação possessória de reintegração de posse (invasão de empresa em greve) e ação de indenização contra sindicato/empregados = <strong>Justiça do Trabalho</strong> (SV 23). Exceção: abusividade de greve de <strong>servidores públicos celetistas da Administração direta, autarquias e fundações públicas</strong> = <strong>Justiça Comum, federal ou estadual</strong> (RE 846854/SP, repercussão geral — Tema 544; e.g. guarda municipal, atividade de segurança pública).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Inciso III — Representação sindical
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Todas as ações envolvendo <strong>representação sindical</strong> — entre sindicatos, sindicatos e empregados, e sindicatos e empregadores — são da competência da JT (EC 45/2004). Antes, disputas por base territorial (princípio da unicidade) iam à Justiça Comum Estadual.<br><br>
+      Exemplos: direito de filiação e desfiliação; unicidade sindical; eleição de representante sindical e questões daí advindas (estabilidade, convocação de assembleia); contribuições devidas ao sindicato, federação e confederação, bem como ações de consignação e execução.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Cuidado com afirmações genéricas: "as ações ajuizadas <strong>entre sindicatos</strong> são da competência da JT" está <strong>errada</strong>. O que importa é a <strong>matéria</strong> — a discussão sobre <strong>representação sindical</strong> —, não quem ajuizou a ação. Não importa o polo (sindicato, empregado ou empregador), e sim o objeto da demanda.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Inciso IV — Mandado de segurança, habeas corpus e habeas data
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A JT processa e julga MS, HC e habeas data quando o <strong>ato questionado envolver matéria sujeita à sua jurisdição</strong>.<br><br>
+      <strong>Mandado de segurança</strong> — competência funcional:<br>
+      • <strong>Vara do Trabalho</strong>: contra ato de auditor fiscal do trabalho ou delegado do trabalho (fiscalização das relações de trabalho); contra ato de membro do MPT em inquéritos civis públicos ou outros procedimentos administrativos.<br>
+      • <strong>TRT</strong>: contra ato de Juiz do Trabalho, de Juiz de Direito atuando com competência trabalhista e atos do próprio TRT (órgãos monocráticos ou colegiados) — do acórdão cabe <strong>recurso ordinário ao TST</strong> (art. 895, II, CLT).<br>
+      • <strong>TST</strong>: contra ato do Presidente do TST ou de qualquer de seus Ministros (e contra ato de membro do TST).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Habeas corpus</strong> — competência:<br>
+      • <strong>Vara do Trabalho</strong>: ato ilegal de <strong>particular</strong> (ex.: empregador que restringe a liberdade do empregado por dívida).<br>
+      • <strong>TRT</strong>: ato ilegal de <strong>Juiz do Trabalho</strong> (ex.: decisão que determina apreensão de CNH ou passaporte do devedor na execução).<br>
+      • <strong>TST</strong>: ato ilegal de <strong>Juiz do TRT</strong>.<br><br>
+      <strong>Súmula Vinculante nº 25 STF:</strong> é ilícita a prisão civil de depositário infiel, qualquer que seja a modalidade do depósito — não é mais cabível a decretação da prisão.<br><br>
+      <strong>Habeas data</strong>: <strong>nunca em face do empregador</strong> (bancos de dados privados e não públicos), apenas em face de autoridade pública. Ex.: servidor celetista contra o Estado para acesso ao prontuário; empregador <strong>não</strong> tem acesso à lista de "mau empregadores" do MTE.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O <strong>mandado de injunção</strong> não consta do art. 114 da CF, mas a VUNESP (2025) entendeu cabível e da competência da JT <strong>quando o ato questionado envolver matéria sujeita à sua jurisdição</strong> (matéria trabalhista).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Inciso V — Conflitos de competência
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A JT julga conflitos de competência apenas entre <strong>órgãos que possuam competência trabalhista</strong> (art. 114, V, CF). Exceção: conflitos envolvendo tribunais superiores (STF, STJ e TST) cabem ao <strong>STF</strong> (art. 102, I, "o", CF). Varas do Trabalho <strong>não</strong> julgam conflitos. — Detalhes na Seção 5.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Inciso VI — Indenização por dano moral ou patrimonial
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Súmula nº 392 TST</strong> (reafirmada pela <strong>Tese Vinculante nº 224 TST</strong>): nos termos do art. 114, VI, da CF, a JT é competente para ações de indenização por <strong>dano moral e material decorrentes da relação de trabalho</strong>, inclusive as oriundas de <strong>acidente de trabalho e doenças a ele equiparadas</strong>, ainda que propostas pelos <strong>dependentes ou sucessores do trabalhador falecido</strong>.<br><br>
+      • Ação em face do <strong>INSS</strong> (lide previdenciária) = Justiça Comum Estadual.<br>
+      • Ação em face do <strong>empregador</strong> = Justiça do Trabalho.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Discussão (briga) <strong>fora do ambiente de trabalho</strong> → danos = Justiça Comum Estadual. Discussão <strong>no trabalho, em virtude do vínculo</strong> → danos = Justiça do Trabalho.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Inciso VII — Penalidades administrativas
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Um dos incisos <strong>mais cobrados em concursos</strong>. Ações relativas às <strong>penalidades administrativas impostas aos empregadores pelos órgãos de fiscalização das relações de trabalho</strong> são da competência da JT (EC 45/04). O principal órgão de fiscalização é o <strong>Ministério do Trabalho</strong>, por meio dos <strong>Auditores Fiscais do Trabalho</strong> (autuações do MTE).<br><br>
+      Ex.: a empresa autuada e multada pelo MTE ajuíza ação na JT para anular a autuação.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    São da JT as penalidades <strong>administrativas</strong> impostas pelo órgão de fiscalização das relações de trabalho. <strong>Penalidades tributárias</strong> (ex.: Ministério da Previdência Social) <strong>não</strong> são da competência da JT.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Inciso VIII — Execução das contribuições sociais
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A EC nº 45/04 incluiu o inciso VIII: a JT executa as <strong>contribuições sociais decorrentes das sentenças que proferir</strong>. Sobre as parcelas de cunho salarial de sentenças condenatórias ou acordos homologados incide a contribuição do <strong>art. 195, I, "a" e II, CF</strong>, devida à <strong>União</strong> (Receita Federal do Brasil — Lei nº 11.457/2007).<br><br>
+      O parágrafo único do <strong>art. 876 CLT</strong>: "A Justiça do Trabalho executará, de ofício, as contribuições sociais previstas na alínea a do inciso I e no inciso II do caput do art. 195 da CF, e seus acréscimos legais, relativas ao objeto da condenação constante das sentenças que proferir e dos acordos que homologar".<br><br>
+      Com a <strong>reforma trabalhista</strong> foi excluída a expressão "inclusive sobre os salários pagos durante o período contratual reconhecido", reafirmando a <strong>Súmula nº 368, I, do TST</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Contribuição</th><th>Executa?</th><th>Fundamento</th></tr></thead>
+      <tbody>
+        <tr><td>Sobre o <strong>objeto da condenação</strong> (sentenças e acordos homologados)</td><td><span class="tag tag-blue">Sim — de ofício, pela JT</span></td><td>Art. 114, VIII, CF; art. 876 CLT</td></tr>
+        <tr><td>Sobre o <strong>período contratual reconhecido em juízo</strong> (vínculo de emprego, sem condenação/obrigação)</td><td><span class="tag tag-red">Não — Justiça Comum</span></td><td>Súmula 368, I, TST; SV 53 STF; Tema 36 STF</td></tr>
+        <tr><td>Sobre o <strong>acordo homologado após o trânsito em julgado</strong></td><td><span class="tag tag-amber">Sim — sobre o valor do acordo</span>, respeitada a proporcionalidade das parcelas salariais/indenizatórias</td><td>OJ 376 SDI-1 TST</td></tr>
+        <tr><td><strong>SAT — Seguro de Acidente de Trabalho</strong> (contribuição à seguridade social)</td><td><span class="tag tag-blue">Sim — de ofício, pela JT</span></td><td>Súmula 454 TST; Tese Vinculante 229 TST</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Tema 36 STF (repercussão geral):</strong> a competência do art. 114, VIII, CF alcança somente a execução das contribuições previdenciárias <strong>relativas ao objeto da condenação</strong> — não abrange a execução de contribuições atinentes ao <strong>vínculo de trabalho reconhecido na decisão</strong>, mas sem condenação ou acordo quanto ao pagamento das verbas salariais que lhe possam servir de base de cálculo.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O TST entende que a natureza das verbas descritas no acordo deve respeitar, proporcionalmente, aquelas deferidas na sentença transitada em julgado — não pode o acordo dizer que "todas as verbas têm natureza indenizatória" quando a sentença deferiu verbas salariais.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Dissídios coletivos (art. 114, §2º, CF)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Recusando-se qualquer das partes à negociação coletiva ou à arbitragem, é facultado às mesmas, <strong>de comum acordo</strong>, ajuizar dissídio coletivo de natureza econômica, podendo a JT decidir o conflito, respeitadas as disposições mínimas legais de proteção ao trabalho e as convencionadas anteriormente.<br><br>
+      <strong>Notas sobre o tema:</strong><br>
+      • Classificação (Regimento Interno do TST): <strong>econômicos, jurídicos e de greve</strong>.<br>
+      • Natureza jurídica da sentença normativa: <strong>constitutiva ou declaratória</strong> — <strong>nunca condenatória</strong>.<br>
+      • Vigência máxima de <strong>4 anos</strong> (<strong>PN 120 do TST</strong>); após 1 ano pode ser revista por dissídio econômico revisional.<br>
+      • Competência: <strong>nunca a Vara do Trabalho</strong> — TRT e TST têm competência originária, conforme a amplitude das categorias.<br>
+      • Descumprida a sentença normativa, não cabe execução: ajuíza-se <strong>ação de cumprimento</strong>, de competência da <strong>Vara do Trabalho</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ação</th><th>Competência</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dissídio coletivo</strong> (econômico, jurídico, de greve)</td><td><span class="tag tag-blue">TRT ou TST (competência originária)</span></td></tr>
+        <tr><td><strong>Ação de cumprimento</strong> (descumprimento de norma da sentença normativa)</td><td><span class="tag tag-green">Vara do Trabalho</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Segurança, higiene e saúde no trabalho
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Súmula nº 736 STF:</strong> compete à Justiça do Trabalho julgar as ações que tenham como causa de pedir o <strong>descumprimento de normas trabalhistas relativas à segurança, higiene e saúde dos trabalhadores</strong> (ex.: não fornecimento de EPIs; não concessão de intervalos). Ações do sindicato ou do MPT para impor o respeito às regras ou condenação por danos decorrentes do descumprimento = JT.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Outras competências da CLT — Art. 652
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Compete às <strong>Varas do Trabalho</strong> conciliar e julgar: reconhecimento de estabilidade; remuneração, férias e indenizações por motivo de rescisão; dissídios de contratos de empreitada em que o empreiteiro seja operário ou artífice; demais dissídios concernentes ao contrato individual de trabalho; e <strong>ações entre trabalhadores portuários (avulsos) e os operadores portuários ou o Órgão Gestor de Mão-de-Obra (OGMO)</strong> decorrentes da relação de trabalho (inciso V).<br><br>
+      Também: processar e julgar <strong>inquéritos para apuração de falta grave</strong>; julgar <strong>embargos</strong> opostos às suas próprias decisões; impor multas e demais penalidades relativas aos atos de sua competência; e, por fim, decidir quanto à <strong>homologação de acordo extrajudicial</strong>.<br><br>
+      <strong>Parágrafo único:</strong> preferência para julgamento dos dissídios sobre <strong>pagamento de salário</strong> e dos que derivarem da <strong>falência do empregador</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Trabalhador <strong>avulso</strong> (estivador) que ajuíza ação contra operador portuário e <strong>OGMO</strong> = <strong>Justiça do Trabalho</strong>, mesmo sem vínculo de emprego (art. 652, V, CLT).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Reforma trabalhista — Homologação de acordo extrajudicial (art. 855-B CLT)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A reforma trabalhista (Lei 13.467/17) incluiu a competência do Juiz do Trabalho para <strong>homologar acordo extrajudicial</strong> (art. 652, "f", CLT). Requisitos e pontos do procedimento:<br>
+      • O acordo deve ser apresentado por <strong>petição conjunta</strong>;<br>
+      • As partes devem estar representadas por <strong>Advogado</strong> — não se aplica o jus postulandi;<br>
+      • Os advogados devem ser <strong>diferentes</strong> (não pode advogado comum às partes);<br>
+      • O trabalhador pode ser representado por <strong>advogado do sindicato</strong>;<br>
+      • O acordo não afasta a incidência do <strong>art. 477, §6º CLT</strong> (prazo para pagamento das verbas rescisórias), com multa do §8º em caso de atraso.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      Apresentada a petição, o Magistrado tem <strong>15 dias</strong> para analisá-la, podendo marcar audiência (se entender necessário) ou proferir sentença — <strong>homologando</strong> o acordo e extinguindo o feito com resolução do mérito, ou <strong>negando</strong> a homologação (faculdade do magistrado — <strong>Súmula 418 TST</strong>).<br><br>
+      Durante o procedimento o <strong>prazo de prescrição fica suspenso</strong>; havendo negativa de homologação, transita em julgado a sentença e a prescrição volta a fluir no <strong>dia útil seguinte</strong>. Da sentença que nega a homologação (extinção sem resolução do mérito) cabe <strong>recurso ordinário</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A homologação de acordo extrajudicial <strong>suspende</strong> (não interrompe) o prazo prescricional, apenas quanto aos <strong>direitos especificados no acordo</strong>. A petição <strong>não pode</strong> ser assinada por advogado comum às partes. A multa do art. 477 CLT pelo não pagamento das verbas rescisórias em 10 dias <strong>não é afastada</strong> pela homologação.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — COMPETÊNCIA EM RAZÃO DA PESSOA E DO LUGAR            -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Competência em razão da pessoa e do lugar</div>
+  </div>
+  <div class="sec-subtitle">Critérios absolutos (material, pessoal, funcional) e o critério territorial (art. 651 CLT)</div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Competência em razão da matéria</strong> — leva em consideração a <strong>natureza da relação jurídica controvertida</strong> (ex.: art. 114 CF e art. 652 CLT).<br>
+      <strong>Competência em razão da pessoa</strong> — fixada com base na <strong>qualidade que a parte</strong> tem em uma determinada relação jurídica de direito material (ex.: incisos I, III, VII e §3º do art. 114 CF).<br>
+      <strong>Competência em razão da função</strong> — leva em consideração as <strong>exigências advindas das funções dos magistrados</strong>: apura a competência material de cada órgão para definir o competente em razão da função.
+    </div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Atenção:</strong> as competências em razão da <strong>pessoa, da função e da matéria</strong> são de natureza <strong>absoluta</strong> — criadas no interesse do Estado, podem ser reconhecidas de ofício pelo magistrado.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Competência territorial — o lugar do ajuizamento
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      No processo do trabalho <strong>não</strong> se segue a regra geral do CPC (foro do domicílio do réu). Visando proteger o empregado (hipossuficiente), a colheita de provas e a busca da verdade real, o legislador definiu como competente o <strong>local da efetiva prestação dos serviços</strong> (art. 651 CLT) — ainda que o empregado tenha sido contratado em outro local ou no estrangeiro.<br><br>
+      Havendo transferências, a regra é o <strong>último local da prestação dos serviços</strong> (local do encerramento do liame jurídico).<br><br>
+      A competência territorial é <strong>relativa</strong>: não pode ser reconhecida de ofício (Súmula 33 STJ) — a parte interessada deve arguir a incompetência.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Regra de ouro: a ação trabalhista ajuíza-se no LOCAL DA PRESTAÇÃO DOS SERVIÇOS — transferências = último local
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hipótese</th><th>Regra</th><th>Base legal</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Regra geral</strong></td><td>Localidade onde o empregado presta serviços, ainda que contratado noutro local ou no estrangeiro</td><td>Caput do art. 651 CLT</td></tr>
+        <tr><td><strong>Agente ou viajante comercial</strong></td><td>Localidade da <strong>agência ou filial</strong> a que o empregado está subordinado; na falta, o domicílio do empregado ou a localidade mais próxima (à escolha do empregado-reclamante)</td><td>§1º do art. 651 CLT</td></tr>
+        <tr><td><strong>Dissídio em agência/filial no estrangeiro</strong></td><td>Estende-se a competência das Juntas, desde que o empregado seja <strong>brasileiro</strong> e não haja convenção internacional em contrário; entendimento majoritário exige sede/filial da reclamada no Brasil</td><td>§2º do art. 651 CLT</td></tr>
+        <tr><td><strong>Empregador que promove atividades fora do local do contrato</strong> (ex.: circo — o "viajante" é o empregador)</td><td>Empregado pode escolher: <strong>foro da celebração do contrato OU o da prestação dos serviços</strong></td><td>§3º do art. 651 CLT</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Contratado em Vitória/ES para trabalhar no Rio de Janeiro/RJ → ação no <strong>Rio</strong>. Contratado em Vitória, transferido para SP e depois RJ (dispensado lá) → ação no <strong>RJ</strong> (último local). Exemplos clássicos de prova (FCC TRT 19ª AL, TRT 2ª SP etc.).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Foro de eleição — não se aplica ao processo do trabalho
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Foro de eleição</strong> é a escolha do local do ajuizamento pelas partes em um negócio jurídico (art. 63 CPC — aplicável, em regra, no processo civil). <strong>Não é aplicável ao processo do trabalho</strong>, ante a possibilidade de ferir o <strong>princípio da proteção</strong>: o empregador poderia "eleger" local distante para dificultar o acesso à justiça e a produção de provas.<br><br>
+      Cláusula de foro diverso do local da prestação dos serviços é <strong>nula</strong>. A <strong>Instrução Normativa nº 39/16 do TST</strong> confirma o entendimento.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Contrato que elege foro em São Luís/MA ou Rio Branco/AC para empregado que trabalhou em Vitória/ES: a cláusula de foro de eleição <strong>não vale</strong> no processo do trabalho — vale a regra do art. 651 CLT (local da prestação dos serviços).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — COMPETÊNCIA FUNCIONAL E HIERÁRQUICA                  -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Competência funcional e hierárquica</div>
+  </div>
+  <div class="sec-subtitle">Distribuição vertical do poder jurisdicional entre os órgãos da JT</div>
+
+  <div class="card">
+    <div class="card-text">
+      A <strong>competência funcional</strong> destaca a competência do órgão jurisdicional com base no <strong>exercício de uma função</strong>, isto é, pela relação existente entre dois ou mais processos (ideia de <strong>continuação</strong> no exercício do poder jurisdicional). Ex.: a competência do TRT/ES para analisar recurso ordinário interposto de sentença proferida por Vara do Trabalho de Vitória/ES é funcional. No CPC, o critério está no <strong>art. 61</strong>: "a ação acessória será proposta no juízo competente para a ação principal".
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Mandado de segurança — competência funcional
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Órgão</th><th>Autoridade do ato questionado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Vara do Trabalho</strong></td><td>Auditor fiscal do trabalho / delegado do trabalho (fiscalização das relações de trabalho); membro do MPT em inquéritos civis públicos ou procedimentos administrativos</td></tr>
+        <tr><td><strong>TRT</strong></td><td>Juiz do Trabalho; Juiz de Direito com competência trabalhista; atos do próprio TRT (órgãos monocráticos ou colegiados) — cabendo recurso ordinário ao TST (art. 895, II, CLT)</td></tr>
+        <tr><td><strong>TST</strong></td><td>Presidente do TST ou qualquer de seus Ministros; membro do TST</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Exemplo (MS contra ato de Juiz do Trabalho):</strong> decisão interlocutória ilegal (ex.: penhora em salário; indeferimento de reintegração de empregada demitida grávida) → MS de competência <strong>originária do TRT</strong>; do acórdão cabe <strong>recurso ordinário ao TST</strong> (art. 895, II, CLT).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Distribuição hierárquica das competências
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Matéria</th><th>Órgão competente</th></tr></thead>
+      <tbody>
+        <tr><td>Reclamações trabalhistas, inquéritos para apuração de falta grave, homologação de acordo extrajudicial, ação de cumprimento</td><td><span class="tag tag-green">Vara do Trabalho</span></td></tr>
+        <tr><td>Dissídios coletivos (competência originária)</td><td><span class="tag tag-blue">TRT ou TST</span>, conforme a amplitude das categorias</td></tr>
+        <tr><td>Recurso ordinário de sentença de Vara do Trabalho</td><td><span class="tag tag-blue">TRT</span></td></tr>
+        <tr><td>Recurso ordinário de acórdão do TRT (ex.: MS) e conflitos entre órgãos de regiões diferentes</td><td><span class="tag tag-blue">TST</span></td></tr>
+        <tr><td>Conflito de competência (ver Seção 5)</td><td>TRT, TST, STJ ou STF, conforme o caso</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Exceções de impedimento ou suspeição</strong> opostas em face de Juiz do Trabalho serão julgadas pelo <strong>respectivo Tribunal Regional do Trabalho</strong> (art. 146, §1º, CPC).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — CONFLITOS DE COMPETÊNCIA                             -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Conflitos de competência</div>
+  </div>
+  <div class="sec-subtitle">Art. 114, V, CF · art. 102, I, "o", CF · arts. 66, 952 e 953 CPC · arts. 805 e 806 CLT</div>
+
+  <div class="card">
+    <div class="card-text">
+      A JT julga conflitos de competência <strong>apenas entre os órgãos que possuírem competência trabalhista</strong> (art. 114, V, CF). Exceção: <strong>conflitos entre tribunais superiores (STF, STJ e TST)</strong> cabem ao <strong>STF</strong> (art. 102, I, "o", CF). As <strong>Varas do Trabalho não possuem competência</strong> para julgá-los.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Três espécies de conflito (art. 66 CPC)</div>
+    <div class="card-text">
+      1. <strong>Conflito positivo</strong> — dois ou mais juízos se declaram competentes;<br>
+      2. <strong>Conflito negativo</strong> — dois ou mais juízos se declaram incompetentes;<br>
+      3. <strong>Conflito na reunião ou separação de processos</strong> — controvérsia entre dois ou mais juízos quanto à reunião/separação.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Legitimidade para suscitar</div>
+    <div class="card-text">
+      Pode ser iniciado pelo <strong>juiz (de ofício)</strong>, pelas <strong>partes</strong> e pelo <strong>Ministério Público</strong> (art. 953 CPC; art. 805 CLT).<br><br>
+      <strong>Vedação:</strong> <strong>não pode suscitar conflito</strong> a parte que, no processo, <strong>arguiu incompetência</strong> (art. 952 CPC; art. 806 CLT).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Conflito entre</th><th>Quem julga</th></tr></thead>
+      <tbody>
+        <tr><td>Varas do Trabalho da <strong>mesma região</strong>; Juízes de Direito investidos na competência trabalhista da mesma região; Varas do Trabalho e Juízes de Direito investidos na competência trabalhista da mesma região</td><td><span class="tag tag-blue">TRT</span></td></tr>
+        <tr><td>Tribunais Regionais do Trabalho entre si; TRT e Vara (ou Juiz de Direito) de <strong>regiões diferentes</strong>; Varas ou Juízes de Direito investidos na competência trabalhista em <strong>regiões diferentes</strong></td><td><span class="tag tag-blue">TST</span></td></tr>
+        <tr><td>Vara do Trabalho ou TRT e <strong>Juízo de Direito não investido na competência trabalhista</strong></td><td><span class="tag tag-blue">STJ</span></td></tr>
+        <tr><td><strong>TST</strong> em conflito com qualquer outro órgão do Poder Judiciário (TJ, TRF, STJ, STF)</td><td><span class="tag tag-blue">STF</span></td></tr>
+        <tr><td>Tribunais superiores entre si (STF, STJ e TST)</td><td><span class="tag tag-blue">STF</span> (art. 102, I, "o", CF)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Súmula nº 420 TST:</strong> não se configura conflito de competência entre <strong>TRT e Vara do Trabalho a ele vinculada</strong>.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Varas de Ji-Paraná/RO e Sena Madureira/AC → ambas vinculadas ao <strong>TRT da 14ª Região (RO/AC)</strong> → conflito julgado pelo <strong>próprio TRT 14</strong>. Vara de Vitória/ES em conflito com Vara do Rio/RJ → regiões diferentes → <strong>TST</strong>. Vara do Trabalho em conflito com Vara Cível (Justiça Comum) → <strong>STJ</strong>.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Assertiva que afirme competir à JT julgar <strong>"todos"</strong> os conflitos, inclusive com o STJ, está errada: o conflito com o STJ (tribunal superior) é julgado pelo <strong>STF</strong>. A JT julga apenas conflitos entre órgãos com jurisdição trabalhista.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Regra territorial (art. 651 CLT):</strong> local da prestação dos serviços; transferências → último local; agente/viajante (§1º), estrangeiro (§2º), empregador móvel (§3º)<br>
+      • <strong>Exceção de incompetência territorial:</strong> 5 dias da notificação, antes da audiência, por escrito (art. 800 CLT); competência relativa não é conhecida de ofício (Súmula 33 STJ)<br>
+      • <strong>Estatutários fora da JT</strong> (ADI 3.395) × literalidade do art. 114, I, CF aceita pelas bancas; empregados públicos (celetistas) na JT<br>
+      • <strong>JT não tem competência criminal</strong> (ADI 3.684); falso testemunho em processo trabalhista → Justiça Comum Federal<br>
+      • <strong>Acidente de trabalho:</strong> empregado × empregador → JT (SV 22); contra INSS → Justiça Comum Estadual (Súmulas 15 STJ, 235/501 STF)<br>
+      • <strong>Inciso VII:</strong> penalidades administrativas impostas pelos órgãos de fiscalização (autuações do MTE) = JT; penalidades tributárias não<br>
+      • <strong>Inciso VI + Súmula 392 TST:</strong> dano moral/material da relação de trabalho, inclusive por sucessores e dependentes<br>
+      • <strong>Contribuições:</strong> executa-se o objeto da condenação (art. 114, VIII, CF + art. 876 CLT); período de vínculo reconhecido sem condenação → Justiça Comum (Súmula 368, I, TST; SV 53; Tema 36); SAT = de ofício (Súmula 454 TST)<br>
+      • <strong>Conflitos:</strong> TRT (mesma região) · TST (regiões diferentes) · STJ (juízo não investido) · STF (TST); Súmula 420 TST<br>
+      • <strong>Foro de eleição não se aplica</strong> ao processo do trabalho (cláusula nula — princípio da proteção; IN 39/16 TST)<br>
+      • <strong>Avulso × OGMO</strong> (art. 652, V, CLT) e <strong>acordo extrajudicial</strong> (petição conjunta, advogados distintos, 15 dias, Súmula 418 TST, prescrição suspensa)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • "Ações entre sindicatos" ≠ necessariamente JT: o que importa é a <strong>matéria</strong> (representação sindical)<br>
+      • Greve de <strong>servidor público celetista da Administração direta, autarquias e fundações</strong> (abusividade) → Justiça Comum (Tema 544), mas ação possessória de greve da iniciativa privada → JT (SV 23)<br>
+      • MS: Vara (ato de auditor fiscal, delegado do trabalho, membro do MPT) · TRT (ato de juiz) · TST (ato de Presidente/Ministro); acórdão do TRT no MS → recurso ordinário ao TST<br>
+      • <strong>Mandado de injunção</strong> não está no art. 114, mas VUNESP admite na JT em matéria trabalhista<br>
+      • <strong>Habeas data nunca contra empregador</strong> (bancos de dados privados)<br>
+      • <strong>Sentença normativa</strong> nunca condenatória; ação de cumprimento é da Vara<br>
+      • <strong>Acordo extrajudicial:</strong> suspensão (não interrupção) da prescrição; vedado advogado comum; multa do art. 477 CLT não afastada<br>
+      • Contribuição sobre acordo <strong>após trânsito em julgado</strong> = incide sobre o valor do acordo, respeitada a proporcionalidade (OJ 376 SDI-1)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Temas de repercussão geral do STF
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tema</th><th>Tese</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tema nº 994</strong></td><td>Compete à Justiça comum processar e julgar demandas em que se discute o <strong>recolhimento e repasse de contribuição sindical de servidores públicos do regime estatutário</strong></td></tr>
+        <tr><td><strong>Tema nº 544</strong></td><td>A justiça comum, federal ou estadual, é competente para julgar a <strong>abusividade de greve de servidores públicos celetistas</strong> da Administração pública direta, autarquias e fundações públicas</td></tr>
+        <tr><td><strong>Tema nº 1.143</strong></td><td>A Justiça Comum é competente para julgar ação ajuizada por <strong>servidor celetista contra o Poder Público</strong> em que se pleiteia <strong>parcela de natureza administrativa</strong></td></tr>
+        <tr><td><strong>Tema nº 36</strong></td><td>A competência do art. 114, VIII, CF alcança somente a execução de contribuições previdenciárias <strong>relativas ao objeto da condenação</strong>, não abrangendo contribuições atinentes ao vínculo reconhecido sem condenação ou acordo quanto às verbas salariais</td></tr>
+        <tr><td><strong>Tema nº 74</strong></td><td>Compete à <strong>Justiça do Trabalho</strong> o julgamento de ações de <strong>interdito proibitório</strong> em que se busca garantir o livre acesso de funcionários e clientes às agências bancárias interditadas em decorrência de movimento grevista</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine a regra territorial do art. 651 CLT e o prazo/formato da exceção de incompetência (art. 800 CLT), o rol do art. 114 da CF (com as exclusões: estatutários, consumo, criminal), as súmulas-chave (363 e 15 STJ; 392, 368, 454 e 420 TST; SV 22, 23, 25, 53 STF) e a tabela de quem julga cada conflito de competência.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — INCIDÊNCIA DE TEMAS (TEC)                            -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

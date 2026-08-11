@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DT Aula 04: Término do Contrato de Trabalho</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito do Trabalho — Aula 04</div>
+  <div class="sidebar-sub">Término do Contrato de Trabalho · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Formas de extinção do contrato</a>
+  <a href="#sec2">2. Dispensa sem justa causa</a>
+  <a href="#sec3">3. Dispensa com justa causa (art. 482)</a>
+  <a href="#sec4">4. Pedido de demissão</a>
+  <a href="#sec5">5. Culpa recíproca e acordo (484-A)</a>
+  <a href="#sec6">6. Aviso prévio</a>
+  <a href="#sec7">7. Verbas rescisórias e efeitos</a>
+  <a href="#sec8">8. Pontos que mais caem em prova</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — FORMAS DE EXTINÇÃO DO CONTRATO                       -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Formas de extinção do contrato</div>
+  </div>
+  <div class="sec-subtitle">O término do pacto empregatício pode se dar por iniciativa do empregador, do empregado, de ambos ou por fato alheio à vontade das partes</div>
+
+  <div class="card">
+    <div class="card-title">Modalidades de rescisão estudadas na aula</div>
+    <div class="card-text">
+      <strong>Por iniciativa do empregador:</strong> dispensa sem justa causa, dispensa com justa causa e dispensa coletiva (equiparada à individual)<br>
+      <strong>Por iniciativa do empregado:</strong> pedido de demissão<br>
+      <strong>Por iniciativa de ambos:</strong> rescisão por culpa recíproca e rescisão por acordo (art. 484-A, "distrato"), incluindo a adesão a Programa de Demissão Voluntária (PDV)<br>
+      <strong>Por falta grave do empregador:</strong> rescisão indireta (art. 483)<br>
+      <strong>Pelo decurso do tempo:</strong> extinção normal ou antecipada dos contratos a termo (prazo determinado)<br>
+      <strong>Outras hipóteses:</strong> extinção da empresa/estabelecimento e morte do empregador pessoa física
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Rescisão indireta</div><div class="card-text">O <strong>empregador comete falta grave</strong>. O empregado ingressa com ação na Justiça do Trabalho, que reconhece a rescisão indireta (art. 483 CLT). Empregado faz jus às mesmas verbas da dispensa sem justa causa.</div></div>
+    <div class="card"><div class="card-title">📌 Culpa recíproca</div><div class="card-text">Tanto empregador quanto empregado dão causa à extinção. Exige decisão judicial que reconheça a culpa recíproca. Multa do FGTS cai pela metade (20%).</div></div>
+    <div class="card"><div class="card-title">📌 Acordo (distrato)</div><div class="card-text">Comum acordo entre empregado e empregador (art. 484-A, incluído pela Lei 13.467/2017). Verbas: metade do aviso prévio indenizado e da multa do FGTS; demais verbas integrais.</div></div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Na <strong>rescisão indireta</strong> a falta grave é do <strong>empregador</strong> (art. 483), e o reconhecimento depende da <strong>Justiça do Trabalho</strong>. Na <strong>justa causa</strong> a falta grave é do <strong>empregado</strong> (art. 482). As bancas adoram inverter quem comete a falta.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — DISPENSA SEM JUSTA CAUSA                             -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Dispensa sem justa causa</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-green">BAIXA</span> — também chamada dispensa injusta, imotivada, desmotivada ou demissão imotivada</div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      Extinção voluntária imotivada promovida pelo empregador: o empregado <strong>não deu causa</strong> à extinção do contrato. Confronta o <strong>princípio da continuidade da relação de emprego</strong> — por isso a demissão sem justa causa gera um pacote de verbas ao empregado.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">✅ Verbas devidas ao empregado</div>
+    <div class="card-text">
+      • <strong>Saldo de salário</strong> (dias trabalhados no mês da saída)<br>
+      • <strong>Férias</strong>, inclusive proporcionais<br>
+      • <strong>13º salário</strong> proporcional<br>
+      • <strong>Indenização do FGTS</strong> (multa rescisória de <strong>40%</strong>)<br>
+      • <strong>Seguro-Desemprego</strong> (requerimento)<br>
+      • <strong>Aviso prévio</strong>: o empregador deve concedê-lo; não o fazendo, deverá indenizar o aviso
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Súmula 443 TST — dispensa discriminatória:</strong> presume-se discriminatória a despedida de empregado portador do <strong>vírus HIV</strong> ou de <strong>outra doença grave</strong> que suscite estigma ou preconceito. Inválido o ato, o empregado tem direito à <strong>reintegração</strong>. Salvo se houver motivo que justifique a demissão, esta será considerada arbitrária.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A dispensa discriminatória de empregado portador de doença grave gera direito à <strong>reintegração</strong> (Súmula 443, de setembro de 2012) — e não apenas indenização. No pedido de demissão (seção 4), lembre: não há multa de 40% do FGTS nem Seguro-Desemprego.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — DISPENSA COM JUSTA CAUSA (ART. 482)                   -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Dispensa com justa causa (art. 482 CLT)</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-red">ALTÍSSIMA</span> — sistema taxativo: o empregado praticou conduta tipificada pela CLT como motivadora de sua demissão</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial — alíneas do art. 482</div>
+    <div class="mnemonic-content">
+      INCDEVIAJAP — Improbidade · Incontinência de conduta/Mau procedimento · Negociação habitual · Condenação criminal · Desídia · Embriaguez · Violação de segredo · Indisciplina/Insubordinação · Abandono de emprego · Ato lesivo da honra · Jogos de azar · Perda de habilitação
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Alínea</th><th>Justa causa</th><th>Observações (o que a banca cobra)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>a</strong></td><td>Ato de improbidade</td><td>Conduta faltosa contrária à lei</td></tr>
+        <tr><td><strong>b</strong></td><td>Incontinência de conduta ou mau procedimento</td><td>Incontinência = moral <strong>sexual</strong> (ex.: assédio sexual entre trabalhadores); mau procedimento = demais dimensões da moral (ex.: destruir propositalmente equipamento da empresa)</td></tr>
+        <tr><td><strong>c</strong></td><td>Negociação habitual por conta própria ou alheia sem permissão</td><td>Duas condutas: negociação habitual no local de trabalho (comercializar produtos por conta própria) e concorrência com o empregador (mesmos produtos/serviços da atividade empresarial — concorrência desleal)</td></tr>
+        <tr><td><strong>d</strong></td><td>Condenação criminal passada em julgado, sem suspensão da execução da pena</td><td>Não confundir com <strong>prisão provisória</strong> (suspensão contratual, não justa causa)</td></tr>
+        <tr><td><strong>e</strong></td><td>Desídia no desempenho das funções</td><td>Falta <strong>culposa</strong> (negligência), não dolosa; em regra vários atos (impontualidade, ausências, produção imperfeita); excepcionalmente um só ato culposo muito grave</td></tr>
+        <tr><td><strong>f</strong></td><td>Embriaguez habitual ou em serviço</td><td>Em serviço: <strong>uma ocorrência basta</strong>; fora do serviço: exige-se <strong>habitualidade</strong> + efeitos negativos no ambiente de trabalho. Aplicável também a tóxicos/entorpecentes; alcoolismo tratado por algumas decisões como doença → busca de tratamento</td></tr>
+        <tr><td><strong>g</strong></td><td>Violação de segredo da empresa</td><td>Repasse indevido a terceiros de informações confidenciais</td></tr>
+        <tr><td><strong>h</strong></td><td>Ato de indisciplina ou insubordinação</td><td>Indisciplina = descumprimento de <strong>ordens gerais</strong>; insubordinação = descumprimento de <strong>ordens individuais</strong></td></tr>
+        <tr><td><strong>i</strong></td><td>Abandono de emprego</td><td>Elemento objetivo: ausência por ~<strong>30 dias</strong> (art. 472, § 1º, CLT e Súmula 32 TST); elemento subjetivo: intenção de romper o contrato</td></tr>
+        <tr><td><strong>j</strong></td><td>Ato lesivo da honra/boa fama ou ofensas físicas no serviço contra qualquer pessoa</td><td>Crimes contra a honra (difamação, injúria, calúnia) e ofensas físicas no ambiente laboral; <strong>salvo legítima defesa</strong></td></tr>
+        <tr><td><strong>k</strong></td><td>Ato lesivo da honra/boa fama ou ofensas físicas contra o empregador e superiores hierárquicos</td><td>Semelhante à "j", mas contra o empregador e superiores; <strong>salvo legítima defesa</strong></td></tr>
+        <tr><td><strong>l</strong></td><td>Prática constante de jogos de azar</td><td>Exige-se <strong>habitualidade</strong> durante o horário de trabalho (apostas em corridas de cavalos, jogos de cartas, jogo do bicho)</td></tr>
+        <tr><td><strong>m</strong></td><td>Perda da habilitação/requisitos legais para a profissão por conduta dolosa</td><td>Acrescentada pela <strong>reforma trabalhista</strong> (ex.: motorista perde a habilitação, advogado tem registro cassado na OAB, médico tem registro cassado no CRM — mediante conduta dolosa)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Parágrafo único do art. 482:</strong> constitui igualmente justa causa a prática, <strong>devidamente comprovada em inquérito administrativo</strong>, de atos atentatórios à <strong>segurança nacional</strong>. A doutrina majoritária (inclui Mauricio Godinho Delgado) entende que o dispositivo <strong>não foi recepcionado pela CF/88</strong>, por afrontar o juiz natural e o devido processo legal.</div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">➖ Verbas devidas na demissão por justa causa</div>
+    <div class="card-text">
+      Apenas: ✓ <strong>saldo de salário</strong> · ✓ <strong>férias</strong>, <strong>exceto proporcionais</strong>.<br><br>
+      <span class="tag tag-red">Não</span> 13º proporcional · <span class="tag tag-red">Não</span> aviso prévio · <span class="tag tag-red">Não</span> multa de 40% do FGTS · <span class="tag tag-red">Não</span> saque do FGTS · <span class="tag tag-red">Não</span> Seguro-Desemprego
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Outras infrações que ensejam justa causa (fora do art. 482)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Recusa injustificada ao uso de EPI</strong> (art. 158, parágrafo único, "b", CLT): é ato faltoso do empregado. Aplicam-se os critérios <strong>objetivos, subjetivos e circunstanciais</strong> (gradação/proporcionalidade) — nem toda recusa justifica a justa causa. Ex.: ausência pontual de capacete em local sem risco de queda de materiais (demissão duvidosa) × pintura de fachada em andaime sem cinto de segurança paraquedista, contrariando ordem de serviço (situação grave).<br><br>
+      • <strong>Bancário contumaz em não pagar dívidas</strong> (antigo art. 508 CLT): previsão <strong>revogada pela Lei 12.347/10</strong> — esta justa causa não existe mais no ordenamento.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A condenação criminal que autoriza a justa causa deve estar <strong>passada em julgado</strong> e sem suspensão da execução da pena (alínea "d"). <strong>Prisão provisória é suspensão do contrato</strong>, não justa causa. E o art. 508 (bancário devedor contumaz) está <strong>revogado</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — PEDIDO DE DEMISSÃO                                   -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Pedido de demissão</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-amber">MÉDIA</span> — extinção voluntária imotivada pelo empregado; o empregador não pode recusar</div>
+
+  <div class="card">
+    <div class="card-title">Conceito e verbas devidas</div>
+    <div class="card-text">
+      O empregado põe fim ao pacto empregatício <strong>sem necessidade de motivo</strong>. Faz jus a:<br>
+      ✓ <strong>Saldo de salário</strong> · ✓ <strong>Férias</strong>, inclusive proporcionais · ✓ <strong>13º salário</strong> proporcional<br><br>
+      <span class="tag tag-red">Não</span> aviso prévio como direito (é dever do empregado) · <span class="tag tag-red">Não</span> multa de 40% do FGTS · <span class="tag tag-red">Não</span> Seguro-Desemprego
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div>Como foi do <strong>empregado</strong> a iniciativa do término, <strong>não é cabível</strong> direito a aviso prévio: ao contrário, <strong>é ele que deve conceder o aviso ao empregador</strong>. Não o fazendo, deverá <strong>indenizá-lo</strong> (o empregador poderá descontar os salários correspondentes).</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    No pedido de demissão o empregado <strong>não</strong> recebe multa do FGTS nem Seguro-Desemprego. Na dispensa <strong>sem justa causa</strong> recebe ambos. Já na justa causa, só saldo de salário + férias (sem as proporcionais). Confira sempre a iniciativa da extinção.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — CULPA RECÍPROCA E ACORDO (484-A)                      -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Culpa recíproca e acordo (art. 484-A)</div>
+  </div>
+  <div class="sec-subtitle">Culpa recíproca: <span class="tag tag-red">ALTA</span> · Acordo/distrato: <span class="tag tag-red">ALTA</span></div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Culpa recíproca
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Ocorre quando <strong>tanto o empregador quanto o empregado dão causa</strong> à extinção. Como na rescisão indireta, envolve <strong>decisão judicial</strong> que reconheça a culpa recíproca.<br><br>
+      • <strong>Lei 8.036/90, art. 18, § 2º:</strong> na despedida por culpa recíproca ou força maior reconhecida pela Justiça do Trabalho, o percentual de 40% cai para <strong>20%</strong>.<br>
+      • <strong>Súmula 14 TST:</strong> reconhecida a culpa recíproca, o empregado tem direito a <strong>50%</strong> do valor do aviso prévio, do 13º e das férias proporcionais.<br>
+      • Autoriza o <strong>saque do FGTS</strong>, mas <strong>não</strong> há direito ao Seguro-Desemprego.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Rescisão por acordo (distrato) — art. 484-A
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Verbas devidas no acordo</div>
+    <div class="card-text">
+      <strong>Por metade:</strong> o aviso prévio, se indenizado; e a indenização sobre o saldo do FGTS (a multa de 40% vira <strong>20%</strong>) — art. 484-A, I.<br>
+      <strong>Na integralidade:</strong> as demais verbas trabalhistas (13º e férias, inclusive proporcionais) — art. 484-A, II.<br><br>
+      • <strong>§ 1º:</strong> permite movimentar a conta vinculada do FGTS limitada a <strong>até 80%</strong> do valor dos depósitos.<br>
+      • <strong>§ 2º:</strong> <strong>não autoriza</strong> o ingresso no Programa de Seguro-Desemprego (o desemprego não é "involuntário").
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Parcelas devidas</th><th>Extinção por acordo</th><th>Culpa recíproca</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Aviso prévio</strong></td><td>Se indenizado: pela metade</td><td>Pela metade</td></tr>
+        <tr><td><strong>Multa rescisória (FGTS)</strong></td><td>Pela metade (20%)</td><td>Pela metade (20%)</td></tr>
+        <tr><td><strong>Férias proporcionais</strong></td><td>Integralmente</td><td>Pela metade</td></tr>
+        <tr><td><strong>13º proporcional</strong></td><td>Integralmente</td><td>Pela metade</td></tr>
+        <tr><td><strong>Férias simples e vencidas</strong></td><td>Integralmente</td><td>Integralmente</td></tr>
+        <tr><td><strong>Saque do FGTS</strong></td><td>Até 80% dos depósitos</td><td>Integralmente</td></tr>
+        <tr><td><strong>Seguro-Desemprego</strong></td><td>Não recebe</td><td>Não recebe</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Férias proporcionais e 13º proporcional:</strong> no acordo são <strong>integrais</strong>; na culpa recíproca são <strong>pela metade</strong>. E a diferença do saque do FGTS: acordo = <strong>até 80%</strong>; culpa recíproca = <strong>integral</strong>. As bancas trocam esses números constantemente.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Programa de Demissão Voluntária (PDV) — incidência média
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A reforma trabalhista regulamentou o término por adesão a um <strong>PDV/PDI</strong> como uma espécie de <strong>extinção por acordo</strong> (art. 484-A): o empregado manifesta interesse em romper o vínculo ante um incentivo do empregador (quantia em dinheiro, viagem, treinamentos pagos).<br><br>
+      • <strong>Art. 477-B CLT:</strong> o PDV previsto em <strong>convenção coletiva ou acordo coletivo</strong> enseja <strong>quitação plena e irrevogável</strong> dos direitos decorrentes da relação empregatícia, salvo disposição em contrário. O aderente não pode depois reclamar verbas na Justiça.<br>
+      • <strong>Art. 611-A, XIV, CLT:</strong> os <strong>prêmios de incentivo</strong> em bens ou serviços em programas de incentivo são tema em que o <strong>"negociado prevalece sobre o legislado"</strong>.<br>
+      • <strong>OJ-SDI1-356:</strong> os créditos tipicamente trabalhistas reconhecidos em juízo <strong>não são suscetíveis de compensação</strong> com a indenização paga pela adesão ao PDV — as verbas rescisórias (saldo de salário, 13º proporcional etc.) devem ser pagas normalmente.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Dispensa coletiva: equiparação com a dispensa individual — incidência média
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Art. 477-A CLT (reforma trabalhista):</strong> as dispensas imotivadas <strong>individuais, plúrimas ou coletivas</strong> equiparam-se para todos os fins, sem necessidade de <strong>autorização prévia de entidade sindical</strong> nem de celebração de ACT/CCT.<br><br>
+      • <strong>STF (RE 999435, junho/2022):</strong> relativizando a equiparação, firmou a tese de que a <strong>intervenção sindical prévia</strong> é exigência procedimental <strong>imprescindível</strong> para a dispensa em massa — o que <strong>não se confunde</strong> com autorização prévia da entidade sindical.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — AVISO PRÉVIO                                         -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Aviso prévio</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-red">ALTA</span> — tríplice dimensão (Amauri Mascaro Nascimento): comunicação + período trabalhado + pagamento em dinheiro</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      30 + 3 × ano, máx. 90 — CF/88 (mín. 30 dias) + Lei 12.506/11 (+3 dias por ano de serviço, até 60; total até 90)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fundamento e duração</div>
+    <div class="card-text">
+      Serve para que a outra parte tenha tempo razoável para se ajustar (empregado procura novo emprego; empregador busca novo trabalhador).<br><br>
+      • <strong>CF/88, art. 7º, XXI:</strong> aviso prévio <strong>proporcional ao tempo de serviço</strong>, no mínimo de 30 dias.<br>
+      • <strong>Lei 12.506/11, art. 1º:</strong> 30 dias para quem conta até 1 ano de serviço na mesma empresa; <strong>+3 dias por ano</strong> de serviço prestado, até o máximo de 60 dias acrescidos — total de <strong>até 90 dias</strong>.<br>
+      • <strong>Súmula 441 TST:</strong> a proporcionalidade só é assegurada em rescisões a partir da publicação da Lei 12.506 (<strong>13/10/2011</strong>) — não retroage.<br>
+      • <strong>CLT, art. 487, I (8 dias):</strong> previsão <strong>não recepcionada pela CF/88</strong>. O inciso II (30 dias) permanece.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Quem concede:</strong> a parte que, sem justo motivo, quiser rescindir o contrato. Iniciativa do empregador (dispensa sem justa causa) → aviso é <strong>direito</strong> do empregado. Iniciativa do empregado (pedido de demissão) → aviso é <strong>dever</strong> deste.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Aplicabilidade do aviso prévio
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Situação</th><th>Aviso prévio</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Regra geral — contratos por prazo indeterminado</strong></td><td><span class="tag tag-green">Devido</span></td></tr>
+        <tr><td>Demissão sem justa causa</td><td><span class="tag tag-green">Devido</span></td></tr>
+        <tr><td>Pedido de demissão</td><td><span class="tag tag-green">Devido pelo empregado</span></td></tr>
+        <tr><td>Rescisão indireta</td><td><span class="tag tag-green">Devido</span> (art. 487, § 4º)</td></tr>
+        <tr><td>Extinção por acordo</td><td>Se indenizado: <strong>pela metade (50%)</strong></td></tr>
+        <tr><td>Culpa recíproca</td><td><strong>Pela metade (50%)</strong> (Súmula 14)</td></tr>
+        <tr><td>Extinção da empresa</td><td><span class="tag tag-green">Devido</span> (Súmula 44)</td></tr>
+        <tr><td>Morte do empregador pessoa física</td><td><span class="tag tag-green">Devido</span></td></tr>
+        <tr><td>Contratos a prazo determinado</td><td><strong>Somente</strong> quando contiverem cláusula assecuratória do direito recíproco de rescisão antecipada (art. 481; Súmula 163 — contrato de experiência)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Redução de jornada (art. 488)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Quando a rescisão é promovida pelo <strong>empregador</strong>, durante o aviso o empregado pode optar por uma das duas formas, <strong>sem prejuízo do salário integral</strong>:<br>
+      ✓ Redução de <strong>2 horas diárias</strong> de jornada; ou<br>
+      ✓ Falta justificada de <strong>7 dias corridos</strong>.<br><br>
+      <span class="tag tag-red">Não</span> se cumulam as duas formas · <span class="tag tag-red">Não</span> cabem no pedido de demissão (rescisão pelo empregado).<br>
+      <strong>Súmula 230 TST:</strong> é <strong>ilegal</strong> substituir o período reduzido da jornada no aviso prévio pelo <strong>pagamento das horas correspondentes</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Indenização do aviso (trabalhado × indenizado)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Art. 487, § 1º:</strong> falta de aviso pelo <strong>empregador</strong> → direito do empregado aos <strong>salários correspondentes ao prazo do aviso</strong>, garantida a <strong>integração do período no tempo de serviço</strong>.<br>
+      • <strong>Art. 487, § 2º:</strong> falta de aviso pelo <strong>empregado</strong> → o empregador tem direito a <strong>descontar os salários correspondentes</strong>.<br>
+      • O empregador <strong>pode dispensar o cumprimento do aviso</strong> pelo empregado (não constitui prejuízo).<br><br>
+      <strong>Esquema do pedido de demissão:</strong> (i) empregado não comunica e/ou não aceita trabalhar no aviso → empregador <strong>pode descontar</strong>; (ii) empregado comunica e solicita não cumprir o aviso → se o empregador <strong>aceita</strong>, não há labor nem desconto; se <strong>não aceita</strong>, o empregado trabalha durante o aviso prévio.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Reconsideração do aviso:</strong> se a parte que solicitou a extinção <strong>reconsiderar</strong> o ato, fica facultado à outra parte aceitar ou não. Aceita a reconsideração, o contrato continua a vigorar <strong>como se o aviso prévio não tivesse sido dado</strong>.<br><br>
+    <strong>Falta grave no curso do aviso:</strong> se o <strong>empregador</strong> pratica ato que justifique rescisão imediata, deve pagar a remuneração referente ao prazo do aviso. Se o <strong>empregado</strong> comete justa causa, perde o direito ao restante do prazo e às <strong>verbas rescisórias indenizatórias</strong>, <strong>salvo</strong> hipótese de abandono de emprego (Súmula 73).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Cálculo, natureza e renúncia
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">⚙️ Cálculo</div><div class="card-text">Salário variável → <strong>média dos últimos 12 meses</strong>. <strong>Reajuste salarial coletivo</strong> no curso do aviso beneficia o pré-avisado. <strong>Gratificações semestrais</strong>, se houver, <strong>não integram</strong> o cálculo (Súmula 253).</div></div>
+    <div class="card"><div class="card-title">📊 Natureza</div><div class="card-text"><strong>Trabalhado/cumprido</strong> = natureza <strong>salarial</strong>. <strong>Indenizado</strong> (não concedido) = natureza <strong>indenizatória</strong>. Entra no cálculo da rescisão (férias e 13º proporcionais) e recolhe FGTS; dispensa nos <strong>30 dias anteriores à data-base</strong> → indenização adicional (Súmula 182).</div></div>
+    <div class="card"><div class="card-title">🚫 Renúncia</div><div class="card-text"><strong>Irrenunciável</strong> pelo empregado. O pedido de dispensa de cumprimento <strong>não exime o empregador de pagar</strong>, salvo comprovação de que o empregado já possui <strong>novo emprego</strong>.</div></div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Aviso prévio <strong>indenizado</strong>: natureza <strong>indenizatória</strong>. Aviso prévio <strong>trabalhado</strong>: natureza <strong>salarial</strong>. E a redução de jornada/7 dias só existe quando a rescisão parte do <strong>empregador</strong> — no pedido de demissão o empregado não tem redução de jornada.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — VERBAS RESCISÓRIAS E EFEITOS                          -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Verbas rescisórias e efeitos</div>
+  </div>
+  <div class="sec-subtitle">Visão comparativa das verbas por modalidade de extinção + procedimentos rescisórios (art. 477 CLT)</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Verba</th><th>Sem justa causa</th><th>Justa causa</th><th>Pedido de demissão</th><th>Rescisão indireta</th><th>Culpa recíproca</th><th>Acordo (484-A)</th></tr></thead>
+      <tbody>
+        <tr><td>Saldo de salário</td><td>Sim</td><td>Sim</td><td>Sim</td><td>Sim</td><td>Sim</td><td>Sim</td></tr>
+        <tr><td>Férias proporcionais</td><td>Sim</td><td><span class="tag tag-red">Não</span></td><td>Sim</td><td>Sim</td><td>Metade</td><td>Integral</td></tr>
+        <tr><td>13º proporcional</td><td>Sim</td><td><span class="tag tag-red">Não</span></td><td>Sim</td><td>Sim</td><td>Metade</td><td>Integral</td></tr>
+        <tr><td>Aviso prévio</td><td>Sim</td><td><span class="tag tag-red">Não</span></td><td>Não (deve conceder)</td><td>Sim</td><td>Metade</td><td>Metade (se indenizado)</td></tr>
+        <tr><td>Multa do FGTS</td><td>40%</td><td><span class="tag tag-red">Não</span></td><td><span class="tag tag-red">Não</span></td><td>40%</td><td>20%</td><td>20%</td></tr>
+        <tr><td>Saque do FGTS</td><td>Sim</td><td><span class="tag tag-red">Não</span></td><td><span class="tag tag-red">Não</span></td><td>Sim</td><td>Sim (integral)</td><td>Sim (até 80%)</td></tr>
+        <tr><td>Seguro-Desemprego</td><td>Sim</td><td><span class="tag tag-red">Não</span></td><td><span class="tag tag-red">Não</span></td><td>Sim</td><td><span class="tag tag-red">Não</span></td><td><span class="tag tag-red">Não</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Multa de 40% (Lei 8.036/90, art. 18, § 1º):</strong> na despedida sem justa causa o empregador deposita importância igual a 40% do montante dos depósitos realizados na conta vinculada <strong>durante a vigência do contrato</strong>, atualizados monetariamente e acrescidos de juros. <strong>Não</strong> incide sobre o saldo total (que pode incluir depósitos de outros vínculos).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Término de contratos a termo (prazo determinado) — incidência baixa
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Extinção normal (termo atingido)</div>
+    <div class="card-text">
+      Dá-se pelo atingimento do termo prefixado (ex.: contrato de experiência). Hipóteses de contrato por prazo determinado (art. 443, § 2º): (a) serviço cuja natureza ou transitoriedade justifique a predeterminação; (b) atividades empresariais de caráter transitório; (c) contrato de experiência.<br><br>
+      O empregado <strong>não faz jus a indenização nem aviso prévio</strong>, apenas a <strong>saldo de salário</strong>, <strong>férias proporcionais</strong> (e vencidas) e <strong>13º proporcional</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Extinção antecipada</div>
+    <div class="card-text">
+      <strong>Pelo empregador sem justa causa (art. 479):</strong> indenização de <strong>metade da remuneração</strong> a que o empregado teria direito até o termo do contrato; + <strong>multa de 40% do FGTS</strong> e saque dos valores da conta vinculada.<br><br>
+      <strong>Pelo empregado (art. 480):</strong> indeniza o empregador pelos <strong>prejuízos</strong> que resultarem; a indenização <strong>não pode exceder</strong> aquela a que teria direito o empregado em idênticas condições (metade da remuneração até o termo).<br><br>
+      <strong>Cláusula assecuratória (art. 481):</strong> se o contrato a termo contiver cláusula assecuratória do <strong>direito recíproco de rescisão antecipada</strong>, aplicam-se os <strong>princípios da rescisão dos contratos por prazo indeterminado</strong> — o aviso prévio passa a ser devido (Súmula 163: cabe aviso prévio nas rescisões antecipadas dos contratos de <strong>experiência</strong>).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Procedimentos rescisórios (art. 477) — incidência média
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Na extinção do contrato o empregador deverá: <strong>anotar a CTPS</strong>, <strong>comunicar a dispensa aos órgãos competentes</strong> e <strong>pagar as verbas rescisórias</strong>.<br><br>
+      • <strong>Homologação:</strong> a reforma trabalhista <strong>extinguiu</strong> a exigência de homologação da rescisão junto ao sindicato para contratos com mais de 1 ano de serviço.<br>
+      • <strong>Forma de pagamento (§ 4º):</strong> dinheiro, <strong>depósito bancário</strong> ou cheque visado, conforme acordem as partes; para empregado <strong>analfabeto</strong>, somente dinheiro ou depósito bancário. Não se admite <strong>cheque comum</strong>.<br>
+      • <strong>Compensação (§ 5º):</strong> qualquer compensação no pagamento não pode exceder o equivalente a <strong>um mês de remuneração</strong>.<br>
+      • <strong>Prazo (§ 6º):</strong> pagamento em até <strong>10 dias</strong>, contados do <strong>término do contrato</strong>; no aviso prévio indenizado, da <strong>comunicação do pré-aviso</strong> (término fático da prestação de serviços).<br>
+      • <strong>Multas (§ 8º):</strong> inobservância do prazo → multa de <strong>160 BTN por trabalhador</strong> (favor do Estado, aplicada pela fiscalização) + multa a favor do empregado <strong>equivalente ao salário</strong>, corrigido pelo BTN, salvo quando o trabalhador der causa à mora.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">TRCT e quitação</div>
+    <div class="card-text">
+      O <strong>TRCT</strong> é o documento elaborado pelo empregador com dados do empregado, do contrato e rubricas/valores devidos (saldo de salário, adicionais, férias vencidas, 13º com proporcionalidades, descontos).<br><br>
+      • <strong>Art. 477, § 2º:</strong> o instrumento de rescisão deve especificar a natureza e o valor de cada parcela; a quitação é válida <strong>apenas quanto às parcelas expressamente consignadas</strong>.<br>
+      • <strong>Súmula 330 TST:</strong> com assistência sindical e observância dos requisitos do art. 477, a quitação tem <strong>eficácia liberatória</strong> apenas das parcelas expressamente consignadas, salvo ressalva expressa; <strong>não abrange</strong> parcelas não consignadas e seus reflexos.<br>
+      • <strong>Art. 507-B:</strong> termo de <strong>quitação anual</strong> perante o sindicato (facultativo), com eficácia liberatória das parcelas nele especificadas.<br>
+      • <strong>Art. 477, § 10:</strong> a anotação da extinção na CTPS é documento <strong>hábil</strong> para requerer o Seguro-Desemprego e a movimentação da conta do FGTS.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — PONTOS QUE MAIS CAEM EM PROVA                         -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova — itens de maior incidência</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Art. 482 (justa causa)</strong> — altíssima incidência: decore as alíneas e as pegadinhas (prisão provisória ≠ justa causa; embriaguez em serviço = 1 ocorrência; abandono = 30 dias)<br>
+      • <strong>Verbas por modalidade:</strong> justa causa (só saldo de salário + férias sem proporcionais) × sem justa causa (multa 40% + SD) × pedido de demissão (sem 40% e sem SD)<br>
+      • <strong>Acordo (484-A):</strong> metade do aviso e da multa (20%); demais integrais; saque de até 80% do FGTS; sem Seguro-Desemprego<br>
+      • <strong>Culpa recíproca (Súmula 14):</strong> metade do aviso, 13º e férias proporcionais; multa de 20%; saque integral; sem SD<br>
+      • <strong>Aviso prévio:</strong> 30 dias + 3/ano até 90 (Lei 12.506/11); redução de 2h ou 7 dias; natureza salarial × indenizatória; Súmula 230 (ilegal pagar em vez de reduzir jornada)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Proporcionalidade não retroage</strong> (Súmula 441 — rescisões a partir de 13/10/2011)<br>
+      • <strong>Cláusula assecuratória</strong> em contrato a termo → aplicam-se as regras do prazo indeterminado (art. 481; Súmula 163 — experiência)<br>
+      • <strong>Contrato a termo:</strong> extinção normal sem indenização/aviso; antecipada pelo empregador = art. 479 (metade até o termo + 40% FGTS); pelo empregado = art. 480 (prejuízos, limitada)<br>
+      • <strong>PDV em ACT/CCT:</strong> quitação plena e irrevogável (477-B); prêmios de incentivo = negociado prevalece (611-A, XIV); sem compensação com créditos trabalhistas (OJ-SDI1-356)<br>
+      • <strong>Dispensa coletiva:</strong> 477-A equipara individual/plúrima/coletiva, sem autorização sindical; STF (RE 999435) exige <strong>intervenção sindical prévia</strong> na dispensa em massa<br>
+      • <strong>Prazo de pagamento:</strong> 10 dias do término (ou da comunicação do pré-aviso); multas: 160 BTN/trabalhador + salário do empregado (477, § 8º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Assédio sexual:</strong> entre trabalhadores = justa causa do assediador (art. 482, "b" — incontinência de conduta); pelo empregador/preposto contra o empregado = rescisão indireta (art. 483, "e")<br>
+      • <strong>Indisciplina</strong> (ordens gerais) × <strong>insubordinação</strong> (ordens individuais)<br>
+      • <strong>Legítima defesa</strong> afasta as justas causas das alíneas "j" e "k" e a rescisão indireta do art. 483, "f"<br>
+      • <strong>EPI:</strong> recusa injustificada é ato faltoso (art. 158), mas exige gradação/proporcionalidade<br>
+      • <strong>Morte do empregador pessoa física</strong> e <strong>extinção da empresa</strong>: aviso prévio devido (Súmula 44)<br>
+      • <strong>Art. 508 (bancário devedor contumaz)</strong> está <strong>revogado</strong> (Lei 12.347/10)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine o quadro de verbas por modalidade (seção 7), o art. 482 por completo e o aviso prévio (proporcionalidade + redução de jornada + natureza). Esses são os três blocos de maior incidência no tema.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — INCIDÊNCIA DE TEMAS (TEC)                             -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

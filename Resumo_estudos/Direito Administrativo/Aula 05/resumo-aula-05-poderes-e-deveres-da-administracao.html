@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 05: Poderes e Deveres da Administração Pública</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 05</div>
+  <div class="sidebar-sub">Poderes e Deveres da Administração · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Uso e abuso de poder</a>
+  <a href="#sec2">2. Poder vinculado × discricionário</a>
+  <a href="#sec3">3. Poder hierárquico</a>
+  <a href="#sec4">4. Poder disciplinar</a>
+  <a href="#sec5">5. Poder regulamentar</a>
+  <a href="#sec6">6. Poder de polícia</a>
+  <a href="#sec7">7. Deveres do administrador público</a>
+  <a href="#sec8">8. Pontos que mais caem em prova</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — USO E ABUSO DE PODER                               -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Uso e abuso de poder</div>
+  </div>
+  <div class="sec-subtitle">Excesso de poder × desvio de poder — tema que mais despenca em provas (Cebraspe)</div>
+
+  <div class="card">
+    <div class="card-title">Abuso de poder — conceito</div>
+    <div class="card-text">
+      O princípio da <strong>supremacia do interesse público</strong> justifica o exercício dos poderes administrativos na estrita medida em que sejam necessários ao atingimento dos fins públicos. O <strong>exercício ilegítimo</strong> das prerrogativas da Administração caracteriza-se, de forma genérica, como <strong>abuso de poder</strong>, que é uma <strong>espécie de ilegalidade</strong>.<br><br>
+      O abuso de poder é <strong>gênero</strong> que comporta duas categorias:
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Excesso de poder</th><th>Desvio de poder (desvio de finalidade)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Vício</strong></td><td><span class="tag tag-red">Competência</span></td><td><span class="tag tag-red">Finalidade</span></td></tr>
+        <tr><td><strong>Ocorrência</strong></td><td>Agente atua <strong>fora dos limites de sua esfera de competência</strong></td><td>Agente atua <strong>dentro</strong> da competência, porém de forma <strong>contrária à finalidade explícita ou implícita</strong> na lei</td></tr>
+        <tr><td><strong>Alcance</strong></td><td>Exorbitação das atribuições legais</td><td>Contrariedade à <strong>finalidade geral</strong> (interesse público — mediata) ou à <strong>finalidade específica</strong> (imediata)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Exemplos das fontes</div>
+    <div class="card-text">
+      <strong>Excesso de poder:</strong> autoridade aplica sanção além da sua alçada de competência; autoridade concede licença a servidor sem ter competência ou sem receber delegação da autoridade competente.<br><br>
+      <strong>Desvio de poder:</strong> autoridade <strong>remove servidor</strong> de uma unidade para outra com o objetivo de <strong>puni-lo</strong> (a remoção, em regra, visa adequar a quantidade de servidores em cada unidade); <strong>prefeito desapropria</strong> um bem para beneficiar ou prejudicar alguém (a desapropriação deve ter finalidade pública).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conduta comissiva e omissiva</div>
+    <div class="card-text">
+      O abuso de poder pode se manifestar por <strong>condutas comissivas (fazer)</strong> e por <strong>condutas omissivas (não fazer)</strong>. Deixar de exercer as próprias competências também é abuso, em virtude do <strong>poder-dever de agir</strong>. O ato cometido com abuso é <strong>arbitrário e ilícito</strong>, sujeitando a autoridade à <strong>responsabilização civil, penal e administrativa</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mecanismos para coibir o abuso</div>
+    <div class="card-text">
+      • <strong>Direito de petição</strong> aos Poderes Públicos em defesa de direitos ou contra ilegalidade ou abuso de poder (CF, art. 5º, XXXIV)<br>
+      • <strong>Mandado de segurança</strong> para proteger direito líquido e certo quando o responsável pelo abuso de poder for autoridade pública ou agente de pessoa jurídica no exercício de atribuições do Poder Público (CF, art. 5º, XXXIV)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (STJ/2018 · INSS/2022)</div>
+    A banca adora <strong>inverter os conceitos</strong>: desvio de poder <strong>NÃO é</strong> ato praticado sem competência (isso é <strong>excesso de poder</strong>). Desvio de poder configura-se quando o ato é praticado com <strong>finalidade diversa</strong> do interesse público ou do fim específico definido em lei. Assertiva que troque "excesso" por "desvio" está errada.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (CAU BR/2024)</div>
+    <strong>Impedimento</strong> (ex.: marido decidindo recurso da esposa) integra os <strong>vícios de competência</strong> → configura <strong>excesso de poder</strong>, espécie de abuso de poder.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — PODER VINCULADO × DISCRICIONÁRIO                    -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Poder vinculado × poder discricionário</div>
+  </div>
+  <div class="sec-subtitle">Na verdade, características dos atos administrativos — não existem como poderes autônomos (Di Pietro)</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Poder vinculado (regrado)</th><th>Poder discricionário</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Liberdade</strong></td><td>A lei <strong>não deixa nenhuma margem de liberdade</strong> — única solução possível</td><td>A lei deixa <strong>margem de escolha</strong> ao agente</td></tr>
+        <tr><td><strong>Decisão</strong></td><td>Agente decide exatamente na forma prevista em lei</td><td>Juízo de <strong>conveniência e oportunidade</strong>, com base no <strong>mérito administrativo</strong></td></tr>
+        <tr><td><strong>Exemplo</strong></td><td>Multa de exatos R$ 500,00 prevista em lei (nem mais, nem menos)</td><td>Sanção de suspensão de "um a noventa dias"</td></tr>
+        <tr><td><strong>Elementos</strong></td><td>Competência, finalidade, forma, motivo e objeto todos vinculados</td><td>Competência, finalidade e forma <strong>vinculados</strong>; motivo e objeto <strong>discricionários</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">"Poder vinculado" ≠ "ato vinculado"</div>
+    <div class="card-text">
+      O ato vinculado é uma manifestação do poder vinculado, quando <strong>todos os elementos</strong> do ato são vinculados. Já no ato discricionário há manifestação <strong>simultânea</strong> do poder vinculado (competência, finalidade e forma) e do poder discricionário (motivo e objeto).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Limites da discricionariedade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A discricionariedade é limitada pelo próprio ordenamento jurídico:<br><br>
+      <strong>a) pela lei</strong> — o legislador define os limites mínimos e máximos para a prática do ato (ex.: "poderá", "a juízo da autoridade competente", "por até x dias")<br>
+      <strong>b) pelos princípios</strong>, em especial os da <strong>proporcionalidade</strong> e da <strong>razoabilidade</strong> — o ato não pode ser desarrazoado, exagerado ou desproporcional ao fim que se quer alcançar.<br><br>
+      Também há discricionariedade quando a lei emprega <strong>conceitos jurídicos indeterminados</strong> (ex.: punir o servidor que cometer "falta grave").
+    </div>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Ato arbitrário ≠ discricionariedade:</strong> um ato que não observe a lei e os princípios é <strong>arbitrário</strong> e passível de <strong>anulação</strong>. Não se trata de controle de mérito, pois a arbitrariedade é uma <strong>forma de ilegalidade</strong> — por isso o Poder Judiciário pode anular um ato administrativo desproporcional.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Edição e revogação</div>
+    <div class="card-text">
+      A discricionariedade ocorre tanto na <strong>edição do ato</strong> como na sua <strong>revogação</strong>, pois a revogação é o desfazimento de um ato <strong>válido</strong> por razões de conveniência e oportunidade.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (CAPES/2024)</div>
+    A discricionariedade <strong>NÃO existe como poder autônomo</strong> e ilimitado: ela só ocorre nos limites da lei. Se a matéria não é regulamentada, isso não permite, por si só, que a administração exerça seu poder discricionário (princípio da legalidade). Os "poderes" vinculado e discricionário são, na realidade, <strong>características dos atos administrativos</strong> (Di Pietro).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (PCPE/2024)</div>
+    Ato discricionário <strong>não está imune ao controle do Poder Judiciário</strong>. O Judiciário não invade o mérito (conveniência e oportunidade), mas controla competência, finalidade, legalidade e eventuais excessos.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — PODER HIERÁRQUICO                                   -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Poder hierárquico</div>
+  </div>
+  <div class="sec-subtitle">Relação de subordinação entre órgãos e agentes — gradação de autoridade, graus e instâncias</div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      Hierarquia é a <strong>relação de subordinação</strong> existente entre os vários órgãos e agentes administrativos, com a distribuição de funções e a <strong>gradação de autoridade</strong> de cada um. Para Hely Lopes Meirelles, é o poder de que dispõe a Administração para <strong>distribuir e escalonar as funções</strong> de seus órgãos, <strong>ordenar e rever a atuação</strong> de seus agentes, estabelecendo a relação de subordinação entre os servidores. Apesar de o autor falar em "Executivo", o mais adequado é falar em "Administração Pública", pois o poder hierárquico se manifesta no exercício da <strong>função administrativa</strong>, em qualquer Poder.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Objetivos do poder hierárquico — dar ordens · editar atos normativos internos · fiscalizar e rever atos · delegar competências · avocar atribuições · aplicar sanções
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Mando e obediência
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Consequência lógica da hierarquia é o <strong>poder de comando</strong> das instâncias superiores sobre as inferiores. Os subordinados têm <strong>dever de obediência</strong>: não lhes cabe avaliar a conveniência e oportunidade da decisão superior, mas cumpri-la.<br><br>
+      <strong>Exceção:</strong> os subordinados podem se <strong>negar a cumprir ordens manifestamente ilegais</strong> — "ninguém será obrigado a fazer ou deixar de fazer alguma coisa senão em virtude de lei" (CF, art. 5º, II). Na esfera federal, é dever do servidor "cumprir as ordens superiores, exceto quando manifestamente ilegais" (Lei 8.112/1990, art. 116, IV). Ex.: negar-se a cumprir ordem de destruir um bem público sem motivo.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Situações que afastam ou mitigam o dever de obedecer (Lucas Rocha Furtado)</div>
+    <div class="card-text">
+      • Quando a lei tiver conferido <strong>competência exclusiva</strong> para a prática do ato ao órgão subordinado<br>
+      • Quando se tratar de atividade de <strong>consultoria jurídica ou técnica</strong> (pareceres dependem do convencimento pessoal do agente, podendo ensejar responsabilidade pessoal)<br>
+      • Quando se tratar de <strong>órgão incumbido de adotar decisões administrativas</strong> (ex.: o CARF é subordinado administrativamente ao superintendente da Receita, mas este não pode definir como as decisões do Conselho devem ser adotadas)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (STJ/2018)</div>
+    O poder hierárquico <strong>não</strong> impõe obediência a ordens manifestamente ilegais, sob pena de punição disciplinar. Além disso, o subordinado tem o <strong>dever funcional de representar</strong> contra o superior que agir com ilegalidade, omissão ou abuso de poder.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Atos normativos internos e fiscalização
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Atos normativos internos</strong>: destinam-se a padronizar a atuação do órgão e de seus agentes; são os <strong>atos ordinatórios</strong> (portaria que define horário de atendimento ou padrão de uniforme)<br>
+      • <strong>Fiscalização</strong>: acompanhamento permanente dos atos dos subordinados; dela decorre o <strong>poder de controle</strong> (rever atos), permitindo ao superior <strong>anular</strong> atos ilegais ou <strong>revogar</strong> os inconvenientes, <strong>de ofício ou por provocação</strong>; admite, ainda, convalidação de defeitos sanáveis
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Delegação × avocação
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Delegação</th><th>Avocação</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Conceito</strong></td><td>Conferir a um terceiro atribuições que originalmente competiam ao delegante</td><td>Chamar para si funções que foram atribuídas a um subordinado</td></tr>
+        <tr><td><strong>Natureza</strong></td><td>Ato <strong>discricionário, temporário e revogável a qualquer momento</strong></td><td><strong>Excepcional</strong>, por motivos relevantes, devidamente justificados e por <strong>tempo determinado</strong></td></tr>
+        <tr><td><strong>Hierarquia</strong></td><td>Pode haver <strong>ou não</strong> relação hierárquica</td><td><strong>Pressupõe</strong> relação hierárquica</td></tr>
+        <tr><td><strong>Limites</strong></td><td>Alcança só o <strong>exercício</strong> da competência (titularidade irrenunciável); não se admite atos de natureza política, entre Poderes (salvo autorização constitucional), competência exclusiva nem vedações legais</td><td>Não pode avocar competência <strong>exclusiva</strong> do subordinado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Detalhes da delegação</div>
+    <div class="card-text">
+      • É possível delegar <strong>sem relação hierárquica</strong> (ex.: secretaria de saúde delega competência a órgão de outro patamar); a delegação para o subordinado ocorre por ato administrativo e <strong>não pode ser recusada</strong>; sem hierarquia ocorre por <strong>ato bilateral</strong> (convênio)<br>
+      • A <strong>subdelegação</strong> (delegação da delegação) só é permitida com <strong>concordância expressa do delegante</strong><br>
+      • Não se delega: atos de natureza política (ex.: sancionar lei); competência de um Poder a outro (salvo previsão constitucional expressa); atribuições de competência exclusiva; e, por vedação legal (Lei 9.784/1999, art. 13): edição de atos de caráter normativo, decisão de recursos administrativos e matérias de competência exclusiva
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sanções</div>
+    <div class="card-text">
+      Da relação de hierarquia surge a competência para aplicar sanções, mas essa <strong>não é a essência</strong> do poder hierárquico — é apenas uma consequência. Por isso, diz-se que a aplicação de sanções decorre <strong>mediatamente (indiretamente)</strong> do poder hierárquico; a competência <strong>imediata (direta)</strong> é do poder disciplinar.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Ausência de hierarquia
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Situação</th><th>O que existe</th></tr></thead>
+      <tbody>
+        <tr><td>Administração direta × indireta</td><td><strong>Vinculação</strong> (tutela), não hierarquia; controle restrito, em geral sob aspecto político, só quando previsto em lei</td></tr>
+        <tr><td>Entre os Poderes (Legislativo, Executivo e Judiciário)</td><td>Não há hierarquia</td></tr>
+        <tr><td>Administração × administrados (particulares)</td><td>Não há hierarquia</td></tr>
+        <tr><td>Funções típicas do Legislativo e do Judiciário (legislar e julgar)</td><td>Em regra, não há hierarquia; nas <strong>atividades-meio</strong> (licitar, contratar, comprar) o poder hierárquico está presente</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Subordinação ≠ vinculação:</strong> na subordinação há hierarquia (todas as formas de controle); na vinculação há apenas tutela. A hierarquia só ocorre <strong>dentro da mesma pessoa jurídica</strong>.<br><br>
+      <strong>Hierarquia parcial ou mitigada no Judiciário (desde a EC 45/2004):</strong> as súmulas vinculantes do STF obrigam as demais instâncias, assim como decisões em ADI/ADC com eficácia erga omnes.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (CAGE RS/2018 · AGER MT/2023)</div>
+    A União <strong>não exerce poder hierárquico</strong> sobre sociedade de economia mista da qual seja acionista (há apenas vinculação). Também não há hierarquia entre pessoas jurídicas distintas nem entre a Administração e particulares.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (MME/2023 · PGE PE/2019)</div>
+    A <strong>autorização do chefe imediato</strong> (licença ao servidor) decorre do poder hierárquico. Já a <strong>avocação não é possível em caráter ordinário e por tempo indeterminado</strong> — é excepcional, motivada e temporária.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — PODER DISCIPLINAR                                    -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Poder disciplinar</div>
+  </div>
+  <div class="sec-subtitle">Poder-dever de punir internamente — servidores e particulares com vínculo especial</div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      O poder disciplinar é o <strong>poder-dever de punir internamente as infrações funcionais</strong> dos servidores e demais pessoas sujeitas à disciplina dos órgãos e serviços da Administração. Não se confunde com o <strong>poder punitivo do Estado</strong> (gênero), do qual é espécie — o poder punitivo, no âmbito administrativo, manifesta-se no poder disciplinar e no <strong>poder de polícia</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quem se sujeita</div>
+    <div class="card-text">
+      Aplica-se <strong>somente</strong> a:<br>
+      • <strong>Servidores públicos</strong><br>
+      • <strong>Particulares com vínculo jurídico específico</strong> com a Administração — ex.: empresa com contrato administrativo; aluno de rede pública de ensino; detento que comete infração disciplinar durante o regime de execução da pena<br><br>
+      O vínculo é <strong>específico</strong>. Já o poder de polícia pressupõe vínculo <strong>geral</strong> (todos os cidadãos indistintamente).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Poder disciplinar</th><th>Poder de polícia</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Vínculo</strong></td><td>Específico (servidor ou particular com vínculo especial)</td><td>Geral (todos os cidadãos)</td></tr>
+        <tr><td><strong>Objeto</strong></td><td>Infrações funcionais e disciplinares internas</td><td>Condicionamento e restrição de direitos em prol da coletividade</td></tr>
+        <tr><td><strong>Exemplo</strong></td><td>Multa a contratado por inadimplemento de contrato; demissão de servidor</td><td>Multa de trânsito; interdição de estabelecimento</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Relação com o poder hierárquico</div>
+    <div class="card-text">
+      Quando se aplica punição ao servidor, a sanção decorre <strong>diretamente (imediatamente)</strong> do poder disciplinar e <strong>mediatamente</strong> do poder hierárquico. Porém, <strong>não há total convergência</strong> entre os dois poderes: o disciplinar também alcança particulares com vínculo especial (situação que não decorre de hierarquia), e o hierárquico tem alcance mais amplo que o de punir (revisão, delegação, avocação). Logo, <strong>um não se reduz ao outro</strong>, e não se pode afirmar genericamente que um é mais amplo que o outro.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Vinculado × discricionário no poder disciplinar
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Etapa</th><th>Natureza</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td>Instaurar procedimento / dar conhecimento à autoridade competente</td><td><span class="tag tag-blue">Vinculada</span></td><td>Se não fizer, comete crime de <strong>condescendência criminosa</strong> (CP, art. 320)</td></tr>
+        <tr><td>Responsabilizar, se comprovado o ilícito administrativo</td><td><span class="tag tag-blue">Vinculada</span></td><td>Autoridade é obrigada a responsabilizar o agente faltoso</td></tr>
+        <tr><td>Tipificação da falta</td><td><span class="tag tag-amber">Discricionária</span> (em regra)</td><td>Não há tipificação exaustiva no direito administrativo (ex.: "insubordinação grave" — Lei 8.112/1990, art. 132, VI)</td></tr>
+        <tr><td>Escolha e gradação da penalidade</td><td><span class="tag tag-amber">Discricionária</span> (em regra)</td><td>Quando a lei prevê limite mínimo e máximo (ex.: multa "entre R$ 1.000,00 e R$ 10.000,00"), a escolha é discricionária e fundamentada</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Direito de defesa e motivação:</strong> antes de qualquer punição, a autoridade deve proporcionar <strong>contraditório e ampla defesa</strong>. Não se admite sanção com base na "verdade sabida", ainda que não haja dúvida sobre a infração. Todo ato de aplicação de penalidade deve ser <strong>motivado</strong> — sem exceção.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (Sefaz RJ/2025 · ANM/2025)</div>
+    Punir <strong>internamente</strong> as infrações funcionais dos servidores e demais pessoas sujeitas à disciplina da Administração = <strong>poder disciplinar</strong>. Já sanções a agentes e contratados (vínculo específico) também decorrem do disciplinar — o poder de polícia aplica sanções somente em relação geral (ex.: multa da vigilância sanitária a empresa "qualquer").
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (MPE CE/2020 · MPE PI/2018)</div>
+    <strong>Interdição de escola</strong> pelo corpo de bombeiros por falta de condições de evacuação = <strong>poder de polícia</strong> (relação geral), e não disciplinar. Sanções de polícia <strong>não decorrem do poder hierárquico</strong> — não há hierarquia entre Administração e particulares.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PODER REGULAMENTAR                                  -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Poder regulamentar (ou normativo)</div>
+  </div>
+  <div class="sec-subtitle">Regulamentos executivos × autônomos — regra geral: não inova na ordem jurídica</div>
+
+  <div class="card">
+    <div class="card-title">Normas primárias × secundárias</div>
+    <div class="card-text">
+      As normas, em sentido amplo, são <strong>gerais</strong> (destinadas a sujeitos indeterminados) e <strong>abstratas</strong> (situações futuras).<br><br>
+      • <strong>Normas primárias</strong>: decorrem diretamente do texto constitucional e podem <strong>inovar na ordem jurídica</strong> (criar direitos e obrigações); formalizadas por lei, emendas à Constituição e medidas provisórias (CF, art. 59). Sua edição <strong>não se insere no poder regulamentar</strong> (decorre da função legislativa)<br>
+      • <strong>Normas secundárias (derivadas)</strong>: editadas pela Administração (decretos, regulamentos, resoluções) para disciplinar situação já prevista em lei; <strong>não podem inovar</strong>, dado seu caráter infralegal
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      Para José dos Santos Carvalho Filho, o poder regulamentar é "a prerrogativa conferida à Administração Pública para editar atos gerais para <strong>complementar as leis e permitir a sua efetiva aplicação</strong>". A prerrogativa é <strong>apenas para complementar a lei</strong> — a Administração não pode alterá-la a pretexto de estar regulamentando.<br><br>
+      • <strong>Sentido amplo</strong>: toda a capacidade normativa da Administração (= <strong>poder normativo</strong>; inclui instruções normativas de ministros, resoluções de órgãos)<br>
+      • <strong>Sentido restrito</strong>: competência do <strong>Chefe do Poder Executivo</strong> (Presidente, governadores e prefeitos) para editar normas complementares à lei — os <strong>regulamentos</strong>, revestidos na forma de decreto
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Para fins de prova:</strong> só diferencie "poder normativo" de "poder regulamentar" quando necessário — as bancas não têm sistematização uniforme sobre os termos.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Decretos regulamentares (executivos) × decretos autônomos
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Decretos regulamentares (executivos)</th><th>Decretos autônomos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Finalidade</strong></td><td>Disciplinar as leis, para sua <strong>fiel execução</strong> (art. 84, IV, CF)</td><td><strong>Não regulamentam lei</strong>; tratam de matérias não disciplinadas em lei</td></tr>
+        <tr><td><strong>Inovação</strong></td><td><strong>Não</strong> inovam na ordem jurídica (caráter infralegal)</td><td><strong>Inovam</strong> na ordem jurídica (atos primários, com fundamento direto na CF)</td></tr>
+        <tr><td><strong>Competência</strong></td><td>Privativa do Presidente da República (indelegável); por simetria, aplica-se a governadores e prefeitos</td><td>Hipóteses <strong>restritas</strong> do art. 84, VI, CF; matéria de reserva administrativa; aplica-se a todos os chefes do Executivo</td></tr>
+        <tr><td><strong>Delegação</strong></td><td>Não é possível delegar aos ministros ou outras autoridades</td><td>Pode ser delegada (art. 84, parágrafo único, CF) a ministros de Estado, AGU e PGR</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Hipóteses do decreto autônomo (art. 84, VI, CF)</div>
+    <div class="card-text">
+      a) <strong>Organização e funcionamento da administração federal</strong>, quando não implicar aumento de despesa <strong>nem</strong> criação ou extinção de órgãos públicos (se implicar, depende de lei)<br>
+      b) <strong>Extinção de funções ou cargos públicos, quando vagos</strong><br><br>
+      Não é autorização genérica para regulamentos autônomos — só se aplica nesses casos. Por se submeterem à <strong>reserva administrativa</strong>, o Poder Legislativo não tem competência para disciplinar essas matérias.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Regulamentos autorizados (delegados)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Os regulamentos autorizados <strong>suprem lacunas propositalmente deixadas pelo legislador</strong>: a lei define as linhas gerais e autoriza o Poder Executivo a disciplinar o que nela não foi regulado, chegando a <strong>inovar na ordem jurídica</strong> (fenômeno da <strong>deslegalização</strong>). Ex.: Decreto 11.871/2023, que atualizou os valores da Lei 14.133/2021 (a própria lei delegou a competência). Também se enquadram as resoluções das agências reguladoras (tema mais polêmico).<br><br>
+      <strong>Cuidados:</strong> a constitucionalidade desses regulamentos é <strong>duvidosa</strong> (não há previsão expressa na CF, ao contrário dos decretos dos incisos IV e VI do art. 84); não se confundem com <strong>leis delegadas</strong> (que são atos primários delegados por resolução do Congresso); não se admitem quando a matéria se submeter a <strong>reserva legal</strong>. Há divergência doutrinária — para prova, só considere a edição quando a questão tratar expressamente do assunto.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Controle dos regulamentos
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Poder Legislativo</strong>: compete ao Congresso Nacional <strong>sustar</strong> os atos normativos do Executivo que exorbitem do poder regulamentar (CF, art. 49, V)<br>
+      • <strong>Poder Judiciário</strong>: controle de <strong>legalidade</strong> (fundamento: a lei regulamentada, que é hierarquicamente superior) e controle <strong>concentrado de constitucionalidade</strong> (ADI — CF, art. 102, I, "a"), este somente quando o regulamento ofender <strong>diretamente</strong> a CF (se a ofensa for à lei, cabe controle de legalidade, não de constitucionalidade)<br>
+      • <strong>Própria Administração</strong>: por intermédio da <strong>autotutela</strong>, pode anular regulamentos ilegais ou revogar os que não são mais convenientes e oportunos
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (DATAPREV/2023)</div>
+    É <strong>ínsito</strong> ao poder regulamentar especificar regras e procedimentos previstos em lei. Porém, o exercício do poder regulamentar <strong>não é indispensável para todas as leis</strong>: leis "não administrativas" (ex.: Código Penal) e disposições que já definem todos os elementos de aplicação independem de regulamentação.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Regra para a prova:</strong> o poder regulamentar <strong>não inova</strong> na ordem jurídica — as exceções são os decretos autônomos e os regulamentos autorizados. Jurisprudência: é <strong>inconstitucional</strong> a lei que fixa prazo ao Executivo para regulamentar (ADI 4728) e a extinção, por decreto, de órgão colegiado cuja existência tem menção em lei formal (ADI 6121 MC).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PODER DE POLÍCIA                                    -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Poder de polícia</div>
+  </div>
+  <div class="sec-subtitle">Conceito, atributos (DAC), ciclo, delegação, limites e jurisprudência</div>
+
+  <div class="card">
+    <div class="card-title">Conceito</div>
+    <div class="card-text">
+      Para Hely Lopes Meirelles, é "a <strong>faculdade</strong> de que dispõe a Administração Pública para <strong>condicionar e restringir o uso e gozo de bens, atividades e direitos individuais</strong>, em benefício da coletividade ou do próprio Estado". Carvalho Filho: "prerrogativa de direito público que, <strong>calcada na lei</strong>, autoriza a Administração a restringir o uso e o gozo da liberdade e da propriedade em favor do interesse da coletividade".<br><br>
+      <strong>Fundamento:</strong> predomínio do interesse público sobre o particular (princípio da <strong>supremacia do interesse público</strong>) — supremacia <strong>geral</strong>, que alcança indistintamente todos os cidadãos. O exercício do poder de polícia pressupõe um <strong>vínculo genérico</strong> com os particulares (vínculo automático).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sentido amplo × sentido estrito</div>
+    <div class="card-text">
+      • <strong>Sentido amplo</strong>: toda ação restritiva do Estado em relação aos direitos individuais — envolve a atuação do <strong>Legislativo e do Executivo</strong><br>
+      • <strong>Sentido estrito</strong>: atividade da <strong>Administração Pública</strong>, que regulamenta leis de polícia ou exerce atividades concretas de limitação e condicionamento — (i) regulamentação de uma lei de polícia (ex.: decreto sobre vigilância sanitária); (ii) fiscalização do cumprimento e edição de atos de controle (alvarás); (iii) aplicação de sanções por violação (multa de trânsito). O conceito do CTN (art. 78) abrange apenas o sentido estrito.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Base legal (CTN, art. 78):</strong> considera-se poder de polícia a atividade da administração pública que, limitando ou disciplinando direito, interesse ou liberdade, regula a prática de ato ou abstenção de fato, em razão de interesse público concernente à segurança, higiene, ordem, costumes, disciplina da produção e do mercado, exercício de atividades econômicas dependentes de concessão ou autorização, tranquilidade pública ou respeito à propriedade e aos direitos individuais ou coletivos. Parágrafo único: considera-se regular o exercício quando desempenhado pelo <strong>órgão competente, nos limites da lei aplicável, com observância do processo legal</strong> e, se a atividade for discricionária, <strong>sem abuso ou desvio de poder</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Polícia administrativa × polícia judiciária
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Polícia administrativa</th><th>Polícia judiciária</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Atua sobre...</strong></td><td><strong>Bens, direitos e atividades</strong></td><td><strong>Indivíduos</strong> (pessoas envolvidas em ilícitos penais)</td></tr>
+        <tr><td><strong>Tipo de ilícito/sanção</strong></td><td>Administrativo</td><td>Penal (crimes e contravenções)</td></tr>
+        <tr><td><strong>Quem realiza</strong></td><td>Órgãos e entidades da Administração Pública de direito público (prefeituras, fiscalização de profissão, trânsito)</td><td>Órgãos de segurança (polícias civil, federal e militar — em regra)</td></tr>
+        <tr><td><strong>Natureza predominante</strong></td><td><span class="tag tag-green">Preventiva</span></td><td><span class="tag tag-red">Repressiva</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Não são características absolutas:</strong> existe polícia administrativa repressiva (interdição, apreensão e destruição de mercadorias) e polícia judiciária preventiva (monitoramento de atividades). A <strong>polícia administrativa encerra-se em si mesma</strong>; a <strong>polícia judiciária é atividade de preparação</strong>, com continuação na função jurisdicional (TRE BA/2017).<br><br>
+      • Em regra, a <strong>polícia militar</strong> exerce polícia ostensiva, mas textos de direito administrativo podem considerá-la, genericamente, como polícia judiciária; <strong>polícia civil e federal</strong> são típicos órgãos de polícia judiciária (apoio à função jurisdicional, inquéritos policiais)<br>
+      • Os órgãos de polícia judiciária <strong>não integram o Poder Judiciário</strong> — as polícias são do Poder Executivo; e podem exercer polícia administrativa (ex.: PF emite autorização para compra de arma)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (TJ AM/2019)</div>
+    A polícia judiciária não está "adstrita aos órgãos e agentes do Poder Judiciário" — quem a exerce são órgãos do <strong>Poder Executivo</strong> (policiais civis e federais), que preparam a atividade jurisdicional penal.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Atributos — DAC
+  </h3>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      DAC — Discricionariedade · Autoexecutoriedade · Coercibilidade
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Discricionariedade</div>
+    <div class="card-text">
+      Analisada em linhas gerais — a discricionariedade se apresenta na <strong>escolha do que fiscalizar</strong> e na <strong>escolha de uma sanção ou medida</strong> dentre as previstas em lei (ex.: apreender ou destruir produto fora dos padrões de segurança). Em casos específicos, porém, o poder de polícia é <strong>vinculado</strong> (ex.: concessão de licença para construir, presentes os requisitos legais, o agente é obrigado a conceder).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Autoexecutoriedade</div>
+    <div class="card-text">
+      "A faculdade de a Administração decidir e executar diretamente sua decisão <strong>por seus próprios meios, sem intervenção do Judiciário</strong>" (Meirelles). Divide-se em:<br><br>
+      • <strong>Exigibilidade</strong>: meios <strong>indiretos</strong> de coação (aplicação de multas; negar o licenciamento de veículo enquanto não pagas as multas de trânsito)<br>
+      • <strong>Executoriedade</strong>: meios <strong>diretos</strong> de coação (dissolução de reunião, apreensão de mercadorias, interdição de fábrica)<br><br>
+      Para Di Pietro, a autoexecutoriedade <strong>não está em todas</strong> as medidas de polícia: exige <strong>autorização expressa em lei</strong> ou <strong>medida urgente</strong>. A <strong>exigibilidade</strong> está presente em todas as medidas; a <strong>executoriedade</strong>, não.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Coercibilidade</div>
+    <div class="card-text">
+      Característica que torna o ato <strong>obrigatório independentemente da vontade do administrado</strong> — a imposição coativa das medidas adotadas pela Administração. Para Di Pietro, a coercibilidade é <strong>indissociável da autoexecutoriedade</strong>: o ato de polícia só é autoexecutório porque dotado de força coercitiva. Marcelo Alexandrino e Vicente Paulo ensinam que <strong>nem todos</strong> os atos de polícia gozam de autoexecutoriedade e coercibilidade: os <strong>preventivos</strong> (licenças, autorizações) e alguns <strong>repressivos</strong> (cobrança de multa não paga espontaneamente) não gozam desses atributos.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Nem todo ato de polícia goza dos três atributos:</strong> licenças são vinculadas; multas não são autoexecutórias; atos que concedem direitos não são coercitivos. Questão incompleta não é errada — salvo se houver um limitador ("somente", "apenas", "exclusivamente"). Autoexecutoriedade <strong>não exige</strong> recurso prévio ao Judiciário (SEFIN Fortaleza/2023).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Meios de atuação
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Espécies</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Normativos × concretos</strong></td><td>Normativos: gerais, abstratos e impessoais; Concretos: atingem indivíduos determinados</td><td>Decretos, regulamentos, resoluções, instruções × multas, atos de consentimento, fiscalização</td></tr>
+        <tr><td><strong>Preventivos × repressivos</strong></td><td>Preventivos: controle prévio (atos de consentimento); Repressivos: após a infração</td><td>Licenças e autorizações (formalizados por alvarás, certificados, carteiras, declarações) × auto de infração + contraditório + ampla defesa + sanção</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Fiscalização:</strong> para alguns autores é atividade <strong>preventiva</strong> (objetivo de prevenir infrações); a sanção é consequência da fiscalização, com esta não se confunde. O poder de polícia também abrange a edição de normas — porém <strong>secundárias</strong>, derivadas das limitações legais.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Ciclo de polícia
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fase</th><th>Conceito</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Legislação ou ordem de polícia</strong></td><td>Edição de normas que condicionam ou restringem direitos — as restrições são criadas e disciplinadas</td></tr>
+        <tr><td><strong>Consentimento de polícia</strong></td><td>Anuência prévia da Administração para o particular exercer atividade privada (licenças e autorizações); presente apenas quando a ordem de polícia exige prévio controle</td></tr>
+        <tr><td><strong>Fiscalização de polícia</strong></td><td>Fiscalização do cumprimento das normas da ordem de polícia ou dos requisitos do consentimento</td></tr>
+        <tr><td><strong>Sanção de polícia</strong></td><td>Imposição de coerções ao infrator das ordens ou dos requisitos do consentimento</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Exemplo do STJ com o CTB</strong> (REsp 817534/MG): o CTB estabelece normas gerais e abstratas para a CNH (<strong>legislação</strong>); a emissão da carteira corporifica a vontade do Poder Público (<strong>consentimento</strong>); a Administração instala equipamentos eletrônicos para verificar o respeito à velocidade (<strong>fiscalização</strong>); e sanciona quem não observa o CTB (<strong>sanção</strong>).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Competência e delegação
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Destinatário</th><th>Possibilidade</th><th>Condições / Limites</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Entidades de direito público</strong> (autarquias, fundações públicas)</td><td><span class="tag tag-green">Sim — todas as fases</span></td><td>Exceto edição de "normas primárias" (não gozam de competência política para legislar em sentido estrito)</td></tr>
+        <tr><td><strong>Entidades de direito privado</strong> (empresas públicas e sociedades de economia mista)</td><td><span class="tag tag-amber">Sim — consentimento, fiscalização e sanção</span></td><td>Por lei; integrante da adm. indireta; capital social majoritariamente público; prestação exclusiva de serviço público de atuação própria do Estado e em regime <strong>não concorrencial</strong> (Tema 532 — RE 633.782)</td></tr>
+        <tr><td>Exploradoras de atividade econômica / prestadoras em regime concorrencial</td><td><span class="tag tag-red">Não pode</span></td><td>—</td></tr>
+        <tr><td><strong>Particulares</strong></td><td><span class="tag tag-red">Não pode delegar</span></td><td>É possível apenas <strong>terceirizar atividades materiais e preparatórias</strong> (ex.: instalação de equipamentos, demolição)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Ordem de polícia = fase absolutamente indelegável</strong> (função legislativa) às entidades de direito privado. Cuidado com a redação: se a questão falar em "delegação do poder de polícia" sem delimitar as fases, seguindo a literalidade do RE 633.782 é provável que esteja certa; se falar em "todas as fases" ou "ordem de polícia", estará errada (TRF 6/2025, TJDFT/2023).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Originário × delegado</div>
+    <div class="card-text">
+      • <strong>Originário</strong>: exercido diretamente pelas entidades políticas (União, estados, DF e municípios) — Administração Pública direta; envolve leis e atos administrativos (SERES PE/2017)<br>
+      • <strong>Delegado ou outorgado</strong>: exercido pelas entidades da Administração indireta que receberam a competência por <strong>outorga legal</strong><br><br>
+      <strong>Jurisprudência:</strong> não é possível delegar a função sancionadora a associação privada que não integra a Administração (CCEE — REsp 1.950.332-RJ). É constitucional a atribuição às <strong>guardas municipais</strong> do poder de polícia de trânsito, inclusive para impor sanções (RE 658570/MG). Concessionárias prestam serviço público e não exercem poder de polícia (PRF/2019).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Limites, sanções e taxa de polícia
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Sanções de polícia</strong> são espécie das sanções administrativas (a infração funcional do servidor e as sanções contratuais decorrem do poder disciplinar, não do poder de polícia). Qualquer sanção depende de <strong>previsão legal</strong> (princípio da legalidade) e de <strong>devido processo legal</strong>, com contraditório e ampla defesa (CF, art. 5º, LIV); sanção aplicada sem direito de defesa é passível de anulação. A sanção de polícia deve observar os princípios da <strong>razoabilidade e da proporcionalidade</strong>. Exemplos: multas, interdição de estabelecimentos, suspensão do exercício de direitos, demolição de construções irregulares, embargo de obra, destruição de gêneros alimentícios impróprios, apreensão de mercadorias.<br><br>
+      <strong>Prescrição:</strong> prescreve em <strong>5 anos</strong> a ação punitiva da Administração federal (direta e indireta) no exercício do poder de polícia, contados da prática do ato ou, na infração permanente ou continuada, do dia em que tiver cessado; se o fato também constituir crime, vale o prazo da lei penal. O prazo refere-se à <strong>instauração do processo</strong>, não à aplicação da sanção.<br><br>
+      <strong>Taxa de polícia:</strong> tributo (CF, art. 145, II) que <strong>custeia o exercício do poder de polícia</strong> (ex.: certificado de registro de arma; alvará de construção). Jurisprudência: é constitucional a taxa de renovação de funcionamento e localização desde que <strong>efetivo o exercício do poder de polícia</strong> (RE 588322); é inconstitucional a taxa de segurança para eventos, pois segurança pública é financiada por impostos (ADI 2692/DF).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O poder de polícia tem <strong>aspecto negativo</strong> (restritivo, limitativo) — não amplia a esfera de interesses do particular (isso é <strong>serviço público</strong>, atividade positiva) (TBG/2023). Interdição e demolição de construção com risco de desabamento = exercício do poder de polícia (TRT 2/2018). Medidas como quarentena e separação de suspeitos de contaminação = atos de polícia <strong>autoexecutórios</strong> (MPE SC/2023).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — DEVERES DO ADMINISTRADOR PÚBLICO                    -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Deveres do administrador público</div>
+  </div>
+  <div class="sec-subtitle">Poder-dever de agir · mando e obediência · eficiência, probidade e prestar contas</div>
+
+  <div class="card">
+    <div class="card-title">Poder-dever de agir</div>
+    <div class="card-text">
+      Os poderes administrativos são <strong>poderes-deveres</strong>: envolvem simultaneamente uma <strong>prerrogativa</strong> e uma <strong>obrigação de atuação</strong>. Para Meirelles, "o poder de agir se converte no dever de agir" — no Direito Público, o poder é uma <strong>imposição</strong>, um dever para quem o detém, não se admitindo a omissão da autoridade diante de situações que exigem atuação. Por isso, a Administração responde civilmente pelas <strong>omissões lesivas</strong>.<br><br>
+      • As <strong>competências são irrenunciáveis</strong> e devem ser obrigatoriamente exercidas (Lei 9.784/1999, art. 11: "irrenunciável e se exerce pelos órgãos administrativos a que foi atribuída como própria, salvo os casos de delegação e avocação legalmente admitidos")<br>
+      • O agente se submete aos princípios da <strong>legalidade</strong> e da <strong>indisponibilidade do interesse público</strong> (não é "dono" do interesse público)<br>
+      • A <strong>omissão ilegal</strong> do agente pode refletir em responsabilização nas esferas <strong>penal, civil e administrativa</strong>; para Alexandrino e Paulo, a omissão diante de situações que exigem atuação caracteriza <strong>abuso de poder</strong>, podendo ensejar responsabilidade civil pelos danos
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (TRT PE/2017 · SEE PE/2023)</div>
+    Os poderes administrativos <strong>não são faculdade</strong> que o administrador pode ou não usar conforme critério subjetivo — são <strong>obrigação</strong> (poder-dever), e o agente não pode renunciar às suas competências. Se um guarda tem o poder de aplicar multa, tem também o <strong>dever</strong> de aplicá-la.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Os três principais deveres (Hely Lopes Meirelles)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dever</th><th>Conteúdo</th><th>Detalhes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dever de eficiência</strong></td><td>Atuação com qualidade, celeridade, economicidade, atuação técnica e controle — a "boa administração"</td><td>Vai além da produtividade: abrange a perfeição do trabalho (adequação técnica aos fins); envolve aspectos quantitativos e qualitativos; elevado a princípio constitucional pela <strong>EC 19/1998</strong></td></tr>
+        <tr><td><strong>Dever de probidade</strong></td><td>Observância de padrões éticos de comportamento, atuação segundo o princípio da <strong>moralidade</strong></td><td>Como princípio, probidade = moralidade. Como infração, <strong>improbidade</strong> é mais ampla que imoralidade (Lei 8.429/1992 alcança, além de atos imorais, várias formas de ilegalidade — arts. 9º, 10 e 11: enriquecimento ilícito, prejuízo ao erário e atos contra os princípios da Administração)</td></tr>
+        <tr><td><strong>Dever de prestar contas</strong></td><td>Comprovar a boa aplicação dos recursos e bens públicos geridos</td><td>Regra universal: "Prestará contas qualquer pessoa física ou jurídica, pública ou privada, que utilize, arrecade, guarde, gerencie ou administre dinheiros, bens e valores públicos" (CF, art. 70, parágrafo único); inversão do ônus da prova para o gestor; dever de transparência (publicidade = regra, sigilo = exceção; Lei 12.527/2011)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚖️ Base legal dos deveres</div>
+    <div class="card-text">
+      • <strong>Probidade:</strong> CF, art. 37, §4º (atos de improbidade importam suspensão dos direitos políticos, perda da função pública, indisponibilidade dos bens e ressarcimento ao erário); Lei 9.784/1999, art. 2º, parágrafo único, IV (atuação segundo padrões éticos de probidade, decoro e boa-fé); Lei 4.717/1965 (ação popular — CF, art. 5º, LXXIII)<br>
+      • <strong>Prestar contas:</strong> CF, art. 70, parágrafo único; DL 200/1967, art. 93; Decreto 93.872/1986, art. 66
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Mando e obediência
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Os subordinados se vinculam às determinações superiores — <strong>não lhes cabe avaliar</strong> a conveniência e oportunidade da decisão superior, mas cumpri-la. No entanto, o dever de obediência tem limites:<br><br>
+      • Os subordinados <strong>podem se negar a cumprir ordens manifestamente ilegais</strong> (CF, art. 5º, II: "ninguém será obrigado a fazer ou deixar de fazer alguma coisa senão em virtude de lei")<br>
+      • Lei 8.112/1990, art. 116, IV: é dever do servidor "cumprir as ordens superiores, exceto quando manifestamente ilegais"<br>
+      • Ex.: o servidor deve se negar a cumprir ordem de destruir um bem público sem nenhum motivo<br>
+      • O subordinado tem o <strong>dever funcional de representar</strong> contra o superior que agir com ilegalidade, omissão ou abuso de poder (STJ/2018)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca (MPE RO/2023)</div>
+    A <strong>remoção de servidor como forma de punição</strong> é exemplo de abuso de poder (desvio de finalidade): a remoção visa distribuir adequadamente a quantidade de servidores, não punir.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Abuso de poder = gênero</strong>; espécies: <strong>excesso</strong> (vício de competência) e <strong>desvio</strong> (vício de finalidade); pode ser comissivo ou omissivo<br>
+      • <strong>Poderes administrativos são poderes-deveres</strong> — irrenunciáveis; a omissão ilegal gera responsabilidade penal, civil e administrativa<br>
+      • <strong>Poder de polícia — DAC:</strong> discricionariedade, autoexecutoriedade, coercibilidade (nem todo ato goza de todos)<br>
+      • <strong>Polícia administrativa</strong> (bens/direitos/atividades; preventiva) × <strong>polícia judiciária</strong> (indivíduos; repressiva)<br>
+      • <strong>Ciclo de polícia:</strong> ordem, consentimento, fiscalização e sanção — a <strong>ordem</strong> é indelegável às entidades de direito privado (Tema 532)<br>
+      • <strong>Delegação</strong> (regra) × <strong>avocação</strong> (exceção, temporária, só com hierarquia, não alcança competência exclusiva)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Vinculado × discricionário:</strong> competência, finalidade e forma sempre vinculados; motivo e objeto podem ser discricionários; discricionariedade limitada pela lei e pelos princípios da proporcionalidade e razoabilidade<br>
+      • <strong>Hierarquia</strong> só dentro da mesma pessoa jurídica; não há entre adm. direta e indireta (vinculação), entre Poderes ou com particulares; presente nas atividades-meio do Legislativo e Judiciário<br>
+      • <strong>Poder disciplinar:</strong> vínculo específico; vinculado para apurar/punir; discricionário na tipificação e gradação; contraditório, ampla defesa e motivação obrigatórios (sem "verdade sabida")<br>
+      • <strong>Poder regulamentar:</strong> em regra não inova; decretos autônomos (art. 84, VI) e regulamentos autorizados são exceções; controle via Congresso (art. 49, V), Judiciário e autotutela<br>
+      • <strong>Autoexecutoriedade:</strong> exigibilidade (meios indiretos) × executoriedade (meios diretos); exige lei expressa ou urgência
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • "Desvio de poder = falta de competência" — <strong>errado</strong>; isso é excesso de poder<br>
+      • "Poderes são facultativos" — <strong>errado</strong>; são obrigações (poder-dever)<br>
+      • "O subordinado deve cumprir todas as ordens" — <strong>errado</strong>; não as manifestamente ilegais<br>
+      • "Todas as fases do poder de polícia são delegáveis" — <strong>errado</strong>; a ordem é indelegável<br>
+      • "Autoexecutoriedade exige autorização prévia do Judiciário" — <strong>errado</strong>; é decidir e executar sem intervenção do Judiciário<br>
+      • "Poder de polícia é privativo das polícias" — <strong>errado</strong>; o que é privativo das corporações é a polícia judiciária<br>
+      • "Empresa privada/concessionária exerce poder de polícia" — <strong>errado</strong>; não se delega a particulares (só atividades materiais/preparatórias)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine as duas tabelas clássicas (abuso de poder: excesso × desvio; polícia administrativa × judiciária) e o mnemônico DAC. As bancas (Cebraspe, FCC) adoram inverter conceitos entre os poderes — identifique sempre o <strong>vínculo</strong> (geral = polícia; específico = disciplinar) e a <strong>ênfase</strong> do enunciado (restrição de direitos = polícia; comando interno = hierarquia; generalidade da norma = regulamentar/normativo).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

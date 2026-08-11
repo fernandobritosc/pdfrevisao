@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 00: Princípios Administrativos</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 00</div>
+  <div class="sidebar-sub">Princípios Administrativos · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Origem, conceito e fontes</a>
+  <a href="#sec2">2. Regime Jurídico Administrativo</a>
+  <a href="#sec3">3. Princípios explícitos (L.I.M.P.E.)</a>
+  <a href="#sec4">4. Demais princípios</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: Aula 00 (Estratégia) + TEC Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — ORIGEM, CONCEITO E FONTES                            -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Origem, conceito e fontes do Direito Administrativo</div>
+  </div>
+  <div class="sec-subtitle">TEC Concursos — Capítulo de Origem, Conceito e Fontes</div>
+
+  <div class="card">
+    <div class="card-title">Estado como pessoa jurídica</div>
+    <div class="card-text">
+      No cotidiano, "Estado" costuma ser usado como sinônimo de <strong>ente federativo</strong> (estados-membros, municípios, DF). No Direito Administrativo, porém, o termo ganha sentido mais amplo: o <strong>Estado enquanto poder público</strong>, que garante direitos e cumpre obrigações.<br><br>
+      Segundo o <strong>Código Civil</strong>, o Estado é <strong>pessoa jurídica de direito público interno</strong> — tem personalidade jurídica, é titular de direitos e obrigações e pode se relacionar com terceiros (bilateralidade do direito: um direito existe porque há um dever correspondente).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Elementos constituintes do Estado</div>
+    <div class="card-text">
+      São <strong>indissociáveis</strong> (sem um deles não há Estado):
+      <strong>Povo</strong> (base humana) · <strong>Governo</strong> (rege a vida da sociedade, administra interesses coletivos) · <strong>Território</strong> (solo, subsolo, espaço aéreo e mar territorial).<br><br>
+      A <strong>soberania</strong> pode ser entendida internamente (autonomia política dos entes federativos) ou externamente (capacidade de se relacionar com outros países). O Estado <strong>não se confunde</strong> com o governo nem com a administração pública — esses são aspectos do Estado.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Formas de Estado e formas de governo
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Forma de Estado</th><th>Características</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Confederação</strong></td><td>União de estados independentes e <strong>soberanos</strong>; soberania descentralizada</td><td>EUA no século XVIII</td></tr>
+        <tr><td><strong>Estado unitário</strong></td><td>Centralização da soberania e da política; pode ser <strong>puro</strong> (sem divisão interna) ou <strong>impuro</strong> (descentralização administrativa, sem capacidade política)</td><td>França e Uruguai (impuro)</td></tr>
+        <tr><td><strong>Estado federal</strong></td><td>Soberania centralizada, mas capacidade política descentralizada; sem hierarquia entre entes</td><td>Brasil</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Formas de governo</div><div class="card-text"><strong>Monarquia</strong>: vitaliciedade + hereditariedade (Inglaterra). <strong>República</strong>: mandato por tempo determinado, eleição, sem hereditariedade e com prestação de contas (Brasil).</div></div>
+    <div class="card"><div class="card-title">Poderes do Estado</div><div class="card-text">Tripartição de <strong>Montesquieu</strong>: Executivo (função administrativa), Legislativo (legislar e fiscalizar) e Judiciário (julgar). Cada um pode exercer <strong>funções atípicas</strong>; a função administrativa está presente em <strong>todos</strong> os poderes.</div></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Federalismo por agregação × desagregação:</strong> por <strong>agregação</strong>, a confederação se une para formar o Estado federal (EUA); por <strong>desagregação</strong>, o Estado unitário descentraliza parte do poder político (Brasil). No Brasil adotamos o <strong>sistema inglês</strong> de controle (jurisdição única, inafastabilidade da jurisdição), diversamente do sistema francês (dualidade de jurisdição, Conselho de Estado).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Espécies de função administrativa e sentidos da administração pública
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Espécie</th><th>Conceito</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Fomento</strong></td><td>Estado <strong>estimula</strong> a iniciativa privada a produzir</td><td>Financiamento via bancos públicos, parcerias com organizações sociais</td></tr>
+        <tr><td><strong>Intervenção</strong></td><td>Estado atua na economia; direta (empresas estatais) ou indireta (agências reguladoras)</td><td>Banco do Brasil, Caixa Econômica Federal</td></tr>
+        <tr><td><strong>Serviço público</strong></td><td>Atividade que <strong>amplia</strong> a esfera de interesse do cidadão (comodidade e conforto)</td><td>Distribuição de energia elétrica</td></tr>
+        <tr><td><strong>Polícia administrativa</strong></td><td>Estado <strong>limita</strong> interesses individuais para proteger o interesse público (reduz a esfera de interesse)</td><td>Licença para construir, multas de trânsito</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sentidos objetivo × subjetivo</div>
+    <div class="card-text">
+      • <strong>Sentido objetivo</strong> = função administrativa (a <strong>atividade</strong>); também chamado de administração material/funcional<br>
+      • <strong>Sentido subjetivo</strong> = agentes, órgãos e entidades (<strong>quem</strong> realiza); também chamado de administração orgânica/formal<br><br>
+      No <strong>Brasil</strong> adota-se o <strong>critério formal (subjetivo ou orgânico)</strong> para conceituar a administração pública — o foco está nas pessoas, agentes, órgãos e entidades. No Brasil adotamos o sentido subjetivo, formal ou orgânico de administração pública.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O serviço público <strong>amplia</strong> a esfera de interesse do cidadão; o poder de polícia administrativa a <strong>reduz</strong>. As bancas costumam inverter essas finalidades. Não confundir: administração em sentido <strong>amplo</strong> (órgãos governamentais + administrativos) × em sentido <strong>estrito</strong> (apenas órgãos administrativos).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Conceito de Direito Administrativo — critérios
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Ideia central</th><th>Crítica</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Legalista</strong></td><td>DA se resume à interpretação das leis</td><td>Desconsidera doutrina e jurisprudência</td></tr>
+        <tr><td><strong>Técnico-científico</strong></td><td>Leis + doutrina + jurisprudência</td><td>Ainda não abrange toda a complexidade</td></tr>
+        <tr><td><strong>Relações jurídicas</strong></td><td>Relações entre administração e administrados</td><td>Não é exclusivo (Constitucional, Tributário e Penal também)</td></tr>
+        <tr><td><strong>Residual/negativista</strong></td><td>Identifica o DA por eliminação</td><td>Não define o que é, apenas o que não é</td></tr>
+        <tr><td><strong>Poder Executivo (italiano/subjetivista)</strong></td><td>DA rege apenas a atividade do Executivo</td><td>Atividade administrativa existe em todos os poderes</td></tr>
+        <tr><td><strong>Teleológico/finalista</strong></td><td>Princípios e normas para satisfazer a finalidade do Estado</td><td>Interesse público nem sempre converge com o interesse do Estado</td></tr>
+        <tr><td><strong>Administração pública</strong> <span class="tag tag-green">MAIS ACEITO</span></td><td>Ramo do direito público que rege a administração pública como atividade</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Definições de doutrinadores</div>
+    <div class="card-text">
+      • <strong>Di Pietro</strong>: "Ramo do direito público que tem por objeto os <strong>órgãos, agentes e pessoas jurídicas administrativas</strong> que integram a Administração Pública, a atividade jurídica <strong>não contenciosa</strong> que exercer e os bens e meios de que se utiliza para a consecução de seus fins, de natureza pública."<br><br>
+      • <strong>Mazza</strong>: "Ramo do direito público que <strong>estuda princípios e normas reguladores do exercício da função administrativa</strong>."<br><br>
+      • <strong>Carvalho Filho</strong>: princípios e normas que, "visando sempre ao <strong>interesse público</strong>, regem as relações jurídicas entre as pessoas e órgãos do Estado e entre este e as coletividades a que devem servir."
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Fontes do Direito Administrativo
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Fonte</th><th>Classificação</th><th>Observações</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lei</strong></td><td><span class="tag tag-green">Fonte primária/principal/direta</span></td><td>Vontade do Estado elaborada pelo Legislativo; inclui CF, leis complementares, ordinárias, delegadas e medidas provisórias (atos primários), além dos atos infralegais. Não há código único de DA.</td></tr>
+        <tr><td><strong>Jurisprudência</strong></td><td><span class="tag tag-amber">Fonte secundária/indireta</span> (regra geral)</td><td>Conjunto de decisões reiteradas dos tribunais. Excepcionalmente é <strong>fonte primária</strong> quando vinculante: súmulas vinculantes do STF e decisões em controle concentrado de constitucionalidade (eficácia erga omnes).</td></tr>
+        <tr><td><strong>Doutrina</strong></td><td><span class="tag tag-amber">Fonte secundária/indireta</span></td><td>Interpretações de estudiosos; sem força de lei, mas influencia leis e decisões.</td></tr>
+        <tr><td><strong>Costumes</strong></td><td><span class="tag tag-amber">Fonte secundária</span></td><td>Praxe administrativa (costume administrativo): práticas reiteradas. Só é aceito se <strong>não contrariar a lei</strong> (não admite costume contra legem).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Classificações cobradas:</strong> por <strong>Gordillo</strong>, fontes <strong>formais</strong> (CF, leis, regulamentos, jurisprudência vinculante — constituem o direito aplicável, com força normativa) e <strong>materiais</strong> (doutrina, princípios gerais do direito, jurisprudência em geral — influenciam a criação das normas). Por <strong>Moreira Neto</strong>, fontes <strong>organizadas</strong> (normas jurídicas, doutrina, jurisprudência) e <strong>inorganizadas</strong> (práticas administrativas e costumes).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Outras fontes</div>
+    <div class="card-text">
+      <strong>Princípios gerais do direito</strong> também são considerados fontes (legalidade, moralidade, eficiência, publicidade e impessoalidade norteiam a atividade administrativa). Parcela da doutrina reconhece ainda <strong>tratados e acordos internacionais</strong> como fontes que complementam o DA, especialmente os de direitos humanos, combate à corrupção, proteção ambiental e governança.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — REGIME JURÍDICO ADMINISTRATIVO                       -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Regime Jurídico Administrativo</div>
+  </div>
+  <div class="sec-subtitle">Conjunto de prerrogativas e sujeições a que está sujeita a Administração</div>
+
+  <div class="card">
+    <div class="card-title">Regime de direito público × regime de direito privado</div>
+    <div class="card-text">
+      O regime de <strong>direito público</strong> é aquele aplicável no exercício da função pública, em que o Estado goza de <strong>poderes especiais</strong> (impor obrigações, aplicar sanções, intervir na propriedade — ex.: desapropriação) e se submete a <strong>obrigações especiais</strong> (sujeições), como a licitação para contratar e o concurso público para admitir servidor.<br><br>
+      No regime de <strong>direito privado</strong> há igualdade de condições (horizontalidade) — dois particulares só alteram o contrato com o consentimento de ambos.<br><br>
+      A separação é mais <strong>doutrinária do que prática</strong>: os dois regimes convivem, havendo o <strong>predomínio</strong> de um ou outro conforme o caso. Mesmo no modelo privatístico, <strong>nunca</strong> é integral a submissão ao direito privado.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      RJA = Prerrogativas (supremacia) + Sujeições (indisponibilidade)
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">⚡ Prerrogativas (privilégios)</div><div class="card-text">Regras <strong>desconhecidas no direito privado</strong> que colocam a Administração em <strong>condições de superioridade</strong>, sempre visando ao benefício da coletividade.</div></div>
+    <div class="card"><div class="card-title">🔒 Sujeições (restrições)</div><div class="card-text">Retiram ou diminuem a <strong>liberdade da Administração</strong> sob pena de nulidade do ato ou responsabilidade da autoridade. Ex.: concurso público, licitação.</div></div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--blue);">Princípios fundamentais segundo a doutrina</div>
+    <div class="card-text">
+      Para <strong>Bandeira de Mello</strong>, as prerrogativas e sujeições traduzem-se, respectivamente, nos princípios da <strong>supremacia do interesse público</strong> sobre o privado e da <strong>indisponibilidade do interesse público</strong>. Para <strong>Di Pietro</strong>, os princípios fundamentais são a <strong>supremacia do interesse público</strong> e a <strong>legalidade</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O regime jurídico administrativo é formado pelo <strong>binômio supremacia (prerrogativas) + indisponibilidade (sujeições)</strong>. Cuidado com a troca: <strong>supremacia</strong> = prerrogativas; <strong>indisponibilidade</strong> = sujeições.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Supremacia do interesse público
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Prerrogativas administrativas</div>
+    <div class="card-text">
+      Em conflito entre interesse particular e interesse público, <strong>este último deve predominar</strong>. Manifestações da supremacia:<br>
+      a) <strong>atributos dos atos administrativos</strong> — presunção de veracidade, legitimidade e imperatividade<br>
+      b) <strong>cláusulas exorbitantes</strong> nos contratos administrativos — alteração ou rescisão unilateral<br>
+      c) <strong>poder de polícia administrativa</strong> — condicionamentos e limitações à atividade privada<br>
+      d) <strong>intervenção do Estado na propriedade privada</strong> — desapropriação (com indenização), servidão administrativa, tombamento, ocupação temporária<br><br>
+      A imposição de restrições ao particular <strong>depende de previsão legal</strong>. Nas situações em que a Administração não atua diretamente para o interesse público (contratos de locação, de seguro, Estado-empresário), <strong>não</strong> cabe invocar a supremacia.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Indisponibilidade do interesse público
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Trata das <strong>sujeições administrativas</strong>: limitações e restrições impostas para evitar que a Administração atue de forma lesiva aos interesses públicos ou ofensiva aos direitos fundamentais. Exemplos: necessidade de <strong>licitar</strong> para contratar e de realizar <strong>concurso público</strong> para contratar pessoas.<br><br>
+      A Administração <strong>não tem livre disposição</strong> dos bens e interesses públicos confiados à sua guarda — a coletividade é a verdadeira titular; aos agentes cabe apenas <strong>gerir e conservar</strong>. Enquanto a supremacia <strong>não se aplica</strong> em algumas situações (ex.: exploração de atividade econômica), a indisponibilidade está <strong>diretamente presente em qualquer atuação</strong> da Administração Pública.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Cláusulas exorbitantes decorrem do princípio da <strong>supremacia do interesse público</strong> — mesmo que o enunciado fale em "previsão em lei", o fundamento é a supremacia, e não a legalidade.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — PRINCÍPIOS EXPLÍCITOS (L.I.M.P.E.)                    -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Princípios explícitos do art. 37, caput, da CF</div>
+  </div>
+  <div class="sec-subtitle">Legalidade, impessoalidade, moralidade, publicidade e eficiência</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      L.I.M.P.E. — Legalidade · Impessoalidade · Moralidade · Publicidade · Eficiência
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      Os princípios do art. 37, caput, da CF/88 aplicam-se <strong>indistintamente</strong> às administrações <strong>direta e indireta</strong> (mesmo as de direito privado), de <strong>todos os Poderes</strong> (incluindo Ministério Público e Tribunal de Contas) e de <strong>todas as esferas</strong> (União, estados, DF e municípios). A lista <strong>não é taxativa</strong> — outras leis e constituições estaduais podem prever princípios adicionais (ex.: finalidade na Lei 9.784/99).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Legalidade
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Administrados</th><th>Administração</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Regra</strong></td><td>Tudo o que <strong>não for proibido é permitido</strong> (art. 5º, II, CF) — autonomia da vontade</td><td>Só pode agir <strong>quando a lei determinar ou autorizar</strong> (art. 37, caput) — estrita legalidade</td></tr>
+        <tr><td><strong>Atuação</strong></td><td>secundum legem e praeter legem</td><td>Somente <strong>secundum legem</strong> (nem contra nem além da lei)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      • A função administrativa se subordina às previsões legais: o agente atua por <strong>vinculação</strong> (lei determina) ou <strong>discricionariedade</strong> (lei autoriza)<br>
+      • A atuação também deve observar <strong>decretos regulamentares, portarias e instruções normativas</strong>, que <strong>não podem inovar</strong> na ordem jurídica (criar direitos e obrigações)<br>
+      • <strong>Reserva legal</strong> ≠ legalidade: certas matérias exigem lei em sentido estrito (ordinária ou complementar) — ex.: individualização da pena (CF, art. 5º, XLVI)<br>
+      • <strong>Exceções/restrições excepcionais à legalidade</strong>: medidas provisórias (art. 62), estado de defesa (art. 136) e estado de sítio (arts. 137 a 139)<br>
+      • <strong>Juridicidade</strong>: ampliação do conceito de legalidade — o administrador se sujeita a <strong>todo o ordenamento jurídico</strong> (leis, regulamentos, princípios), reduzindo a discricionariedade; ato que fere princípio pode ser anulado até pelo Judiciário
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Não há hierarquia entre os princípios. A assertiva "todos os princípios estão subordinados ao princípio da legalidade" está <strong>errada</strong> — em conflito aparente, há ponderação (ex.: legalidade × segurança jurídica na anulação de ato antigo).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Impessoalidade — cinco sentidos
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sentido</th><th>Conteúdo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Finalidade</strong></td><td>Em sentido amplo, sinônimo de interesse público; em sentido estrito, o ato deve satisfazer a finalidade específica prevista em lei</td></tr>
+        <tr><td><strong>Validade do ato do agente de fato</strong></td><td>Atos de quem ocupa cargo sem investidura regular são <strong>imputados ao Estado</strong> e continuam válidos mesmo se desfeita a investidura (ex.: licença de obra assinada por agente de fato)</td></tr>
+        <tr><td><strong>Igualdade ou isonomia</strong></td><td>Atender a todos sem discriminações; vedação a favorecimentos e perseguições indevidas</td></tr>
+        <tr><td><strong>Vedação de promoção pessoal</strong></td><td>Publicidade sem nomes, símbolos ou imagens que caracterizem promoção pessoal (art. 37, § 1º)</td></tr>
+        <tr><td><strong>Impedimento e suspeição</strong></td><td>Afastamento de processos de quem não pode aplicar a lei com imparcialidade (parentesco, amizade, inimizade)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Nepotismo — Súmula Vinculante 13 (STF):</strong> a nomeação de cônjuge, companheiro ou parente em linha reta, colateral ou por afinidade, até o <strong>terceiro grau</strong>, da autoridade nomeante ou de servidor investido em cargo de direção, chefia ou assessoramento, para cargo em comissão ou de confiança (ou função gratificada), compreendido o ajuste mediante designações recíprocas, <strong>viola a CF</strong>. O fundamento decorre diretamente da Constituição (moralidade e impessoalidade) — <strong>sem necessidade de lei</strong>. A Lei 14.230/2021 incorporou a vedação à Lei de Improbidade (art. 11, XI).</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Nos <strong>cargos de natureza política</strong> (ex.: secretário de estado), a vedação é analisada <strong>caso a caso</strong>: só se caracteriza nepotismo se o nomeado não tiver capacidade técnica ou houver "troca de favores"/fraude à legislação (RCL 7.590/PR; RCL 17.102/SP). Cargo em comissão <strong>administrativo</strong> é alcançado imediatamente pela SV 13; cargo político, não.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Moralidade
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Impõe que o administrador <strong>não dispense os preceitos éticos</strong> presentes em sua conduta. Aplica-se às relações da Administração com os administrados e também às <strong>atividades internas</strong>. Para violá-la <strong>não se exige intenção</strong> — a moralidade é analisada no aspecto <strong>objetivo</strong> (independe da intenção do agente).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Publicidade — duplo sentido
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sentido</th><th>Conteúdo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Requisito de eficácia</strong></td><td>Atos gerais com efeitos externos ou com ônus ao patrimônio público devem ser <strong>publicados em órgãos oficiais</strong> (Diário Oficial) para produzirem efeitos. Não é requisito de <strong>validade</strong>, mas de produção de <strong>efeitos</strong>.</td></tr>
+        <tr><td><strong>Transparência</strong></td><td>Deriva da indisponibilidade do interesse público; requisito indispensável ao <strong>controle da Administração</strong> pelos administrados.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      Manifestações da publicidade: <strong>direito de peticionar</strong> (CF, art. 5º, XXXIV, "a"); <strong>direito de obter certidões</strong> (CF, art. 5º, XXXIV, "b"); <strong>divulgação de ofício</strong> de informações; direito à informação (CF, art. 5º, XXXIII). Regulamentada pela <strong>Lei 12.527/2011</strong> (Lei de Acesso à Informação).<br><br>
+      A publicidade é a <strong>regra, mas não é absoluta</strong>: são exceções os <strong>dados pessoais</strong> (intimidade, honra e imagem) e as <strong>informações sigilosas</strong> (segurança da sociedade e do Estado).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Publicidade ≠ publicação</strong>: a publicação oficial é apenas um dos instrumentos da publicidade. É legítima a publicação dos <strong>nomes de servidores e respectivos vencimentos</strong> em sítio oficial (RE 652.777), mas <strong>não</strong> devem ser divulgadas informações meramente pessoais, como o número completo do CPF e o endereço do servidor.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Eficiência
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Incluído no art. 37 pela <strong>Emenda Constitucional 19/1998</strong>, como decorrência da reforma gerencial. Exige atuação com <strong>excelência</strong>: serviços públicos de qualidade, com o menor custo possível (mantidos os padrões de qualidade) e no menor tempo — sempre em <strong>harmonia com os demais princípios</strong>.<br><br>
+      Segundo <strong>Di Pietro</strong>, apresenta dois aspectos:<br>
+      • <strong>Modo de atuação do agente</strong>: melhor atuação possível (ex.: avaliação especial de desempenho para estabilidade; possibilidade de perda de cargo por avaliação periódica)<br>
+      • <strong>Modo de organizar, estruturar e disciplinar</strong>: racionalidade, modelo de <strong>administração gerencial</strong> — controles por <strong>resultados</strong> em vez de processos
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Avaliação de políticas públicas</div>
+    <div class="card-text">
+      Os órgãos e entidades da administração pública devem realizar <strong>avaliação das políticas públicas</strong>, com divulgação do objeto e dos resultados (CF, art. 37, § 16 — incluído pela EC 109/2021). Trata-se de <strong>desdobramento do princípio da eficiência</strong>. O critério econômico <strong>não é o único</strong> para avaliar a eficiência (também eficácia e efetividade); e a eficiência <strong>não obriga</strong> à contratação pelo menor preço.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — DEMAIS PRINCÍPIOS                                     -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Demais princípios (implícitos ou reconhecidos)</div>
+  </div>
+  <div class="sec-subtitle">Implícitos quando o parâmetro é a CF — podem ser expressos na legislação (ex.: Lei 9.784/1999)</div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div>Na <strong>Lei 9.784/1999</strong> (processo administrativo federal) constam expressamente: legalidade, finalidade, motivação, razoabilidade, proporcionalidade, moralidade, ampla defesa, contraditório, segurança jurídica, interesse público e eficiência. Princípio "implícito" na CF pode ser "expresso" na legislação — <strong>atenção à referência da questão</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Razoabilidade e proporcionalidade
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Razoabilidade</div><div class="card-text">Ao atuar dentro da discrição, o agente deve obedecer a <strong>critérios aceitáveis do ponto de vista racional</strong>, em sintonia com o senso normal de pessoas equilibradas.</div></div>
+    <div class="card"><div class="card-title">Proporcionalidade</div><div class="card-text">Exige <strong>equilíbrio entre meios e fins</strong> (adequação), vedadas obrigações, restrições e sanções em medida superior à estritamente necessária (Lei 9.784/99, art. 2º, § único, VI).</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      • Não previstos expressamente na CF; previstos na <strong>Lei 9.784/1999</strong>; muitos autores consideram a proporcionalidade <strong>faceta da razoabilidade</strong>; em provas são tratados como sinônimos<br>
+      • Realizam <strong>limitação à discricionariedade administrativa</strong> — atos que pelo excesso mostrem-se ilegais e ilegítimos são passíveis de <strong>anulação</strong> pelo Judiciário e pela Administração<br>
+      • <strong>Não significam invasão do mérito administrativo</strong> (conveniência e oportunidade): decisões que violam a razoabilidade são <strong>ilegais e ilegítimas</strong>, não meramente inconvenientes
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Especialidade e controle (tutela)
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Especialidade</strong>: reflete a ideia de <strong>descentralização administrativa</strong> — as entidades da administração indireta (autarquias, fundações, empresas públicas e sociedades de economia mista) são criadas para <strong>finalidades específicas</strong> (ex.: INSS). Decorre da legalidade e da indisponibilidade; a criação ou autorização de criação exige <strong>lei específica</strong> (CF, art. 37, XIX), vedado o exercício de atividades diversas sob pena de nulidade<br>
+      • <strong>Controle ou tutela</strong>: controle da Administração Direta sobre as entidades da indireta, para garantir a observância de suas finalidades institucionais. Não há <strong>subordinação</strong>, mas <strong>vinculação</strong> — a autonomia é a regra; o controle é a exceção, exercido <strong>somente nos limites definidos em lei</strong> (não pode ser presumido)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Autotutela
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      A Administração possui o poder de <strong>controlar os próprios atos</strong>, <strong>anulando-os quando ilegais</strong> ou <strong>revogando-os quando inconvenientes ou inoportunos</strong>, sem recorrer ao Judiciário. Previsão: <strong>Súmula 346 STF</strong> ("A Administração Pública pode declarar a nulidade dos seus próprios atos"), <strong>Súmula 473 STF</strong> e <strong>art. 53 da Lei 9.784/1999</strong>.<br><br>
+      Envolve dois aspectos: <strong>legalidade</strong> (anulação, de ofício ou por provocação) e <strong>mérito</strong> (revogação por conveniência e oportunidade). O Judiciário também anula, mas <strong>somente mediante provocação</strong> (sistema de jurisdição única — CF, art. 5º, XXXV); <strong>não revoga</strong> atos da Administração.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Autotutela</th><th>Controle judicial</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Legalidade</strong></td><td>Anula seus atos, de ofício ou por provocação</td><td>Anula somente por provocação</td></tr>
+        <tr><td><strong>Mérito (conveniência e oportunidade)</strong></td><td>Revoga seus atos, de ofício ou por provocação</td><td><strong>Não pode revogar</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Decadência (art. 54, Lei 9.784/1999):</strong> o direito da Administração de <strong>anular</strong> atos de que decorram <strong>efeitos favoráveis</strong> ao destinatário <strong>decai em 5 anos</strong>, contados da prática do ato, <strong>salvo comprovada má-fé</strong>. Após o prazo, a autotutela se torna incabível. A anulação exige <strong>contraditório e ampla defesa</strong> quando afetar negativamente interesses.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Súmula 346 usa o termo <strong>"pode"</strong>; o art. 53 da L9.784 usa <strong>"deve"</strong>. Em questão sem referência, prefira o <strong>"deve"</strong> (mais usual). E a autotutela <strong>não se aplica ao Judiciário exercendo função jurisdicional</strong> — é prerrogativa da Administração Pública.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Motivação
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O administrador deve indicar os <strong>fundamentos de fato e de direito</strong> que o levam a adotar qualquer decisão, demonstrando a correlação lógica entre a situação ocorrida e as providências adotadas. Serve de fundamento para examinar a <strong>finalidade, a legalidade e a moralidade</strong> da conduta.<br><br>
+      Em regra, os atos devem ser motivados, sejam <strong>discricionários ou vinculados</strong>. Exceção clássica: <strong>exoneração ad nutum</strong> de ocupante de cargo em comissão (tratamento constitucional próprio — CF, art. 37, II).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Continuidade do serviço público
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Os serviços públicos devem ser prestados de <strong>maneira contínua</strong>. Consequências (Di Pietro):<br>
+      a) <strong>proibição de greve dos servidores</strong> — não absoluta: direito de greve exercido nos termos de lei específica (art. 37, VII)<br>
+      b) <strong>suplência, delegação e substituição</strong> para preencher funções temporariamente vagas<br>
+      c) impossibilidade de invocar a <strong>exceptio non adimpleti contractus</strong> nos contratos de execução de serviço público<br>
+      d) faculdade de <strong>utilizar equipamentos e instalações</strong> da empresa contratada para assegurar a continuidade<br>
+      e) <strong>encampação</strong> da concessão de serviço público<br><br>
+      Relaciona-se à <strong>supremacia</strong> e à <strong>eficiência</strong>. Não é absoluto: a Lei 8.987/1995 admite interrupção por <strong>emergência</strong> ou, após prévio aviso, por <strong>razões técnicas/segurança</strong> ou <strong>inadimplemento do usuário</strong> (art. 6º, § 3º).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Greve de servidor público não é ilegal em si</strong>: é direito constitucional, aplicando-se, por omissão legislativa, a lei de greve da iniciativa privada. <strong>Militares</strong> não têm direito de greve (expressa previsão constitucional — art. 142, IV); <strong>policiais civis</strong> também não, por equiparação aos militares (ARE 654.432/GO; Rcl 11.246 AgR/BA). Em greve, cabe o <strong>desconto dos dias paralisados</strong>, incabível se decorrente de conduta ilícita do poder público (RE 693.456/RJ).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Contraditório e ampla defesa
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Assegurados aos litigantes em processo judicial ou administrativo e aos acusados em geral (CF, art. 5º, LV); ligados ao <strong>devido processo legal</strong> (CF, art. 5º, LIV). O <strong>contraditório</strong> é o direito de conhecer as alegações da parte contrária e contrapor-se; a <strong>ampla defesa</strong> é o direito de alegar e provar, por todos os meios juridicamente válidos.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A defesa técnica por advogado <strong>não é indispensável</strong> no processo administrativo: "A falta de defesa técnica por advogado no processo administrativo disciplinar não ofende a Constituição" (Súmula Vinculante 5 STF). A presença do advogado é <strong>opção</strong> do interessado, não requisito de validade.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Segurança jurídica e proteção à confiança
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Objetiva <strong>assegurar a estabilidade das relações jurídicas já consolidadas</strong>. Protege o direito adquirido, o ato jurídico perfeito e a coisa julgada; é fundamento da prescrição e da decadência; base para as <strong>súmulas vinculantes</strong> (CF, art. 103-A, § 1º). Previsto no art. 2º da Lei 9.784/1999 e no inciso XIII (§ único): vedada a <strong>aplicação retroativa de nova interpretação</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Segurança jurídica</th><th>Proteção à confiança</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Objetivo</strong>: estabilidade das relações jurídicas (decurso do tempo)</td><td><strong>Subjetivo</strong>: boa-fé do administrado perante a administração</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Nem o <strong>interesse público</strong> excepciona a vedação à retroatividade de nova interpretação. Nova interpretação vale <strong>do momento em que for proferida em diante</strong>. "Atos praticados com prudência, moderação e bom senso" é conceito da <strong>razoabilidade</strong> — não confundir com segurança jurídica.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Intranscendência subjetiva das sanções e outros princípios
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Intranscendência subjetiva das sanções</strong>: a penalidade atinge a pessoa que cometeu a irregularidade, não prejudicando quem não teve responsabilidade (ex.: inadimplência do ex-prefeito não pode bloquear repasses no mandato do novo prefeito).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Princípio</th><th>Conteúdo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hierarquia</strong></td><td>Coordenação e subordinação; rever atos de subordinados, delegar, avocar e punir. Típico da função administrativa. Com as súmulas vinculantes, há subordinação dos órgãos do Judiciário ao STF</td></tr>
+        <tr><td><strong>Precaução</strong></td><td>Conduta preventiva diante de danos ao ambiente ou ao interesse público; consequência: inversão do ônus da prova</td></tr>
+        <tr><td><strong>Presunção de legitimidade/veracidade</strong></td><td>Legitimidade = ato conforme a lei; veracidade = fatos alegados verdadeiros. Execução imediata; presunção <strong>relativa (juris tantum)</strong> com inversão do ônus da prova ao particular</td></tr>
+        <tr><td><strong>Sindicabilidade</strong></td><td>Todo ato pode se submeter a algum tipo de controle (autotutela + controle judicial)</td></tr>
+        <tr><td><strong>Responsividade</strong></td><td>Prestar contas e ser responsabilizado pelas condutas; ligado à indisponibilidade</td></tr>
+        <tr><td><strong>Subsidiariedade</strong></td><td>Participação limitada do Estado: funções próprias (exclusivas) + atuação supletiva</td></tr>
+        <tr><td><strong>Consensualidade</strong></td><td>Substituir práticas coercitivas por mecanismos consensuais (TAC, contrato de gestão, audiências e consultas públicas, conciliação, mediação e arbitragem)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>L.I.M.P.E.</strong> — princípios expressos do art. 37, caput, CF; aplicáveis a todos os Poderes, esferas e à administração direta e indireta<br>
+      • <strong>Não há hierarquia entre princípios</strong> — legalidade não está "acima" dos demais<br>
+      • <strong>Autotutela</strong> (Súmulas 346 e 473 STF): anular ilegais + revogar inconvenientes; Judiciário anula só por provocação e <strong>não revoga</strong><br>
+      • <strong>Cláusulas exorbitantes → supremacia do interesse público</strong><br>
+      • <strong>Nepotismo (SV 13)</strong> — fundamento direto na CF (moralidade + impessoalidade); cargo político analisado caso a caso<br>
+      • <strong>Promoção pessoal → impessoalidade</strong> (art. 37, § 1º)<br>
+      • <strong>Publicidade é regra, não absoluta</strong> — exceções: dados pessoais e sigilo imprescindível<br>
+      • <strong>Decadência de 5 anos</strong> para anular atos com efeitos favoráveis, salvo má-fé (art. 54, L9.784)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Legalidade</strong>: administração só secundum legem; <strong>reserva legal</strong> ≠ legalidade; <strong>juridicidade</strong> amplia a legalidade<br>
+      • <strong>Eficiência (EC 19/98)</strong>: dois aspectos (atuação do agente + organização); avaliação de políticas públicas (art. 37, § 16, EC 109/21)<br>
+      • <strong>Razoabilidade/proporcionalidade</strong>: limitam a discricionariedade, mas <strong>não invadem o mérito</strong><br>
+      • <strong>Especialidade × tutela</strong>: vinculação (não subordinação) da indireta à direta<br>
+      • <strong>Moralidade</strong> é analisada no aspecto <strong>objetivo</strong>, sem exigir intenção<br>
+      • <strong>Continuidade</strong>: greve de servidores não é ilegal; militares e policiais civis não podem<br>
+      • <strong>SV 5</strong>: falta de advogado no PAD não ofende a CF
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • "Indivisibilidade" <strong>não</strong> é princípio expresso da CF (a banca troca por impessoalidade)<br>
+      • Autotutela não dispensa <strong>contraditório e ampla defesa</strong> quando afeta negativamente direitos<br>
+      • O interesse público <strong>não se opõe necessariamente</strong> ao interesse privado<br>
+      • "Preponderância do interesse público" ≠ supremacia na acepção usada para fundamentar a autotutela<br>
+      • Eficiência <strong>não obriga</strong> ao menor preço; economicidade não é o único critério<br>
+      • Publicidade <strong>não encerra escopo</strong> na publicação oficial<br>
+      • Princípios implícitos na CF podem ser <strong>expressos em lei</strong> (ex.: Lei 9.784/99) — atenção à referência
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine o mnemônico L.I.M.P.E., o binômio do regime jurídico (supremacia + indisponibilidade), a SV 13 (nepotismo) e as distinções anulação × revogação, autotutela × tutela, e publicidade × publicação. São as pegadinhas recorrentes de Cebraspe.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

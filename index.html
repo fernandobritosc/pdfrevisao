@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumos Hermes</title>
+<style>
+  :root {
+    --sidebar: 260px;
+    --accent: #0f172a;
+    --accent-soft: #f1f5f9;
+    --highlight: #b45309;
+    --callout: #fff7ed;
+    --callout-border: #f97316;
+    --gotcha: #fef2f2;
+    --gotcha-border: #ef4444;
+    --mnemonic: #f0fdf4;
+    --mnemonic-border: #22c55e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #1f2937;
+    background: #ffffff;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  aside {
+    width: var(--sidebar);
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 28px 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+
+  aside h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    color: #fbbf24;
+    font-weight: 700;
+  }
+
+  aside h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin: 24px 0 10px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+
+  aside a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 7px 10px;
+    border-radius: 8px;
+    margin-bottom: 3px;
+    font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  aside a:hover {
+    background: #1e293b;
+    color: #fff;
+  }
+
+  main {
+    margin-left: var(--sidebar);
+    flex: 1;
+    padding: 36px 44px 56px;
+    max-width: 960px;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    color: #b45309;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.15s ease;
+  }
+
+  .back:hover {
+    color: #0f172a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .meta {
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 40px;
+    margin-bottom: 14px;
+    padding-left: 14px;
+    border-left: 4px solid #f59e0b;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 26px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    text-align: justify;
+    color: #1f2937;
+  }
+
+  ul {
+    margin-left: 24px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+
+  li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .callout {
+    background: var(--callout);
+    border-left: 4px solid var(--callout-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+    font-size: 15px;
+  }
+
+  .callout b {
+    color: #9a3412;
+  }
+
+  .gotcha {
+    background: var(--gotcha);
+    border-left: 4px solid var(--gotcha-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+  }
+
+  .gotcha b {
+    color: #991b1b;
+  }
+
+  .mnemonic {
+    background: var(--mnemonic);
+    border-left: 4px solid var(--mnemonic-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+  }
+
+  .mnemonic b {
+    color: #166534;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    font-size: 14px;
+  }
+
+  th, td {
+    border: 1px solid #e2e8f0;
+    padding: 11px 14px;
+    text-align: left;
+  }
+
+  th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  td {
+    color: #1f2937;
+  }
+
+  .footer {
+    margin-top: 56px;
+    font-size: 12px;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+    font-weight: 500;
+  }
+
+  .section {
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 768px) {
+    aside {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+    main {
+      margin-left: 0;
+      padding: 24px 20px 40px;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937; background: #f1f5f9; }
+  main { max-width: 1100px; margin: 0 auto; padding: 36px 28px 56px; }
+
+  header { margin-bottom: 32px; }
+  header h1 { font-size: 32px; color: #0f172a; font-weight: 800; letter-spacing: -0.5px; }
+  header p { color: #475569; font-size: 15px; margin-top: 6px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+
+  .card { background: #ffffff; border-radius: 18px; padding: 22px; box-shadow: 0 2px 6px rgba(15,23,42,0.06), 0 0 0 1px rgba(15,23,42,0.04); transition: transform .15s ease, box-shadow .15s ease; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15,23,42,0.1), 0 0 0 1px rgba(15,23,42,0.04); }
+
+  .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #e2e8f0; }
+  .card-icon { width: 38px; height: 38px; border-radius: 12px; background: #fffbeb; color: #b45309; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+  .card h2 { font-size: 16px; color: #0f172a; font-weight: 700; }
+
+  .item { margin: 6px 0; }
+  .item a { color: #334155; text-decoration: none; font-size: 14px; padding: 7px 10px; border-radius: 10px; display: inline-flex; align-items: center; gap: 8px; background: #f8fafc; border: 1px solid #e2e8f0; }
+  .item a:hover { background: #0f172a; color: #fff; border-color: #0f172a; }
+  .item a .dot { width: 6px; height: 6px; border-radius: 50%; background: #cbd5e1; }
+  .item a:hover .dot { background: #fbbf24; }
+
+  .footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; text-align: right; }
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="/PDF%20Revis%C3%A3o/index.html">← Voltar para o índice</a>
+
+  <header>
+    <h1>Resumos</h1>
+    <p>Material de estudo em HTML, organizado por matéria e aula.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">AP</div>
+        <h2>Administração Pública e Geral</h2>
+      </div>
+      <div class="item"><a href="Administra%C3%A7%C3%A3o%20P%C3%BAblica%20e%20Geral/aula%2000/analise-unificada.html"><span class="dot"></span>Aula 00 — análise unificada</a></div>
+      <div class="item"><a href="Administra%C3%A7%C3%A3o%20P%C3%BAblica%20e%20Geral/aula%2001/resumo-aula-01.html"><span class="dot"></span>Aula 01 — Teoria Geral da Administração</a></div>
+      <div class="item"><a href="Administra%C3%A7%C3%A3o%20P%C3%BAblica%20e%20Geral/aula%2002/resumo-aula-02.html"><span class="dot"></span>Aula 02 — Planejamento</a></div>
+      <div class="item"><a href="Administra%C3%A7%C3%A3o%20P%C3%BAblica%20e%20Geral/aula%2003/resumo-aula-03.html"><span class="dot"></span>Aula 03 — Ferramentas Estratégicas</a></div>
+      <div class="item"><a href="Administra%C3%A7%C3%A3o%20P%C3%BAblica%20e%20Geral/aula%2004/aula-04-Organiza%C3%A7%C3%A3o-resumo.html"><span class="dot"></span>Aula 04 — Organização</a></div>
+      <div class="item"><a href="Administra%C3%A7%C3%A3o%20P%C3%BAblica%20e%20Geral/aula%2005/resumo-aula-05.html"><span class="dot"></span>Aula 05 — Liderança</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">PT</div>
+        <h2>Português</h2>
+      </div>
+      <div class="item"><a href="Portugu%C3%AAs/Aula%2000/resumo-aula-00.html"><span class="dot"></span>Aula 00 — Ortografia</a></div>
+      <div class="item"><a href="Portugu%C3%AAs/Aula%2001/resumo-aula-01.html"><span class="dot"></span>Aula 01 — Classes de Palavras I</a></div>
+      <div class="item"><a href="Portugu%C3%AAs/Aula%2002/resumo-aula-02.html"><span class="dot"></span>Aula 02 — Preposições e Conjunções</a></div>
+      <div class="item"><a href="Portugu%C3%AAs/Aula%2003/resumo-aula-03.html"><span class="dot"></span>Aula 03 — Pronomes e Colocação Pronominal</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">AFO</div>
+        <h2>AFO</h2>
+      </div>
+      <div class="item"><a href="AFO/Aula%2000/analise-unificada.html"><span class="dot"></span>Aula 00 — análise unificada</a></div>
+      <div class="item"><a href="AFO/Aula%2005/resumo-aula-05-receita-publica-organizado-v5.0.html"><span class="dot"></span>Aula 05 — receita pública organizado v5.0</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">AG</div>
+        <h2>Agenda</h2>
+      </div>
+      <div class="item"><a href="agenda-tarefas.html"><span class="dot"></span>agenda-tarefas</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">AD</div>
+        <h2>Direito Administrativo</h2>
+      </div>
+      <div class="item"><a href="Direito%20Administrativo/Aula%2006/resumo-aula-06-organizado.html"><span class="dot"></span>Aula 06 — resumo-aula-06-organizado</a></div>
+      <div class="item"><a href="Direito%20Administrativo/Aula%2007/resumo-aula-07.html"><span class="dot"></span>Aula 07 — resumo-aula-07</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">DC</div>
+        <h2>Direito Constitucional</h2>
+      </div>
+      <div class="item"><a href="Direito%20Constitucional/Aula%2000/analise-unificada.html"><span class="dot"></span>Aula 00 — análise unificada</a></div>
+      <div class="item"><a href="Direito%20Constitucional/Aula%2000/nacionalidade-resumo.html"><span class="dot"></span>Aula 00 — nacionalidade</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">DT</div>
+        <h2>Direito do Trabalho</h2>
+      </div>
+      <div class="item"><a href="Direito%20do%20Trabalho/Aula%2000/resumo-aula-00-relacoes-trabalho-emprego.html"><span class="dot"></span>Aula 00 — trabalho e emprego</a></div>
+      <div class="item"><a href="Direito%20do%20Trabalho/aula%2001/resumo-aula-01.html"><span class="dot"></span>Aula 01 — resumo-aula-01</a></div>
+      <div class="item"><a href="Direito%20do%20Trabalho/aula%2002/resumo-aula-02.html"><span class="dot"></span>Aula 02 — resumo-aula-02</a></div>
+      <div class="item"><a href="Direito%20do%20Trabalho/aula%2003/resumo-aula-03.html"><span class="dot"></span>Aula 03 — resumo-aula-03</a></div>
+      <div class="item"><a href="Direito%20do%20Trabalho/aula%2004/questoes-aula-04.html"><span class="dot"></span>Aula 04 — questões-aula-04</a></div>
+      <div class="item"><a href="Direito%20do%20Trabalho/aula%2004/resumo-aula-04.html"><span class="dot"></span>Aula 04 — resumo-aula-04</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">DPT</div>
+        <h2>Direito Processual do Trabalho</h2>
+      </div>
+      <div class="item"><a href="Direito%20Processual%20do%20Trabalho/aula%2003/resumo-aula-03.html"><span class="dot"></span>Aula 03 — resumo-aula-03</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">INF</div>
+        <h2>Informática</h2>
+      </div>
+      <div class="item"><a href="Informatica/aula%2005/resumo-aula-05-navegadores.html"><span class="dot"></span>Aula 05 — navegadores</a></div>
+    </div>
+  </div>
+
+  <div class="footer">Resumos Hermes • Material de estudo • Acesso: https://resumos-hermes.surge.sh</div>
+</main>
+</body>
+</html>

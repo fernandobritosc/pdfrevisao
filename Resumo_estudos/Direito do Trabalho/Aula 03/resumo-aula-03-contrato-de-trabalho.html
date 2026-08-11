@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DT Aula 03: Contrato de Trabalho</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito do Trabalho — Aula 03</div>
+  <div class="sidebar-sub">Contrato de Trabalho · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito e características</a>
+  <a href="#sec2">2. Elementos essenciais, forma e CTPS</a>
+  <a href="#sec3">3. Duração: indeterminado × determinado</a>
+  <a href="#sec4">4. Alteração do contrato (art. 468)</a>
+  <a href="#sec5">5. Poderes do empregador</a>
+  <a href="#sec6">6. Interrupção × suspensão</a>
+  <a href="#sec7">7. Contratos especiais</a>
+  <a href="#sec8">8. Pontos que mais caem em prova</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO E CARACTERÍSTICAS                           -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito e características do contrato de trabalho</div>
+  </div>
+  <div class="sec-subtitle">CLT, art. 442 — base de toda a aula (assunto recorrente em provas)</div>
+
+  <div class="card">
+    <div class="card-title">Conceito legal (CLT, art. 442)</div>
+    <div class="card-text">
+      <em>"Contrato individual de trabalho é o acordo tácito ou expresso, correspondente à relação de emprego."</em><br><br>
+      • A definição existe no âmbito das relações <strong>empregatícias</strong> (entre empregado e empregador), que demandam os <strong>elementos fático-jurídicos</strong> da relação de emprego — não se confunde com a relação de trabalho (gênero)<br>
+      • O termo tecnicamente mais adequado seria <strong>"contrato de emprego"</strong>, mas o legislador consagrou "contrato de trabalho" na CLT
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      PISTACO — Privado · Intuitu personae · Sinalagmático · Trato permanente · Atividade · Consensual · Oneroso
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Direito privado</div><div class="card-text">A prestação de serviços é regida pelo <strong>direito privado</strong>. Mesmo quando o Estado é o empregador (empregados públicos CLT), permanece a condição privada do contrato (Godinho) — sem prerrogativas especiais. A imperatividade das normas trabalhistas <strong>não</strong> torna o contrato público.</div></div>
+    <div class="card"><div class="card-title">Sinalagmático</div><div class="card-text">Obrigações <strong>recíprocas e contrapostas</strong>: o empregado oferece sua energia (prestação laboral) e recebe a contrapartida remuneratória do empregador.</div></div>
+    <div class="card"><div class="card-title">Consensual</div><div class="card-text">Em regra, <strong>não se exige forma solene</strong> (não há formalidade imperativa) — reconhece-se até a validade de contratos verbais.</div></div>
+    <div class="card"><div class="card-title">Intuitu personae</div><div class="card-text">Pessoalidade que atinge <strong>apenas o empregado</strong> (infungível), sendo um dos elementos fático-jurídicos da relação de emprego. A figura do <strong>empregador é fungível</strong>.</div></div>
+    <div class="card"><div class="card-title">Trato permanente</div><div class="card-text">Obrigações continuadas no tempo (labor + contraprestação); em regra há <strong>indeterminação do prazo</strong>. Ligado ao princípio da <strong>continuidade da relação de emprego</strong>.</div></div>
+    <div class="card"><div class="card-title">De atividade</div><div class="card-text">É uma prestação de <strong>fazer</strong> (o labor). Não se fala em contrato de resultado — o risco do empreendimento é suportado pelo empregador (lucros e prejuízos).</div></div>
+    <div class="card"><div class="card-title">Oneroso</div><div class="card-text">Exige a <strong>contraprestação pecuniária</strong> a cargo do empregador. Sem ela não há relação de emprego (trabalho voluntário). Havendo intenção de receber salário (<em>animus contrahendi</em>), a onerosidade está configurada, ainda que o empregador não cumpra sua parte.</div></div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Não confundir:</strong> elementos de <strong>validade</strong> do contrato (art. 104 do Código Civil) ≠ <strong>elementos fático-jurídicos</strong> da relação de emprego (pessoa física, pessoalidade, subordinação, onerosidade e não eventualidade). A banca adora inverter os dois grupos.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A <strong>pessoalidade atinge apenas o empregado</strong> (infungível). O empregador é <strong>fungível</strong> — por isso a alteração subjetiva (troca de empregador) é admitida no direito do trabalho.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — ELEMENTOS ESSENCIAIS, FORMA E CTPS                    -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Elementos essenciais, forma e CTPS</div>
+  </div>
+  <div class="sec-subtitle">Elementos de validade (art. 104, CC) <span class="tag tag-blue">Incidência BAIXA</span> · CTPS <span class="tag tag-amber">Incidência MÉDIA</span></div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Elementos de validade (art. 104 do Código Civil — Lei 10.406/02)
+  </h3>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      AOF — Agente capaz · Objeto lícito, possível, determinado ou determinável · Forma prescrita ou não defesa em lei
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Capacidade dos agentes</div>
+    <div class="card-text">
+      • <strong>Empregador</strong> (pessoa física, jurídica ou ente despersonificado): aplica-se a regra do direito civil — deve ter aptidão jurídica para assumir direitos e obrigações trabalhistas<br>
+      • <strong>Empregado</strong>: deve atender aos requisitos da CLT; conforme a idade pode ser <strong>relativamente incapaz</strong>, dependendo de assistência do responsável legal para determinados atos.<br>
+      <em>CLT, art. 439:</em> é lícito ao menor firmar recibo pelo pagamento dos salários; porém, na <strong>rescisão do contrato</strong>, é vedado ao menor de 18 anos dar, <strong>sem assistência dos responsáveis legais</strong>, quitação ao empregador pelo recebimento da indenização devida.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Trabalho ilícito × trabalho proibido</div>
+    <div class="card-text">
+      • <strong>Trabalho ilícito</strong>: envolve tipo legal penal ou concorre para ele — retira do trabalhador a proteção juslaboral. Ex.: apontador de <strong>jogo do bicho</strong> (OJ-SDI1-199: contrato <strong>nulo</strong>, objeto ilícito).<br>
+      • <strong>Trabalho proibido</strong>: atividade irregular, mas que não constitui tipo legal penal — apesar da irregularidade, o empregado <strong>recebe a proteção trabalhista</strong>. Ex.: contratação de menor de 16 anos (fere a CF/88): procede-se à rescisão, mas são devidas as <strong>verbas salariais</strong> pelo labor prestado.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Trabalho ilícito</th><th>Trabalho proibido</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Objeto</strong></td><td>Envolve tipo legal penal</td><td>Atividade irregular, mas <strong>sem</strong> tipo legal penal</td></tr>
+        <tr><td><strong>Proteção trabalhista</strong></td><td><span class="tag tag-red">NÃO há</span></td><td><span class="tag tag-green">HÁ proteção</span></td></tr>
+        <tr><td><strong>Exemplos</strong></td><td>Jogo do bicho (OJ-SDI1-199 — contrato nulo)</td><td>Menor de 16 anos; policial militar × empresa privada (SUM-386: legítimo o vínculo se preenchidos os requisitos do art. 3º da CLT, independentemente de penalidade disciplinar)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Forma do contrato
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • Regra: os contratos de trabalho <strong>não dependem de forma solene</strong> — são válidos contratos verbais<br>
+      • Exceções: a lei exige forma definida sob pena de invalidade — ex.: <strong>contrato de aprendizagem</strong> (art. 428 CLT: contrato especial, <strong>por escrito</strong> e por prazo determinado)<br><br>
+      <strong>Modalidades de externalização (Amauri Mascaro Nascimento):</strong>
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Ajuste expresso escrito</div><div class="card-text">Há um contrato escrito de trabalho. É a regra a <strong>inexistência</strong> de contrato escrito, pois não há exigência legal como princípio.</div></div>
+    <div class="card"><div class="card-title">Ajuste expresso verbal</div><div class="card-text">Simples troca oral de palavras sobre alguns aspectos da relação; por se tratar de acordo de vontades, <strong>produz efeitos jurídicos</strong> e obriga reciprocamente os interlocutores.</div></div>
+    <div class="card"><div class="card-title">Ajuste tácito</div><div class="card-text">Inexistência de palavras escritas ou verbais: depreende-se de um <strong>comportamento</strong> — prestação de serviços sem oposição do destinatário, indicando vínculo de emprego.</div></div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Os elementos de <strong>validade</strong> do contrato (art. 104 CC) não se confundem com os <strong>elementos fático-jurídicos</strong> da relação de emprego (pessoa física, pessoalidade, subordinação, onerosidade, não eventualidade). Contrato verbal vale; a aprendizagem, porém, exige forma escrita.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    CTPS e registro dos empregados (formalização do contrato)
+  </h3>
+
+  <div class="card">
+    <div class="card-title">CTPS — Carteira de Trabalho e Previdência Social</div>
+    <div class="card-text">
+      • <strong>CLT, art. 13:</strong> a CTPS é obrigatória para o exercício de <strong>qualquer emprego</strong>, inclusive de natureza rural, ainda que em caráter temporário, e para o exercício <strong>por conta própria</strong> de atividade profissional remunerada (inclusive autônomos)<br>
+      • <strong>CLT, art. 14:</strong> a CTPS é emitida <strong>preferencialmente em meio eletrônico</strong> (CTPS eletrônica — Lei 13.874/2019)<br>
+      • <strong>CLT, art. 29:</strong> o empregador terá <strong>5 (cinco) dias úteis</strong> para anotar a data de admissão, a remuneração e as condições especiais (se houver), facultada a adoção de sistema <strong>manual, mecânico ou eletrônico</strong>. Antes da Lei 13.874/2019, o prazo era de 48 horas!<br>
+      • <strong>CLT, art. 41:</strong> obrigatório o registro dos trabalhadores (livros, fichas ou sistema eletrônico); no parágrafo único, anotação de todos os dados relativos à admissão, duração e efetividade do trabalho, férias, acidentes etc.<br>
+      • <strong>CLT, art. 47-A:</strong> multa de <strong>R$ 600,00 por empregado prejudicado</strong> na hipótese de não informados os dados do art. 41, parágrafo único
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Irregularidade</th><th>Multa</th></tr></thead>
+      <tbody>
+        <tr><td>Falta de anotação da CTPS</td><td><strong>R$ 3.000,00</strong> por empregado prejudicado</td></tr>
+        <tr><td>Falta de anotação — se MEI ou EPP</td><td><strong>R$ 800,00</strong> por empregado prejudicado</td></tr>
+        <tr><td>Não anotadas as informações complementares</td><td><strong>R$ 600,00</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      • É <strong>vedado</strong> ao empregador efetuar anotações desabonadoras na CTPS do empregado<br>
+      • É <strong>necessária a anotação da concessão de férias</strong> para que o empregado possa gozá-las<br>
+      • <strong>SUM-212:</strong> o ônus de provar o término do contrato, quando negadas a prestação de serviço e o despedimento, é do <strong>empregador</strong> — a continuidade da relação de emprego constitui presunção favorável ao empregado
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O prazo de anotação da CTPS é de <strong>5 dias úteis</strong> (Lei 13.874/2019), e não mais 48 horas. A CTPS é obrigatória <strong>também para autônomos</strong> (por conta própria), não apenas para empregados.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — DURAÇÃO: INDETERMINADO × DETERMINADO                  -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Duração: indeterminado × determinado</div>
+  </div>
+  <div class="sec-subtitle">CLT, arts. 443, 445, 451 e 452 — contrato de experiência <span class="tag tag-red">Incidência ALTA</span> · indeterminação automática <span class="tag tag-amber">Incidência MÉDIA</span></div>
+
+  <div class="card">
+    <div class="card-title">Regra geral: prazo indeterminado</div>
+    <div class="card-text">
+      A regra no direito do trabalho é a <strong>indeterminação de prazo</strong> — relacionada ao princípio da <strong>continuidade da relação de emprego</strong>. O contrato por prazo indeterminado não possui data definida de término, vigendo até que evento futuro o extinga.<br><br>
+      O contrato por prazo determinado só terá determinação de prazo nas hipóteses previstas em lei. Desrespeitadas as exigências para a validade do contrato a termo, opera-se a <strong>indeterminação contratual automática</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conceito de prazo determinado (CLT, art. 443, § 1º)</div>
+    <div class="card-text">
+      Considera-se como de prazo determinado o contrato cuja <strong>vigência dependa de termo prefixado</strong> ou da <strong>execução de serviços especificados</strong> ou ainda da <strong>realização de certo acontecimento suscetível de previsão aproximada</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hipótese do art. 443, § 2º</th><th>Exemplo (fonte)</th></tr></thead>
+      <tbody>
+        <tr><td>(a) <strong>Serviço cuja natureza ou transitoriedade</strong> justifique a predeterminação do prazo</td><td>Vendedores de chocolate contratados para a maior demanda da <strong>Páscoa</strong></td></tr>
+        <tr><td>(b) <strong>Atividades empresariais de caráter transitório</strong></td><td>Loja que só abre em períodos de Páscoa (a própria atividade é transitória)</td></tr>
+        <tr><td>(c) <strong>Contrato de experiência</strong></td><td>Fase probatória das partes</td></tr>
+        <tr><td><strong>Situações específicas em que a lei exige determinação de prazo</strong></td><td>Aprendizagem, atletas profissionais de futebol etc.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O art. 443, § 2º, fala em "só será válido" <strong>no sentido da determinação do prazo</strong>. Contrato firmado com prazo determinado fora das hipóteses legais será considerado, na verdade, <strong>por prazo indeterminado</strong>.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prazo máximo (CLT, art. 445)</div>
+    <div class="card-text">
+      O contrato por prazo determinado <strong>não poderá ser estipulado por mais de 2 (dois) anos</strong>, observada a regra do art. 451. Desrespeitado esse limite, o contrato deixa de ser a prazo determinado e passa a ser <strong>indeterminado</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Contrato de experiência
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Natureza e finalidade</div>
+    <div class="card-text">
+      Possibilita ao empregador verificar a <strong>habilidade e conduta</strong> do empregado nas tarefas; ao empregado, conhecer as condições gerais do local de trabalho e a função. É uma <strong>fase probatória</strong>, em que as partes decidem sobre a continuidade do vínculo. <strong>Não é "contrato preliminar" nem "promessa de contrato"</strong>.<br><br>
+      • <strong>CLT, art. 445, parágrafo único:</strong> o contrato de experiência <strong>não poderá exceder 90 (noventa) dias</strong><br>
+      • <strong>CLT, art. 451:</strong> o contrato por prazo determinado que, <strong>tácita ou expressamente, for prorrogado mais de uma vez</strong> passará a vigorar sem determinação de prazo
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Regra</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Prazo máximo</strong></td><td>90 dias (art. 445, p. único)</td></tr>
+        <tr><td><strong>Prorrogações</strong></td><td>Apenas <strong>1 (uma)</strong> prorrogação — mais de uma converte em prazo indeterminado (art. 451)</td></tr>
+        <tr><td><strong>Prazo mínimo</strong></td><td>Não existe na CLT</td></tr>
+        <tr><td><strong>Duração da prorrogação</strong></td><td>Não precisa ter o mesmo prazo do contrato inicial (ex.: 30 + 60 dias; 30 + 30 dias)</td></tr>
+        <tr><td><strong>Forma</strong></td><td>CLT não exige contrato escrito, mas a <strong>jurisprudência exige</strong> (é contrato a prazo determinado, com termo prefixado)</td></tr>
+        <tr><td><strong>Término</strong></td><td>Não tem os mesmos efeitos de uma rescisão sem justa causa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Exemplo (fonte): contrato de experiência de <strong>30 dias prorrogado por 30 e, depois, por mais 30</strong> (total 90 dias) = mesmo sem ultrapassar o limite de 90 dias, a <strong>segunda prorrogação converte o contrato em prazo indeterminado</strong> (só uma prorrogação é admitida). Contrato de <strong>60 + 60 dias</strong> = extrapola o limite de 90 dias → prazo indeterminado.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prorrogação tácita e sucessão de contratos</div>
+    <div class="card-text">
+      • Se o contrato <strong>expira e a prestação laboral se mantém</strong>, o consentimento tácito configura contrato por prazo indeterminado (art. 451)<br>
+      • <strong>CLT, art. 452:</strong> considera-se por <strong>prazo indeterminado</strong> todo contrato que <strong>suceder, dentro de 6 (seis) meses</strong>, a outro contrato por prazo determinado, <em>salvo se a expiração deste dependeu da execução de serviços especializados ou da realização de certos acontecimentos</em>. Aplica-se também a tentativas fraudulentas (ex.: formalizar experiência, dispensar e refazer novo contrato de experiência com a mesma pessoa e função — intenção de fraudar a lei)<br>
+      • <strong>CLT, art. 442-A:</strong> para fins de contratação, o empregador <strong>não exigirá</strong> do candidato comprovação de experiência prévia por tempo <strong>superior a 6 (seis) meses</strong> no mesmo tipo de atividade
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Indeterminação contratual automática:</strong> a indeterminação de prazo é a regra (princípio da continuidade). Desrespeitadas as exigências para a validade do contrato a termo (prazo máximo, hipóteses legais, nº de prorrogações, sucessão em 6 meses), o contrato passa automaticamente a vigorar por <strong>prazo indeterminado</strong>.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — ALTERAÇÃO DO CONTRATO (ART. 468)                      -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Alteração do contrato (art. 468 CLT)</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-red">ALTA</span></div>
+
+  <div class="card">
+    <div class="card-title">Regra geral (CLT, art. 468)</div>
+    <div class="card-text">
+      <em>"Nos contratos individuais de trabalho só é lícita a alteração das respectivas condições por mútuo consentimento, e ainda assim desde que não resultem, direta ou indiretamente, prejuízos ao empregado, sob pena de nulidade da cláusula infringente desta garantia."</em><br><br>
+      Relaciona-se ao princípio da <strong>inalterabilidade contratual lesiva</strong>, que representa a limitação do <strong>jus variandi</strong> empresarial.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Jus variandi (Amauri Mascaro Nascimento):</strong> direito do empregador, em <strong>casos excepcionais</strong>, de alterar por imposição e unilateralmente as condições de trabalho dos empregados. Decorre do poder diretivo e fundamenta alterações relativas à <strong>função, ao salário e ao local</strong> da prestação dos serviços.</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Classificação</th><th>Espécie</th><th>Conteúdo</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="2"><strong>Subjetiva</strong> (sujeito do contrato)</td><td>Alteração do empregador</td><td><span class="tag tag-green">Admitida</span> — dá margem à <strong>sucessão trabalhista</strong> (art. 448: a mudança na propriedade ou na estrutura jurídica da empresa <strong>não afeta os contratos</strong> de trabalho)</td></tr>
+        <tr><td>Alteração do empregado</td><td><span class="tag tag-red">Não admitida</span> — a pessoalidade atinge o empregado (elemento fático-jurídico)</td></tr>
+        <tr><td rowspan="3"><strong>Objetiva</strong></td><td><strong>Qualitativas</strong> — alteração de função</td><td>Lícitas em regra quando favoráveis; ilícitas quando desfavoráveis</td></tr>
+        <tr><td><strong>Quantitativas</strong> — duração do trabalho e salário</td><td>Regras próprias (ver abaixo)</td></tr>
+        <tr><td><strong>Circunstanciais</strong> — local da prestação de serviços</td><td>Regras de transferência (art. 469)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Alteração de função
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Espécie</th><th>Conceito</th><th>Natureza</th><th>Base</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Reversão</strong></td><td>Retorno ao cargo efetivo após destituição do cargo/função de confiança</td><td><span class="tag tag-green">Lícita</span> — não é alteração unilateral</td><td>Art. 468, § 1º</td></tr>
+        <tr><td><strong>Readaptação</strong></td><td>Alteração de função por <strong>deficiência física ou mental superveniente</strong> atestada por órgão da Previdência</td><td><span class="tag tag-green">Lícita</span> — não serve de paradigma para equiparação salarial</td><td>Art. 461, § 4º</td></tr>
+        <tr><td><strong>Substituição temporária</strong></td><td>Ocupação de cargo diverso em comissão, interinamente ou em substituição eventual/temporária</td><td><span class="tag tag-green">Lícita</span> — contagem de tempo + volta ao cargo anterior</td><td>Art. 450</td></tr>
+        <tr><td><strong>Rebaixamento</strong></td><td>Retorno à função anterior (hierarquicamente inferior) <strong>com finalidade punitiva</strong></td><td><span class="tag tag-red">Ilícita</span></td><td>—</td></tr>
+        <tr><td><strong>Retrocessão</strong></td><td>Retorno à função anterior <strong>sem finalidade punitiva</strong> (ex.: qualificação incompatível com a posição)</td><td><span class="tag tag-red">Ilícita</span></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Reversão e gratificação de função (reforma trabalhista)</div>
+    <div class="card-text">
+      • <strong>CLT, art. 468, § 1º:</strong> não se considera alteração unilateral a determinação do empregador para que o empregado <strong>reverta ao cargo efetivo</strong> anteriormente ocupado, deixando o exercício de função de confiança<br>
+      • <strong>CLT, art. 468, § 2º:</strong> a reversão, <strong>com ou sem justo motivo</strong>, não assegura ao empregado o direito à manutenção da gratificação correspondente, que <strong>não será incorporada</strong>, independentemente do tempo de exercício da função
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Alteração de duração do trabalho
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • <strong>Redução da jornada com manutenção do salário:</strong> em geral é possível (mantém o salário com menos tempo de labor → <strong>aumenta-se o salário-hora</strong>)<br>
+      • <strong>Redução com redução de salário:</strong> só excepcionalmente, quando representar <strong>interesse extracontratual do empregado</strong> (ex.: obreiro que se forma em Direito e quer iniciar atividade profissional em tempo parcial)<br>
+      • <strong>Supressão de horas extras habituais:</strong> <span class="tag tag-green">Lícita</span>, mas o empregador deve <strong>indenizar</strong> (SUM-291): 1 mês de indenização por cada <strong>ano</strong> de prestação de hora extra ou <strong>fração igual ou superior a 6 meses</strong>, calculada pela média das horas suplementares dos últimos 12 meses × valor da hora extra do dia da supressão<br>
+      • <strong>Professor (OJ-SDI1-244):</strong> a redução da carga horária, em virtude da diminuição do nº de alunos, <strong>não constitui alteração contratual</strong>, pois não implica redução do valor da hora-aula<br>
+      • <strong>Alteração de turnos:</strong> noturno → diurno, em princípio, <span class="tag tag-green">válida</span> (o labor noturno é mais prejudicial); diurno → noturno <span class="tag tag-red">tende a ser ilícita</span> (desgaste do labor noturno; o adicional noturno não representa benefício diante dos prejuízos ao relógio biológico e à inserção social)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">SUM-291 — supressão de horas extras</div>
+    <div class="card-text">
+      Supressão total ou parcial de serviço suplementar prestado com <strong>habitualidade durante pelo menos 1 ano</strong> assegura indenização de <strong>1 mês</strong> das horas suprimidas para cada ano ou fração <strong>igual ou superior a 6 meses</strong>. Ex.: 3 anos de hora extra → indenização de 3 meses.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Alteração de salário
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • Acréscimos salariais, em geral, são <strong>lícitos</strong>; reduções <strong>tendem a ser ilícitas</strong> (regra não absoluta)<br>
+      • A proteção trabalhista refere-se ao <strong>salário nominal</strong> — o valor real (influenciado pela inflação) não é garantido; não há proteção quanto à desvalorização da moeda<br>
+      • <strong>CF/88, art. 7º, VI:</strong> irredutibilidade do salário, <strong>salvo o disposto em convenção ou acordo coletivo</strong> (redução lícita por negociação coletiva)<br>
+      • <strong>Salário-condição:</strong> verba devida apenas enquanto o empregado labora em condições mais gravosas. <strong>SUM-248:</strong> a reclassificação/descaracterização da insalubridade repercute no adicional, sem ofensa a direito adquirido ou à irredutibilidade. <strong>SUM-265:</strong> a transferência para o período diurno implica perda do adicional noturno
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Alteração de local (transferência)
+  </h3>
+
+  <div class="card">
+    <div class="card-title">CLT, art. 469 — regra geral</div>
+    <div class="card-text">
+      <em>"Ao empregador é vedado transferir o empregado, sem a sua anuência, para localidade diversa da que resultar do contrato, não se considerando transferência a que não acarretar necessariamente a mudança do seu domicílio."</em><br><br>
+      • <strong>Sem mudança de domicílio:</strong> não se considera transferência — o poder diretivo permite a alteração; se o novo local for mais distante da residência, o empregado faz jus ao acréscimo da despesa de transporte (<strong>SUM-29</strong>)<br>
+      • <strong>Com mudança de domicílio:</strong> só é válida com <strong>anuência do empregado</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hipótese</th><th>Regra</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Cargos de confiança</strong> e contratos com <strong>condição implícita/explícita de transferência</strong> (art. 469, § 1º)</td><td>Transferência lícita quando decorre de <strong>real necessidade de serviço</strong>. Sem comprovação → <span class="tag tag-red">abusiva</span> (SUM-43). Se provisória → adicional de 25% (OJ-SDI1-113)</td></tr>
+        <tr><td><strong>Extinção do estabelecimento</strong> (art. 469, § 2º)</td><td><span class="tag tag-green">Lícita</span> — mais benéfico mudar do que perder o emprego</td></tr>
+        <tr><td><strong>Transferência provisória</strong> por necessidade de serviço (art. 469, § 3º)</td><td>Adicional de, no mínimo, <strong>25%</strong> dos salários, enquanto durar a situação (salário-condição)</td></tr>
+        <tr><td><strong>Despesas da transferência</strong> (art. 470)</td><td>Correm por conta do <strong>empregador</strong> (ajuda de custo)</td></tr>
+        <tr><td><strong>Dirigente sindical</strong> (art. 543)</td><td><span class="tag tag-red">Intransferibilidade</span> — não pode ser transferido para lugar ou mister que dificulte o desempenho das atribuições sindicais</td></tr>
+        <tr><td><strong>Empregado público</strong> — acompanhar cônjuge/companheiro servidor deslocado no interesse do poder público (art. 469-A, incluído pela Lei 15.175/2025)</td><td>A pedido, <strong>independente do interesse da Administração</strong>; sem ajuda de custo (afasta o art. 470); exige filial/representação na localidade (§ 2º); transferência <strong>horizontal</strong>, dentro do mesmo quadro de pessoal (§ 3º)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>OJ-SDI1-113:</strong> o fato de o empregado exercer cargo de confiança ou existir previsão contratual de transferência <strong>não exclui o direito ao adicional de transferência</strong>. O pressuposto legal é a <strong>transferência provisória</strong>.</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Alteração entre regime presencial e teletrabalho
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Modalidade</th><th>Regra</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Bilateral</strong> (art. 75-C, § 1º)</td><td>Mútuo acordo entre as partes — <span class="tag tag-green">lícita</span>, com registro em <strong>aditivo contratual</strong></td></tr>
+        <tr><td><strong>Unilateral</strong> (art. 75-C, § 2º)</td><td>Só pode ocorrer do regime de <strong>teletrabalho para o presencial</strong> (e não o inverso), sempre com registro em aditivo contratual</td></tr>
+        <tr><td><strong>Despesas de retorno</strong> (art. 75-C, § 3º)</td><td>Em regra, o empregador <strong>não responde</strong> pelas despesas do retorno ao presencial quando o empregado optou pelo teletrabalho fora da localidade prevista no contrato</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A alteração presencial → teletrabalho é <strong>lícita</strong> (por acordo), mas pode ser <strong>prejudicial</strong> ao empregado: no teletrabalho por produção/tarefa o empregado é excluído do controle de jornada (art. 62, III) e perde direito a horas extras. Prejuízo <strong>não</strong> torna a alteração inválida quando feita nos moldes legais.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PODERES DO EMPREGADOR                                 -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Poderes do empregador</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-amber">MÉDIA</span></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Poder</th><th>Conteúdo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Diretivo</strong> (organizativo / de comando)</td><td>Prerrogativas inerentes ao empregador: estabelece <strong>horários de trabalho e intervalos</strong>, <strong>local</strong> da prestação, <strong>organização do trabalho</strong> (modo operatório, divisão de tarefas) e o <strong>padrão de vestimenta</strong></td></tr>
+        <tr><td><strong>Regulamentar</strong></td><td>Fixar <strong>regras</strong> a serem seguidas pelos empregados: regimento interno da empresa, ordens de serviço sobre segurança e saúde no trabalho</td></tr>
+        <tr><td><strong>Fiscalizatório</strong> (de controle)</td><td>Verificar o <strong>cumprimento das tarefas</strong>, dos horários, do uso de <strong>EPI</strong>, das <strong>ordens de serviço</strong>. Não pode ser exercido de forma desmesurada — condutas que firam a dignidade dos empregados são contrárias ao ordenamento</td></tr>
+        <tr><td><strong>Disciplinar</strong></td><td>Aplicar <strong>sanções</strong> a empregados que descumpram obrigações contratuais, conforme a gravidade, dolo ou culpa: <strong>advertência</strong>, <strong>suspensão</strong> (até 30 dias) e <strong>demissão por justa causa</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div>Alguns autores (ex.: Ricardo Resende) entendem que os poderes regulamentar, fiscalizatório e disciplinar são, na verdade, <strong>dimensões do poder diretivo</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Uniforme e vestimenta (CLT, art. 456-A)</div>
+    <div class="card-text">
+      • Cabe ao <strong>empregador definir o padrão de vestimenta</strong> no meio ambiente laboral, sendo lícita a inclusão no uniforme de <strong>logomarcas</strong> da própria empresa ou de empresas parceiras e de itens de identificação relacionados à atividade<br>
+      • <strong>Parágrafo único:</strong> a <strong>higienização do uniforme</strong> é de responsabilidade do trabalhador, <em>salvo</em> nas hipóteses em que forem necessários <strong>procedimentos ou produtos diferentes</strong> dos utilizados nas vestimentas de uso comum
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Limites ao poder fiscalizatório (abusos vedados)</div>
+    <div class="card-text">
+      • <span class="tag tag-red">Vedado</span> o monitoramento de <strong>e-mail pessoal</strong><br>
+      • <span class="tag tag-red">Vedada</span> a <strong>revista íntima</strong> de empregada<br>
+      • <span class="tag tag-red">Vedado</span> submeter o empregado ao <strong>polígrafo</strong> (detector de mentiras)<br>
+      • <span class="tag tag-green">Admite</span> o monitoramento de <strong>e-mail corporativo</strong><br>
+      • <span class="tag tag-green">Tolerada</span> a <strong>revista pessoal</strong> dentro de alguns limites (ex.: aparelhos de raio-x na entrada/saída de locais)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INTERRUPÇÃO × SUSPENSÃO                               -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Interrupção × suspensão do contrato de trabalho</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-red">ALTÍSSIMA</span> — assunto que "despenca" em concursos</div>
+
+  <div class="card">
+    <div class="card-title">Distinção fundamental</div>
+    <div class="card-text">
+      Em ambas as hipóteses <strong>não há prestação de serviços</strong> (sustação provisória, preservada a vigência do contrato):<br><br>
+      • <strong>Interrupção</strong>: o empregado não presta serviços, mas <strong>continua recebendo salário</strong>; em regra, o período <strong>conta como tempo de serviço</strong><br>
+      • <strong>Suspensão</strong>: o empregado não presta serviços <strong>e não recebe salário</strong>; em regra, não conta como tempo de serviço e <strong>não há recolhimentos vinculados</strong> (FGTS)<br><br>
+      Godinho define a suspensão como <em>"sustação ampla e bilateral de efeitos do contrato empregatício, que preserva, porém, sua vigência"</em>.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Exceções na suspensão (FGTS mantido):</strong> o empregador continua obrigado a recolher o FGTS nos casos de (1) <strong>afastamento decorrente de acidente do trabalho</strong> e (2) <strong>prestação do serviço militar obrigatório</strong> (Lei 8.036/90, art. 15, § 5º) — nesses casos também se computa o tempo de serviço.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Efeito comum: retorno garantido (CLT, art. 471)</div>
+    <div class="card-text">
+      Em ambos os casos é assegurado ao empregado o <strong>retorno ao cargo anteriormente ocupado</strong> e a garantia dos <strong>direitos alcançados pela categoria</strong> durante o afastamento (incluindo novo patamar de salários).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Hipóteses de interrupção
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hipótese</th><th>Duração</th><th>Fundamento</th></tr></thead>
+      <tbody>
+        <tr><td>Férias</td><td>Período de gozo</td><td>CLT, art. 129</td></tr>
+        <tr><td>RSR (repouso semanal remunerado)</td><td>1 dia por semana</td><td>CF, art. 7º, XV</td></tr>
+        <tr><td>Feriados</td><td>—</td><td>Lei 605/49, art. 6º</td></tr>
+        <tr><td>Intervalos remunerados</td><td>—</td><td>ex.: CLT, art. 253</td></tr>
+        <tr><td>Faltas justificadas (abonadas)</td><td>—</td><td>CLT, art. 131, IV</td></tr>
+        <tr><td>Afastamento previdenciário por doença ou acidente — <strong>até 15 dias</strong></td><td>Período do afastamento</td><td>Lei 8.213/91, art. 60, § 3º</td></tr>
+        <tr><td>Convocação da Justiça Eleitoral</td><td>Dobro dos dias de convocação</td><td>Lei 9.504/97, art. 98</td></tr>
+        <tr><td>Lockout</td><td>Período da paralisação</td><td>Lei 7.783/89, art. 17</td></tr>
+        <tr><td>Representações no Conselho Curador do FGTS e CNPS</td><td>Durante as ausências</td><td>Lei 8.036/90, art. 3º, § 7º; Lei 8.213/91, art. 3º, § 6º</td></tr>
+        <tr><td>Participação em Comissão de Conciliação Prévia (CCP)</td><td>Quando convocado como conciliador</td><td>CLT, art. 625-B, § 2º</td></tr>
+        <tr><td>Licença-maternidade</td><td>120 dias / 180 dias</td><td>CLT, art. 392; Lei 11.770/08; Lei 13.985/2020</td></tr>
+        <tr><td>Redução da jornada no curso do aviso prévio</td><td>7 dias corridos ou 2 horas diárias</td><td>CLT, art. 488</td></tr>
+        <tr><td>Aborto comprovado por atestado médico oficial</td><td>2 semanas</td><td>CLT, art. 395</td></tr>
+        <tr><td>Falecimento de cônjuge, ascendente, descendente, irmão ou dependente declarado na CTPS</td><td>2 dias consecutivos</td><td>CLT, art. 473, I</td></tr>
+        <tr><td>Casamento</td><td>3 dias consecutivos</td><td>CLT, art. 473, II</td></tr>
+        <tr><td>Licença-paternidade</td><td>5 dias (20 dias na Empresa Cidadã)</td><td>ADCT, art. 10, § 1º; Lei 11.770/08</td></tr>
+        <tr><td>Doação voluntária de sangue</td><td>1 dia (a cada 12 meses de trabalho)</td><td>CLT, art. 473, IV</td></tr>
+        <tr><td>Alistamento eleitoral</td><td>Até 2 dias (consecutivos ou não)</td><td>CLT, art. 473, V</td></tr>
+        <tr><td>Exigências do serviço militar</td><td>Período necessário</td><td>CLT, art. 473, VI</td></tr>
+        <tr><td>Provas de vestibular</td><td>Dias em que prestar as provas</td><td>CLT, art. 473, VII</td></tr>
+        <tr><td>Comparecimento em juízo</td><td>Tempo necessário</td><td>CLT, art. 473, VIII; SUM-155</td></tr>
+        <tr><td>Representante sindical em reunião oficial de organismo internacional</td><td>Tempo necessário</td><td>CLT, art. 473, IX</td></tr>
+        <tr><td>Acompanhar esposa ou companheira em pré-natal</td><td>Até 6 consultas/exames, durante a gravidez</td><td>CLT, art. 473, X (Lei 14.457/2022)</td></tr>
+        <tr><td>Acompanhar filho em consulta médica</td><td>1 dia por ano (até 6 anos de idade)</td><td>CLT, art. 473, XI</td></tr>
+        <tr><td>Exames preventivos de câncer</td><td>Até 3 dias (a cada 12 meses)</td><td>CLT, art. 473, XII</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Pontos de atenção (interrupção)</div>
+    <div class="card-text">
+      • <strong>Licença-maternidade:</strong> 120 dias (CLT, art. 392), paga pela <strong>Previdência Social</strong> (exceção ao esquema, mas o entendimento majoritário é de <strong>interrupção</strong>); +60 dias na <strong>Empresa Cidadã</strong> (Lei 11.770/08) = 180 dias; <strong>180 dias</strong> também para mães de filhos com doenças neurológicas transmitidas pelo Aedes Aegypti/Zika (CLT, art. 392, § 6º — Leis 15.156/2025 e 13.985/2020); adoção ou guarda judicial conjunta → licença a <strong>apenas um</strong> dos adotantes (art. 392-A, § 5º); morte da genitora → cônjuge/companheiro goza a licença pelo período integral ou pelo tempo restante (art. 392-B), salvo morte do filho ou abandono; internação > 2 semanas com nexo com o parto → extensão em até 120 dias após a alta da mãe e do recém-nascido (art. 392, § 7º — ADI 6.327/STF)<br>
+      • <strong>Lockout</strong> = "greve do empregador" (paralisação vedada para frustrar reivindicações) — como a prática é ilícita, a obrigação de pagar salário se mantém → interrupção<br>
+      • <strong>Art. 473, X (Lei 14.457/2022):</strong> máximo de 6 consultas/exames no pré-natal; o afastamento não é mais por todo o dia, apenas pelo <strong>tempo necessário</strong><br>
+      • <strong>SUM-155:</strong> as horas de comparecimento necessário, como parte, à Justiça do Trabalho <strong>não serão descontadas</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O art. 473, VII (vestibular) refere-se a provas para ingresso em <strong>estabelecimento de ensino superior</strong> — <strong>não</strong> se estende a concursos públicos, cursos técnicos etc. Já o inciso IV fala em "em cada 12 meses de trabalho", que <strong>não é sinônimo de uma vez por ano</strong>.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Hipóteses de suspensão
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hipótese</th><th>Duração</th><th>Fundamento</th></tr></thead>
+      <tbody>
+        <tr><td>Faltas não justificadas</td><td>—</td><td>CLT, art. 131, IV</td></tr>
+        <tr><td>Intervalos não remunerados</td><td>—</td><td>ex.: CLT, art. 66 (11h interjornada)</td></tr>
+        <tr><td>Greve dos trabalhadores (regra)</td><td>Duração da greve</td><td>Lei 7.783/89, art. 7º</td></tr>
+        <tr><td>Afastamento previdenciário por doença ou acidente — <strong>mais de 15 dias</strong></td><td>Período que superar os 15 primeiros dias</td><td>Lei 8.213/91, art. 60</td></tr>
+        <tr><td>Aposentadoria por invalidez</td><td>—</td><td>CLT, art. 475; SUM-160</td></tr>
+        <tr><td>Suspensão disciplinar</td><td>Máximo de 30 dias</td><td>CLT, art. 474</td></tr>
+        <tr><td>Prisão provisória</td><td>—</td><td>—</td></tr>
+        <tr><td>Afastamento para inquérito de apuração de falta grave</td><td>—</td><td>CLT, art. 494</td></tr>
+        <tr><td>Afastamento para curso/programa de qualificação (lay-off)</td><td>2 a 5 meses</td><td>CLT, art. 476-A</td></tr>
+        <tr><td>Empregado eleito para direção de empresa (regra)</td><td>—</td><td>SUM-269</td></tr>
+        <tr><td>Dirigente sindical que se ausenta do trabalho</td><td>Durante a ausência</td><td>CLT, art. 543, § 2º</td></tr>
+        <tr><td>Serviço militar obrigatório</td><td>12 meses</td><td>Lei 4.375/64, art. 6º</td></tr>
+        <tr><td>Violência doméstica contra a empregada (Lei Maria da Penha)</td><td>Até 6 meses</td><td>Lei 11.340/2006, art. 9º, § 2º, II</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Pontos de atenção (suspensão)</div>
+    <div class="card-text">
+      • <strong>Greve:</strong> suspende o contrato (Lei 7.783/89, art. 7º); as relações obrigacionais durante o período são regidas por acordo, convenção, laudo arbitral ou decisão da JT. Se houver negociação <strong>abonando os dias parados</strong> → <span class="tag tag-green">interrupção</span><br>
+      • <strong>Afastamento previdenciário &gt; 15 dias:</strong> auxílio-doença a contar do 16º dia; se decorrer de <strong>acidente do trabalho</strong>, permanece a obrigação de recolher FGTS e computar tempo de serviço<br>
+      • <strong>Aposentadoria por invalidez:</strong> suspensão do contrato (art. 475) — cancelado o benefício, mesmo <strong>após 5 anos</strong>, o trabalhador tem direito de retornar ao emprego, facultado ao empregador indenizá-lo (SUM-160)<br>
+      • <strong>Suspensão disciplinar:</strong> mais de 30 dias consecutivos importa em <strong>rescisão injusta</strong> do contrato (art. 474)<br>
+      • <strong>Inquérito de falta grave (empregado estável):</strong> sem prazo definido; se a acusação for <strong>improcedente</strong>, o empregador readmite e paga os salários do período → configura <strong>interrupção</strong> (art. 495)<br>
+      • <strong>Lay-off (art. 476-A):</strong> suspensão de 2 a 5 meses, com previsão em convenção ou acordo coletivo e concordância formal do empregado<br>
+      • <strong>Diretor eleito:</strong> contrato suspenso, não se computando o tempo de serviço, <em>salvo</em> se permanecer a subordinação jurídica (SUM-269)<br>
+      • <strong>Dirigente sindical:</strong> licença não remunerada (art. 543, § 2º), salvo assentimento da empresa ou cláusula contratual — se remunerada, vira <span class="tag tag-green">interrupção</span><br>
+      • <strong>Serviço militar obrigatório:</strong> 12 meses; não constitui motivo para alteração ou rescisão do contrato (art. 472); FGTS mantido e tempo de serviço computado<br>
+      • <strong>Violência doméstica:</strong> o juiz assegura a manutenção do vínculo trabalhista por até 6 meses, quando necessário o afastamento do local de trabalho<br>
+      • <strong>SUM-440:</strong> mantém-se o plano de saúde oferecido pela empresa, mesmo com contrato suspenso por auxílio-doença acidentário ou aposentadoria por invalidez
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A classificação depende dos <strong>detalhes do enunciado</strong>: há situações que, em princípio, são interrupção e, conforme as circunstâncias, configuram suspensão (e vice-versa). Ex.: greve (regra: suspensão; com negociação abonando os dias: interrupção); inquérito de falta grave (regra: suspensão; se improcedente: interrupção, com pagamento dos salários).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — CONTRATOS ESPECIAIS                                   -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Contratos especiais</div>
+  </div>
+  <div class="sec-subtitle">Aprendizagem · trabalho intermitente <span class="tag tag-amber">Incidência MÉDIA</span> · teletrabalho <span class="tag tag-red">Incidência ALTA</span> · Administração Pública <span class="tag tag-blue">Incidência BAIXA</span></div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Contrato de aprendizagem
+  </h3>
+
+  <div class="card">
+    <div class="card-title">CLT, art. 428</div>
+    <div class="card-text">
+      Contrato de aprendizagem é o contrato de trabalho <strong>especial</strong>, ajustado <strong>por escrito e por prazo determinado</strong>, em que o empregador se compromete a assegurar ao <strong>maior de 14 e menor de 24 anos</strong> inscrito em programa de aprendizagem de formação técnico-profissional metódica, compatível com o seu desenvolvimento físico, moral e psicológico, e o aprendiz a executar, com zelo e diligência, as tarefas necessárias a essa formação.<br><br>
+      É a principal exceção à regra da consensualidade: a forma <strong>escrita</strong> é obrigatória.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Trabalho intermitente
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Conceito (CLT, art. 443, § 3º)</div>
+    <div class="card-text">
+      <em>"Considera-se como intermitente o contrato de trabalho no qual a prestação de serviços, com subordinação, não é contínua, ocorrendo com alternância de períodos de prestação de serviços e de inatividade, determinados em horas, dias ou meses, independentemente do tipo de atividade do empregado e do empregador, exceto para os aeronautas, regidos por legislação própria."</em><br><br>
+      • Criado pela <strong>reforma trabalhista</strong>: o empregado só é remunerado quando <strong>convocado</strong> a trabalhar<br>
+      • Confere flexibilidade ao empregador e representa <strong>mitigação da alteridade</strong> (parte do risco do negócio é transferida ao empregado)<br>
+      • <strong>Direitos mantidos:</strong> remuneração, férias + terço constitucional, 13º, repouso semanal remunerado, adicionais legais e FGTS
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Regra</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Forma</strong></td><td>Necessariamente <strong>por escrito</strong> (art. 452-A) — mais uma exceção à regra da consensualidade; contrato verbal ou tácito não se amolda (não se admite a alternância de períodos de inatividade)</td></tr>
+        <tr><td><strong>Valor da hora</strong></td><td>Não pode ser inferior ao valor horário do <strong>salário mínimo</strong> nem ao devido aos demais empregados do estabelecimento na mesma função (art. 452-A)</td></tr>
+        <tr><td><strong>Convocação</strong></td><td>Antecedência de, no mínimo, <strong>3 dias corridos</strong>, informando a jornada</td></tr>
+        <tr><td><strong>Resposta</strong></td><td><strong>1 dia útil</strong>; o silêncio presume-se <strong>recusa</strong></td></tr>
+        <tr><td><strong>Desistência sem justo motivo</strong></td><td>Multa de <strong>50% da remuneração</strong> que seria devida (se aceita a convocação e empregado ou empregador desiste)</td></tr>
+        <tr><td><strong>Inatividade</strong></td><td>Não é tempo à disposição do empregador (sem remuneração); o empregado pode prestar serviços a <strong>outros contratantes</strong></td></tr>
+        <tr><td><strong>Exceção</strong></td><td><strong>Aeronautas</strong> (regidos por legislação própria) — não confundir com <strong>aeroviários</strong> (serviços terrestres das companhias aéreas)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Embora haja <strong>subordinação</strong> no trabalho intermitente, o empregado pode optar por <strong>não atender à convocação</strong> (por isso o silêncio é tratado como recusa). O tema é um dos que admitem o <strong>negociado sobre o legislado</strong> (CLT, art. 611-A, VIII).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Teletrabalho (trabalho remoto)
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Conceito (CLT, art. 75-B — redação da Lei 14.442/2022)</div>
+    <div class="card-text">
+      <em>"Considera-se teletrabalho ou trabalho remoto a prestação de serviços fora das dependências do empregador, de maneira preponderante ou não, com a utilização de tecnologias de informação e de comunicação, que, por sua natureza, não se configure como trabalho externo."</em><br><br>
+      • Antes da Lei 14.442/2022, exigia-se que o trabalho ocorresse <strong>preponderantemente</strong> fora das dependências; agora a preponderância <strong>não é mais exigida</strong><br>
+      • <strong>§ 1º:</strong> o comparecimento, ainda que <strong>habitual</strong>, às dependências do empregador para atividades específicas que exijam a presença do empregado <strong>não descaracteriza</strong> o teletrabalho (regime híbrido)<br>
+      • <strong>§ 6º:</strong> permitido o regime para <strong>aprendizes</strong> e, mesmo não sendo empregados, para <strong>estagiários</strong><br>
+      • <strong>§ 4º:</strong> não se confunde e nem se equipara à ocupação de <strong>operador de telemarketing ou teleatendimento</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Regra</th><th>Dispositivo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Modalidades:</strong> por jornada, por produção ou por tarefa</td><td>Art. 75-B, § 2º</td></tr>
+        <tr><td><strong>Produção ou tarefa:</strong> não se aplicam as regras de duração do trabalho (Capítulo II do Título II) — sem controle de jornada</td><td>Art. 75-B, § 3º</td></tr>
+        <tr><td><strong>Equipamentos fora da jornada normal:</strong> não constituem tempo à disposição, prontidão ou sobreaviso (exceto previsão em acordo individual/coletivo)</td><td>Art. 75-B, § 5º</td></tr>
+        <tr><td><strong>Acordo individual:</strong> pode dispor sobre horários e meios de comunicação, assegurados os repousos legais</td><td>Art. 75-B, § 9º</td></tr>
+        <tr><td><strong>Regime expresso no contrato:</strong> deve constar expressamente a situação de teletrabalho</td><td>Art. 75-C, caput</td></tr>
+        <tr><td><strong>Equipamentos/infraestrutura:</strong> responsabilidade por aquisição, manutenção ou fornecimento prevista em <strong>contrato escrito</strong>; as utilidades <strong>não integram a remuneração</strong> (sem natureza salarial — não repercutem em férias, 13º, FGTS)</td><td>Arts. 75-D e 75-D, parágrafo único</td></tr>
+        <tr><td><strong>Instruções de segurança:</strong> o empregador instrui de forma expressa e ostensiva; o empregado assina <strong>termo de responsabilidade</strong></td><td>Art. 75-E</td></tr>
+        <tr><td><strong>Prioridade:</strong> empregados <strong>com deficiência</strong> e empregados <strong>com filhos até 4 anos</strong></td><td>Art. 75-F</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Modalidades de remuneração (Delgado)</div>
+    <div class="card-text">
+      • <strong>Por unidade de tempo</strong> (presta serviços por jornada): salário fixo, com parâmetro no tempo trabalhado; jornada <strong>controlada</strong><br>
+      • <strong>Por produção</strong> (unidade de obra): parâmetro na quantidade produzida (ex.: valor por peça)<br>
+      • <strong>Por tarefa</strong>: combina unidade de tempo + meta mínima de produção; pouquíssimo utilizada na prática<br><br>
+      A alteração presencial ↔ teletrabalho é regulada pelo art. 75-C (bilateral com aditivo; unilateral só teletrabalho → presencial). O teletrabalho é um dos temas com prevalência do <strong>negociado sobre o legislado</strong> (art. 611-A, VIII).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Contrato de trabalho com a Administração Pública
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      • Regra geral: contratação de servidor ou empregado público exige <strong>prévia aprovação em concurso público</strong> (CF, art. 37, II)<br>
+      • Exceção: contratação <strong>por tempo determinado</strong> para atender a <strong>necessidade temporária de excepcional interesse público</strong> (CF, art. 37, IX)<br>
+      • Âmbito federal: <strong>Lei 8.745/1993</strong> — hipóteses de cabimento, prazos e condições gerais; o recrutamento <strong>prescinde de concurso público</strong> (art. 3º), podendo haver processo seletivo simplificado, análise curricular ou nem isso<br>
+      • <strong>Hipóteses (art. 2º):</strong> assistência a situações de calamidade pública; emergências em saúde pública; recenseamentos e pesquisas do IBGE; admissão de professor substituto e visitante (inclusive estrangeiro); entre outras<br>
+      • <strong>Prazos máximos (art. 4º):</strong> variam de <strong>6 meses a 4 anos</strong> conforme a hipótese, admitidas prorrogações nos termos da lei
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — PONTOS QUE MAIS CAEM EM PROVA                         -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Interrupção × suspensão</strong> (<span class="tag tag-red">ALTÍSSIMA</span>): decore as hipóteses e os detalhes de cada enunciado<br>
+      • <strong>Contrato de experiência</strong>: 90 dias, 1 prorrogação, art. 451 (mais de uma prorrogação → indeterminado) e art. 452 (sucessão em 6 meses)<br>
+      • <strong>Teletrabalho</strong>: definição (preponderante ou não), regime híbrido (§ 1º), produção/tarefa sem controle de jornada, prioridade (deficiência e filhos até 4 anos)<br>
+      • <strong>Alteração do contrato</strong> (art. 468): mútuo consentimento + ausência de prejuízo; reversão sem incorporação de gratificação
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>PISTACO</strong> — características: Privado · Intuitu personae · Sinalagmático · Trato permanente · Atividade · Consensual · Oneroso<br>
+      • <strong>AOF</strong> — elementos de validade: Agente capaz · Objeto lícito/possível/determinado · Forma prescrita ou não defesa em lei<br>
+      • <strong>Prazo determinado:</strong> só nas hipóteses do art. 443, § 2º; máx. 2 anos (art. 445); fora das hipóteses → indeterminado automaticamente<br>
+      • <strong>Indeterminação automática:</strong> prorrogação mais de uma vez (art. 451); sucessão de contrato em 6 meses (art. 452); exceder 90 dias na experiência<br>
+      • <strong>FGTS na suspensão:</strong> só em <strong>acidente do trabalho</strong> e <strong>serviço militar obrigatório</strong> (Lei 8.036/90, art. 15, § 5º)<br>
+      • <strong>Transferência:</strong> sem mudança de domicílio não é transferência; com mudança exige anuência; exceções: cargo de confiança, condição contratual, extinção do estabelecimento; provisória → 25% (OJ-SDI1-113)<br>
+      • <strong>SUM-291:</strong> supressão de horas extras habituais (≥ 1 ano) → 1 mês por ano ou fração ≥ 6 meses
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • Elementos de <strong>validade</strong> ≠ elementos <strong>fático-jurídicos</strong> da relação de emprego<br>
+      • Pessoalidade atinge <strong>apenas o empregado</strong> (infungível); o empregador é fungível<br>
+      • <strong>Trabalho ilícito</strong> (sem proteção) × <strong>trabalho proibido</strong> (com proteção)<br>
+      • Prazo da CTPS: <strong>5 dias úteis</strong> (não mais 48 horas); CTPS eletrônica preferencial; obrigatória também para autônomos<br>
+      • Vestibular (art. 473, VII) vale apenas para ensino superior — não para concurso público<br>
+      • Greve com abono dos dias = <strong>interrupção</strong>; inquérito de falta grave improcedente = <strong>interrupção</strong><br>
+      • Reversão: <strong>não é alteração unilateral</strong> e <strong>não incorpora gratificação</strong> (qualquer tempo/motivo)<br>
+      • Aeronautas (voam) × aeroviários (terrestres): só os aeronautas têm regulamentação própria no intermitente
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine a distinção interrupção × suspensão (o assunto mais cobrado da aula), as regras de conversão do contrato em prazo indeterminado e a literalidade dos dispositivos do teletrabalho e do trabalho intermitente — temas preferidos das bancas após a reforma trabalhista.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — INCIDÊNCIA DE TEMAS (TEC)                             -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

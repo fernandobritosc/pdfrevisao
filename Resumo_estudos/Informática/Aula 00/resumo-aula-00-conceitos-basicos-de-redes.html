@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Informática Aula 00: Conceitos Básicos de Redes</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Informática — Aula 00</div>
+  <div class="sidebar-sub">Conceitos Básicos de Redes · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito de redes</a>
+  <a href="#sec2">2. Classificação das redes (PAN/LAN/MAN/WAN)</a>
+  <a href="#sec3">3. Topologias de rede</a>
+  <a href="#sec4">4. Modelos e arquiteturas de comunicação</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: Estratégia Concursos (Aula 00) + TEC + Forouzan<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO DE REDES                                    -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de redes de computadores</div>
+  </div>
+  <div class="sec-subtitle">Definições fundamentais — o que é uma rede e por que ela existe</div>
+
+  <div class="card">
+    <div class="card-title">Definição clássica (Forouzan)</div>
+    <div class="card-text">
+      <strong>"Rede é um conjunto de dispositivos conectados por links de comunicação."</strong><br><br>
+      Dispositivos (computadores, impressoras, celulares, servidores, sensores) interligados por algum meio de transmissão
+      (cabos, conexões sem fio) formam uma rede. Também chamados de <strong>nós</strong>, esses dispositivos podem ser
+      qualquer equipamento de envio ou recepção de dados, desde que esteja conectado a outros nós.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Definição técnica e simples</div>
+    <div class="card-text">
+      • <strong>Definição técnica:</strong> "Uma rede é um conjunto de terminais, equipamentos, meios de transmissão e comutação que interligados possibilitam a prestação de serviços".<br>
+      • <strong>Definição simples:</strong> um grupo de dispositivos conectados entre si, por cabos ou sem fio, que trocam informações e compartilham recursos.<br>
+      • As redes seguem <strong>regras (protocolos)</strong> — como o famoso <strong>TCP/IP</strong> — que garantem que os dados cheguem ao destino correto.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Por que as redes surgiram?</div>
+    <div class="card-text">
+      As primeiras redes surgiram <strong>dentro de organizações</strong> (empresas, laboratórios de pesquisa) para facilitar a troca de informações entre pessoas e computadores — método mais rápido e confiável que carregar pilhas de cartões perfurados ou fitas magnéticas. Depois, passaram a ser usadas em grande escala para <strong>compartilhar poder computacional</strong> (computadores de alta potência eram caros e inviáveis para cada usuário).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Componentes de uma comunicação de dados
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Componente</th><th>Papel</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Emissor</strong></td><td>Envia a mensagem</td></tr>
+        <tr><td><strong>Receptor</strong></td><td>Recebe a mensagem</td></tr>
+        <tr><td><strong>Protocolo</strong></td><td>Conjunto de regras (o que, como e quando comunicar)</td></tr>
+        <tr><td><strong>Mensagem</strong></td><td>Dados a serem transmitidos</td></tr>
+        <tr><td><strong>Meio de transmissão</strong></td><td>Por meio de cabos ou ondas de rádio</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Benefícios das redes
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Benefício</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Compartilhamento de recursos</strong></td><td>Impressoras, scanners, softwares e armazenamento compartilhados — reduz custos e redundância</td></tr>
+        <tr><td><strong>Comunicação eficiente</strong></td><td>E-mails, mensagens, videoconferências e transferência de arquivos</td></tr>
+        <tr><td><strong>Acesso à informação</strong></td><td>Acesso rápido e organizado a informações compartilhadas</td></tr>
+        <tr><td><strong>Centralização de dados</strong></td><td>Backups e gerenciamento simplificados; maior segurança das informações</td></tr>
+        <tr><td><strong>Redução de custos</strong></td><td>Otimiza o uso dos recursos existentes</td></tr>
+        <tr><td><strong>Flexibilidade e mobilidade</strong></td><td>Trabalho remoto e acesso móvel em qualquer lugar</td></tr>
+        <tr><td><strong>Escalabilidade e integração</strong></td><td>Fácil integração de novos dispositivos e usuários</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Analogia das estradas:</strong> cada computador é uma casa; os dados são veículos; os cabos e conexões sem fio são as estradas. Assim como uma cidade usa semáforos e regras de trânsito, as redes usam <strong>protocolos</strong> e equipamentos (roteadores, switches) para organizar o fluxo e evitar congestionamentos e colisões.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CLASSIFICAÇÃO DAS REDES (PAN/LAN/MAN/WAN)            -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Classificação das redes quanto à dimensão (PAN/LAN/MAN/WAN)</div>
+  </div>
+  <div class="sec-subtitle">Classificação por área de abrangência geográfica — apesar do consenso, não existem números exatos</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Sigla</th><th>Descrição</th><th>Distância</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Personal Area Network</strong></td><td><span class="tag tag-blue">PAN</span></td><td>Rede pessoal (celular, tablet, notebook, fones)</td><td>Alguns centímetros a poucos metros</td></tr>
+        <tr><td><strong>Local Area Network</strong></td><td><span class="tag tag-blue">LAN</span></td><td>Lares, escritórios, prédios, campi</td><td>Centenas de metros a alguns quilômetros</td></tr>
+        <tr><td><strong>Metropolitan Area Network</strong></td><td><span class="tag tag-amber">MAN</span></td><td>Matriz e filiais em uma mesma cidade</td><td>Cerca de algumas dezenas de quilômetros</td></tr>
+        <tr><td><strong>Wide Area Network</strong></td><td><span class="tag tag-red">WAN</span></td><td>Entre cidades, países ou continentes</td><td>Dezenas a milhares de quilômetros</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">PAN — Personal Area Network</div><div class="card-text"><span class="tag tag-blue">Incidência: baixa</span><br><br>Alcance muito limitado (poucos metros), voltada à comunicação entre <strong>dispositivos pessoais de um único usuário</strong>. Tecnologias: <strong>Bluetooth, infravermelho, USB</strong>. Ex.: fone de ouvido sem fio conectado ao smartphone.</div></div>
+    <div class="card"><div class="card-title">LAN — Local Area Network</div><div class="card-text"><span class="tag tag-red">Incidência: altíssima</span><br><br>Área geográfica restrita (residência, escritório, prédio, campus). <strong>Baixa taxa de erros e elevada confiabilidade</strong>. Tecnologias: <strong>Ethernet e Wi-Fi</strong>.</div></div>
+    <div class="card"><div class="card-title">MAN — Metropolitan Area Network</div><div class="card-text"><span class="tag tag-red">Incidência: altíssima</span><br><br>Interliga múltiplas redes locais dentro de uma cidade/metrópole. Abrangência maior que a LAN e menor que a WAN. Ex.: filiais de uma empresa espalhadas pela cidade.</div></div>
+    <div class="card"><div class="card-title">WAN — Wide Area Network</div><div class="card-text"><span class="tag tag-red">Incidência: altíssima</span><br><br>Cobre grandes áreas (estados, países, continentes). Usa linhas telefônicas, cabos submarinos, satélites e fibra óptica, com provedores de telecomunicações. <strong>A Internet é a maior WAN que existe</strong>.</div></div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Redes sem fio (wireless)</div>
+    <div class="card-text">
+      Quando se trata de transmissão sem fio, acrescenta-se o prefixo <strong>"W"</strong> (Wireless): <strong>WPAN</strong>, <strong>WLAN</strong>, <strong>WMAN</strong> e <strong>WWAN</strong>. Em provas, porém, não se cobra esse rigor — é comum o enunciado falar "LAN" para uma rede Wi-Fi doméstica, sem citar "WLAN".<br><br>
+      • <strong>WPAN</strong> — ex.: Bluetooth (padrão IEEE 802.15)<br>
+      • <strong>WLAN</strong> — ex.: rede Wi-Fi de uma casa ou empresa (IEEE 802.11)<br>
+      • <strong>WMAN</strong> — ex.: WiMAX (IEEE 802.16)<br>
+      • <strong>WWAN</strong> — ex.: rede 3G
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Outras classificações (cobrança raríssima):</strong> <strong>BAN</strong> (Body Area Network — sensores no corpo, wearables), <strong>CAN</strong> (Campus Area Network — maior que LAN, menor que MAN), <strong>SAN</strong> (Storage Area Network — rede de armazenamento; não é área geográfica, e sim lógica), <strong>GAN</strong> (Global Area Network — maior que WAN) e <strong>IAN</strong> (Interplanetary Area Network — internet espacial).</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>MAN não abrange um país ou continente</strong> — abrange uma cidade ou região metropolitana. Já a <strong>Internet é WAN</strong> (rede global), nunca MAN. Redes de longas distâncias que usam cabos submarinos e satélites são WAN.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — TOPOLOGIAS DE REDE                                   -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Topologias de rede</div>
+  </div>
+  <div class="sec-subtitle">Topologia física × lógica · Barramento, Estrela, Anel e Malha</div>
+
+  <div class="card">
+    <div class="card-title">O que é topologia</div>
+    <div class="card-text">
+      Topologia é a <strong>representação geométrica da relação de todos os links e dispositivos</strong> de uma rede — a forma como os dispositivos estão organizados. Dois ou mais dispositivos se conectam a um link; dois ou mais links formam uma topologia.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Topologia física</strong></td><td>Exibe o <strong>layout (disposição) dos links e nós</strong> de rede — o percurso dos cabos</td></tr>
+        <tr><td><strong>Topologia lógica</strong></td><td>Exibe o <strong>fluxo ou percurso dos dados</strong> na rede</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Se a questão não deixar explícito o tipo, <strong>assume-se que fala da topologia FÍSICA</strong>. Física e lógica podem ser distintas na mesma rede — ex.: um hub tem topologia <strong>física em estrela</strong>, mas <strong>lógica em barramento</strong> (trabalha em broadcast).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Barramento (Bus)
+  </h3>
+  <div class="card">
+    <div class="card-text">
+      Todos os dispositivos conectados a um <strong>único cabo central</strong> (backbone ou espinha dorsal), geralmente <strong>coaxial</strong> com conectores <strong>BNC</strong>. Uso de meio ponto-multiponto, transmissão em <strong>half-duplex</strong> (uma estação por vez) e modo <strong>broadcast</strong>.<br><br>
+      • <strong>Vantagens:</strong> facilidade de instalação e economia de cabeamento<br>
+      • <strong>Desvantagens:</strong> falha no backbone derruba a rede toda; colisões; dificuldade de isolar falhas; menos segura (qualquer nó "ouve" tudo)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Anel (Ring)
+  </h3>
+  <div class="card">
+    <div class="card-text">
+      Cada dispositivo conecta-se a <strong>dois outros vizinhos</strong>, formando um ciclo fechado (loop). Comunicação <strong>unidirecional (simplex)</strong>, passando de nó em nó até o destinatário. Um <strong>token</strong> (espécie de "passe") circula no anel e só quem o possui pode transmitir — <strong>não ocorrem colisões</strong>.<br><br>
+      • <strong>Vantagens:</strong> fácil instalação e reconfiguração; isolamento de falhas simplificado; sem colisões<br>
+      • <strong>Desvantagens:</strong> cabo rompido ou estação com defeito pode parar a rede; desempenho limitado pelo número de dispositivos; para robustez, surgiram anéis duplos (ex.: <strong>FDDI</strong>)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Estrela (Star)
+  </h3>
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-text">
+      Todas as estações ligadas a um <strong>nó central</strong> (hub ou switch) por uma conexão <strong>ponto-a-ponto</strong> dedicada. Toda mensagem passa pelo nó central — <strong>não há tráfego direto entre dispositivos</strong>. É a <strong>topologia mais utilizada atualmente</strong>.<br><br>
+      • <strong>Vantagens:</strong> fácil adicionar/remover estações; fácil isolar falhas; cabo rompido afeta só a estação daquele cabo<br>
+      • <strong>Desvantagem crítica:</strong> o nó central é <strong>ponto único de falha</strong> — se ele falhar, toda a rede é prejudicada (mitigado com dispositivos redundantes)
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Malha (Mesh)
+  </h3>
+  <div class="card">
+    <div class="card-text">
+      Cada estação tem <strong>conexão ponto-a-ponto direta e dedicada</strong> com as demais, sem hierarquia. Pode ser <strong>malha completa (Full Mesh)</strong> — cada nó se conecta a todos os outros — ou <strong>malha parcial</strong>. <strong>Se a banca não disser o tipo, considere malha completa.</strong><br><br>
+      • <strong>Vantagens:</strong> sem problemas de tráfego compartilhado; robusta (link inutilizado não afeta o todo); privacidade e segurança (só o receptor pretendido vê a mensagem); fácil identificar/isolar falhas<br>
+      • <strong>Desvantagens:</strong> escalabilidade e custo — para <strong>n</strong> computadores são necessários <strong>n·(n−1)/2 cabos</strong> e <strong>n·(n−1) portas/placas</strong>; normalmente implementada de forma limitada; comum em <strong>redes wireless (Wi-Fi Mesh)</strong> e em WANs para redundância
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Topologia física</th><th>Direção de transmissão</th><th>Tipo de enlace</th><th>Modos de transmissão</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Barramento</strong></td><td>Half-Duplex</td><td>Multiponto</td><td>Broadcast</td></tr>
+        <tr><td><strong>Anel</strong></td><td>Simplex</td><td>Ponto-a-Ponto</td><td>Broadcast</td></tr>
+        <tr><td><strong>Estrela</strong></td><td>Half-Duplex (se usar Hub); caso contrário, Full-Duplex</td><td>Ponto-a-Ponto</td><td>Broadcast (se usar Hub); caso contrário, Unicast/Multicast/Broadcast</td></tr>
+        <tr><td><strong>Malha</strong></td><td>Depende</td><td>Ponto-a-Ponto</td><td>Unicast, Multicast ou Broadcast</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Enlace dedicado ≠ arquitetura ponto-a-ponto:</strong> na estrela, o <strong>enlace</strong> entre a estação e o nó central é ponto-a-ponto (link dedicado), mas a <strong>arquitetura</strong> da rede não é ponto-a-ponto. Não confunda os dois sentidos do termo.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — MODELOS E ARQUITETURAS DE COMUNICAÇÃO                -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Modelos e arquiteturas de comunicação</div>
+  </div>
+  <div class="sec-subtitle">Tipos de conexão · Direções e modos de transmissão · Arquitetura (P2P × Cliente/Servidor) · Meios de transmissão</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Tipos de conexão / enlace
+  </h3>
+  <div class="card">
+    <div class="card-text">
+      Um <strong>link</strong>, conexão ou enlace é o caminho (físico ou lógico) que conecta dois ou mais dispositivos. Para a comunicação ocorrer, os dispositivos devem estar conectados ao mesmo link ao mesmo tempo. Dois tipos principais:
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Descrição</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ponto-a-Ponto</strong></td><td><strong>Link dedicado</strong>, exclusivo entre dois dispositivos — comunicação exclusiva, link não compartilhado</td><td>Controle remoto e TV</td></tr>
+        <tr><td><strong>Ponto-Multiponto</strong></td><td><strong>Link compartilhado</strong> por mais de dois dispositivos — divisão espacial (todos ao mesmo tempo) ou <strong>temporal</strong> (um por vez, o modo padrão)</td><td>Internet (cabos submarinos); redes Wi-Fi públicas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Direções de transmissão
+  </h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Direção</th><th>Descrição</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Simplex</strong></td><td>Comunicação <strong>unidirecional</strong> — um dispositivo apenas envia, o outro apenas recebe; papéis nunca se invertem</td><td>TV, Rádio AM/FM, teclado</td></tr>
+        <tr><td><strong>Half-Duplex</strong></td><td>Comunicação <strong>bidirecional alternada</strong> — ambos transmitem e recebem, mas nunca ao mesmo tempo</td><td>Walkie-Talkie, Nextel</td></tr>
+        <tr><td><strong>Full-Duplex</strong></td><td>Comunicação <strong>bidirecional simultânea</strong> — envio e recebimento ao mesmo tempo</td><td>Celular, VoIP, chamadas telefônicas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Modos de transmissão (quanto aos destinatários)
+  </h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Modo</th><th>Descrição</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Unicast</strong> (uni = um; cast = transmitir)</td><td>Mensagem enviada para <strong>um único destino</strong> — comunicação um-para-um</td><td>Mensagem privada no WhatsApp</td></tr>
+        <tr><td><strong>Multicast</strong> (multi = vários)</td><td>Mensagem enviada para <strong>um grupo específico</strong> de destinos — um-para-vários, economia de banda</td><td>Lista de transmissão; streaming para assinantes</td></tr>
+        <tr><td><strong>Broadcast</strong> (broad = todos)</td><td>Mensagem enviada para <strong>todos</strong> os destinos da rede — um-para-todos</td><td>Status no WhatsApp; anúncio em grupo</td></tr>
+        <tr><td><strong>Anycast</strong> (raro)</td><td>Comunicação para o <strong>destinatário mais próximo</strong> em um grupo</td><td>Casos específicos; cai raramente</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Direção: SIMPLEX (1 sentido) → HALF-DUPLEX (2 sentidos, 1 por vez) → FULL-DUPLEX (2 sentidos ao mesmo tempo) · Modo: UNICAST (1) → MULTICAST (grupo) → BROADCAST (todos)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    As bancas trocam os nomes ("modo", "tipo", "direção", "sentido", "modalidade" ou "fluxo" de transmissão), mas só existem duas classificações: <strong>Simplex/Half-Duplex/Full-Duplex</strong> (fluxo) e <strong>Unicast/Multicast/Broadcast</strong> (destinatários). <strong>Full-simplex, monoplex e auto-duplex não são termos padrão.</strong> "Duplex" é termo genérico (pode ser half ou full).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Arquitetura de rede (forma de interação)
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Ponto-a-Ponto (P2P / Peer-to-Peer)</div><div class="card-text"><strong>Descentralizada</strong>, não hierárquica. Cada máquina atua como <strong>cliente e servidor</strong> ao mesmo tempo, sem servidor dedicado. Baixo custo, fácil configurar, escalável. Desvantagem: gerenciamento difícil em grandes organizações e falta de segurança (sem autenticação central). Ex.: BitTorrent, VoIP.<br><br><strong>P2P Puro:</strong> totalmente descentralizado · <strong>P2P Híbrido:</strong> usa <strong>supernós</strong> para coordenação (acesso e indexação).</div></div>
+    <div class="card"><div class="card-title">Cliente/Servidor</div><div class="card-text"><strong>Centralizada e hierárquica</strong>. O servidor (máquina especializada) fornece serviços; os clientes consomem. Clientes não se comunicam diretamente entre si. Mais robusta, segura e fácil de gerenciar; exige hardware potente. <strong>Base da Internet.</strong> Ex.: servidores de arquivos, e-mail, páginas web, banco de dados.</div></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Ponto-a-Ponto (P2P)</th><th>Cliente/Servidor</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Estrutura</strong></td><td>Descentralizada: todos são iguais</td><td>Centralizada: divisão clara entre cliente e servidor</td></tr>
+        <tr><td><strong>Função dos dispositivos</strong></td><td>Cada dispositivo é cliente e servidor</td><td>Clientes consomem; servidores fornecem</td></tr>
+        <tr><td><strong>Custo</strong></td><td>Menor (não requer servidores dedicados)</td><td>Maior (exige servidores mais potentes)</td></tr>
+        <tr><td><strong>Gerenciamento</strong></td><td>Difícil</td><td>Mais fácil (controle centralizado)</td></tr>
+        <tr><td><strong>Segurança</strong></td><td>Menor</td><td>Maior (políticas no servidor)</td></tr>
+        <tr><td><strong>Escalabilidade</strong></td><td>Limitada</td><td>Alta (fácil adicionar clientes)</td></tr>
+        <tr><td><strong>Desempenho em grande escala</strong></td><td>Tende a degradar</td><td>Mantém bom desempenho com servidores adequados</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Duplo sentido de "ponto-a-ponto":</strong> (1) como <strong>tipo de conexão</strong> — link dedicado entre dois dispositivos (contraponto ao multiponto); (2) como <strong>arquitetura</strong> — uma máquina que é simultaneamente cliente e servidor (contraponto ao modelo cliente/servidor). <strong>Link dedicado → tipo de conexão. Dispositivo com papel duplo → arquitetura.</strong></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Meios de transmissão
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo de meio</th><th>Descrição</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Guiado</strong></td><td>Transmissão por cabos/fios de cobre — dados convertidos em sinais elétricos que propagam pelo condutor</td><td>Cabo coaxial, par trançado, fibra óptica</td></tr>
+        <tr><td><strong>Não-guiado</strong></td><td>Transmissão por irradiação eletromagnética — dados irradiados por antenas ao ambiente</td><td>Ondas de rádio, infravermelho, micro-ondas, Bluetooth, wireless</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Cabo Coaxial</div><div class="card-text">Fio central de cobre com blindagem metálica. Mais barato, pouco flexível, <strong>muito resistente à interferência eletromagnética</strong>. Conector <strong>BNC</strong>. Largura de banda maior que o par trançado, mas <strong>taxa de transmissão menor</strong> e sinal enfraquece rápido (requer repetidores). Usado até meados dos anos 90; hoje na TV a cabo e no cabo que chega ao modem.</div></div>
+    <div class="card"><div class="card-title">Par Trançado</div><div class="card-text">Quatro pares de fios trançados (blindados ou não), trançados para <strong>diminuir interferência</strong>. O <strong>mais utilizado atualmente</strong> (mais barato e flexível). Conector <strong>RJ-45</strong>. Blindado = <strong>STP</strong>; não blindado = <strong>UTP</strong>. Alcance: até 100 metros. Comparado ao coaxial: menor largura de banda, maior taxa de transmissão. Comunicação <strong>full-duplex</strong> (pares dedicados a transmissão e recepção). Categorias: CAT3 (10 Mbps) até CAT8 (40 Gbps).</div></div>
+    <div class="card"><div class="card-title">Fibra Óptica</div><div class="card-text">Casca + núcleo de <strong>vidro ou plástico</strong> transmitindo <strong>luz</strong>. <strong>Imune a interferência eletromagnética</strong>, menor atenuação (até 50 km sem regeneração), leve, mais resistente a corrosivos, maior imunidade à interceptação. Desvantagens: instalação/manutenção especializada, custo maior, propagação da luz unidirecional (bidirecional hoje com WDM ou dois cabos). Conectores <strong>ST e SC</strong>. <strong>Multimodo:</strong> vários caminhos, distâncias menores, mais barata (LANs) · <strong>Monomodo:</strong> um caminho, maiores distâncias e taxas, mais cara (WANs).</div></div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Largura de banda × taxa de transmissão:</strong> a largura de banda é a <strong>capacidade teórica máxima</strong> (cenário ideal); a <strong>taxa de transmissão (throughput)</strong> é o que realmente é transferido (realidade prática). Ex.: conexão de 100 Mbps pode ter taxa efetiva de apenas 70 Mbps.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova — com base na incidência indicada pelas fontes</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>LAN, MAN e WAN</strong> — classificação por área geográfica (altíssima incidência) e <strong>Internet = WAN</strong><br>
+      • <strong>Topologia em estrela</strong> (altíssima) — ponto único de falha no nó central; a mais usada<br>
+      • <strong>Topologia em barramento</strong> (alta) — backbone único, half-duplex, colisões<br>
+      • <strong>Cabo de par trançado</strong> (alta) — RJ-45, UTP/STP, até 100 metros<br>
+      • <strong>Padrões:</strong> Ethernet (IEEE 802.3), Wi-Fi (IEEE 802.11), Bluetooth (IEEE 802.15), Token Ring (IEEE 802.5), WiMAX (IEEE 802.16)<br>
+      • <strong>Roteador</strong> (alta) — interliga redes diferentes, escolhe a melhor rota
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Simplex</strong> = unidirecional (TV, teclado) · <strong>Half-Duplex</strong> = bidirecional alternado (walkie-talkie) · <strong>Full-Duplex</strong> = simultâneo (celular)<br>
+      • <strong>Unicast</strong> = 1 destino · <strong>Multicast</strong> = grupo · <strong>Broadcast</strong> = todos · <strong>Anycast</strong> = mais próximo (raro)<br>
+      • <strong>Hub</strong> = camada 1, broadcast, half-duplex, topologia lógica em barramento · <strong>Switch</strong> = camada 2, usa endereços MAC, full-duplex, elimina colisões (segmenta domínios de colisão) · <strong>Roteador</strong> = camada 3, usa endereços IP<br>
+      • <strong>Endereço MAC</strong> = 12 dígitos hexadecimais (48 bits), gravado na placa de rede na fábrica (ex.: 00:1C:B3:09:85:15)<br>
+      • <strong>Wireless vs Wi-Fi:</strong> todo Wi-Fi é wireless, mas nem todo wireless é Wi-Fi<br>
+      • <strong>Rede wireless:</strong> modo ad-hoc (sem ponto central, temporária) × infraestrutura (com access point)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>MAN não é país/continente</strong> — é cidade/região metropolitana; Internet é <strong>WAN</strong><br>
+      • <strong>Fibra óptica não usa cobre</strong> e é imune a ruídos eletromagnéticos<br>
+      • <strong>Cabo UTP e fibra são meios GUIADOS</strong> — não-guiados são ondas de rádio, micro-ondas, satélite<br>
+      • Conexão <strong>multiponto</strong> = meio compartilhado, um computador por vez (padrão: compartilhamento no tempo), senão há colisão<br>
+      • Topologia em anel <strong>não usa hub central</strong>; cada dispositivo conecta ao vizinho (sentido pode ser horário ou anti-horário)<br>
+      • <strong>P2P não tem servidor central</strong> — todos são pares (clientes e servidores)<br>
+      • Na estrela, enlace <strong>ponto-a-ponto</strong> (dedicado) ≠ arquitetura ponto-a-ponto
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine a tabela PAN/LAN/MAN/WAN com as distâncias aproximadas, a relação topologia × direção/modo de transmissão × enlace (Barramento: half-duplex/multiponto/broadcast; Anel: simplex/ponto-a-ponto/broadcast), os três fluxos (Simplex/Half/Full) e os três modos (Uni/Multi/Broadcast), e as distinções Hub/Switch/Roteador + meios guiados/não-guiados. São as pegadinhas recorrentes de Cebraspe, Quadrix, FCC e demais bancas.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                            -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

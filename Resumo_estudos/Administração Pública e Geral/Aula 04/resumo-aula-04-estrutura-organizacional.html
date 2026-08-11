@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AP Aula 04: Organização e Estrutura Organizacional ?v=AP04b</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div>
+    <div class="sidebar-brand">📚 PDF Revisão</div>
+    <div class="sidebar-sub">Resumos estruturados</div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a href="../../../index.html">← Voltar ao índice</a>
+    <a href="#sec1" class="active">1. Função Organização</a>
+    <a href="#sec2">2. Estrutura Organizacional</a>
+    <a href="#sec3">3. Especialização</a>
+    <a href="#sec4">4. Departamentalização</a>
+    <a href="#sec5">5. Cadeia de Comando</a>
+    <a href="#sec6">6. Amplitude de Controle</a>
+    <a href="#sec7">7. Centralização</a>
+    <a href="#sec8">8. Formalização</a>
+    <a href="#sec9">9. Mecanicista×Orgânica</a>
+    <a href="#sec10">10. Tipos de Estrutura</a>
+    <a href="#sec11">11. Formal×Informal</a>
+    <a href="#sec12">12. Diferenciação×Integração</a>
+    <a href="#sec13">13. Questões</a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div style="font-size:.7rem;color:var(--text2);">AP Aula 04 · Organização</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label">Progresso: <span id="pct">0%</span></div>
+    <div class="progress-track">
+      <div class="progress-fill" id="bar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>AP Aula 04 — Organização e Estrutura Organizacional</h1>
+    <p>Função Organização · 6 elementos · Departamentalizações · Estruturas · Questões FGV</p>
+  </div>
+
+  <!-- SEC 1 -->
+  <section id="sec1" class="section">
+    <div class="section-title"><span class="tag tag-blue">1</span> Função Organização</div>
+    <div class="section-subtitle">Uma das 4 funções do processo administrativo PODC</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">O que é a Função Organização?</div></div>
+      <div class="card-text">
+        A função <strong>Organização</strong> é a <span class="highlight">segunda fase</span> do processo administrativo, depois do <strong>Planejamento</strong> e antes da <strong>Direção/Execução</strong> e do <strong>Controle</strong>. Ela responde à pergunta: <span class="highlight">“Como vamos colocar o plano em prática?”</span><br><br>
+        Segundo <strong>Chiavenato</strong>, a função organização se desdobra nos <strong>três níveis organizacionais</strong>:
+        <br>• <strong>Estratégico/Institucional:</strong> desenho organizacional (estrutura global da empresa)<br>
+        • <strong>Tático/Departamental:</strong> desenho departamental (departamentalização)<br>
+        • <strong>Operacional:</strong> modelagem do trabalho (trabalho isolado ou em equipe)
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Ações da Função Organização</div></div>
+      <div class="card-text">
+        • Dividir o trabalho e atribuir responsabilidades<br>
+        • Estabelecer os meios e recursos necessários para alcançar os objetivos do planejamento<br>
+        • Alocar recursos para equipes e departamentos<br>
+        • Distribuir tarefas e definir a estrutura hierárquica
+      </div>
+    </div>
+
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Pegadinha:</strong> Organização não é “fazer organizado”. É a função administrativa que define <span class="highlight">quem faz o quê, quem manda em quem e como os recursos são alocados</span>. Muitas bancas confundem com estrutura organizacional; lembre-se: função organização é um conceito mais amplo do processo PODC.</div></div>
+  </section>
+
+  <!-- SEC 2 -->
+  <section id="sec2" class="section">
+    <div class="section-title"><span class="tag tag-blue">2</span> Estrutura Organizacional</div>
+    <div class="section-subtitle">O desenho completo: elementos, tipos, modelos</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        A <strong>estrutura organizacional</strong> é o alicerce de sustentação da empresa. Ela define:<br>
+        • Como o trabalho é dividido entre áreas/departamentos/unidades<br>
+        • A alocação de recursos<br>
+        • O que as pessoas devem/não devem fazer (descrições de cargos)<br>
+        • A estrutura hierárquica<br>
+        • Como os órgãos internos se integram<br><br>
+        Envolve <strong>04 sistemas</strong>: <span class="tag tag-blue">Autoridade</span> <span class="tag tag-green">Responsabilidade</span> <span class="tag tag-amber">Decisão</span> <span class="tag tag-purple">Comunicação</span>
+      </div>
+    </div>
+
+    <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> Estrutura Organizacional ≠ Departamentalização. A departamentalização é apenas <span class="highlight">um dos elementos</span> da estrutura. A estrutura é mais ampla: inclui também cadeia de comando, amplitude, centralização e formalização.</div></div>
+  </section>
+
+  <!-- SEC 3 -->
+  <section id="sec3" class="section">
+    <div class="section-title"><span class="tag tag-blue">3</span> Especialização do Trabalho</div>
+    <div class="section-subtitle">Divisão do trabalho — horizontal e vertical</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        Consiste em pegar um trabalho “global” e dividi-lo em várias “partes”. Ex: em uma fábrica de carros, o operário A instala portas, o operário B instala vidros, etc.<br><br>
+        Resultados: tarefas mais simples → mais fáceis de ensinar → maior padronização → maior produtividade.<br><br>
+        <strong>Cuidado:</strong> a “superespecialização” gera <span class="highlight">deseconomias humanas</span>: tédio, estresse, queda de qualidade.
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>O que é</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Horizontal</strong></td><td>Desdobramento em departamentos/divisões (no mesmo nível hierárquico)</td><td>Criar divisão de Cervejas e divisão de Refrigerantes</td></tr>
+          <tr><td><strong>Vertical</strong></td><td>Desdobramento em níveis hierárquicos (cria mais cargos de chefia)</td><td>Criar gerente, supervisor, coordenador...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SEC 4 -->
+  <section id="sec4" class="section">
+    <div class="section-title"><span class="tag tag-blue">4</span> Departamentalização</div>
+    <div class="section-subtitle">Tipos, vantagens e desvantagens — banca adora!</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        Agrupamento de atividades <strong>homogêneas</strong> e respectivos recursos em unidades organizacionais, segundo o <strong>princípio da homogeneidade</strong> (Chiavenato).<br><br>
+        <strong>Não é</strong> a mesma coisa que estrutura organizacional. Departamentalização = <span class="highlight">configuração horizontal</span> da estrutura (elemento dela).
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tipo</th><th>Critério</th><th>Principais vantagens</th><th>Principais desvantagens</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Funcional</strong></td>
+            <td>Funções similares</td>
+            <td>Especialização, economia de escala, estabilidade, convergência de esforços</td>
+            <td>Foco introvertido, perda de visão macro, conflitos interdepartamentais, superespecialização</td>
+          </tr>
+          <tr>
+            <td><strong>Produto/Serviço</strong></td>
+            <td>Produto ou serviço</td>
+            <td>Responsabilidade por produto, flexibilidade, coordenação interdepartamental, inovação</td>
+            <td>Aumento de custos, obsolescência técnica, prejudica especialização, insegurança profissional</td>
+          </tr>
+          <tr>
+            <td><strong>Cliente</strong></td>
+            <td>Tipo de cliente</td>
+            <td>Melhor conhecimento do cliente, atendimento contínuo, cultura de atendimento</td>
+            <td>Atividades secundárias, sacrifício de lucratividade, decisões dependentes do cliente</td>
+          </tr>
+          <tr>
+            <td><strong>Processo</strong></td>
+            <td>Fases do processo produtivo</td>
+            <td>Processos integrados, economia de escala, produtividade, otimização de layout</td>
+            <td>Inflexibilidade, depende de tecnologia fixa, perda da visão macro, risco operacional</td>
+          </tr>
+          <tr>
+            <td><strong>Projetos</strong></td>
+            <td>Resultados/outputs</td>
+            <td>Convergência de esforços, equipes multidisciplinares, flexibilidade, produtos complexos</td>
+            <td>Temporalidade, medo de desemprego, foco excessivo no projeto, comunicação deficiente</td>
+          </tr>
+          <tr>
+            <td><strong>Territorial</strong></td>
+            <td>Localização geográfica</td>
+            <td>Maior abrangência, adaptação local, decisões rápidas, treinamento no território</td>
+            <td>Dificulta controle estratégico, duplicação, desequilíbrio administrativo, coordenação difícil</td>
+          </tr>
+          <tr>
+            <td><strong>Matricial/Híbrida</strong></td>
+            <td>Dois ou mais critérios</td>
+            <td>Especialização + coordenação lateral, flexibilidade, conflito construtivo</td>
+            <td>Conflito de comando, dupla subordinação, dificuldade de coordenação, reuniões excessivas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Dica de prova:</strong> quando a questão trouxer “ambiente mutável/instável”, elimine <strong>funcional</strong> e <strong>processo</strong>. Quando for “pequena empresa/enxuta”, elimine departamentalizações complexas. E quando houver <span class="highlight">dupla subordinação</span>, a resposta é <strong>matricial</strong>.</div></div>
+  </section>
+
+  <!-- SEC 5 -->
+  <section id="sec5" class="section">
+    <div class="section-title"><span class="tag tag-blue">5</span> Cadeia de Comando</div>
+    <div class="section-subtitle">Hierarquia, autoridade e unidade de comando</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        Linha de autoridade contínua do topo até o nível mais baixo. Define <strong>“quem manda em quem”</strong> e <strong>“quem deve obedecer a quem”</strong>.<br><br>
+        Baseada em dois conceitos:<br>
+        • <strong>Autoridade:</strong> direito do cargo de dar ordens e esperar obediência<br>
+        • <strong>Unidade de comando (Fayol):</strong> cada pessoa deve obedecer a <span class="highlight">apenas um superior</span> → linha única de autoridade<br><br>
+        <strong>Exceção:</strong> estrutura matricial quebra a unidade de comando (dupla subordinação).
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 6 -->
+  <section id="sec6" class="section">
+    <div class="section-title"><span class="tag tag-blue">6</span> Amplitude de Controle</div>
+    <div class="section-subtitle">Quantos subordinados por chefe?</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        Indica quantas pessoas cada executivo consegue dirigir de forma eficaz.<br><br>
+        • <strong>Amplitude LARGA</strong> → estrutura <span class="highlight">achatada/horizontal</span> → menos níveis hierárquicos → custos menores, mas risco de perda de controle<br>
+        • <strong>Amplitude ESTREITA</strong> → estrutura <span class="highlight">alta/vertical</span> → mais níveis hierárquicos → controle próximo, mas mais cara e mais lenta<br><br>
+        Define o <strong>número de níveis hierárquicos</strong> da organização.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 7 -->
+  <section id="sec7" class="section">
+    <div class="section-title"><span class="tag tag-blue">7</span> Centralização e Descentralização</div>
+    <div class="section-subtitle">Onde fica o poder decisório?</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceitos</div></div>
+      <div class="card-text">
+        • <strong>Centralização:</strong> decisões concentradas na alta cúpula → alinhadas aos objetivos globais, mas lentas e distantes da realidade local<br>
+        • <strong>Descentralização:</strong> decisões espalhadas por todos os níveis → rápidas, motivadoras, mas menos uniformes e mais difíceis de controlar<br><br>
+        <strong>NÃO CONFUNDIR:</strong>
+        <br>• <span class="tag tag-blue">Descentralização</span> = transferência <strong>permanente</strong> da autoridade, ligada ao <strong>cargo</strong>, muda a estrutura organizacional
+        <br>• <span class="tag tag-green">Delegação</span> = transferência <strong>temporária</strong> da autoridade, ligada à <strong>pessoa</strong>, não muda a estrutura
+        <br>• <span class="tag tag-amber">Desconcentração</span> = separação/distribuição <strong>física</strong> das atividades em instalações diferentes
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aspecto</th><th>🔼 Centralização</th><th>🔽 Descentralização</th></tr></thead>
+        <tbody>
+          <tr><td>Local das decisões</td><td>Alta cúpula</td><td>Todos os níveis</td></tr>
+          <tr><td>Velocidade</td><td>Lenta</td><td>Rápida</td></tr>
+          <tr><td>Alinhamento</td><td>Maior alinhamento global</td><td>Visão local, menos uniforme</td></tr>
+          <tr><td>Controle</td><td>Mais fácil</td><td>Mais difícil</td></tr>
+          <tr><td>Inovação</td><td>Desestimulada</td><td>Estimulada</td></tr>
+          <tr><td>Motivação</td><td>Baixa</td><td>Alta</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha número 1:</strong> Delegação ≠ Descentralização. Delegação é temporária e pessoal; descentralização é permanente e estrutural. Na prova, se o enunciado mencionar “mudança no estatuto/regimento”, é descentralização.</div></div>
+  </section>
+
+  <!-- SEC 8 -->
+  <section id="sec8" class="section">
+    <div class="section-title"><span class="tag tag-blue">8</span> Formalização</div>
+    <div class="section-subtitle">Grau de regras e regulamentos</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        Indica até que ponto existem <strong>regras e regulamentos</strong> para dirigir e coordenar os funcionários.<br><br>
+        • <strong>Alta formalização:</strong> muitas regras, manuais, procedimentos → baixa autonomia, alta padronização<br>
+        • <strong>Baixa formalização:</strong> poucas regras → alta autonomia, maior flexibilidade<br><br>
+        Quanto maior a formalização, <span class="highlight">menor a autonomia</span> do funcionário para decidir sobre seu trabalho.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 9 -->
+  <section id="sec9" class="section">
+    <div class="section-title"><span class="tag tag-blue">9</span> Mecanicista × Orgânica</div>
+    <div class="section-subtitle">Burns & Stalker — Teoria da Contingência</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Característica</th><th>⚙️ Mecanicista</th><th>🌿 Orgânica</th></tr></thead>
+        <tbody>
+          <tr><td>Base</td><td>Burocracia, Teoria Clássica</td><td>Teoria das Relações Humanas, Adhocracia</td></tr>
+          <tr><td>Divisão do trabalho</td><td>Minuciosa</td><td>Pouca divisão</td></tr>
+          <tr><td>Cargos</td><td>Especialistas com atribuições fixas</td><td>Continuamente redefinidos</td></tr>
+          <tr><td>Decisões</td><td>Centralizadas na cúpula</td><td>Descentralizadas, delegadas</td></tr>
+          <tr><td>Hierarquia</td><td>Rígida, vertical</td><td>Flexível, horizontalizada</td></tr>
+          <tr><td>Amplitude</td><td>Estreita (mais níveis)</td><td>Larga (menos níveis)</td></tr>
+          <tr><td>Comunicação</td><td>Vertical, formal</td><td>Lateral, informal</td></tr>
+          <tr><td>Ambiente ideal</td><td>Estável e previsível</td><td>Mutável e imprevisível</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Dica de prova:</strong> “ambiente estável” = mecanicista; “ambiente dinâmico” = orgânica. Se a questão inverter, está errada.</div></div>
+  </section>
+
+  <!-- SEC 10 -->
+  <section id="sec10" class="section">
+    <div class="section-title"><span class="tag tag-blue">10</span> Tipos de Estrutura Organizacional</div>
+    <div class="section-subtitle">Tradicionais e contemporâneas</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Organograma</div></div>
+      <div class="card-text">
+        Gráfico que representa a estrutura organizacional <strong>formal</strong>. Mostra a hierarquia, cargos e relações de subordinação. Não mostra a informal.
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--green);">
+      <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title" style="color:var(--green);">Linear (Militar)</div></div>
+      <div class="card-text">
+        • Unidade de comando, centralização, hierarquia vertical<br>
+        • Pirâmide, baixa amplitude, estruturas altas<br>
+        • <strong>Vantagens:</strong> clareza, fácil implantação<br>
+        • <strong>Desvantagens:</strong> rigidez, sobrecarga da cúpula, não favorece especialização
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--amber);">
+      <div class="card-header"><div class="card-icon">⚙️</div><div class="card-title" style="color:var(--amber);">Funcional</div></div>
+      <div class="card-text">
+        • Baseada em Taylor e na especialização das funções<br>
+        • <strong>Múltipla subordinação</strong> (vários chefes funcionais)<br>
+        • Autoridade funcional dividida, comunicação direta<br>
+        • <strong>Vantagens:</strong> supervisão técnica, especialização máxima<br>
+        • <strong>Desvantagens:</strong> visão micro, conflitos, confusão de objetivos, diluição da autoridade
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--purple);">
+      <div class="card-header"><div class="card-icon">🔗</div><div class="card-title" style="color:var(--purple);">Linha-Staff</div></div>
+      <div class="card-text">
+        • Combina linear + funcional<br>
+        • <strong>Órgãos de linha</strong> = autoridade hierárquica (atividades-fim)<br>
+        • <strong>Órgãos de staff</strong> = assessoria/consultiva, sem autoridade hierárquica (atividades-meio)<br>
+        • <strong>Vantagens:</strong> unidade de comando + assessoria especializada<br>
+        • <strong>Desvantagens:</strong> conflitos linha vs staff, equilíbrio difícil
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--teal);">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title" style="color:var(--teal);">Divisional</div></div>
+      <div class="card-text">
+        • Empresa se desmembra em <strong>divisões</strong> (produto, cliente ou região)<br>
+        • Unidades semiautônomas = <strong>centros de resultados</strong><br>
+        • Decisões relativamente descentralizadas<br>
+        • <strong>Vantagens:</strong> flexibilidade, proximidade do cliente, controle por divisão<br>
+        • <strong>Desvantagens:</strong> duplicidade, custos elevados, competição entre divisões
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--red);">
+      <div class="card-header"><div class="card-icon">🔀</div><div class="card-title" style="color:var(--red);">Matricial</div></div>
+      <div class="card-text">
+        • Fusão: funcional (permanente/vertical) + projetos/produtos (temporária/horizontal)<br>
+        • <strong>Múltipla subordinação</strong> — quebra unidade de comando<br>
+        • Responsabilidade compartilhada<br>
+        • <strong>Vantagens:</strong> otimização de recursos, flexibilidade, coordenação lateral<br>
+        • <strong>Desvantagens:</strong> conflito de comando, conflito de papéis, reuniões excessivas
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--blue);">
+      <div class="card-header"><div class="card-icon">🌐</div><div class="card-title" style="color:var(--blue);">Em Rede e Virtual</div></div>
+      <div class="card-text">
+        • <strong>Em Rede:</strong> núcleo central + unidades interdependentes, parcerias, alianças, horizontalizada<br>
+        • <strong>Virtual:</strong> terceirização total, núcleo mínimo, tecnologia de informação, custos baixos<br>
+        • <strong>Sem Fronteiras:</strong> elimina hierarquia vertical/horizontal, equipes autônomas, amplitude “ilimitada”
+      </div>
+    </div>
+
+    <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha número 2:</strong> estrutura matricial ≠ departamentalização matricial. A departamentalização é um <strong>elemento</strong> da estrutura. A estrutura matricial é um <strong>tipo de estrutura</strong> que usa departamentalização matricial. A banca pode inverter os termos.</div></div>
+  </section>
+
+  <!-- SEC 11 -->
+  <section id="sec11" class="section">
+    <div class="section-title"><span class="tag tag-blue">11</span> Formal × Informal</div>
+    <div class="section-subtitle">Regras escritas vs. relações espontâneas</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aspecto</th><th>📋 Formal</th><th>🎲 Informal</th></tr></thead>
+        <tbody>
+          <tr><td>Origem</td><td>Criada propositalmente</td><td>Surge naturalmente</td></tr>
+          <tr><td>Base</td><td>Racionalidade e lógica</td><td>Afinidade e relações pessoais</td></tr>
+          <tr><td>Planejamento</td><td>Planejada e estruturada</td><td>Não é planejada</td></tr>
+          <tr><td>Regras</td><td>Regras e regulamentos</td><td>Não existem regras formais</td></tr>
+          <tr><td>Organograma</td><td>Aparece</td><td>Não aparece</td></tr>
+          <tr><td>Objetivos</td><td>Pré-estabelecidos</td><td>Não possui objetivos claros</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Dica de prova:</strong> a informal <span class="highlight">transcende</span> a formal — não está sujeita a horários, regras ou local físico. É o “grupo do café” que não aparece no organograma.</div></div>
+  </section>
+
+  <!-- SEC 12 -->
+  <section id="sec12" class="section">
+    <div class="section-title"><span class="tag tag-blue">12</span> Diferenciação × Integração</div>
+    <div class="section-subtitle">Teoria da Contingência — Lawrence & Lorsch</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceitos</div></div>
+      <div class="card-text">
+        • <strong>Diferenciação:</strong> a organização se divide em subsistemas/departamentos especializados, cada um reagindo a aspectos específicos do ambiente<br>
+        • <strong>Integração:</strong> as demandas do ambiente exigem que os subsistemas <span class="highlight">somem esforços</span> e respondam conjuntamente<br><br>
+        O sucesso organizacional depende de <strong>“dosar”</strong> corretamente diferenciação e integração conforme o ambiente exigir.
+      </div>
+    </div>
+
+    <div class="mnemonic">
+      <div class="mnemonic-label">🧠 Macete</div>
+      <div class="mnemonic-content">
+        <strong>D</strong>iferenciação = <span class="tag tag-blue">D</span>ividir (departamentos especializados)<br>
+        <strong>I</strong>ntegração = <span class="tag tag-green">I</span>ntegrar (somar esforços dos departamentos)
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 13 -->
+  <section id="sec13" class="section">
+    <div class="section-title"><span class="tag tag-amber">13</span> Questões Comentadas</div>
+    <div class="section-subtitle">FGV — 20 questões com gabarito comentado</div>
+
+    <div class="question">
+      <div class="question-header">1. (FGV – AMAZUL - Assistente Administrativo – 2026)</div>
+      <div class="question-text">Segundo Mintzberg, a estrutura de uma organização é definida pela característica de sua parte mais importante nas suas operações. A organização que é considerada do tipo mais simples, sendo profundamente centralizado na autoridade maior denomina-se</div>
+      <div class="options">
+        <div class="option">a) inovadora</div>
+        <div class="option">b) missionária</div>
+        <div class="option">c) diversificada</div>
+        <div class="option correct">d) profissional</div>
+        <div class="option">e) empresarial</div>
+      </div>
+      <div class="answer"><strong>Gabarito: E (empresarial).</strong> É a Estrutura Simples/empreendedora: poucos gerentes, estrutura achatada, alta amplitude de controle, centralização na cúpula. Comum em pequenas organizações.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">2. (FGV – TCE-RR - Técnico Administrativo – 2025)</div>
+      <div class="question-text">Os estudos sobre estruturas organizacionais buscaram compreender como diferentes arranjos se adaptam de maneira mais eficaz. Tais estudos introduziram os conceitos de organizações mecanicistas e orgânicas. Com relação a essas estruturas, é correto afirmar que</div>
+      <div class="options">
+        <div class="option">a) a estrutura mecanicista é pautada por ideais da Adhocracia...</div>
+        <div class="option correct">b) a estrutura mecanicista apresenta predominância de um modelo hierárquico vertical, enquanto na estrutura orgânica prevalece um modelo horizontal.</div>
+        <div class="option">c) a estrutura mecanicista se mostra mais adequada a um contexto ambiental dinâmico e instável...</div>
+        <div class="option">d) a estrutura mecanicista fundamenta-se na delegação das decisões aos níveis inferiores...</div>
+        <div class="option">e) a estrutura mecanicista é orientada pelos princípios da Teoria das Relações Humanas...</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Mecanicista = vertical, hierárquica, burocrática. Orgânica = horizontal, flexível, lateral. Todas as outras invertem os conceitos.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">3. (FGV – TRT 24ª REGIÃO - Técnico Judiciário – 2025)</div>
+      <div class="question-text">Os critérios de departamentalização na Administração Pública devem alinhar-se aos princípios da legalidade, impessoalidade, moralidade, publicidade e eficiência. Assinale a opção que apresenta, corretamente, a departamentalização que procura agrupar órgãos e cargos por função para aproveitar a integração de conhecimentos, habilidades, competências e processos de trabalho em uma só unidade.</div>
+      <div class="options">
+        <div class="option">a) Geográfica</div>
+        <div class="option correct">b) Funcional</div>
+        <div class="option">c) Por clientela</div>
+        <div class="option">d) Por processos</div>
+        <div class="option">e) Por projetos</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Departamentalização funcional agrupa atividades por funções especializadas. É a mais comum e a mais cobrada em prova.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">4. (FGV – MPU - Analista - Perito em Contabilidade – 2025)</div>
+      <div class="question-text">Uma organização pública da área de saúde tem sua estrutura dividida por funções: departamento de apoio administrativo, departamento de ensino e pesquisa, departamento de atenção à saúde. Esse tipo de departamentalização tem como vantagem e desvantagem, respectivamente:</div>
+      <div class="options">
+        <div class="option">a) facilitar o atendimento das necessidades do usuário; gerar sobreposições;</div>
+        <div class="option correct">b) obter maior proveito de especializações e economia de escala, mesmo diante de conflitos; reduzir a visão integral;</div>
+        <div class="option">c) otimizar uso de recursos com prazos limitados; causar alta rotatividade;</div>
+        <div class="option">d) permitir a instalação de unidades próximas aos usuários; ocasionar duplicidades e aumentos de custos;</div>
+        <div class="option">e) promover a descentralização; apresentar custos elevados e baixa sinergia;</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Funcional = especialização e economia de escala como vantagens; perda da visão macro e conflitos como desvantagens.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">5. (FGV – DPE-RO - Analista em Administração – 2025)</div>
+      <div class="question-text">Uma organização recebeu diagnóstico de problemas recorrentes: I. Conflito de comando entre diferentes gestores. II. Dificuldade para identificar responsáveis por falhas. III. Baixa eficiência de coordenação em razão da dupla subordinação. Com base nessas informações, a estrutura adotada é do tipo</div>
+      <div class="options">
+        <div class="option">a) Linear</div>
+        <div class="option">b) Funcional</div>
+        <div class="option">c) Geográfica</div>
+        <div class="option correct">d) Matricial</div>
+        <div class="option">e) Burocrática</div>
+      </div>
+      <div class="answer"><strong>Gabarito: D.</strong> Os três sintomas (conflito de comando, dificuldade de identificar responsáveis, dupla subordinação) são clássicos da estrutura matricial.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">6. (FGV – TRF1 – Analista Judiciário - Área Administrativa - 2024)</div>
+      <div class="question-text">A empresa XPTO é fabricante de móveis que adota a seguinte departamentalização: setor de corte; setor de montagem; setor de acabamento e pintura. A departamentalização adotada é</div>
+      <div class="options">
+        <div class="option">a) funcional</div>
+        <div class="option">b) por produto</div>
+        <div class="option correct">c) por processo</div>
+        <div class="option">d) por cliente</div>
+        <div class="option">e) territorial</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Agrupamento por fases do processo produtivo = departamentalização por processo.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">7. (FGV – TCE-AM - Auditor – 2024)</div>
+      <div class="question-text">Em uma organização que adota a departamentalização por projetos, é correto afirmar que</div>
+      <div class="options">
+        <div class="option correct">a) a equipe é desfeita ao final do projeto e os membros são transferidos para novos projetos.</div>
+        <div class="option">b) a departamentalização é a mais indicada para ambientes estáveis e rotineiros.</div>
+        <div class="option">c) há duplicação de recursos em diferentes departamentos.</div>
+        <div class="option">d) o foco principal é a função, e não o resultado.</div>
+        <div class="option">e) a estrutura é permanente e não muda ao longo do tempo.</div>
+      </div>
+      <div class="answer"><strong>Gabarito: A.</strong> Por projetos = temporário. Ao final, a equipe se desfaz. B é errada (é indicada para ambientes mutáveis). C é de produto. D é funcional. E é errada.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">8. (FGV – Prefeitura de Manaus - Analista – 2024)</div>
+      <div class="question-text">A organização que adota estrutura matricial apresenta como característica fundamental:</div>
+      <div class="options">
+        <div class="option">a) unidade de comando clara e inquestionável</div>
+        <div class="option">b) subordinação única a um superior hierárquico</div>
+        <div class="option correct">c) dupla subordinação e responsabilidade compartilhada</div>
+        <div class="option">d) ausência de conflitos entre gerentes funcionais e de projetos</div>
+        <div class="option">e) estrutura exclusivamente verticalizada</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Matricial = dupla subordinação + responsabilidade compartilhada. Quebra a unidade de comando de Fayol.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">9. (FGV – TJ-AM - Analista Judiciário – 2023)</div>
+      <div class="question-text">A estrutura organizacional em linha-staff diferencia-se da estrutura linear porque</div>
+      <div class="options">
+        <div class="option">a) não há hierarquia</div>
+        <div class="option">b) a autoridade é exercida exclusivamente pelos órgãos de staff</div>
+        <div class="option correct">c) há órgãos de assessoria (staff) que exercem autoridade de conhecimento, não hierárquica</div>
+        <div class="option">d) a unidade de comando é substituída pela múltipla subordinação</div>
+        <div class="option">e) a estrutura é indicada apenas para ambientes dinâmicos</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Linha-staff = linear + assessoria. Staff = autoridade de conhecimento/consultiva, não hierárquica.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">10. (FGV – BACEN - Analista – 2023)</div>
+      <div class="question-text">Na estrutura organizacional, a amplitude de controle está relacionada diretamente ao número de níveis hierárquicos. Uma amplitude de controle larga resulta em:</div>
+      <div class="options">
+        <div class="option">a) estrutura verticalizada e muitos níveis hierárquicos</div>
+        <div class="option correct">b) estrutura horizontalizada e poucos níveis hierárquicos</div>
+        <div class="option">c) aumento dos custos com executivos</div>
+        <div class="option">d) maior rigidez de supervisão</div>
+        <div class="option">e) comunicação vertical mais lenta</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Amplitude larga = estrutura achatada/horizontal = menos níveis hierárquicos. Mais barata e mais flexível.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">11. (FGV – ANATEL - Analista Administrativo – 2023)</div>
+      <div class="question-text">A desconcentração, no âmbito da Administração Pública, difere da descentralização porque</div>
+      <div class="options">
+        <div class="option">a) transfere autoridade de forma permanente</div>
+        <div class="option">b) altera o estatuto da organização</div>
+        <div class="option correct">c) implica separação física das atividades em instalações diferentes</div>
+        <div class="option">d) ocorre apenas entre pessoas hierarquicamente relacionadas</div>
+        <div class="option">e) é um conceito sinônimo de delegação</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Desconcentração = separação física/distribuição geográfica das atividades. Descentralização = transferência de autoridade. Delegação = temporária/pessoal.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">12. (FGV – TCE-PB - Auditor – 2023)</div>
+      <div class="question-text">A departamentalização territorial é indicada especialmente para organizações que</div>
+      <div class="options">
+        <div class="option">a) possuem poucos produtos e operam em ambiente estável</div>
+        <div class="option correct">b) estão territorialmente dispersas e precisam de respostas rápidas locais</div>
+        <div class="option">c) buscam máxima especialização funcional</div>
+        <div class="option">d) trabalham exclusivamente com projetos temporários</div>
+        <div class="option">e) desejam eliminar completamente a hierarquia</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Territorial = empresas dispersas geograficamente, com necessidade de adaptação local e respostas rápidas.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">13. (FGV – DPE-SP - Analista – 2022)</div>
+      <div class="question-text">Na departamentalização por cliente, é correto afirmar que</div>
+      <div class="options">
+        <div class="option correct">a) é baseada nas necessidades do cliente e utilizada normalmente no nível operacional.</div>
+        <div class="option">b) é a mais indicada para ambientes estáveis e com pouca variedade de produtos.</div>
+        <div class="option">c) prioriza a especialização técnica em detrimento do atendimento.</div>
+        <div class="option">d) gera custos menores do que a departamentalização funcional.</div>
+        <div class="option">e) é contraindicada para organizações de serviços.</div>
+      </div>
+      <div class="answer"><strong>Gabarito: A.</strong> Por cliente = agrupamento por tipo de cliente, normalmente no nível operacional, com foco em atendimento.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">14. (FGV – TRF3 - Analista Judiciário – 2022)</div>
+      <div class="question-text">A organização em rede caracteriza-se por</div>
+      <div class="options">
+        <div class="option">a) centralização total das decisões no núcleo central</div>
+        <div class="option">b) estrutura exclusivamente vertical e hierárquica</div>
+        <div class="option correct">c) núcleo central rodeado por unidades interdependentes e autônomas</div>
+        <div class="option">d) ausência de parcerias com fornecedores externos</div>
+        <div class="option">e) custos operacionais elevados</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Rede = núcleo central + unidades interdependentes, parcerias, alianças, estrutura horizontalizada.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">15. (FGV – TJ-PI - Analista Judiciário – 2022)</div>
+      <div class="question-text">A organização virtual diferencia-se da organização em rede porque</div>
+      <div class="options">
+        <div class="option">a) mantém estrutura física ampla e many colaboradores internos</div>
+        <div class="option correct">b) terceiriza quase todas as atividades, mantendo núcleo mínimo</div>
+        <div class="option">c) elimina completamente o núcleo central</div>
+        <div class="option">d) é indicada para ambientes estáveis</div>
+        <div class="option">e) não utiliza tecnologia de informação</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Virtual = núcleo mínimo + terceirização total via tecnologia.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">16. (FGV – Câmara Municipal - Analista – 2021)</div>
+      <div class="question-text">Na estrutura divisional, as divisões funcionam como centros de resultados. Isso significa que</div>
+      <div class="options">
+        <div class="option">a) todas as decisões são centralizadas na diretoria</div>
+        <div class="option correct">b) os lucros e prejuízos são apurados autonomamente por cada divisão</div>
+        <div class="option">c) não há duplicação de recursos entre divisões</div>
+        <div class="option">d) a estrutura é indicada para empresas com um único produto</div>
+        <div class="option">e) a departamentalização utilizada é sempre territorial</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Divisões são centros de resultados = lucros/prejuízos apurados autonomamente.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">17. (FGV – Prefeitura de SP - Gestor Governamental – 2021)</div>
+      <div class="question-text">A departamentalização híbrida é a mais frequente porque</div>
+      <div class="options">
+        <div class="option">a) utiliza apenas um critério de agrupamento</div>
+        <div class="option correct">b) cada parte da empresa pode adotar o critério mais adequado à sua realidade</div>
+        <div class="option">c) elimina completamente a necessidade de coordenação interdepartamental</div>
+        <div class="option">d) reduz custos operacionais de forma drástica</div>
+        <div class="option">e) é indicada exclusivamente para organizações públicas</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Híbrida = mais de um critério; cada área usa a estrutura que melhor se adapta à sua realidade.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">18. (FGV – TJ-AL - Analista Judiciário – 2021)</div>
+      <div class="question-text">A estrutura linear é também conhecida como estrutura militar porque</div>
+      <div class="options">
+        <div class="option">a) adota múltipla subordinação</div>
+        <div class="option correct">b) baseia-se na unidade de comando e hierarquia verticalizada</div>
+        <div class="option">c) é indicada para ambientes dinâmicos</div>
+        <div class="option">d) possui amplitude de controle larga</div>
+        <div class="option">e) privilegia a assessoria técnica especializada</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Linear = militar = unidade de comando + hierarquia vertical + centralização.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">19. (FGV – TRT2 - Técnico Judiciário – 2020)</div>
+      <div class="question-text">A estrutura mecanicista é mais adequada a ambientes estáveis e previsíveis porque</div>
+      <div class="options">
+        <div class="option">a) possui decisões descentralizadas e grande flexibilidade</div>
+        <div class="option correct">b) conta com regras formalizadas e procedimentos padronizados</div>
+        <div class="option">c) prioriza a comunicação lateral e informal</div>
+        <div class="option">d) tem cargos continuamente redefinidos</div>
+        <div class="option">e) utiliza amplitude de controle larga</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Mecanicista = regras formalizadas + padronização + ambiente estável.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">20. (FGV – MP-RO - Analista – 2020)</div>
+      <div class="question-text">A centralização das decisões na alta cúpula é característica da estrutura</div>
+      <div class="options">
+        <div class="option">a) orgânica</div>
+        <div class="option correct">b) mecanicista</div>
+        <div class="option">c) matricial</div>
+        <div class="option">d) em rede</div>
+        <div class="option">e) virtual</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Mecanicista = decisões centralizadas na cúpula. Orgânica = descentralizadas.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">21. (FGV – TCE-RJ - Técnico de Controle Externo – 2020)</div>
+      <div class="question-text">A departamentalização por processo é quase sempre restrita aos níveis operacionais porque</div>
+      <div class="options">
+        <div class="option">a) depende do arranjo físico dos equipamentos e da tecnologia</div>
+        <div class="option">b) agrupa atividades por função</div>
+        <div class="option">c) é baseada nas necessidades do cliente</div>
+        <div class="option correct">d) o foco está nas fases do fluxo produtivo</div>
+        <div class="option">e) é a mais adequada para ambientes mutáveis</div>
+      </div>
+      <div class="answer"><strong>Gabarito: D.</strong> Por processo = agrupamento por fases do processo produtivo, restrito a operações contínuas.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">22. (FGV – TJ-MG - Oficial de Justiça – 2020)</div>
+      <div class="question-text">Na departamentalização por produto, as unidades criadas são chamadas de semiautônomas porque</div>
+      <div class="options">
+        <div class="option">a) não possuem autonomia decisória</div>
+        <div class="option correct">b) possuem relativa autonomia, mas respondem ao planejamento estratégico global</div>
+        <div class="option">c) compartilham todos os recursos com a diretoria</div>
+        <div class="option">d) não têm gerentes próprios</div>
+        <div class="option">e) dependem de aprovação externa para qualquer decisão</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Unidades semiautônomas = têm autonomia operacional, mas seguem o planejamento estratégico da empresa.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">23. (FGV – ANTT - Especialista em Regulação – 2019)</div>
+      <div class="question-text">A estrutura orgânica é caracterizada por</div>
+      <div class="options">
+        <div class="option">a) rigidez hierárquica e ampla amplitude de controle</div>
+        <div class="option">b) múltipla subordinação e autoridade funcional</div>
+        <div class="option correct">c) flexibilidade, descentralização e interação lateral</div>
+        <div class="option">d) regras formalizadas e procedimentos padronizados</div>
+        <div class="option">e) estrutura baseada na organização militar</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Orgânica = flexível, descentralizada, comunicação lateral, adaptável ao ambiente mutável.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">24. (FGV – INSS - Analista do Seguro Social – 2019)</div>
+      <div class="question-text">O organograma de uma organização representa</div>
+      <div class="options">
+        <div class="option">a) apenas a estrutura informal e as relações de amizade</div>
+        <div class="option correct">b) a estrutura formal de cargos e relações hierárquicas</div>
+        <div class="option">c) os fluxos de informação informais</div>
+        <div class="option">d) as preferências pessoais dos colaboradores</div>
+        <div class="option">e) as relações com clientes e fornecedores</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Organograma = estrutura formal = cargos + hierarquia + subordinação.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">25. (FGV – CEF - Técnico Bancário – 2019)</div>
+      <div class="question-text">A departamentalização territorial é também chamada de geográfica porque</div>
+      <div class="options">
+        <div class="option">a) agrupa atividades por tipo de cliente</div>
+        <div class="option">b) agrupa atividades por fase do processo produtivo</div>
+        <div class="option correct">c) agrupa atividades por localização geográfica</div>
+        <div class="option">d) agrupa atividades por função</div>
+        <div class="option">e) agrupa atividades por projeto</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Territorial = geográfica = agrupamento por local/região de atuação.</div>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+(function(){
+  const sections = document.querySelectorAll('section[id]');
+  const bar = document.getElementById('bar');
+  const pct = document.getElementById('pct');
+  function update(){
+    const h = window.innerHeight;
+    let cur = 0, total = sections.length;
+    sections.forEach(s=>{
+      const r = s.getBoundingClientRect();
+      if(r.top <= h*0.6) cur++;
+    });
+    const v = Math.round((cur/total)*100);
+    bar.style.width = v+'%';
+    pct.textContent = v+'%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
+
+</body>
+</html>

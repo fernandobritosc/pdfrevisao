@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Teoria Geral da Administração (Aula 01)</title>
+<style>
+:root {
+  --bg: #0f172a;
+  --sidebar: #0a0f1c;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --muted: #64748b;
+  --blue: #3b82f6;
+  --blue-light: #60a5fa;
+  --amber: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --purple: #8b5cf6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1rem;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 10;
+}
+.sidebar-title {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: .2rem;
+}
+.sidebar-sub {
+  font-size: .75rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid #1e293b;
+}
+.sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: #64748b;
+  text-decoration: none;
+  font-size: .78rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.sidebar a:hover { background: #1e293b; color: #e2e8f0; }
+.sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #93c5fd;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.sidebar-divider { border: none; border-top: 1px solid #1e293b; margin: .7rem 0; }
+
+/* MAIN */
+.main { margin-left: 260px; flex: 1; max-width: 960px; padding: 0 0 3rem; }
+section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+section:last-child { border-bottom: none; }
+.sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.sec-num {
+  width: 32px; height: 32px; color: #fff; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(59,130,246,.3);
+}
+.sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+
+/* CARDS */
+.grid { display: grid; gap: .8rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.card-title { font-size: .85rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+
+/* CALLOUTS */
+.callout {
+  display: flex; gap: .6rem; padding: .7rem 1rem; border-radius: 10px;
+  font-size: .82rem; line-height: 1.6; margin: .8rem 0;
+}
+.callout-info { background: #1e3a5f; border: 1px solid #1e40af; color: #93c5fd; }
+.callout-warn { background: #3d2e0a; border: 1px solid #92400e; color: #fcd34d; }
+.callout-success { background: #0a2e1a; border: 1px solid #059669; color: #6ee7b7; }
+.callout-danger { background: #3b1010; border: 1px solid #991b1b; color: #fca5a5; }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #3d2e0a;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem; font-weight: 700; color: var(--amber);
+  text-transform: uppercase; letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem; font-weight: 800; color: #fcd34d;
+  letter-spacing: .02em; margin-top: .15rem;
+}
+
+/* TABLES */
+.table-wrap { overflow-x: auto; margin: .8rem 0; border-radius: 10px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead tr { background: #1e293b; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+tr:nth-child(even) { background: #1e293b; }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #3b1010; border: 1px solid #991b1b; border-left: 4px solid var(--red);
+  border-radius: 10px; padding: .65rem .9rem; margin: .75rem 0; font-size: .82rem;
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block; padding: .2rem .55rem; border-radius: 5px;
+  font-size: .72rem; font-weight: 700; margin: 0 .2rem;
+}
+.tag-blue { background: #1e40af; color: #93c5fd; }
+.tag-green { background: #065f46; color: #6ee7b7; }
+.tag-amber { background: #92400e; color: #fcd34d; }
+.tag-red { background: #991b1b; color: #fca5a5; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; max-width: 100%; }
+  section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Administração Pública e Geral</div>
+  <div class="sidebar-sub">Aula 01 — Teoria Geral da Administração</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#objetivo">Objetivo</a>
+  <a href="#administracao-cientifica">Administração Científica</a>
+  <a href="#teoria-classica">Teoria Clássica</a>
+  <a href="#relacoes-humanas">Relações Humanas</a>
+  <a href="#burocracia">Burocracia</a>
+  <a href="#estruturalista">Estruturalista</a>
+  <a href="#neoclassica">Neoclássica</a>
+  <a href="#comportamental">Comportamental</a>
+  <a href="#desenvolvimento-organizacional">Desenvolvimento Organizacional</a>
+  <a href="#sistemas">Teoria dos Sistemas</a>
+  <a href="#contingencia">Contingência</a>
+  <a href="#resumo">Resumo comparativo</a>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<a class="back" href="/PDF%20Revis%C3%A3o/index.html" style="display:inline-flex;align-items:center;gap:6px;margin-bottom:18px;color:var(--amber);text-decoration:none;font-weight:600;font-size:14px;">← Voltar para o índice</a>
+
+<section id="objetivo">
+  <div class="sec-header"><div class="sec-num">00</div><div class="sec-title">Objetivo da aula</div></div>
+  <div class="sec-subtitle">Mapear as principais teorias da administração, seus eixos centrais e diferenças multibanca. Cada teoria analisa a administração sob um prisma diferente: tarefas, estrutura, pessoas, ambiente ou contingências.</div>
+</section>
+
+<section id="administracao-cientifica">
+  <div class="sec-header"><div class="sec-num">01</div><div class="sec-title">Administração Científica</div></div>
+  <div class="sec-subtitle">Frederick Taylor — final do século XIX / início do século XX</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">Buscar a <strong>“melhor maneira”</strong> de executar cada tarefa por meio do estudo dos tempos e movimentos, com o objetivo de eliminar desperdícios e elevar a produtividade.</div>
+    </div>
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">Público-alvo</div>
+      <div class="card-text">Foco no <strong>chão de fábrica</strong>: operários, supervisores e tarefas repetitivas. Ênfase nas <strong>tarefas</strong>, não nas pessoas.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>Taylor queria substituir métodos rudimentares por métodos <strong>científicos</strong>: análise do trabalho, cronometragem e padronização.</div></div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Fundamentos da ORT</h3>
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Estudo dos tempos e movimentos</div>
+      <div class="card-text">Cronometrar cada movimento para definir um <strong>tempo padrão</strong> e o método ideal de execução.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Fadiga humana</div>
+      <div class="card-text">Eliminar movimentos inúteis que causam cansaço sem agregar valor.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Divisão do trabalho</div>
+      <div class="card-text">Especialização do operário: cada um executa uma etapa específica.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Incentivos salariais</div>
+      <div class="card-text">Remuneração vinculada à produtividade, não ao tempo.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Homo economicus</div>
+      <div class="card-text">O trabalhador é motivado principalmente pelo dinheiro.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Supervisão funcional</div>
+      <div class="card-text">O operário recebe ordens de <strong>vários supervisores</strong> especializados.</div>
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Princípios de Taylor — PPCE</h3>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">Planejamento</div><div class="card-text">Definir previamente como executar cada tarefa.</div></div>
+    <div class="card"><div class="card-title">Preparo</div><div class="card-text">Selecionar e treinar o trabalhador.</div></div>
+    <div class="card"><div class="card-title">Controle</div><div class="card-text">Checar se o trabalho está conforme o padrão.</div></div>
+    <div class="card"><div class="card-title">Execução</div><div class="card-text">Distribuir responsabilidades e manter disciplina.</div></div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemonico</div>
+    <div class="mnemonic-content"><b>P</b>lanejamento, <b>P</b>reparo, <b>C</b>ontrole, <b>E</b>xecução → <b>PPCE</b></div>
+  </div>
+
+  <div class="gotcha"><div class="gotcha-title">⚠️ Pegadinha</div>NÃO confundir com Fordismo. Taylor criou a Organização Racional do Trabalho; Ford aplicou a linha de montagem móvel com esteiras.</div>
+</section>
+
+<section id="teoria-classica">
+  <div class="sec-header"><div class="sec-num">02</div><div class="sec-title">Teoria Clássica</div></div>
+  <div class="sec-subtitle">Henri Fayol — 1916</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">Enfatiza a <strong>estrutura organizacional</strong>. Fayol definiu seis funções básicas da organização e cinco funções do administrador.</div>
+    </div>
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">Diferencial</div>
+      <div class="card-text">Enquanto Taylor focava nas <strong>tarefas</strong>, Fayol focava na <strong>estrutura</strong> e nos princípios gerais da administração.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Cuidado com o CESPE:</strong> o termo “Teoria Clássica” pode aparecer como gênero amplo incluindo Taylor e Fayol. Em regra isolada, refere-se a Fayol.</div></div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">6 Funções básicas da organização</h3>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">Técnicas</div><div class="card-text">Produção de bens e serviços.</div></div>
+    <div class="card"><div class="card-title">Comerciais</div><div class="card-text">Compra, venda e permuta.</div></div>
+    <div class="card"><div class="card-title">Financeiras</div><div class="card-text">Captação e gestão de recursos.</div></div>
+    <div class="card"><div class="card-title">Segurança</div><div class="card-text">Proteção patrimonial e de pessoas.</div></div>
+    <div class="card"><div class="card-title">Contábeis</div><div class="card-text">Balanços, custos e inventários.</div></div>
+    <div class="card"><div class="card-title">Administrativas</div><div class="card-text">Integração, coordenação e sincronização.</div></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">5 Funções do administrador</h3>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">Prever</div><div class="card-text">Visualizar o futuro e traçar programa de ação.</div></div>
+    <div class="card"><div class="card-title">Organizar</div><div class="card-text">Construir o duplo organismo material e social.</div></div>
+    <div class="card"><div class="card-title">Comandar</div><div class="card-text">Dirigir e orientar o pessoal.</div></div>
+    <div class="card"><div class="card-title">Coordenar</div><div class="card-text">Ligar, unir e harmonizar esforços coletivos.</div></div>
+    <div class="card"><div class="card-title">Controlar</div><div class="card-text">Certificar-se de que tudo ocorra conforme regras.</div></div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemonico</div>
+    <div class="mnemonic-content"><b>P</b>rever, <b>O</b>rganizar, <b>C</b>omandar, <b>C</b>oordenar, <b>C</b>ontrolar → <b>POC3</b></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">14 Princípios Gerais da Administração</h3>
+  <div class="card" style="margin-bottom:.8rem;">
+    <div class="card-text">
+      Divisão do trabalho · Autoridade e responsabilidade · Disciplina · Unidade de comando · Unidade de direção · Subordinação dos interesses individuais aos gerais · Remuneração do pessoal · Centralização · Cadeia escalar · Ordem · Equidade · Estabilidade do pessoal · Iniciativa · Espírito de equipe
+    </div>
+  </div>
+</section>
+
+<section id="relacoes-humanas">
+  <div class="sec-header"><div class="sec-num">03</div><div class="sec-title">Teoria das Relações Humanas</div></div>
+  <div class="sec-subtitle">Elton Mayo — Experiência de Hawthorne (Chicago)</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">A produtividade aumentava não por mudanças físicas, mas porque os operários se sentiam <strong>importantes e observados</strong>. A ênfase passou a ser nas pessoas e nos grupos informais.</div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Homo social</div>
+      <div class="card-text">O homem é motivado por <strong>aprovação social, reconhecimento e recompensas simbólicas</strong>, não só por dinheiro.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div>A Experiência de Hawthorne mostrou que <strong>qualquer alteração</strong> nas condições físicas aumentava a produtividade — seja aumento ou redução de luminosidade — porque os empregados se sentiam especiais.</div></div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu</div>
+    <div class="mnemonic-content">
+      <span class="tag tag-green">Relações Humanas</span> = pessoas, grupos informais, integração social<br>
+      <span class="tag tag-red">NÃO</span> = apenas condições físicas
+    </div>
+  </div>
+
+  <div class="gotcha"><div class="gotcha-title">⚠️ Pegadinha</div>A Teoria das Relações Humanas não nega totalmente a Administração Científica e a Teoria Clássica; ela apenas desvia o foco das tarefas e da estrutura para as pessoas.</div>
+</section>
+
+<section id="burocracia">
+  <div class="sec-header"><div class="sec-num">04</div><div class="sec-title">Teoria da Burocracia</div></div>
+  <div class="sec-subtitle">Max Weber — 1909 (aplicação administrativa em 1940)</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">Modelo ideal baseado na <strong>dominação racional-legal</strong>: a autoridade vem do <strong>cargo</strong>, não da pessoa. Ênfase na estrutura formal, impessoalidade e meritocracia.</div>
+    </div>
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Base</div>
+      <div class="card-text">Legalidade das normas, formalidade nas comunicações, racionalidade, divisão do trabalho, hierarquia funcional, padronização, meritocracia, especialização e profissionalização.</div>
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Características da burocracia ideal</h3>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-text">• Legalidade das normas e regulamentos<br>• Formalidade nas comunicações<br>• Racionalidade e divisão do trabalho<br>• Impessoalidade<br>• Hierarquia funcional</div></div>
+    <div class="card"><div class="card-text">• Padronização e previsibilidade<br>• Meritocracia e competência técnica<br>• Especialização<br>• Profissionalização</div></div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemonico</div>
+    <div class="mnemonic-content"><b>L</b>egalidade, <b>F</b>ormalidade, <b>R</b>acionalidade, <b>I</b>mpessoalidade, <b>H</b>ierarquia, <b>P</b>adronização, <b>M</b>eritocracia, <b>E</b>specialização, <b>P</b>rofissionalização → <b>LFRIHPMEP</b></div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Tipos de dominação</h3>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">Tradicional</div><div class="card-text">Baseada em costumes e tradição.</div></div>
+    <div class="card"><div class="card-title">Carismática</div><div class="card-text">Baseada nas qualidades pessoais do líder.</div></div>
+    <div class="card" style="border-color:var(--green);"><div class="card-title" style="color:var(--green);">Racional-legal</div><div class="card-text">Baseada em leis, regras e normas. O poder está no <strong>cargo</strong>.</div></div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemonico</div>
+    <div class="mnemonic-content"><b>T</b>radição, <b>C</b>arisma, <b>R</b>egra → <b>TCR</b></div>
+  </div>
+
+  <div class="gotcha"><div class="gotcha-title">⚠️ Pegadinha da banca</div>A banca pode trazer disfunções da burocracia (excesso de formalismo, rigidez, internalização de regras) e afirmar que são características. Lembre-se: características = ideais de Weber; disfunções = problemas práticos.</div>
+</section>
+
+<section id="estruturalista">
+  <div class="sec-header"><div class="sec-num">05</div><div class="sec-title">Teoria Estruturalista</div></div>
+  <div class="sec-subtitle">James Thompson e Amitai Etzioni</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">Analisa a organização como um todo, combinando <strong>formal e informal</strong>, tarefas e pessoas, sem perder de vista o ambiente externo.</div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Sistema aberto</div>
+      <div class="card-text">Primeira teoria a abandonar o sistema fechado. Considera as influências do <strong>ambiente externo</strong>.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:.8rem;">
+    <div class="card-title">Homem organizacional</div>
+    <div class="card-text">Participa de várias organizações simultaneamente. Deve ser flexível, cooperativo e ter capacidade de adiar recompensas.</div>
+  </div>
+</section>
+
+<section id="neoclassica">
+  <div class="sec-header"><div class="sec-num">06</div><div class="sec-title">Teoria Neoclássica</div></div>
+  <div class="sec-subtitle">Peter Drucker — retomada dos clássicos com visão prática</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Características</div>
+      <div class="card-text">• Ênfase na prática da administração<br>• Reafirmação relativa dos postulados clássicos<br>• Ênfase em objetivos e resultados<br>• Conceitos ecléticos</div>
+    </div>
+    <div class="card" style="border-color:var(--purple);">
+      <div class="card-title" style="color:var(--purple);">Processo administrativo</div>
+      <div class="card-text"><b>Planejamento</b> → <b>Organização</b> → <b>Direção</b> → <b>Controle</b></div>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemonico</div>
+    <div class="mnemonic-content"><b>P</b>lanejamento, <b>O</b>rganização, <b>D</b>ireção, <b>C</b>ontrole → <b>PODC</b></div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><b>Eficiência</b> = fazer bem, com bons meios e custos. <b>Eficácia</b> = fazer a coisa certa e alcançar os objetivos.</div></div>
+</section>
+
+<section id="comportamental">
+  <div class="sec-header"><div class="sec-num">07</div><div class="sec-title">Teoria Comportamental</div></div>
+  <div class="sec-subtitle">Herbert Simon, McGregor, Herzberg, Maslow</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">Oposição às abordagens normativas. Destaca as ciências do comportamento. Rejeita o modelo de máquina da burocracia e o homo economicus.</div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Homem administrativo</div>
+      <div class="card-text">Toma decisões <strong>satisfatórias</strong>, não necessariamente ótimas. Busca o suficiente, não o máximo.</div>
+    </div>
+  </div>
+
+  <div class="gotcha"><div class="gotcha-title">⚠️ Pegadinha</div>A Teoria Comportamental rejeita tanto o modelo de máquina da burocracia quanto o romantismo ingênuo das Relações Humanas.</div>
+</section>
+
+<section id="desenvolvimento-organizacional">
+  <div class="sec-header"><div class="sec-num">08</div><div class="sec-title">Teoria do Desenvolvimento Organizacional (DO)</div></div>
+  <div class="sec-subtitle">Kurt Lewin, Edgar Schein, Warren Bennis</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">Desdobramento da Teoria Comportamental voltado para a <strong>mudança planejada</strong> da cultura organizacional. Modelo de sistema aberto.</div>
+    </div>
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Objetivo</div>
+      <div class="card-text">Adaptar pessoas, grupos e estrutura ao ambiente externo. Mudança organizacional planejada.</div>
+    </div>
+  </div>
+</section>
+
+<section id="sistemas">
+  <div class="sec-header"><div class="sec-num">09</div><div class="sec-title">Teoria dos Sistemas</div></div>
+  <div class="sec-subtitle">Ludwig Von Bertalanffy — Teoria Geral dos Sistemas</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">A organização é um <strong>sistema aberto</strong> em interação com o ambiente. O todo é maior do que a soma das partes.</div>
+    </div>
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">Conceitos-chave</div>
+      <div class="card-text">
+        • <b>Holismo:</b> todo > soma das partes<br>
+        • <b>Globalismo:</b> alteração em uma parte repercute no todo<br>
+        • <b>Homeostase:</b> tendência de manter equilíbrio interno<br>
+        • <b>Equifinalidade:</b> vários caminhos para o mesmo resultado
+      </div>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemonico</div>
+    <div class="mnemonic-content"><b>S</b>istema <b>A</b>berto <b>I</b>nterage com o <b>T</b>odo → <b>SAIT</b></div>
+  </div>
+</section>
+
+<section id="contingencia">
+  <div class="sec-header"><div class="sec-num">10</div><div class="sec-title">Teoria da Contingência</div></div>
+  <div class="sec-subtitle">Joan Woodward, Burns & Stalker, Lawrence & Lorsch</div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Essência</div>
+      <div class="card-text">Não há uma única melhor forma de administrar. <strong>Tudo depende</strong> do ambiente e da tecnologia. Abordagem eclética.</div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Homem complexo</div>
+      <div class="card-text">Para a Contingência, as teorias anteriores pecam por não levar em conta toda a complexidade do homem.</div>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">Mecanicista</div>
+      <div class="card-text">Ambiente <strong>estável</strong> e previsível. Estrutura burocrática, hierarquia rígida, decisões centralizadas.</div>
+    </div>
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Orgânica</div>
+      <div class="card-text">Ambiente <strong>mutável</strong> e imprevisível. Estrutura flexível, decisões descentralizadas, comunicação informal.</div>
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Mnemonico</div>
+    <div class="mnemonic-content"><b>N</b>ão existe <b>F</b>órmula <b>Ú</b>nica <b>N</b>em <b>I</b>deal → <b>NFÚNI</b></div>
+  </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Adhocracia:</strong> modelo diametralmente oposto à burocracia. Equipes temporárias, autônomas e multidisciplinares. Poucas regras, muita liberdade.</div></div>
+</section>
+
+<section id="resumo">
+  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Resumo comparativo</div></div>
+  <div class="sec-subtitle">Visão sinóptica das teorias</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Teoria</th><th>Ênfase</th><th>Teórico</th><th>Homem</th><th>Sistema</th><th>Abordagem</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Administração Científica</td><td>Tarefas</td><td>Taylor</td><td>Homo economicus</td><td>Fechado</td><td>Prescritiva</td></tr>
+        <tr><td>Teoria Clássica</td><td>Estrutura</td><td>Fayol</td><td>Homo economicus</td><td>Fechado</td><td>Prescritiva</td></tr>
+        <tr><td>Relações Humanas</td><td>Pessoas</td><td>Mayo</td><td>Homo social</td><td>Fechado</td><td>Prescritiva</td></tr>
+        <tr><td>Burocracia</td><td>Estrutura formal</td><td>Weber</td><td>Homem isolado no cargo</td><td>Fechado</td><td>Prescritiva</td></tr>
+        <tr><td>Estruturalista</td><td>Estrutura + ambiente</td><td>Thompson / Etzioni</td><td>Homem organizacional</td><td>Aberto</td><td>Explicativa</td></tr>
+        <tr><td>Neoclássica</td><td>Tarefas, pessoas, estrutura</td><td>Drucker</td><td>Homem organizacional / administrativo</td><td>Fechado</td><td>Prescritiva</td></tr>
+        <tr><td>Comportamental</td><td>Pessoas</td><td>Simon / McGregor / Herzberg / Maslow</td><td>Homem administrativo</td><td>Fechado</td><td>Explicativa</td></tr>
+        <tr><td>Desenvolvimento Organizacional</td><td>Pessoas + ambiente</td><td>Lewin / Schein / Bennis</td><td>Homem administrativo</td><td>Aberto</td><td>Explicativa</td></tr>
+        <tr><td>Sistemas</td><td>Ambiente</td><td>Bertalanffy</td><td>Homem funcional</td><td>Aberto</td><td>Explicativa</td></tr>
+        <tr><td>Contingência</td><td>Ambiente + tecnologia</td><td>Woodward / Burns & Stalker / Lawrence & Lorsch</td><td>Homem complexo</td><td>Aberto/Fechado</td><td>Explicativa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica final:</strong> a banca cobra muito diferenças entre autores, ênfases e visões do homem. Decore os pares: <b>Taylor = tarefas</b>, <b>Fayol = estrutura</b>, <b>Mayo = pessoas</b>, <b>Weber = burocracia</b>, <b>Contingência = tudo depende</b>.</div></div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

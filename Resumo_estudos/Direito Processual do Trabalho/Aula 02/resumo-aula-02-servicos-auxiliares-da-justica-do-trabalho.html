@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DPT Aula 02: Serviços Auxiliares da Justiça do Trabalho</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Processual do Trabalho — Aula 02</div>
+  <div class="sidebar-sub">Serviços Auxiliares da JT · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Serviços auxiliares em geral</a>
+  <a href="#sec2">2. Secretaria das Varas e dos Tribunais</a>
+  <a href="#sec3">3. Distribuidores</a>
+  <a href="#sec4">4. Oficiais de Justiça Avaliadores</a>
+  <a href="#sec5">5. Demais auxiliares (não tratados nas fontes)</a>
+  <a href="#sec6">6. Pontos que mais caem em prova</a>
+  <a href="#sec7">7. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — SERVIÇOS AUXILIARES EM GERAL                         -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Serviços auxiliares da Justiça do Trabalho</div>
+  </div>
+  <div class="sec-subtitle">Base legal: art. 710 a 721 da CLT — dispositivos que respondem aos questionamentos das principais bancas</div>
+
+  <div class="card">
+    <div class="card-title">Quais são os serviços auxiliares destacados na CLT</div>
+    <div class="card-text">
+      Dentre os serviços auxiliares da Justiça do Trabalho, destacam-se, na CLT e nos editais de concursos:<br><br>
+      • <strong>Secretarias das Varas do Trabalho</strong><br>
+      • <strong>Secretarias dos Tribunais</strong><br>
+      • <strong>Distribuidores</strong><br>
+      • <strong>Oficiais de Justiça Avaliadores</strong>
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">📌 Base legal</div><div class="card-text">As informações cobradas em prova estão nos <strong>artigos 710 a 721 da CLT</strong>, que respondem aos questionamentos das principais bancas.</div></div>
+    <div class="card"><div class="card-title">⚖️ Sem súmulas sobre o tema</div><div class="card-text">Não existem correntes doutrinárias, <strong>Súmulas ou Orientações Jurisprudenciais do TST</strong> sobre o tema serviços auxiliares — o estudo é específico e objetivo, direto na CLT.</div></div>
+    <div class="card"><div class="card-title">🎯 Como a banca cobra</div><div class="card-text">As questões trazem, em regra, as <strong>informações constantes da CLT</strong> — memorizar a letra dos arts. 710 a 721 é o caminho.</div></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — SECRETARIA DAS VARAS E DOS TRIBUNAIS                  -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Secretaria das Varas do Trabalho e dos Tribunais</div>
+  </div>
+  <div class="sec-subtitle">Art. 710, 711 e 712 (Varas) · Art. 718, 719 e 720 (Tribunais) da CLT</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Secretaria das Varas do Trabalho
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Função da Secretaria da Vara</div>
+    <div class="card-text">
+      A Secretaria da Vara do Trabalho é o órgão incumbido de realizar os <strong>serviços burocráticos em primeiro grau de jurisdição</strong>, bem como a <strong>guarda dos autos enquanto estiverem tramitando</strong>.<br><br>
+      Exemplos de atos realizados na Secretaria:<br>
+      • Expedição da <strong>notificação postal</strong> ao reclamado (a notificação, nos termos do <strong>art. 841 da CLT</strong>, deve ser realizada em <strong>48 horas</strong>)<br>
+      • <strong>Juntada de documentos</strong> aos autos<br>
+      • <strong>Certificação da ocorrência de atos processuais</strong>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Art. 710 — Direção da Secretaria</div>
+    <div class="card-text">
+      Cada Vara do Trabalho possui <strong>1 (uma) Secretaria</strong>, dirigida pelo <strong>Diretor da Secretaria</strong> (antigamente denominado chefe ou secretário).<br><br>
+      O Diretor de Secretaria é <strong>designado pelo Juiz do Trabalho</strong>, recebendo, além dos vencimentos do seu padrão, a <strong>gratificação de função fixada em lei</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O art. 710 da CLT fala em "Presidente designar" — mas o <strong>"Presidente" é o Presidente da antiga Junta de Conciliação e Julgamento, que não existe mais</strong>. Hoje quem designa o Diretor de Secretaria é o <strong>Juiz Titular da Vara do Trabalho</strong>.
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial — Art. 712 (Diretor de Secretaria)</div>
+    <div class="mnemonic-content">
+      Só o Chefe Sabe Abrir Tudo Para Ser Sempre Informado e Executar — Superintender · Cumprir · Submeter · Abrir · Tomar termo · Promover · Secretariar · Subscrever · Informar · Executar
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 712 — Atribuições do Diretor ou Chefe de Secretaria</div>
+    <div class="card-text">
+      a) <strong>Superintender</strong> os trabalhos da secretaria, velando pela boa ordem do serviço<br>
+      b) <strong>Cumprir e fazer cumprir</strong> as ordens emanadas do Presidente e das autoridades superiores<br>
+      c) <strong>Submeter a despacho e assinatura</strong> do Presidente o expediente e os papéis que devam ser por ele despachados e assinados<br>
+      d) <strong>Abrir a correspondência oficial</strong> dirigida à Junta e ao seu Presidente, a cuja deliberação será submetida<br>
+      e) <strong>Tomar por termo</strong> as reclamações verbais nos casos de dissídios individuais<br>
+      f) <strong>Promover o rápido andamento</strong> dos processos, especialmente na fase de execução, e a pronta realização dos atos e diligências deprecadas pelas autoridades superiores<br>
+      g) <strong>Secretariar as audiências</strong> da Junta, lavrando as respectivas atas<br>
+      h) <strong>Subscrever as certidões e os termos processuais</strong><br>
+      i) <strong>Dar aos litigantes ciência</strong> das reclamações e demais atos processuais de que devam ter conhecimento, <strong>assinando as respectivas notificações</strong><br>
+      j) <strong>Executar os demais trabalhos</strong> que lhe forem atribuídos pelo Presidente da Junta
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — parágrafo único do art. 712</div>
+    Os serventuários que, <strong>sem motivo justificado</strong>, não realizarem os atos dentro dos prazos fixados serão <strong>descontados em seus vencimentos, em tantos dias quantos os do excesso</strong>. Se o atraso foi de 10 dias, o desconto poderá ser de <strong>10 dias</strong> nos vencimentos do servidor. Qualquer outra informação acerca do desconto está equivocada.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 711 — Atribuições da Secretaria (a Secretaria, não o Diretor!)</div>
+    <div class="card-text">
+      a) O <strong>recebimento, a autuação, o andamento, a guarda e a conservação</strong> dos processos e outros papéis que lhe forem encaminhados<br>
+      b) A manutenção do <strong>protocolo de entrada e saída</strong> dos processos e demais papéis<br>
+      c) O <strong>registro das decisões</strong><br>
+      d) A <strong>informação, às partes interessadas e seus procuradores</strong>, do andamento dos respectivos processos, cuja consulta lhes facilitará<br>
+      e) A <strong>abertura de vista</strong> dos processos às partes, na própria secretaria<br>
+      f) A <strong>contagem das custas</strong> devidas pelas partes, nos respectivos processos<br>
+      g) O <strong>fornecimento de certidões</strong> sobre o que constar dos livros ou do arquivamento da secretaria<br>
+      h) A <strong>realização das penhoras e demais diligências processuais</strong><br>
+      i) O desempenho dos <strong>demais trabalhos</strong> que lhe forem cometidos pelo Presidente da Junta
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Não confunda os dispositivos:</strong> o <strong>art. 712</strong> trata dos atos do <strong>Diretor ou Chefe de Secretaria</strong>; o <strong>art. 711</strong> trata dos atos das <strong>Secretarias</strong>. Muitas questões exploram justamente essa inversão.</div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Ponto muito explorado:</strong> a <strong>contagem das custas</strong> devidas pelas partes (art. 711, "f") é atribuição da <strong>Secretaria</strong> — informação que as bancas adoram cobrar.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 203, § 4º do CPC — atos de mero expediente</div>
+    <div class="card-text">
+      Os servidores das Secretarias das Varas do Trabalho também podem realizar os atos previstos no <strong>art. 203, § 4º do CPC</strong>: os <strong>atos meramente ordinatórios</strong>, como a <strong>juntada</strong> e a <strong>vista obrigatória</strong>, <strong>independem de despacho</strong>, devendo ser praticados <strong>de ofício pelo servidor</strong> e <strong>revistos pelo juiz quando necessário</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Juízes de Direito com competência trabalhista</div>
+    <div class="card-text">
+      Aos Juízes de Direito podem ser atribuídas as competências trabalhistas, conforme o <strong>art. 112 da CF/88</strong>. Nesses casos, aplicam-se os <strong>artigos 716 e 717 da CLT</strong>, que determinam que os <strong>cartórios</strong> fiquem incumbidos das <strong>mesmas obrigações e atribuições das Varas do Trabalho</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Secretaria dos Tribunais
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Dispositivo (CLT)</th><th>Conteúdo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Art. 718</strong></td><td>Cada <strong>Tribunal Regional tem 1 (uma) secretaria</strong>, sob a direção do funcionário designado para exercer a função de secretário, com a gratificação de função fixada em lei.</td></tr>
+        <tr><td><strong>Art. 719</strong></td><td>Compete à Secretaria dos Conselhos, além das atribuições do <strong>art. 711</strong>: a) a <strong>conclusão dos processos ao Presidente</strong> e sua remessa, depois de despachados, aos respectivos relatores; b) a organização e manutenção de um <strong>fichário de jurisprudência</strong> do Conselho, para consulta dos interessados. Parágrafo único: o <strong>regimento interno</strong> dos Tribunais Regionais estabelecerá as demais atribuições, o funcionamento e a ordem dos trabalhos de suas secretarias.</td></tr>
+        <tr><td><strong>Art. 720</strong></td><td>Competem aos secretários dos Tribunais Regionais as <strong>mesmas atribuições do art. 712</strong> (secretários das Juntas), além das que lhes forem fixadas no <strong>regimento interno</strong> dos Conselhos.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — art. 718</div>
+    Existe <strong>apenas 1 (uma) secretaria por tribunal</strong>, conforme o art. 718 da CLT — ainda que os tribunais maiores possuam mais secretarias (Tribunal Pleno, Órgão Especial etc.), a regra legal é a de uma única secretaria.
+  </div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Resumo da cadeia legal:</strong> as Secretarias dos Tribunais exercem as atribuições do <strong>art. 711</strong> + as do <strong>art. 719</strong>; seus Diretores (secretários) possuem as <strong>mesmas atribuições do art. 712</strong> + as criadas pelos <strong>regimentos internos</strong> (art. 720).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — DISTRIBUIDORES                                        -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Distribuidores</div>
+  </div>
+  <div class="sec-subtitle">Art. 713, 714 e 715 da CLT · Art. 93, XV da CF/88</div>
+
+  <div class="card">
+    <div class="card-title">Art. 713 — quando existe o distribuidor</div>
+    <div class="card-text">
+      <strong>Nas localidades em que existir mais de uma Vara do Trabalho</strong> (Junta de Conciliação e Julgamento) com competência para processar o feito, haverá <strong>um distribuidor</strong> e será feita a distribuição do feito.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Finalidade da distribuição</div>
+    <div class="card-text">
+      • Manter o <strong>princípio do Juiz Natural</strong> — a distribuição evita a <strong>escolha do julgador</strong> (feito o <strong>sorteio</strong> entre as varas existentes)<br>
+      • Fazer com que as Varas do Trabalho recebam <strong>o mesmo número de processos</strong>, evitando a sobrecarga de uma delas
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial — Art. 714 (atribuições do distribuidor)</div>
+    <div class="mnemonic-content">
+      Deixa Rápido o Feito, Informa e dá Baixa — Distribuir · Recibo · Fichários · Informações · Baixa (DRFIB)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 714 — Atribuições do distribuidor</div>
+    <div class="card-text">
+      a) A <strong>distribuição</strong>, pela <strong>ordem rigorosa de entrada</strong>, e sucessivamente a cada Junta, dos feitos que, para esse fim, lhe forem apresentados pelos interessados<br>
+      b) O <strong>fornecimento, aos interessados, do recibo</strong> correspondente a cada feito distribuído<br>
+      c) A manutenção de <strong>2 (dois) fichários</strong> dos feitos distribuídos — um organizado pelos nomes dos <strong>reclamantes</strong> e outro dos <strong>reclamados</strong>, ambos por <strong>ordem alfabética</strong><br>
+      d) O fornecimento, a <strong>qualquer pessoa</strong> que o solicite, verbalmente ou por certidão, de <strong>informações sobre os feitos distribuídos</strong><br>
+      e) A <strong>baixa na distribuição</strong> dos feitos, quando isto lhe for determinado pelos Presidentes das Juntas, formando, com as fichas correspondentes, <strong>fichários à parte</strong>, cujos dados poderão ser consultados pelos interessados, mas <strong>não serão mencionados em certidões</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 715 — Designação do distribuidor</div>
+    <div class="card-text">
+      O <strong>Presidente do Tribunal</strong> designa o distribuidor <strong>dentre os servidores das varas e do tribunal</strong>, diretamente subordinados ao Presidente.
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Art. 93, XV da CF/88:</strong> a distribuição dos processos deve ser feita <strong>imediatamente</strong>, como medida de <strong>celeridade processual</strong>.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    No art. 714, "e", os dados dos <strong>fichários de baixa</strong> podem ser consultados pelos interessados, mas <strong>não podem ser mencionados em certidões</strong> — assertiva que diga o contrário está errada.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — OFICIAIS DE JUSTIÇA AVALIADORES                       -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Oficiais de Justiça Avaliadores</div>
+  </div>
+  <div class="sec-subtitle">Art. 721 da CLT (único dispositivo) · Art. 880, 887 e 888 da CLT · OJ 164 da SDI-1 do TST</div>
+
+  <div class="card">
+    <div class="card-title">Art. 721 — caput e parágrafos</div>
+    <div class="card-text">
+      <strong>Caput:</strong> incumbe aos Oficiais de Justiça e Oficiais de Justiça Avaliadores da Justiça do Trabalho a realização dos <strong>atos decorrentes da execução dos julgados</strong> das Juntas de Conciliação e Julgamento e dos Tribunais Regionais do Trabalho, que lhes forem <strong>cometidos pelos respectivos Presidentes</strong>.<br><br>
+      <strong>§ 1º:</strong> para efeito de distribuição dos referidos atos, cada Oficial de Justiça ou Oficial de Justiça Avaliador funcionará <strong>perante uma Junta</strong>, salvo quando da existência, nos Tribunais Regionais do Trabalho, de <strong>órgão específico</strong> destinado à distribuição de mandados judiciais.<br><br>
+      <strong>§ 2º:</strong> nas localidades onde houver mais de uma Junta, a atribuição para o cumprimento do ato deprecado ao Oficial será <strong>transferida a outro Oficial</strong>, sempre que, após o decurso de <strong>9 (nove) dias</strong>, sem razões que o justifiquem, não tiver sido cumprido o ato, sujeitando-se o serventuário às <strong>penalidades da lei</strong>.<br><br>
+      <strong>§ 3º:</strong> no caso de <strong>avaliação</strong>, o Oficial de Justiça Avaliador terá, para cumprimento do ato, o prazo previsto no <strong>art. 888</strong> da CLT.<br><br>
+      <strong>§ 4º:</strong> é facultado aos <strong>Presidentes dos Tribunais Regionais do Trabalho</strong> cometer a qualquer Oficial de Justiça ou Oficial de Justiça Avaliador a realização dos <strong>atos de execução das decisões desses Tribunais</strong>.<br><br>
+      <strong>§ 5º:</strong> na <strong>falta ou impedimento</strong> do Oficial de Justiça ou Oficial de Justiça Avaliador, o <strong>Presidente da Junta</strong> poderá atribuir a realização do ato a <strong>qualquer serventuário</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Atuação na execução trabalhista
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Citação, penhora e avaliação</div>
+    <div class="card-text">
+      Geralmente o Oficial de Justiça atua no <strong>processo de execução</strong>: cita o executado, nos moldes do <strong>art. 880 da CLT</strong>, para que <strong>pague ou deposite quantia ou nomeie bens à penhora</strong>, sob pena de penhora dos bens.<br><br>
+      Além de penhorar, cabe ao Oficial de Justiça a <strong>avaliação do bem</strong> — <strong>não mais se aplica o art. 887 da CLT</strong>, que previa avaliação por avaliador escolhido de comum acordo pelas partes.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Atividade</th><th>Prazo</th><th>Base legal</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Atos do Oficial de Justiça (regra geral)</strong></td><td><span class="tag tag-blue">9 dias</span></td><td>Art. 721, § 2º da CLT</td></tr>
+        <tr><td><strong>Avaliação do bem</strong></td><td><span class="tag tag-amber">10 dias</span></td><td>Art. 888 da CLT (por aplicação do art. 721, § 3º)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Art. 888 da CLT:</strong> concluída a avaliação, <strong>dentro de dez dias</strong>, contados da data da nomeação do avaliador, seguir-se-á a <strong>arrematação</strong>, que será anunciada por <strong>edital afixado na sede do juízo ou tribunal</strong> e publicado no <strong>jornal local</strong>, se houver, com a antecedência de <strong>20 (vinte) dias</strong>.</div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>OJ nº 164 da SDI-1 do TST:</strong> <em>"Não se caracteriza o vínculo empregatício na nomeação para o exercício das funções de oficial de justiça 'ad hoc', ainda que feita de forma reiterada, pois exaure-se a cada cumprimento de mandado."</em><br><br>Ou seja: o oficial de justiça <strong>ad hoc</strong>, mesmo nomeado de forma reiterada, <strong>não gera vínculo empregatício</strong>.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Prazo da avaliação ≠ prazo geral:</strong> os atos do Oficial de Justiça devem ser cumpridos, em regra, em <strong>9 dias</strong>; na <strong>avaliação</strong> o prazo é de <strong>10 dias</strong> (art. 888 da CLT). A banca adora trocar esses prazos.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — DEMAIS AUXILIARES (NÃO TRATADOS NAS FONTES)            -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Contadores, peritos, depositário e administradores judiciais</div>
+  </div>
+  <div class="sec-subtitle">Auxiliares não detalhados na fonte desta aula</div>
+
+  <div class="card">
+    <div class="card-title">O que as fontes trouxeram</div>
+    <div class="card-text">
+      As fontes desta aula (Estratégia Concursos — arts. 710 a 721 da CLT) <strong>não trouxeram conteúdo específico</strong> sobre <strong>contadores, peritos, depositário e administradores judiciais</strong>. Por isso, e seguindo a regra de <strong>não improvisar conteúdo</strong>, não há atribuições ou características a registrar aqui.<br><br>
+      O detalhamento das fontes concentrou-se nas <strong>Secretarias das Varas</strong> e <strong>dos Tribunais</strong>, nos <strong>Distribuidores</strong> e nos <strong>Oficiais de Justiça Avaliadores</strong> — estes sim cobertos integralmente (arts. 710 a 721 da CLT).
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div>Se uma questão do TEC trouxer aprendizado sobre esses auxiliares, o bloco será adicionado nesta seção como conteúdo de estudo (regra, base legal e pegadinha), conforme o AGENTS.md.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PONTOS QUE MAIS CAEM EM PROVA                         -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Diretor/Chefe de Secretaria é designado pelo Juiz do Trabalho</strong> (art. 710 — o "Presidente" da norma é o Juiz Titular da Vara)<br>
+      • <strong>Art. 712 (Diretor) × art. 711 (Secretaria)</strong> — a banca cobra a inversão desses dispositivos<br>
+      • <strong>Parágrafo único do art. 712:</strong> desconto nos vencimentos em <strong>tantos dias quantos os do excesso</strong> (atraso de 10 dias = desconto de 10 dias)<br>
+      • <strong>Contagem das custas</strong> = atribuição da Secretaria (art. 711, "f")<br>
+      • <strong>1 (uma) secretaria por Tribunal</strong> (art. 718), apesar de tribunais maiores terem mais secretarias<br>
+      • <strong>Distribuição imediata</strong> (art. 93, XV da CF) e princípio do <strong>Juiz Natural</strong> (sem escolha do julgador)<br>
+      • <strong>Oficial de Justiça:</strong> 9 dias (regra) × 10 dias (avaliação, art. 888)<br>
+      • <strong>OJ 164 da SDI-1:</strong> oficial de justiça <strong>ad hoc</strong> não gera vínculo empregatício, mesmo reiterado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>Diretor de Secretaria</strong> → designado pelo <strong>Juiz da Vara</strong> (art. 710)<br>
+      • <strong>Distribuidor</strong> → designado pelo <strong>Presidente do Tribunal</strong>, dentre os servidores das varas e do tribunal, diretamente subordinados ao Presidente (art. 715)<br>
+      • <strong>Oficial de Justiça</strong> → realiza atos de execução cometidos pelos <strong>Presidentes</strong> das Juntas e dos TRTs (art. 721); na falta/impedimento, o <strong>Presidente da Junta</strong> pode atribuir o ato a <strong>qualquer serventuário</strong> (art. 721, § 5º)<br>
+      • <strong>Atos meramente ordinatórios</strong> (juntada, vista obrigatória) <strong>independem de despacho</strong>, praticados de ofício pelo servidor (art. 203, § 4º do CPC)<br>
+      • <strong>Notificação postal</strong> ao reclamado: <strong>48 horas</strong> (art. 841 da CLT)<br>
+      • <strong>Juiz de Direito com competência trabalhista</strong> (art. 112 da CF): cartórios com as mesmas obrigações das Varas (arts. 716 e 717 da CLT)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • O <strong>art. 712</strong> (Diretor) ≠ <strong>art. 711</strong> (Secretaria) — não inverter<br>
+      • <strong>Avaliação pelo próprio Oficial de Justiça</strong>: o art. 887 da CLT (avaliador de comum acordo pelas partes) <strong>não mais se aplica</strong><br>
+      • Fichários de <strong>baixa na distribuição</strong>: consultáveis pelos interessados, mas <strong>não mencionados em certidões</strong> (art. 714, "e")<br>
+      • Prazos do Oficial: <strong>9 dias (regra) ≠ 10 dias (avaliação)</strong><br>
+      • Vínculo empregatício no <strong>ad hoc</strong>: nunca se caracteriza, ainda que reiterado (OJ 164 da SDI-1)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine a letra dos arts. 710 a 721 da CLT (as bancas transcrevem a norma), as distinções art. 711 × art. 712, os prazos de 9 × 10 dias do Oficial de Justiça e a OJ 164 da SDI-1. Essas são as pegadinhas recorrentes de FCC, Cebraspe e demais bancas.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — INCIDÊNCIA DE TEMAS (TEC)                             -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

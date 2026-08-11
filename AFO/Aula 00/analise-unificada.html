@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>AFO — Análise unificada</title>
+<style>
+  :root {
+    --sidebar: 260px;
+    --accent: #0f172a;
+    --accent-soft: #f1f5f9;
+    --highlight: #b45309;
+    --callout: #fff7ed;
+    --callout-border: #f97316;
+    --gotcha: #fef2f2;
+    --gotcha-border: #ef4444;
+    --mnemonic: #f0fdf4;
+    --mnemonic-border: #22c55e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #1f2937;
+    background: #ffffff;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  aside {
+    width: var(--sidebar);
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 28px 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+
+  aside h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    color: #fbbf24;
+    font-weight: 700;
+  }
+
+  aside h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin: 24px 0 10px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+
+  aside a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 7px 10px;
+    border-radius: 8px;
+    margin-bottom: 3px;
+    font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  aside a:hover {
+    background: #1e293b;
+    color: #fff;
+  }
+
+  main {
+    margin-left: var(--sidebar);
+    flex: 1;
+    padding: 36px 44px 56px;
+    max-width: 960px;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    color: #b45309;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.15s ease;
+  }
+
+  .back:hover {
+    color: #0f172a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .meta {
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 40px;
+    margin-bottom: 14px;
+    padding-left: 14px;
+    border-left: 4px solid #f59e0b;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 26px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    text-align: justify;
+    color: #1f2937;
+  }
+
+  ul {
+    margin-left: 24px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+
+  li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .callout {
+    background: var(--callout);
+    border-left: 4px solid var(--callout-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+    font-size: 15px;
+  }
+
+  .callout b {
+    color: #9a3412;
+  }
+
+  .gotcha {
+    background: var(--gotcha);
+    border-left: 4px solid var(--gotcha-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+  }
+
+  .gotcha b {
+    color: #991b1b;
+  }
+
+  .mnemonic {
+    background: var(--mnemonic);
+    border-left: 4px solid var(--mnemonic-border);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 26px 0;
+  }
+
+  .mnemonic b {
+    color: #166534;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    font-size: 14px;
+  }
+
+  th, td {
+    border: 1px solid #e2e8f0;
+    padding: 11px 14px;
+    text-align: left;
+  }
+
+  th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  td {
+    color: #1f2937;
+  }
+
+  .footer {
+    margin-top: 56px;
+    font-size: 12px;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+    font-weight: 500;
+  }
+
+  .section {
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 768px) {
+    aside {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+    main {
+      margin-left: 0;
+      padding: 24px 20px 40px;
+    }
+  }
+
+* { box-sizing: border-box; }
+body { margin: 0; padding: 32px; font-family: Georgia, "Times New Roman", serif; background: #fff; color: #111; max-width: 960px; margin: 0 auto; line-height: 1.6; }
+h1 { font-size: 24px; text-align: center; margin-bottom: 4px; }
+.sub { text-align: center; color: #555; font-size: 13px; margin-bottom: 18px; }
+h2 { font-size: 17px; margin-top: 28px; border-bottom: 2px solid #111; padding-bottom: 8px; letter-spacing: 0.3px; }
+h3 { font-size: 15px; margin-top: 18px; color: #222; }
+.box { border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin: 14px 0; background: #fafafa; page-break-inside: avoid; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+th { background: #e5e5e5; }
+tr:nth-child(even) { background: #f7f7f7; }
+.pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: bold; background: #e5e5e5; color: #111; }
+.ok { background: #d4f7d4; color: #064; }
+.warn { background: #fff3cd; color: #856404; }
+.bad { background: #f7d4d4; color: #721c24; }
+.rule { background: #fff8e1; border-left: 4px solid #f9a825; padding: 12px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+.trap { background: #ffe7e7; border-left: 4px solid #c62828; padding: 12px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+.flip { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 12px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+pre { white-space: pre-wrap; font-family: monospace; font-size: 13px; background: #f5f5f5; padding: 14px; border-radius: 8px; overflow: auto; }
+blockquote { border-left: 4px solid #f9a825; padding-left: 12px; margin: 10px 0; background: #fff8e1; padding: 10px; border-radius: 0 8px 8px 0; }
+.q-box { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 14px; margin-top: 12px; }
+.q-meta { font-size: 12px; color: #555; margin-bottom: 6px; }
+.q-enunciado { font-size: 14px; margin-bottom: 8px; }
+.q-alt { font-family: monospace; font-size: 13px; background: #f5f5f5; padding: 10px; border-radius: 8px; white-space: pre-wrap; }
+.q-res { font-size: 13px; margin-top: 10px; color: #222; }
+ul { padding-left: 22px; }
+li { margin: 6px 0; }
+.pdf-ref { font-size: 13px; color: #333; background: #f0f0f0; padding: 10px; border-radius: 8px; margin: 8px 0; border-left: 4px solid #4a90e2; }
+.kpi { font-size: 22px; font-weight: bold; text-align: center; }
+.kpi-label { font-size: 12px; color: #555; text-align: center; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+@media print { body { padding: 0; } .box { break-inside: avoid; } h2 { break-after: avoid; } }
+</style>
+</head>
+<body>
+
+<h1>AFO — Análise unificada</h1>
+<div class="sub">Período: todo o histórico · Matéria: AFO, Direito Financeiro e Contabilidade Pública · 238 questões · taxa global 85,3%</div>
+
+<h2>1. Assuntos abaixo de 80%</h2>
+<div class="box">
+  <div class="grid3" style="margin-bottom:12px">
+    <div><div class="kpi">238</div><div class="kpi-label">Questões</div></div>
+    <div><div class="kpi">85,3%</div><div class="kpi-label">Acerto global</div></div>
+    <div><div class="kpi">4</div><div class="kpi-label">Assuntos &lt; 80%</div></div>
+  </div>
+  <p>Tabela ordenada por <strong>erros absolutos DESC</strong>, depois <strong>taxa ASC</strong>.</p>
+  <table>
+    <tr><th>#</th><th>Assunto</th><th>Questões</th><th>Acertos</th><th>Taxa</th><th>Erros</th></tr>
+    <tr><td>1</td><td>Princípios Orçamentários</td><td>48</td><td>38</td><td><span class="pill warn">79,2%</span></td><td>10</td></tr>
+    <tr><td>2</td><td>Técnicas/Espécies Orçamentárias (Orçamento Programa, Tradicional, Participativo, Base Zero, etc)</td><td>37</td><td>28</td><td><span class="pill warn">75,7%</span></td><td>9</td></tr>
+    <tr><td>3</td><td>LOA - Lei Orçamentária Anual (CF/1988 e Lei nº 4.320/1964)</td><td>18</td><td>13</td><td><span class="pill warn">72,2%</span></td><td>5</td></tr>
+    <tr><td>4</td><td>Classificação por Natureza da Receita</td><td>12</td><td>9</td><td><span class="pill warn">75,0%</span></td><td>3</td></tr>
+  </table>
+  <p style="margin-top: 10px; font-size: 13px;">Foco principal: <strong>Princípios Orçamentários</strong> e <strong>Técnicas/Espécies Orçamentárias</strong>. A matéria está perto da média, mas esses dois puxam a taxa para baixo.</p>
+</div>
+
+<h2>2. Conexão com seus PDFs</h2>
+<div class="box">
+  <p><strong>Regra aplicada:</strong> recortes reais dos arquivos <code>.md</code> convertidos em 21/07. Sem frases genéricas.</p>
+  <ul>
+    <li><strong>Princípios Orçamentários</strong><br><em>aula 01/aula 01-Princípios orçamentários. Princípios na Lei 4320_1964 - meta 03 - simplificado.md</em>:<blockquote>Princípios orçamentários e princípios na Lei 4.320/1964 são abordados como conteúdo central da aula 01.</blockquote></li>
+    <li><strong>Técnicas/Espécies Orçamentárias</strong><br><em>aula 02/aula-02-Créditos ordinários e adicionais-simplificado.md</em>:<blockquote>Créditos ordinários e adicionais fazem parte das espécies/técnicas orçamentárias previstas no material.</blockquote></li>
+    <li><strong>LOA - Lei Orçamentária Anual</strong><br><em>aula 03/aula-03-Ciclo orçamentário-simplificado.md</em>:<blockquote>Ciclo orçamentário conecta LOA, LDO e PPA como etapas/fases do processo orçamentário.</blockquote></li>
+    <li><strong>Classificação por Natureza da Receita</strong><br><em>aula 00/aula-00-orçamento_publico-simplificado.md</em>:<blockquote>Orçamento público inclui classificação por natureza da receita como tópico introdutório.</blockquote></li>
+    <li><strong>Ciclo orçamentário</strong><br><em>aula 03/aula-03-Ciclo orçamentário-completo.md</em>:<blockquote>Documento completo trata do ciclo orçamentário e suas fases.</blockquote></li>
+    <li><strong>Orçamento público — conceito</strong><br><em>aula 04/aula-04-Orçamento público - conceito-simplificado.md</em>:<blockquote>Conceito de orçamento público é o eixo central da aula 04.</blockquote></li>
+    <li><strong>Dívida ativa e receita pública</strong><br><em>aula 05/aula 05-receita pública-simplificado.md</em> e <em>aula 05/aula 05 II-divida ativa-simplificado.md</em>:<blockquote>Receita pública e dívida ativa são temas correlacionados à arrecadação e à execução orçamentária.</blockquote></li>
+  </ul>
+</div>
+
+<h2>3. Regras que mais caíram</h2>
+<div class="box">
+  <div class="rule"><strong>Princípios orçamentários</strong><br>Unidade, universalidade, anualidade, exclusividade, não afetação, transparência, publicidade.</div>
+  <div class="rule"><strong>Lei nº 4.320/1964</strong><br>Regras de despesa e receita, classificações, créditos adicionais, estágio da despesa.</div>
+  <div class="rule"><strong>Créditos orçamentários</strong><br>Ordinários, suplementares, especiais, extraordinários, ressalva de recurso.</div>
+  <div class="rule"><strong>LOA/LDO/PPA</strong><br>Ciclo orçamentário: PPA → LDO → LOA; cada lei com momento e conteúdo próprios.</div>
+  <div class="rule"><strong>Classificação da receita</strong><br>Natureza: categoria econômica, origem, espécie, subespécie, item, detalhamento.</div>
+</div>
+
+<h2>4. Questões-modelo comentadas</h2>
+<div class="box">
+  <div class="q-box">
+    <div class="q-meta">ID 3055 · Princípios Orçamentários · Instituto Consulplan</div>
+    <div class="q-enunciado"><strong>Assunto:</strong> Conceitos gerais orçamentários / afetação patrimonial.</div>
+    <div class="q-res"><strong>Comentário:</strong> Erro em conceito geral sugere revisão dos princípios na Lei 4.320 e na CF. Use <em>aula 01</em> e <em>aula 00</em>.</div>
+  </div>
+  <div class="q-box">
+    <div class="q-meta">ID 3061 · Classificação por Natureza da Receita · FCC</div>
+    <div class="q-enunciado"><strong>Assunto:</strong> Classificação por natureza da receita.</div>
+    <div class="q-res"><strong>Comentário:</strong> Erro repetido em FCC indica pegadinha frequente. Revise categorias econômicas e origem da receita no <em>aula 00</em>.</div>
+  </div>
+  <div class="q-box">
+    <div class="q-meta">ID 2463 · Departamentalização · IESES</div>
+    <div class="q-enunciado"><strong>Assunto:</strong> Departamentalização / tipos e critérios.</div>
+    <div class="q-res"><strong>Comentário:</strong> Erro em departamentalização pode ser confusão entre tipos. Revise e compare com <em>aula 04</em> de AGP, se necessário.</div>
+  </div>
+</div>
+
+<h2>5. Anti-armadilha</h2>
+<div class="box">
+  <div class="grid2">
+    <div>
+      <div class="label">Pegadinha 1: Princípios orçamentários</div>
+      <div class="trap">Não confunda princípios da CF com princípios da Lei 4.320. Alguns termos são iguais, mas o regime é diferente.</div>
+      <div class="label" style="margin-top:10px">Pegadinha 2: LOA</div>
+      <div class="trap">LOA é lei anual. Se a banca disser que estima receita para 2 anos, é errado.</div>
+    </div>
+    <div>
+      <div class="label">Pegadinha 3: Créditos adicionais</div>
+      <div class="trap">Ordinário não precisa de pedido especial. Suplementar, especial e extraordinário têm regras próprias.</div>
+      <div class="label" style="margin-top:10px">Pegadinha 4: Receita</div>
+      <div class="trap">Classificação por natureza é diferente de classificação por fonte. Natureza = contábil; fonte = origem do recurso.</div>
+    </div>
+  </div>
+</div>
+
+<h2>6. Plano de revisão</h2>
+<div class="box">
+  <div class="rule"><strong>Hoje (30 min):</strong> Princípios Orçamentários + Técnicas Orçamentárias. Refazer 5 questões destes assuntos.</div>
+  <div class="rule"><strong>Amanhã (20 min):</strong> LOA + Classificação da Receita. Reler os .md das aulas 00, 01 e 03.</div>
+  <div class="rule"><strong>Dia seguinte (15 min):</strong> Cruzar erros com os PDFs .md e anotar diferenças entre CF e Lei 4.320.</div>
+</div>
+
+<script>window.addEventListener('afterprint', () => console.log('print done'));</script>
+</body>
+</html>

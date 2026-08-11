@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resumo de Elite — Aula 05 | Navegadores</title>
+
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/estilo.css">
+  </head>
+  <body>
+    <!-- BARRA DE PROGRESSO DE LEITURA -->
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+
+    <!-- BARRA DE FERRAMENTAS FIXA -->
+    <header class="top-bar">
+      <div class="top-bar-inner">
+        <div class="brand-title"><span>🌐 INFORMÁTICA</span> | Navegadores</div>
+
+        <div class="controls-group">
+          <!-- BUSCA -->
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Buscar no resumo (ex: InPrivate, Atalhos)..." />
+          </div>
+
+          <!-- RECALL (ESCONDER / REVELAR) -->
+          <button class="btn" id="recall-btn" title="Ocultar mnemônicos e respostas para testar sua memória">
+            <span>🧠 Modo Estudo Ativo</span>
+          </button>
+
+          <!-- ALTERNAR TEMA -->
+          <button class="btn" id="theme-btn" title="Alternar entre modo claro e escuro">
+            <span id="theme-icon">🌙</span> <span id="theme-text">Escuro</span>
+          </button>
+
+          <!-- IMPRIMIR -->
+          <button class="btn btn-primary" onclick="window.print()" title="Imprimir ou salvar como PDF">
+            <span>🖨️ PDF</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ESTRUTURA PRINCIPAL -->
+    <div class="layout-container">
+      <!-- SIDEBAR (Navegação Fixo / TOC) -->
+      <aside class="sidebar">
+        <div class="toc-card">
+          <div class="toc-title">📌 Sumário de Estudo</div>
+          <ul class="toc-nav">
+            <li>
+              <a href="#intro" class="toc-link"><span class="toc-num">1</span> Introdução</a>
+            </li>
+            <li>
+              <a href="#edge" class="toc-link"><span class="toc-num">2</span> Microsoft Edge</a>
+            </li>
+            <li>
+              <a href="#edge-leitura" class="toc-link"><span class="toc-num">2.1</span> Leitura em Voz Alta</a>
+            </li>
+            <li>
+              <a href="#chrome" class="toc-link"><span class="toc-num">3</span> Google Chrome</a>
+            </li>
+            <li>
+              <a href="#chrome-acessibilidade" class="toc-link"
+                ><span class="toc-num">3.1</span> Acessibilidade e Legendas</a
+              >
+            </li>
+            <li>
+              <a href="#chrome-seguranca" class="toc-link"><span class="toc-num">3.2</span> Segurança e Integridade</a>
+            </li>
+            <li>
+              <a href="#chrome-proxy" class="toc-link"><span class="toc-num">3.3</span> Proxy</a>
+            </li>
+            <li>
+              <a href="#comparativo" class="toc-link"><span class="toc-num">4</span> Quadro Comparativo</a>
+            </li>
+            <li>
+              <a href="#pontos-quentes" class="toc-link"><span class="toc-num">5</span> Pontos Quentes (Bancas)</a>
+            </li>
+            <li>
+              <a href="#questao1" class="toc-link"><span class="toc-num">6</span> Questão Comentada</a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- CONTEÚDO DA AULA -->
+      <main class="main-content">
+        <!-- HERO HEADER -->
+        <div class="hero-header">
+          <div class="hero-badge">Resumo Estratégico · Concursos Públicos</div>
+          <h1>Microsoft Edge e Google Chrome (Aula 05)</h1>
+          <div class="hero-meta">Organização Didática de Alto Rendimento</div>
+          <div class="pill-tags">
+            <span class="tag-pill">Projeto Chromium</span>
+            <span class="tag-pill">Tabela de Atalhos</span>
+            <span class="tag-pill">Modo InPrivate</span>
+            <span class="tag-pill">Sandbox</span>
+            <span class="tag-pill">Gerenciador de Senhas</span>
+          </div>
+        </div>
+
+        <!-- 1) INTRODUÇÃO -->
+        <section class="section" id="intro">
+          <div class="section-header">
+            <div class="section-num">1</div>
+            <h2>Introdução aos Navegadores</h2>
+          </div>
+
+          <div class="essence-box">
+            <strong>Essência de Prova:</strong> Tanto o Microsoft Edge (atual) quanto o Google Chrome são baseados no
+            projeto de código aberto <mark class="recall-target">Chromium</mark> e utilizam o motor de renderização
+            <mark class="recall-target">Blink</mark>. Eles são essencialmente "primos" tecnológicos.
+          </div>
+        </section>
+
+        <!-- 2) MICROSOFT EDGE -->
+        <section class="section" id="edge">
+          <div class="section-header">
+            <div class="section-num">2</div>
+            <h2>Microsoft Edge</h2>
+          </div>
+
+          <p>
+            Navegador padrão do Windows 10 e 11, criado para substituir definitivamente o antigo Internet Explorer. É
+            rápido, seguro e, por ser baseado no Chromium, é totalmente compatível com as extensões da
+            <strong>Chrome Web Store</strong>.
+          </p>
+
+          <div class="callout info">
+            <div class="callout-title">💡 Critério de prova</div>
+            O ambiente de consulta da Web oferecido pelo Edge, ao ser aberto, é formado por
+            <strong>janelas e guias</strong>.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Não confunda</div>
+            <ul>
+              <li>
+                O browser não é formado por e-mail, Office nativo, ferramentas de captura de tela ou caixas de entrada.
+              </li>
+              <li>O núcleo funcional é a <mark class="recall-target">janela do navegador e suas guias</mark>.</li>
+            </ul>
+          </div>
+
+          <br />
+          <h3>Compatibilidade e Fim de Suporte (ActiveX / Flash / IE11)</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Critério de prova</div>
+            O Microsoft Edge <strong>não oferece suporte a controles ActiveX</strong>. Quando aplicativos web exigirem
+            ActiveX, BHOs ou Java, o caminho oficial é continuar usando o
+            <mark class="recall-target">Internet Explorer 11</mark>, não o Edge.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Adobe Flash e compatibilidades legadas</div>
+            <ul>
+              <li><strong>Adobe Flash</strong>: não é mais suportado desde 2020.</li>
+              <li>Não existe suporte nativo a Flash no Edge/Chrome modernos.</li>
+              <li>Recursos legados como ActiveX/BHOs não funcionam no Edge por padrão.</li>
+            </ul>
+          </div>
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha</div>
+            Bancas confundem Edge com browser universal: ele <mark class="recall-target">não roda ActiveX</mark> e
+            <mark class="recall-target">não suporta Flash</mark>. Para esses casos, o caminho é o IE11.
+          </div>
+
+          <br />
+          <h3>Configuração por URL</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Dica de Acesso Rápido</div>
+            No Edge, é possível acessar as configurações diretamente pela barra de endereços (Omnibox) digitando o
+            endereço: <br /><code class="recall-target">edge://settings/</code>
+          </div>
+
+          <br />
+          <h3>Gerenciador de Senhas</h3>
+          <p>
+            O Edge possui um gerenciador de senhas robusto. Além de salvar e preencher formulários com segurança, ele se
+            destaca pelo recurso <strong>Monitor de Senhas</strong>.
+          </p>
+
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Atenção (Monitor de Senhas)</div>
+            O <strong>Monitor de Senhas</strong> do Edge verifica proativamente e notifica o usuário se suas credenciais
+            salvas forem encontradas em vazamentos de dados na <mark class="recall-target">Dark Web</mark> ou na
+            internet, sugerindo a troca imediata.
+          </div>
+
+          <br />
+          <h3>Tabela de Atalhos (Microsoft Edge)</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ação no Navegador</th>
+                  <th>Atalho (Windows)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nova Guia (Aba)</td>
+                  <td><mark>CTRL + T</mark></td>
+                </tr>
+                <tr>
+                  <td>Nova Janela</td>
+                  <td><mark>CTRL + N</mark></td>
+                </tr>
+                <tr>
+                  <td>Navegação <strong>InPrivate</strong> (Privada/Anônima)</td>
+                  <td><mark>CTRL + SHIFT + N</mark></td>
+                </tr>
+                <tr>
+                  <td>Abrir Downloads</td>
+                  <td><mark>CTRL + J</mark></td>
+                </tr>
+                <tr>
+                  <td>Abrir Histórico</td>
+                  <td><mark>CTRL + H</mark></td>
+                </tr>
+                <tr>
+                  <td>Limpar Dados de Navegação</td>
+                  <td><mark>CTRL + SHIFT + DEL</mark></td>
+                </tr>
+                <tr>
+                  <td>Tela Cheia (Full Screen)</td>
+                  <td><mark>F11</mark></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha de Banca (FCC/Cebraspe)</div>
+            A navegação sem deixar rastros (não salva histórico, cookies, nem dados de formulário no PC local) no Edge é
+            chamada de <strong>InPrivate</strong>. As bancas tentarão confundir com o termo "Guia Anônima" que é do
+            Chrome, ou "Navegação Privativa" do Firefox. Lembre-se:
+            <strong>O atalho (CTRL + SHIFT + N) é o mesmo do Chrome</strong>.
+          </div>
+
+          <br />
+          <h3>Limpeza de Dados e Performance</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Critério de prova</div>
+            Quando um site está lento, uma alternativa segura é usar <strong>Limpar dados de navegação</strong> para
+            excluir <strong>apenas cookies e cache daquele site</strong>. Isso pode melhorar o desempenho sem fechar
+            abas ou desativar segurança.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Não confunda</div>
+            <ul>
+              <li><strong>Modo de Alta Performance</strong>: não existe como função nativa no Edge.</li>
+              <li><strong>Desativar firewall</strong>: compromete a segurança do sistema.</li>
+              <li>
+                <strong>Fechar todas as abas</strong>: resolve performance, mas viola o enunciado quando ele pede algo
+                que não afete outros sites.
+              </li>
+              <li><strong>Limpar todos os dados</strong>: pode causar problemas em outros sites salvos.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 2.5) MICROSOFT EDGE - LEITURA EM VOZ ALTA -->
+        <section class="section" id="edge-leitura">
+          <div class="section-header">
+            <div class="section-num" style="background: var(--primary)">2.1</div>
+            <h2>Leitura em Voz Alta (Read Aloud)</h2>
+          </div>
+
+          <div class="callout info">
+            <div class="callout-title">💡 Critério de prova</div>
+            O Microsoft Edge, em sua versão mais atual, disponibiliza o recurso <strong>Ler em Voz Alta</strong>, que
+            faz a leitura do texto de uma página da Web em voz audível, por meio da ferramenta
+            <strong>Leitura Avançada / Immersive Reader</strong>.
+          </div>
+
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Características importantes</div>
+            <ul>
+              <li>Lê o texto da página de forma <strong>audível</strong>.</li>
+              <li>Apresenta uma <strong>barra de ferramentas</strong> com controles de áudio.</li>
+              <li>
+                Permite <strong>alterar a voz do leitor</strong> e <strong>ajustar a velocidade</strong> de leitura.
+              </li>
+              <li>Permite <strong>pular para o parágrafo seguinte ou anterior</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha</div>
+            A banca pode confundir com "modo leitura" ou "imprimir página". O diferencial do Read Aloud é a
+            <mark class="recall-target">saída de áudio do texto</mark>, não apenas formatação visual.
+          </div>
+        </section>
+
+        <!-- 3) GOOGLE CHROME -->
+        <section class="section" id="chrome">
+          <div class="section-header">
+            <div class="section-num">3</div>
+            <h2>Google Chrome</h2>
+          </div>
+
+          <p>
+            Navegador desenvolvido pelo Google, líder mundial de mercado. Destaca-se pela alta integração com o
+            ecossistema Google e velocidade de processamento.
+          </p>
+
+          <br />
+          <h3>Chrome Sync & Sandbox</h3>
+          <div class="mnemonic-box recall-target">
+            <div class="mnemonic-icon">🔒</div>
+            <div>
+              <span class="mnemonic-tag">SANDBOX</span>
+              <div class="mnemonic-text">Sandbox = <strong>CAIXA DE AREIA</strong> (Isolamento de Processos)</div>
+            </div>
+          </div>
+
+          <ul style="margin: 10px 0 14px 24px">
+            <li>
+              <strong>Chrome Sync:</strong> Permite sincronizar
+              <mark class="recall-target">favoritos, histórico, senhas, extensões e configurações</mark> entre
+              computadores, tablets e smartphones vinculados à mesma Conta Google.
+            </li>
+            <li>
+              <strong>Sandbox (Isolamento):</strong> Arquitetura de segurança essencial. O Chrome executa
+              <strong>cada aba (guia) ou extensão como um processo independente</strong> no sistema operacional. Se uma
+              guia travar ou sofrer ataque de malware,
+              <mark class="recall-target">as demais abas não são afetadas</mark>.
+            </li>
+          </ul>
+
+          <br />
+          <h3>Configuração por URL</h3>
+          <p>Comandos práticos na barra de endereço (Omnibox do Chrome):</p>
+          <ul style="margin: 10px 0 14px 24px">
+            <li><code>chrome://settings/</code> - Abre a página de configurações.</li>
+            <li><code>chrome://downloads/</code> - Abre o gerenciador de downloads.</li>
+            <li><code>chrome://history/</code> - Abre o histórico de navegação.</li>
+            <li>
+              <code>chrome://flags/</code> - Acessa recursos <mark class="recall-target">experimentais</mark> e ocultos
+              para desenvolvedores.
+            </li>
+          </ul>
+
+          <h3>Acessibilidade e Legendas</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Caminho de prova</div>
+            Para alterar o estilo das legendas de vídeos no Chrome, o caminho correto é:
+            <strong>Mais (⋮) > Configurações > Avançado > Acessibilidade > Legendas</strong>.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Caminhos errados comuns</div>
+            <ul>
+              <li>
+                <strong>Mais > Avançado > Acessibilidade > Legendas</strong>: errado, falta passar por Configurações
+                primeiro.
+              </li>
+              <li>
+                <strong>Mais > Complementos > Acessibilidade > Legendas</strong>: errado, Complementos não é o menu
+                correto.
+              </li>
+              <li>
+                <strong>Mais > Mais Ferramentas > Acessibilidade > Legendas</strong>: errado, não existe esse caminho.
+              </li>
+            </ul>
+          </div>
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha</div>
+            Bancas trocam intencionalmente o menu intermediário. Decore:
+            <mark class="recall-target">Configurações > Avançado > Acessibilidade > Legendas</mark> é o caminho
+            completo.
+          </div>
+
+          <br />
+          <div class="callout info">
+            <div class="callout-title">💡 Caminho de prova</div>
+            Para que o Chrome reabra as mesmas abas/janelas da última sessão:
+            <strong>Configurações > Inicialização > Continuar de onde você parou</strong>.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Não confunda com reset</div>
+            <ul>
+              <li>
+                <strong>Restaurar configurações padrão</strong> não fica em Inicialização; o caminho é
+                <code
+                  >Configurações > Avançado > Redefinir e limpar > Restaurar configurações para os padrões
+                  originais</code
+                >.
+              </li>
+              <li><strong>Restaurar dados de navegação</strong> também não é uma opção de Inicialização no Chrome.</li>
+              <li><strong>Configurações de conteúdo</strong> não é o nome correto do menu.</li>
+            </ul>
+          </div>
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha</div>
+            A banca troca conscientemente itens de menus de configuração. Decore: no Chrome,
+            <mark class="recall-target">Continuar de onde você parou</mark> é a opção de restaurar a sessão anterior;
+            reset padrão fica em Redefinir e limpar.
+          </div>
+
+          <br />
+          <h3>Gerenciador de Senhas</h3>
+          <p>
+            Integrado à Conta Google. Possui a ferramenta <strong>Verificação de Segurança</strong> que varre as senhas
+            salvas em busca de vazamentos de dados públicos, senhas fracas ou senhas repetidas em sites diferentes.
+          </p>
+
+          <br />
+          <h3>Segurança e Integridade da Página</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Critério de prova</div>
+            Para verificar se está acessando uma versão mais segura e íntegra da página, o caminho direto é:
+            <strong>URL começando com https://</strong> e presença do <strong>cadeado</strong> ao lado da barra de
+            endereços.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ O que NÃO serve para isso</div>
+            <ul>
+              <li>
+                <strong>Inspecionar elemento</strong>: é ferramenta de desenvolvimento, não garante integridade da
+                conexão.
+              </li>
+              <li>
+                <strong>chrome://flags</strong>: são recursos experimentais, não servem para validar segurança do site.
+              </li>
+              <li>
+                <strong>Modo de segurança</strong>: não é uma opção/caminho oficial para essa verificação no Chrome.
+              </li>
+              <li><strong>Ícone de escudo</strong>: não é o indicador visual padrão de conexão segura.</li>
+            </ul>
+          </div>
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha</div>
+            Bancas confundem: só o critério oficial (<strong>https://</strong> + <strong>cadeado</strong>) corresponde à
+            verificação de integridade/segurança da conexão no Chrome.
+          </div>
+
+          <h3 id="chrome-seguranca">Segurança e Integridade da Página</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Critério de prova</div>
+            Para verificar se está acessando uma versão mais segura e íntegra da página, o caminho direto é:
+            <strong>URL começando com https://</strong> e presença do <strong>cadeado</strong> ao lado da barra de
+            endereços.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ O que NÃO serve para isso</div>
+            <ul>
+              <li>
+                <strong>Inspecionar elemento</strong>: é ferramenta de desenvolvimento, não garante integridade da
+                conexão.
+              </li>
+              <li>
+                <strong>chrome://flags</strong>: são recursos experimentais, não servem para validar segurança do site.
+              </li>
+              <li>
+                <strong>Modo de segurança</strong>: não é uma opção/caminho oficial para essa verificação no Chrome.
+              </li>
+              <li><strong>Ícone de escudo</strong>: não é o indicador visual padrão de conexão segura.</li>
+            </ul>
+          </div>
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha</div>
+            Bancas confundem: só o critério oficial (<strong>https://</strong> + <strong>cadeado</strong>) corresponde à
+            verificação de integridade/segurança da conexão no Chrome.
+          </div>
+
+          <br />
+          <h3>Perfis de Usuário</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Critério de prova</div>
+            O Chrome permite utilizar <strong>diferentes perfis de usuário</strong>, separando informações como
+            favoritos, histórico, senhas e configurações. Serve tanto para
+            <strong>várias pessoas no mesmo computador</strong> quanto para
+            <strong>separar contas diferentes do mesmo usuário</strong>, como pessoal e trabalho.
+          </div>
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha</div>
+            Perfis não são o mesmo que janela anônima: perfis separam dados entre usuários/sessões; anônima apenas não
+            salva rastros locais temporariamente.
+          </div>
+
+          <br />
+          <h3>Abrir link em nova guia e efeito no histórico</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Critério de prova</div>
+            Ao clicar em um link com a tecla <strong>CTRL</strong> pressionada, a página é aberta em
+            <strong>nova guia</strong>. Isso <strong>não altera o histórico da guia original</strong>, por isso o botão
+            <strong>Voltar</strong> continua indisponível na aba inicial.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Não confunda com</div>
+            <ul>
+              <li>
+                <strong>Modo anônimo:</strong> não deixa salvar histórico local, mas o botão Voltar funciona normalmente
+                dentro da mesma guia.
+              </li>
+              <li><strong>Favoritos:</strong> não interferem no histórico de navegação.</li>
+              <li><strong>Site seguro:</strong> não interfere no funcionamento do botão Voltar.</li>
+            </ul>
+          </div>
+
+          <br />
+          <h3>Configurações de Proxy</h3>
+          <div class="callout info">
+            <div class="callout-title">💡 Caminho de prova</div>
+            Em Chrome (Windows), a abertura das configurações de proxy parte de:
+            <strong>Configurações > Avançado > Sistema > Abrir configurações de proxy</strong>.
+          </div>
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Não confunda com</div>
+            <ul>
+              <li><strong>Privacidade e Segurança</strong>: não é essa a seção de proxy.</li>
+              <li><strong>Ferramentas</strong>: não existe como menu raiz no Chrome.</li>
+              <li>
+                <strong>Avançado > Sistema</strong> direto: no Chrome moderno, esse caminho é alcançado via
+                Configurações primeiro.
+              </li>
+              <li>
+                <strong>Configurações > Avançado > Privacidade e Segurança > Configurações de proxy</strong>: incorreto,
+                essa área não contém a entrada de proxy.
+              </li>
+            </ul>
+          </div>
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha</div>
+            Bancas trocam nomes de menus e ordem de passos. Decore: no Chrome,
+            <mark class="recall-target">Configurações > Avançado > Sistema</mark> conduz à entrada de proxy.
+          </div>
+
+          <br />
+          <h3>Tabela de Atalhos (Google Chrome)</h3>
+          <p style="margin-bottom: 12px">
+            A imensa maioria dos atalhos básicos do Chrome é idêntica aos do Edge e Firefox.
+          </p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ação no Navegador</th>
+                  <th>Atalho (Windows)</th>
+                  <th>Observação de prova</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Fechar guia atual</td>
+                  <td>CTRL + W</td>
+                  <td>Também pode ser CTRL + F4; cai como fechamento de aba ativa.</td>
+                </tr>
+                <tr>
+                  <td>Tela Cheia (Full Screen)</td>
+                  <td><mark>F11</mark></td>
+                  <td>Ativa/desativa o modo de tela cheia.</td>
+                </tr>
+                <tr>
+                  <td>Ir para Barra de Endereços</td>
+                  <td><mark>CTRL + E</mark></td>
+                  <td>Posiciona o cursor na Omnibox/barra de endereços.</td>
+                </tr>
+                <tr>
+                  <td>Nova Guia (Aba)</td>
+                  <td>CTRL + T</td>
+                  <td>Não reabre aba fechada; essa função é do CTRL + SHIFT + T.</td>
+                </tr>
+                <tr>
+                  <td>Nova Janela</td>
+                  <td>CTRL + N</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Nova Janela <strong>Anônima</strong></td>
+                  <td><mark>CTRL + SHIFT + N</mark></td>
+                  <td>Diferente de fechar/reabrir guias.</td>
+                </tr>
+                <tr>
+                  <td>Reabrir última guia fechada</td>
+                  <td><mark>CTRL + SHIFT + T</mark></td>
+                  <td>Reabre na ordem de fechamento; não funciona em janela anônima.</td>
+                </tr>
+                <tr>
+                  <td>Ir para a última aba</td>
+                  <td><mark>CTRL + 9</mark></td>
+                  <td>Atalho direto para a última aba quando há até 9 abas.</td>
+                </tr>
+                <tr>
+                  <td>Abrir Downloads</td>
+                  <td>CTRL + J</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Abrir Histórico</td>
+                  <td>CTRL + H</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Localizar palavra na página</td>
+                  <td><mark>CTRL + F</mark></td>
+                  <td>Abre a caixa de busca dentro da própria página.</td>
+                </tr>
+                <tr>
+                  <td>Gerenciador de Tarefas do Chrome</td>
+                  <td><mark>SHIFT + ESC</mark></td>
+                  <td>Ferramenta interna do Chrome para encerrar guias travadas.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout warning">
+            <div class="callout-title">⚠️ Confusões clássicas de banca</div>
+            <ul>
+              <li><strong>CTRL + T</strong> = nova guia, <strong>não</strong> reabrir guia fechada.</li>
+              <li><strong>CTRL + SHIFT + T</strong> = reabrir guia fechada.</li>
+              <li><strong>CTRL + W</strong> e <strong>CTRL + F4</strong> = fechar guia atual.</li>
+              <li>As bancas trocam essas combinações para eliminar candidato.</li>
+            </ul>
+          </div>
+
+          <div class="callout danger">
+            <div class="callout-title">🔥 Limites do modo anônimo/InPrivate</div>
+            <ul>
+              <li><mark class="recall-target">Não protege contra malware nem phishing.</mark></li>
+              <li>Não impede provedor, administrador de rede ou empregador de ver a atividade.</li>
+              <li>Não garante anonimato total nem impede rastreamento por IP.</li>
+              <li>
+                No Chrome, após fechar todas as janelas anônimas, são excluídos: histórico, cookies, dados de sites,
+                informações de formulários e permissões concedidas.
+              </li>
+            </ul>
+          </div>
+
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Pegadinha Clássica (Gerenciador de Tarefas)</div>
+            O <strong>Windows</strong> tem seu próprio Gerenciador de Tarefas (CTRL+SHIFT+ESC ou CTRL+ALT+DEL). Mas o
+            <strong>Chrome</strong> possui o SEU PRÓPRIO gerenciador interno para verificar o consumo de memória de cada
+            aba e finalizar abas travadas. O atalho interno do Chrome é <mark class="recall-target">SHIFT + ESC</mark>.
+            As bancas adoram inverter!
+          </div>
+        </section>
+
+        <!-- 4) QUADRO COMPARATIVO -->
+        <section class="section" id="comparativo">
+          <div class="section-header">
+            <div class="section-num">4</div>
+            <h2>Quadro Comparativo Rápido</h2>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Recurso / Característica</th>
+                  <th>Microsoft Edge</th>
+                  <th>Google Chrome</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Motor (Engine Base)</strong></td>
+                  <td>Blink (Projeto Chromium)</td>
+                  <td>Blink (Projeto Chromium)</td>
+                </tr>
+                <tr>
+                  <td><strong>Navegação sem rastros locais</strong></td>
+                  <td><mark>Navegação InPrivate</mark></td>
+                  <td><mark>Janela Anônima</mark></td>
+                </tr>
+                <tr>
+                  <td><strong>Base de Sincronização</strong></td>
+                  <td>Conta Microsoft</td>
+                  <td>Conta Google (Chrome Sync)</td>
+                </tr>
+                <tr>
+                  <td><strong>Acesso à Configurações via URL</strong></td>
+                  <td><code>edge://settings/</code></td>
+                  <td><code>chrome://settings/</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 5) PONTOS QUENTES -->
+        <section class="section" id="pontos-quentes">
+          <div class="section-header">
+            <div class="section-num" style="background: var(--danger)">★</div>
+            <h2>Pontos Quentes de Prova (Revisão Rápida)</h2>
+          </div>
+
+          <ul class="hot-list">
+            <li class="hot-item">
+              <strong>Atalhos Universais:</strong> <mark class="recall-target">CTRL+J</mark> (Downloads),
+              <mark class="recall-target">CTRL+H</mark> (Histórico) e
+              <mark class="recall-target">CTRL+SHIFT+DEL</mark> (Limpar Dados) funcionam de forma idêntica em ambos os
+              navegadores.
+            </li>
+            <li class="hot-item">
+              <strong>Base Tecnológica:</strong> Tanto o Edge atual quanto o Chrome são baseados no código
+              <mark class="recall-target">Chromium</mark>, logo, compartilham o mesmo motor e compatibilidade com
+              extensões.
+            </li>
+            <li class="hot-item">
+              <strong>Navegação Oculta:</strong> O modo que não salva histórico local é
+              <mark class="recall-target">InPrivate no Edge</mark> e
+              <mark class="recall-target">Anônimo no Chrome</mark> (Atalho é o mesmo: CTRL + SHIFT + N).
+            </li>
+            <li class="hot-item">
+              <strong>Segurança do Chrome:</strong> A tecnologia <mark class="recall-target">Sandbox</mark> isola
+              processos em guias independentes para garantir segurança e impedir que o travamento de uma aba derrube o
+              navegador todo.
+            </li>
+            <li class="hot-item">
+              <strong>Abas Travadas:</strong> Para fechar uma aba travada no Chrome sem ter que fechar o navegador,
+              usa-se o <strong>Gerenciador de Tarefas do Chrome</strong> através do atalho especial:
+              <mark class="recall-target">SHIFT + ESC</mark>.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 6) QUESTÃO COMENTADA -->
+        <section class="section" id="questao1">
+          <div class="section-header">
+            <div class="section-num" style="background: var(--success)">Q1</div>
+            <h2>Questão Comentada – VUNESP</h2>
+          </div>
+
+          <div class="essence-box">
+            <strong>Essência da questão:</strong> Cai a distinção entre fechar aba e reabrir aba fechada no Google
+            Chrome.
+          </div>
+
+          <div class="callout info">
+            <div class="callout-title">📌 Enunciado</div>
+            <p>
+              No Google Chrome, versão 119, em sua configuração padrão, o atalho por teclado ______ fecha uma aba ativa
+              dentro de uma janela, enquanto o atalho ______ permite reabrir a última aba fechada anteriormente na
+              janela. Assinale a alternativa que preenche, correta e respectivamente, as lacunas do enunciado.
+            </p>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Alternativa</th>
+                  <th>Combinacao</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A</td>
+                  <td>Ctrl + Alt + T ... Ctrl + T</td>
+                  <td>Incorreta</td>
+                </tr>
+                <tr>
+                  <td>B</td>
+                  <td>Ctrl + Shift + Q ... Ctrl + Shift + N</td>
+                  <td>Incorreta</td>
+                </tr>
+                <tr>
+                  <td>C</td>
+                  <td>Alt + F4 ... Alt + F2</td>
+                  <td>Incorreta</td>
+                </tr>
+                <tr>
+                  <td>D</td>
+                  <td>Ctrl + F4 ... Ctrl + T</td>
+                  <td>Incorreta</td>
+                </tr>
+                <tr style="background: var(--success-light)">
+                  <td><strong>E</strong></td>
+                  <td><strong>Ctrl + W ... Ctrl + Shift + T</strong></td>
+                  <td><strong>Correta</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="gotcha-box">
+            <div class="gotcha-header">⚡ Resolução comentada</div>
+            <ul>
+              <li>Ctrl + W: fecha a guia atual.</li>
+              <li>Ctrl + Shift + T: reabre a última guia fechada, na ordem de fechamento.</li>
+              <li>As outras combinacoes apresentadas nao correspondem a essas funcoes no Chrome.</li>
+            </ul>
+          </div>
+
+          <div class="callout success">
+            <strong>Gabarito: E</strong>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+          Resumo de Elite — Informática (Aula 05: Navegadores - Edge e Chrome)<br />
+          Otimizado para Concursos Públicos (Cebraspe / FGV / FCC)<br />
+          Inclui questão comentada VUNESP sobre atalhos do Chrome
+        </footer>
+      </main>
+    </div>
+
+    <!-- ==========================================================================
+       6. SCRIPTS INTERATIVOS (TEMA, BUSCA, PROGRESSO, RECALL, TOC)
+       ========================================================================== -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. ALTERNAR TEMA (DARK / LIGHT) COM LOCALSTORAGE
+        const themeBtn = document.getElementById("theme-btn");
+        const themeIcon = document.getElementById("theme-icon");
+        const themeText = document.getElementById("theme-text");
+        const htmlEl = document.documentElement;
+
+        const savedTheme = localStorage.getItem("study_theme") || "light";
+        setTheme(savedTheme);
+
+        themeBtn.addEventListener("click", () => {
+          const currentTheme = htmlEl.getAttribute("data-theme");
+          const newTheme = currentTheme === "light" ? "dark" : "light";
+          setTheme(newTheme);
+        });
+
+        function setTheme(theme) {
+          htmlEl.setAttribute("data-theme", theme);
+          localStorage.setItem("study_theme", theme);
+          if (theme === "dark") {
+            themeIcon.textContent = "☀️";
+            themeText.textContent = "Claro";
+          } else {
+            themeIcon.textContent = "🌙";
+            themeText.textContent = "Escuro";
+          }
+        }
+
+        // 2. MODO ESTUDO ATIVO (ACTIVE RECALL)
+        const recallBtn = document.getElementById("recall-btn");
+        let recallActive = false;
+
+        recallBtn.addEventListener("click", () => {
+          recallActive = !recallActive;
+          document.body.classList.toggle("active-recall", recallActive);
+          recallBtn.classList.toggle("active", recallActive);
+
+          if (recallActive) {
+            recallBtn.querySelector("span").textContent = "👁️ Revelar Mnemônicos";
+          } else {
+            recallBtn.querySelector("span").textContent = "🧠 Modo Estudo Ativo";
+            document.querySelectorAll(".recall-target.revealed").forEach((el) => el.classList.remove("revealed"));
+          }
+        });
+
+        // Clique/Toque para alternar relevância individual de cartões no modo Active Recall
+        document.querySelectorAll(".recall-target").forEach((el) => {
+          el.addEventListener("click", () => {
+            if (document.body.classList.contains("active-recall")) {
+              el.classList.toggle("revealed");
+            }
+          });
+        });
+
+        // 3. BARRA DE PROGRESSO DE LEITURA
+        const progressBar = document.getElementById("progress-bar");
+        window.addEventListener("scroll", () => {
+          const winScroll = window.scrollY || document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrolled = (winScroll / height) * 100;
+          progressBar.style.width = scrolled + "%";
+        });
+
+        // 4. DESTAQUE AUTOMÁTICO DO SUMÁRIO (TOC SPY)
+        const sections = document.querySelectorAll(".section");
+        const navLinks = document.querySelectorAll(".toc-link");
+
+        window.addEventListener("scroll", () => {
+          let current = "";
+          const scrollPos = window.scrollY || document.documentElement.scrollTop;
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            if (scrollPos >= sectionTop - 130) {
+              current = section.getAttribute("id");
+            }
+          });
+
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+              link.classList.add("active");
+            }
+          });
+        });
+
+        // 5. BUSCA EM TEMPO REAL E ATALHOS DE TECLADO
+        const searchInput = document.getElementById("search-input");
+        searchInput.addEventListener("input", (e) => {
+          const query = e.target.value.toLowerCase().trim();
+
+          sections.forEach((section) => {
+            const text = section.textContent.toLowerCase();
+            if (query === "" || text.includes(query)) {
+              section.style.display = "block";
+            } else {
+              section.style.display = "none";
+            }
+          });
+        });
+
+        // Atalho ESC para limpar busca rapidamente
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && document.activeElement === searchInput) {
+            searchInput.value = "";
+            searchInput.dispatchEvent(new Event("input"));
+            searchInput.blur();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AP Aula 05: Liderança</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div>
+    <div class="sidebar-brand">📚 PDF Revisão</div>
+    <div class="sidebar-sub">Resumos estruturados</div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a href="../../../index.html">← Voltar ao índice</a>
+    <a href="#sec1" class="active">1. Função Direção</a>
+    <a href="#sec2">2. Liderança × Chefia</a>
+    <a href="#sec3">3. Tipos de Poder</a>
+    <a href="#sec4">4. Teorias: Traços</a>
+    <a href="#sec5">5. Teorias: Estilos</a>
+    <a href="#sec6">6. Grid Blake/Mouton</a>
+    <a href="#sec7">7. Fiedler</a>
+    <a href="#sec8">8. Hersey/Blanchard</a>
+    <a href="#sec9">9. House: Caminho-Meta</a>
+    <a href="#sec10">10. Transacional × Transformacional</a>
+    <a href="#sec11">11. Carismática × Visionária</a>
+    <a href="#sec12">12. Questões</a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div style="font-size:.7rem;color:var(--text2);">AP Aula 05 · Liderança</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label">Progresso: <span id="pct">0%</span></div>
+    <div class="progress-track">
+      <div class="progress-fill" id="bar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>AP Aula 05 — Liderança</h1>
+    <p>Função Direção · Liderança × Chefia · Poder · Teorias · FGV</p>
+  </div>
+
+  <!-- SEC 1 -->
+  <section id="sec1" class="section">
+    <div class="section-title"><span class="tag tag-blue">1</span> Função Direção</div>
+    <div class="section-subtitle">3ª fase do processo administrativo (PODC)</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">O que é a Função Direção?</div></div>
+      <div class="card-text">
+        A <strong>Direção</strong> é a função administrativa responsável por <span class="highlight">conduzir as pessoas</span> em direção aos objetivos organizacionais. Segundo <strong>Chiavenato</strong>, ela se desdobra nos três níveis organizacionais:<br>
+        • <strong>Institucional:</strong> presidente direciona diretores<br>
+        • <strong>Intermediário:</strong> gerentes dirigem supervisores<br>
+        • <strong>Operacional:</strong> supervisores dirigem funcionários<br><br>
+        Diferente das outras funções (impessoais), a direção é um processo <strong>interpessoal</strong>.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 2 -->
+  <section id="sec2" class="section">
+    <div class="section-title"><span class="tag tag-blue">2</span> Liderança × Chefia</div>
+    <div class="section-subtitle">Duas coisas completamente diferentes</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aspecto</th><th>👔 Chefia/Gerente</th><th>⭐ Líder</th></tr></thead>
+        <tbody>
+          <tr><td>Base</td><td>Autoridade formal (cargo)</td><td>Características pessoais</td></tr>
+          <tr><td>Origem do poder</td><td>Hierarquia, normas, regras</td><td>Crença dos seguidores</td></tr>
+          <tr><td>Tipo de processo</td><td>Formal</td><td>Informal</td></tr>
+          <tr><td>Duração</td><td>Enquanto estiver no cargo</td><td>Enquanto for útil aos seguidores</td></tr>
+          <tr><td>Como obtém obediência</td><td>Imposição</td><td>Influência voluntária</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Dica de prova:</strong> o chefe não é necessariamente o líder, e o líder não é necessariamente o chefe. O ideal é que o chefe também seja um bom líder.</div></div>
+  </section>
+
+  <!-- SEC 3 -->
+  <section id="sec3" class="section">
+    <div class="section-title"><span class="tag tag-blue">3</span> Tipos de Poder</div>
+    <div class="section-subtitle">Formas de influência sobre as pessoas</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>Característica</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Legítimo</strong></td><td>Relacionado à hierarquia e cargo</td><td>Diretor sobre gerentes</td></tr>
+          <tr><td><strong>Coercitivo</strong></td><td>Ameaças, castigos, punições</td><td>Redução de benefícios por atraso</td></tr>
+          <tr><td><strong>Recompensa</strong></td><td>Poder de premiar/remunerar</td><td>Bônus por meta atingida</td></tr>
+          <tr><td><strong>Competência</strong></td><td>Habilidades, expertise, know-how</td><td>Médico neurologista experiente</td></tr>
+          <tr><td><strong>Referência</strong></td><td>Carisma, empatia, identificação</td><td>Jogador de futebol e seus fãs</td></tr>
+          <tr><td><strong>Informação</strong></td><td>Posse de informações estratégicas</td><td>Dados privilegiados de decisão</td></tr>
+          <tr><td><strong>Pessoal</strong></td><td>Características individuais</td><td>Traços pessoais do líder</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SEC 4 -->
+  <section id="sec4" class="section">
+    <div class="section-title"><span class="tag tag-blue">4</span> Teorias da Liderança — Traços</div>
+    <div class="section-subtitle">O líder nasce pronto? Teoria superada</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Teoria de Traços de Personalidade</div></div>
+      <div class="card-text">
+        A mais antiga. Defende que o líder <strong>nasce líder</strong> (líder nato), com características inatas. NÃO pode ser aprendida.<br><br>
+        Aspectos analisados: físicos, habilidades, personalidade, fatores sociais, características relacionadas à tarefa.<br><br>
+        <strong>Limitações:</strong><br>
+        • Dificuldade de identificar traços universais<br>
+        • Ignora reação dos subordinados<br>
+        • Acredita que líder é líder em qualquer situação<br>
+        • Simplista e limitada<br><br>
+        <strong>Hoje:</strong> teoria superada. Sabe-se que liderança pode ser aprendida.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 5 -->
+  <section id="sec5" class="section">
+    <div class="section-title"><span class="tag tag-blue">5</span> Teorias dos Estilos de Liderança</div>
+    <div class="section-subtitle">Comportamentais — o líder faz, não nasce pronto</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">White e Lippitt — 3 Estilos</div></div>
+      <div class="card-text">
+        <strong>Autocrática:</strong> líder decide sozinho, sem participação do grupo. Produtividade alta, satisfação baixa.<br>
+        <strong>Democrática:</strong> grupo participa das decisões. Satisfação alta, produtividade boa.<br>
+        <strong>Liberal (Laissez-Faire):</strong> grupo decide tudo. Produtividade baixa, insatisfação.<br><br>
+        <strong>Conclusão:</strong> não existe “melhor estilo” universal. Cada situação exige um estilo diferente.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Universidade de Ohio — 2 Dimensões</div></div>
+      <div class="card-text">
+        <strong>Estrutura de Iniciação:</strong> preocupação com organização, metas, prazos, padronização do desempenho.<br>
+        <strong>Consideração:</strong> preocupação com relacionamento interpessoal, confiança, respeito.<br><br>
+        <span class="tag tag-blue">Estrutura</span> = estruturação do trabalho → <span class="tag tag-green">Consideração</span> = consideração pelos empregados.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Universidade de Michigan — Teoria Bidimensional</div></div>
+      <div class="card-text">
+        <strong>Orientada para tarefa/produção:</strong> foco em resultados, cumprimento de metas. Similar a Estrutura de Iniciação.<br>
+        <strong>Orientada para pessoas/relacionamentos:</strong> foco em necessidades dos funcionários. Similar a Consideração.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Likert — 04 Sistemas Gerenciais</div></div>
+      <div class="card-text">
+        <strong>1) Autoritário-coercitivo:</strong> decisões centralizadas, controle rígido, ameaças, comunicação vertical descendente. Ex: construção civil.<br>
+        <strong>2) Autoritário-benevolente:</strong> decisões centralizadas mas com pequena delegação, feedbacks ocasionais. Ex: indústrias.<br>
+        <strong>3) Consultivo:</strong> decisões delegadas parcialmente, comunicação multilateral, recompensas simbólicas. Ex: bancos.<br>
+        <strong>4) Participativo:</strong> decisões descentralizadas, foco em resultados, comunicação fluida, confiança mútua. Ex: marketing/consultorias.
+      </div>
+    </div>
+
+    <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> Likert não é “4 tipos de liderança” em abstrato. São <span class="highlight">4 sistemas gerenciais/administrativos</span> baseados no estilo de autoridade do líder. A banca pode inverter os nomes.</div></div>
+  </section>
+
+  <!-- SEC 6 -->
+  <section id="sec6" class="section">
+    <div class="section-title"><span class="tag tag-amber">6</span> Grid Gerencial — Blake e Mouton</div>
+    <div class="section-subtitle">Preocupação com pessoas × produção</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Os 5 Estilos</div></div>
+      <div class="card-text">
+        Eixo vertical: preocupação com a <strong>produção</strong> (1 a 9)<br>
+        Eixo horizontal: preocupação com as <strong>pessoas</strong> (1 a 9)<br><br>
+        <strong>1.1 — Empobrecida/Enfraquecida:</strong> não se preocupa com nada. Mínimo esforço.<br>
+        <strong>1.9 — Clube de Campo/Playground:</strong> foco total nas pessoas, baixa produtividade.<br>
+        <strong>5.5 — Meio-Termo:</strong> equilíbrio entre pessoas e produção.<br>
+        <strong>9.1 — Tarefas/Autoridade-Obediência:</strong> foco total em produtividade.<br>
+        <strong>9.9 — Equipes:</strong> <span class="highlight">ESTILO IDEAL</span> (máximo pessoas + máximo produção).<br><br>
+        <strong>Pegadinha:</strong> a banca pode dizer que o ideal é o 5.5. NÃO. O ideal é o <strong>9.9</strong>.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 7 -->
+  <section id="sec7" class="section">
+    <div class="section-title"><span class="tag tag-amber">7</span> Teoria da Contingência de Fiedler</div>
+    <div class="section-subtitle">Estilo fixo + situação favorável</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+      <div class="card-text">
+        O desempenho depende de: <strong>estilo do líder</strong> × <strong>grau de controle da situação</strong>.<br><br>
+        <strong>Estilos do líder:</strong><br>
+        • Orientado para tarefa<br>
+        • Orientado para relacionamentos/pessoas<br><br>
+        <strong>3 variáveis da situação:</strong><br>
+        • Relação líder-liderados (Boa/Ruim)<br>
+        • Estrutura da tarefa (Alta/Baixa)<br>
+        • Poder de posição (Forte/Fraco)
+      </div>
+    </div>
+
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Conclusões Fiedler:</strong><br>• Situações <strong>muito favoráveis ou muito desfavoráveis</strong> → líder orientado para <strong>tarefa</strong><br>• Situações <strong>moderadas</strong> → líder orientado para <strong>relacionamentos</strong><br>• Estilo do líder é <span class="highlight">fixo</span> — a organização deve encaixá-lo na situação adequada.</div></callout>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Teoria do Recurso Cognitivo (Fiedler & Garcia, 1986)</div></div>
+      <div class="card-text">
+        • <strong>Tarefas complexas:</strong> inteligência do líder importa mais<br>
+        • <strong>Alto estresse:</strong> experiência do líder importa mais<br>
+        • Em alto estresse, a inteligência não faz diferença
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 8 -->
+  <section id="sec8" class="section">
+    <div class="section-title"><span class="tag tag-amber">8</span> Teoria Situacional — Hersey e Blanchard</div>
+    <div class="section-subtitle">Foco nos liderados: maturidade M1-M4</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Maturidade dos Liderados</div></div>
+      <div class="card-text">
+        Combinação de <strong>motivação</strong> × <strong>capacidade/competência</strong>:<br><br>
+        <span class="tag tag-red">M1</span> Baixa motivação + Baixa capacidade<br>
+        <span class="tag tag-amber">M2</span> Alta motivação + Baixa capacidade<br>
+        <span class="tag tag-amber">M3</span> Baixa motivação + Alta capacidade<br>
+        <span class="tag tag-green">M4</span> Alta motivação + Alta capacidade
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Maturidade</th><th>Estilo</th><th>Foco</th></tr></thead>
+        <tbody>
+          <tr><td><strong>M1</strong></td><td>Determinar/Dirigir (E1)</td><td>Alta tarefa, baixo relacionamento</td></tr>
+          <tr><td><strong>M2</strong></td><td>Persuadir/Vender (E2)</td><td>Alta tarefa, alto relacionamento</td></tr>
+          <tr><td><strong>M3</strong></td><td>Compartilhar/Participar (E3)</td><td>Baixa tarefa, alto relacionamento</td></tr>
+          <tr><td><strong>M4</strong></td><td>Delegar (E4)</td><td>Baixa tarefa, baixo relacionamento</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Macete:</strong> M1 precisa de <strong>ordem</strong> (E1). M2 precisa de <strong>explicação</strong> (E2). M3 precisa de <strong>motivação</strong> (E3). M4 precisa de <strong>liberdade</strong> (E4).</div></div>
+  </section>
+
+  <!-- SEC 9 -->
+  <section id="sec9" class="section">
+    <div class="section-title"><span class="tag tag-amber">9</span> Teoria do Caminho-Meta — House</div>
+    <div class="section-subtitle">O líder como facilitador do caminho</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">4 Tipos de Liderança</div></div>
+      <div class="card-text">
+        O líder deve <strong>facilitar</strong> o caminho dos subordinados para atingir suas metas, removendo barreiras.<br><br>
+        <strong>1) Apoiador/Incentivador:</strong> preocupa-se com bem-estar. Indicado para tarefas repetitivas/estruturadas.<br>
+        <strong>2) Diretivo:</strong> explica “o que” e “como” fazer. Indicado para tarefas ambíguas/estressantes.<br>
+        <strong>3) Participativo:</strong> incentiva participação nas decisões. Indicado para subordinados experientes.<br>
+        <strong>4) Orientado para resultados/realizações:</strong> define metas desafiadoras, confia na equipe.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 10 -->
+  <section id="sec10" class="section">
+    <div class="section-title"><span class="tag tag-amber">10</span> Teorias Emergentes</div>
+    <div class="section-subtitle">Transacional × Transformacional × Carismática × Visionária</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Liderança Transacional</div></div>
+      <div class="card-text">
+        Baseada na <strong>troca</strong>: recompensa por esforço. O líder promete recompensas pelo bom desempenho.<br><br>
+        Estilos:<br>
+        • Recompensa contingente: troca recompensa por esforço<br>
+        • Exceção ativa: monitora e corrige desvios assim que aparecem<br>
+        • Exceção passiva: intervém apenas quando metas não são atingidas<br>
+        • Laissez-faire: abdica de decisões, deixa tudo por conta dos liderados
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Liderança Transformacional</div></div>
+      <div class="card-text">
+        O líder <strong>inspira</strong> os liderados a transcendêrem seus próprios interesses. Causa impacto profundo, é revolucionário e transformador.<br><br>
+        4 comportamentos (Bass):<br>
+        • <strong>Influência idealizada:</strong> ganha respeito, confiança, oferece missão<br>
+        • <strong>Motivação inspiracional:</strong> comunica altas expectativas, usa símbolos<br>
+        • <strong>Estimulação intelectual:</strong> promove inteligência e racionalidade<br>
+        • <strong>Consideração individualizada:</strong> orientação personalizada<br><br>
+        <span class="highlight">Importante:</span> Transformacional ≠ Transacional. Elas se complementam, mas a transformacional é mais eficaz. Os melhores líderes são ambos.
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--purple);">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title" style="color:var(--purple);">Liderança Carismática</div></div>
+      <div class="card-text">
+        Baseada no <strong>carisma</strong>. Os liderados atribuem características extraordinárias ao líder.<br><br>
+        Características (Conger e Kanungo):<br>
+        • Visão de futuro melhor<br>
+        • Articulação clara da visão<br>
+        • Risco pessoal<br>
+        • Sensibilidade às necessidades dos liderados<br>
+        • Comportamentos não convencionais<br><br>
+        Diferente da transformacional: o carismático pode ser mais voltado para si mesmo; o transformacional empodera os liderados.
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--teal);">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title" style="color:var(--teal);">Liderança Visionária</div></div>
+      <div class="card-text">
+        Foco na <strong>visão</strong> de futuro da organização. O líder “vende” a visão aos liderados, fazendo-os “comprar” o objetivo global.<br><br>
+        A visão responde: <span class="highlight">“O que eu quero ser?”</span> (futuro desejado da organização).<br>
+        O líder visionário convergência esforços do grupo para esse objetivo final.
+      </div>
+    </div>
+
+    <div class="mnemonic">
+      <div class="mnemonic-label">🧠 Macete</div>
+      <div class="mnemonic-content">
+        <strong>T</strong>ransacional = <span class="tag tag-blue">T</span>roca (recompensa por esforço)<br>
+        <strong>T</strong>ransformacional = <span class="tag tag-green">T</span>ranscende (inspira além de interesses próprios)<br>
+        <strong>C</strong>arismática = <span class="tag tag-amber">C</span>arisma (baseada em atributos pessoais)<br>
+        <strong>V</strong>isionária = <span class="tag tag-purple">V</span>isão (vende futuro desejado)
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 12 -->
+  <section id="sec12" class="section">
+    <div class="section-title"><span class="tag tag-amber">12</span> Questões Comentadas</div>
+    <div class="section-subtitle">FGV — 20 questões com gabarito comentado</div>
+
+    <div class="question">
+      <div class="question-header">1. (FGV – AMAZUL - Assistente Administrativo – 2026)</div>
+      <div class="question-text">Com relação ao poder em uma organização, aquele que decorre do carisma, onde o líder é valorizado por possuir atributos pessoais que favorecem sua atuação e influência no grupo, impactando positivamente sua liderança é conhecido como</div>
+      <div class="options">
+        <div class="option">a) de recompensa</div>
+        <div class="option">b) legitimado</div>
+        <div class="option">c) coercitivo</div>
+        <div class="option correct">d) de referência</div>
+        <div class="option">e) de competência</div>
+      </div>
+      <div class="answer"><strong>Gabarito: D.</strong> Poder de Referência = baseado em carisma e empatia. As pessoas se identificam com o líder e o veem como “herói”.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">2. (FGV – AMAZUL - Analista de Administração – 2026)</div>
+      <div class="question-text">Com relação aos tipos de liderança, aquela em que o líder busca motivar seus subordinados através de recompensas ou incentivos materiais em caso de êxito no alcance dos objetivos traçados, denomina-se</div>
+      <div class="options">
+        <div class="option">a) transformacional</div>
+        <div class="option">b) situacional</div>
+        <div class="option">c) visionária</div>
+        <div class="option">d) carismática</div>
+        <div class="option correct">e) transacional</div>
+      </div>
+      <div class="answer"><strong>Gabarito: E.</strong> Liderança transacional = troca de recompensas por esforço/material.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">3. (FGV – Prefeitura de Canaã dos Carajás - PA - Agente de Serviços Administrativos – 2025)</div>
+      <div class="question-text">Um servidor veterano é altamente respeitado por seus colegas devido ao seu amplo conhecimento e experiência. Sua opinião é frequentemente solicitada para auxiliar na resolução de problemas técnicos, e os demais servidores costumam seguir suas orientações com confiança. O tipo de poder que ele exerce é o</div>
+      <div class="options">
+        <div class="option">a) Legítimo</div>
+        <div class="option">b) Coercitivo</div>
+        <div class="option">c) Laissez-faire</div>
+        <div class="option">d) de recompensa</div>
+        <div class="option correct">e) de especialização/competência</div>
+      </div>
+      <div class="answer"><strong>Gabarito: E.</strong> Poder de Competência = conhecimento, expertise, know-how.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">4. (FGV – MPU - Analista do MPU - Perito em Contabilidade – 2025)</div>
+      <div class="question-text">Júlia foi promovida e assumiu recentemente a liderança da equipe em que trabalha há cinco anos. A promoção não foi muito bem aceita. Júlia está preocupada porque sabe que terá pouca autonomia para reconhecer ou punir os membros. A equipe é composta por seis profissionais experientes e bem capacitados, com forte motivação. Apoiando-se na teoria da liderança situacional de Hersey e Blanchard, Júlia avalia que a equipe se encontra no nível de prontidão “4”. O estilo mais eficaz de liderança é o:</div>
+      <div class="options">
+        <div class="option">a) diretivo</div>
+        <div class="option">b) realizador</div>
+        <div class="option">c) persuasivo</div>
+        <div class="option">d) participativo</div>
+        <div class="option correct">e) delegador</div>
+      </div>
+      <div class="answer"><strong>Gabarito: E.</strong> M4 = alta capacidade + alta motivação = estilo E4 (delegar).</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">5. (FGV – DPE-RO - Analista em Administração - Classe A – 2025)</div>
+      <div class="question-text">Com relação às teorias de liderança, assinale a alternativa que corresponde à teoria que busca explicar como o nível de inteligência e a experiência do líder influenciam o desempenho do grupo, variando conforme o nível de estresse da situação:</div>
+      <div class="options">
+        <div class="option">a) Teoria do Grid Gerencial</div>
+        <div class="option">b) Teoria dos Traços</div>
+        <div class="option">c) Teoria do Caminho-Meta</div>
+        <div class="option correct">d) Teoria do Recurso Cognitivo</div>
+        <div class="option">e) Teoria do Líder Substituo</div>
+      </div>
+      <div class="answer"><strong>Gabarito: D.</strong> Teoria do Recurso Cognitivo de Fiedler & Garcia (1986) = inteligência e experiência variando conforme estresse.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">6. (FGV – DPE-RO - Analista em Administração - Classe A – 2025)</div>
+      <div class="question-text">Analise as situações: 1) professor admirado que influencia por carisma; 2) chefe de setor que coordena com base na autoridade do cargo; 3) supervisor que reduz benefícios de quem chega atrasado. As situações representam, respectivamente:</div>
+      <div class="options">
+        <div class="option correct">a) de referência, legítimo, coercitivo</div>
+        <div class="option">b) de competência, informacional, de recompensa</div>
+        <div class="option">c) pessoal, coercitivo, de referência</div>
+        <div class="option">d) informacional, de competência, legítimo</div>
+        <div class="option">e) coercitivo, de recompensa, pessoal</div>
+      </div>
+      <div class="answer"><strong>Gabarito: A.</strong> 1 = referência/carisma; 2 = legítimo/cargo; 3 = coercitivo/punição.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">7. (FGV – TJMS – Analista Judiciário – Área Meio – 2024)</div>
+      <div class="question-text">A equipe é composta por membros recentemente admitidos, sem competências técnicas, mas bastante motivados. Apoiando-se na teoria de Hersey e Blanchard, a diretora avalia que a equipe se encontra no nível de prontidão “2”. O estilo mais eficaz é:</div>
+      <div class="options">
+        <div class="option">a) delegador</div>
+        <div class="option">b) realizador</div>
+        <div class="option correct">c) persuasivo</div>
+        <div class="option">d) participativo</div>
+        <div class="option">e) diretivo</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> M2 = alta motivação + baixa capacidade = E2 (persuadir/vender).</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">8. (FGV – TJ-AP – Analista Judiciário – Área Apoio Especializado – 2024)</div>
+      <div class="question-text">A equipe é composta por profissionais pouco experientes, com capacitação insuficiente e baixa motivação. Nível de prontidão “1”. O estilo mais eficaz seria:</div>
+      <div class="options">
+        <div class="option correct">a) diretivo</div>
+        <div class="option">b) persuasivo</div>
+        <div class="option">c) participativo</div>
+        <div class="option">d) afetivo</div>
+        <div class="option">e) delegador</div>
+      </div>
+      <div class="answer"><strong>Gabarito: A.</strong> M1 = baixa motivação + baixa capacidade = E1 (determinar/dirigir).</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">9. (FGV – EPE – Gestão Corporativa - Administração – 2024)</div>
+      <div class="question-text">Entre as diferentes teorias de liderança, aquela que enfatiza a capacidade dos líderes de inspirar e motivar seus seguidores a transcenderem seus interesses em prol da organização, é conhecida como teoria</div>
+      <div class="options">
+        <div class="option correct">a) da liderança transformacional</div>
+        <div class="option">b) dos traços</div>
+        <div class="option">c) transacional da liderança</div>
+        <div class="option">d) da liderança servidora</div>
+        <div class="option">e) do Caminho-Meta</div>
+      </div>
+      <div class="answer"><strong>Gabarito: A.</strong> Liderança transformacional = inspirar e motivar seguidores a transcenderem seus próprios interesses.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">10. (FGV – EPE – Gestão Corporativa - Administração – 2024)</div>
+      <div class="question-text">Com relação aos modelos de liderança situacional, analise as afirmativas: I. O estilo de delegação deve ser utilizado com funcionários capazes e motivados. II. O estilo de determinação deve ser utilizado com funcionários de baixa motivação e pouca capacidade. III. O estilo de persuasão deve ser utilizado com funcionários motivados e de pouca capacidade. Está correto o que se afirma em</div>
+      <div class="options">
+        <div class="option">a) I, apenas</div>
+        <div class="option">b) I e II, apenas</div>
+        <div class="option">c) I e III, apenas</div>
+        <div class="option">d) II e III, apenas</div>
+        <div class="option correct">e) I, II e III</div>
+      </div>
+      <div class="answer"><strong>Gabarito: E.</strong> Todas as assertivas estão corretas: delegação=M4, determinação=M1, persuasão=M2.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">11. (FGV – Departamento Nacional de Infraestrutura de Transportes – Analista Administrativo – Administração - 2024)</div>
+      <div class="question-text">O estilo de liderança identificado por Kurt Lewin, sob o aspecto da tomada de decisões, onde as diretrizes são debatidas pelo grupo e o líder atua como um orientador, denomina-se</div>
+      <div class="options">
+        <div class="option correct">a) democrático</div>
+        <div class="option">b) liberal</div>
+        <div class="option">c) autocrático</div>
+        <div class="option">d) transacional</div>
+        <div class="option">e) gerencial</div>
+      </div>
+      <div class="answer"><strong>Gabarito: A.</strong> Liderança democrática = diretrizes debatidas pelo grupo, líder atua como orientador.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">12. (FGV – Câmara Municipal de São Paulo - Consultor Técnico Legislativo - Administração – 2024)</div>
+      <div class="question-text">Estabeleça a correspondência entre os cinco tipos de poder existentes e as situações em que ocorrem: 1) Quando B aceita normas que dizem que deve aceitar a influência de A; 2) Quando B percebe que A tem conhecimento especial; 3) Quando A tem poder de conceder prêmios; 4) Quando B deseja ser igual a A; 5) Quando A tem poder de aplicar punições.</div>
+      <div class="options">
+        <div class="option">a) 1-2-3-4-5</div>
+        <div class="option">b) 3-2-5-1-4</div>
+        <div class="option correct">c) 3-1-5-2-4</div>
+        <div class="option">d) 3-1-4-2-5</div>
+        <div class="option">e) 1-3-2-5-4</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> 1=legítimo, 2=competência, 3=recompensa, 4=referência, 5=coercitivo.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">13. (FGV – Câmara Municipal de São Paulo - Consultor Técnico Legislativo - Administração – 2024)</div>
+      <div class="question-text">Assinale a opção que apresenta uma característica da liderança liberal:</div>
+      <div class="options">
+        <div class="option">a) Enfatiza mais os subordinados do que o líder</div>
+        <div class="option">b) O líder é rígido e autoritário, centraliza o poder</div>
+        <div class="option">c) O líder designa tarefas de maneira imprevisível</div>
+        <div class="option">d) O líder é proativo, consultivo, estabelece metas</div>
+        <div class="option correct">e) O líder procura ser um membro comum do grupo, objetivo em críticas e elogios</div>
+      </div>
+      <div class="answer"><strong>Gabarito: E.</strong> Liderança liberal = líder é como um membro comum, objetivo, restringe-se aos fatos.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">14. (FGV – TCE-RR - Técnico Administrativo – 2025)</div>
+      <div class="question-text">Os estudos sobre estruturas organizacionais introduziram os conceitos de organizações mecanicistas e orgânicas. É correto afirmar que:</div>
+      <div class="options">
+        <div class="option">a) a estrutura mecanicista é pautada por ideais da Adhocracia...</div>
+        <div class="option correct">b) a estrutura mecanicista apresenta predominância de modelo hierárquico vertical, enquanto na orgânica prevalece modelo horizontal.</div>
+        <div class="option">c) a estrutura mecanicista se mostra mais adequada a contexto dinâmico...</div>
+        <div class="option">d) a estrutura mecanicista fundamenta-se na delegação das decisões...</div>
+        <div class="option">e) a estrutura mecanicista é orientada pelos princípios da Teoria das Relações Humanas...</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Mecanicista = vertical; orgânica = horizontal. Todas as outras invertem os conceitos.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">15. (FGV – TRF1 – Analista Judiciário - Área Administrativa - 2024)</div>
+      <div class="question-text">A empresa XPTO é fabricante de móveis que adota a seguinte departamentalização: setor de corte; setor de montagem; setor de acabamento e pintura. A departamentalização adotada é</div>
+      <div class="options">
+        <div class="option">a) funcional</div>
+        <div class="option">b) por produto</div>
+        <div class="option correct">c) por processo</div>
+        <div class="option">d) por cliente</div>
+        <div class="option">e) territorial</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Agrupamento por fases do processo produtivo = departamentalização por processo.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">16. (FGV – BACEN - Analista – 2023)</div>
+      <div class="question-text">Na estrutura organizacional, a amplitude de controle está relacionada diretamente ao número de níveis hierárquicos. Uma amplitude de controle larga resulta em:</div>
+      <div class="options">
+        <div class="option">a) estrutura verticalizada e muitos níveis hierárquicos</div>
+        <div class="option correct">b) estrutura horizontalizada e poucos níveis hierárquicos</div>
+        <div class="option">c) aumento dos custos com executivos</div>
+        <div class="option">d) maior rigidez de supervisão</div>
+        <div class="option">e) comunicação vertical mais lenta</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Amplitude larga = estrutura achatada/horizontal = menos níveis hierárquicos.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">17. (FGV – ANATEL - Analista Administrativo – 2023)</div>
+      <div class="question-text">A desconcentração, no âmbito da Administração Pública, difere da descentralização porque:</div>
+      <div class="options">
+        <div class="option">a) transfere autoridade de forma permanente</div>
+        <div class="option">b) altera o estatuto da organização</div>
+        <div class="option correct">c) implica separação física das atividades em instalações diferentes</div>
+        <div class="option">d) ocorre apenas entre pessoas hierarquicamente relacionadas</div>
+        <div class="option">e) é um conceito sinônimo de delegação</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Desconcentração = separação física/distribuição geográfica. Descentralização = transferência de autoridade.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">18. (FGV – TCE-PB - Auditor – 2023)</div>
+      <div class="question-text">A departamentalização territorial é indicada especialmente para organizações que:</div>
+      <div class="options">
+        <div class="option">a) possuem poucos produtos e operam em ambiente estável</div>
+        <div class="option correct">b) estão territorialmente dispersas e precisam de respostas rápidas locais</div>
+        <div class="option">c) buscam máxima especialização funcional</div>
+        <div class="option">d) trabalham exclusivamente com projetos temporários</div>
+        <div class="option">e) desejam eliminar completamente a hierarquia</div>
+      </div>
+      <div class="answer"><strong>Gabarito: B.</strong> Territorial = empresas dispersas geograficamente, com necessidade de adaptação local.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">19. (FGV – DPE-SP - Analista – 2022)</div>
+      <div class="question-text">Na departamentalização por cliente, é correto afirmar que:</div>
+      <div class="options">
+        <div class="option correct">a) é baseada nas necessidades do cliente e utilizada normalmente no nível operacional.</div>
+        <div class="option">b) é a mais indicada para ambientes estáveis e com pouca variedade de produtos.</div>
+        <div class="option">c) prioriza a especialização técnica em detrimento do atendimento.</div>
+        <div class="option">d) gera custos menores do que a departamentalização funcional.</div>
+        <div class="option">e) é contraindicada para organizações de serviços.</div>
+      </div>
+      <div class="answer"><strong>Gabarito: A.</strong> Por cliente = agrupamento por tipo de cliente, normalmente no nível operacional.</div>
+    </div>
+
+    <div class="question">
+      <div class="question-header">20. (FGV – TRF3 - Analista Judiciário – 2022)</div>
+      <div class="question-text">A organização em rede caracteriza-se por:</div>
+      <div class="options">
+        <div class="option">a) centralização total das decisões no núcleo central</div>
+        <div class="option">b) estrutura exclusivamente vertical e hierárquica</div>
+        <div class="option correct">c) núcleo central rodeado por unidades interdependentes e autônomas</div>
+        <div class="option">d) ausência de parcerias com fornecedores externos</div>
+        <div class="option">e) custos operacionais elevados</div>
+      </div>
+      <div class="answer"><strong>Gabarito: C.</strong> Rede = núcleo central + unidades interdependentes, parcerias, alianças.</div>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+(function(){
+  const sections = document.querySelectorAll('section[id]');
+  const bar = document.getElementById('bar');
+  const pct = document.getElementById('pct');
+  function update(){
+    const h = window.innerHeight;
+    let cur = 0, total = sections.length;
+    sections.forEach(s=>{
+      const r = s.getBoundingClientRect();
+      if(r.top <= h*0.6) cur++;
+    });
+    const v = Math.round((cur/total)*100);
+    bar.style.width = v+'%';
+    pct.textContent = v+'%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
+
+</body>
+</html>

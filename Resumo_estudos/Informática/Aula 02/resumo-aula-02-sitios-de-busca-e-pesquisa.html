@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Informática Aula 02: Sítios de Busca e Pesquisa</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Informática — Aula 02</div>
+  <div class="sidebar-sub">Sítios de Busca e Pesquisa · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. O que são sítios de busca</a>
+  <a href="#sec2">2. Como funcionam os buscadores</a>
+  <a href="#sec3">3. Operadores de pesquisa e filtros</a>
+  <a href="#sec4">4. Buscadores conhecidos e funcionalidades</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: resumo + simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — O QUE SÃO SÍTIOS DE BUSCA                           -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">O que são sítios de busca</div>
+  </div>
+  <div class="sec-subtitle">Ferramentas de busca e pesquisa na internet — o Google como padrão de estudo</div>
+
+  <div class="card">
+    <div class="card-title">Origem do Google</div>
+    <div class="card-text">
+      O Google é uma ferramenta de busca e pesquisa desenvolvida como um <strong>projeto de pesquisa em 1996</strong>
+      por <strong>Sergey Brin</strong> (russo) e <strong>Larry Page</strong> (americano), na <strong>Universidade de Stanford</strong>.
+      À época, tinha basicamente a função de realizar buscas de páginas e documentos na Internet.<br><br>
+      • O nome inicial seria <strong>BackRub</strong>, mas foi modificado para <strong>Google em 1997</strong>, quando o domínio
+      <strong>www.google.com</strong> foi registrado<br>
+      • Atualmente é possível buscar praticamente qualquer coisa: site, foto, texto, figura, vídeo, entre outros
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <div class="card-title">Botão Pesquisa Google</div>
+      <div class="card-text">É a <strong>busca padrão</strong> do Google: retorna a lista de páginas resultante da pesquisa. Para cada pesquisa existem milhares (ou milhões) de páginas web com informações relevantes.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Botão Estou com Sorte</div>
+      <div class="card-text"><strong>Não retorna uma lista de páginas</strong>. O Google tenta direcionar o usuário à página que ele acha <strong>mais relevante</strong> (em tese, a primeira página do botão Pesquisa Google).</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Guias do Google</div>
+      <div class="card-text">Na parte superior da pesquisa: <strong>Todas, Notícias, Vídeos, Imagens, Maps, Shopping, Livros, Voos</strong>, etc.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tipos de buscadores</div>
+    <div class="card-text">
+      Existem dois tipos de buscadores:<br>
+      • <strong>Horizontais</strong>: pesquisam sobre <strong>diversos tipos de temas</strong> (Ex: Google, Bing, Yahoo)<br>
+      • <strong>Verticais</strong>: pesquisam sobre <strong>temas específicos</strong> (Ex: WImóveis pesquisa apenas imóveis; ICarros pesquisa apenas carros)
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Não existe só o Google!</strong> Criado pela Microsoft, o <strong>Bing</strong> é atualmente o maior concorrente do Google. Ambas são tecnologias extremamente similares, utilizando os mesmos recursos e a mesma sintaxe de operadores. Entre os buscadores mais utilizados: <strong>Google (92,37%), Microsoft Bing (2,37%) e Yahoo (2,25%)</strong>.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O botão <strong>Estou com Sorte</strong> conduz diretamente à <strong>primeira página Web gerada pela consulta</strong> (reduz o tempo de procura). A lista de resultados <strong>não é ordenada pelo número de acessos</strong>, e sim pela precisão da pesquisa.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — COMO FUNCIONAM OS BUSCADORES                         -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Como funcionam os buscadores</div>
+  </div>
+  <div class="sec-subtitle">Rastreamento, indexação, algoritmos de pesquisa e respostas úteis</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Rastreamento e Indexação
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Rastreadores da Web (crawlers)</div>
+    <div class="card-text">
+      A Web é como uma <strong>biblioteca que não para de crescer</strong>, com bilhões de livros e sem um sistema central de catálogo.
+      O Google utiliza <strong>softwares robôs conhecidos como Rastreadores da Web</strong> para detectar as páginas disponíveis ao público.
+      Os rastreadores <strong>analisam as páginas e seguem seus links</strong>, de link em link, levando dados sobre essas páginas para os
+      <strong>servidores do Google, na Califórnia</strong>.<br><br>
+      • Entre <strong>300 e 500 páginas</strong> são criadas na web a cada minuto — cerca de <strong>700.000 todos os dias</strong><br>
+      • O rastreador compõe uma <strong>base de dados de pesquisa, atualizada diariamente</strong> pelo Google
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Índice da Pesquisa (Search Index)</div>
+    <div class="card-text">
+      Quando os rastreadores encontram uma página, um sistema processa o conteúdo da página da mesma forma que um navegador,
+      detectando sinais importantes, como as <strong>palavras-chave e a idade do conteúdo</strong>. Tudo é registrado no
+      <strong>Índice da Pesquisa (Search Index)</strong> — que contém <strong>centenas de bilhões de páginas web</strong> e tem mais de
+      <strong>cem milhões de gigabytes</strong> de tamanho.<br><br>
+      Funciona como o <strong>índice remissivo de um livro</strong>: há uma entrada para cada palavra vista em todas as páginas web indexadas.
+      É por isso que a busca é rápida — o buscador <strong>não sai procurando dentro das páginas</strong> no momento em que você pesquisa.
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Rastreador: robô que NAVEGA de link em link (busca páginas e dados) · Indexador: coloca os dados no ÍNDICE (para não percorrer toda a internet na busca)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Nas ferramentas de busca, o <strong>indexador NÃO é o programa que navega autonomamente pela Internet</strong>. Quem navega é o <strong>rastreador (crawler)</strong>. A pesquisa é realizada em três etapas: <strong>rastreamento → indexação → veiculação</strong>. A indexação é o processo pelo qual o mecanismo identifica o conteúdo da página encontrada.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Algoritmos de Pesquisa
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Quando você faz uma pesquisa, você quer uma resposta, e não bilhões de páginas web. Os <strong>sistemas de classificação</strong> do Google
+      organizam centenas de bilhões de páginas no Índice da Pesquisa para fornecer resultados úteis e relevantes em uma fração de segundo,
+      por meio de uma série de <strong>algoritmos</strong>.<br><br>
+      Em tese, são necessários <strong>cinco passos</strong>: <strong>1)</strong> analisar palavras; <strong>2)</strong> encontrar correspondências da pesquisa;
+      <strong>3)</strong> classificar páginas úteis; <strong>4)</strong> interpretar o contexto; <strong>5)</strong> exibir os melhores resultados encontrados.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Respostas Úteis</div>
+    <div class="card-text">
+      Larry Page descreveu o mecanismo de pesquisa perfeito como algo que <strong>entende exatamente o que você procura e responde exatamente o que você deseja</strong>.
+      Os usuários querem <strong>respostas rápidas</strong>: ao pesquisar sobre o clima, quer-se ver a previsão do tempo na página de resultados, e não só links;
+      ao pesquisar rotas, quer-se um mapa com as rotas.<br><br>
+      • A web é <strong>rastreada constantemente</strong> para indexar novos conteúdos<br>
+      • O Google processa <strong>trilhões de pesquisas a cada ano</strong>; todos os dias, <strong>15% das consultas processadas são inéditas</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A indexação de uma página <strong>recém-publicada não é imediata</strong> — são milhares de páginas criadas por segundo; em geral,
+    <strong>demoram alguns dias</strong> para um buscador indexar uma nova página.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Os buscadores <strong>não armazenam um catálogo digital de páginas</strong> — eles armazenam apenas um <strong>índice para essas páginas</strong>.
+    O Google não guarda a página em si; mesmo o cache era apenas uma "foto" da última versão do site, não navegável.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — OPERADORES DE PESQUISA E FILTROS                     -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Operadores de pesquisa e filtros</div>
+  </div>
+  <div class="sec-subtitle">Como refinar resultados no Google — operadores, incidência em prova e pegadinhas</div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Base comum:</strong> Google e Bing utilizam, por padrão, o operador <strong>AND (E)</strong> entre os termos de uma pesquisa,
+    com limite máximo dos <strong>dez primeiros termos</strong> (mais termos podem ser analisados pela pesquisa avançada). Nem todos os operadores
+    funcionarão perfeitamente na prática — depende de fatores como os <strong>metadados das páginas</strong> (algoritmo de melhor esforço),
+    e o algoritmo poderá ignorar <strong>links patrocinados</strong>.</div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Alta incidência: "aspas" (exata), cache, filetype · Média: – (hífen), *, site, related · Resto: baixa/baixíssima
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Operador</th><th>Utilização</th><th>Exemplo</th><th>Incidência</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>" "</strong> (aspas)</td><td>Pesquisar uma <strong>correspondência exata</strong></td><td>"prédio mais alto do mundo"</td><td><span class="tag tag-red">Altíssima</span></td></tr>
+        <tr><td><strong>–</strong> (hífen)</td><td><strong>Excluir</strong> palavras da pesquisa</td><td>velocidade do jaguar –carro</td><td><span class="tag tag-amber">Média</span></td></tr>
+        <tr><td><strong>@</strong> (arroba)</td><td>Buscar <strong>páginas de redes sociais</strong></td><td>@professordiegocarvalho</td><td><span class="tag tag-blue">Baixíssima</span></td></tr>
+        <tr><td><strong>#</strong> (hashtag)</td><td>Pesquisar <strong>hashtags</strong></td><td>#DesafioDoBaldeDeGelo</td><td><span class="tag tag-blue">Baixíssima</span></td></tr>
+        <tr><td><strong>*</strong> (asterisco)</td><td>Pesquisar <strong>caracteres curinga</strong> ou palavras desconhecidas</td><td>maior * do brasil</td><td><span class="tag tag-amber">Média</span></td></tr>
+        <tr><td><strong>OR</strong></td><td><strong>Combinar pesquisas</strong> (em maiúsculo)</td><td>maratona OR corrida</td><td><span class="tag tag-blue">Baixíssima</span></td></tr>
+        <tr><td><strong>site:</strong></td><td>Pesquisar palavras em um <strong>site específico</strong></td><td>site:youtube.com flamengo</td><td><span class="tag tag-amber">Média</span></td></tr>
+        <tr><td><strong>related:</strong></td><td>Pesquisar <strong>sites relacionados</strong></td><td>related:uol.com.br</td><td><span class="tag tag-amber">Média</span></td></tr>
+        <tr><td><strong>cache:</strong></td><td>Visualizar a <strong>última versão armazenada</strong> de uma página</td><td>cache:orkut.com</td><td><span class="tag tag-red">Alta</span></td></tr>
+        <tr><td><strong>inurl:</strong></td><td>Buscar páginas que contenham palavra em sua <strong>URL</strong></td><td>inurl:stn</td><td><span class="tag tag-green">Baixa</span></td></tr>
+        <tr><td><strong>intitle:</strong></td><td>Realizar buscas em <strong>títulos</strong> de páginas</td><td>intitle:gripe</td><td><span class="tag tag-green">Baixa</span></td></tr>
+        <tr><td><strong>inanchor:</strong></td><td>Buscar palavra em <strong>âncoras (links)</strong></td><td>inanchor:mais</td><td><span class="tag tag-green">Baixa</span></td></tr>
+        <tr><td><strong>define:</strong></td><td>Apresentar <strong>definições</strong> para um termo</td><td>define:estratégia</td><td><span class="tag tag-green">Baixa</span></td></tr>
+        <tr><td><strong>filetype:</strong></td><td>Buscar documentos na web com <strong>formato específico</strong></td><td>filetype:pdf</td><td><span class="tag tag-red">Alta</span></td></tr>
+        <tr><td><strong>..</strong> (ponto ponto)</td><td>Pesquisar dentro de um <strong>intervalo de números</strong></td><td>câmera $50..$100</td><td><span class="tag tag-blue">Baixíssima</span></td></tr>
+        <tr><td><strong>intext:</strong></td><td>Encontrar páginas que contenham palavras em seu <strong>conteúdo</strong></td><td>intext:apple</td><td><span class="tag tag-blue">Baixíssima</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Observações importantes dos operadores
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">" " (aspas)</div><div class="card-text">Busca a frase exatamente como digitada, <strong>ignorando pontuação e maiúsculas/minúsculas</strong>. A quantidade de páginas com aspas é <strong>sempre menor</strong> que sem aspas. Ex.: <em>brasília cambalhota vampeta</em> (qualquer ordem) × <em>"cambalhota do Vampeta em Brasília"</em> (frase exata).</div></div>
+    <div class="card"><div class="card-title">– (hífen)</div><div class="card-text">Exclui palavras da pesquisa. Ex.: pesquisando <em>Prisma</em> (carro da Chevrolet × objeto óptico), use <em>Prisma -carro -chevrolet</em>. Não deve haver espaço entre o hífen e a palavra excluída.</div></div>
+    <div class="card"><div class="card-title">* (asterisco)</div><div class="card-text">Caractere curinga: substitui <strong>qualquer palavra ou frase</strong>. Ex.: <em>"maior * do brasil"</em> retorna "maior torcida do Brasil", "maior cidade do Brasil", etc. Útil quando falta uma palavra numa letra de música.</div></div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">site:</div><div class="card-text">Restringe a um site/domínio específico. Ex.: <em>site:estrategiaconcursos.com.br diego carvalho</em>. A palavra buscada pode vir antes ou depois.</div></div>
+    <div class="card"><div class="card-title">inanchor: × inurl:</div><div class="card-text"><strong>Âncora</strong> é o <strong>nome do link</strong> (pode ser qualquer coisa); <strong>URL</strong> é o <strong>endereço</strong> do recurso. O <em>inanchor</em> pesquisa no nome da âncora; o <em>inurl</em> pesquisa no endereço.</div></div>
+    <div class="card"><div class="card-title">OR</div><div class="card-text">Combina pesquisas, trazendo resultados de ambos os termos. Deve ser escrito em <strong>maiúsculo</strong>. Ex.: <em>crédito OR investimento</em> encontra páginas com uma das palavras.</div></div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Operadores depreciados (não funcionam mais)</div>
+    <div class="card-text">
+      • <strong>~</strong> (til): pesquisar <strong>sinônimos</strong> de pesquisa (Ex: <em>~corrida</em> poderia encontrar <em>maratona</em>)<br>
+      • <strong>info:</strong>: visualizar <strong>detalhes sobre um site</strong> — foi <strong>descontinuado em 2017</strong> (Ex: <em>info:unb.br</em>)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Não coloque <strong>espaços</strong> entre o termo de pesquisa e o símbolo/palavra do operador (exceto <strong>define</strong>):
+    <em>site:bnb.com.br</em> funciona; <em>site: bnb.com.br</em> não. O Google distingue o uso do espaço — os resultados serão diferentes.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O asterisco (<strong>*</strong>) <strong>NÃO exclui</strong> termo (isso é função do hífen <strong>–</strong>) e <strong>NÃO</strong> busca ocorrência exata (isso é função das <strong>aspas</strong>).
+    Também não existem operadores <strong>NOT</strong>, <strong>OU</strong> (em português), <strong>in</strong> ou <strong>exclude</strong> no Google — para combinar, usa-se <strong>OR</strong> (maiúsculo).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A pesquisa <em>carro ~azul</em> NÃO exclui a palavra <em>azul</em> — o til buscava <strong>sinônimos</strong>. Para excluir, o correto é o hífen:
+    <em>carro -azul</em>. Lembre: "na frente da palavra" = <strong>antes</strong> dela (o símbolo antecede o termo).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — BUSCADORES CONHECIDOS E FUNCIONALIDADES              -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Buscadores conhecidos e funcionalidades</div>
+  </div>
+  <div class="sec-subtitle">Google, Bing, Yahoo e recursos avançados de pesquisa</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Buscador</th><th>Responsável</th><th>Participação de mercado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Google</strong></td><td>Criado por Sergey Brin e Larry Page (Stanford)</td><td><span class="tag tag-red">92,37%</span></td></tr>
+        <tr><td><strong>Microsoft Bing</strong></td><td>Microsoft</td><td>2,37%</td></tr>
+        <tr><td><strong>Yahoo</strong></td><td>—</td><td>2,25%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    SafeSearch
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O <strong>SafeSearch</strong> ajuda a <strong>filtrar conteúdo sexualmente explícito</strong> (violento ou adulto) dos resultados da Pesquisa Google,
+      em todas as consultas de imagens, vídeos e sites. É possível ativá-lo inserindo <strong>&safe=active</strong> ao final de uma URL.<br><br>
+      • Não é 100% preciso, mas ajuda a bloquear resultados explícitos, como pornografia<br>
+      • <strong>Só funciona nos resultados da pesquisa do Google</strong> — não impede que usuários encontrem conteúdo explícito por outros mecanismos de pesquisa ou navegando diretamente por sites explícitos
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Recursos avançados
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Pesquisa avançada</div><div class="card-text">Possível definir diversos parâmetros: <strong>idioma</strong>, <strong>região</strong> (país), <strong>número de resultados por página</strong>, atualizações (ex.: apenas sítios atualizados nas últimas 24 horas — em Configurações &gt; Pesquisa Avançada), intervalos de datas, filtros de imagens.</div></div>
+    <div class="card"><div class="card-title">Filtros de imagem</div><div class="card-text">O Google Imagens permite filtrar por <strong>tamanho</strong>, <strong>tipo</strong>, <strong>cor</strong> e <strong>direitos de uso/licença</strong>. Também permite buscar imagem a partir de uma <strong>palavra</strong> ou de uma <strong>outra imagem</strong> (ex.: via ícone de máquina fotográfica).</div></div>
+    <div class="card"><div class="card-title">Google Maps e Google Books</div><div class="card-text"><strong>Maps</strong>: visualizar mapas e obter rotas de tráfego (maps.google.com.br). <strong>Google Books</strong>: digitaliza e procura conteúdo de livros; se o livro for de domínio público, o acesso ao conteúdo é feito de forma total.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Omissão de Resultados</div>
+    <div class="card-text">
+      O Google pode <strong>omitir resultados muito semelhantes</strong> aos já exibidos para garantir uma experiência mais eficiente,
+      focando nas páginas mais relevantes. Caso o usuário queira ver todos os resultados, há um <strong>link em azul</strong> para exibir
+      essas páginas adicionais. <em>Isso já caiu em prova!</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Cache</div>
+    <div class="card-text">
+      Era uma <strong>cópia temporária de uma página web</strong> que o Google armazenava em seus servidores, permitindo acessar versões anteriores,
+      mesmo com o site original indisponível ou alterado. <strong>Em 2024, o Google encerrou essa funcionalidade</strong> — saiba que ela existia,
+      mas não deve ser cobrada em provas futuras.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    PageRank e SEO
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>PageRank</strong> é um algoritmo para determinar a <strong>importância e a relevância</strong> de páginas web nos resultados de busca.
+      Funciona avaliando a <strong>quantidade e a qualidade dos links</strong> que apontam para uma página — quanto mais links de qualidade
+      direcionam para uma página, maior sua importância. Foi o <strong>primeiro algoritmo criado pelo Google</strong> para classificar páginas,
+      mas não é o único utilizado hoje; continua sendo uma referência importante, especialmente para especialistas em <strong>SEO</strong>.<br><br>
+      <strong>SEO (Search Engine Optimization)</strong> é um conjunto de técnicas e práticas que têm como objetivo melhorar a
+      <strong>visibilidade e a classificação</strong> de um site nos <strong>resultados orgânicos</strong> dos motores de busca (Google, Bing, Yahoo).
+      Buscadores são uma das principais fontes de tráfego para sites na internet.<br><br>
+      <strong>Pesquisa de palavras-chave</strong> é etapa fundamental do SEO: identificar as palavras e frases que as pessoas digitam nos buscadores,
+      equilibrando <strong>relevância</strong> (refletem o que o site oferece) com <strong>volume de busca</strong> (quantas vezes são pesquisadas).
+      Ferramentas: <strong>Google Keyword Planner / AdWords Keyword Planner, Ahrefs, SEMrush, Ubersuggest</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O <strong>PageRank NÃO utiliza metadados semânticos</strong> — baseia-se na <strong>quantidade de links</strong> que apontam para uma página
+    (a página que linka tem peso na contagem, conforme sua própria importância).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O operador <strong>cache:</strong> apresenta a <strong>última versão indexada/armazenada</strong> pelo Google, e <strong>não</strong> a versão mais nova
+    da página. As opções <strong>Em cache</strong> e <strong>Similares</strong> aparecem em qualquer navegador (Mozilla Firefox e Windows Internet Explorer).
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Você quis dizer:</strong> o Google reconhece possíveis erros de digitação e apresenta a opção
+    <em>"Você quis dizer: tributação"</em> (ex.: pesquisando <em>tibrutacao</em>).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                        -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🔴 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Aspas (" ")</strong> — correspondência exata (incidência Altíssima): ignora pontuação e maiúsculas/minúsculas; ignora capitalização (não é case-sensitive)<br>
+      • <strong>filetype:</strong> — buscar documentos com formato específico (Ex: <em>filetype:pdf</em>, <em>filetype:xls</em>); restringe, não amplia os formatos indexados<br>
+      • <strong>cache:</strong> — visualizar a última versão armazenada de uma página pelo Google
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Média incidência</div>
+    <div class="card-text">
+      • <strong>Hífen (–)</strong> — excluir palavras: <em>Prisma -carro -chevrolet</em>; <em>gato -cachorro "pires de leite morno"</em><br>
+      • <strong>site:</strong> — restringir a um site/domínio: <em>site:www.tjes.jus.br câmaras</em> (não existe operador "include" nem "in")<br>
+      • <strong>related:</strong> — sites relacionados; <strong>* (asterisco)</strong> — caractere curinga
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • <strong>Espaço entre operador e termo</strong>: <em>site:bnb.com.br</em> ≠ <em>site: bnb.com.br</em> — o Google distingue o uso do espaço<br>
+      • <strong>Estou com Sorte</strong>: direciona à primeira página gerada pela consulta; reduz tempo de procura; lista NÃO é ordenada por número de acessos<br>
+      • <strong>Indexador ≠ rastreador</strong>: quem navega de link em link é o rastreador (crawler/spider/robô)<br>
+      • <strong>Buscadores não armazenam as páginas</strong>: armazenam um índice para elas<br>
+      • <strong>Indexação não é imediata</strong>: demora dias para uma página recém-publicada ser indexada<br>
+      • <strong>Operadores depreciados</strong>: ~ (sinônimos) e info: (descontinuado em 2017) — não devem ser cobrados em provas futuras<br>
+      • <strong>Filtro de imagens</strong>: é possível filtrar por tamanho, tipo e cor, e buscar imagem por palavra ou por outra imagem
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine as combinações clássicas de operadores — <em>"operação apate" -drogas site:pcdf.df.gov.br</em>
+    (aspas = frase exata + hífen = excluir + site = domínio). Lembre que a ordem dos operadores não importa e a pontuação é ignorada dentro das aspas.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                            -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 01: Estado, Governo e Administração Pública</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .95rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: .02em;
+  margin-top: .15rem;
+  line-height: 1.7;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 01</div>
+  <div class="sidebar-sub">Estado, Governo e Administração Pública · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Estado, governo e Administração Pública</a>
+  <a href="#sec2">2. Elementos e estrutura do Estado</a>
+  <a href="#sec3">3. Administração Pública: sentidos</a>
+  <a href="#sec4">4. Regime Jurídico Administrativo</a>
+  <a href="#sec5">5. Pontos que mais caem em prova</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">
+    Fontes: simplificado (Estratégia) + Regime Jurídico Administrativo<br>
+    Herbert Almeida, Equipe Direito Administrativo
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — ESTADO, GOVERNO E ADMINISTRAÇÃO PÚBLICA             -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Estado, governo e Administração Pública</div>
+  </div>
+  <div class="sec-subtitle">Distinções conceituais — função política × função administrativa</div>
+
+  <div class="card">
+    <div class="card-title">Estado</div>
+    <div class="card-text">
+      O Estado é um <strong>ente personalizado</strong> que se apresenta externamente, nas relações internacionais com outros Estados soberanos, e, internamente, como <strong>pessoa jurídica de direito público</strong> (arts. 40 e 41 do Código Civil), capaz de adquirir direitos e contrair obrigações na ordem pública.<br><br>
+      • O que caracteriza o Estado é a sua <strong>organização</strong>: a capacidade de atender a determinados fins por meio de <strong>unidades administrativas organizadas</strong> e dotadas de competência.<br>
+      • Nos regimes absolutistas, o Estado era a única e legítima fonte de poder; nos movimentos liberais dos séculos XVIII e XIX (Revolução Francesa, independência norte-americana), os <strong>cidadãos passam a ser o centro do poder</strong>, e o Estado torna-se instrumento para regular o exercício dos direitos individuais.<br>
+      • O <strong>poder estatal é uno e indivisível</strong>, embora distribuído em funções distintas (Legislativa, Executiva e Judiciária — CF, art. 2º).
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue);">
+    <div class="card-title" style="color:var(--green);">Governo × Administração Pública</div>
+    <div class="card-text">
+      O <strong>governo</strong> é formado pelos <strong>órgãos governamentais superiores</strong>, com funções eminentemente <strong>políticas</strong> (comando, coordenação, direção, fixação de planos e diretrizes — as políticas públicas). Atua por meio de <strong>atos de soberania ou autonomia política</strong> na condução dos negócios públicos.<br><br>
+      A <strong>administração pública, em sentido estrito</strong>, é formada pelos <strong>órgãos e entidades administrativas subalternos</strong>, que desempenham funções de <strong>execução</strong> das decisões e dos planos governamentais.<br><br>
+      Em sentido <strong>amplo</strong>, a administração pública abrange: (a) os órgãos governamentais (Governo), que exercem função política de comando, direção e fixação de diretrizes; e (b) os órgãos e pessoas jurídicas encarregados da execução das decisões e planos governamentais.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Governo em três sentidos (Hely Lopes Meirelles)
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sentido</th><th>Conceito (Meirelles)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Formal</strong></td><td>Conjunto de Poderes e órgãos constitucionais</td></tr>
+        <tr><td><strong>Material</strong></td><td>Complexo de funções estatais básicas</td></tr>
+        <tr><td><strong>Operacional</strong></td><td>Condução política dos negócios públicos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Resumo:</strong> governo é a expressão política de comando, de iniciativa, de fixação de objetivos do Estado e de manutenção da ordem jurídica vigente. Para o estudo do direito administrativo, interessa o <strong>sentido estrito</strong> de administração pública — que exclui os órgãos de governo (função política).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Forma de governo, sistema de governo e forma de Estado
+  </h3>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Forma de governo</div><div class="card-text"><strong>República</strong> ou <strong>monarquia</strong> — como se dá a instituição/transmissão do poder e a relação entre governantes e governados</div></div>
+    <div class="card"><div class="card-title">Sistema de governo</div><div class="card-text"><strong>Presidencialismo</strong> ou <strong>parlamentarismo</strong> — como se dá a relação entre Legislativo e Executivo</div></div>
+    <div class="card"><div class="card-title">Forma de Estado</div><div class="card-text"><strong>Estado unitário</strong> ou <strong>Federação</strong> — organização política do território</div></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>República (Brasil)</th><th>Monarquia</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Origem do poder</strong></td><td><span class="tag tag-green">Voto / eletividade</span></td><td>Hereditariedade</td></tr>
+        <tr><td><strong>Temporalidade</strong></td><td><span class="tag tag-green">Mandato (temporalidade)</span></td><td>Vitaliciedade</td></tr>
+        <tr><td><strong>Representatividade popular</strong></td><td><span class="tag tag-green">Sim</span></td><td>Não há representação popular</td></tr>
+        <tr><td><strong>Responsabilidade do governante</strong></td><td><span class="tag tag-green">Dever de prestar contas</span></td><td>Irresponsabilidade (ausência do dever de prestar contas)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Presidencialismo:</strong> no Brasil, o Presidente acumula as funções de <strong>Chefe de Estado</strong> (representa a República nas relações internacionais; mantém relações com estados estrangeiros, assina tratados, declara guerra — CF, art. 84, VII, VIII e XIX) e de <strong>Chefe de Governo</strong> (dirige a administração pública). No <strong>parlamentarismo</strong>, as chefias são exercidas por pessoas distintas: Chefia de Estado (Presidente ou monarca) e Chefia de Governo (Primeiro-Ministro ou Conselho de Ministros).</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O que difere o Chefe de Estado do Chefe de Governo: o primeiro é o <strong>representante da unidade e da soberania do Estado nas relações externas</strong>; o segundo <strong>dirige a administração pública</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — ELEMENTOS E ESTRUTURA DO ESTADO                      -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Elementos e estrutura do Estado</div>
+  </div>
+  <div class="sec-subtitle">Elementos originários e indissociáveis + organização político-administrativa</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Povo (humano) · Território (físico) · Governo soberano (comando) — os três elementos originários e indissociáveis do Estado
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><div class="card-title">Povo</div><div class="card-text">Componente <strong>humano, demográfico</strong> do Estado</div></div>
+    <div class="card"><div class="card-title">Território</div><div class="card-text">Base <strong>física, geográfica</strong> do Estado</div></div>
+    <div class="card"><div class="card-title">Governo soberano</div><div class="card-text">Elemento <strong>condutor</strong>; detém e exerce o poder absoluto de <strong>autodeterminação e auto-organização</strong> emanado do Povo</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Soberania</div>
+    <div class="card-text">
+      Poder <strong>absoluto, indivisível e incontrastável</strong> que o Estado possui para organizar-se e conduzir-se segundo a livre vontade de seu Povo e, se necessário, fazer cumprir suas decisões <strong>inclusive com o uso legítimo da força</strong>.<br><br>
+      ⚠️ <strong>Atenção:</strong> a <strong>Constituição não é elemento originário</strong> do Estado — ela é <strong>produto do Estado de Direito</strong>.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Estado de Direito</div>
+    <div class="card-text">
+      Regra de base (Carvalho Filho): ao mesmo tempo em que o Estado cria o direito, deve <strong>sujeitar-se a ele</strong>. Traduz-se em três postulados fundamentais:
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Postulado</th><th>Conteúdo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Generalização do princípio da legalidade</strong></td><td>A atuação estatal exige <strong>autorização legislativa</strong>; a atividade do Estado se realiza em estrita observância à lei</td></tr>
+        <tr><td><strong>Universalidade de jurisdição</strong></td><td>Todos os atos estatais submetem-se a <strong>controles</strong> que permitam a responsabilização dos sujeitos que atuarem de modo inadequado</td></tr>
+        <tr><td><strong>Tripartição dos poderes</strong></td><td>Diferenciação de competências (funções) atribuídas a órgãos diversos; <strong>freios e contrapesos</strong> (checks and balances); nenhum órgão tem poder ilimitado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    As três funções estatais
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Função</th><th>Conceito</th><th>Estado na relação</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Legislativa (normativa, legiferante)</strong></td><td>Edita atos jurídicos <strong>primários</strong>, gerais e abstratos, que <strong>inovam na ordem jurídica</strong> com fundamento na Constituição</td><td>—</td></tr>
+        <tr><td><strong>Jurisdicional</strong></td><td>Resolve controvérsias com <strong>força de definitividade</strong> (resolução de litígios na aplicação da lei)</td><td>Acima e além da relação (só decide o conflito)</td></tr>
+        <tr><td><strong>Administrativa</strong></td><td><strong>Execução das leis</strong>: atos complementares à lei para dar-lhe aplicação no caso concreto</td><td>Atua como <strong>parte</strong> das relações a que os atos se referem</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Funções típicas e atípicas:</strong> nenhum Poder exerce sozinho cada função — cada um desempenha com <strong>preponderância</strong> sua função típica e também funções atípicas. <strong>Todos os Poderes exercem função administrativa.</strong> O Poder Executivo, porém, <strong>não exerce função jurisdicional</strong> (a lei não pode excluir da apreciação do Judiciário lesão ou ameaça a direito — CF, art. 5º, XXXV; princípio da inafastabilidade).</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Poder</th><th>Função típica</th><th>Funções atípicas (exemplos)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Legislativo</strong></td><td>Normativa</td><td>Administrativa (licitações, concurso, nomeação de aprovados); jurisdicional (Senado processa e julga o Presidente e o Vice-Presidente por crimes de responsabilidade — CF, art. 52, I)</td></tr>
+        <tr><td><strong>Judiciário</strong></td><td>Jurisdicional</td><td>Administrativa (concurso, licitações, contratos, nomeações); legislativa (regimentos internos — CF, art. 96, I, "a")</td></tr>
+        <tr><td><strong>Executivo</strong></td><td>Administrativa</td><td>Legislativa (medidas provisórias — art. 62; leis delegadas — art. 68; decretos autônomos — art. 84, VI, "a" e "b"). <span class="tag tag-red">Não exerce função jurisdicional</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O "julgamento" em processos administrativos (disciplinares, tributários) não faz <strong>coisa julgada</strong>, mas apenas <strong>"coisa julgada administrativa"</strong> — o esgotamento da discussão na via administrativa, que não impede a revisão judicial.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tribunal de Contas e Ministério Público</div>
+    <div class="card-text">
+      Além dos três Poderes, a CF possui duas estruturas orgânicas com <strong>autonomia e funções específicas</strong>. A doutrina majoritária <strong>não as enquadra em nenhum dos três Poderes clássicos</strong>: não são "poderes" propriamente ditos, mas <strong>estruturas independentes</strong> (titulares de competências próprias e insuprimíveis).
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Forma de Estado: unitário × federado
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Estado unitário</th><th>Estado federado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Característica</strong></td><td><strong>Centralização política</strong> — um único poder político central sobre todo o território</td><td><strong>Descentralização política</strong> — convivência de entidades políticas autônomas em um mesmo território</td></tr>
+        <tr><td><strong>Exemplo</strong></td><td>Uruguai</td><td>Brasil</td></tr>
+        <tr><td><strong>Níveis</strong></td><td>—</td><td>Nacional (União), regional (estados) e local (municípios)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Federação brasileira</div>
+    <div class="card-text">
+      • O Brasil adota a <strong>forma federativa de Estado</strong>: poder central (União), regional (estados) e local (municípios); o <strong>Distrito Federal</strong> não se subdivide em municípios e acumula competências regionais e locais (CF, art. 32, § 1º).<br>
+      • <strong>Não existe hierarquia entre os entes federados</strong>: o que ocorre é <strong>coordenação</strong>; cada ente possui autonomia política, financeira e administrativa.<br>
+      • <strong>Organização político-administrativa</strong> (CF, art. 18): União, Estados, DF e Municípios, todos autônomos.<br>
+      • <strong>Territórios Federais</strong>: descentralizações administrativo-territoriais da União, <strong>sem autonomia política</strong>, que <strong>não integram a Federação</strong> (meras autarquias territoriais).
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Pontos comuns da federação (Pedro Lenza)</div>
+    <div class="card-text">
+      • <strong>Descentralização política</strong>: a CF estabelece núcleos de poder político com autonomia<br>
+      • <strong>Repartição de competências</strong>: garante o equilíbrio da federação<br>
+      • <strong>Constituição rígida como base jurídica</strong>: processo legislativo mais árduo para alteração (CF, art. 60)<br>
+      • <strong>Inexistência do direito de secessão</strong>: princípio da indissolubilidade do vínculo federativo — a forma federativa é <strong>cláusula pétrea</strong> (CF, art. 60, § 4º, I)<br>
+      • <strong>Soberania do Estado federal</strong>: a <strong>soberania</strong> é da Federação; os <strong>membros têm apenas autonomia</strong><br>
+      • <strong>Intervenção</strong>: possível em situações de crise para assegurar o equilíbrio federativo<br>
+      • <strong>Auto-organização dos Estados-membros</strong>: constituições estaduais (CF, art. 25)<br>
+      • <strong>Órgão representativo dos Estados</strong>: Senado Federal (CF, art. 46)<br>
+      • <strong>Guardião da Constituição</strong>: STF (CF, art. 102)<br>
+      • <strong>Repartição de receitas</strong>: equilíbrio entre os entes (CF, arts. 157 a 159)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O <strong>art. 1º da CF</strong> não inclui a União: "A República Federativa do Brasil, formada pela união indissolúvel dos Estados e Municípios e do Distrito Federal...". Apesar da impropriedade (a União também integra a Federação), é preciso memorizar o texto <strong>literal</strong>, pois muitas questões o reproduzem.
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Soberania × autonomia:</strong> a República Federativa do Brasil possui <strong>soberania</strong>; os entes federados possuem apenas <strong>autonomia</strong>, no limite de suas competências.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ADMINISTRAÇÃO PÚBLICA: SENTIDOS                      -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Administração Pública: sentidos subjetivo × objetivo, material × formal</div>
+  </div>
+  <div class="sec-subtitle">"Quem" (máquina/sujeitos) × "o que" (trabalho/atividade) — o critério adotado pelo Brasil</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Subjetivo = QUEM (sujeitos/órgãos/agentes) · Objetivo = O QUE (atividade em si) · Formal/Orgânico = o que a lei define como Administração
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sentido</th><th>Sinônimos</th><th>Conceito</th><th>Pergunta que responde</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Subjetivo</strong></td><td>Formal, orgânico</td><td>Conjunto de <strong>pessoas jurídicas, órgãos e agentes públicos</strong> que exercem a função administrativa</td><td>"<strong>Quem</strong>" exerce a função</td></tr>
+        <tr><td><strong>Objetivo</strong></td><td>Material, funcional</td><td>A <strong>atividade administrativa em si</strong> — conjunto de atividades próprias da função administrativa</td><td>"<strong>O que</strong>" é realizado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Sentido subjetivo, formal ou orgânico
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Abrange os <strong>sujeitos</strong> que desempenham a função administrativa: o conjunto de agentes, órgãos e pessoas jurídicas aos quais é atribuído o exercício da função administrativa. Compreende:
+      <ul>
+        <li><strong>Agentes públicos</strong> (servidores e empregados públicos)</li>
+        <li><strong>Órgãos da Administração direta</strong> (órgãos integrantes das pessoas políticas — União, estados, municípios e DF), incluindo <strong>secretarias e mesas</strong> encarregadas da função administrativa nos Poderes Legislativo e Judiciário</li>
+        <li><strong>Entidades da Administração indireta</strong>: autarquias, fundações públicas, empresas públicas e sociedades de economia mista</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Critério formal adotado pelo Brasil (Alexandrino e Paulo):</strong> a Administração Pública é o conjunto de órgãos, pessoas jurídicas e agentes que o <strong>ordenamento jurídico identifica como Administração</strong>, não importa a atividade que exerçam. A natureza da atividade é irrelevante: é Administração Pública aquilo que o direito assim considera. Isso corrige imprecisões: existem pessoas jurídicas privadas que exercem função administrativa (ex.: <strong>concessionárias</strong> de serviço público — que não integram a Administração) e entidades administrativas que não prestam serviço público (ex.: empresas públicas e sociedades de economia mista exploradoras de atividade econômica).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Sentido objetivo, material ou funcional
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Corresponde às <strong>diversas atividades finalísticas</strong> compreendidas na função administrativa — as atividades consideradas próprias dessa função. São <strong>quatro atividades</strong>, todas disciplinadas por regras e princípios administrativos:
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Atividade</th><th>Conceito</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Fomento</strong></td><td>Incentivo à <strong>iniciativa privada</strong> de interesse ou utilidade pública</td><td>Auxílios financeiros ou subvenções, financiamentos sob condições especiais, favores fiscais, repasses de recursos, benefícios</td></tr>
+        <tr><td><strong>Polícia administrativa (poder de polícia)</strong></td><td>Imposição de <strong>restrições, limitações ou condicionamentos</strong> ao exercício das atividades privadas em prol do interesse coletivo</td><td>Fiscalização, expedição de licenças, sanções, autorizações</td></tr>
+        <tr><td><strong>Serviço público</strong></td><td>Toda atividade <strong>concreta e imediata</strong> que a Administração executa, direta ou indiretamente, para satisfazer necessidades coletivas, sob <strong>regime jurídico predominantemente público</strong></td><td>Telecomunicação; instalação e fornecimento de energia elétrica; transporte coletivo</td></tr>
+        <tr><td><strong>Intervenção administrativa</strong></td><td>Em sentido amplo, três espécies: (i) <strong>intervenção indireta</strong> (regulamentação e fiscalização da atividade econômica privada); (ii) <strong>intervenção direta</strong> (atuação do Estado no domínio econômico, em geral via empresas estatais); (iii) <strong>intervenção na propriedade privada</strong> (atos concretos sobre destinatários específicos)</td><td>Desapropriação, servidão administrativa, tombamento, ocupação temporária</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-danger">
+    <div class="callout-icon">❌</div>
+    <div><strong>Limite (Di Pietro):</strong> a função administrativa corresponde somente à atividade sujeita, <strong>total ou predominantemente, ao regime de direito público</strong>. Como a atuação direta do Estado no domínio econômico ocorre com predomínio do direito privado, ela <strong>não seria função administrativa</strong> — restando, propriamente, a primeira e a última espécies de intervenção.</div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Conceito de Di Pietro (sentido material/objetivo)</div>
+    <div class="card-text">
+      Administração pública é <strong>"a atividade concreta e imediata que o Estado desenvolve, sob regime jurídico total ou parcialmente público, para a consecução dos interesses coletivos"</strong>.
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Sentido amplo × sentido estrito
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Sentido amplo</th><th>Sentido estrito</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Subjetivamente</strong></td><td>Órgãos governamentais supremos (Governo) + órgãos administrativos subordinados</td><td>Apenas os <strong>órgãos e entidades administrativas</strong> que exercem a função administrativa</td></tr>
+        <tr><td><strong>Objetivamente</strong></td><td>Função <strong>política</strong> + função <strong>administrativa</strong></td><td>Apenas a <strong>função administrativa</strong></td></tr>
+        <tr><td><strong>Inclui</strong></td><td>Órgãos governamentais superiores + órgãos administrativos + entidades administrativas</td><td>Órgãos e entidades encarregados da execução dos planos de governo</td></tr>
+        <tr><td><strong>Exclui</strong></td><td>—</td><td>Os <strong>órgãos de governo</strong>, que desenvolvem a função política</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Em sentido <strong>estrito</strong> e sob o aspecto <strong>subjetivo</strong>, a administração pública compreende <strong>apenas os órgãos administrativos, excluídos os órgãos governamentais</strong> (CAPES/2024). E cuidado com a inversão clássica: <strong>subjetivo = quem / sujeitos</strong>; <strong>objetivo = natureza da atividade</strong> (TRF 1/2017).
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Atividades-meio × atividades-fim:</strong> o aparato estatal distingue a <strong>atividade-fim</strong> (prestação de serviços diretos à população) da <strong>atividade-meio</strong> (manutenção interna do aparelhamento).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — REGIME JURÍDICO ADMINISTRATIVO                      -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Regime Jurídico Administrativo</div>
+  </div>
+  <div class="sec-subtitle">Prerrogativas (poderes e privilégios) × restrições (sujeições e amarras) do Estado</div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Bizu essencial</div>
+    <div class="mnemonic-content">
+      Supremacia do interesse público (prerrogativas) + Indisponibilidade do interesse público (sujeições)
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">Supremacia do interesse público</div>
+      <div class="card-text">
+        <strong>Prerrogativas</strong> (poderes e privilégios). Fundamenta a posição de <strong>superioridade</strong> do Estado para garantir que as necessidades da coletividade <strong>prevalecam sobre vontades individuais</strong>.<br><br>
+        Exemplos de atos de autoridade: aplicação de <strong>multas de trânsito</strong>, <strong>desapropriação</strong> de imóveis, <strong>alteração unilateral de contratos administrativos</strong>.
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--red);">
+      <div class="card-title" style="color:var(--red);">Indisponibilidade do interesse público</div>
+      <div class="card-text">
+        <strong>Restrições</strong> (sujeições e amarras). O administrador <strong>não é "dono" do patrimônio público</strong> — é apenas <strong>gestor dos interesses do povo</strong>.<br><br>
+        Exemplos de sujeições: obrigatoriedade de realizar <strong>concurso público</strong>; dever de fazer <strong>licitação</strong> para todas as compras e obras.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Público × privado — a grande diferença:</strong> enquanto o particular pode fazer <strong>tudo o que a lei não proíbe</strong>, a Administração Pública só pode fazer <strong>exatamente o que a lei autoriza</strong> (princípio da estrita legalidade).</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Elemento</th><th>Público (Estado)</th><th>Privado (cidadão)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Relação</strong></td><td><span class="tag tag-blue">Verticalidade</span> (superioridade)</td><td>Horizontalidade (igualdade)</td></tr>
+        <tr><td><strong>Poderes</strong></td><td>Estrita legalidade (submissão à lei)</td><td>Autonomia e vontade (liberdade)</td></tr>
+        <tr><td><strong>Império</strong></td><td><span class="tag tag-blue">Prerrogativas de império e atos unilaterais</span></td><td>Ninguém tem império sobre o outro</td></tr>
+        <tr><td><strong>Contratação</strong></td><td>Exige <span class="tag tag-green">concurso público e licitação</span></td><td>Contrata e demite quem quiser</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Poder extroverso</div>
+    <div class="card-text">
+      Permite à Administração <strong>impor sua vontade unilateralmente sobre os particulares</strong>. Ao contrário do setor privado (em que as partes são iguais), aqui o Estado atua um degrau acima do cidadão para exercer seu <strong>"poder de império"</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O regime de direito público <strong>NÃO é regido pela autonomia na escolha dos valores nem pela disponibilidade dos interesses em conflito</strong> — exatamente o contrário: baseia-se na supremacia e na indisponibilidade do interesse público (TCE PE/2017).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Obras para passagem de cabos de energia sobre propriedade privada, em benefício da coletividade, expressam o regime jurídico-administrativo: <strong>prerrogativas da Administração para agir em prol da coletividade, ainda que contra direitos individuais</strong> (Fortaleza CE/2017).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Contexto: direito público × direito privado
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Direito público</th><th>Direito privado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Relações</strong></td><td>Estado vs. indivíduos</td><td>Relações entre indivíduos</td></tr>
+        <tr><td><strong>Característica</strong></td><td><span class="tag tag-blue">Verticalidade</span></td><td>Horizontalidade</td></tr>
+        <tr><td><strong>Regra</strong></td><td><span class="tag tag-blue">Estrita legalidade</span></td><td>Autonomia da vontade</td></tr>
+        <tr><td><strong>Exemplos</strong></td><td>Constitucional, tributário, administrativo</td><td>Direito civil, direito comercial</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Não existe aplicação "pura":</strong> a divisão entre direito público e privado é <strong>didática</strong>. O direito privado aplica-se <strong>subsidiariamente</strong> (ex.: contratos administrativos) ou <strong>predominantemente</strong> (ex.: empresas estatais exploradoras de atividade econômica, como Petrobrás e Banco do Brasil). Mas o Estado <strong>nunca</strong> atua com exclusividade de direito privado — ex.: o Banco do Brasil segue o direito privado, mas ainda se submete a regras de direito público, como o dever de realizar concurso público.</div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Fomento e o entendimento da Cebraspe</div>
+    <div class="card-text">
+      <strong>Fomento</strong> é o estímulo estatal à iniciativa privada de utilidade pública via financiamentos e benefícios fiscais. Entidades do <strong>terceiro setor</strong> (OS e OSCIPs) exercem <strong>atividades privadas</strong> — o Estado apenas <strong>fomenta, sem delegar</strong> (não há delegação de atividade administrativa, mas mero fomento; Di Pietro fala em "serviço social autônomo").<br><br>
+      <strong>Conflito de interpretação:</strong> o Cebraspe foca no <strong>objetivo (interesse público)</strong> e não na natureza privada da entidade — para a banca, garantir o interesse coletivo torna o fomento uma <strong>missão primordial</strong> do Estado. Doutrinadores como Di Pietro, por serem atividades privadas e sem delegação, não as consideram atividades primordiais.<br><br>
+      <strong>Como acertar na prova:</strong> se a questão chamar fomento de <strong>"missão precípua" do Estado, considere como CORRETO</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      • <strong>Elementos do Estado:</strong> povo, território e governo soberano (DPE RO/2022)<br>
+      • <strong>Sentido subjetivo (quem)</strong> × <strong>sentido objetivo (o que)</strong> — a banca adora inverter (PGE PE/2019, TRF 1/2017)<br>
+      • <strong>Sentido estrito:</strong> só órgãos administrativos; exclui órgãos de governo (CAPES/2024)<br>
+      • <strong>Critério formal (Brasil):</strong> Administração é o que o ordenamento define como tal, independente da atividade (Alexandrino e Paulo)<br>
+      • <strong>Fontes:</strong> lei (primária, em sentido amplo) + jurisprudência, doutrina e costumes (secundárias); exceções de jurisprudência como fonte primária: <strong>súmulas vinculantes</strong> (art. 103-A) e <strong>controle concentrado</strong> (art. 102, § 2º) — efeitos erga omnes<br>
+      • <strong>Supremacia + indisponibilidade:</strong> prerrogativas e sujeições do regime jurídico administrativo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      • <strong>República</strong>: eletividade, temporalidade, representatividade popular, responsabilidade do governante · <strong>Monarquia</strong>: hereditariedade, vitaliciedade, irresponsabilidade<br>
+      • <strong>Federação:</strong> soberania é do todo (Estado federal); entes têm apenas autonomia; sem hierarquia entre entes; secessão vedada (cláusula pétrea)<br>
+      • <strong>Art. 1º CF:</strong> não menciona a União — memorize o texto literal<br>
+      • <strong>Territórios Federais:</strong> não têm autonomia política, não integram a Federação<br>
+      • <strong>Todos os Poderes exercem função administrativa;</strong> Executivo não exerce função jurisdicional<br>
+      • <strong>Governo:</strong> formal (conjunto de Poderes e órgãos constitucionais), material (funções estatais básicas), operacional (condução política dos negócios públicos)<br>
+      • <strong>Quatro atividades do sentido objetivo:</strong> fomento, polícia administrativa, serviço público e intervenção administrativa<br>
+      • <strong>Fomento como "missão precípua"</strong> (Cebraspe) = correto
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-text">
+      • Constituição <strong>não é elemento</strong> do Estado — é produto do Estado de Direito<br>
+      • "Coisa julgada administrativa" ≠ coisa julgada (não impede revisão judicial)<br>
+      • Ato de império (multas, desapropriação, alteração unilateral) demonstra a <strong>verticalidade</strong> e a supremacia<br>
+      • Particular pode tudo o que a lei não proíbe; Administração só o que a lei autoriza<br>
+      • O Judiciário nunca julga atos do Executivo? Não: no sistema inglês (adotado no Brasil), <strong>todo litígio</strong> pode ser levado ao Judiciário (inafastabilidade — art. 5º, XXXV)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> domine as distinções subjetivo × objetivo, amplo × estrito, soberania × autonomia e as duas bases do regime jurídico administrativo (supremacia + indisponibilidade). Essas são as pegadinhas recorrentes de Cebraspe e FCC.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>
