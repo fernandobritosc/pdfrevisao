@@ -19,9 +19,9 @@ e pergunte qual processar (tool `question`).
 
 ## Fatos operacionais (deste ambiente)
 
-- Raiz do projeto: `C:\Concurso\Resumo_estudos` (é o repo git, branch `main`).
-- Python p/ conversão (PyMuPDF/fitz): `C:\Users\fernando.brito\AppData\Local\hermes\hermes-agent\venv\Scripts\python.exe`
-- Surge: `& "C:\nodejs-portable\npx.cmd" surge ...` com `$env:SURGE_LOGIN="fernandobritosc@gmail.com"`.
+- Raiz do projeto: `C:\Programação\hermes\PDF Revisão` (é o repo git, branch `main`).
+- Python p/ conversão (PyMuPDF/fitz): `C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe`
+- Surge: `& "C:\Program Files\nodejs\npx.cmd" surge ...` com `$env:SURGE_LOGIN="fernandobritosc@gmail.com"`.
   - `--force` NÃO é argumento válido do surge — nunca usar.
 - Repo remoto: `https://github.com/fernandobritosc/pdfrevisao.git` (`origin`, branch `main`).
 - `.gitignore` já exclui `*.pdf` e `Resumo_estudos.rar`.
@@ -101,7 +101,7 @@ Confirmar que o push saiu (`origin/main` avançou). NUNCA commitar PDFs
 
 ```powershell
 $env:SURGE_LOGIN="fernandobritosc@gmail.com"
-& "C:\nodejs-portable\npx.cmd" surge "C:\Concurso\Resumo_estudos\Resumo_estudos" resumos-hermes.surge.sh
+& "C:\Program Files\nodejs\npx.cmd" surge "C:\Programação\hermes\PDF Revisão\Resumo_estudos" resumos-hermes.surge.sh
 ```
 **NUNCA** publicar a raiz `PDF Revisão` inteira. Depois verificar HTTP 200:
 
