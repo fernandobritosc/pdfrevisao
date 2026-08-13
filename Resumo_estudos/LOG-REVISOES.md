@@ -11,7 +11,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-09
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Removida a seção 4 "Questões comentadas" (18 questões) — resumos não devem conter questões.
 - Removida a seção 5 "Gabarito final" (tabela) — usuário resolve questões no TEC.
 - Renumeradas as seções: "Pontos que mais caem em prova" virou seção 4 (sidebar atualizada).
@@ -24,7 +24,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-09
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 2 (Âmbito de aplicação): adicionado card "Recursos de organismos internacionais (art. 1º, § 3º)"
   com conteúdo de estudo (aprendizado + base legal + 3 alíneas) convertido de questão do TEC.
 - Corrigida imprecisão no callout "Não se aplica (em regra)": removida a menção a "recursos de
@@ -36,7 +36,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-09
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Princípios, objetivos e regras técnicas): adicionada subseção
   "Serviços contínuos com dedicação exclusiva de mão de obra (art. 6º, XVI)"
   com conteúdo de estudo (aprendizado + base legal das alíneas a/b/c) convertido
@@ -53,7 +53,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-09
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3: adicionada subseção "Agentes públicos — requisitos e vedações (art. 7º)"
   com conteúdo de estudo convertido de questão do TEC (TSE 2024): vedações de parentesco
   até o 3º grau (art. 7º, III), requisitos I e II, e pegadinha (primos = 4º grau não vedam).
@@ -63,7 +63,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-09
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 5 (Incidência de temas): novo contador "Diálogo competitivo: 1". Tema já coberto
   na seção 3 (definição art. 6º, XLII + etapas art. 32); nenhum detalhe novo adicionado.
 
@@ -71,7 +71,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-09
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (subseção "Segregação de funções"): corrigida a base legal de "art. 8º" para
   "art. 7º, § 1º" (fundamento principal do princípio), com destaque para o detalhe novo da
   questão FCC TRT-20 (2024): vedação de designação do mesmo agente para funções suscetíveis
@@ -82,7 +82,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-09
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (subseção "Modalidades (art. 28)"): adicionado callout-info "Leilão — procedimento
   simplificado (art. 31, § 4º)" com conteúdo de estudo convertido de questão do TEC (TSE 2024):
   sem registro cadastral prévio, sem fase de habilitação, homologação após lances + fase recursal
@@ -254,7 +254,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Modalidades — art. 28): adicionado card "Pregão e serviços comuns de engenharia"
   convertido de questão do TEC (FCC 2024 — TRT-20): pregão obrigatório para bens/serviços comuns
   (art. 6º, XLI) e facultativo para serviços comuns de engenharia (art. 29, parágrafo único);
@@ -270,7 +270,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Modalidades — art. 28): callout "Leilão" complementado com detalhes novos de questão
   do TEC (FCC 2024 — TRT-20): leilão pode ser cometido a leiloeiro oficial ou servidor designado
   (art. 31, caput) e edital pode ser divulgado por outros meios para ampliar publicidade (art. 31,
@@ -279,7 +279,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (adjudicação compulsória): adicionado card "Revogação e anulação após as fases de
   julgamento e habilitação (art. 71)" convertido de questão do TEC (TSE): autoridade superior pode
   revogar por conveniência e oportunidade mesmo após julgamento/habilitação + recursos exauridos
@@ -290,7 +290,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Fases do procedimento): adicionado card "Prazos mínimos para apresentação de propostas
   e lances (art. 55)" convertido de questão do TEC (TRT-20): prazos dependem do tipo de objeto e
   do critério de julgamento, não da modalidade; tabela completa (bens 8/15; serviços e obras comuns
@@ -300,7 +300,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Contratação direta): adicionado card "Inexigibilidade por fornecedor exclusivo
   (art. 74, I e § 1º)" convertido de questão do TEC (TRF-6): demonstração da inviabilidade de
   competição por atestado/contrato de exclusividade, declaração do fabricante ou outro documento
@@ -309,7 +309,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Contratação direta): adicionado gotcha "Art. 72, I: atenção à lista dupla" com detalhe
   de questão do TEC (TRT-20): art. 72, I exige ETP e análise de riscos; matriz de repartição de
   riscos NÃO consta do art. 72 (pertence à contratação integrada/semi-integrada — arts. 22 e 46).
@@ -318,7 +318,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Procedimentos auxiliares): adicionado card "Registro de preços e critério de julgamento
   (art. 82, V)" convertido de questão do TEC (CEBRASPE/TRF-6 2025): SRP = concorrência ou pregão
   com critério menor preço ou maior desconto; maior retorno econômico é exclusivo de contrato de
@@ -327,7 +327,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Procedimentos auxiliares): adicionado card "Credenciamento × pré-qualificação
   (art. 6º, XLIII e XLIV; art. 79)" convertido de questão do TEC (CEBRASPE/TRF-6 2025): distinção
   dos conceitos (descrição de "procedimento seletivo prévio à licitação" = pré-qualificação) e
@@ -337,7 +337,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Prorrogação, alteração e execução contratual): adicionado card "Vigência dos contratos —
   regras especiais (arts. 107-114)" convertido de questão do TEC (FCC 2024 — TRT-20): prorrogação
   sucessiva de contínuos (art. 107, teto decenal), prazo indeterminado só em monopólio (art. 109),
@@ -348,7 +348,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Serviços contínuos com dedicação exclusiva de mão de obra): adicionado card
   "Asseguração de obrigações trabalhistas (art. 121, § 3º)" convertido de questão do TEC (TSE):
   medidas I a V (caução/fiança/seguro-garantia, condicionar pagamento à quitação, depósito em
@@ -359,7 +359,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 5 (Incidência de temas): novo contador "Preposto na execução (art. 118): 1". Conteúdo
   (preposto aceito pela Administração no local da obra/serviço) já coberto no card de Execução;
   questão do TEC não trouxe detalhe novo.
@@ -369,7 +369,7 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Alteração contratual — arts. 124-130): reforçado bullet da transfiguração do objeto
   (art. 126) com detalhe de questão do TEC (CEBRASPE/TRF-6 2025): vedação vale em qualquer caso,
   inclusive alterações consensuais, sob pena de burla à licitação (TCU).
@@ -377,55 +377,55 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 5 (Incidência de temas): novo contador "Alteração contratual — unilateral e consensual
   (art. 124): 1". Conteúdo (art. 124, I unilateral / II por acordo) já coberto no card de Alteração
   contratual; questão do TRF-6 não trouxe detalhe novo.
 
 ## 2026-08-10
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Prorrogação, alteração e execução contratual): adicionado card "Formalização do termo
   aditivo (art. 132)" convertido de questão do TEC (TRF-6): formalização é condição para a execução,
   exceto em justificada necessidade de antecipação de efeitos (formalização em até 1 mês).
 - Seção 5 (Incidência de temas): novo contador "Formalização do termo aditivo (art. 132): 1".
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Alteração contratual): adicionado card "Apostila — registros que não caracterizam alteração
   (art. 136)" convertido de questão do TEC (CEBRASPE/TSE 2024): apostila dispensa termo aditivo nas
   hipóteses I a IV (reajuste/repactuação, atualizações/penalizações, alteração de razão/denominação
   social, empenho de dotações orçamentárias).
 - Seção 5 (Incidência de temas): novo contador "Apostila (art. 136): 1".
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Execução contratual): adicionado card "Garantias contratuais (arts. 96-98 e 137, § 4º)"
   convertido de questão do TEC (TSE): modalidades (caução, seguro-garantia, fiança bancária, título de
   capitalização); escolha da modalidade é do contratado; garantia depende de previsão no edital;
   emitentes devem ser notificados do início de processo de apuração de descumprimento (art. 137, § 4º).
 - Seção 5 (Incidência de temas): novo contador "Garantias contratuais (arts. 96-98 e 137, § 4º): 1".
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Execução contratual): adicionado card "Recebimento do objeto (art. 140)" convertido de
   questão do TEC (CEBRASPE/TSE 2024): obras/serviços recebidos provisoriamente mediante termo detalhado
   (cumpridas exigências técnicas); compras recebidas provisoriamente de forma sumária; definitivo por
   servidor/comissão com termo detalhado; prazos/métodos definidos em regulamento ou contrato.
 - Seção 5 (Incidência de temas): novo contador "Recebimento do objeto (art. 140): 1".
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Sanções): adicionado card "Reabilitação do licitante/contratado (art. 163)" convertido de
   questão do TEC (CEBRASPE/TSE 2024): 5 requisitos cumulativos (reparação integral do dano, pagamento
   da multa, prazo mínimo de 1 ano no impedimento/3 anos na inidoneidade, condições do ato punitivo,
   análise jurídica prévia); pegadinha: só dano+multa não bastam.
 - Seção 5 (Incidência de temas): novo contador "Reabilitação (art. 163): 1".
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção 3 (Sanções): adicionado card "Dosimetria das sanções (art. 156, § 1º)" convertido de questão
   do TEC (CEBRASPE/TSE 2024): 5 critérios (natureza/gravidade, peculiaridades do caso concreto,
   agravantes/atenuantes, danos à Administração, programa de integridade); pegadinha: a lista completa
   vai além dos 3 fatores citados na assertiva.
 - Seção 5 (Incidência de temas): novo contador "Dosimetria das sanções (art. 156, § 1º): 1".
 
-**`Direito Administrativo/Aula 07/resumo-aula-07.html`**
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
 - Seção (Controle): complementado o card "Controle dos Tribunais de Contas e impugnação" com as linhas
   de defesa do art. 169 (1ª: servidores/empregados públicos, agentes de licitação e autoridades da
   governança; 2ª: assessoramento jurídico e controle interno; 3ª: órgão central de controle interno e
