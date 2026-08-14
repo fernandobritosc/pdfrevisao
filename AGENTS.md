@@ -78,6 +78,18 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
 
 ## Regras de qualidade
 
+- **Verticalização de enumerações**: toda enumeração de lista (I), II), 1), 2), a),
+  b), 1ª, 2ª, 3ª, ·) deve ficar em **linhas verticais próprias** iniciadas por
+  `→` com quebra `<br>` em todos os resumos. Exceção: citações legais ("art. 5º,
+  II", "(art. 22, § 2º, I)") e gabaritos não são verticalizados. É a regra padrão:
+  **aplicar proativamente**, sem o usuário pedir, sempre que identificar
+  enumeração em linha corrida em qualquer arquivo do Resumo_estudos.
+- **Espaçamento entre parágrafos**: manter o CSS `.card-text + .card-text { margin-top: .65rem; }`
+  em todos os resumos (já aplicado globalmente).
+- **HTML válido**: após qualquer edição, validar tags com
+  `check-all-html.py` (Temp/opencode) — o material deve ter **zero problemas**
+  de balanceamento. Bugs pré-existentes de gerador legado (auto_resumo.py:
+  `</div>` a mais fechando section) foram corrigidos; não reintroduzir.
 - **Sem seções de questões**: NÃO existir seção "Questões comentadas" nem "Gabarito final"
   no resumo. O usuário já resolve as questões no TEC.
 - **Conteúdo extraído dos PDFs**: sem improvisação.
