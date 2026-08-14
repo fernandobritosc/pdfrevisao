@@ -84,6 +84,13 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
   II", "(art. 22, § 2º, I)") e gabaritos não são verticalizados. É a regra padrão:
   **aplicar proativamente**, sem o usuário pedir, sempre que identificar
   enumeração em linha corrida em qualquer arquivo do Resumo_estudos.
+- **Verificação de dispositivo legal (regra crítica)**: **NUNCA** citar artigo,
+  inciso, parágrafo ou alínea de lei de memória — sempre conferir o texto exato
+  no arquivo-fonte da lei da pasta da aula (`L14133.md` para a Lei 14.133/2021,
+  `CLT.md` para a CLT etc.) ANTES de escrever no resumo. Número de inciso errado
+  (ex.: art. 6º, XXII vs XLII) anula a questão em prova — o usuário estuda pelo
+  material e falha assim prejudica a preparação. Corrigir imediatamente se o
+  usuário apontar divergência com o texto legal.
 - **Espaçamento entre parágrafos**: manter o CSS `.card-text + .card-text { margin-top: .65rem; }`
   em todos os resumos (já aplicado globalmente).
 - **HTML válido**: após qualquer edição, validar tags com
