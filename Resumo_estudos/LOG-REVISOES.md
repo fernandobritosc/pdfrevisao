@@ -9,6 +9,28 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+## 2026-08-14
+
+**`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**
+- Sessão TEC (11 questões): blocos/cards novos — locação de imóveis (arts. 2º, III; 51; 74, V);
+  instrumento de contrato facultativo e contrato verbal (art. 95, Decreto 12.343/2024);
+  meios alternativos de resolução de controvérsias (arts. 151-154); PMI (art. 81);
+  detalhes dos critérios de julgamento (arts. 34-35); detalhes de impugnação/linhas de defesa
+  (arts. 164, parágrafo único; 169, § 3º, I; 171, § 1º); saneamento × anulação, convalidação e
+  LINDB (arts. 71, 165, § 3º e 5º); competência exclusiva da inidoneidade (art. 156, § 6º, I).
+- **Correção crítica**: efeito suspensivo de recurso e pedido de reconsideração — material dizia
+  que não havia; o art. 168 manda o contrário (ambos têm efeito suspensivo). Corrigido no card de
+  recursos, na dica de prova e no resumo legado `aula 07/resumo-aula-07.html`.
+- Cards reforçados (tema fraco no TEC): formalização dos contratos (arts. 89-94);
+  alienação de bens (arts. 76-77); duração/vigência ampliada (arts. 105-114).
+- Seção 8 "Pontos que mais caem em prova" atualizada com os aprendizados da sessão.
+- Incidências: matriz de riscos 3x (🔴); serviços dedicação exclusiva 3x (🔴); linhas de defesa 2x;
+  revogação/anulação 2x; diálogo competitivo 2x; credenciamento/pré-qualificação 2x; + novas tags
+  (locação, art. 95, controvérsias, PMI, critérios de julgamento, formalização, alienação, recursos 165-168).
+- **Aula encerrada em 14/08/2026.**
+
+---
+
 ## 2026-08-09
 
 **`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**

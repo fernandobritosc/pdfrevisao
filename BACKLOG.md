@@ -30,3 +30,19 @@ mexe só nas seções finais/estruturais, não no conteúdo.
 Modelo já foi prototipado e cancelado (página `incidencia-tec.html` + card no
 index). Usuário está desenvolvendo a própria ideia — **não implementar** até ele
 trazer; retomar com ele, não sozinho.
+
+## Item C — Revisão dirigida pelas incidências 🔴 (antes da próxima leva de questões)
+
+**Registro de 14/08/2026 (encerramento da Aula 07 DA)**: antes de processar a
+próxima leva de questões TEC, o usuário deve bater/revisar os 5 temas de maior
+incidência da Aula 07 DA (cobrem ~40% da taxa de repetição do TEC):
+
+1. Serviços com dedicação exclusiva de mão de obra (3x)
+2. Matriz de riscos — arts. 22 e 103 (3x)
+3. Pregão e serviços comuns de engenharia (2x)
+4. Linhas de defesa/controle — arts. 169-171 (2x)
+5. Revogação e anulação do certame — art. 71 (2x)
+
+**Ação**: ao iniciar nova sessão de questões TEC de Licitações, mencionar ao
+usuário a revisão desses 5 pontos antes das questões (estão marcados 🔴/🟠 na
+seção "Incidência de temas (TEC)" do resumo).
