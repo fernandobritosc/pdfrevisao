@@ -11,6 +11,16 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-15
 
+**`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** — 2ª questão TEC colada
+- Questão CEBRASPE (sujeito paciente oracional × OD oracional) processada, sem referência à questão/banca.
+- Bloco novo na Seção 2: "Estima-se que tenham sido gastos..." — oração "que" = sujeito paciente oracional (substantiva subjetiva), "se" apassivador (voz passiva sintética), verbo na 3ª pessoa do singular; sem "se" vira OD oracional com sujeito oculto; conversão à passiva analítica; pegadinha: "se" reflexivo (Deu-se o direito / Arrogou-se o poder) e "se" indeterminador (PIS) não são apassivadores.
+- Incidência TEC: Identificação de funções sintáticas 2 (tag-red); novos temas Sujeito paciente oracional e "Se" apassivador × reflexivo (1 cada, tag-amber).
+- HTML validado (`erros: []`). Commit local (push apenas no encerramento da aula).
+
+---
+
+## 2026-08-15
+
 **`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** — 1ª questão TEC colada
 - Questão FGV (identificação de funções sintáticas) processada; a banca deu letra C, mas o gabarito mais adequado é anulação (sem resposta certa). Conteúdo integrado, sem referência à questão/banca.
 - Blocos de aprendizado nas seções temáticas: Seção 2 (núcleo do sujeito — "indicação"/"alunos" não são aposto nem advérbio), Seção 7 (locução adjetiva = função de adjetivo/adjunto adnominal), Seção 10 (aposto explicativo × complemento nominal: CN quase sempre preposicionado e dispensa vírgulas), Seção 11 (advérbio "rapidamente" × locução adjetiva "de mais qualidade"), Seção 13 (oração relativa = oração subordinada adjetiva).
