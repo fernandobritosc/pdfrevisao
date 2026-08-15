@@ -11,6 +11,15 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-15
 
+**`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** — AULA ENCERRADA
+- **Aula encerrada em 15/08/2026 (20:36)** — usuário não concluiu o ciclo de questões (3 coladas, todas com resultado negativo); voltará à base das matérias anteriores antes de retomar.
+- Aula 05 processada: 3 questões TEC integradas (sujeito posposto × complemento; "se" apassivador × reflexivo; locução adjetiva; aposto × CN; oração relativa; indefinido não indetermina) + incidência TEC com 10 temas.
+- Push realizado (aula encerrada — regra do AGENTS.md).
+
+---
+
+## 2026-08-15
+
 **`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** — 3ª questão TEC colada
 - Questão CEBRASPE (sujeito posposto × complemento direto) processada, sem referência à questão/banca.
 - Bloco novo na Seção 2: "Vigorava, portanto, a compreensão de que..." — sujeito posposto (ordem invertida), verbo intransitivo "vigorar" não pede complemento; método: identificar o sujeito ANTES do complemento ("o que é que vigorava?").
