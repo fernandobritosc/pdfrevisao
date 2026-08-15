@@ -119,6 +119,11 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 - **Separação de assuntos**: dentro de um mesmo bloco (card/callout/gotcha), cada
   assunto ocupa linha própria iniciada por **`→`** (quebra com `<br>`); não criar um
   novo bloco a cada assunto.
+- **Rótulo único (regra do usuário, 15/08/2026)**: os rótulos `📌 Aprendizado`,
+  `⚖️ Base legal` e `🚨 Pegadinha` aparecem **uma única vez por bloco/card** —
+  `📌 Aprendizado` só na **primeira linha**; as linhas seguintes usam apenas o nome
+  do assunto (ex.: `→ Estabilidade:`, `→ Prazo:`, `→ Acordo:`). NUNCA repetir o
+  rótulo `📌 Aprendizado` a cada linha de assunto.
 
 ### Tema repetido
 
