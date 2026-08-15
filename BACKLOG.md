@@ -55,7 +55,7 @@ Acompanhamento das metas abertas e atrasadas do plano do usuário:
 |----|-----------|---------|-----------|--------|
 | 2 | Português | Teórico e Exercícios | Sintaxe: termos da oração | Aberta |
 | 4 | Administração Pública | Exercícios | Direção. Liderança | ✅ Concluída em 15/08/2026 (aula encerrada; levas TEC processadas; incidências 🔴 registradas na Seção 12 do resumo) |
-| 7 | Direito Processual do Trabalho | Exercícios | Prazos processuais | Aberta |
+| 7 | Direito Processual do Trabalho | Exercícios | Prazos processuais | ✅ Concluída em 15/08/2026 (aula encerrada; ~26 questões TEC processadas; incidências 🔴 registradas na Seção 7 do resumo) |
 
 **Ação**: cobrar/progredir as metas abertas nas próximas sessões; oferecer suporte
 conforme a disciplina (ex.: Português e AP têm material no repositório; DPT

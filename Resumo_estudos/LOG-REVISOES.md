@@ -11,6 +11,19 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-15
 
+**`Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html`**
+- Sessão TEC processada (~26 questões, FCC/CEBRASPE/AOCP 2018-2024, com 1 anulada), bloco a bloco, integradas nas Seções 1-5.
+- Regras do usuário persistidas (15/08/2026) no AGENTS.md e na skill nova-aula: **rótulo único** (📌 Aprendizado só na 1ª linha; assuntos seguintes com `→ <strong>Nome:</strong>`) e **espaçamento `<br><br>`** entre parágrafos/assuntos (nunca `<br>` simples).
+- Conteúdo novo integrado: início do prazo no processo eletrônico (Lei 11.419/06, art. 4º, §§3º-4º); suspensão × interrupção; reinício em dia não útil (21/01 domingo → 22/01, sem devolução de dias); ato publicado no recesso não inicia prazo; férias coletivas dos Ministros do TST suspendem prazos recursais (art. 177, §1º, RITST + Súmula 262, II); mandados só após 07/01; bizu "diferença de dias ÷ 7" para dia da semana; NCPC 212 §2º e art. 190 CPC (negociação processual) inaplicáveis à JT (art. 2º, II, IN 39/16); prorrogação de prazos (art. 775, §1º); certificação do vencimento (art. 776) — card novo; prazo em dobro inaplicável (OJ 310, SDI-I) + quem tem dobro (DL 779/69 e MPT) — card novo; notificação postal (art. 841, §1º + Súmula 16, TST + art. 774, p.ú.) — card novo; edital na execução (art. 880, §3º: 2x em 48h, edital 5 dias); CNPJ/CPF não obrigatório na qualificação; nulidades: incompetência de matéria ex officio (art. 64, §1º, CPC), pré-questionamento (OJ 62, SDI-I), prejuízo processual do art. 794; CCP: reforma NÃO alterou, estabilidade altruísta, comissão 510-A (empresa, +200 empregados).
+- Quebras de linhas amontoadas com `→` + `<br><br>`: pegadinha CCP (4 assuntos), estabilidade (3), suspensão × interrupção (2), intimação eletrônica (3), efeito de cada grau (3).
+- Auditoria (a pedido do usuário): HTML validado (`erros: []`); dispositivos legais conferidos no material-fonte (arts. 770, 773, 775, 775-A, 786, 789, 794-798, 813, 840, 850, 852-B, 895, 222 CPC, 731 e 833 CLT); âncoras das 7 seções íntegras; removidas 5 referências a banca ("FCC") dos blocos de conteúdo; quebrada linha longa de intimação eletrônica.
+- Seção 7 "Incidência de temas (TEC)" arrumada: ordem decrescente de incidência, tag-red para 5+ (Suspensão 9, Atos processuais 7, CCP 5), nome completo da CCP (arts. 625-A a 625-H) e legenda de critério.
+- **Aula encerrada em 15/08/2026** — meta nº7 do plano (DPT — Prazos processuais, exercícios) concluída.
+
+---
+
+## 2026-08-15
+
 **`Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html`**
 - Sessões TEC de "Direção. Liderança" processadas (2 levadas: CNJ 29 questões — 22 acertos/7 erros — e
   leva TEC de liderança com ~30 questões coladas, bloco a bloco).
