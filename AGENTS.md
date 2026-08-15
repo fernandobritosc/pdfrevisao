@@ -119,6 +119,10 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 - **Separação de assuntos**: dentro de um mesmo bloco (card/callout/gotcha), cada
   assunto ocupa linha própria iniciada por **`→`** (quebra com `<br>`); não criar um
   novo bloco a cada assunto.
+- **Espaçamento entre parágrafos/assuntos (regra do usuário, 15/08/2026)**: quando
+  houver separação entre parágrafos ou assuntos, usar **`<br><br>`** (dupla quebra)
+  entre eles — texto colado (um único `<br>`) dificulta a leitura. Aplicar sempre
+  que houver mudança de parágrafo/assunto dentro de um card-text.
 - **Rótulo único (regra do usuário, 15/08/2026)**: os rótulos `📌 Aprendizado`,
   `⚖️ Base legal` e `🚨 Pegadinha` aparecem **uma única vez por bloco/card** —
   `📌 Aprendizado` só na **primeira linha**; as linhas seguintes usam apenas o nome

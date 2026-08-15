@@ -130,6 +130,8 @@ Quando o usuário colar questão(ões) do TEC de uma aula já resumida:
    - **Rótulo único**: `📌 Aprendizado` aparece **uma única vez** (primeira linha do
      bloco); cada assunto adicional em linha própria iniciada por `→` com apenas o
      nome do assunto (ex.: `→ Estabilidade:`, `→ Prazo:`). NUNCA repetir o rótulo.
+   - **Espaçamento entre parágrafos**: separar assuntos/parágrafos com **`<br><br>`**
+     (dupla quebra) — um único `<br>` deixa o texto colado e difícil de ler.
 3. Tema já coberto? Não reescrever o bloco — só adicionar **detalhe novo**
    (regra, exceção, artigo, pegadinha) se houver.
 4. Incrementar o contador do(s) tema(s) na seção **"Incidência de temas (TEC)"**
