@@ -11,6 +11,16 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-15
 
+**`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** — 1ª questão TEC colada
+- Questão FGV (identificação de funções sintáticas) processada; a banca deu letra C, mas o gabarito mais adequado é anulação (sem resposta certa). Conteúdo integrado, sem referência à questão/banca.
+- Blocos de aprendizado nas seções temáticas: Seção 2 (núcleo do sujeito — "indicação"/"alunos" não são aposto nem advérbio), Seção 7 (locução adjetiva = função de adjetivo/adjunto adnominal), Seção 10 (aposto explicativo × complemento nominal: CN quase sempre preposicionado e dispensa vírgulas), Seção 11 (advérbio "rapidamente" × locução adjetiva "de mais qualidade"), Seção 13 (oração relativa = oração subordinada adjetiva).
+- Incidência de temas (TEC) criada: Identificação de funções sintáticas 1 (tag-red); Aposto × CN, Locução adjetiva, Núcleo do sujeito, Oração relativa e Advérbio 1 cada (tag-amber).
+- HTML validado (`erros: []`). Commit local (push apenas no encerramento da aula, regra do AGENTS.md).
+
+---
+
+## 2026-08-15
+
 **`Português/Aula 04/resumo-aula-04-classe-palavras-verbos.html`** (nova aula)
 - Ciclo `/nova-aula` completo: PDFs convertidos para .md e excluídos (completo, simplificado, mapa mental, marcação do aprovado); typo normalizado (`aula-04-Classe de palavras - verbos`).
 - Resumo HTML criado com 16 seções no padrão do template (1 Verbo conceito/estrutura; 2 Conjugações e modelos; 3 Modo indicativo; 4 Modo subjuntivo; 5 Modo imperativo; 6 Formas nominais; 7 Tempos compostos; 8 Particípios; 9 Transitividade; 10 Classificação dos verbos; 11 Verbos que merecem atenção; 12 Correlação dos tempos verbais; 13 Locução verbal × tempo composto; 14 Vozes verbais; 15 Pontos que mais caem em prova; 16 Incidência de temas (TEC) — ordem padrão do Item A do BACKLOG).
