@@ -11,6 +11,22 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-15
 
+**`Português/Aula 04/resumo-aula-04-classe-palavras-verbos.html`** (nova aula)
+- Ciclo `/nova-aula` completo: PDFs convertidos para .md e excluídos (completo, simplificado, mapa mental, marcação do aprovado); typo normalizado (`aula-04-Classe de palavras - verbos`).
+- Resumo HTML criado com 16 seções no padrão do template (1 Verbo conceito/estrutura; 2 Conjugações e modelos; 3 Modo indicativo; 4 Modo subjuntivo; 5 Modo imperativo; 6 Formas nominais; 7 Tempos compostos; 8 Particípios; 9 Transitividade; 10 Classificação dos verbos; 11 Verbos que merecem atenção; 12 Correlação dos tempos verbais; 13 Locução verbal × tempo composto; 14 Vozes verbais; 15 Pontos que mais caem em prova; 16 Incidência de temas (TEC) — ordem padrão do Item A do BACKLOG).
+- Conteúdo-chave: querer × requerer (requeIro/requeIra, não derivado de querer); pôr e derivados (puser/pusesse/pusera); imperativo duplo (dize/diz, faze/faz, traze/traz, requere/requer); defectivos (abolir, precaver, reaver, falir, adequar — só nós/vós no presente); NÃO defectivos (caber, valer, redimir, polir, sortir, rir, escapulir, entupir, sacudir); verbos vicários (ser/fazer + demonstrativo); correlações ("Se eu pudesse, viajaria"; "Se eu puder, viajarei"; "Caso eu possa, viajarei"); locução verbal × tempo composto; vozes (ativa/analítica/sintética, VTD+SE, impossibilidade de conversão, passiva × indeterminação, causativos); "Não se espera que..." = sujeito paciente; "trago"/"chego" não existem.
+- HTML validado (`erros: []` / `restam abertos: []`); card Aula 04 adicionado na seção PT do `index.html`; título do índice para `?v=idx9`.
+
+**`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** (nova aula)
+- PDFs convertidos para .md e excluídos (completo, simplificado, marcação do aprovado).
+- Resumo HTML criado com 15 seções (1 Ordem direta e oração; 2 Sujeito — tipos; 3 Indeterminação e oração sem sujeito; 4 Sujeito × referente; 5 Objeto direto; 6 Objeto indireto; 7 Complemento nominal × adjunto adnominal; 8 Predicativos; 9 Tipos de predicado; 10 Vocativo e aposto; 11 Adjunto adverbial; 12 Agente da passiva; 13 Frase × oração × período; 14 Pontos que mais caem em prova; 15 Incidência de temas — penúltima/última na ordem padrão).
+- Conteúdo-chave: ordem direta SuVeCA; sujeito (simples/composto/oculto/oracional/paciente); pronome oblíquo como sujeito só com causativos/sensitivos (mandei-o sair, NÃO "mandei-lhe sair"); indeterminação (3ª plural, PIS com VTI/VI/VL, infinitivo impessoal); "trata-se de" sempre invariável; oração sem sujeito (haver impessoal contamina a locução); sujeito × referente ("Disseram que..." = oculto, não indeterminado); OD (pleonástico, interno, preposicionado — "a todos" é OD, não OI); CN × AA (sentido agente × paciente, substituição por adjetivo); predicativo × adjunto (teste da pronominalização do OD); tipos de predicado; aposto especificativo ("praia da Pipa") × adjunto; agente da passiva ("por/pelo/de"); frase × oração × período.
+- HTML validado (`erros: []` / `restam abertos: []`); card Aula 05 adicionado na seção PT do `index.html`.
+
+---
+
+## 2026-08-15
+
 **`Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html`**
 - Sessão TEC processada (~26 questões, FCC/CEBRASPE/AOCP 2018-2024, com 1 anulada), bloco a bloco, integradas nas Seções 1-5.
 - Regras do usuário persistidas (15/08/2026) no AGENTS.md e na skill nova-aula: **rótulo único** (📌 Aprendizado só na 1ª linha; assuntos seguintes com `→ <strong>Nome:</strong>`) e **espaçamento `<br><br>`** entre parágrafos/assuntos (nunca `<br>` simples).

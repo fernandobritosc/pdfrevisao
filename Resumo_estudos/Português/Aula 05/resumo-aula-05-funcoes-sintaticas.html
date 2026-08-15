@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Português Aula 05: Funções Sintáticas</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 1.5rem 2.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: .8rem;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .85rem;
+  font-weight: 700;
+  color: #92400e;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: block;
+  padding: .15rem 0;
+  border-bottom: 1px dashed rgba(217,119,6,.25);
+}
+.mnemonic-content span:last-child { border-bottom: none; }
+.mnemonic-content .mnem-high { color: var(--red); font-weight: 800; }
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Português — Aula 05</div>
+  <div class="sidebar-sub">Funções Sintáticas · Estratégia Concursos</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Ordem direta e oração</a>
+  <a href="#sec2">2. Sujeito — tipos</a>
+  <a href="#sec3">3. Indeterminação e oração sem sujeito</a>
+  <a href="#sec4">4. Sujeito × referente</a>
+  <a href="#sec5">5. Objeto direto</a>
+  <a href="#sec6">6. Objeto indireto</a>
+  <a href="#sec7">7. Complemento nominal × adjunto adnominal</a>
+  <a href="#sec8">8. Predicativos</a>
+  <a href="#sec9">9. Tipos de predicado</a>
+  <a href="#sec10">10. Vocativo e aposto</a>
+  <a href="#sec11">11. Adjunto adverbial</a>
+  <a href="#sec12">12. Agente da passiva</a>
+  <a href="#sec13">13. Frase × oração × período</a>
+  <a href="#sec14">14. Pontos que mais caem em prova</a>
+  <a href="#sec15">15. Incidência de temas</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">Fonte: Aula 05 - Funções Sintáticas (simplificado + completo)<br>Estratégia Concursos · Felipe Luccas</div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="header">
+  <h1>🧩 Português — Aula 05: Funções Sintáticas</h1>
+  <p>Análise sintática · Sujeito, complementos, adjuntos, predicados · Frase × oração × período · Material base: simplificado + completo · Estratégia Concursos · Felipe Luccas</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Ordem direta e oração</div></div>
+  <div class="sec-subtitle">A estrutura de base da oração: Sujeito + Verbo + Complemento (+ Adjuntos) — SuVeCA</div>
+
+  <div class="card">
+    <div class="card-title">Ordem direta (SuVeCA)</div>
+    <div class="card-text">
+      → <strong>Eu</strong> (sujeito) <strong>comprei</strong> (verbo) <strong>uma bicicleta</strong> (complemento) <strong>semana passada</strong> (adjunto)<br>
+      → <strong>Nós</strong> <strong>gostamos</strong> <strong>de comer</strong> em rodízios<br><br>
+      Na prática, os termos costumam ser <strong>invertidos e intercalados</strong> — a dica: ache o verbo, coloque a sentença na ordem direta e procure o sujeito de cada verbo.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Oração e forma oracional</div>
+    <div class="card-text">
+      → <strong>Oração</strong> é a frase que tem verbo<br>
+      → As funções sintáticas podem aparecer em <strong>forma oracional</strong> (com verbo): "O menino <strong>estudioso</strong> passa" (adjetivo) / "O menino <strong>que estuda</strong> passa" (oração adjetiva)<br>
+      → A análise é a mesma, independentemente da forma
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Sujeito — tipos</div></div>
+  <div class="sec-subtitle">Função sintática mais cobrada; termo essencial com o qual o verbo concorda</div>
+
+  <div class="hl">
+    <strong>Regra prática:</strong> o sujeito é o termo que <strong>"conjuga" o verbo</strong> — justifica o verbo estar naquela pessoa e número.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Definição</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Simples</strong></td><td>um núcleo (substantivo, pronome, numeral, infinitivo)</td><td><em>Mudaram as estações. Dois cães ferozes brigaram.</em></td></tr>
+        <tr><td><strong>Composto</strong></td><td>mais de um núcleo</td><td><em>Silvério e Everton são generosos.</em></td></tr>
+        <tr><td><strong>Oculto/elíptico/desinencial</strong></td><td>determinado, identificável pela desinência ou contexto</td><td><em>Encontramos mamãe.</em> (nós)</td></tr>
+        <tr><td><strong>Oracional</strong></td><td>oração com verbo no infinitivo (ou desenvolvimento); verbo fica no singular</td><td><em>Exportar mais é preciso.</em> (ISTO é preciso)</td></tr>
+        <tr><td><strong>Paciente</strong></td><td>sofre a ação (voz passiva)</td><td><em>João foi raptado por estudantes.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Núcleo × determinantes</div>
+    <div class="card-text">
+      → O sujeito tem um <strong>núcleo</strong> (termo central, normalmente substantivo/pronome) e <strong>determinantes</strong> que o especificam (artigos, numerais, pronomes, adjetivos, locuções adjetivas)<br>
+      → Em sujeito extenso, localize o núcleo e confira a concordância: "Aquelas <strong>dezenove discutíveis leis</strong>... serão votadas" → núcleo "leis"<br><br>
+      Método de análise: 1) localize o verbo; 2) identifique pessoa e número; 3) localize o sujeito (o "quem" que concorda).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Pronome oblíquo como sujeito</div>
+    <div class="card-text">
+      Exceção: com verbos <strong>causativos</strong> (deixar, mandar, fazer) e <strong>sensitivos</strong> (ver, ouvir, sentir), o pronome oblíquo átono pode ser <strong>sujeito do infinitivo</strong>:<br><br>
+      → <em>Mandei-o sair</em> (="mandei que ele saísse" — "o" é sujeito de "sair")<br>
+      → <em>Deixe-me estudar / Ela o fez desistir / Mandei-a ir embora</em><br><br>
+      <strong>Não vale</strong>: "mandei-lhe sair", "mandei ele sair". E essas construções <strong>NÃO são locuções verbais</strong> — são duas orações em período composto.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "A liderança é uma questão de redução da incerteza do grupo, e o comportamento pelo qual se consegue essa redução é a escolha" — "A liderança" só é sujeito do primeiro "é"; no segundo, o sujeito é "o comportamento". Confira o sujeito de <strong>cada verbo</strong>.
+  </div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Indeterminação do sujeito e oração sem sujeito</div></div>
+  <div class="sec-subtitle">Não saber QUEM pratica a ação × não haver sujeito nenhum</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Forma de indeterminação</th><th>Estrutura</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>3ª pessoa do plural</strong></td><td>verbo no plural sem agente</td><td><em>Dizem que ela teve um caso. Roubaram mais de 20 milhões.</em></td></tr>
+        <tr><td><strong>PIS</strong></td><td>VTI / VI / VL + SE</td><td><em>Precisa-se de médicos. Respira-se melhor no campo. Sempre se fica nervoso.</em></td></tr>
+        <tr><td><strong>Infinitivo impessoal</strong></td><td>ação descrita de forma vaga</td><td><em>Praticar esportes é importante.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">"Tratar-se de" — a expressão que despenca em prova</div>
+    <div class="card-text">
+      → "Trata-se de" (VTI + SE) é <strong>sempre invariável</strong> quando tem sentido de assunto/referência ou substitui o "ser" → <strong>sujeito indeterminado</strong><br>
+      → O termo após "tratar-se de" <strong>jamais será sujeito</strong> (sujeito não começa com preposição; o "de" é exigido pelo verbo): "trata-se de duas moedas de cobre"
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card" style="border-color:var(--red);">
+      <div class="card-title" style="color:var(--red);">Oração sem sujeito</div>
+      <div class="card-text">
+        → <strong>Fenômenos da natureza:</strong> Choveu ontem. Anoiteceu.<br>
+        → <strong>Verbos impessoais</strong> com sentido de tempo/estado: Faz 2 anos... Faz frio. Está quente aqui. Parecia cedo demais.<br>
+        → <strong>Haver impessoal</strong> (existir, ocorrer, tempo decorrido) — o mais cobrado: "Há pessoas ruins" — "pessoas ruins" é <strong>objeto direto</strong>, não sujeito<br>
+        → <strong>Ser impessoal:</strong> São 7 horas.<br>
+        → <strong>Basta/chega</strong> de brigas; era uma vez; dói muito nas minhas costas
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">Haver impessoal contamina a locução</div>
+      <div class="card-text">
+        → Haver impessoal (ou substituto) fica <strong>sempre no singular</strong> e <strong>contamina o auxiliar</strong>: "Há mil pessoas", "Deve haver mil pessoas"<br>
+        → Verbo pessoal flexiona: "Existem mil pessoas", "Devem existir mil pessoas"<br><br>
+        Na troca "haver" → "existir", o termo que era OD vira <strong>sujeito</strong>: "Há cidadãos" / "cidadãos existem".
+      </div>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Sujeito <strong>indeterminado ≠ sujeito oculto</strong>: o oculto/desinencial é <strong>determinado</strong> (recuperável pela desinência ou contexto); o indeterminado não é recuperável. "Os ladrões foram presos. Roubaram 20 milhões" — no segundo período o sujeito é <strong>oculto</strong> (sabemos: os ladrões).
+  </div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Sujeito × referente</div></div>
+  <div class="sec-subtitle">Função sintática (estrutural) × relação semântica (contexto)</div>
+
+  <div class="card">
+    <div class="card-title">Nem sempre coincidem</div>
+    <div class="card-text">
+      → <strong>Sujeito:</strong> papel funcional do termo na oração<br>
+      → <strong>Referente:</strong> a quem a ideia se refere no contexto<br><br>
+      "Os meninos jogam futebol. <strong>Jogam</strong> futebol todos os dias." — no 2º período, "os meninos" são o referente, mas o <strong>sujeito sintático é oculto</strong>.<br><br>
+      "Vi <strong>os meninos</strong> que jogam futebol" — na oração adjetiva, o referente é "os meninos", mas o <strong>sujeito sintático é "que"</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Disseram que escrever aconteceu naturalmente" — o sujeito de "disseram" <strong>não é indeterminado</strong>: é <strong>oculto</strong> (os escritores, recuperáveis do contexto). A banca adora chamar de indeterminado um sujeito que é só oculto.
+  </div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Objeto direto (OD)</div></div>
+  <div class="sec-subtitle">Complemento dos VTD, sem preposição; pode ser oracional, pleonástico, interno e preposicionado</div>
+
+  <div class="card">
+    <div class="card-title">Formas do OD</div>
+    <div class="card-text">
+      → <strong>Simples:</strong> Comprei <strong>bombons</strong> na promoção.<br>
+      → <strong>Oracional:</strong> Pedi <strong>que me ajudassem</strong> (Pedi ISTO) — subordinada substantiva objetiva direta<br>
+      → <strong>Pleonástico</strong> (repetido, ênfase): "Esta moto, <strong>comprei-a</strong> na promoção"<br>
+      → <strong>Interno/cognato</strong> (mesmo campo semântico do verbo): "vivi <strong>uma vida</strong> de desafios", "lutar <strong>a boa luta</strong>", "sangrar <strong>o sangue</strong> guerreiro"<br><br>
+      Verbos intransitivos (dormir, viver, sangrar, chover) podem ter OD interno — só nessa construção.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">OD preposicionado</div>
+    <div class="card-text">
+      A preposição aparece sem ser exigida pelo verbo, por <strong>clareza, eufonia ou ênfase</strong>:
+      → Com pronome oblíquo tônico ou "quem": "Nem ele entende <strong>a nós</strong>"<br>
+      → Com infinitivo após ensinar/aprender: "me ensinar <strong>a surfar</strong>"<br>
+      → Para evitar <strong>ambiguidade</strong>: "À onça o caçador surpreendeu"<br>
+      → <strong>Reciprocidade</strong>: "ofenderam-se uns aos outros"<br>
+      → Com indefinidos de pessoa, nomes próprios, "ambos", exaltação de sentimento, ênfase: "amar <strong>a Deus</strong>", "Contratei <strong>a ambos</strong>", "Busquei <strong>a José</strong>"<br><br>
+      <strong>Implicação semântica:</strong> "Comi o pão" (todo) × "Comi do pão" (parte) — <strong>partitivo</strong>; "Cumpri o dever" × "Cumpri com o dever" (ênfase).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Absolveria <strong>a todos</strong>" — "a todos" é <strong>objeto direto preposicionado</strong>, e não objeto indireto (absolver alguém DE algo; o OI pede "de"). Com "todos", "quem" e "ninguém" o OD aceita preposição. E em "temem a lobisomem e feiticeiras", a preposição pode ser suprimida (reforço de sentimento, não exigência do verbo).
+  </div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Objeto indireto (OI)</div></div>
+  <div class="sec-subtitle">Complemento dos VTI, com preposição; também oracional e pleonástico</div>
+
+  <div class="card">
+    <div class="card-title">Formas do OI</div>
+    <div class="card-text">
+      → <strong>Simples:</strong> Aludi <strong>ao episódio</strong>. Concordo <strong>com você</strong>.<br>
+      → <strong>Oracional:</strong> "Nenhum gato gosta <strong>de que puxem seu rabo</strong>" (desenvolvida) / "Não gosto <strong>de dormir tarde</strong>" (reduzida)<br>
+      → <strong>Pleonástico:</strong> "Aos meus amigos, <strong>dou-lhes</strong> tudo que posso"<br><br>
+      Ex.: "oferece <strong>a fregueses mais antigos</strong>" = OI de "oferecer" (oferecer algo A alguém).
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>
+    <strong>Distinção útil:</strong> OI completa o sentido de um <strong>verbo</strong> transitivo indireto; complemento nominal completa o sentido de um <strong>nome</strong> (substantivo, adjetivo ou advérbio). Mesma preposição, funções diferentes.
+  </div></div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Complemento nominal × adjunto adnominal</div></div>
+  <div class="sec-subtitle">O confronto queridinho das bancas; só há dúvida real num único caso</div>
+
+  <div class="hl">
+    <strong>Essência:</strong> o <strong>adjunto adnominal não é exigido</strong> (é acrescentado); o <strong>complemento nominal é obrigatório</strong> para completar o sentido de um nome (substantivo abstrato, adjetivo ou advérbio).
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Complemento nominal</th><th>Adjunto adnominal</th></tr></thead>
+      <tbody>
+        <tr><td>Se liga a</td><td>substantivo <strong>abstrato</strong>, adjetivo ou advérbio</td><td>substantivo (concreto ou abstrato)</td></tr>
+        <tr><td>Preposição</td><td><strong>necessariamente preposicionado</strong></td><td>pode ser ou não</td></tr>
+        <tr><td>Sentido do termo preposicionado</td><td><strong>paciente</strong> (de alvo)</td><td><strong>agente</strong> (quem pratica) / posse</td></tr>
+        <tr><td>Substituição por adjetivo</td><td>não</td><td><strong>sim</strong> (locução adjetiva equivalente)</td></tr>
+        <tr><td>Nome transformado em ação</td><td>equivale a <strong>objeto indireto</strong> do verbo</td><td>equivale a sujeito/agente</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Aplica a teoria</div>
+    <div class="card-text">
+      → "As duas meninas de branco sorriram com <strong>medo de mim</strong>" — "medo" é abstrato (sentimento) e "mim" é o <strong>alvo do medo</strong> → <strong>CN</strong><br>
+      → "<strong>O abuso de remédios</strong> é prejudicial <strong>à saúde</strong>" — "de remédios" (passivo: remédios são abusados) → <strong>CN</strong>; "à saúde" ligado a adjetivo → <strong>CN</strong>; "<strong>da mulher</strong>" (posse/agente; = "feminina") → <strong>AA</strong><br>
+      → "professora <strong>de psicologia</strong>" — especificação de tipo (locução adjetiva) → <strong>AA</strong><br>
+      → "relativos <strong>a crimes</strong>" (adjetivo + preposição) → <strong>CN</strong>; "investigações <strong>de queixas</strong>" (passivo: queixas são investigadas) → <strong>CN</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A dúvida só existe em <strong>substantivo abstrato + termo preposicionado "de"</strong>. Ordem de resolução: 1) veja se é adjetivo/advérbio → CN; 2) se concreto → AA; 3) abstrato com preposição ≠ "de" → normalmente CN; 4) abstrato com "de" → teste a substituição por adjetivo (AA) e o <strong>sentido agente × paciente</strong>. "Água <strong>da fonte</strong>" = sentido ativo/posse → <strong>AA</strong>.
+  </div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Predicativos do sujeito e do objeto</div></div>
+  <div class="sec-subtitle">Qualificação/estado atribuído ao sujeito ou ao objeto; transitório × inerente</div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Predicativo do sujeito</div>
+      <div class="card-text">
+        Atribui-se ao <strong>sujeito</strong>, normalmente via verbo de ligação (ser, estar, permanecer, ficar, continuar, tornar-se, andar, virar):<br><br>
+        → <em>Ela continuava pomposa.</em> (adjetivo)<br>
+        → <em>O violão é de madeira rara.</em> (locução)<br>
+        → <em>É necessário que estudemos.</em> (sujeito oracional)<br>
+        → <em>Maria o é.</em> (pronome demonstrativo)<br><br>
+        <strong>Atenção:</strong> verbo de ligação + <strong>circunstância adverbial</strong> → vira <strong>VI</strong>: "O homem permaneceu <strong>no bar</strong> todo o tempo".
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Predicativo do objeto</div>
+      <div class="card-text">
+        Atribui-se ao <strong>objeto</strong>, por verbos transobjetivos (pedem objeto + predicativo):<br><br>
+        → <em>Julgaram o réu culpado.</em><br>
+        → <em>O povo elegeu-o senador.</em><br>
+        → <em>Achei o filme bacana.</em><br>
+        → <em>Tornar a lei mais rigorosa</em> — "a lei" (OD) + "mais rigorosa" (predicativo do OD)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Predicativo × adjunto adnominal</div>
+    <div class="card-text">
+      → <strong>Semântica:</strong> predicativo = característica <strong>transitória</strong>, atribuída (opinião do sujeito sobre o objeto); adjunto = característica <strong>inerente</strong>, definitiva<br>
+      → <strong>Teste sintático (objeto):</strong> pronominalize o OD e veja se o termo fica junto ou se separa: "Julguei <strong>as perguntas complexas</strong>" → "Julguei-<strong>as</strong> complexas" (separa → <strong>predicativo</strong>); "Resolveram <strong>as perguntas complexas</strong>" → "Resolveram-<strong>nas</strong>" (some junto → <strong>adjunto</strong>)<br>
+      → <strong>Teste (sujeito):</strong> predicativo pode aparecer <strong>distante</strong>, separado por pontuação: "O menino, <strong>desanimado</strong>, chegou" × "O menino <strong>desanimado</strong> chegou" (adjunto)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Eu vi a menina <strong>muito irritada</strong>" (predicativo do objeto — transitório, opinião do sujeito) × "A menina <strong>irritada</strong> da sala implica com todos" (adjunto — ela é irritada sempre). A banca troca o transitório pelo inerente.
+  </div>
+</section>
+
+<!-- SECAO 9 -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Tipos de predicado</div></div>
+  <div class="sec-subtitle">Tudo que não é sujeito é predicado; o núcleo define o tipo</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Núcleo</th><th>Estrutura</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Verbal</strong></td><td>verbo nocional (ação)</td><td>VI, VTD ou VTI</td><td><em>João comprou um rifle. João correu.</em></td></tr>
+        <tr><td><strong>Nominal</strong></td><td>predicativo do sujeito</td><td>VL + predicativo</td><td><em>João parece melancólico. João é servidor.</em></td></tr>
+        <tr><td><strong>Verbo-nominal</strong></td><td>verbo de ação + predicativo</td><td>VI + predicativo do sujeito OU VTD + predicativo do objeto</td><td><em>João saiu triste. João julgou o réu culpado.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conclusões que caem em prova</div>
+    <div class="card-text">
+      → <strong>Só o predicado verbal não tem predicativo</strong><br>
+      → O predicativo pode acompanhar verbos que <strong>não sejam de ligação</strong><br>
+      → "Eu era mais uma atribulação" → nominal; "não fazia gestos" → verbal (fazia = VTD); "eu o seguia até o rio" → verbal (seguia = VTD); "Eu fiquei só" → nominal (fiquei = VL + predicativo)
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 10 -->
+<section id="sec10">
+  <div class="sec-header"><div class="sec-num">10</div><div class="sec-title">Vocativo e aposto</div></div>
+  <div class="sec-subtitle">Termos que se referem ao interlocutor (externo) ou que explicam/equivalem a outro termo</div>
+
+  <div class="two-col">
+    <div class="card" style="border-color:var(--purple);">
+      <div class="card-title" style="color:var(--purple);">Vocativo</div>
+      <div class="card-text">
+        Chamamento ao <strong>ouvinte/leitor</strong>; termo <strong>externo</strong>, isolado por vírgulas ou pausas:<br><br>
+        → <em>Mãe, passei para Auditor.</em><br>
+        → <em>Pela ordem, Meritíssimo, a prova não consta dos autos.</em><br><br>
+        Não é termo interno da oração.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Aposto</div>
+      <div class="card-text">
+        Explica, desenvolve ou resume outro termo, com <strong>equivalência semântica</strong> — é "outra forma" de se referir, <strong>não tem valor adjetivo</strong>:<br><br>
+        → <strong>Explicativo</strong> (vírgulas, parênteses, travessões, dois-pontos): "Jorge, <strong>o malandro</strong>, ainda é jovem"; "Gosto de vários animais - <strong>cães, gatos, pássaros</strong>"<br>
+        → <strong>Especificativo</strong> (sem pontuação, nomeia): "O artilheiro <strong>Messi</strong>", "crime de <strong>latrocínio</strong>", "cidade do <strong>Rio de Janeiro</strong>"<br><br>
+        Pode substituir o termo a que se refere, assumindo sua função sintática: "Maria, a babá, virou empresária" → "A babá virou empresária".
+      </div>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Aposto <strong>especificativo × adjunto adnominal</strong>: "a praia <strong>da Pipa</strong>" é aposto (Pipa = praia, identidade; daria "a praia Pipa") × "o clima <strong>do Rio de Janeiro</strong>" é adjunto adnominal (o Rio tem um clima; posse). Aposto nomeia; adjunto qualifica/possui.
+  </div>
+</section>
+
+<!-- SECAO 11 -->
+<section id="sec11">
+  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Adjunto adverbial</div></div>
+  <div class="sec-subtitle">Circunstância do verbo — tempo, modo, causa, meio, lugar, instrumento, motivo, oposição</div>
+
+  <div class="card">
+    <div class="card-title">Formas do adjunto adverbial</div>
+    <div class="card-text">
+      → <strong>De verbo:</strong> "Ele morreu <strong>por amor</strong>" (motivo), "<strong>ontem</strong>" (tempo), "<strong>de fome</strong>" (causa)<br>
+      → <strong>De adjetivo/advérbio:</strong> "Ela é <strong>muito</strong> bonita"; "será aprovada <strong>muito</strong> provavelmente" (intensidade)<br>
+      → <strong>De oração inteira:</strong> "Infelizmente, o governo não vai resolver" (julgamento/opinião)<br>
+      → <strong>Oração adverbial:</strong> "Se eu pudesse, ajudaria" (condição); "Está tudo molhado, porque choveu" (causa); "Quando for nomeado..." (tempo)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O mesmo adjetivo, funções diferentes</div>
+    <div class="card-text">
+      → <em>O menino continua <strong>rico</strong>.</em> — predicativo do sujeito<br>
+      → <em>O menino fez o pai <strong>rico</strong>.</em> — predicativo do objeto<br>
+      → <em>O menino <strong>rico</strong> tinha carros esportivos.</em> — adjunto adnominal (junto ao nome)<br>
+      → <em>O menino, <strong>rico</strong>, tinha carros esportivos.</em> — predicativo do sujeito (separado)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Por conta da criação rigorosa" = <strong>adjunto adverbial de causa</strong> ("por causa de"), não predicativo nem CN. E "de linguagem simples" em "uso de linguagem simples" pode ser adjunto adnominal — confira sempre o sentido.
+  </div>
+</section>
+
+<!-- SECAO 12 -->
+<section id="sec12">
+  <div class="sec-header"><div class="sec-num">12</div><div class="sec-title">Agente da passiva</div></div>
+  <div class="sec-subtitle">Quem pratica a ação na voz passiva; na transposição, o sujeito da ativa vira agente da passiva</div>
+
+  <div class="card">
+    <div class="card-title">Transposição ativa → passiva</div>
+    <div class="card-text">
+      → <strong>Eu</strong> (sujeito/agente) comprei <strong>um carro</strong> (OD) → <strong>Um carro</strong> (sujeito paciente) foi comprado <strong>por mim</strong> (agente da passiva)<br>
+      → O agente da passiva geralmente é <strong>omitido na passiva sintética</strong><br>
+      → Pode ser introduzido por "por", "pelo(a)(s)" e <strong>"de"</strong>: "O mocinho foi cercado <strong>de zumbis</strong>"
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Uma trama que é vigiada <strong>por órgãos estatais</strong>" — "por órgãos estatais" é <strong>agente da passiva</strong>, não complemento verbal. Já "advém <strong>dos preceitos morais</strong>" é OI (VTI "advir", rege "de"). Verbo no particípio dentro de locução passiva exige atenção.
+  </div>
+</section>
+
+<!-- SECAO 13 -->
+<section id="sec13">
+  <div class="sec-header"><div class="sec-num">13</div><div class="sec-title">Frase × oração × período</div></div>
+  <div class="sec-subtitle">Noções básicas para localizar os trechos cobrados em substituições e reescrituras</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Conceito</th><th>Definição</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Frase</strong></td><td>enunciado de sentido completo, com ou sem verbo</td><td><em>Socorro! Que matéria fácil! Comprei um cachimbo.</em></td></tr>
+        <tr><td><strong>Frase nominal</strong></td><td>sem verbo</td><td><em>Fogo! Cão feroz.</em></td></tr>
+        <tr><td><strong>Oração</strong></td><td>frase verbal (marca: ter verbo); nem toda frase é oração</td><td><em>Ned Stark foi decapitado!</em></td></tr>
+        <tr><td><strong>Período simples</strong></td><td>uma oração (absoluta)</td><td><em>Comprei um cachimbo.</em></td></tr>
+        <tr><td><strong>Período composto</strong></td><td>mais de uma oração, por coordenação ou subordinação</td><td><em>Choveu e fiquei em casa.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Cuidado com o cão" — sem verbo → <strong>frase nominal, não oração</strong>. E "as sociedades são mais ou menos abertas às conquistas" tem <strong>um só verbo</strong> ("são") → período simples, não composto. Conte os verbos.
+  </div>
+</section>
+
+<!-- SECAO 14 -->
+<section id="sec14">
+  <div class="sec-header"><div class="sec-num">14</div><div class="sec-title">Pontos que mais caem em prova</div></div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      → <strong>CN × adjunto adnominal:</strong> sentido agente/posse (AA) × paciente (CN); substituição por adjetivo<br>
+      → <strong>Haver impessoal × existir:</strong> OD que vira sujeito; singular que contamina a locução<br>
+      → <strong>Sujeito oracional:</strong> ISTO é... / admite-se que... / não se espera que... (sujeito paciente)<br>
+      → <strong>Indeterminado × oculto:</strong> recuperável pelo contexto = oculto (determinado)<br>
+      → <strong>OD preposicionado:</strong> a todos, a Deus, a ambos — sem ser OI<br>
+      → <strong>Predicativo × adjunto:</strong> pronominalize o OD e veja se o termo separa ou some
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      → <strong>Pronome oblíquo como sujeito:</strong> só com causativos/sensitivos (deixar, mandar, fazer, ver, ouvir, sentir)<br>
+      → <strong>"Trata-se de" é sempre invariável</strong> (VTI + SE, sujeito indeterminado)<br>
+      → <strong>VL + circunstância adverbial</strong> = VI (não é mais verbo de ligação)<br>
+      → <strong>Aposto especificativo</strong> nomeia (sem pontuação); vocativo é termo externo<br>
+      → <strong>Agente da passiva</strong> com "por/pelo/de"; omitido na passiva sintética<br>
+      → <strong>Período composto</strong> = mais de um verbo; oração = frase com verbo
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div>
+    <strong>Dica final:</strong> para matar funções sintáticas, siga a sequência: localize o <strong>verbo</strong> → pergunte <strong>quem/o quê</strong> (sujeito) → pergunte <strong>o quê/a quem</strong> (complementos) → verifique <strong>preposição</strong> e <strong>sentido agente × paciente</strong>. A ordem direta (SuVeCA) resolve a maioria das questões.
+  </div></div>
+</section>
+
+<!-- SECAO 15 -->
+<section id="sec15">
+  <div class="sec-header"><div class="sec-num">15</div><div class="sec-title">Incidência de temas (TEC)</div></div>
+  <div class="sec-subtitle">Temas mais cobrados nas questões coladas — será alimentado conforme as questões do TEC forem coladas</div>
+
+  <div class="card">
+    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-text">
+      <span class="tag tag-gray">Nenhuma questão colada ainda — as tags aparecerão aqui à medida que as questões do TEC forem processadas</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>

@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Português Aula 04: Classe de Palavras III — Verbos</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --sidebar: #e2e8f0;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #1e293b;
+  --text2: #475569;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #cbd5e1;
+  --dim: #4b5563;
+  --radius: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #dbe2eb; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #1d4ed8;
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbeafe; color: var(--text); }
+.aula .sidebar-nav a.active { background: #1d4ed8; color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbeafe; color: var(--text); }
+.aula .brand {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #0f172a;
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--border); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: .9rem;
+  background: var(--blue);
+  box-shadow: 0 3px 8px rgba(37,99,235,.25);
+}
+.aula .sec-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
+.aula .section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--border);
+}
+.aula .section-subtitle { font-size: .85rem; color: var(--text2); margin-bottom: 1rem; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe, #93c5fd);
+  color: #0f172a;
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 1.5rem 2.5rem;
+}
+.header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(15,23,42,.05);
+  position: relative;
+  transition: all .2s;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: .8rem;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,.12); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .6; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: .9rem; font-weight: 700; color: var(--blue); margin-bottom: .25rem; }
+.card-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  transition: all .15s;
+}
+.card-links a:hover { background: #1d4ed8; color: #fff; }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: #6ee7b7;
+  color: #065f46;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #eef2f7;
+  border: 1px solid var(--border);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout-info { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; }
+.callout-warn { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+.callout-success { background: #d1fae5; border: 1px solid #6ee7b7; color: #065f46; }
+.callout-danger { background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: #fef3c7;
+  border: 2px dashed var(--amber);
+  border-radius: 12px;
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .85rem;
+  font-weight: 700;
+  color: #92400e;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: block;
+  padding: .15rem 0;
+  border-bottom: 1px dashed rgba(217,119,6,.25);
+}
+.mnemonic-content span:last-child { border-bottom: none; }
+.mnemonic-content .mnem-high { color: var(--red); font-weight: 800; }
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead, thead tr { background: #e2e8f0; }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #f8fafc; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .82rem;
+  color: var(--text);
+}
+.gotcha-title { font-size: .7rem; font-weight: 700; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  margin: 0 .2rem;
+  background: #e2e8f0;
+  color: #475569;
+}
+.tag-blue { background: #93c5fd; color: #1d4ed8; }
+.tag-green { background: #6ee7b7; color: #065f46; }
+.tag-amber { background: #fcd34d; color: #92400e; }
+.tag-red { background: #fca5a5; color: #b91c1c; }
+.tag-purple { background: #c4b5fd; color: #6d28d9; }
+.tag-teal { background: #5eead4; color: #0f766e; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #d1fae5; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fee2e2; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fef3c7; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ede9fe; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #cffafe; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: rgba(37,99,235,.12);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e2e8f0;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(244,247,251,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-size: .75rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #eef2f7;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d4ed8; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--border); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #dbeafe; border: 1px solid #93c5fd; color: #1d4ed8; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f1f5f9;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e2e8f0; border: 1px solid var(--line); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Português — Aula 04</div>
+  <div class="sidebar-sub">Classe de Palavras III — Verbos · Estratégia Concursos</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Verbo — conceito e estrutura</a>
+  <a href="#sec2">2. Conjugações e modelos</a>
+  <a href="#sec3">3. Modo indicativo</a>
+  <a href="#sec4">4. Modo subjuntivo</a>
+  <a href="#sec5">5. Modo imperativo</a>
+  <a href="#sec6">6. Formas nominais</a>
+  <a href="#sec7">7. Tempos compostos</a>
+  <a href="#sec8">8. Particípios — regulares × irregulares</a>
+  <a href="#sec9">9. Transitividade verbal</a>
+  <a href="#sec10">10. Classificação dos verbos</a>
+  <a href="#sec11">11. Verbos que merecem atenção</a>
+  <a href="#sec12">12. Correlação dos tempos verbais</a>
+  <a href="#sec13">13. Locução verbal × tempo composto</a>
+  <a href="#sec14">14. Vozes verbais</a>
+  <a href="#sec15">15. Pontos que mais caem em prova</a>
+  <a href="#sec16">16. Incidência de temas</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:#475569;">Fonte: Aula 04 - Classe de Palavras III - Verbos (simplificado + completo)<br>Estratégia Concursos · Felipe Luccas</div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="header">
+  <h1>🧩 Português — Aula 04: Classe de Palavras III — Verbos</h1>
+  <p>Classe de palavras III · Tempos e modos verbais · Correlação e vozes · Material base: simplificado + completo · Estratégia Concursos · Felipe Luccas</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Verbo — Conceito e Estrutura</div></div>
+  <div class="sec-subtitle">Palavra variável que indica ação, estado, fenômeno e processo; o tempo verbal nem sempre corresponde ao tempo cronológico real</div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Definição e flexões</div></div>
+      <div class="card-text">
+        Verbo é a palavra <strong>variável</strong> que indica ação, estado, fenômeno e processo em geral.<br><br>
+        → <strong>Tempo:</strong> quando ocorre a ação (presente, pretérito, futuro)<br>
+        → <strong>Modo:</strong> a atitude de quem fala sobre o fato<br>
+        → <strong>Número e pessoa:</strong> 1ª (eu, nós), 2ª (tu, vós), 3ª (ele(a), eles(as))<br>
+        → <strong>Voz:</strong> ativa, passiva, reflexiva
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Tempo verbal ≠ tempo cronológico</div>
+      <div class="card-text">
+        Nem sempre o tempo verbal corresponde a um tempo real idêntico:<br><br>
+        → <em>Vou sair</em> — verbo no <strong>presente</strong>, mas a ação é <strong>futura</strong><br><br>
+        A banca explora muito essas <strong>nuances semânticas</strong> que o contexto dá aos tempos e modos.
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Modo</th><th>Atitude de quem fala</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Indicativo</strong></td><td>certeza, fato</td><td><em>Eu estudo.</em></td></tr>
+        <tr><td><strong>Subjuntivo</strong></td><td>dúvida, hipótese</td><td><em>Talvez eu estude.</em></td></tr>
+        <tr><td><strong>Imperativo</strong></td><td>ordem, pedido, sugestão</td><td><em>Estude!</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>
+    <strong>Dica de análise sintática:</strong> localize o verbo → identifique a pessoa e o número → ache o sujeito (o "quem" do verbo, que concorda em pessoa e número). Essa dica "salva vidas" na análise sintática e na pontuação.
+  </div></div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Conjugações e verbos-modelo</div></div>
+  <div class="sec-subtitle">1ª, 2ª e 3ª conjugações; dominar a conjugação dos verbos-modelo é a base da aula</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Conjugação</th><th>Terminação</th><th>Verbos-modelo</th><th>Vogal temática</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1ª</strong></td><td>-ar</td><td>levantar, cantar, estudar</td><td><strong>a</strong> (am-<strong>a</strong>-mos)</td></tr>
+        <tr><td><strong>2ª</strong></td><td>-er</td><td>beber, comer, vender</td><td><strong>e</strong> (com-<strong>e</strong>-mos)</td></tr>
+        <tr><td><strong>3ª</strong></td><td>-ir</td><td>cair, partir, aderir</td><td><strong>i</strong> (part-<strong>i</strong>-mos)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estrutura da forma verbal</div>
+    <div class="card-text">
+      → <strong>Radical</strong> — parte que carrega o sentido básico (CANT-)<br>
+      → <strong>Vogal temática</strong> — indica a conjugação (-a, -e, -i)<br>
+      → <strong>Desinência modo-temporal</strong> — tempo e modo<br>
+      → <strong>Desinência número-pessoal</strong> — pessoa e número<br><br>
+      Ex.: CANT + A + REI (futuro do presente, 1ª pessoa do singular)
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div>
+    <strong>Estudo orientado:</strong> concentre-se nos <strong>exemplos</strong> e grife as terminações "estranhas" — são elas que a banca explora. Não tente gravar a conjugação inteira de cada verbo.
+  </div></div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Modo Indicativo — tempos e valores</div></div>
+  <div class="sec-subtitle">Certeza e fato; cada tempo tem um "foco" diferente: conclusão, duração, anterioridade, hipótese</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tempo</th><th>Valor principal</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Presente</strong></td><td>hábito, verdade universal, fato atual, presente histórico</td><td><em>Estudo todos os dias.</em></td></tr>
+        <tr><td><strong>Pretérito perfeito</strong></td><td>processo <strong>acabado</strong>; foco na conclusão</td><td><em>Foi visto (processo concluído).</em></td></tr>
+        <tr><td><strong>Pretérito imperfeito</strong></td><td>processo <strong>repetido/habitual</strong>; foco no intervalo de duração</td><td><em>Era visto (processo contínuo).</em></td></tr>
+        <tr><td><strong>Pretérito mais-que-perfeito</strong></td><td>ação passada <strong>anterior a outra também passada</strong></td><td><em>Fora visto / tinha sido visto.</em></td></tr>
+        <tr><td><strong>Futuro do presente</strong></td><td>fato futuro, em relação ao presente</td><td><em>Estudarei.</em></td></tr>
+        <tr><td><strong>Futuro do pretérito</strong></td><td>hipótese, condicional, cortesia; correlaciona-se com pretérito</td><td><em>Estudaria se pudesse.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Valores que caem em prova</div>
+    <div class="card-text">
+      → <strong>Presente argumentativo:</strong> verdades científicas, frases categóricas, verdades universais (não indica "ação no momento da fala")<br>
+      → <strong>Presente histórico:</strong> narra fatos passados como se fossem atuais (vivificação)<br>
+      → <strong>Futuro do pretérito (-RIA):</strong> hipótese — "se eu pudesse, eu <strong>compraria</strong>"<br>
+      → <strong>Pretérito perfeito × imperfeito:</strong> "foi" (acabado) × "era" (habitual/duradouro) — as duas formas são coerentes com passado já mudado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mais-que-perfeito — forma simples × composta</div>
+    <div class="card-text">
+      Formas terminadas em <strong>-RA</strong> indicam o mais-que-perfeito simples (ação passada concluída antes de outra também passada):<br><br>
+      → <em>fora</em> = <em>tinha sido</em> / <em>havia sido</em> (formas compostas) — <strong>perfeitamente intercambiáveis</strong><br>
+      → <em>recorrera</em> = <em>havia recorrido</em>; <em>matara</em> = <em>havia matado</em>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O presente pode ser usado com intenção <strong>argumentativa</strong> (certeza, convicção, verdades universais) — a banca afirma que ele descreve "eventos que ocorriam no momento da produção do texto" e a assertiva é <strong>errada</strong>. Confira o valor semântico, não apenas o tempo.
+  </div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Modo Subjuntivo</div></div>
+  <div class="sec-subtitle">Incerteza, dúvida, hipótese, desejo; três tempos: presente, pretérito imperfeito e futuro</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tempo</th><th>Uso</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Presente do subjuntivo</strong></td><td>hipótese atual, desejo</td><td><em>Que ele estude.</em> / <em>É preciso que você estude.</em></td></tr>
+        <tr><td><strong>Pretérito imperfeito do subjuntivo</strong></td><td>hipótese no passado, condicional</td><td><em>Se eu estudasse...</em></td></tr>
+        <tr><td><strong>Futuro do subjuntivo</strong></td><td>hipótese futura (quando, se)</td><td><em>Quando eu estudar...</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Futuro do subjuntivo × infinitivo</div>
+    <div class="card-text">
+      → <strong>Futuro do subjuntivo:</strong> quando eu <strong>puser</strong>, se eu <strong>puder</strong>, quando eles <strong>funcionarem</strong><br>
+      → <strong>Infinitivo:</strong> entregar, aderir, ver<br><br>
+      Confusão clássica: "se você <strong>a ver</strong>" é erro — o futuro do subjuntivo de "ver" é <strong>vir</strong> ("se você a vir"); o futuro do subjuntivo de "vir" é <strong>vier</strong> ("se todos vierem").
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Como se" indica comparação hipotética → verbo no <strong>subjuntivo</strong> (respirasse). Na reescrita de "para se consolarem", o correto é presente do subjuntivo ("para que se <strong>consolem</strong>"), e não imperfeito ("consolassem") — a coerência temporal é com o verbo da oração principal ("gostam").
+  </div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Modo Imperativo</div></div>
+  <div class="sec-subtitle">Ordem, pedido, conselho, convite; formas próprias de 2ª pessoa e formas derivadas do subjuntivo</div>
+
+  <div class="card">
+    <div class="card-title">Formas do imperativo</div>
+    <div class="card-text">
+      → <strong>Afirmativo:</strong> 2ª pessoa do singular tem forma própria; demais pessoas derivam do presente do subjuntivo<br>
+      → <strong>Negativo:</strong> todas as pessoas derivam do presente do subjuntivo ("não faça", "não faças")<br><br>
+      <strong>Dupla forma na 2ª pessoa do singular:</strong><br>
+      → dizer: <em>dize</em> ou <em>diz</em>; fazer: <em>faze</em> ou <em>faz</em><br>
+      → trazer: <em>traze</em> ou <em>traz</em>; requerer: <em>requere</em> ou <em>requer</em>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Veja" pode ser <strong>subjuntivo ou imperativo</strong> — a classificação depende do sentido. Em título que faz convite ao leitor ("Veja a importância..."), é <strong>imperativo</strong> (aproxima o leitor com convite/pedido), não subjuntivo.
+  </div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Formas nominais do verbo</div></div>
+  <div class="sec-subtitle">Infinitivo, gerúndio e particípio — não expressam tempo/modo; podem exercer função de nome</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Forma nominal</th><th>Terminação</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Infinitivo</strong></td><td>-ar, -er, -ir</td><td><em>cantar, comer, partir</em></td></tr>
+        <tr><td><strong>Gerúndio</strong></td><td>-ndo</td><td><em>cantando, comendo, partindo</em></td></tr>
+        <tr><td><strong>Particípio</strong></td><td>-do (regulares)</td><td><em>cantado, comido, partido</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Valores do gerúndio</div>
+    <div class="card-text">
+      → <strong>Finalidade:</strong> "escreveram um artigo <em>compartilhando</em> sua visão" = escreveram <em>a fim de compartilhar</em> (a substituição por "a fim de compartilharem" mantém correção e coerência)<br>
+      → <strong>Tempo, condição, causa, modo</strong> — conforme o contexto<br><br>
+      <strong>Gerúndio × tempo composto:</strong> "vêm ocorrendo" tem o mesmo sentido de "têm ocorrido" (processo iniciado no passado que continua no presente).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Passando a ser" = "tornando-se" (sinônimos; a troca mantém o sentido e a correção, pois ambos são gerúndios). Mas cuidado: a banca troca gerúndio por forma finita de outro tempo/modo — confira sempre se a substituição preserva o valor do gerúndio.
+  </div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Tempos compostos</div></div>
+  <div class="sec-subtitle">Locução de tempo composto: TER/HAVER + particípio; valor de ação iniciada no passado que se prolonga</div>
+
+  <div class="card">
+    <div class="card-title">Pretérito perfeito composto</div>
+    <div class="card-text">
+      → Estrutura: <strong>ter/haver no presente + particípio</strong> (tenho estudado, têm ocorrido)<br>
+      → Valor: processo verbal que <strong>começou no passado e continua no presente</strong><br><br>
+      Equivalência cobrada: <em>têm ocorrido</em> = <em>vêm ocorrendo</em> (verbo no presente + gerúndio) — as duas formas são equivalentes inclusive em sentido.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mais-que-perfeito composto</div>
+    <div class="card-text">
+      → Estrutura: <strong>ter/haver no pretérito imperfeito + particípio</strong> (tinha sido, havia feito)<br>
+      → Intercambiável com o mais-que-perfeito simples: <em>fora</em> = <em>tinha sido</em>
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div>
+    <strong>Dica de prova:</strong> na transposição ativa ↔ passiva, o <strong>tempo composto se mantém</strong> — basta subtrair o "ser" da locução passiva: "os antigos <strong>teriam utilizado</strong>..." ↔ "...<strong>teriam sido utilizados</strong> pelos antigos".
+  </div></div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Particípios — regulares × irregulares</div></div>
+  <div class="sec-subtitle">Verbos abundantes: dois particípios; a escolha depende da voz (ativa × passiva)</div>
+
+  <div class="hl">
+    <strong>Voz ativa</strong> (auxiliares TER/HAVER) → <strong>particípio regular</strong> (-ado/-ido): <em>tenho entregado, havia imprimido</em><br>
+    <strong>Voz passiva</strong> (auxiliares SER/ESTAR) → <strong>particípio irregular</strong>: <em>foi entregue, está impresso</em>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Verbo</th><th>Particípio regular</th><th>Particípio irregular</th></tr></thead>
+      <tbody>
+        <tr><td>aceitar</td><td>aceitado</td><td>aceito</td></tr>
+        <tr><td>admitir</td><td>admitido</td><td>admisso</td></tr>
+        <tr><td>encontrar</td><td>encontrado</td><td>encontro</td></tr>
+        <tr><td>entregar</td><td>entregado</td><td>entregue</td></tr>
+        <tr><td>enxugar</td><td>enxugado</td><td>enxuto</td></tr>
+        <tr><td>exprimir</td><td>exprimido</td><td>expresso</td></tr>
+        <tr><td>extinguir</td><td>extinguido</td><td>extinto</td></tr>
+        <tr><td>fritar</td><td>fritado</td><td>frito</td></tr>
+        <tr><td>ganhar</td><td>ganhado</td><td>ganho</td></tr>
+        <tr><td>gastar</td><td>gastado</td><td>gasto</td></tr>
+        <tr><td>imprimir</td><td>imprimido</td><td>impresso</td></tr>
+        <tr><td>limpar</td><td>limpado</td><td>limpo</td></tr>
+        <tr><td>misturar</td><td>misturado</td><td>misto</td></tr>
+        <tr><td>morrer</td><td>morrido</td><td>morto</td></tr>
+        <tr><td>pagar</td><td>pagado</td><td>pago</td></tr>
+        <tr><td>submeter</td><td>submetido</td><td>submisso</td></tr>
+        <tr><td>suspender</td><td>suspendido</td><td>suspenso</td></tr>
+        <tr><td>tingir</td><td>tingido</td><td>tinto</td></tr>
+        <tr><td>vagar</td><td>vagado</td><td>vago</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Particípios que não existem</div>
+    <div class="card-text">
+      → <strong>"Trago"</strong> não é particípio — o correto é <strong>trazido</strong> (não admitido no registro culto: "tenha trago" é erro)<br>
+      → <strong>"Chego"</strong> não é particípio — o correto é <strong>chegado</strong><br>
+      → <strong>"Morrido"</strong> e <strong>"pagado"</strong> existem, mas são usados com ter/haver ("tinha morrido", "tenho pagado")
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div>
+    <strong>Particípio com valor adverbial:</strong> pode expressar tempo — "terminada a prova, saí" (ideia de tempo decorrido), sem função de verbo.
+  </div></div>
+</section>
+
+<!-- SECAO 9 -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Transitividade verbal</div></div>
+  <div class="sec-subtitle">A necessidade (ou não) de complemento define VI, VTD, VTI e VTDI</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Complemento</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Intransitivo (VI)</strong></td><td>não pede complemento (pode ter adjunto adverbial)</td><td><em>O bebê dormiu. O sol nasceu cedo.</em></td></tr>
+        <tr><td><strong>Transitivo direto (VTD)</strong></td><td>objeto direto, sem preposição</td><td><em>Comprei um carro. Ele contém o quê? Pequenas quantidades.</em></td></tr>
+        <tr><td><strong>Transitivo indireto (VTI)</strong></td><td>objeto indireto, com preposição</td><td><em>Gosto de música. Depende das ações dos outros. Precisa de ajuda.</em></td></tr>
+        <tr><td><strong>Bitransitivo (VTDI)</strong></td><td>objeto direto + objeto indireto</td><td><em>Ensinei matemática (OD) aos alunos (OI).</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A <strong>voz passiva nasce do objeto direto</strong> da voz ativa (ele vira sujeito paciente). Portanto, VTI, VI e VL <strong>não aceitam</strong> voz passiva — "levam a" (= proporcionam), "sair", "era", "estão" não admitem transposição.
+  </div>
+</section>
+
+<!-- SECAO 10 -->
+<section id="sec10">
+  <div class="sec-header"><div class="sec-num">10</div><div class="sec-title">Classificação dos verbos</div></div>
+  <div class="sec-subtitle">Regulares, irregulares, defectivos, pronominais e vicários</div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Regulares × irregulares</div>
+      <div class="card-text">
+        → <strong>Regular:</strong> não altera o radical ao ser conjugado (viver: vivo, vive)<br>
+        → <strong>Irregular:</strong> altera o radical (seguir: sigo, siga; fazer: faço; trazer: trago, trouxe)<br><br>
+        Cuidado: nem todo verbo de aparência regular é regular — a banca explora "seguir × viver".
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Defectivos</div>
+      <div class="card-text">
+        Não são conjugados em todas as pessoas (defeito de conjugação): abolir, banir, brandir, carpir, colorir, computar, delir, demolir, explodir, exaurir, ruir, delinquir, fulgir, feder, aturdir, bramir, esculpir, extorquir, retorquir, soer, falir, adequar.<br><br>
+        → Normalmente só têm 1ª e 2ª pessoas do plural do indicativo e 2ª do plural do imperativo<br>
+        → Sem 1ª pessoa do singular do presente do indicativo → <strong>sem presente do subjuntivo</strong> (que deriva dela)
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Pronominais</div>
+      <div class="card-text">
+        Trazem pronome "integrante", não podem ser conjugados sem ele: arrepender-se, atrever-se, candidatar-se, dignar-se, esforçar-se, queixar-se, suicidar-se, refugiar-se, assemelhar-se.<br><br>
+        → <strong>Lembrar/esquecer:</strong> não são essencialmente pronominais — retirar o pronome exige retirar também a preposição ("esquecer-se de algo" / "esquecer algo")
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--purple);">
+      <div class="card-title" style="color:var(--purple);">Vicários</div>
+      <div class="card-text">
+        Fazem as vezes de outros verbos, evitando repetição — os mais comuns são <strong>ser</strong> e <strong>fazer</strong>, normalmente com pronome demonstrativo "o":<br><br>
+        → <em>Eu poderia ter fugido, mas não <strong>o fiz</strong></em> ("o fiz" = ter fugido)<br>
+        → <em>Se você não estudou, <strong>foi</strong> porque teve preguiça</em><br><br>
+        Não há sentido próprio: "fazer" assume o sentido do verbo retomado.
+      </div>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    No verbo pronominal, o "se" é <strong>parte integrante</strong> — não é reflexivo, não é recíproco e não exerce função sintática. A retirada do "se" de "esquecer-se de" causa erro; seria preciso retirar também a preposição.
+  </div>
+</section>
+
+<!-- SECAO 11 -->
+<section id="sec11">
+  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Verbos que merecem atenção</div></div>
+  <div class="sec-subtitle">Conjugações que a banca adora cobrar: pôr e derivados, querer × requerer, precaver, intervir e outros</div>
+
+  <div class="card">
+    <div class="card-title">Pôr e derivados</div>
+    <div class="card-text">
+      O verbo "pôr" (acentuado, para diferenciar da preposição "por") segue a 2ª conjugação; os derivados <strong>não são acentuados</strong> (compor, propor, supor — oxítonas terminadas em R não recebem acento).<br><br>
+      Derivados: entrepor, supor, compor, repor, opor, transpor, interpor, dispor, impor, sobrepor.<br><br>
+      → <strong>Futuro do subjuntivo:</strong> quando eu <strong>puser</strong><br>
+      → <strong>Pretérito imperfeito do subjuntivo:</strong> se eu <strong>pusesse</strong><br>
+      → <strong>Mais-que-perfeito do indicativo:</strong> eu <strong>pusera</strong><br>
+      → <strong>Pretérito perfeito:</strong> tu <strong>puseste</strong>, nós <strong>pusemos</strong>, vós <strong>pusestes</strong>, eles <strong>puseram</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Querer × requerer</div>
+    <div class="card-text">
+      "Requerer" <strong>não deriva de querer</strong> — segue "beber", com detalhe: recebe "i" na 1ª pessoa do presente do indicativo (requeIro) e no presente do subjuntivo (que eu requeIra).<br><br>
+      → <strong>Querer:</strong> quero, <strong>quis</strong>, queria, quisera, queira, <strong>quisesse</strong> (com "S", não "Z"), quiser<br>
+      → <strong>Requerer:</strong> requeiro, <strong>requeri</strong>, requeria, requerera, requeira, requeresse, requerer<br><br>
+      Pegadinha clássica: o pretérito perfeito de "requerer" é <strong>"requereram"</strong>, não "requiseram".
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Derivados de ver, vir e ter — os queridinhos de prova</div>
+    <div class="card-text">
+      → <strong>Prever (de "ver"):</strong> os cientistas <strong>previram</strong>; futuro do subjuntivo é "vir", não "ver" ("se você a vir")<br>
+      → <strong>Intervir (de "vir"):</strong> <strong>interveio</strong> (não "interviu"); <strong>intervieram</strong> (não "interviram")<br>
+      → <strong>Advir (de "vir"):</strong> que não <strong>advier</strong><br>
+      → <strong>Conter (de "ter"):</strong> ele se <strong>conteve</strong>; se não <strong>contivermos</strong>; eles <strong>mantiveram</strong> (de manter)<br>
+      → <strong>Condizer (de "dizer"):</strong> a atitude <strong>condisse</strong> com os princípios
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Precaver e reaver (defectivos)</div>
+      <div class="card-text">
+        Só se conjugam com <strong>nós e vós</strong> no presente do indicativo (precavemos/reavemos; precaveis/reaveis). Sem presente do subjuntivo (por isso: <strong>"precaveja", "reaveja", "reavenha" são erros</strong> — não trazem "j" nem "nh").<br><br>
+        → Imperativo: precavei, reavei<br>
+        → Reaver: reouve, reavia, reouvera, reaverei, reaveria (segue o "haver" nas pessoas com "v")
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--teal);">
+      <div class="card-title" style="color:var(--teal);">Outros que caem</div>
+      <div class="card-text">
+        → <strong>Aderir:</strong> que eu <strong>adira</strong>, aderisse, aderir, aderido<br>
+        → <strong>Aprazer:</strong> <strong>aprouve</strong>, aprouvera, aprouvesse, aprouver (só usado nas 3ªs pessoas)<br>
+        → <strong>Medir/pedir:</strong> eu <strong>meço/peço</strong> (Ç antes de O e A)<br>
+        → <strong>Valer:</strong> eu <strong>valho</strong> (LH antes de O e A)<br>
+        → <strong>Eleger:</strong> eu <strong>elejo</strong> (J antes de O e A)<br>
+        → <strong>Trazer:</strong> traga, trouxesse, trouxer, <strong>trazido</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Não confunda": <strong>caber, valer, redimir, polir, sortir, rir, escapulir, entupir, sacudir</strong> NÃO são defectivos, apesar de "estranhos". E "precaver" parece derivado de "ver"/"vir", mas não é — daí a defectividade.
+  </div>
+</section>
+
+<!-- SECAO 12 -->
+<section id="sec12">
+  <div class="sec-header"><div class="sec-num">12</div><div class="sec-title">Correlação dos tempos verbais</div></div>
+  <div class="sec-subtitle">A coerência entre tempos e modos; correlações essenciais que a banca cobra em reescritura</div>
+
+  <div class="hl">
+    <strong>Correlações essenciais:</strong><br>
+    Se eu <strong>pudesse</strong>, <strong>faria</strong>.<br>
+    Se eu <strong>puder</strong>, <strong>farei</strong>.<br>
+    Caso eu <strong>possa</strong>, <strong>farei</strong>.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Correlação</th><th>Regra</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Presente → futuro do presente</strong></td><td>futuro do presente se correlaciona com presente ou futuro</td><td><em>Prometo que estudarei mais.</em></td></tr>
+        <tr><td><strong>Pretérito → futuro do pretérito</strong></td><td>futuro do pretérito se relaciona com tempo pretérito</td><td><em>Eu morreria se ele descobrisse.</em></td></tr>
+        <tr><td><strong>Pretérito imperfeito + pretérito perfeito</strong></td><td>uma ação interrompe a outra</td><td><em>Estava estudando quando o gato acendeu um charuto.</em></td></tr>
+        <tr><td><strong>Pretérito imperfeito + pretérito imperfeito</strong></td><td>ações simultâneas</td><td><em>Eu estudava enquanto ele soltava fumaça.</em></td></tr>
+        <tr><td><strong>Futuro do presente + futuro do subjuntivo</strong></td><td>hipótese futura</td><td><em>Farei tudo o que eu puder.</em></td></tr>
+        <tr><td><strong>Presente + presente do subjuntivo</strong></td><td>concessão/condição</td><td><em>Aonde quer que eu vá, eu levo você.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regra geral de análise</div>
+    <div class="card-text">
+      → Se o verbo da principal está em <strong>tempo pretérito do indicativo</strong>, o verbo da subordinada substantiva (QUE = ISSO) pode estar em <strong>qualquer tempo do indicativo</strong>: "Disse/dizia/dissera que o homem roubava/roubara/roubará/roubaria"<br>
+      → Se inicia no <strong>presente</strong>, o futuro correlato é o <strong>futuro do presente</strong>; se inicia no <strong>pretérito</strong>, o correlato é o <strong>futuro do pretérito</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O futuro pode expressar <strong>relação lógica</strong>, não apenas tempo: "Ao se extrair do mundo..., ele <strong>poderá</strong> perceber" = correlação condicional implícita (caso se extraia). E reescrituras com "não vier a utilizar" são erro — o correto é "não <strong>viesse</strong> a utilizar".
+  </div>
+</section>
+
+<!-- SECAO 13 -->
+<section id="sec13">
+  <div class="sec-header"><div class="sec-num">13</div><div class="sec-title">Locução verbal × tempo composto</div></div>
+  <div class="sec-subtitle">Nas locuções, só o auxiliar flexiona; o principal aparece em forma nominal</div>
+
+  <div class="card">
+    <div class="card-title">Regra da locução verbal</div>
+    <div class="card-text">
+      → <strong>Auxiliar</strong> sofre a flexão (tempo/modo/pessoa); <strong>principal</strong> fica em infinitivo, gerúndio ou particípio<br>
+      → "Serão verificados" — o verbo no futuro é o <strong>auxiliar "serão"</strong>; "verificados" é o particípio<br>
+      → <strong>Voz passiva:</strong> particípio concorda em gênero e número com o sujeito paciente: "Eu fui assaltado" / "Elas foram assaltadas"
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tempo composto × transposição de voz</div>
+    <div class="card-text">
+      → O tempo composto <strong>não muda</strong> na transposição: "O homem havia realizado a missão" → "A missão havia sido realizada pelo homem"<br>
+      → Passiva analítica × sintética são <strong>equivalentes</strong>: "não foram contabilizados" = "não se contabilizaram"<br><br>
+      <strong>Cuidado com a colocação pronominal:</strong> palavra negativa atrai o pronome — "não <strong>se</strong> contabilizaram" (próclise); "não contabilizaram-se" é erro.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "A mulher <strong>não pode</strong> criar seu filho..." — "pode ser" (possibilidade hipotética, não definitiva) tem valor de <strong>ação possível relativa ao futuro</strong>. E "haverá de conseguir" expressa <strong>esperança</strong> (fato futuro desejado): "vocês hão de passar".
+  </div>
+</section>
+
+<!-- SECAO 14 -->
+<section id="sec14">
+  <div class="sec-header"><div class="sec-num">14</div><div class="sec-title">Vozes verbais</div></div>
+  <div class="sec-subtitle">Ativa, passiva (analítica e sintética) e reflexiva; a voz passiva nasce do objeto direto</div>
+
+  <div class="card">
+    <div class="card-title">Voz ativa × passiva analítica</div>
+    <div class="card-text">
+      → <strong>Ativa:</strong> sujeito pratica a ação: "O desafiante derrotou o campeão"<br>
+      → <strong>Passiva analítica:</strong> SER + particípio; o objeto direto da ativa vira <strong>sujeito paciente</strong>; o sujeito da ativa vira <strong>agente da passiva</strong>: "O campeão foi derrotado pelo desafiante"<br>
+      → <strong>Agente da passiva</strong> pode ser introduzido por "por", "pelo(a)(s)" e "de": "A quadrilha foi cercada por/pelos/de policiais"
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Passiva sintética (VTD + SE)</div>
+    <div class="card-text">
+      → Estrutura: <strong>VTD + SE apassivador</strong>: "Derrotou-se o campeão", "eliminaram-se nossas esperanças"<br>
+      → Transposição analítica → sintética: a locução passiva vira pronome apassivador; o agente fica implícito; tempo e modo se mantêm<br>
+      → Recurso para <strong>omitir o agente</strong>: "Flagrou-se o homem..." (equivale a "flagraram o homem" — voz ativa com sujeito indeterminado)<br>
+      → <strong>Vendem-se casas = casas são vendidas</strong> (sujeito plural → verbo no plural)
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card" style="border-color:var(--red);">
+      <div class="card-title" style="color:var(--red);">Impossibilidade de conversão</div>
+      <div class="card-text">
+        Verbos que, por semântica, <strong>não aceitam</strong> voz passiva: levar, ganhar, receber, tomar, aguentar, sofrer, pesar (massa), ter (posse), haver (impessoal) e o verbo de ligação.<br><br>
+        → VI e VTI <strong>não têm voz passiva</strong> (não há OD para virar sujeito paciente)<br>
+        → Exceção: responder, obedecer e pagar podem aparecer na passiva: "a pergunta foi respondida", "a multa foi paga"
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Passiva × indeterminação do sujeito</div>
+      <div class="card-text">
+        → <strong>VTI + SE</strong> = sujeito indeterminado: "Precisa-se de médicos", "Acredita-se em deuses", "trata-se de outros assuntos"<br>
+        → <strong>VI/VL + SE</strong> = sujeito indeterminado (agente universal): "Vive-se bem aqui", "Sempre se está sujeito a erros"<br>
+        → <strong>VTD + SE</strong> = voz passiva sintética: "Vendem-se casas"<br><br>
+        O verbo aponta o caminho, mas <strong>confira o sentido</strong> (passivo, reflexivo ou sem sujeito conhecido).
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Voz reflexiva × causativos</div>
+    <div class="card-text">
+      → <strong>Reflexiva:</strong> o agente pratica e sofre a ação ao mesmo tempo — troque o "se" por "a si mesmo": "eles se escondem" (= escondem a si mesmos)<br>
+      → <strong>Causativos</strong> (deixar, mandar, fazer) + sensitivos (ver, ouvir, sentir): o pronome oblíquo <strong>pode ser sujeito</strong> do verbo no infinitivo: "Mandei-o sair", "Deixe-me estudar", "Ela o fez desistir"<br>
+      → Cuidado: "deixe aborrecer", "fez desistir" <strong>NÃO são locuções verbais</strong> — são duas orações em período composto
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Não se espera <strong>que o governo resolva tudo</strong>" — a oração destacada é <strong>sujeito paciente</strong> ("não é esperado ISTO"), e NÃO complemento verbal. Na voz ativa ("espero que o governo resolva") é que seria objeto direto. O "SE" grande indica sentido passivo — atenção redobrada nessa estrutura.
+  </div>
+</section>
+
+<!-- SECAO 15 -->
+<section id="sec15">
+  <div class="sec-header"><div class="sec-num">15</div><div class="sec-title">Pontos que mais caem em prova</div></div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      → <strong>Correlação verbal:</strong> "Se eu pudesse, faria / Se eu puder, farei / Caso eu possa, farei"<br>
+      → <strong>Particípios abundantes:</strong> voz ativa (ter/haver + regular) × voz passiva (ser/estar + irregular); "trago" não existe<br>
+      → <strong>Voz passiva × indeterminação:</strong> VTD+SE (passiva) × VTI/VI/VL+SE (indeterminado)<br>
+      → <strong>Derivados de ver/vir/ter:</strong> previram, interveio, intervieram, conteve, mantiveram, contivermos, advier<br>
+      → <strong>Pôr e derivados:</strong> puser, pusesse, pusera, pusemos<br>
+      → <strong>Querer × requerer:</strong> quis (com S), requeri, requereram (nunca "requiseram")
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      → <strong>Presente argumentativo:</strong> verdades universais, não "ação no momento da fala"<br>
+      → <strong>Mais-que-perfeito:</strong> "fora" = "tinha sido" (intercambiáveis)<br>
+      → <strong>Futuro do subjuntivo × infinitivo:</strong> "ver" vira "vir"; "vir" vira "vier"<br>
+      → <strong>Voz passiva nasce do OD</strong> — VI, VTI e VL não aceitam transposição<br>
+      → <strong>Locução verbal:</strong> só o auxiliar flexiona; principal em forma nominal<br>
+      → <strong>Verbos pronominais:</strong> retirar o pronome de "esquecer-se" exige retirar a preposição
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div>
+    <strong>Dica final:</strong> dominar a conjugação dos <strong>verbos-modelo</strong> (beber, cair, levantar) resolve a maioria das questões de flexão. Nas questões de reescritura, confira sempre: tempo/modo mantido, correlação correta e valor semântico (certeza × hipótese × processo contínuo × concluído).
+  </div></div>
+</section>
+
+<!-- SECAO 16 -->
+<section id="sec16">
+  <div class="sec-header"><div class="sec-num">16</div><div class="sec-title">Incidência de temas (TEC)</div></div>
+  <div class="sec-subtitle">Temas mais cobrados nas questões coladas — será alimentado conforme as questões do TEC forem coladas</div>
+
+  <div class="card">
+    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-text">
+      <span class="tag tag-gray">Nenhuma questão colada ainda — as tags aparecerão aqui à medida que as questões do TEC forem processadas</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+</body>
+</html>
