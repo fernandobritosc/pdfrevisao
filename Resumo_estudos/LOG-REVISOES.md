@@ -11,6 +11,17 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-15
 
+**`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** — 3ª questão TEC colada
+- Questão CEBRASPE (sujeito posposto × complemento direto) processada, sem referência à questão/banca.
+- Bloco novo na Seção 2: "Vigorava, portanto, a compreensão de que..." — sujeito posposto (ordem invertida), verbo intransitivo "vigorar" não pede complemento; método: identificar o sujeito ANTES do complemento ("o que é que vigorava?").
+- Seção 3: linha nova na tabela (3ª pessoa do singular coloquial "Diz que..." = "dizem que") + bloco novo (pronome indefinido NÃO indetermina: "Alguém abriu a porta" = sujeito determinado simples).
+- Incidência TEC: Identificação de funções sintáticas 3 (tag-red); novos temas Sujeito posposto × complemento e Indeterminado × pronome indefinido (1 cada).
+- HTML validado (`erros: []`). Publicado no Surge (regra do usuário: publicar toda alteração).
+
+---
+
+## 2026-08-15
+
 **`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** — 2ª questão TEC colada
 - Questão CEBRASPE (sujeito paciente oracional × OD oracional) processada, sem referência à questão/banca.
 - Bloco novo na Seção 2: "Estima-se que tenham sido gastos..." — oração "que" = sujeito paciente oracional (substantiva subjetiva), "se" apassivador (voz passiva sintética), verbo na 3ª pessoa do singular; sem "se" vira OD oracional com sujeito oculto; conversão à passiva analítica; pegadinha: "se" reflexivo (Deu-se o direito / Arrogou-se o poder) e "se" indeterminador (PIS) não são apassivadores.
