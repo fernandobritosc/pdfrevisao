@@ -9,6 +9,31 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+## 2026-08-15
+
+**`Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html`**
+- Sessões TEC de "Direção. Liderança" processadas (2 levadas: CNJ 29 questões — 22 acertos/7 erros — e
+  leva TEC de liderança com ~30 questões coladas, bloco a bloco).
+- **Normalização da aula**: removida a seção "Questões Comentadas" (20 questões + gabaritos, 7 fora do
+  tema — estruturas organizacionais); corrigido link morto `#sec11` na sidebar; subtítulo da Seção 10
+  corrigido; 30 marcadores `•` → `→` (enumerações verticalizadas, regra do AGENTS.md).
+- Seção 11 "Incidência de temas (TEC)" criada e depois renumerada para Seção 12 quando a Seção 11
+  "Gestão de Conflitos — Chiavenato" foi criada (5 estilos × assertividade/cooperação, segregação de
+  funções, negociação distributiva × integrativa (Robbins), tipos de conflito, mediação × conciliação).
+- Conteúdo novo integrado: dicas e bizus (4 enfoques Chiavenato, autêntica/servidora/LMX); Caminho-Meta
+  (combinações contingenciais FGV); Hersey e Blanchard (coluna Exemplo M1-M4 × E1-E4, lógica da curva,
+  pegadinha M3, callout "Não confunda os modelos" H&B × Fiedler); Grid (coordenadas, nomes alternativos,
+  quadro "Identifique a teoria pelo termo-chave"); Vergara; Teorias X/Y (McGregor) × Barnard (4 condições);
+  líder inspirador; definição FCC de liderança comportamental; pegadinhas (poder × reação, transacional
+  curto prazo, laissez-faire × equipes multiprofissionais, negociação distributiva com recursos fixos e
+  mediador).
+- Seção 12 (Incidência TEC) reestruturada em 3 blocos de prioridade: 🔴 alta (Hersey e Blanchard 6,
+  Transacional 5, Gestão de conflitos 5) · 🟠 média (mediação × conciliação 2, negociação 2, teorias
+  comportamentais 2, Grid 2) · 🟡 baixa (8 temas com 1).
+- **Aula encerrada em 15/08/2026** — meta nº4 do plano (AP — Direção. Liderança, exercícios) concluída.
+
+---
+
 ## 2026-08-14
 
 **`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`**

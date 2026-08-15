@@ -46,3 +46,17 @@ incidência da Aula 07 DA (cobrem ~40% da taxa de repetição do TEC):
 **Ação**: ao iniciar nova sessão de questões TEC de Licitações, mencionar ao
 usuário a revisão desses 5 pontos antes das questões (estão marcados 🔴/🟠 na
 seção "Incidência de temas (TEC)" do resumo).
+
+## Item D — Metas de estudo do usuário (registro em 14/08/2026 · atualizado em 15/08/2026)
+
+Acompanhamento das metas abertas e atrasadas do plano do usuário:
+
+| Nº | Disciplina | Formato | Descrição | Status |
+|----|-----------|---------|-----------|--------|
+| 2 | Português | Teórico e Exercícios | Sintaxe: termos da oração | Aberta |
+| 4 | Administração Pública | Exercícios | Direção. Liderança | ✅ Concluída em 15/08/2026 (aula encerrada; levas TEC processadas; incidências 🔴 registradas na Seção 12 do resumo) |
+| 7 | Direito Processual do Trabalho | Exercícios | Prazos processuais | Aberta |
+
+**Ação**: cobrar/progredir as metas abertas nas próximas sessões; oferecer suporte
+conforme a disciplina (ex.: Português e AP têm material no repositório; DPT
+não tem material ainda).
