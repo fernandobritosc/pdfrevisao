@@ -11,6 +11,17 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-15
 
+**`Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html`** — revisão da análise de desempenho (Item E do BACKLOG, M16.2)
+- Questão TEC de impessoalidade processada (acerto), sem referência à questão/banca.
+- Bloco de aprendizado na seção 3 (Impessoalidade): publicidade oficial (art. 37, § 1º, CF) com caráter educativo/informativo/orientação social, vedada promoção pessoal; **STF ADI 6522/DF (Info 1017)** — § 1º do art. 37 não admite flexibilização por norma infraconstitucional/regulamentar (inconstitucional norma interna que defina o que não é promoção pessoal); imputação das realizações estatais ao ente/entidade, não ao servidor; pegadinha: "flexibilização por lei federal"/"autonomia federativa" não justificam constitucionalidade.
+- Texto do art. 37, § 1º conferido no material-fonte (`Aula 00 - Princípios Administrativos.md`, linhas 261-264/950-953).
+- Incidência TEC criada: Impessoalidade 1 e Publicidade oficial/promoção pessoal 1 (tag-amber).
+- HTML validado (`erros: []`); publicado no Surge.
+
+---
+
+## 2026-08-15
+
 **`Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html`** — AULA ENCERRADA
 - **Aula encerrada em 15/08/2026 (20:36)** — usuário não concluiu o ciclo de questões (3 coladas, todas com resultado negativo); voltará à base das matérias anteriores antes de retomar.
 - Aula 05 processada: 3 questões TEC integradas (sujeito posposto × complemento; "se" apassivador × reflexivo; locução adjetiva; aposto × CN; oração relativa; indefinido não indetermina) + incidência TEC com 10 temas.
