@@ -54,7 +54,7 @@ Registrada integralmente para execução. Orientação dela: **fechar a meta atu
 executar os reforços abaixo e depois baixar a próxima meta**.
 
 **1) Conferir comentários das questões erradas + marcações adicionais nos resumos**:
-- [ ] Direito Administrativo — Princípios administrativos (M16.2) → `Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html`
+- [~] Direito Administrativo — Princípios administrativos (M16.2) → `Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html` — **em andamento desde 15/08/2026**
 - [ ] Direito Administrativo — Estado, governo e Administração Pública. Conceitos. Elementos. Fontes (M17.1) → `Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html`
 - [ ] Direito Constitucional — Conceitos introdutórios. Aplicabilidade e hierarquia das normas. Poder constituinte. Princípios fundamentais (M16) → `Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html`
 
