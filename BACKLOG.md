@@ -86,5 +86,29 @@ Acompanhamento das metas abertas e atrasadas do plano do usuário:
 | 7 | Direito Processual do Trabalho | Exercícios | Prazos processuais | ✅ Concluída em 15/08/2026 (aula encerrada; ~26 questões TEC processadas; incidências 🔴 registradas na Seção 7 do resumo) |
 
 **Ação**: cobrar/progredir as metas abertas nas próximas sessões; oferecer suporte
-conforme a disciplina (ex.: Português e AP têm material no repositório; DPT
-não tem material ainda).
+conforme a disciplina (ex.: Português, AP e DPT têm material no repositório).
+
+## Item E — Revisão dirigida — análise de desempenho da mentora (17/08/2026)
+
+**Registro de 17/08/2026**: análise de desempenho da mentora Thaís Silva
+recomendou reforços antes de fechar a meta atual e baixar a próxima.
+
+**1) Questões erradas → marcar resumos (colar comentários TEC → blocos):**
+- DA Aula 00 — Princípios administrativos (M16.2) → `Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html`
+- DA Aula 01 — Estado, governo e Administração Pública; conceitos/elementos (M17.1) → `Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html`
+- DC Aula 00 — Conceitos introdutórios, aplicabilidade/hierarquia, poder constituinte, princípios fundamentais (M16) → `Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html`
+
+**2) Resolver novamente:**
+- RL Estruturas Lógicas (M18) — ⚠️ matéria sem resumo no repositório (material ausente)
+
+**3) Revisão teórica atenta (aplicar tag `🔁 revisada` no index ao revisar):**
+- DPT Aula 00 (M18) — teoria geral/princípios/organização da JT → `Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html`
+- DPT Aula 01 (M19) — competência da JT → `Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html`
+- AP Aula 00 + 02 (M16/M17) — conceitos introdutórios, processo administrativo, funções da administração → `Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html` + `Aula 02/resumo-aula-02-planejamento-estrategico.html`
+- DC Aula 02/03 (M18.1) — direitos fundamentais: gerações, características, limites, eficácia → `Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html` + `Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html`
+- RL Estruturas Lógicas (M16/M17) + Equivalências Lógicas (M19) — ⚠️ sem resumo no repositório
+
+**Ação**: processar uma a uma as questões erradas coladas pelo usuário em blocos
+TEC nos resumos indicados + incrementar incidência; ao revisar cada aula,
+atualizar a tag `🔁 revisada` no card do index. RL: oferecer criação de material
+se o usuário trouxer PDFs.
