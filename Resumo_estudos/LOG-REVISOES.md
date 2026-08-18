@@ -9,14 +9,23 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+## 2026-08-17
+
+**`Resumo_estudos` (geral) — merge com origin/main (sincronização)**
+- Remoto havia avançado com a revisão dirigida da análise de desempenho (12 commits, 17/08): Aula 00 DA regenerada no padrão atual (9 seções, LIMPE, implícitos, ~10 blocos TEC com incidências), index atualizado (idx11, seção "🎯 Revisão dirigida — análise de desempenho (17/08/2026)"), BACKLOG Item E reescrito como revisão dirigida.
+- Merge resolvido: index.html manteve a versão do remoto (seção Revisão dirigida com links DA/DC/DPT/AP); resumo DA Aula 00 manteve a versão regenerada do remoto.
+- Aprendizado local da questão FGV MPE GO 2022 (ADI 6522/DF — § 1º do art. 37 sem flexibilização por norma infraconstitucional/regulamentar) já era coberto parcialmente; adicionado apenas o **detalhe novo** da ADI 6522/DF (Info 1017) como complemento no card TEC de promoção pessoal (seção Impessoalidade) — incidência não duplicada (tema já contava 1).
+- HTMLs validados (`erros: []`); push + Surge realizados.
+
+---
+
 ## 2026-08-15
 
 **`Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html`** — revisão da análise de desempenho (Item E do BACKLOG, M16.2)
 - Questão TEC de impessoalidade processada (acerto), sem referência à questão/banca.
-- Bloco de aprendizado na seção 3 (Impessoalidade): publicidade oficial (art. 37, § 1º, CF) com caráter educativo/informativo/orientação social, vedada promoção pessoal; **STF ADI 6522/DF (Info 1017)** — § 1º do art. 37 não admite flexibilização por norma infraconstitucional/regulamentar (inconstitucional norma interna que defina o que não é promoção pessoal); imputação das realizações estatais ao ente/entidade, não ao servidor; pegadinha: "flexibilização por lei federal"/"autonomia federativa" não justificam constitucionalidade.
+- Bloco de aprendizado adicionado na seção 3 (Impessoalidade) do resumo então vigente: publicidade oficial (art. 37, § 1º, CF) com caráter educativo/informativo/orientação social, vedada promoção pessoal; **STF ADI 6522/DF (Info 1017)** — § 1º do art. 37 não admite flexibilização por norma infraconstitucional/regulamentar; pegadinha: "flexibilização por lei federal"/"autonomia federativa" não justificam constitucionalidade.
 - Texto do art. 37, § 1º conferido no material-fonte (`Aula 00 - Princípios Administrativos.md`, linhas 261-264/950-953).
-- Incidência TEC criada: Impessoalidade 1 e Publicidade oficial/promoção pessoal 1 (tag-amber).
-- HTML validado (`erros: []`); publicado no Surge.
+- **Nota pós-merge (17/08)**: o resumo foi regenerado pelo remoto (9 seções) e o tema já estava coberto; o aprendizado da ADI 6522/DF foi mantido como detalhe novo no card TEC de promoção pessoal; incidência não duplicada.
 
 ---
 
