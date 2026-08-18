@@ -611,4 +611,16 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+**`Resumo_estudos/Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html`**
+- Revisão completa da aula: verticalizada a enumeração dos "dois vetores" da impessoalidade (linha ~932);
+  conferidos dispositivos legais contra o PDF da aula (EC 109/2021 → art. 37, § 16, CF; demais citações OK);
+  rótulos únicos e incidências consistentes; validação `erros: []`.
+
+**`Resumo_estudos/index.html`**
+- DA Aula 00 marcada como **revisada em 17/08/2026 · 1ª revisão** (card-tag verde na ficha de DA).
+- Revisão dirigida: DA Aula 00 marcada como **✔ concluída em 17/08/2026** (card 1).
+- Última atualização: 17/08/2026 23:15.
+
+---
+
 **Criado por:** fluxo de revisão da seção AGENTS.md.
