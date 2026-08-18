@@ -53,3 +53,14 @@ Use active voice as default. A control should say exactly what happens when it's
 Treat failure and emptiness as moments for direction, not mood. Explain what went wrong and how to fix it, in the interface's voice rather than a person's. Errors don't apologize, and they are never vague about what happened. An empty screen is an invitation to act.
 
 Keep the register conversational and tuned: plain verbs, sentence case, no filler, with tone matched to the brand and the audience. Let each element do exactly one job. A label labels, an example demonstrates, and nothing quietly does double duty.
+
+## Padrões aplicados neste projeto (Resumo_estudos)
+
+Direção aprovada pelo usuário em 17/08/2026 — manter em qualquer redesign futuro.
+
+- **Tokens**: papel `#F5F4F0`, tinta `#1F2733`, pauta `#E2DFD7`, card `#FFFFFF`, linha `#E2DFD7`, amber `#D97706`, azul matéria `#2563EB`; cores de matéria do index (AFO `#16A34A`, AP `#0D9488`, AD `#2563EB`, DC `#7C3AED`, DT `#D97706`, DPT `#DC2626`, PT `#0891B2`, INF `#3B82F6`).
+- **Tipografia**: Google Fonts — Archivo 600-800 (títulos, números de seção, nomes de matéria), IBM Plex Sans 400/600/700 (corpo), IBM Plex Mono 500/600 (rótulos legais, tags, metadados). Conteúdo `font-size: .88rem` com `line-height: 1.6` e `text-align: justify`; sidebar no tamanho original (`.8rem`); títulos de seção `1.18rem`.
+- **Mnemônicos (bizus)**: caixa âmbar (`var(--amber)`) com o mnemônico em destaque; cada letra do acrônimo em **caixinha âmbar** (Archivo 800, branco, `width/height: 1.7rem`, `border-radius: 7px`) com a continuação da palavra ao lado (`display: flex; gap: .5rem; padding: .25rem 0`) — **sem bordas internas tracejadas** (padrão rejeitado). Rótulo "Bizu essencial" em Plex Mono amber uppercase.
+- **Index**: fichas por matéria (`.ficha`) com faixa colorida no topo, ícone + título + contador em Plex Mono uppercase (`ficha-meta`), itens de aula como links internos sem descrição; busca filtra `.grid .card`.
+- **Restraint**: sem pauta no header, sem sublinha dupla nos títulos, sem efeitos extras — textura vem das cores de matéria e da tipografia.
+- **Validação**: `check-html.py` (zero erros) em toda edição; acessibilidade `:focus-visible` e `prefers-reduced-motion`.
