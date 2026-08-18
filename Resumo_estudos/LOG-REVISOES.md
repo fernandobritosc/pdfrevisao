@@ -11,6 +11,16 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-17
 
+**`Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html`** — revisão dirigida (DA M16.2)
+- Questão TEC de impessoalidade processada (acerto): nome de prefeito em obra pública (parque público) viola a impessoalidade — promoção pessoal (CF, art. 37, § 1º); pegadinha: publicidade é distrator (nome em obra ≠ violação da publicidade; sindicabilidade ≠ impessoalidade).
+- Tema já coberto (Situação 1 — parque com nome do prefeito; card TEC de promoção pessoal; sindicabilidade na seção dos princípios) — sem detalhe novo, bloco não reescrito.
+- Incidência incrementada: Impessoalidade — promoção pessoal na publicidade (art. 37, § 1º): 1 → 2.
+- HTML validado (`erros: []`); publicado no Surge.
+
+---
+
+## 2026-08-17
+
 **`Resumo_estudos` (geral) — merge com origin/main (sincronização)**
 - Remoto havia avançado com a revisão dirigida da análise de desempenho (12 commits, 17/08): Aula 00 DA regenerada no padrão atual (9 seções, LIMPE, implícitos, ~10 blocos TEC com incidências), index atualizado (idx11, seção "🎯 Revisão dirigida — análise de desempenho (17/08/2026)"), BACKLOG Item E reescrito como revisão dirigida.
 - Merge resolvido: index.html manteve a versão do remoto (seção Revisão dirigida com links DA/DC/DPT/AP); resumo DA Aula 00 manteve a versão regenerada do remoto.
