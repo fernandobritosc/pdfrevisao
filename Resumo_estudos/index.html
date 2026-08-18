@@ -167,8 +167,6 @@ a { color: var(--blue); }
   font-size: 1.12rem;
   font-weight: 700;
   letter-spacing: -.01em;
-  text-decoration: underline 2px var(--ink);
-  text-underline-offset: 6px;
 }
 .aula .sec-subtitle { font-size: .82rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; }
 .aula .section-title {
@@ -534,17 +532,76 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* LANDING — capa do caderno */
+.landing .header {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-top: none;
+  border-radius: var(--radius);
+  padding: 2.4rem 2rem 1.6rem;
+  margin-bottom: 1.6rem;
+  overflow: hidden;
+}
+.landing .header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, var(--green), var(--blue), var(--purple), var(--amber), var(--teal));
+}
+.landing .header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 8px;
+  bottom: 0;
+  background: repeating-linear-gradient(180deg, transparent 0 31px, rgba(201,197,186,.28) 31px 32px);
+  pointer-events: none;
+}
+.landing .header h1 {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--ink);
+}
+.landing .header p { color: var(--text2); font-size: .95rem; margin-top: .35rem; }
+.landing .header-stats {
+  margin-top: 1.1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+  font-size: .8rem;
+  color: var(--text2);
+}
+.landing .header-stats strong {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-right: .15rem;
 }</style>
 </head>
 <body class="landing">
 
 <div class="header">
-  <h1>📚 Resumos — PDF Revisão</h1>
-  <p>Administração Financeira e Orçamentária · Direito Administrativo · Português · e mais</p>
-  <div style="margin-top:1rem; display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,.7); border:1px solid var(--border); border-radius:999px; padding:.4rem 1rem; font-size:.8rem;">
+  <h1>Resumos Hermes</h1>
+  <p>Caderno de estudos para concursos — resumos, mapas mentais e incidência de temas (TEC)</p>
+  <div style="margin-top:1rem; display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,.85); border:1px solid var(--line-strong); border-radius:999px; padding:.4rem 1rem; font-size:.8rem;">
     <span>🕐</span>
-<span style="font-weight:700; color:#0f172a;">Última atualização: 17/08/2026 14:15</span>
+<span style="font-weight:700; color:var(--ink);">Última atualização: 17/08/2026 14:15</span>
     <span style="color:var(--text2);">(horário de Brasília)</span>
+  </div>
+  <div class="header-stats">
+    <span><strong>50</strong> aulas resumidas</span>
+    <span><strong>8</strong> matérias</span>
+    <span>🔁 revisão espaçada ativa</span>
   </div>
 </div>
 
