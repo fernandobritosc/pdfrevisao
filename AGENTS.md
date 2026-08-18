@@ -72,6 +72,12 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
    - `.opencode/skills/nova-aula/SKILL.md` + `.opencode/command/nova-aula.md` →
      automação do ciclo de aula (`/nova-aula`), incluindo caminhos de python
      (PyMuPDF) e do CLI do Surge usados neste ambiente.
+   - `.opencode/skills/frontend-design/SKILL.md` → design system "caderno de um
+     aprovado" (papel/tinta/Archivo+IBM Plex): aplicar em qualquer redesign visual
+     dos resumos/index; manter classes HTML e regras do AGENTS.md (verticalização,
+     `.card-text + .card-text`, validação check-html.py).
+   - `.opencode/skills/canvas-design/SKILL.md` → arte estática (capa/banner do index
+     em PNG/PDF) — uso opcional, não afeta o layout dos resumos.
 3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
    configurar algum no futuro, registrar aqui (nome, `type`, `command`).
 4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.

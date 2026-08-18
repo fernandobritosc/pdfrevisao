@@ -11,6 +11,19 @@ Registro das alterações feitas nos resumos. Formato:
 
 ## 2026-08-17
 
+**`Resumo_estudos` (geral) — redesign do front end (design system "caderno de um aprovado")**
+- Aplicado novo visual em **54 arquivos HTML** (template-sumario, index raiz, 2 index de matéria e 50 resumos): bloco `<style>` substituído + link Google Fonts injetado no head de cada um.
+- Novo design system (guia: skill frontend-design): papel quente `#F5F4F0` + tinta `#1F2733` + pauta `#E2DFD7`; cores de matéria preservadas (usadas inline nos cards).
+- Tipografia: **Archivo** (títulos), **IBM Plex Sans** (corpo), **IBM Plex Mono** (rótulos, tags, números de seção).
+- Assinatura: faixa de "capa de apostila" no topo da sidebar (gradiente das cores de matéria), `sec-num` como carimbo de tinta, sublinha dupla de pauta nos títulos de seção, cards com elevação sutil.
+- A11y: `:focus-visible` e `prefers-reduced-motion`.
+- Todas as classes/estrutura HTML preservadas (validação: `erros: []` em 54/54).
+- Skills de apoio instaladas no projeto: `.opencode/skills/frontend-design/` e `.opencode/skills/canvas-design/`.
+
+---
+
+## 2026-08-17
+
 **`Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html`** — revisão dirigida (DA M16.2)
 - Questão TEC de impessoalidade processada (acerto): nome de prefeito em obra pública (parque público) viola a impessoalidade — promoção pessoal (CF, art. 37, § 1º); pegadinha: publicidade é distrator (nome em obra ≠ violação da publicidade; sindicabilidade ≠ impessoalidade).
 - Tema já coberto (Situação 1 — parque com nome do prefeito; card TEC de promoção pessoal; sindicabilidade na seção dos princípios) — sem detalhe novo, bloco não reescrito.
