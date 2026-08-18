@@ -151,6 +151,12 @@ conteúdos, antes do rodapé ou em subseção dedicada).
 - Cada nova questão colada incrementa o contador do(s) tema(s) correspondente(s).
 - Temas de alta incidência devem ser destacados (ex: `🔴 Alta incidência`) e servem
   para o usuário priorizar a revisão.
+- **Tags consolidadas por princípio (regra do usuário, 17/08/2026)**: na seção de
+  incidência, manter as tags **centralizadas no princípio/tema central** (ex.:
+  `Impessoalidade: 7`, `Eficiência: 3`) — **não subdividir** por subtema (evitar
+  "Impessoalidade — promoção pessoal", "Impessoalidade — patrimonialismo", etc.).
+  Só manter tag própria quando o tema não se encaixar em princípio central
+  (ex.: `Lei 9.784/1999 — rol do art. 2º, parágrafo único`).
 
 Formato sugerido:
 
@@ -158,8 +164,8 @@ Formato sugerido:
 <div class="card">
   <div class="card-title">📊 Incidência de temas (TEC)</div>
   <div class="card-text">
-    <span class="tag tag-red">Pregão eletrônico: 5</span>
-    <span class="tag tag-amber">Contratação direta: 3</span>
+    <span class="tag tag-red">Impessoalidade: 7</span>
+    <span class="tag tag-amber">Eficiência: 3</span>
     ...
   </div>
 </div>
