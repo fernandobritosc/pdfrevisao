@@ -78,6 +78,10 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
      `.card-text + .card-text`, validação check-html.py).
    - `.opencode/skills/canvas-design/SKILL.md` → arte estática (capa/banner do index
      em PNG/PDF) — uso opcional, não afeta o layout dos resumos.
+   - **Scripts de build (raiz do repo, rodar com o Python da skill)**:
+     - `build-search-index.py` → gera `Resumo_estudos/search-index.json` (busca full-text do index).
+     - `build-changelog.py` → gera `Resumo_estudos/mudancas.html` (página "O que mudou", via git log) — rodar **antes de todo deploy** (Passo 8 da skill).
+     - `apply-review-mode.py` / `apply-marks-mode.py` / `apply-pwa.py` → injetam os add-ons nos resumos (modo revisão 🧠, marcação 🏷, PWA offline); idempotentes, rodar após regenerar resumos pelo template.
 3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
    configurar algum no futuro, registrar aqui (nome, `type`, `command`).
 4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.
