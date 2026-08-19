@@ -792,6 +792,13 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
   .highlight { background: transparent !important; }
   .mnemonic { background: #fff !important; }
 }
+#resultados { margin: -0.6rem 0 1.4rem; }
+.r-item { display: block; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: .65rem .95rem; margin-bottom: .55rem; color: var(--text); text-decoration: none; }
+.r-item:hover { border-color: var(--ink); box-shadow: 0 2px 6px rgba(31,39,51,.08); }
+.r-title { font-weight: 700; font-size: .9rem; }
+.r-meta { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; color: var(--text2); margin-top: .1rem; }
+.r-snippet { font-size: .8rem; color: var(--text2); margin-top: .3rem; line-height: 1.45; }
+.r-snippet mark { background: #ffe9a8; color: #1F2733; padding: 0 .12rem; border-radius: 3px; }
 </style>
 <script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
 </head>
@@ -814,14 +821,88 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
 
 <div class="main">
 
-  <input id="busca" type="text" placeholder="🔍 Buscar aula ou tema..." autocomplete="off" style="width:100%;padding:.8rem 1.1rem;border:1px solid var(--border);border-radius:10px;font-size:.95rem;background:var(--card);color:var(--text);margin-bottom:1.5rem;outline:none;">
+  <input id="busca" type="text" placeholder="🔍 Buscar em todos os resumos (aula, tema ou conteúdo — ex.: MI coletivo)..." autocomplete="off" style="width:100%;padding:.8rem 1.1rem;border:1px solid var(--border);border-radius:10px;font-size:.95rem;background:var(--card);color:var(--text);margin-bottom:1.5rem;outline:none;">
+  <div id="resultados"></div>
   <script>
-  document.getElementById('busca').addEventListener('input', function () {
-    var q = this.value.toLowerCase().trim();
-    document.querySelectorAll('.grid .card').forEach(function (card) {
-      card.style.display = (!q || card.textContent.toLowerCase().includes(q)) ? '' : 'none';
+  (function () {
+    var input = document.getElementById('busca');
+    var res = document.getElementById('resultados');
+    var grid = document.querySelector('.grid');
+    var index = null;
+    fetch('search-index.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { index = d; }).catch(function () { index = null; });
+
+    function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    function mark(snippet, terms) {
+      var out = esc(snippet);
+      terms.forEach(function (t) {
+        var re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        out = out.replace(re, '<mark>$1</mark>');
+      });
+      return out;
+    }
+
+    function snippetFor(it, terms) {
+      var low = it.x.toLowerCase();
+      var pos = -1;
+      terms.forEach(function (t) { var p = low.indexOf(t); if (p >= 0 && (pos < 0 || p < pos)) pos = p; });
+      var start = Math.max(0, pos - 70);
+      var end = Math.min(it.x.length, pos + terms.join(' ').length + 110);
+      return (start > 0 ? '…' : '') + it.x.slice(start, end) + (end < it.x.length ? '…' : '');
+    }
+
+    function search(q) {
+      var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+      var out = [];
+      for (var i = 0; i < index.length; i++) {
+        var it = index[i];
+        var titleLow = (it.a + ' ' + it.t).toLowerCase();
+        var ok = true;
+        var score = 0;
+        for (var j = 0; j < terms.length; j++) {
+          if (titleLow.indexOf(terms[j]) >= 0) score += 5;
+          if (it.x.toLowerCase().indexOf(terms[j]) >= 0) score += 1;
+          else ok = false;
+        }
+        if (ok && score > 0) out.push({ it: it, score: score });
+      }
+      out.sort(function (a, b) { return b.score - a.score || (a.it.a + a.it.t).localeCompare(b.it.a + b.it.t); });
+      return out.slice(0, 15);
+    }
+
+    function render(items, q) {
+      var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+      if (!items.length) {
+        res.innerHTML = '<p style="color:var(--text2);font-size:.85rem;">Nada encontrado para <strong>' + esc(q) + '</strong>.</p>';
+        return;
+      }
+      res.innerHTML = items.map(function (o) {
+        var it = o.it;
+        return '<a class="r-item" href="' + encodeURI(it.u) + (it.s ? '#' + it.s : '') + '">' +
+          '<div class="r-title">' + esc(it.a) + (it.t ? ' · ' + esc(it.t) : '') + '</div>' +
+          '<div class="r-meta">' + esc(it.m) + '</div>' +
+          '<div class="r-snippet">' + mark(snippetFor(it, terms), terms) + '</div></a>';
+      }).join('');
+    }
+
+    var timer = null;
+    input.addEventListener('input', function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        var q = input.value.trim();
+        if (q.length < 2) { res.innerHTML = ''; grid.style.display = ''; return; }
+        if (index) {
+          grid.style.display = 'none';
+          render(search(q), q);
+        } else {
+          grid.style.display = '';
+          document.querySelectorAll('.grid .card').forEach(function (card) {
+            card.style.display = card.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+          });
+        }
+      }, 150);
     });
-  });
+  })();
   </script>
   <p style="color:var(--text2);font-size:.8rem;margin:-.3rem 0 1.2rem;">🟢 Tag verde no card = aula já revisada (revisão espaçada) — mostra a data da última revisão e o nº de revisões.</p>
 
