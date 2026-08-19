@@ -623,4 +623,15 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+**`Resumo_estudos` (geral) — ferramentas de estudo (18/08/2026)**
+- Busca full-text: `build-search-index.py` (raiz) → `search-index.json` (465 seções); busca no index com snippet e link direto à seção.
+- Modo revisão 🧠 (active recall): botão no toolbar oculta conteúdo de cards e revela por clique (50 resumos + template).
+- Marcação pessoal 🏷: marca cards como "vacilo" (borda vermelha), persistência localStorage + export/import JSON (50 resumos + template).
+- PWA offline: `manifest.webmanifest`, `sw.js` (network-first HTML), ícones 512/192/180, registro em 52 páginas.
+- Página "O que mudou": `build-changelog.py` → `mudancas.html` (git log, badge "novo" via localStorage) + link no index.
+- Skill `/nova-aula` Passo 8: regenera search-index + changelog antes de publicar. AGENTS.md: scripts de build registrados.
+- Corrigidos 4 links quebrados em `AFO/index.html` (`../Aula` → `Aula`); validação de links: 0 quebrados; `check-all-html`: 0 problemas.
+
+---
+
 **Criado por:** fluxo de revisão da seção AGENTS.md.

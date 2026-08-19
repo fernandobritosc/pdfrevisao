@@ -99,10 +99,11 @@ Confirmar que o push saiu (`origin/main` avançou). NUNCA commitar PDFs
 
 ## Passo 8 — Publicar no Surge (somente a subpasta)
 
-Antes de publicar, **regenerar a página "O que mudou"** (reflete os commits novos):
+Antes de publicar, **regenerar a busca full-text e a página "O que mudou"** (refletem os commits e resumos novos):
 
 ```powershell
 $env:PYTHONIOENCODING="utf-8"
+& "C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe" "C:\Programação\hermes\PDF Revisão\build-search-index.py"
 & "C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe" "C:\Programação\hermes\PDF Revisão\build-changelog.py"
 ```
 
