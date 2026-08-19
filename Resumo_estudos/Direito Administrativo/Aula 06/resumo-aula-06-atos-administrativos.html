@@ -550,6 +550,178 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }</style>
+
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar-title, .aula .sidebar-brand { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar-title, .aula .sidebar-brand { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
 </head>
 <body class="aula">
 
@@ -570,9 +742,9 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
   <a href="#sec10">10. Pontos que mais caem em prova</a>
   <a href="#sec11">11. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
-  <a href="../../index.html" style="color:#1d4ed8;font-size:.78rem;">← Voltar ao índice</a>
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
   <hr class="sidebar-divider">
-  <div style="font-size:.65rem;color:#475569;">
+  <div style="font-size:.65rem;color:var(--text2);">
     Fontes: resumo + simplificado + completo<br>
     Estratégia Concursos
   </div>
@@ -1340,5 +1512,40 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
 
 </div><!-- .main -->
 
+
+
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2005/resumo-aula-05-poderes-e-deveres-da-administracao.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 05 · Poderes e Deveres da Administração Pública</span></a>
+  <a class="next" href="../Aula%2007/resumo-aula-07-licitacoes-publicas.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Aula 07 · Licitações Públicas · Lei 14.133/2021</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+<!--/rh:ui-->
 </body>
 </html>
