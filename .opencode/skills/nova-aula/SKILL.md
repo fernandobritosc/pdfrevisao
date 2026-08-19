@@ -1,6 +1,6 @@
 ---
 name: nova-aula
-description: Use para processar uma aula nova de concurso: converter PDFs de aula (Estratégia Concursos/TEC) em .md, excluir os PDFs, gerar o resumo HTML no padrão do template-sumario, atualizar o card do index.html, commitar+pushar e publicar no Surge (resumos-hermes.surge.sh). Também use para transformar questões coladas do TEC em blocos de aprendizado (📌 Aprendizado / ⚖️ Base legal / 🚨 Pegadinha) e incrementar a seção "Incidência de temas (TEC)".
+description: Use para processar uma aula nova de concurso: converter PDFs de aula (Estratégia Concursos/TEC) em .md, excluir os PDFs, gerar o resumo HTML no padrão do template-sumario, atualizar o card do index.html, commitar+pushar e publicar no Surge (resumos-hermes.surge.sh). Também use para transformar questões coladas do TEC em blocos de aprendizado (📌 Aprendizado / ⚖️ Base legal) e incrementar a seção "Incidência de temas (TEC)".
 ---
 
 # nova-aula — Ciclo completo de aula (conversão → resumo → índice → git → Surge)
@@ -134,7 +134,10 @@ Quando o usuário colar questão(ões) do TEC de uma aula já resumida:
 2. Transformar o aprendizado em bloco de estudo (NÃO replicar a questão):
    - `📌 Aprendizado` — regra/exceção/distinção que a questão ensina
    - `⚖️ Base legal` — artigo(s) (ex: Lei 14.133/2021, art. 6º, XXIX)
-   - `🚨 Pegadinha` — o erro da assertiva / o que a banca inverte
+   - **Sem campo "Pegadinha"**: erros comuns de interpretação entram como linha
+     própria dentro do Aprendizado, iniciada por `→ ⚠️ Cuidado:` — NUNCA usar
+     "assertiva", "a banca", "enunciado", "alternativa" ou qualquer referência
+     à questão/prova
    - **Rótulo único**: `📌 Aprendizado` aparece **uma única vez** (primeira linha do
      bloco); cada assunto adicional em linha própria iniciada por `→` com apenas o
      nome do assunto (ex.: `→ Estabilidade:`, `→ Prazo:`). NUNCA repetir o rótulo.

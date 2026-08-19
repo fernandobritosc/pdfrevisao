@@ -121,11 +121,12 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 ```
 📌 Aprendizado    — o que a questão ensina (regra, exceção, distinção)
 ⚖️ Base legal     — artigo(s) de lei que fundamenta (ex: Lei 14.133/2021, art. 6º, XXIX)
-🚨 Pegadinha      — o erro da assertiva / o que a banca adora inverter
+→ ⚠️ Cuidado      — erros comuns de interpretação, como linhas dentro do Aprendizado
 ```
 
-- **NUNCA referenciar a questão no bloco** (nem número, banca, órgão, cargo ou ano) —
-  o conteúdo deve valer por si só, sem vínculo com a questão de origem.
+- **NUNCA referenciar a questão no bloco** (nem número, banca, órgão, cargo, ano,
+  assertiva ou gabarito) — o conteúdo deve valer por si só, sem vínculo com a
+  questão de origem.
 - **Separação de assuntos**: dentro de um mesmo bloco (card/callout/gotcha), cada
   assunto ocupa linha própria iniciada por **`→`** (quebra com `<br>`); não criar um
   novo bloco a cada assunto.
@@ -133,11 +134,15 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
   houver separação entre parágrafos ou assuntos, usar **`<br><br>`** (dupla quebra)
   entre eles — texto colado (um único `<br>`) dificulta a leitura. Aplicar sempre
   que houver mudança de parágrafo/assunto dentro de um card-text.
-- **Rótulo único (regra do usuário, 15/08/2026)**: os rótulos `📌 Aprendizado`,
-  `⚖️ Base legal` e `🚨 Pegadinha` aparecem **uma única vez por bloco/card** —
-  `📌 Aprendizado` só na **primeira linha**; as linhas seguintes usam apenas o nome
-  do assunto (ex.: `→ Estabilidade:`, `→ Prazo:`, `→ Acordo:`). NUNCA repetir o
-  rótulo `📌 Aprendizado` a cada linha de assunto.
+- **Rótulo único (regra do usuário, 15/08/2026)**: os rótulos `📌 Aprendizado` e
+  `⚖️ Base legal` aparecem **uma única vez por bloco/card** — `📌 Aprendizado` só na
+  **primeira linha**; as linhas seguintes usam apenas o nome do assunto (ex.:
+  `→ Estabilidade:`, `→ Prazo:`, `→ Acordo:`). NUNCA repetir o rótulo
+  `📌 Aprendizado` a cada linha de assunto.
+- **Sem campo "Pegadinha" (regra do usuário, 19/08/2026)**: os blocos TEC NÃO têm
+  o campo `🚨 Pegadinha`. Erros comuns de interpretação entram como linha própria
+  dentro do Aprendizado, iniciada por `→ ⚠️ Cuidado:` — sem usar "assertiva",
+  "a banca", "enunciado", "alternativa" ou qualquer referência a questão/prova.
 
 ### Tema repetido
 
