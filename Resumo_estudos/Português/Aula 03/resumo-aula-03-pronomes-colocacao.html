@@ -1393,9 +1393,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   var root=document.documentElement;
   function on(){return root.classList.contains('rh-rev');}
   function apply(){
-    root.classList.toggle('rh-rev', b.classList.toggle('on', on()));
-    try{localStorage.setItem('rh-rev', on()?'1':'0');}catch(e){}
-    b.setAttribute('aria-pressed', on()?'true':'false');
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
   }
   b.addEventListener('click', apply);
   try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
