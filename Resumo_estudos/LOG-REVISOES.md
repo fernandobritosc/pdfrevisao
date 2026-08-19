@@ -9,6 +9,30 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+## 2026-08-18
+
+**`Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html`** — revisão dirigida (DC M16)
+- Correção crítica: "art. 143, § 3º, V" → **art. 142, § 3º, V** (filiação partidária do militar) — conferido no material-fonte (`aula-06-Direitos políticos-completo.md`).
+- Verticalizadas enumerações: características do voto (Direto/Secreto/Universal/Periódico/Obrigatório/valor igual) e idades mínimas do art. 14, § 3º, VI (35/30/21/18) — linhas próprias com `→` + `<br>`.
+- Card "Suspensão (art. 15) × inelegibilidade (art. 14) e cumulação" ajustado: separada a **suspensão por improbidade** (Lei 8.429/92, art. 12, Lei 14.230/21 — 8 anos) da **inelegibilidade da Ficha Limpa** (LC 64/90, art. 1º, I, "e" e "l") — o STF (ADI 4578/DF + ADC 29/30, Fux, Pleno, 16.2.2012) firmou interpretação conforme: 8 anos contados do cumprimento da pena, deduzido o período entre condenação e trânsito em julgado; cumulação constitucional, sem bis in idem.
+- Conferidos contra fonte/STF/TSE (sem alteração): art. 61, § 2º (iniciativa popular); EC 111/2021, §§ 12-13 (90 dias JE); Súmula 6 TSE (texto integral); Tema 678/RE 758.461; Rcl 45.437; Súmula 9 TSE; Enunciado 59 da I Jornada de Direito Eleitoral (ANPP); EC 131/2023 (art. 12, § 4º/§ 5º); art. 37, § 4º.
+- HTML validado (`erros: []`).
+
+**`Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html`** — revisão dirigida (DC M16)
+- Correção crítica: "Res. TSE 22.610/2017" → **Res. TSE 22.610/2007** (ação de perda de mandato; art. 1º, § 2º: 30 dias o partido, depois MP/interessado) — 2 ocorrências.
+- Res. TSE atualizada: "notícia de criação" passou a referenciar a **Res. TSE 23.571/2018, art. 10, § 3º** (100 dias) — a Res. 23.465/2015 foi revogada pela 23.571/2018 (regra mantida).
+- Verticalizado gotcha "Não misture os §§ do Art. 17" (§ 3º/§ 6º/§ 7º-8º/§ 9º) — linhas próprias com `→` + `<br>`.
+- Removido bullet residual confuso ("Militar: registrar estatuto?...") na seção 8; corrigidos typos "antenha" → "antena" (3 ocorrências).
+- Conferidos contra fonte/STF/TSE (sem alteração): ADI 6.044 (5 anos p/ fusão/incorporação); EC 111/2021, art. 3º (sanções do incorporado não se transferem); art. 17, § 4º + art. 5º, XVII (paramilitar); Lei 9.096/95, arts. 7º, § 1º (0,5% em 1/3 das UF com 0,1% em cada), 41, II e 22-A (I, II e III — janela); ADI 956; cronograma da EC 97/2017 (1,5%→9 DF; 2%→11; 2,5%→13; 2030: 3%→15); EC 111/2021, art. 2º (votos em dobro 2022-2030, uma única vez); EC 133/2024 (§ 9º 30% pretas/pardas; art. 4º, § 1º imunidade exceto previdenciárias; art. 5º Refis 60/180 meses); ADI 2530 (candidatura nata); Súmula 67 TSE (majoritários não perdem); Consulta TSE 0600161-20.2021/DF (migração única); MS 27938 (sucessão da vaga = partido de origem); ADI 5.617.
+- HTML validado (`erros: []`).
+
+**`Resumo_estudos/index.html`**
+- Fichas DC Aulas 06 e 07 marcadas como **🔁 revisada em 18/08/2026 · 1ª revisão** (card-tag verde).
+- Revisão dirigida: DC Aulas 06 e 07 marcadas como **✔ concluída em 18/08/2026** (card 1); título da seção atualizado para (18/08/2026).
+- Última atualização: 18/08/2026 22:53.
+
+---
+
 ## 2026-08-17
 
 **`Resumo_estudos` (geral) — redesign do front end (design system "caderno de um aprovado")**
