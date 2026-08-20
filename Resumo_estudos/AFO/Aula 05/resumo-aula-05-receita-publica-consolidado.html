@@ -302,6 +302,10 @@ a { color: var(--blue); }
   gap: .5rem;
   padding: .25rem 0;
 }
+.mnemonic-content span.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+}
 .mnemonic-content .mnem-high {
   display: inline-flex;
   align-items: center;
@@ -776,7 +780,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <a href="#sec8">8. Lei 4.320/64</a>
   <a href="#sec9">9. Despesas</a>
   <a href="#sec10">10. Mnemônicos</a>
-  <a href="#sec11">11. Pontos de prova</a>
+  <a href="#sec11">11. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
   <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
 </aside>
@@ -808,6 +812,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>MTO 2024:</strong> em sentido estrito, receita pública = ingressos que geram aumento líquido do patrimônio público.</div></div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>NBC TSP Estrutura Conceitual:</strong> receitas e despesas originam-se de transações <strong>com</strong> contraprestação e <strong>sem</strong> contraprestação, e de outros eventos (ex.: aumentos/decréscimos não realizados de ativos e passivos; depreciação; redução ao valor recuperável).</div></div>
 </section>
 
 <!-- SECAO 2 -->
@@ -842,9 +848,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="mnemonic-content">
       • Operação de crédito → receita <span class="tag tag-green">orçamentária</span><br>
       • ARO → receita <span class="tag tag-red">extraorçamentária</span><br>
+      • Caução pode <strong>virar receita orçamentária</strong> se o ente <strong>executar</strong> a caução (ex.: sanção imposta ao licitante)<br>
       • Taxas de inscrição em concursos/passaportes → <span class="tag tag-green">orçamentárias</span><br>
       • Doação recebida <strong>não é extraorçamentária</strong> só por não estar prevista na LOA<br>
-      • Cancelamento de RAP <strong>não</strong> gera receita orçamentária
+      • Doação recebida em dinheiro → variação patrimonial aumentativa (art. 57 da Lei 4.320/64) + receita orçamentária<br>
+      • Cancelamento de RAP <strong>não</strong> gera receita orçamentária<br>
+      • Ressarcimento/restituição de despesas pagas em exercícios anteriores → receita orçamentária (≠ cancelamento de RAP)<br>
+      • Depósitos judiciais → ingressos <strong>extraorçamentários</strong> (não são receita orçamentária)
     </div>
   </div>
 </section>
@@ -870,7 +880,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       • Exigência compulsória de pagamento<br>
       • Baseadas na <strong>soberania estatal</strong> — o particular não pode se opor<br>
       • <strong>Não prescindem de lei</strong> — tributos exigem instituição legal prévia (CTN, art. 3º) — “prescindir” = dispensar<br>
-      • <strong>Exemplos:</strong> tributos (impostos, taxas, contribuições de melhoria), contribuições sociais/econômicas, multas administrativas/contratuais/judiciais
+      • <strong>Exemplos:</strong> tributos (impostos, taxas, contribuições de melhoria), contribuições sociais/econômicas e especiais, multas administrativas/contratuais/judiciais<br>
+      • <strong>Espécies da origem "receitas de contribuições" (MCASP):</strong> contribuições sociais; contribuições econômicas; contribuições para entidades privadas de serviço social e de formação profissional (ex.: SESC, SESI, SENAI); contribuição para custeio da iluminação pública (CIP)
     </div>
   </div>
 
@@ -880,6 +891,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <li>Aluguéis de imóveis públicos são <strong>originárias</strong>, não tributárias</li>
       <li>Multas de trânsito são <strong>derivadas</strong></li>
       <li>Tarifas e preços públicos também são <strong>originárias</strong></li>
+      <li>Contribuição de melhoria é receita <strong>tributária</strong>, não "receita de contribuições"</li>
+      <li>"Compulsórias" não é nomenclatura correta — o termo técnico é <strong>derivadas</strong></li>
     </ul>
   </div></div>
 </section>
@@ -892,7 +905,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Estrutura do código</div></div>
     <div class="card-text">
-      É a classificação de <strong>nível mais analítico</strong> da receita, conforme MCASP 10ª Edição: auxilia na elaboração de análises econômico-financeiras sobre a atuação estatal.<br><br>
+      É a classificação de <strong>nível mais analítico</strong> da receita, conforme MCASP 10ª Edição: auxilia na elaboração de análises econômico-financeiras sobre a atuação estatal.<br>
+      Visa identificar a <strong>origem do recurso segundo o fato gerador</strong> — acontecimento real que ocasionou o ingresso da receita nos cofres públicos. Utilizada por <strong>todos os entes da Federação</strong>.<br>
+      Para relatórios de análise econômico-financeira com "informações em nível analítico" (ex.: subsidiar ações de incremento da arrecadação), a fonte correta é a <strong>natureza</strong> — esfera, fonte/destinação, afetação patrimonial e origem/coercitividade não entregam esse nível de detalhe.<br><br>
       Estrutura: <strong>a.b.c.d.ee.f.g</strong><br>
       <span class="tag tag-blue">1º dígito (a)</span> = categoria econômica — 1 = corrente; 2 = capital; 7 = corrente intra; 8 = capital intra<br>
       <span class="tag tag-blue">2º dígito (b)</span> = origem — de onde veio o recurso<br>
@@ -925,7 +940,28 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Esfera orçamentária</div></div>
+    <div class="card-text">
+      Identifica a qual orçamento a receita pertence (conforme § 5º do art. 165 da CF, MTO 2024):<br>
+      → Orçamento <strong>Fiscal</strong> (Poderes, fundos, órgãos e entidades da administração direta e indireta, inclusive fundações e estatais dependentes)<br>
+      → Orçamento da <strong>Seguridade Social</strong> (saúde, previdência e assistência social)<br>
+      → Orçamento de <strong>Investimento das Empresas Estatais</strong> (receitas de investimentos das estatais não dependentes)
+    </div>
+  </div>
+
   <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha da banca:</strong> Alienação de bens = receita de <strong>capital</strong>, não patrimonial. Aluguel de imóvel público = receita <strong>corrente patrimonial</strong>. A banca adora inverter esses dois.</div></div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>
+    <strong>Casos MCASP que a banca cobra:</strong><br>
+    • Somente as receitas <strong>orçamentárias</strong> são classificadas segundo a natureza (corrente × capital) — os ingressos <strong>extraorçamentários</strong> não recebem essa classificação (entradas compensatórias, em que o Estado é mero agente depositário)<br>
+    • Cessão de direitos → receita <strong>corrente patrimonial</strong><br>
+    • Multas e juros da alienação de bens intangíveis → receitas <strong>correntes</strong><br>
+    • Multas e juros de mora de impostos e taxas → receita <strong>corrente tributária</strong> (seguem a origem da arrecadação principal)<br>
+    • Multas administrativas, contratuais e judiciais → origem <strong>outras receitas correntes</strong> (MCASP)<br>
+    • Indenização por posse/ocupação ilícita de bens públicos → receita <strong>corrente</strong><br>
+    • Previsão inicial da receita (aprovação da LOA) = fato orçamentário → registrada somente nas <strong>classes 5 e 6 do PCASP</strong> (D: Previsão Inicial da Receita; C: Receita a Realizar), sem envolver as classes 1 e 4 (natureza patrimonial)
+  </div></div>
 </section>
 
 <!-- SECAO 5 -->
@@ -936,8 +972,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Código de 4 dígitos</div></div>
     <div class="card-text">
+      • <strong>Fonte de recursos (MTO):</strong> atributo que permite classificar as despesas de acordo com as receitas que possuem as <strong>mesmas normas de aplicação</strong> (identifica o destino legal dos recursos)<br>
+      • <strong>Obrigatória para todos os entes</strong> da Federação (União, Estados, Municípios e DF) — estrutura de codificação definida em <strong>portaria conjunta STN/SOF</strong>, não é facultativa para estados e municípios<br>
       • Código de <strong>4 dígitos</strong>: 1º dígito = grupo de fontes; 2º e 3º = especificação<br>
-      • Serve <strong>tanto para receita quanto para despesa</strong><br>
+      • Serve <strong>tanto para receita quanto para despesa</strong> — a fonte é instrumento de gestão da receita e da despesa <strong>ao mesmo tempo</strong>: assegura que determinadas receitas sejam direcionadas a financiar projetos e atividades (despesas) conforme as leis que regem o tema<br>
       • Indica como são financiadas as despesas orçamentárias
     </div>
   </div>
@@ -958,11 +996,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="mnemonic">
     <div class="mnemonic-label">🧠 Macete</div>
     <div class="mnemonic-content">
-      <span class="tag tag-green">Destinação Vinculada</span> = finalidade específica (Fundeb, PROINFRA)<br>
-      <span class="tag tag-blue">Destinação Ordinária</span> = sem vínculo (destinação livre)<br>
-      Exemplo: 00 = Ordinários; 52 = Recursos BACEN (vinculados)
+      <span class="tag tag-green">Destinação Vinculada</span> = processo de vinculação entre a origem e a aplicação de recursos, em atendimento a finalidades específicas do marco legal (Fundeb, PROINFRA)<br>
+      <span class="tag tag-blue">Destinação Livre</span> = alocação livre entre a origem e a aplicação de recursos, para quaisquer finalidades dentro das competências de atuação do órgão ou entidade<br>
+      Exemplo: 00 = Recursos Livres; 52 = Recursos BACEN (vinculados)
     </div>
   </div>
+
+  <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha da banca:</strong> a classificação por fonte/destinação <strong>identifica</strong> se os recursos são vinculados ou não a gastos específicos — e, se vinculados, indica a finalidade. Não é o contrário.</div></div>
 
   <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>LRF art. 8º, parágrafo único:</strong> recursos vinculados a finalidade específica devem ser usados <strong>exclusivamente</strong> para esse fim, ainda que em exercício diverso.</div></div>
 </section>
@@ -1012,12 +1052,32 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Quanto à afetação patrimonial — definição (MCASP)</div></div>
+    <div class="card-text">
+      <strong>Efetiva</strong> — ingressos que <strong>não</strong> foram precedidos de registro de reconhecimento do direito e <strong>não</strong> constituem obrigações correspondentes:<br>
+      → Ex.: impostos e taxas, contribuições sociais, patrimonial, serviços, multas e juros de mora, transferências correntes<br><br>
+      <strong>Não efetiva</strong> — ingressos precedidos de registro do reconhecimento do direito <strong>ou</strong> que constituem obrigações correspondentes:<br>
+      → Ex.: operações de crédito, alienação de bens e títulos mobiliários, amortização de empréstimos<br><br>
+      <strong>Exceção:</strong> as transferências de capital são receitas <strong>efetivas</strong> (causam acréscimo patrimonial).
+    </div>
+  </div>
+
+  <div class="card">
     <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Quanto à regularidade / periodicidade</div></div>
     <div class="card-text">
       <strong>Ordinárias</strong> — ingressos permanentes e estáveis, arrecadação regular em cada exercício:<br>
       • IR, ICMS, IPVA, IPTU etc.<br><br>
       <strong>Extraordinários</strong> — caráter não continuado, eventual, imprevisível:<br>
       • Guerras, doações, indenizações em favor do Estado etc.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Disponibilidade e patrimônio líquido</div></div>
+    <div class="card-text">
+      • Receitas <strong>correntes</strong>: aumentam as disponibilidades e, em regra, têm efeito positivo sobre o PL<br>
+      • Receitas de <strong>capital</strong>: aumentam as disponibilidades, mas não provocam efeito sobre o PL<br>
+      • <strong>Exceção:</strong> as transferências de capital são <strong>efetivas</strong> (causam acréscimo patrimonial)
     </div>
   </div>
 </section>
@@ -1030,7 +1090,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Art. 9º</div></div>
     <div class="card-text">
-      Receita pública é a entrada de recursos financeiros nos cofres públicos.
+      <strong>Tributo</strong> é a receita derivada instituída pelas entidades de direito público, compreendendo os <strong>impostos</strong>, as <strong>taxas</strong> e as <strong>contribuições</strong>, nos termos da CF e das leis vigentes em matéria financeira, destinando-se o seu produto ao custeio de atividades gerais ou específicas exercidas por tais entidades.
     </div>
   </div>
 
@@ -1049,6 +1109,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha clássica:</strong> Alienação de bens = receita de <strong>capital</strong> (não patrimonial). Aluguel de imóvel público = receita <strong>corrente patrimonial</strong>. A banca adora inverter esses dois.</div></div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div>
+    <strong>Regime orçamentário:</strong> receita = <strong>arrecadação</strong> (caixa); despesa = <strong>empenho</strong> (competência). A arrecadação não coincide necessariamente com o fato gerador.
+  </div></div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div>
+    <strong>Dica final:</strong> a Lei 4.320/64 é a base de praticamente toda questão de receita pública. Decore os arts. 9º a 11 e o mapeamento das categorias econômicas.
+  </div></div>
 </section>
 
 <!-- SECAO 9 -->
@@ -1083,6 +1151,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div>
     <strong>Juros pagos</strong> são sempre <strong>despesas correntes</strong>, NÃO de capital.<br>
+    <strong>Juros e encargos da dívida</strong> → despesa <strong>corrente</strong>, classificada como <strong>transferências correntes</strong>.<br>
     <strong>Devolução de caução</strong> = despesa <strong>extraorçamentária</strong>, não corrente.
   </div></div>
 </section>
@@ -1126,58 +1195,42 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <span class="tag tag-amber">Superávit financeiro</span> = não é receita orçamentária (fonte para créditos suplementares)
     </div>
   </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Receitas Correntes — "TRIBUTA CON PAIS"</div>
+    <div class="mnemonic-content">
+      <strong>TRI</strong>butária · <strong>CON</strong>tribuições · <strong>P</strong>atrimonial · <strong>A</strong>gropecuária · <strong>I</strong>ndustrial · <strong>S</strong>erviços (+ transferências correntes e outras) — cuidado para não confundir contribuições com contribuição de melhoria
+    </div>
+  </div>
+
+  <div class="mnemonic">
+    <div class="mnemonic-label">🧠 Receitas de Capital — "OPERA ALI AMOR"</div>
+    <div class="mnemonic-content">
+      <strong>OPERA</strong>ções de crédito · <strong>ALI</strong>enações de bens · <strong>AMOR</strong>tização de empréstimos (+ transferências de capital e outras)
+    </div>
+  </div>
 </section>
 
 <!-- SECAO 11 -->
 <section id="sec11">
-  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Pontos que mais caem em prova</div></div>
-  <div class="sec-subtitle">Alta incidência em CESPE, FGV, VUNESP e FCC</div>
+  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Incidência de temas (TEC)</div></div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
 
   <div class="card">
-    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Alta incidência</div></div>
+    <div class="card-title">📊 Contador de temas</div>
     <div class="card-text">
-      • <strong>Amplo x estrito:</strong> amplo inclui extraorçamentárias; estrito inclui apenas orçamentárias (MTO 2024)<br>
-      • <strong>ARO = extraorçamentária</strong>, ainda que seja operação de crédito por antecipação de receita<br>
-      • <strong>Alienação de bens = receita de capital</strong>, não patrimonial. <strong>Aluguel de imóvel público = receita corrente patrimonial</strong><br>
-      • <strong>Originária</strong> = exploração do patrimônio/atividades econômicas. <strong>Derivada</strong> = tributos/multas compulsórios
+      <span class="tag tag-amber">Classificação da receita — orçamentária × extraorçamentária (MCASP/PCASP): 5</span>
+      <span class="tag tag-amber">Classificação da receita — estrutura do código por natureza (MCASP): 3</span>
+      <span class="tag tag-amber">Conceito de receita pública (NBC TSP): 1</span>
+      <span class="tag tag-amber">Classificação da receita — espécies da origem contribuições (MCASP): 1</span>
+      <span class="tag tag-amber">Classificação por fonte/destinação de recursos: 4</span>
+      <span class="tag tag-amber">Classificação da receita — origens das receitas correntes (MCASP): 1</span>
+      <span class="tag tag-amber">Classificação da receita — afetação patrimonial (efetiva × não efetiva): 1</span>
+      <span class="tag tag-amber">Classificação da receita — esfera orçamentária: 2</span>
+      <span class="tag tag-amber">Classificação da receita — categoria econômica (corrente × capital): 3</span>
+      <span class="tag tag-amber">Classificação da receita — procedência/coercitividade (originária × derivada): 2</span>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-icon">⚙️</div><div class="card-title">Regras técnicas</div></div>
-    <div class="card-text">
-      • <strong>Código da natureza:</strong> 8 dígitos = categoria · origem · espécie · desdobramento · tipo<br>
-      • <strong>Intraorçamentárias:</strong> 7=corrente; 8=capital. Não são novas categorias econômicas<br>
-      • <strong>Contribuições de melhoria</strong> → receita <strong>tributária</strong>, não receita de contribuições<br>
-      • <strong>Juros recebidos</strong> podem ser financeiros; <strong>juros pagos</strong> são sempre despesas correntes
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Classificações específicas</div></div>
-    <div class="card-text">
-      • <strong>Devolução de caução</strong> = despesa extraorçamentária<br>
-      • <strong>Depósitos judiciais</strong> não são receita orçamentária — são ingressos extraorçamentários<br>
-      • <strong>Receitas correntes</strong> aumentam disponibilidades e, em regra, têm efeito positivo sobre o PL<br>
-      • <strong>Receitas de capital</strong> aumentam disponibilidades, mas não provocam efeito sobre o PL<br>
-      • <strong>Regime orçamentário:</strong> receita = arrecadação (caixa); despesa = empenho (competência). Arrecadação não coincide necessariamente com o fato gerador
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><div class="card-icon">🎓</div><div class="card-title">Doutrina + pegadinhas</div></div>
-    <div class="card-text">
-      • <strong>Doação recebida</strong> não é extraorçamentária só por não estar prevista na LOA<br>
-      • <strong>Cancelamento de RAP</strong> não gera receita orçamentária<br>
-      • <strong>Cessão de direitos</strong> → receita corrente patrimonial<br>
-      • <strong>Multas e juros da alienação de bens intangíveis</strong> → receitas correntes<br>
-      • <strong>Indenização por posse/ocupação ilícita</strong> → receita corrente
-    </div>
-  </div>
-
-  <div class="callout callout-success"><div class="callout-icon">✅</div><div>
-    <strong>Dica final:</strong> a Lei 4.320/64 é a base de praticamente toda questão de receita pública. Decore os arts. 9º a 11 e o mapeamento das categorias econômicas.
-  </div></div>
 </section>
 
 </div>

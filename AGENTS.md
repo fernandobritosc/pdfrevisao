@@ -51,9 +51,11 @@ TEC coladas em conteúdo de estudo e incrementar a incidência.
    `npx surge "PDF Revisão\Resumo_estudos" resumos-hermes.surge.sh`
    - **NUNCA** publicar a pasta `PDF Revisão` inteira — o domínio serve o conteúdo de `Resumo_estudos`.
 6. **Git** no repositório `origin` (`https://github.com/fernandobritosc/pdfrevisao.git`):
-   - Commitar a cada etapa concluída (conversão, resumo, aprendizado TEC).
-   - **`git push origin main` SOMENTE quando o usuário encerrar a aula** — não pushar
-     por bloco/etapa. Acumular commits localmente até o encerramento.
+   - **NÃO commitar no decorrer da aula ou da revisão** — nem por etapa (conversão,
+     resumo, aprendizado TEC) nem a cada bloco de questões. Acumular as mudanças na
+     working tree (regra do usuário, 19/08/2026).
+   - Commitar e **`git push origin main` SOMENTE quando o usuário encerrar a aula**
+     — commit único de encerramento, com as mudanças acumuladas.
    - O `.gitignore` já exclui `*.pdf` e `Resumo_estudos.rar` do versionamento.
 
 ## Ambiente opencode (reproduzir em máquina nova)
