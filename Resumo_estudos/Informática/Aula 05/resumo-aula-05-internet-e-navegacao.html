@@ -771,8 +771,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <a href="#sec3">3. Abas, favoritos, histórico e downloads</a>
   <a href="#sec4">4. Cookies, cache, sessões e privacidade</a>
   <a href="#sec5">5. Segurança na navegação e atalhos úteis</a>
-  <a href="#sec6">6. Pontos que mais caem em prova</a>
-  <a href="#sec7">7. Incidência de temas (TEC)</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
   <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
   <hr class="sidebar-divider">
@@ -1197,6 +1196,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
     <strong>Pop-ups não são vírus</strong> — são pequenas janelas que se abrem sobre a janela principal, geralmente com anúncios. O <strong>bloqueador de pop-up</strong> impede que essas janelas apareçam, oferecendo mais controle; hoje já vem habilitado por padrão nos navegadores.
   </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Configuração de cookies no Firefox</div></div>
+    <div class="card-text">
+      Em <strong>Privacidade e Segurança → Cookies e Dados de sites</strong>, o Firefox informa o <strong>espaço em disco</strong> utilizado pelos cookies, dados de sites e cache (ex.: "Seus cookies, dados de sites e cache armazenados estão atualmente usando X MB do espaço em disco") e oferece a opção <strong>"Apagar cookies e dados de sites quando o Firefox for fechado"</strong>.<br><br>
+      → ⚠️ Cuidado: o texto da opção é <strong>"quando o Firefox for fechado"</strong> — não existe "apagar cookies quando o Firefox for aberto"; a limpeza ocorre ao <strong>encerrar</strong> o navegador.
+    </div>
+  </div>
 </section>
 
 <!-- ============================================================ -->
@@ -1265,6 +1272,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       <strong>Gerenciador de senhas:</strong> armazenam senhas com <strong>criptografia</strong>, permitem <strong>preenchimento automático</strong> de login, <strong>sincronização entre dispositivos</strong>, <strong>sugestão/geração de senhas fortes</strong> e <strong>verificação de segurança</strong> (Check-up de Senhas — verifica se senhas salvas foram expostas em violações de dados conhecidas, de forma criptografada e privada).<br><br>
       • <strong>Firefox — Senha Principal</strong> (antiga Senha Mestra): protege nomes de usuário e senhas armazenadas; o navegador solicita a senha a cada nova sessão. Por padrão, o Firefox não a utiliza<br>
+      • <strong>Firefox — gerador de senhas fortes exclusivas</strong>: o Firefox dispõe da funcionalidade de <strong>criação de senhas fortes</strong> e ainda <strong>alerta se a senha do usuário for exposta em um vazamento de dados</strong><br>
       • <strong>Edge</strong>: para desativar "Oferecer para salvar senhas" → menu (Alt+F) → Configurações → <strong>Perfis → Senhas</strong>. Importante em dispositivos compartilhados ou públicos
     </div>
   </div>
@@ -1337,68 +1345,37 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
     O texto de um link <strong>não reflete, necessariamente, a URL</strong> que será aberta — o texto exibido pode ser qualquer nome (ex.: link com texto "Vasco" abrindo <em>www.flamengo.com.br</em>). Por isso, um link com texto HTTPS não garante que o site aberto seja seguro.
   </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Servidor proxy
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      O servidor <strong>proxy</strong> age como <strong>intermediário entre o computador e a Internet</strong>: intercepta todas as solicitações à Internet e verifica se cada requisição pode ser atendida diretamente do seu <strong>cache</strong>. É usado para <strong>aumentar o desempenho</strong>, <strong>filtrar requisições</strong> e <strong>ocultar o computador na internet</strong>, aumentando a segurança.<br><br>
+      • Permite realizar <strong>cache de páginas web</strong> e <strong>restringir o acesso a determinados conteúdos</strong> (o administrador da rede pode liberar apenas os sites considerados convenientes)<br>
+      • Servidores proxy geralmente são parte de <strong>firewalls corporativos</strong><br>
+      • O <strong>Firefox permite configurar o proxy pelo próprio usuário</strong> nas opções de rede — não exige softwares de terceiros
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">DHCP, Intranet, SMTP e certificado digital</div></div>
+    <div class="card-text">
+      <strong>DHCP</strong> (Dynamic Host Configuration Protocol) permite a <strong>atribuição automática de endereços IP</strong>: um servidor especial distribui endereços IP aos hosts que solicitam conexão, dispensando a configuração manual — é aplicável em intranets (rede interna)<br><br>
+      <strong>Intranet</strong> = rede <strong>privada</strong> de acesso restrito que <strong>usa os mesmos padrões e protocolos da Internet</strong> (http, tcp, ip, smtp, pop3); mesmo sem acesso à Internet, é possível utilizar todos os seus recursos<br><br>
+      <strong>SMTP</strong> (Simple Mail Transfer Protocol) é usado <strong>exclusivamente para transmissão de e-mails</strong> — ferramentas de pesquisa (Google, Bing) usam <strong>HTTP/HTTPS</strong>, não SMTP<br><br>
+      <strong>Certificado digital</strong> = documento eletrônico emitido por uma <strong>Autoridade Certificadora</strong> que <strong>vincula uma entidade a uma chave pública</strong>; obrigatório para assinatura digital. Em regra é armazenado <strong>no próprio navegador</strong> — instalá-lo no sistema operacional não é obrigatório e <strong>não dispensa</strong> a autenticação de usuários, o controle de acesso e as configurações de rede
+    </div>
+  </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- SEÇÃO 6 — PONTOS QUE MAIS CAEM EM PROVA                         -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                             -->
 <!-- ============================================================ -->
 <section id="sec6">
   <div class="sec-header">
     <div class="sec-num">6</div>
-    <div class="sec-title">Pontos que mais caem em prova</div>
-  </div>
-  <div class="sec-subtitle">Revisão rápida antes da prova</div>
-
-  <div class="card">
-    <div class="card-title">🎯 Alta incidência</div>
-    <div class="card-text">
-      • <strong>Cookies e Cache</strong> (Altíssima): conceitos, tipos de cookie (sessão × persistente) e diferenças entre cache e cookies<br>
-      • <strong>Navegação privativa</strong> (Altíssima): o que salva/não salva e a pegadinha de que <strong>não torna anônimo</strong> (provedor rastreia)<br>
-      • <strong>Tabela de atalhos</strong> (Altíssima): CTRL+T, CTRL+W, CTRL+SHIFT+T, CTRL+H, CTRL+J, CTRL+P, F11, CTRL+SHIFT+N/P<br>
-      • <strong>Página inicial</strong> (ALTA): ícone da casinha, ALT+HOME, página inicial × página de inicialização<br>
-      • <strong>Barra de Favoritos</strong> (ALTA): estrela, CTRL+D, organização em pastas<br>
-      • <strong>Conceitos básicos</strong> (ALTA): navegador = cliente; hipermídia, hipertexto, hiperlink, HTTP, HTML
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">⚙️ Regras técnicas</div>
-    <div class="card-text">
-      • <strong>Navegador é o CLIENTE</strong> na arquitetura cliente/servidor (solicita página ao servidor)<br>
-      • <strong>HTTPS</strong> = HTTP com segurança → cadeado na barra de endereços; porta padrão 443<br>
-      • URL: <strong>só protocolo e domínio são obrigatórios</strong>; fragmento (#) é processado só pelo navegador; query (?) passa parâmetros chave=valor separados por &<br>
-      • <strong>DNS</strong> traduz domínio ↔ IP; ICANN (global) × Registro.br (Brasil)<br>
-      • Navegação anônima usa <strong>cookies de sessão</strong>; downloads e favoritos criados são mantidos<br>
-      • <strong>Chrome Sync</strong> (servidores Google) × <strong>Firefox Sync</strong> (servidores Mozilla, criptografado) — ambos sincronizam dados entre dispositivos<br>
-      • <strong>Filtro SmartScreen</strong> = filtro antimalware no IE e no Edge
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">🧩 Pegadinhas frequentes</div>
-    <div class="card-text">
-      • Cookies <strong>não são vírus</strong> e não capturam dados do computador<br>
-      • Histórico não é pasta de arquivos baixados; favoritos não garantem acesso offline<br>
-      • Pop-ups <strong>não são vírus</strong> — são janelas sobre a página<br>
-      • <strong>.br</strong> = registrado no Brasil, não hospedado no Brasil<br>
-      • <strong>Web Cache ≠ Memória Cache</strong><br>
-      • URL ≠ domínio (mudar o recurso não muda o domínio)<br>
-      • O texto de um link não define a URL de destino
-    </div>
-  </div>
-
-  <div class="callout callout-success">
-    <div class="callout-icon">✅</div>
-    <div><strong>Dica final:</strong> domine os conceitos de cookie/cache, navegação privativa, a tabela de atalhos e as distinções de interface (barra de navegação × endereço × pesquisa; página inicial × inicialização). Essas são as pegadinhas recorrentes de Cebraspe, FCC, FGV e Vunesp.</div>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 7 — INCIDÊNCIA DE TEMAS (TEC)                             -->
-<!-- ============================================================ -->
-<section id="sec7">
-  <div class="sec-header">
-    <div class="sec-num">7</div>
     <div class="sec-title">Incidência de temas (TEC)</div>
   </div>
   <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
@@ -1406,7 +1383,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">📊 Contador de temas</div>
     <div class="card-text">
-      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+      <span class="tag tag-amber">Servidor proxy (cache, filtro e segurança): 1</span>
+      <span class="tag tag-amber">Gerenciador de senhas (Firefox — geração forte e alerta de vazamento): 1</span>
+      <span class="tag tag-amber">Cookies — configuração no Firefox (apagar ao fechar): 1</span>
+      <span class="tag tag-amber">Atalhos de navegação (teclas): 1</span>
+      <span class="tag tag-amber">DHCP e intranet (IP automático): 1</span>
+      <span class="tag tag-amber">Protocolo SMTP (e-mail): 1</span>
+      <span class="tag tag-amber">Certificado digital: 1</span>
     </div>
   </div>
 </section>

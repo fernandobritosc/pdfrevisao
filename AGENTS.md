@@ -126,6 +126,11 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 → ⚠️ Cuidado      — erros comuns de interpretação, como linhas dentro do Aprendizado
 ```
 
+- **Imagens das questões (regra do usuário, 19/08/2026)**: sempre que a questão
+  colada tiver imagem (figuras do TEC em cdn.tecconcursos.com.br, prints de suporte
+  do Firefox/Mozilla, telas de interface, etc.), baixar a imagem para o diretório
+  temporário e abrir/ler o conteúdo ANTES de escrever o aprendizado — costuma haver
+  informação relevante (configurações, menus, capturas).
 - **NUNCA referenciar a questão no bloco** (nem número, banca, órgão, cargo, ano,
   assertiva ou gabarito) — o conteúdo deve valer por si só, sem vínculo com a
   questão de origem.
