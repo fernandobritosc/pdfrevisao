@@ -3,288 +3,1355 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aula 06 — Motivação</title>
+<title>Resumo — AP Aula 06: Motivação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sidebar: 260px;
-    --accent: #0f172a;
-    --accent-soft: #f1f5f9;
-    --highlight: #b45309;
-    --callout: #fff7ed;
-    --callout-border: #f97316;
-    --gotcha: #fef2f2;
-    --gotcha-border: #ef4444;
-    --mnemonic: #f0fdf4;
-    --mnemonic-border: #22c55e;
-  }
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--ink);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    color: #1f2937;
-    background: #ffffff;
-    display: flex;
-    min-height: 100vh;
-  }
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: .95rem;
+  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+}
+.aula .sec-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .section-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
 
-  aside {
-    width: var(--sidebar);
-    background: #0f172a;
-    color: #e2e8f0;
-    padding: 28px 20px;
-    position: fixed;
-    height: 100vh;
-    overflow-y: auto;
-    font-size: 14px;
-  }
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
 
-  aside h3 {
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 18px;
-    color: #fbbf24;
-    font-weight: 700;
-  }
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  position: relative;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
 
-  aside h4 {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    margin: 24px 0 10px;
-    color: #94a3b8;
-    font-weight: 600;
-  }
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: justify; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
 
-  aside a {
-    display: block;
-    color: #cbd5e1;
-    text-decoration: none;
-    padding: 7px 10px;
-    border-radius: 8px;
-    margin-bottom: 3px;
-    font-size: 13px;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
 
-  aside a:hover {
-    background: #1e293b;
-    color: #fff;
-  }
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--sidebar); }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f5; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
 
-  main {
-    margin-left: var(--sidebar);
-    flex: 1;
-    padding: 36px 44px 56px;
-    max-width: 960px;
-  }
+/* GOTCHA */
+.gotcha {
+  background: #fae5e5;
+  border: 1px solid #efb4b4;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: justify;
+}
+.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
 
-  .back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 18px;
-    color: #b45309;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    transition: color 0.15s ease;
-  }
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
 
-  .back:hover {
-    color: #0f172a;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
 
-  h1 {
-    font-size: 32px;
-    font-weight: 800;
-    color: #0f172a;
-    margin-bottom: 10px;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-  }
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
 
-  .meta {
-    color: #475569;
-    font-size: 14px;
-    margin-bottom: 28px;
-    font-weight: 500;
-  }
+/* LEGAL BLOCK */
+.legal-block {
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d3f9e; }
 
-  h2 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-top: 40px;
-    margin-bottom: 14px;
-    padding-left: 14px;
-    border-left: 4px solid #f59e0b;
-    line-height: 1.25;
-  }
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
 
-  h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-top: 26px;
-    margin-bottom: 10px;
-  }
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
 
-  p {
-    margin-bottom: 16px;
-    text-align: justify;
-    color: #1f2937;
-  }
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
 
-  ul {
-    margin-left: 24px;
-    margin-top: 12px;
-    margin-bottom: 16px;
-  }
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
 
-  li {
-    margin-bottom: 10px;
-    padding-left: 4px;
-  }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
 
-  .callout {
-    background: var(--callout);
-    border-left: 4px solid var(--callout-border);
-    padding: 18px 20px;
-    border-radius: 10px;
-    margin: 26px 0;
-    font-size: 15px;
-  }
 
-  .callout b {
-    color: #9a3412;
-  }
 
-  .gotcha {
-    background: var(--gotcha);
-    border-left: 4px solid var(--gotcha-border);
-    padding: 18px 20px;
-    border-radius: 10px;
-    margin: 26px 0;
-  }
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar-title, .aula .sidebar-brand { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
 
-  .gotcha b {
-    color: #991b1b;
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
   }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar-title, .aula .sidebar-brand { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
 
-  .mnemonic {
-    background: var(--mnemonic);
-    border-left: 4px solid var(--mnemonic-border);
-    padding: 18px 20px;
-    border-radius: 10px;
-    margin: 26px 0;
-  }
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
 
-  .mnemonic b {
-    color: #166534;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 18px;
-    font-size: 14px;
-  }
-
-  th, td {
-    border: 1px solid #e2e8f0;
-    padding: 11px 14px;
-    text-align: left;
-  }
-
-  th {
-    background: #f8fafc;
-    font-weight: 600;
-    color: #0f172a;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  td {
-    color: #1f2937;
-  }
-
-  .footer {
-    margin-top: 56px;
-    font-size: 12px;
-    color: #64748b;
-    border-top: 1px solid #e2e8f0;
-    padding-top: 16px;
-    font-weight: 500;
-  }
-
-  .section {
-    margin-bottom: 32px;
-  }
-
-  @media (max-width: 768px) {
-    aside {
-      position: relative;
-      width: 100%;
-      height: auto;
-    }
-    main {
-      margin-left: 0;
-      padding: 24px 20px 40px;
-    }
-  }
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
 </style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
 </head>
-<body>
-<aside>
-  <h3>Administração Pública e Geral</h3>
-  {{SIDEBAR_NAV}}
-  <h4>Nesta aula</h4>
-  {{SIDEBAR_TOPICS}}
-</aside>
-<main>
-  <a class="back" href="/PDF%20Revis%C3%A3o/index.html">← Voltar para o índice</a>
-  <h1>Aula 06 — Motivação</h1>
-  <div class="meta">{{META}}</div>
-
-  {{CALLOUT}}
-
-  
-<h2>1. Motivação Administrativa</h2>
-<p>Conceito de motivação no contexto da administração pública, abrangendo as teorias e práticas que visam incentivar o desempenho dos servidores públicos.</p>
-
-<h2>2. Base Legal</h2>
-<p>Artigos e dispositivos legais fundamentais para a motivação administrativa, incluindo disposições da Lei nº 8.112/1994 e normas correlatas.</p>
-
-<h3>Índice da Aula</h3>
-<ol>
-<li>Motivação Administrativa - página 3</li>
-</ol>
-
-<div class="card" style="border-color:var(--green);">
-  <div class="card-header"><div class="card-icon">📄</div><div class="card-title" style="color:var(--green);">Aula 06 — Motivação</div></div>
-  <div class="card-text">Conceito de motivação no contexto da administração pública, abrangendo teorias e práticas que visam incentivar o desempenho dos servidores públicos.</div>
-  <div class="card-links">
-    <a href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html">Abrir resumo →</a>
+<body class="aula">
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div>
+    <div class="sidebar-brand">📚 PDF Revisão</div>
+    <div class="sidebar-sub">Resumos estruturados</div>
   </div>
-</div>
 
-<div class="card" style="border-color:var(--green);">
-  <div class="card-header"><div class="card-icon">📊</div><div class="card-title" style="color:var(--green);">Incidência de temas (TEC)</div></div>
-  <div class="card-text">
-    <span class="tag tag-red">Impessoalidade: 5</span>
-    <span class="tag tag-amber">Eficiência: 2</span>
+  <div class="sidebar-nav">
+    <a href="../../../index.html">← Voltar ao índice</a>
+    <a href="#sec1" class="active">1. Conceito</a>
+    <a href="#sec2">2. Intrínseca × Extrínseca</a>
+    <a href="#sec3">3. Ciclo Motivacional</a>
+    <a href="#sec4">4. Mapa das Teorias</a>
+    <a href="#sec5">5. Maslow</a>
+    <a href="#sec6">6. ERC (Alderfer)</a>
+    <a href="#sec7">7. Bifatorial (Herzberg)</a>
+    <a href="#sec8">8. McClelland</a>
+    <a href="#sec9">9. Teoria X e Y (McGregor)</a>
+    <a href="#sec10">10. Equidade (Adams)</a>
+    <a href="#sec11">11. Vroom + Locke</a>
+    <a href="#sec12">12. Autoeficácia · Cognitiva · Campo</a>
+    <a href="#sec13">13. Reforço (Skinner)</a>
+    <a href="#sec14">14. Incidência (TEC)</a>
   </div>
-</div>
 
+  <div class="sidebar-footer">
+    <div style="font-size:.7rem;color:var(--text2);">AP Aula 06 · Motivação</div>
+  </div>
+</nav>
 
-  {{FOOTER}}
+<!-- MAIN -->
+<main class="main">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label">Progresso: <span id="pct">0%</span></div>
+    <div class="progress-track">
+      <div class="progress-fill" id="bar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>AP Aula 06 — Motivação</h1>
+    <p>Conceito · Ciclo motivacional · Teorias de conteúdo · Teorias de processo/conjunto</p>
+  </div>
+
+  <!-- SEC 1 -->
+  <section id="sec1" class="section">
+    <div class="section-title"><span class="tag tag-blue">1</span> Conceito de Motivação</div>
+    <div class="section-subtitle">Vontade de fazer algo condicionada pela satisfação de necessidades</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Definições de prova</div></div>
+      <div class="card-text">
+        <strong>Robbins (2014):</strong> motivação é <span class="highlight">"a vontade de fazer algo, condicionada pela capacidade que essa ação tem de satisfazer alguma necessidade individual"</span>.<br><br>
+        <strong>Gregory et al (2002):</strong> representa <span class="highlight">"um conjunto de forças que leva as pessoas a se engajarem em algum tipo de comportamento mais do que qualquer outro comportamento alternativo"</span>.
+      </div>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Motivação é um processo INDIVIDUAL (não coletivo)!</strong> Cada pessoa deve encontrar a sua própria motivação.</div></div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">3 Componentes da motivação</div></div>
+      <div class="card-text">
+        → <strong>Direção:</strong> para onde o esforço é canalizado<br>
+        → <strong>Intensidade:</strong> quanto de esforço a pessoa emprega<br>
+        → <strong>Persistência:</strong> por quanto tempo o esforço é mantido
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 2 -->
+  <section id="sec2" class="section">
+    <div class="section-title"><span class="tag tag-blue">2</span> Intrínseca × Extrínseca · Motivação × Desempenho</div>
+    <div class="section-subtitle">Origem interna ou externa · desempenho vai além da motivação</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>Características</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Intrínseca (interna)</strong></td><td>É pessoal. Vem de "dentro" de cada pessoa. Decorre das necessidades pessoais e de fatores psicológicos de cada pessoa.</td><td>Satisfação pessoal em entregar bons resultados</td></tr>
+          <tr><td><strong>Extrínseca (externa)</strong></td><td>Decorre de fatores externos. A liderança, os reforços e as punições podem influenciar na motivação.</td><td>Bônus por atingimento de metas e resultados</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📈</div><div class="card-title">Motivação × Desempenho — o tripé</div></div>
+      <div class="card-text">
+        O desempenho é resultado do tripé:<br>
+        → <strong>Motivação</strong><br>
+        → <strong>Capacidade</strong> (habilidades e inteligência)<br>
+        → <strong>Oportunidade</strong>
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Gotcha</div>O bom desempenho <span class="highlight">não depende apenas da presença da motivação</span>. A banca pode afirmar que basta motivar para ter alto desempenho — falta lembrar da capacidade e da oportunidade.</div>
+  </section>
+
+  <!-- SEC 3 -->
+  <section id="sec3" class="section">
+    <div class="section-title"><span class="tag tag-blue">3</span> Ciclo Motivacional — Chiavenato</div>
+    <div class="section-subtitle">O comportamento humano é uma sequência contínua e incessante de ciclos</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🔄</div><div class="card-title">As etapas do ciclo</div></div>
+      <div class="card-text">
+        → <strong>Estado de Equilíbrio:</strong> o indivíduo está tranquilo, em equilíbrio interno<br>
+        → <strong>Estímulo ou Incentivo:</strong> algo acontece e estimula/incentiva uma necessidade que antes não existia<br>
+        → <strong>Necessidade:</strong> a necessidade surge e derruba o estado de equilíbrio<br>
+        → <strong>Tensão:</strong> a partir da necessidade, o indivíduo entra em estado de tensão e desconforto<br>
+        → <strong>Comportamento ou Ação:</strong> a tensão leva o indivíduo a agir, buscando a satisfação da necessidade<br>
+        → <strong>Satisfação / Frustração (Barreira) / Compensação:</strong> o desempenho do comportamento gera um dos três desfechos
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Desfecho do desempenho</th><th>O que acontece</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Satisfatório</strong></td><td>O comportamento satisfez a necessidade. A tensão some e o indivíduo volta ao estado de equilíbrio.</td></tr>
+          <tr><td><strong>Insatisfatório (frustração/barreira)</strong></td><td>Por obstáculo, barreira ou impedimento, a satisfação não é alcançada. O indivíduo fica frustrado e a tensão permanece ou até aumenta.</td></tr>
+          <tr><td><strong>Compensatório</strong></td><td>A necessidade inicial não foi satisfeita, mas o indivíduo alcança uma satisfação "alternativa" capaz de superar a tensão e devolver o equilíbrio.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Chiavenato:</strong> após o ciclo se completar, desencadeiam-se novos ciclos, indefinidamente — o comportamento individual é uma <span class="highlight">contínua e incessante sequência de ciclos motivacionais</span>.</div></div>
+
+    <div class="mnemonic">
+      <div class="mnemonic-label">🧠 Macete — ordem das etapas</div>
+      <div class="mnemonic-content">
+        <strong>E</strong>quilíbrio → <strong>E</strong>stímulo → <strong>N</strong>ecessidade → <strong>T</strong>ensão → <strong>C</strong>omportamento → <strong>S</strong>atisfação
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 4 -->
+  <section id="sec4" class="section">
+    <div class="section-title"><span class="tag tag-blue">4</span> Mapa das Teorias Motivacionais</div>
+    <div class="section-subtitle">Conteúdo explica "O QUÊ" motiva · Processo explica "COMO" ocorre</div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-icon">📦</div><div class="card-title">Teorias de CONTEÚDO — "O QUE" motiva</div></div>
+        <div class="card-text">
+          Buscam explicar <span class="highlight">o que</span> motiva o indivíduo:<br>
+          → Hierarquia das Necessidades (<strong>Maslow</strong>)<br>
+          → Teoria ERC (<strong>Alderfer</strong>)<br>
+          → Bifatorial / Dois Fatores (<strong>Herzberg</strong>)<br>
+          → Necessidades Adquiridas (<strong>McClelland</strong>)<br>
+          → Teoria X e Y (<strong>McGregor</strong>)
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">⚙️</div><div class="card-title">Teorias de PROCESSO — "COMO" ocorre</div></div>
+        <div class="card-text">
+          Buscam explicar <span class="highlight">como</span> o processo de motivação ocorre:<br>
+          → Equidade / Justiça Organizacional (<strong>Adams</strong>)<br>
+          → Expectância (<strong>Vroom</strong>)<br>
+          → Definição de Objetivos (<strong>Locke</strong>)<br>
+          → Autoeficácia · Reforço (<strong>Skinner</strong>) · Avaliação Cognitiva · Campo (<strong>Lewin</strong>)
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Rótulo do material:</strong> o livro agrupa Adams, Vroom, Locke, Autoeficácia, Skinner, Avaliação Cognitiva e Lewin sob o nome <span class="highlight">"Teorias de Conjunto"</span>. Se o examinador citar esse termo, é esse segundo grupo.</div></div>
+  </section>
+
+  <!-- SEC 5 -->
+  <section id="sec5" class="section">
+    <div class="section-title"><span class="tag tag-amber">5</span> Hierarquia das Necessidades — Maslow</div>
+    <div class="section-subtitle">Pirâmide: satisfação nível a nível, de baixo para cima</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Os 5 níveis (da base para o topo)</div></div>
+      <div class="card-text">
+        → <strong>Fisiológicas:</strong> necessidades básicas do indivíduo (alimento, água, sono etc.)<br>
+        → <strong>Segurança:</strong> estar livre de perigos "físicos" e "psicológicos"<br>
+        → <strong>Sociais:</strong> relacionadas às relações interpessoais<br>
+        → <strong>Estima:</strong> forma como a pessoa "se vê" (fatores internos) e como é vista pelos outros (fatores externos)<br>
+        → <strong>Autorrealização:</strong> maximização das capacidades e aptidões pessoais — realizar o próprio potencial
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Gotcha</div>As necessidades são <span class="highlight">hierárquicas</span>: devem ser satisfeitas <strong>nível a nível</strong>, seguindo a ordem da pirâmide (de baixo para cima). A satisfação de um nível <strong>anterior</strong> é <span class="highlight">pré-requisito</span> para a satisfação de um nível posterior.</div>
+
+    <div class="mnemonic">
+      <div class="mnemonic-label">🧠 Macete — base para o topo</div>
+      <div class="mnemonic-content">
+        <strong>F</strong>isiológicas · <strong>S</strong>egurança · <strong>S</strong>ociais · <strong>E</strong>stima · <strong>A</strong>utorrealização
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 6 -->
+  <section id="sec6" class="section">
+    <div class="section-title"><span class="tag tag-amber">6</span> Teoria ERC — Alderfer</div>
+    <div class="section-subtitle">Existência · Relacionamento · Crescimento — podem ser ativadas simultaneamente</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Os 3 grupos (e a tradução a partir de Maslow)</div></div>
+      <div class="card-text">
+        → <strong>Existência:</strong> necessidades fisiológicas + necessidades de segurança, de Maslow<br>
+        → <strong>Relacionamento:</strong> necessidades sociais + fatores externos das necessidades de estima, de Maslow<br>
+        → <strong>Crescimento:</strong> necessidades de autorrealização + fatores internos das necessidades de estima, de Maslow
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Gotcha — Maslow × ERC</div>É aqui que a banca cobra:<br>
+        → <strong>Maslow:</strong> necessidades hierárquicas — nível anterior satisfeito é pré-requisito do seguinte<br>
+        → <strong>ERC (Alderfer):</strong> as necessidades podem ser buscadas <span class="highlight">SIMULTANEAMENTE</span> ("ativadas" ao mesmo tempo) — não é preciso satisfazer um nível anterior para buscar um posterior</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Critério</th><th>Maslow</th><th>ERC (Alderfer)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Ativação das necessidades</strong></td><td>Nível a nível (ordem da pirâmide)</td><td>Podem ocorrer simultaneamente</td></tr>
+          <tr><td><strong>Pré-requisito</strong></td><td>Satisfação do nível anterior exigida</td><td>Não exigida</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SEC 7 -->
+  <section id="sec7" class="section">
+    <div class="section-title"><span class="tag tag-amber">7</span> Teoria Bifatorial — Herzberg</div>
+    <div class="section-subtitle">Fatores motivacionais geram satisfação · higiênicos evitam insatisfação</div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-icon">⭐</div><div class="card-title">Fatores Motivacionais</div></div>
+        <div class="card-text">Relacionados ao <strong>trabalho em si</strong>. Influenciam a <span class="highlight">satisfação</span>.</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🧹</div><div class="card-title">Fatores Higiênicos</div></div>
+        <div class="card-text">Relacionados ao <strong>ambiente de trabalho</strong>. Influenciam a <span class="highlight">insatisfação</span>.</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Quando estão presentes</th><th>Quando NÃO estão presentes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Motivacionais</strong> → Satisfação</td><td>Não-satisfação</td></tr>
+          <tr><td><strong>Higiênicos</strong> → Não-insatisfação</td><td>Insatisfação</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Gotcha</div>A essência da teoria dos dois fatores: os fatores que levam à <span class="highlight">satisfação são DIFERENTES</span> dos fatores que levam à <span class="highlight">insatisfação</span>. Detalhe fino: fator higiênico presente gera apenas <strong>não-insatisfação</strong> (não gera satisfação); ausente, gera insatisfação.</div>
+  </section>
+
+  <!-- SEC 8 -->
+  <section id="sec8" class="section">
+    <div class="section-title"><span class="tag tag-amber">8</span> Necessidades Adquiridas — McClelland</div>
+    <div class="section-subtitle">Realização · Poder · Afiliação — e quem vira bom gestor</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">As 3 necessidades</div></div>
+      <div class="card-text">
+        → <strong>Realização:</strong> necessidade de alcançar o sucesso — o objetivo principal do indivíduo é a realização pessoal<br>
+        → <strong>Poder:</strong> necessidade de controlar e influenciar as pessoas<br>
+        → <strong>Afiliação:</strong> necessidade de manter bons relacionamentos interpessoais
+      </div>
+    </div>
+
+    <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Conclusões da teoria:</strong><br>
+        → Alta necessidade de <strong>realização</strong>: prefere trabalhar <span class="highlight">sozinho</span>, em atividades de bastante responsabilidade e com certo grau de risco — em geral, <strong>não são bons líderes</strong><br>
+        → Alta necessidade de <strong>poder</strong>: tendem a ser <span class="highlight">gestores de sucesso</span></div></div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Gotcha</div>Quem tem alta necessidade de realização <strong>não costuma ser bom líder</strong> (prefere trabalhar sozinho). Quem tende ao sucesso na gestão é o de alta necessidade de <strong>poder</strong>. A banca inverte os dois.</div>
+  </section>
+
+  <!-- SEC 9 -->
+  <section id="sec9" class="section">
+    <div class="section-title"><span class="tag tag-amber">9</span> Teoria X e Y — McGregor</div>
+    <div class="section-subtitle">Duas visões opostas do trabalhador</div>
+
+    <div class="grid grid-2">
+      <div class="card" style="border-left-color:var(--red);">
+        <div class="card-header"><div class="card-icon">❌</div><div class="card-title" style="color:var(--red);">Teoria X — pessimista</div></div>
+        <div class="card-text">O indivíduo é <strong>naturalmente preguiçoso</strong> e possui <strong>aversão ao trabalho</strong>. Portanto, precisa ser <span class="highlight">controlado e dirigido</span>.</div>
+      </div>
+      <div class="card" style="border-left-color:var(--green);">
+        <div class="card-header"><div class="card-icon">✅</div><div class="card-title" style="color:var(--green);">Teoria Y — otimista</div></div>
+        <div class="card-text">O indivíduo é <strong>naturalmente laborioso e produtivo</strong>. Portanto, é capaz de se <span class="highlight">autodirigir e autocontrolar</span>.</div>
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Gotcha</div>A banca adora inverter: <span class="highlight">X = preguiçoso/controlado</span>, <span class="highlight">Y = laborioso/autônomo</span>. Nunca o contrário. (Tema também cobrado na aula de Liderança.)</div>
+  </section>
+
+  <!-- SEC 10 -->
+  <section id="sec10" class="section">
+    <div class="section-title"><span class="tag tag-green">10</span> Equidade / Justiça Organizacional — Adams</div>
+    <div class="section-subtitle">Comparações sociais definem a percepção de justiça</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">03 situações percebidas (relação retribuições–esforços)</div></div>
+      <div class="card-text">
+        → <strong>Inequidade Negativa:</strong> o indivíduo entende que sua relação "retribuições–esforços" é <strong>menor</strong> do que a relação dos outros<br>
+        → <strong>Equidade:</strong> entende que sua relação é <strong>justa</strong>, quando comparada à relação dos outros<br>
+        → <strong>Inequidade Positiva:</strong> entende que sua relação é <strong>maior</strong> do que a relação dos outros
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>04 tipos de referência</th><th>Base de comparação</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Próprio-Interno</strong></td><td>O próprio funcionário, quando ocupava outro cargo dentro da mesma empresa</td></tr>
+          <tr><td><strong>Próprio-Externo</strong></td><td>O próprio funcionário, quando ocupava outro cargo em outra empresa</td></tr>
+          <tr><td><strong>Outro-Interno</strong></td><td>Outro funcionário, que ocupa cargo na mesma empresa</td></tr>
+          <tr><td><strong>Outro-Externo</strong></td><td>Outro funcionário, que ocupa cargo em outra empresa</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🔀</div><div class="card-title">Frente à inequidade — 06 alternativas</div></div>
+      <div class="card-text">
+        → <strong>Modificar seus esforços/insumos:</strong> para que os benefícios recebidos passem a ser "compatíveis" com o trabalho realizado<br>
+        → <strong>Mudar seus resultados:</strong> para modificar suas recompensas<br>
+        → <strong>Distorcer a percepção de sua autoimagem:</strong> passar a achar que trabalha mais ou menos do que os outros<br>
+        → <strong>Distorcer a percepção do trabalho dos outros:</strong> para tentar justificar a diferença da relação "esforços-benefícios"<br>
+        → <strong>Buscar outro ponto de referência:</strong> para fazer a situação parecer "melhor"<br>
+        → <strong>Abandonar a situação:</strong> pedir para trocar de cargo ou, até mesmo, pedir demissão e sair da empresa
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Justiça — 04 ângulos</th><th>Definição</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Distribuição</strong></td><td>Justiça/equidade percebida na quantidade e na distribuição de recompensas entre os indivíduos</td></tr>
+          <tr><td><strong>Processo</strong></td><td>Justiça/equidade percebida no processo utilizado para definir a quantidade e a distribuição das recompensas</td></tr>
+          <tr><td><strong>Interacional</strong></td><td>Percepção do indivíduo de quanto ele é tratado com respeito e dignidade</td></tr>
+          <tr><td><strong>Organizacional</strong></td><td>Percepção "geral" de justiça no ambiente de trabalho</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SEC 11 -->
+  <section id="sec11" class="section">
+    <div class="section-title"><span class="tag tag-green">11</span> Expectância — Vroom · Objetivos — Locke</div>
+    <div class="section-subtitle">Esforço → desempenho → recompensa → metas pessoais</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🔗</div><div class="card-title">As 3 relações de Vroom</div></div>
+      <div class="card-text">
+        → <strong>Expectativa</strong> (esforço → desempenho): crença do funcionário de que seu esforço levará ao desempenho desejado<br>
+        → <strong>Instrumentalidade</strong> (desempenho → recompensa): crença de que, atingido o desempenho esperado, receberá recompensas da empresa<br>
+        → <strong>Valência</strong> (recompensa → objetivos pessoais): grau de atratividade que a recompensa tem para o indivíduo — é o "valor" que atribui à recompensa
+      </div>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Cadeia para memorizar:</strong> <span class="highlight">Esforço</span> →(Expectativa)→ <span class="highlight">Desempenho</span> →(Instrumentalidade)→ <span class="highlight">Recompensa</span> →(Valência)→ <span class="highlight">Metas pessoais</span>.</div></div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Definição de Objetivos — Locke</div></div>
+      <div class="card-text">Objetivos que conduzem a melhores desempenhos:<br>
+        → <strong>Específicos</strong><br>
+        → <strong>Difíceis</strong><br>
+        → <strong>Aceitos</strong> pelo subordinado<br>
+        → <strong>Com feedback</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 12 -->
+  <section id="sec12" class="section">
+    <div class="section-title"><span class="tag tag-green">12</span> Autoeficácia · Avaliação Cognitiva · Campo</div>
+    <div class="section-subtitle">Três teorias curtas e muito cobradas</div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-icon">💪</div><div class="card-title">Teoria da Autoeficácia</div></div>
+        <div class="card-text">Crença do funcionário de que ele <strong>é capaz</strong> de desempenhar determinada tarefa. Quanto maior a autoeficácia, <span class="highlight">maior a motivação</span> e melhores os desempenhos.</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🎁</div><div class="card-title">Teoria da Avaliação Cognitiva</div></div>
+        <div class="card-text">A introdução de <strong>recompensas externas</strong> para trabalhos que antes eram gratificantes simplesmente pelo conteúdo <span class="highlight">tende a DIMINUIR a motivação</span>.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🌐</div><div class="card-title">Teoria de Campo — Lewin</div></div>
+      <div class="card-text">O comportamento humano é derivado da <strong>totalidade dos fatos coexistentes</strong> — ou seja, resulta da <span class="highlight">interação entre a pessoa e o "meio ambiente"</span> em que ela está inserida.</div>
+    </div>
+  </section>
+
+  <!-- SEC 13 -->
+  <section id="sec13" class="section">
+    <div class="section-title"><span class="tag tag-green">13</span> Teoria do Reforço / Ambiente — Skinner</div>
+    <div class="section-subtitle">Consequências passadas moldam comportamentos futuros</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Ideia central</div></div>
+      <div class="card-text">Busca entender como as <strong>consequências</strong> (positivas ou negativas) geradas por comportamentos "passados" influenciam os <strong>comportamentos futuros</strong>.</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Ação sobre a consequência</th><th>Comportamento DESEJÁVEL (consequências "boas")</th><th>Comportamento INDESEJÁVEL (consequências "ruins")</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Algo é acrescentado/gerado</strong></td><td><span class="tag tag-green">Reforço POSITIVO</span></td><td><span class="tag tag-red">Punição</span></td></tr>
+          <tr><td><strong>Algo é retirado/removido</strong></td><td><span class="tag tag-green">Reforço NEGATIVO</span></td><td><span class="tag tag-red">Extinção</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">As 4 definições</div></div>
+      <div class="card-text">
+        → <strong>Reforço Positivo:</strong> comportamento desejável seguido de uma <strong>consequência positiva</strong><br>
+        → <strong>Reforço Negativo:</strong> comportamento desejável seguido da <strong>retirada de uma consequência negativa</strong><br>
+        → <strong>Punição:</strong> comportamento indesejável seguido de uma <strong>consequência negativa</strong><br>
+        → <strong>Extinção:</strong> comportamento indesejável seguido da <strong>retirada de uma consequência positiva</strong>
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Gotcha — reforço negativo NÃO é punição</div>
+        → O <strong>reforço</strong> (positivo ou negativo) é algo <span class="highlight">"BOM"</span>: aplicado após comportamentos <strong>desejáveis</strong>, aumenta a vontade de repetir o comportamento — ambos são bons para o funcionário<br>
+        → A <strong>punição</strong> e a <strong>extinção</strong> são coisas <span class="highlight">"RUINS"</span>: aplicadas após comportamentos <strong>indesejáveis</strong>, diminuem a vontade de repetir — ambas são ruins para o funcionário<br>
+        → Comportamento <strong>reforçado</strong> tende a <strong>se repetir</strong>; comportamento <strong>não reforçado</strong> tende a <strong>não se repetir</strong></div>
+
+    <div class="mnemonic">
+      <div class="mnemonic-label">🧠 Macete — matriz 2×2</div>
+      <div class="mnemonic-content">
+        Desejável + acrescenta = <span class="tag tag-green">R+</span> · Desejável + retira = <span class="tag tag-green">R−</span> · Indesejável + acrescenta = <span class="tag tag-red">Punição</span> · Indesejável + retira = <span class="tag tag-red">Extinção</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 14 -->
+  <section id="sec14" class="section">
+    <div class="section-title"><span class="tag tag-green">14</span> Incidência de temas (TEC)</div>
+    <div class="section-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📭</div><div class="card-title">Sem registros ainda</div></div>
+      <div class="card-text">Nenhuma questão do TEC colada ainda.</div>
+    </div>
+  </section>
+
 </main>
+
+<script>
+(function(){
+  const sections = document.querySelectorAll('section[id]');
+  const bar = document.getElementById('bar');
+  const pct = document.getElementById('pct');
+  function update(){
+    const h = window.innerHeight;
+    let cur = 0, total = sections.length;
+    sections.forEach(s=>{
+      const r = s.getBoundingClientRect();
+      if(r.top <= h*0.6) cur++;
+    });
+    const v = Math.round((cur/total)*100);
+    bar.style.width = v+'%';
+    pct.textContent = v+'%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2005/resumo-aula-05-lideranca.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 05 · Liderança ?v=AP06a</span></a>
+  <a class="next" href="../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
 </body>
 </html>
