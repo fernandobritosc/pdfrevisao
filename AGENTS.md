@@ -50,6 +50,11 @@ TEC coladas em conteúdo de estudo e incrementar a incidência.
 5. **Publicação**: publicar **somente a pasta `Resumo_estudos`** no Surge:
    `npx surge "PDF Revisão\Resumo_estudos" resumos-hermes.surge.sh`
    - **NUNCA** publicar a pasta `PDF Revisão` inteira — o domínio serve o conteúdo de `Resumo_estudos`.
+   - **Publicar em TODA alteração** (questão TEC colada, correção, novo resumo),
+     com busca (`build-search-index.py`) e changelog (`build-changelog.py`)
+     regenerados antes, e verificação HTTP 200 depois.
+     A publicação **independe do git**: a regra de acumular commits (item 6)
+     NÃO adia o deploy (esclarecimento de 23/08/2026 após deploy esquecido).
 6. **Git** no repositório `origin` (`https://github.com/fernandobritosc/pdfrevisao.git`):
    - **NÃO commitar no decorrer da aula ou da revisão** — nem por etapa (conversão,
      resumo, aprendizado TEC) nem a cada bloco de questões. Acumular as mudanças na
@@ -150,6 +155,16 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
   o campo `🚨 Pegadinha`. Erros comuns de interpretação entram como linha própria
   dentro do Aprendizado, iniciada por `→ ⚠️ Cuidado:` — sem usar "assertiva",
   "a banca", "enunciado", "alternativa" ou qualquer referência a questão/prova.
+- **Foco na assertiva correta (regra do usuário, 23/08/2026)**: em questões de
+  múltiplas afirmativas/alternativas, o bloco principal registra o aprendizado da
+  alternativa **GABARITADA** (o que está certo — é ela que orienta a revisão).
+  Aprendizados das alternativas erradas só entram se agregarem detalhe objetivo e
+  novo (ex.: inversão clássica de conceito); sem isso, omitir — catálogo de erros
+  tira o foco do estudo.
+- **Sem blocos de macete (regra do usuário, 23/08/2026)**: NÃO criar blocos
+  `🧠 Macete` / `.mnemonic` (fundo amarelo) nos resumos. Conteúdo de memorização
+  entra como **card normal** (ex.: "Ordem das etapas — iniciais"), sem rótulo de
+  macete. Template já atualizado; não reintroduzir o padrão.
 
 ### Tema repetido
 

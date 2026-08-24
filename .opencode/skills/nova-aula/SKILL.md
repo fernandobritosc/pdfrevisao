@@ -143,8 +143,16 @@ Quando o usuário colar questão(ões) do TEC de uma aula já resumida:
      nome do assunto (ex.: `→ Estabilidade:`, `→ Prazo:`). NUNCA repetir o rótulo.
    - **Espaçamento entre parágrafos**: separar assuntos/parágrafos com **`<br><br>`**
      (dupla quebra) — um único `<br>` deixa o texto colado e difícil de ler.
+   - **Foco na assertiva correta (regra do usuário, 23/08/2026)**: em questões de
+     múltiplas afirmativas/alternativas, o bloco principal registra o aprendizado da
+     alternativa **GABARITADA** (o que está certo). Aprendizados das alternativas
+     erradas só entram se agregarem detalhe objetivo e novo; sem isso, omitir.
 3. Tema já coberto? Não reescrever o bloco — só adicionar **detalhe novo**
    (regra, exceção, artigo, pegadinha) se houver.
 4. Incrementar o contador do(s) tema(s) na seção **"Incidência de temas (TEC)"**
    do resumo (tags `tag-red` = alta incidência, `tag-amber` = média).
-5. Seguir Passos 6–9 (índice só se necessário, git, publicar no Surge).
+5. **Publicar no Surge SEMPRE** (Passo 8 completo: `build-search-index.py`,
+   `build-changelog.py`, deploy, verificação HTTP 200) — a publicação acontece
+   em TODA questão colada/alteração e **independe de commit**: a regra de
+   acumular commits até o encerramento da aula NÃO adia o deploy.
+   Índice (Passo 6) só se necessário; commit/push (Passo 7) só no encerramento.

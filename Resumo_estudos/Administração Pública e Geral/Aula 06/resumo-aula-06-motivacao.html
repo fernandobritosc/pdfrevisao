@@ -69,12 +69,21 @@ a { color: var(--blue); }
   font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
-  color: #fff;
-  background: var(--ink);
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
   padding: .45rem .6rem;
   border-radius: 6px;
   text-transform: uppercase;
   letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
 }
 .aula .sidebar-sub {
   font-family: 'IBM Plex Mono', 'Consolas', monospace;
@@ -591,7 +600,6 @@ html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
 html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
-html[data-theme="dark"] .aula .sidebar-title, .aula .sidebar-brand { color:#17191f; }
 html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
 html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
 html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
@@ -685,7 +693,6 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
   html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
   html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
   html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
-  html[data-theme="dark"] .aula .sidebar-title, .aula .sidebar-brand { color:#fff; }
   html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
   html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
   html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
@@ -782,7 +789,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <a href="#sec11">11. Vroom + Locke</a>
     <a href="#sec12">12. Autoeficácia · Cognitiva · Campo</a>
     <a href="#sec13">13. Reforço (Skinner)</a>
-    <a href="#sec14">14. Incidência (TEC)</a>
+    <a href="#sec14">14. Características do Trabalho</a>
+    <a href="#sec15">15. Incidência (TEC)</a>
   </div>
 
   <div class="sidebar-footer">
@@ -830,6 +838,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         → <strong>Persistência:</strong> por quanto tempo o esforço é mantido
       </div>
     </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">DIP — a contagem certa dos componentes</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> os componentes básicos da motivação são <strong>TRÊS</strong> — macete <span class="highlight">DIP</span>: Direção · Intensidade · Persistência<br><br>
+        → ⚠️ Cuidado: item que diz "dois componentes: direção e intensidade" está <strong>errado</strong> — a banca omite justamente a Persistência para invalidar. Se faltar qualquer um dos três, o item cai.<br><br>
+        ⚖️ <strong>Referência:</strong> CHIAVENATO. <em>Introdução à Teoria Geral da Administração</em>. 7. ed. Elsevier, 2003.
+      </div>
+    </div>
   </section>
 
   <!-- SEC 2 -->
@@ -851,13 +868,23 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <div class="card-header"><div class="card-icon">📈</div><div class="card-title">Motivação × Desempenho — o tripé</div></div>
       <div class="card-text">
         O desempenho é resultado do tripé:<br>
-        → <strong>Motivação</strong><br>
-        → <strong>Capacidade</strong> (habilidades e inteligência)<br>
-        → <strong>Oportunidade</strong>
+        → <strong>Motivação:</strong> fator <span class="highlight">necessário, mas NÃO suficiente</span> para o bom desempenho<br>
+        → <strong>Capacidade:</strong> as competências do profissional — CHA (conhecimentos, habilidades e atitudes); sem as habilidades necessárias para a tarefa, a motivação sozinha não garante resultado<br>
+        → <strong>Oportunidade:</strong> ambiente de trabalho favorável — recursos disponíveis, condições físicas e apoio da liderança; um ambiente ruim prejudica até o desempenho de quem está altamente motivado
       </div>
     </div>
 
-    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>O bom desempenho <span class="highlight">não depende apenas da presença da motivação</span>. A banca pode afirmar que basta motivar para ter alto desempenho — falta lembrar da capacidade e da oportunidade.</div>
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>A formulação clássica: "a motivação é fator <span class="highlight">necessário e suficiente</span>" para o bom desempenho — <strong>ERRADA</strong>. Motivação é necessária, mas não basta: sem competências (CHA) ou em ambiente desfavorável, mesmo o profissional motivado tem desempenho prejudicado.</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Liderança × motivação — a relação direta existe</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> mesmo sendo um processo <strong>intrínseco</strong> ao indivíduo, a motivação pode ser acionada por estímulos externos — logo, <strong>é possível estabelecer relação direta</strong> entre o estado de motivação do indivíduo e o estilo/atuação da sua <span class="highlight">liderança</span>: o líder pode estimular, engajar e motivar<br><br>
+        → Grupos de motivos que influenciam o desempenho (Maximiano): os <strong>internos</strong> (intrínsecos à pessoa) e os <strong>externos</strong> (oferecidos pelo ambiente/organização — incentivos, recompensas, liderança)<br><br>
+        → ⚠️ Cuidado: dizer que a liderança não se relaciona com a motivação sob o argumento de ser ela "processo intrínseco" está errado — intrínseco <strong>não</strong> significa imune a influência externa.<br><br>
+        ⚖️ <strong>Referência:</strong> MAXIMIANO. <em>Introdução à administração</em>. 5. ed. Atlas, 2000.
+      </div>
+    </div>
 
     <div class="card">
       <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Modelo de motivação intrínseca — Kenneth Thomas</div></div>
@@ -903,11 +930,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
     <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Chiavenato:</strong> após o ciclo se completar, desencadeiam-se novos ciclos, indefinidamente — o comportamento individual é uma <span class="highlight">contínua e incessante sequência de ciclos motivacionais</span>.</div></div>
 
-    <div class="mnemonic">
-      <div class="mnemonic-label">🧠 Macete — ordem das etapas</div>
-      <div class="mnemonic-content">
-        <strong>E</strong>quilíbrio → <strong>E</strong>stímulo → <strong>N</strong>ecessidade → <strong>T</strong>ensão → <strong>C</strong>omportamento → <strong>S</strong>atisfação
-      </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Ordem das etapas — iniciais</div></div>
+      <div class="card-text"><strong>E</strong>quilíbrio → <strong>E</strong>stímulo → <strong>N</strong>ecessidade → <strong>T</strong>ensão → <strong>C</strong>omportamento → <strong>S</strong>atisfação</div>
     </div>
   </section>
 
@@ -954,24 +979,79 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         → <strong>Fisiológicas:</strong> necessidades básicas do indivíduo (alimento, água, sono etc.)<br>
         → <strong>Segurança:</strong> estar livre de perigos "físicos" e "psicológicos"<br>
         → <strong>Sociais:</strong> relacionadas às relações interpessoais<br>
-        → <strong>Estima:</strong> forma como a pessoa "se vê" (fatores internos) e como é vista pelos outros (fatores externos)<br>
+        → <strong>Estima:</strong> forma como a pessoa "se vê" (fatores internos) e como é vista pelos outros (fatores externos) — satisfeita, gera autoconfiança, força, prestígio e senso de valor/utilidade; frustrada, leva a sentimentos de desamparo e inferioridade<br>
         → <strong>Autorrealização:</strong> maximização das capacidades e aptidões pessoais — realizar o próprio potencial
       </div>
     </div>
 
-    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>As necessidades são <span class="highlight">hierárquicas</span>: devem ser satisfeitas <strong>nível a nível</strong>, seguindo a ordem da pirâmide (de baixo para cima). A satisfação de um nível <strong>anterior</strong> é <span class="highlight">pré-requisito</span> para a satisfação de um nível posterior.</div>
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>
+        → As necessidades são <span class="highlight">hierárquicas</span>: satisfaz-se <strong>nível a nível</strong>, de baixo para cima<br><br>
+        → A satisfação de um nível <strong>anterior</strong> é <span class="highlight">pré-requisito</span> do seguinte — sem ela, o indivíduo não se sente estimulado a buscar o nível posterior<br><br>
+        → A pirâmide descreve um <strong>processo individual</strong> de satisfação de necessidades, válido para todas as pessoas: <span class="highlight">não é estratificação social</span> (nada de "classes" nos estratos)<br><br>
+        → Recompensas financeiras <strong>não</strong> são, para Maslow, o principal fator motivador — necessidades superiores também movem o comportamento</div>
 
-    <div class="mnemonic">
-      <div class="mnemonic-label">🧠 Macete — base para o topo</div>
-      <div class="mnemonic-content">
-        <strong>F</strong>isiológicas · <strong>S</strong>egurança · <strong>S</strong>ociais · <strong>E</strong>stima · <strong>A</strong>utorrealização
-      </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Base para o topo — iniciais</div></div>
+      <div class="card-text"><strong>F</strong>isiológicas · <strong>S</strong>egurança · <strong>S</strong>ociais · <strong>E</strong>stima · <strong>A</strong>utorrealização</div>
     </div>
 
     <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>De onde vem a motivação (externo × interno):</strong><br>
         → <strong>Fatores externos:</strong> salário, estabilidade no emprego — atendem as necessidades fisiológicas e de segurança<br>
         → <strong>Fatores internos:</strong> desejo de reconhecimento, crescimento profissional — atendem as necessidades de estima e autorrealização<br><br>
         Para Lacombe e Heilborn, a hierarquia representa uma <span class="highlight">tendência média</span>, não uma escala rígida — as necessidades de cada pessoa variam no tempo, em função da sua satisfação e das alterações na hierarquia de valores.</div></div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Autorrealização na prática — o que a hierarquia exige do gestor</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> para motivar pela <strong>autorrealização</strong> (topo da pirâmide), o gestor deve saber que os colaboradores só buscam essa necessidade <strong>após satisfeitos os níveis inferiores</strong>: fisiológicas → segurança → sociais → estima<br><br>
+        → ⚠️ Cuidado: a teoria de Maslow <strong>inclui</strong> necessidades de subsistência (fisiológicas) como a base primária da pirâmide — dizer que ela "não envolve subsistência" é erro.<br>
+        → ⚠️ Cuidado: o oposto também é errado — a motivação <strong>não se limita</strong> às necessidades básicas; as superiores (sociais, estima, autorrealização) também induzem comportamento.<br>
+        → ⚠️ Cuidado: a autorrealização, apesar de subjetiva/intangível, <strong>faz parte</strong> da pirâmide — é justamente o seu topo.<br>
+        → ⚠️ Cuidado: Maslow <strong>não trabalha com reforço positivo/negativo</strong> (isso é Skinner) e não agrupa níveis distintos no mesmo patamar — o receio de perder condições materiais é necessidade de <span class="highlight">segurança</span> (nível inferior), não par da autorrealização.<br><br>
+        ⚖️ <strong>Referência:</strong> CHIAVENATO. <em>Comportamento Organizacional: A dinâmica do sucesso das organizações</em>. 3. ed. Manole, 2014.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Benefícios de emprego × nível da pirâmide</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> a hierarquia divide-se em necessidades <strong>primárias/básicas</strong> (fisiológicas e segurança) e <strong>secundárias</strong> (sociais, estima e autorrealização). Tradução de ofertas típicas de anúncio de emprego:<br>
+        → <strong>Trabalho criativo / autonomia para realizar o trabalho:</strong> <span class="highlight">autorrealização</span> — usar o próprio potencial, desenvolvimento pessoal<br>
+        → <strong>Plano de saúde / plano de aposentadoria:</strong> <span class="highlight">segurança</span> — proteção contra riscos e estabilidade financeira futura<br>
+        → <strong>Bom ambiente de trabalho:</strong> <span class="highlight">sociais</span> — relacionamentos saudáveis, apoio social entre colegas<br>
+        → <strong>Jornada confortável / sem excesso de horas extras:</strong> <span class="highlight">fisiológicas</span> — conforto físico, descanso, horários adequados e intervalos<br><br>
+        → ⚠️ Cuidado: benefício objetivo não é sinônimo de necessidade básica — plano de saúde/aposentadoria parecem "fisiológicos" por serem materiais, mas atendem à <span class="highlight">segurança</span> (proteção/estabilidade).<br>
+        → ⚠️ Cuidado: no sentido oposto, jornada "cômoda" pode parecer estabilidade (segurança), mas trata de condições básicas e previsíveis de trabalho — conforto físico e descanso são <span class="highlight">fisiológicos</span>.<br><br>
+        ⚖️ <strong>Referência:</strong> MASLOW. <em>A Theory of Human Motivation</em>. Psychological Review, 1943.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Frases do colaborador × nível da pirâmide</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> declarações típicas de engajamento traduzidas para a hierarquia de Maslow:<br>
+        → "Eu adoro trabalhar aqui" = <span class="highlight">autorrealização</span> — amor pelo que faz, realização do próprio potencial (talento altamente engajado)<br>
+        → "Estou orgulhoso em trabalhar nesta organização" e "Eu sou um vencedor" = <span class="highlight">estima</span> — orgulho, prestígio, autoapreciação<br>
+        → "Somente sairia se houvesse algo bem melhor" = <span class="highlight">segurança</span><br>
+        → "Estou aqui pelo dinheiro" = <span class="highlight">necessidades básicas</span> (fisiológicas/segurança)<br><br>
+        → ⚠️ Cuidado: "adorar o trabalho" (realizar-se) não é o mesmo que "estar orgulhoso" (estima) — gostar do que faz aponta para o topo da pirâmide; orgulho e prestígio ficam no 4º nível.<br>
+        → ⚠️ Cuidado: ameaça de despejo / moradia em risco = <span class="highlight">segurança</span> (proteção e estabilidade), ainda que envolva a casa — não vira fisiológicas<br>
+        → ⚠️ Cuidado: ambição de reconhecimento dos chefes e ascensão a cargo de gerência = <span class="highlight">estima</span> (status e reconhecimento), não autorrealização — esta é realizar o próprio potencial, não subir de cargo<br><br>
+        ⚖️ <strong>Referência:</strong> CHIAVENATO. <em>Gestão de Pessoas: o novo papel dos recursos humanos nas organizações</em>. 4. ed. Manole, 2014.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Primárias × secundárias — e o que a teoria NÃO diz</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> divisão oficial dos níveis: <strong>primárias</strong> = fisiológicas e segurança; <strong>secundárias</strong> = sociais, estima e <span class="highlight">autorrealização</span> — chamar a autorrealização de necessidade "primária" ou de "mais importante" invalida o item<br><br>
+        → Não há ranking de importância: satisfeito um nível inferior, o seguinte <span class="highlight">passa a dominar o comportamento</span><br>
+        → Nem todas as pessoas chegam ao topo da pirâmide<br>
+        → Cada pessoa tem, em geral, <strong>mais de uma motivação</strong> atuando ao mesmo tempo<br>
+        → A frustração (ou sua possibilidade) na satisfação de necessidades vira <span class="highlight">ameaça psicológica</span><br><br>
+        ⚖️ <strong>Referência:</strong> CHIAVENATO. <em>Introdução à Teoria Geral da Administração</em>. 7. ed. Elsevier, 2003.
+      </div>
+    </div>
   </section>
 
   <!-- SEC 6 -->
@@ -1000,6 +1080,16 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <tr><td><strong>Pré-requisito</strong></td><td>Satisfação do nível anterior exigida</td><td>Não exigida</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Frustração-regressão — o diferencial da ERC</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> conceito que distingue a ERC de Maslow: quando uma necessidade <strong>mais elevada não pode ser satisfeita</strong>, o indivíduo <span class="highlight">regride</span> e passa a buscar com mais força uma necessidade <strong>inferior</strong><br><br>
+        → Ex.: bloqueado no crescimento (sem oportunidades de desenvolvimento), o funcionário volta o foco aos relacionamentos no trabalho (necessidade de relacionamento)<br>
+        → Em Maslow não existe esse movimento regressivo — a progressão é linear, nível a nível<br><br>
+        ⚖️ <strong>Referência:</strong> ROBBINS, Stephen P.; JUDGE, Timothy A. <em>Comportamento Organizacional</em>. 15. ed. Pearson, 2013.
+      </div>
     </div>
   </section>
 
@@ -1030,6 +1120,30 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>A essência da teoria dos dois fatores: os fatores que levam à <span class="highlight">satisfação são DIFERENTES</span> dos fatores que levam à <span class="highlight">insatisfação</span>. Detalhe fino: fator higiênico presente gera apenas <strong>não-insatisfação</strong> (não gera satisfação); ausente, gera insatisfação.</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Os pares que a banca troca</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> fixar as equivalências exatas da teoria bifatorial:<br>
+        → Motivacionais = fatores <span class="highlight">intrínsecos</span>, relacionados ao conteúdo do cargo e à natureza das tarefas — sob o controle do indivíduo (o que ele faz e desempenha) = satisfacientes<br>
+        → Higiênicos = fatores <span class="highlight">extrínsecos</span>, do ambiente de trabalho (salário, benefícios, supervisão, colegas, contexto do cargo) = insatisfacientes<br><br>
+        → ⚠️ Cuidado: a satisfação no cargo depende dos fatores <strong>MOTIVACIONAIS</strong>, não dos higiênicos — trocar os pares invalida o item<br>
+        → ⚠️ Cuidado: o contrário de satisfação NÃO é insatisfação — é <span class="highlight">ausência de satisfação</span>; e o contrário de insatisfação é <span class="highlight">nenhuma insatisfação</span><br><br>
+        ⚖️ <strong>Referência:</strong> CHIAVENATO. <em>Recursos Humanos: o capital humano das organizações</em>. 8. ed. Atlas, 2008 · LACOMBE; HEILBORN. <em>Administração: princípios e tendências</em>. 2. ed. Saraiva, 2006.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Classificação de exemplo — o que é o quê</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> classificar fator de Herzberg pelo critério <strong>conteúdo do trabalho (intrínseco) × ambiente de trabalho (extrínseco)</strong>:<br>
+        → <strong>Motivacionais (satisfacientes):</strong> responsabilidade, crescimento, realização profissional, gosto pelo trabalho, aumento de conhecimento<br>
+        → <strong>Higiênicos (insatisfacientes):</strong> salário, status, condições de trabalho, relacionamento com colegas, tipo de supervisão/relação com supervisor, política da organização, vida pessoal, segurança<br><br>
+        → ⚠️ Cuidado: <strong>condições de trabalho</strong> e <strong>relacionamento com colegas</strong> são higiênicos (ambiente), não motivacionais — a banca usa esses exemplos como isca.<br>
+        → ⚠️ Cuidado: só o par <strong>responsabilidade + crescimento</strong> (ou realização/conhecimento) responde por "fatores que afetam a satisfação" — qualquer par em que um item for do ambiente está errado.<br><br>
+        ⚖️ <strong>Referência:</strong> LACOMBE; HEILBORN. <em>Administração: princípios e tendências</em>. 2. ed. Saraiva, 2006.
+      </div>
+    </div>
   </section>
 
   <!-- SEC 8 -->
@@ -1049,7 +1163,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="grid grid-2">
       <div class="card" style="border-left-color:var(--amber);">
         <div class="card-header"><div class="card-icon">🎯</div><div class="card-title" style="color:var(--amber);">Alta necessidade de Realização</div></div>
-        <div class="card-text">Prefere trabalhar <span class="highlight">sozinho</span>, em atividades de bastante responsabilidade e com certo grau de risco.<br><br>Em geral, <strong>NÃO são bons líderes</strong>.</div>
+        <div class="card-text">Prefere trabalhar <span class="highlight">sozinho</span>, em atividades de bastante responsabilidade e com certo grau de risco — quer alcançar <strong>objetivos difíceis</strong> (casos complexos, de difícil solução) e ser <span class="highlight">reconhecido pela ação que realizou</span>.<br><br>Em geral, <strong>NÃO são bons líderes</strong>.</div>
       </div>
       <div class="card" style="border-left-color:var(--purple);">
         <div class="card-header"><div class="card-icon">👔</div><div class="card-title" style="color:var(--purple);">Alta necessidade de Poder</div></div>
@@ -1058,6 +1172,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>Quem tem alta necessidade de realização <strong>não costuma ser bom líder</strong> (prefere trabalhar sozinho). Quem tende ao sucesso na gestão é o de alta necessidade de <strong>poder</strong>. A banca inverte os dois.</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Leitura de perfil — afiliação forte, realização fraca</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> as necessidades adquiridas admitem <strong>grau</strong> (forte/fraca) — tradução de perfis típicos:<br>
+        → Valorizar fortemente boas relações e proximidade com colegas = <span class="highlight">forte necessidade de afiliação</span><br>
+        → Não buscar novos desafios no trabalho = <span class="highlight">fraca necessidade de realização</span> — desafios e crescimento profissional são o combustível do realizador<br><br>
+        → ⚠️ Cuidado: em lista mista de teorias, o trio afiliação–poder–realização identifica <strong>McClelland</strong>; "necessidades sociais" é rótulo de <strong>Maslow</strong>; e "existência / relacionamento / crescimento" é de <strong>Alderfer (ERG)</strong> — não cruzar os vocabulários<br>
+        → ⚠️ Cuidado: evitar desafios NÃO indica fraca necessidade de poder — poder diz respeito a controlar e influenciar pessoas; quem evita desafios tem fraca <span class="highlight">realização</span>.<br>
+        → ⚠️ Cuidado: assumir riscos maiores e priorizar a resolução de problemas complexos é traço da necessidade de <span class="highlight">realização</span> (busca objetivos difíceis) — não da afiliação, que quer relações estreitas, amizade e <strong>evitar conflito</strong>.<br><br>
+        ⚖️ <strong>Referência:</strong> MASLOW. <em>A Theory of Human Motivation</em>. Psychological Review, 1943 · ALDERFER, Clayton P. <em>Existence, Relatedness, and Growth</em>. Free Press, 1972.
+      </div>
+    </div>
   </section>
 
   <!-- SEC 9 -->
@@ -1077,6 +1204,45 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>A banca adora inverter: <span class="highlight">X = preguiçoso/controlado</span>, <span class="highlight">Y = laborioso/autônomo</span>. Nunca o contrário. (Tema também cobrado na aula de Liderança.)</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Pressupostos opostos — o que NÃO é Teoria X/Y</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> X e Y são conjuntos de premissas <strong>opostas</strong> sobre a natureza humana no trabalho:<br>
+        → Teoria X: indivíduo desmotivado e preguiçoso, com aversão ao trabalho<br>
+        → Teoria Y: indivíduo naturalmente inclinado ao trabalho e à <span class="highlight">assunção de responsabilidades</span>, capaz de autodireção e autocontrole<br><br>
+        → ⚠️ Cuidado: X e Y <strong>não são abordagens complementares</strong> — são visões antagônicas (contrapostas).<br>
+        → ⚠️ Cuidado: reforço positivo × reforço negativo pertence à Teoria do Reforço (<strong>Skinner</strong>) — não confundir com X/Y.<br>
+        → ⚠️ Cuidado: dividir fatores motivacionais em duas categorias (indutores/recompensas × inibidores/excesso de controle) é ideia da Teoria Bifatorial de <strong>Herzberg</strong> — não de McGregor.<br>
+        → ⚠️ Cuidado: X e Y <strong>não são fases evolutivas</strong> do pensamento do autor (não houve "antes só subsistência, depois estima") — as duas teorias foram apresentadas juntas, na mesma obra, como visões contrastantes.<br><br>
+        ⚖️ <strong>Referência:</strong> McGREGOR. <em>The Human Side of Enterprise</em> (1960).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Retrato completo da Teoria X</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> o retrato do trabalhador segundo a Teoria X reúne traços que os itens costumam apresentar separados — o conjunto completo exige:<br>
+        → Evita naturalmente o trabalho (preguiçoso, aversão ao esforço)<br>
+        → Demonstra <span class="highlight">pouca ambição</span> e busca apenas <span class="highlight">segurança</span> — prefere ser dirigido ("o homem médio", na formulação de McGregor)<br>
+        → Precisa de <span class="highlight">supervisão constante</span> para realizar as atividades<br>
+        → Motivação restrita a dinheiro/recompensas materiais<br><br>
+        → Consequência para o gestor: estilo <strong>autoritário e controlador</strong> — controlar, dirigir e impelir os funcionários ao trabalho<br><br>
+        ⚖️ <strong>Referência:</strong> McGREGOR. <em>The Human Side of Enterprise</em> (1960) · SANTOS, Gilmar José dos; SANÁBIO, Marcos Tanure. <em>Administração: princípios teóricos e práticos</em>. UFJF, 2013.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Estilo de gestão acoplado a cada teoria</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> cada visão da natureza humana vem acoplada a um estilo de administrar:<br>
+        → Teoria X — abordagem tradicional, convicções negativas: gestão <span class="highlight">autocrática e impositiva</span>, com supervisão constante<br>
+        → Teoria Y — abordagem moderna e positiva: gestão <span class="highlight">democrática</span>; empregados naturalmente motivados e responsáveis, gostam de trabalhar em condições favoráveis, são criativos, têm voz ativa e requerem <strong>pouca ou nenhuma supervisão direta</strong><br>
+        → Enquadramento: a dicotomia X/Y é obra de McGregor dentro da <span class="highlight">Escola Comportamentalista</span> — que foca no estudo do comportamento humano nas organizações; não confundir com Científica (Taylor), Sistêmica ou Qualidade<br><br>
+        → ⚠️ Cuidado: atributos como "naturalmente motivados", "responsáveis" e "pouca ou nenhuma supervisão" pertencem à teoria <strong>Y</strong> — atribuí-los à teoria X invalida o item.<br><br>
+        ⚖️ <strong>Referência:</strong> CHIAVENATO. <em>Introdução à Teoria Geral da Administração</em>. 7. ed. Elsevier, 2003.
+      </div>
+    </div>
   </section>
 
   <!-- SEC 10 -->
@@ -1103,6 +1269,18 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <tr><td><strong>Outro-Externo</strong></td><td>Outro funcionário, que ocupa cargo em outra empresa</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Classificar o referencial — o que importa é ONDE está a comparação</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> o ponto de referência define-se por duas perguntas — <strong>quem</strong> é o parâmetro (eu ou outra pessoa) e <strong>onde</strong> ocorre a experiência comparada (mesma empresa ou fora):<br>
+        → Ex-colega de turma contratado na <strong>mesma empresa</strong>, em outra área, com salário maior = <span class="highlight">outro-interno</span> — o vínculo antigo de faculdade não torna a comparação "externa"; vale onde a pessoa trabalha hoje<br><br>
+        → ⚠️ Cuidado: "outro-equivalente" <strong>não existe</strong> — a teoria traz somente os quatro referenciais da tabela acima.<br>
+        → ⚠️ Cuidado: percebida a inequidade negativa (minha relação retribuições–esforços menor que a do referencial), vêm a desmotivação e as ações corretivas — inclusive <span class="highlight">abandonar a situação</span> (pedido de demissão).<br>
+        → ⚠️ Cuidado: <span class="highlight">próprio-externo</span> é a MINHA própria experiência em cargo de OUTRA empresa — a comparação com OUTRA pessoa ou grupo de fora da organização é <span class="highlight">outro-externo</span>; o pronome (próprio/outro) vem sempre antes.<br><br>
+        ⚖️ <strong>Referência:</strong> ROBBINS, Stephen P.; JUDGE, Timothy A. <em>Comportamento Organizacional</em>. 14. ed. Pearson Prentice Hall, 2013 · ADAMS, J. S. <em>Toward an Understanding of Inequity</em>. Journal of Abnormal and Social Psychology, 1963.
+      </div>
     </div>
 
     <div class="card">
@@ -1144,7 +1322,27 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       </div>
     </div>
 
-    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Cadeia para memorizar:</strong> <span class="highlight">Esforço</span> →(Expectativa)→ <span class="highlight">Desempenho</span> →(Instrumentalidade)→ <span class="highlight">Recompensa</span> →(Valência)→ <span class="highlight">Metas pessoais</span>.</div></div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🔗</div><div class="card-title">A cadeia de Vroom — elo por elo</div></div>
+      <div class="card-text">
+        <strong>Esforço</strong> →(Expectância)→ <strong>Desempenho</strong> →(Instrumentalidade)→ <strong>Recompensa</strong> →(Valência)→ <strong>Metas pessoais</strong><br><br>
+        Cada elo da corrente é uma pergunta que o funcionário responde:<br>
+        → <strong>Expectância:</strong> "meu esforço é suficiente para eu performar?"<br>
+        → <strong>Instrumentalidade:</strong> "se eu performar, recebo mesmo a recompensa prometida?"<br>
+        → <strong>Valência:</strong> "essa recompensa vale alguma coisa para mim?"<br><br>
+        Os três construtos se <span class="highlight">multiplicam</span>: se qualquer elo zerar (uma só resposta "não"), a motivação inteira vai ao chão.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Os 3 construtos básicos — contagem e nomes oficiais</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> a teoria comportamental da expectância (<strong>Victor Vroom</strong>) baseia-se em <strong>TRÊS construtos básicos</strong>: <span class="highlight">valência</span> · <span class="highlight">expectância</span> (ou expectativa) · <span class="highlight">instrumentalidade</span>. A motivação é produto das expectativas sobre as próprias habilidades de atingir resultados e do valor dado às recompensas<br><br>
+        → ⚠️ Cuidado: relação que omita um dos três ou acrescente um quarto elemento (ex.: reforço, equidade) está incompleta/incorreta — são somente esses três construtos<br>
+        → ⚠️ Cuidado: a instrumentalidade é a relação causal entre <span class="highlight">resultado intermediário</span> (desempenho) e <span class="highlight">resultado final</span> (recompensa desejada); e não são construtos de Vroom: afiliação (<strong>McClelland</strong>), reforço positivo (<strong>Skinner</strong>) e campo dinâmico (<strong>Lewin</strong>)<br><br>
+        ⚖️ <strong>Referência:</strong> RENNÓ. <em>Administração Geral para Concursos</em>. Elsevier, 2013 · RIBAS; SALIM. <em>Gestão de Pessoas para Concurso</em>. Alumnus, 2013.
+      </div>
+    </div>
 
     <div class="card">
       <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Definição de Objetivos — Locke</div></div>
@@ -1165,7 +1363,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="grid grid-2">
       <div class="card">
         <div class="card-header"><div class="card-icon">💪</div><div class="card-title">Teoria da Autoeficácia</div></div>
-        <div class="card-text">Crença do funcionário de que ele <strong>é capaz</strong> de desempenhar determinada tarefa. Quanto maior a autoeficácia, <span class="highlight">maior a motivação</span> e melhores os desempenhos.</div>
+        <div class="card-text">Crença do funcionário de que ele <strong>é capaz</strong> de desempenhar determinada tarefa. Quanto maior a autoeficácia, <span class="highlight">maior a motivação</span> e melhores os desempenhos.<br><br>A motivação para a tarefa está ligada à crença de concluí-la com sucesso — e uma das formas de desenvolver autoeficácia é o <span class="highlight">sucesso passado</span> (quem teve êxito antes tende a ter elevada autoeficácia).<br><br>
+        → ⚠️ Cuidado: "o ambiente determina o comportamento por meio de consequências" <strong>não</strong> é autoeficácia — mecanismo de consequências é a teoria do Reforço (<strong>Skinner</strong>); autoeficácia trata da crença na própria capacidade.</div>
       </div>
       <div class="card">
         <div class="card-header"><div class="card-icon">🎁</div><div class="card-title">Teoria da Avaliação Cognitiva</div></div>
@@ -1212,27 +1411,98 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca — reforço negativo NÃO é punição</div>
         → O <strong>reforço</strong> (positivo ou negativo) é algo <span class="highlight">"BOM"</span>: aplicado após comportamentos <strong>desejáveis</strong>, aumenta a vontade de repetir o comportamento — ambos são bons para o funcionário<br>
         → A <strong>punição</strong> e a <strong>extinção</strong> são coisas <span class="highlight">"RUINS"</span>: aplicadas após comportamentos <strong>indesejáveis</strong>, diminuem a vontade de repetir — ambas são ruins para o funcionário<br>
-        → Comportamento <strong>reforçado</strong> tende a <strong>se repetir</strong>; comportamento <strong>não reforçado</strong> tende a <strong>não se repetir</strong></div>
+        → Comportamento <strong>reforçado</strong> tende a <strong>se repetir</strong>; comportamento <strong>não reforçado</strong> tende a <strong>não se repetir</strong><br><br>
+        → O reforço negativo também aparece como <span class="highlight">"aprendizado da abstenção"</span>: o funcionário comporta-se como desejado para EVITAR situação desagradável — ex.: supervisor não critica nem sanciona quem passou a chegar no horário; remover o estímulo aversivo fortalece o comportamento e não é punição</div>
 
-    <div class="mnemonic">
-      <div class="mnemonic-label">🧠 Macete — matriz 2×2</div>
-      <div class="mnemonic-content">
-        Desejável + acrescenta = <span class="tag tag-green">R+</span> · Desejável + retira = <span class="tag tag-green">R−</span> · Indesejável + acrescenta = <span class="tag tag-red">Punição</span> · Indesejável + retira = <span class="tag tag-red">Extinção</span>
-      </div>
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Matriz 2×2 — resumo</div></div>
+      <div class="card-text">Desejável + acrescenta = <span class="tag tag-green">R+</span> · Desejável + retira = <span class="tag tag-green">R−</span> · Indesejável + acrescenta = <span class="tag tag-red">Punição</span> · Indesejável + retira = <span class="tag tag-red">Extinção</span></div>
     </div>
   </section>
 
   <!-- SEC 14 -->
   <section id="sec14" class="section">
-    <div class="section-title"><span class="tag tag-green">14</span> Incidência de temas (TEC)</div>
+    <div class="section-title"><span class="tag tag-green">14</span> Características do Trabalho — Hackman e Oldham (MCT)</div>
+    <div class="section-subtitle">O desenho do cargo determina a motivação — dimensões centrais, estados críticos e estratégias de redesenho</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Ideia central e os 3 estados psicológicos críticos</div></div>
+      <div class="card-text">
+        O <strong>MCT (modelo das características do trabalho)</strong>, de <strong>Hackman e Oldham</strong>, concentra-se nas <span class="highlight">propriedades motivacionais específicas dos cargos</span>: quanto mais o trabalho é desenhado com certas características essenciais, maiores a motivação, a satisfação e a produtividade. No centro da teoria estão os <strong>estados psicológicos críticos</strong>, que determinam a extensão em que as características do cargo aumentam as respostas dos funcionários à tarefa:<br>
+        → <strong>Experiência do significado do trabalho:</strong> perceber o próprio trabalho como importante e valioso<br>
+        → <strong>Experiência de responsabilidade pelos resultados:</strong> sentir-se responsável pelo que o trabalho produz<br>
+        → <strong>Conhecimento dos resultados:</strong> saber, de forma direta e clara, como está o próprio desempenho<br><br>
+        Experimentando os três estados em nível suficiente, o funcionário tende a se sentir bem consigo mesmo e a <span class="highlight">responder favoravelmente ao trabalho</span>.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">As 5 dimensões centrais (tangíveis)</div></div>
+      <div class="card-text">
+        → <strong>Variedade de habilidades:</strong> grau em que o cargo inclui uma variedade de atividades que envolvem diferentes habilidades e talentos<br>
+        → <strong>Identidade da tarefa:</strong> grau em que o cargo requer a conclusão do trabalho como um todo e de seus segmentos identificáveis<br>
+        → <strong>Significado da tarefa:</strong> grau em que o cargo influencia a vida ou o trabalho de outras pessoas, na própria organização ou no ambiente externo<br>
+        → <strong>Autonomia:</strong> grau em que o cargo permite liberdade, independência e critério para programar o trabalho e determinar os procedimentos<br>
+        → <strong>Retorno (feedback):</strong> grau em que as atividades do cargo dão informações diretas e claras sobre a eficiência do próprio desempenho
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">As 5 dimensões — iniciais (VISAR)</div></div>
+      <div class="card-text"><strong>V</strong>ariedade · <strong>I</strong>dentidade · <strong>S</strong>ignificado · <strong>A</strong>utonomia · <strong>R</strong>etorno → <strong>VISAR</strong></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Estratégia de redesenho do cargo</th><th>Dimensão que fortalece</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Combinação de tarefas</strong></td><td>Variedade de habilidades — reúne atividades antes fragmentadas</td></tr>
+          <tr><td><strong>Formação de unidades naturais de trabalho</strong></td><td>Identidade da tarefa — forma um "todo" identificável</td></tr>
+          <tr><td><strong>Estabelecimento de relação com os clientes</strong></td><td>Retorno (feedback) + significado da tarefa</td></tr>
+          <tr><td><strong>Expansão vertical dos cargos</strong></td><td>Autonomia — transfere responsabilidades e controle ao executante</td></tr>
+          <tr><td><strong>Canais abertos de feedback</strong></td><td>Retorno</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Trabalho repetitivo + falta de feedback — a estratégia que resolve os dois</div></div>
+      <div class="card-text">
+        📌 <strong>Aprendizado:</strong> quando a equipe convive com trabalho repetitivo (aplicação sempre das mesmas capacidades) e ausência de feedback claro sobre o trabalho, a iniciativa adequada pelo MCT é <strong>estabelecer relação com os clientes</strong> — ela ataca os dois problemas ao mesmo tempo:<br><br>
+        → Feedback: o contato direto com o cliente gera <span class="highlight">retorno imediato</span> sobre o desempenho (gratidão, sugestões, questionamentos recebidos na hora)<br>
+        → Significado: ver o efeito do próprio trabalho sobre outras pessoas aumenta a percepção de que ele é importante e valioso<br><br>
+        → ⚠️ Cuidado: expansão vertical e rotação de cargos introduzem variedade e desafio, mas <strong>não garantem</strong> feedback claro; a expansão vertical ainda pode ser ineficaz se os funcionários não estiverem preparados para as novas responsabilidades<br>
+        → ⚠️ Cuidado: combinação de tarefas e formação de unidades naturais de trabalho tratam de variedade e identidade — não criam canal direto de retorno sobre o desempenho<br>
+        → ⚠️ Cuidado: repetir a mesma estratégia duas vezes não diversifica o redesenho — pode sobrecarregar sem atacar a dimensão faltante<br><br>
+        ⚖️ <strong>Referência:</strong> GRIFFIN, Ricky W. <em>Comportamento organizacional: gestão de pessoas e organizações</em>. São Paulo: Cengage Learning, 2015.
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>A banca apresenta pares plausíveis de estratégias, mas apenas a relação com os clientes entrega <span class="highlight">retorno direto e claro</span>: as demais melhoram variedade, identidade ou autonomia sem criar canal imediato de feedback. E atenção à inversão clássica: a dimensão que gera <span class="highlight">conhecimento dos resultados</span> é o retorno — não a autonomia.</div>
+  </section>
+
+  <!-- SEC 15 -->
+  <section id="sec15" class="section">
+    <div class="section-title"><span class="tag tag-green">15</span> Incidência de temas (TEC)</div>
     <div class="section-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
 
     <div class="card">
       <div class="card-header"><div class="card-icon">🟡</div><div class="card-title">Incidência registrada</div></div>
       <div class="card-text">
         <span class="tag tag-amber">Motivação intrínseca (modelo de Thomas): 1</span>
-        <span class="tag tag-amber">Bifatorial (Herzberg): 1</span>
-        <span class="tag tag-amber">Hierarquia das necessidades (Maslow): 1</span>
+        <span class="tag tag-red">Bifatorial (Herzberg): 3</span>
+        <span class="tag tag-amber">ERC (Alderfer): 1</span>
+        <span class="tag tag-red">Hierarquia das necessidades (Maslow): 9</span>
+        <span class="tag tag-amber">Componentes da motivação (DIP): 1</span>
+        <span class="tag tag-red">Teoria X e Y (McGregor): 6</span>
+        <span class="tag tag-amber">Teoria do Reforço (Skinner): 1</span>
+        <span class="tag tag-amber">Características do trabalho (MCT): 1</span>
+        <span class="tag tag-amber">Motivação × desempenho (tripé): 1</span>
+        <span class="tag tag-red">Necessidades adquiridas (McClelland): 3</span>
+        <span class="tag tag-amber">Autoeficácia: 1</span>
+        <span class="tag tag-amber">Equidade / justiça organizacional (Adams): 2</span>
+        <span class="tag tag-red">Expectância (Vroom): 2</span>
+        <span class="tag tag-amber">Motivação × liderança: 1</span>
       </div>
     </div>
   </section>

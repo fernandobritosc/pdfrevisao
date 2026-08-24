@@ -659,3 +659,13 @@ Registro das alterações feitas nos resumos. Formato:
 ---
 
 **Criado por:** fluxo de revisão da seção AGENTS.md.
+
+## 2026-08-23
+
+- Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html
+  - Padronização completa no padrão Administração Pública e Geral:
+    - 84 enumerações "•" convertidas para "→" (regra de verticalização).
+    - 36 cards avulsos "🚨 Pegadinha" mesclados nos blocos TEC como linhas "→ ⚠️ Cuidado:" (regra 19/08/2026); redigidas sem "assertiva"/"banca" (3 ocorrências extras em gotchas/callout também reescritas).
+    - Espaçamento entre assuntos com <br><br> (51 duplas quebras; antes 35/38 blocos sem nenhuma).
+    - Sec 9 Incidência: tags consolidadas por tema central (48 → 47; "Alteração contratual — X/Y" virou "Alteração contratual (arts. 124-126): 2"), ordem decrescente, critério de cor único (red = 3+), soma preservada (58 questões).
+    - Validação check-all-html: 0 problemas.
