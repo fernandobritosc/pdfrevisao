@@ -125,6 +125,8 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
 
 Cada questão colada vira um bloco de aprendizado no resumo, na seção temática correta:
 
+- **Conferência da aula de destino (regra do usuário, 24/08/2026)**: antes de processar uma questão do TEC, verificar em qual aula o tema pertence — matérias com aulas sequenciais sobre o mesmo assunto (ex.: "Licitações Públicas" Aula 07 e "Lei 14.133/2021 - Parte 2" Aula 08) podem ter temas distribuídos entre elas. Consultar os arquivos-fonte (.md) e os resumos existentes para identificar a aula correta, e não presumir que é a aula em andamento.
+
 ```
 📌 Aprendizado    — o que a questão ensina (regra, exceção, distinção)
 ⚖️ Base legal     — artigo(s) de lei que fundamenta (ex: Lei 14.133/2021, art. 6º, XXIX)
@@ -165,6 +167,14 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
   `🧠 Macete` / `.mnemonic` (fundo amarelo) nos resumos. Conteúdo de memorização
   entra como **card normal** (ex.: "Ordem das etapas — iniciais"), sem rótulo de
   macete. Template já atualizado; não reintroduzir o padrão.
+- **Sugestões de melhoria (regra do usuário, 24/08/2026)**: sempre que eu
+  identificar uma sugestão de **inclusão, alteração ou exclusão** de conteúdo
+  (num card, seção, regra, pegadinha, tabela, estrutura) que considerar necessária
+  ou benéfica, **NÃO aplicar por conta própria** — perguntar ao usuário antes e
+  aguardar a confirmação. Ex.: reorganizar um card que ficou confuso, remover
+  informação redundante, simplificar uma enumeração, renomear título. A regra vale
+  para qualquer arquivo do projeto (resumos, index, templates, AGENTS.md, scripts),
+  exceto correções de erro factual/legal (que seguem o fluxo normal de correção).
 
 ### Tema repetido
 
