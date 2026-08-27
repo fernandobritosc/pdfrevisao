@@ -75,7 +75,7 @@ questões dessas matérias. Card "🎯 REC — Reforços da análise de desempen
 `index.html` (seção entre Agenda e Informática) lista os mesmos pontos com
 links diretos para os resumos.
 
-## Item D — Metas de estudo do usuário (registro em 14/08/2026 · atualizado em 15/08/2026)
+## Item D — Metas de estudo do usuário (registro em 14/08/2026 · atualizado em 25/08/2026)
 
 Acompanhamento das metas abertas e atrasadas do plano do usuário:
 
@@ -87,6 +87,31 @@ Acompanhamento das metas abertas e atrasadas do plano do usuário:
 
 **Ação**: cobrar/progredir as metas abertas nas próximas sessões; oferecer suporte
 conforme a disciplina (ex.: Português, AP e DPT têm material no repositório).
+
+### Metas novas (registro em 25/08/2026)
+
+**RLM — Estruturas Lógicas (M18)**:
+- Usuário pediu à mentora para **zerar a meta e começar de novo**.
+- Não conseguiu ver/executar o conteúdo a tempo e o **prazo da meta acabou** (meta vencida).
+- **Ação**: aguardar a mentora zerar e reabrir a meta; quando reaberta, as atividades
+  são: (1) vídeo 1 da Aula 00 — "Estruturas Lógicas - Conceito de proposição";
+  (2) vídeo 2 da Aula 00 — "Estruturas Lógicas - Valor lógico e Princípios Básicos".
+  Material de RL não existe no repositório (sem resumos) — oferecer criação se o
+  usuário trouxer PDFs/vídeos.
+
+**Português — Sintaxe (apenas questões)**:
+- Usuário relata **grande dificuldade em sintaxe**; meta nova é somente questões.
+- Atividades da mentora:
+  - **ALUNO INICIANTE** (não estudou/domina o assunto): questões 01–40
+    (Tempo ideal: 80 min) — Caderno "LS - INICIANTE TRIBUNAIS - PORTUGUÊS IN. - CADERNO 04"
+    → https://www.tecconcursos.com.br/s/Q4QvJr
+  - **ALUNO EXPERIENTE** (já estudou a parte teórica): questões 01–34
+    (Tempo ideal: 68 min) — Caderno "LS - INICIANTE TRIBUNAIS - PORTUGUÊS - CADERNO 12"
+    → https://www.tecconcursos.com.br/s/Q4QvQG
+- **Ação**: registrar os links dos cadernos para consulta; quando o usuário colar
+  questões de sintaxe, processar como conteúdo de estudo no resumo de Português
+  Aula 05 (funções sintáticas) e incrementar incidência.
+
 
 ## Item E — Revisão dirigida — análise de desempenho da mentora (17/08/2026)
 

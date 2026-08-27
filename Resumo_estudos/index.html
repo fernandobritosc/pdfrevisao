@@ -558,9 +558,8 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
   border: 1px solid var(--line-strong);
   border-top: none;
   border-radius: var(--radius);
-  padding: 2.4rem 2rem 1.6rem;
-  margin-bottom: 1.6rem;
-  overflow: hidden;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
 }
 .landing .header::before {
   content: "";
@@ -568,60 +567,91 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
   top: 0;
   left: 0;
   width: 100%;
-  height: 8px;
+  height: 6px;
   background: linear-gradient(90deg, var(--green), var(--blue), var(--purple), var(--amber), var(--teal));
 }
 .landing .header h1 {
   font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 2.1rem;
+  font-size: 2rem;
   font-weight: 800;
   letter-spacing: -.03em;
   color: var(--ink);
+  line-height: 1.05;
 }
-.landing .header p { color: var(--text2); font-size: .95rem; margin-top: .35rem; }
-.landing .header-stats {
-  margin-top: 1.1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.4rem;
-  flex-wrap: wrap;
-  font-size: .8rem;
-  color: var(--text2);
-}
-.landing .header-stats strong {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.05rem;
-  color: var(--ink);
-  margin-right: .15rem;
-}
-
-/* FICHAS DE MATÉRIA */
-.ficha { border-top: 6px solid var(--line-strong); padding-top: .9rem; }
-.ficha-head { align-items: flex-start; }
-.ficha-head .card-icon { margin-top: .05rem; }
-.ficha-titulos { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
-.ficha-titulos .card-title { margin-bottom: 0; }
-.ficha-meta {
+.landing .header-eyebrow {
   font-family: 'IBM Plex Mono', 'Consolas', monospace;
   font-size: .68rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: .25rem;
+}
+.landing .header p { color: var(--text2); font-size: .92rem; margin-top: .35rem; }
+.landing .header-stats {
+  margin-top: .8rem;
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  font-size: .78rem;
+  color: var(--text2);
+}
+.landing .header-stats span { display: inline-flex; align-items: center; gap: .2rem; }
+.landing .header-stats strong {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.landing .header-actions { margin-top: .8rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+.landing .header-actions a {
+  display: inline-flex; align-items: center; gap: .35rem;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: 999px;
+  padding: .3rem .85rem; font-size: .78rem; color: var(--text); text-decoration: none;
+  transition: background .15s, border-color .15s;
+}
+.landing .header-actions a:hover { background: #ecebe5; border-color: var(--line-strong); }
+
+/* DIVISÓRIAS DE CADERNO */
+.divisoria {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-left: 10px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem 1rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.04);
+  transition: box-shadow .15s;
+}
+.divisoria:hover { box-shadow: 0 6px 20px rgba(31,39,51,.08); }
+.divisoria-head { display: flex; align-items: center; gap: .6rem; margin-bottom: .65rem; }
+.divisoria-icon { font-size: 1.1rem; flex-shrink: 0; }
+.divisoria-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.divisoria-meta {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .65rem;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: .06em;
+  margin-left: auto;
 }
-.ficha-lista { display: flex; flex-direction: column; margin-top: .55rem; }
-.ficha-item {
-  display: flex;
-  flex-direction: column;
-  gap: .1rem;
-  padding: .4rem .6rem .4rem .75rem;
-  border-radius: 8px;
-  border-left: 3px solid transparent;
+.divisoria-list { display: flex; flex-direction: column; gap: .15rem; }
+.divisoria-item {
+  display: flex; align-items: baseline; gap: .4rem;
+  padding: .25rem .5rem .25rem .6rem;
+  border-radius: 6px;
   text-decoration: none;
-  color: inherit;
-  transition: background .15s, border-color .15s;
+  font-size: .84rem;
+  color: var(--text2);
+  transition: background .15s;
 }
-.ficha-item:hover { background: #f0eee7; border-left-color: var(--blue); }
-.ficha-nome { font-size: .84rem; font-weight: 700; color: var(--text); }</style>
+.divisoria-item:hover { background: #f0eee7; color: var(--text); }
+.divisoria-item .di-nome { font-weight: 600; color: var(--text); }
+.divisoria-item .di-tag { margin-left: .35rem; }
+.divisoria-item .di-bullet { color: var(--muted); font-size: .7rem; flex-shrink: 0; }</style>
 
 
 
@@ -818,14 +848,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <p>Caderno de estudos para concursos — resumos, mapas mentais e incidência de temas (TEC)</p>
   <div style="margin-top:1rem; display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,.85); border:1px solid var(--line-strong); border-radius:999px; padding:.4rem 1rem; font-size:.8rem;">
     <span>🕐</span>
-<span style="font-weight:700; color:var(--ink);">Última atualização: 25/08/2026 00:42</span>
+<span style="font-weight:700; color:var(--ink);">Última atualização: 27/08/2026 00:25</span>
     <span style="color:var(--text2);">(horário de Brasília)</span>
   </div>
   <div style="margin-top:.7rem; display:inline-flex; gap:.45rem;">
     <a href="mudancas.html" style="display:inline-flex; align-items:center; gap:.35rem; background:rgba(255,255,255,.85); border:1px solid var(--line-strong); border-radius:999px; padding:.4rem 1rem; font-size:.8rem; font-weight:700; color:var(--ink); text-decoration:none;">📜 O que mudou</a>
   </div>
   <div class="header-stats">
-    <span><strong>50</strong> aulas resumidas</span>
+    <span><strong>53</strong> aulas resumidas</span>
     <span><strong>8</strong> matérias</span>
     <span>🔁 revisão espaçada ativa</span>
   </div>
@@ -839,7 +869,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   (function () {
     var input = document.getElementById('busca');
     var res = document.getElementById('resultados');
-    var grid = document.querySelector('.grid');
+    var grid = document.querySelector('.divisorias-wrap');
     var index = null;
     fetch('search-index.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { index = d; }).catch(function () { index = null; });
 
@@ -902,14 +932,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       clearTimeout(timer);
       timer = setTimeout(function () {
         var q = input.value.trim();
-        if (q.length < 2) { res.innerHTML = ''; grid.style.display = ''; return; }
+        if (q.length < 2) { res.innerHTML = ''; if (grid) grid.style.display = ''; return; }
         if (index) {
-          grid.style.display = 'none';
+          if (grid) grid.style.display = 'none';
           render(search(q), q);
         } else {
-          grid.style.display = '';
-          document.querySelectorAll('.grid .card').forEach(function (card) {
-            card.style.display = card.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+          if (grid) grid.style.display = '';
+          document.querySelectorAll('.divisoria').forEach(function (d) {
+            d.style.display = d.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
           });
         }
       }, 150);
@@ -918,155 +948,139 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </script>
   <p style="color:var(--text2);font-size:.8rem;margin:-.3rem 0 1.2rem;">🟢 Tag verde no card = aula já revisada (revisão espaçada) — mostra a data da última revisão e o nº de revisões.</p>
 
-  <!-- FICHAS DE MATÉRIA -->
-  <div class="grid grid-2">
+  <!-- DIVISÓRIAS DE MATÉRIA -->
+  <div class="divisorias-wrap" style="display:flex;flex-direction:column;gap:1rem;">
 
-    <div class="card ficha" style="border-top-color:var(--green);">
-      <div class="card-header ficha-head">
-        <div class="card-icon">💰</div>
-        <div class="ficha-titulos">
-          <div class="card-title" style="color:var(--green);">AFO — Administração Financeira e Orçamentária</div>
-          <div class="ficha-meta">7 aulas</div>
-        </div>
+    <div class="divisoria" style="border-left-color:var(--green);">
+      <div class="divisoria-head">
+        <div class="divisoria-icon">💰</div>
+        <div class="divisoria-title" style="color:var(--green);">AFO — Administração Financeira e Orçamentária</div>
+        <div class="divisoria-meta">7 aulas</div>
       </div>
-      <div class="ficha-lista">
-        <a class="ficha-item" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html"><span class="ficha-nome">Aula 00 — Orçamento Público</span></a>
-        <a class="ficha-item" href="AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html"><span class="ficha-nome">Aula 01 — Princípios Orçamentários</span></a>
-        <a class="ficha-item" href="AFO/Aula 02/resumo-aula-02-creditos-adicionais.html"><span class="ficha-nome">Aula 02 — Créditos Ordinários e Adicionais</span></a>
-        <a class="ficha-item" href="AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html"><span class="ficha-nome">Aula 03 — Ciclo Orçamentário</span></a>
-        <a class="ficha-item" href="AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html"><span class="ficha-nome">Aula 04 — Orçamento Público: Conceito</span></a>
-        <a class="ficha-item" href="AFO/Aula 05/resumo-aula-05-receita-publica-consolidado.html"><span class="ficha-nome">Aula 05 — Receita Pública</span></a>
-        <a class="ficha-item" href="AFO/Aula 05/resumo-aula-05-divida-ativa.html"><span class="ficha-nome">Aula 05 — Dívida Ativa</span></a>
+      <div class="divisoria-list">
+        <a class="divisoria-item" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Orçamento Público</span></a>
+        <a class="divisoria-item" href="AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Princípios Orçamentários</span></a>
+        <a class="divisoria-item" href="AFO/Aula 02/resumo-aula-02-creditos-adicionais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Créditos Ordinários e Adicionais</span></a>
+        <a class="divisoria-item" href="AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Ciclo Orçamentário</span></a>
+        <a class="divisoria-item" href="AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Orçamento Público: Conceito</span></a>
+        <a class="divisoria-item" href="AFO/Aula 05/resumo-aula-05-receita-publica-consolidado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Receita Pública</span></a>
+        <a class="divisoria-item" href="AFO/Aula 05/resumo-aula-05-divida-ativa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Dívida Ativa</span></a>
       </div>
     </div>
 
-    <div class="card ficha" style="border-top-color:var(--teal);">
-      <div class="card-header ficha-head">
-        <div class="card-icon">🏛️</div>
-        <div class="ficha-titulos">
-          <div class="card-title" style="color:var(--teal);">AP — Administração Pública e Geral</div>
-          <div class="ficha-meta">6 aulas</div>
-        </div>
+    <div class="divisoria" style="border-left-color:var(--teal);">
+      <div class="divisoria-head">
+        <div class="divisoria-icon">🏛️</div>
+        <div class="divisoria-title" style="color:var(--teal);">AP — Administração Pública e Geral</div>
+        <div class="divisoria-meta">7 aulas</div>
       </div>
-      <div class="ficha-lista">
-        <a class="ficha-item" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="ficha-nome">Aula 00 — Conceitos Introdutórios</span></a>
-        <a class="ficha-item" href="Administração Pública e Geral/Aula 01/resumo-aula-01-teorias-administrativas.html"><span class="ficha-nome">Aula 01 — Teoria Geral da Administração</span></a>
-        <a class="ficha-item" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html"><span class="ficha-nome">Aula 02 — Planejamento Estratégico</span></a>
-        <a class="ficha-item" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html"><span class="ficha-nome">Aula 03 — Ferramentas Estratégicas</span></a>
-        <a class="ficha-item" href="Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html"><span class="ficha-nome">Aula 04 — Organização e Estrutura Organizacional</span></a>
-        <a class="ficha-item" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html"><span class="ficha-nome">Aula 05 — Liderança</span></a>
-        <a class="ficha-item" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html"><span class="ficha-nome">Aula 06 — Motivação</span></a>
+      <div class="divisoria-list">
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Conceitos Introdutórios</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 01/resumo-aula-01-teorias-administrativas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Teoria Geral da Administração</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Planejamento Estratégico</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Ferramentas Estratégicas</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Organização e Estrutura Organizacional</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Liderança</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Motivação</span></a>
       </div>
     </div>
 
-    <div class="card ficha" style="border-top-color:var(--blue);">
-      <div class="card-header ficha-head">
-        <div class="card-icon">⚖️</div>
-        <div class="ficha-titulos">
-          <div class="card-title" style="color:var(--blue);">AD — Direito Administrativo</div>
-          <div class="ficha-meta">8 aulas</div>
-        </div>
+    <div class="divisoria" style="border-left-color:var(--blue);">
+      <div class="divisoria-head">
+        <div class="divisoria-icon">⚖️</div>
+        <div class="divisoria-title" style="color:var(--blue);">AD — Direito Administrativo</div>
+        <div class="divisoria-meta">9 aulas</div>
       </div>
-      <div class="ficha-lista">
-        <a class="ficha-item" href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html"><span class="ficha-nome">Aula 00 — Princípios Administrativos</span> <span class="card-tag">🔁 revisada em 17/08/2026 · 1ª revisão</span></a>
-        <a class="ficha-item" href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html"><span class="ficha-nome">Aula 01 — Estado, Governo e Administração Pública</span></a>
-        <a class="ficha-item" href="Direito Administrativo/Aula 02/resumo-aula-02-organizacao-administrativa.html"><span class="ficha-nome">Aula 02 — Organização Administrativa</span></a>
-        <a class="ficha-item" href="Direito Administrativo/Aula 03/resumo-aula-03-fundacoes-empresas-publicas-sociedades-de-economia-mista.html"><span class="ficha-nome">Aula 03 — Fundações, Empresas Públicas e S.E.M.</span></a>
-        <a class="ficha-item" href="Direito Administrativo/Aula 04/resumo-aula-04-paraestatais-e-terceiro-setor.html"><span class="ficha-nome">Aula 04 — Paraestatais e Terceiro Setor</span></a>
-        <a class="ficha-item" href="Direito Administrativo/Aula 05/resumo-aula-05-poderes-e-deveres-da-administracao.html"><span class="ficha-nome">Aula 05 — Poderes e Deveres da Administração</span></a>
-        <a class="ficha-item" href="Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html"><span class="ficha-nome">Aula 06 — Atos Administrativos</span></a>
-        <a class="ficha-item" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html"><span class="ficha-nome">Aula 07 — Licitações Públicas</span></a>
-        <a class="ficha-item" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html"><span class="ficha-nome">Aula 08 — Lei 14.133/2021 - Parte 2</span></a>
+      <div class="divisoria-list">
+        <a class="divisoria-item" href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Princípios Administrativos</span> <span class="card-tag di-tag">🔁 revisada em 17/08/2026 · 1ª revisão</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Estado, Governo e Administração Pública</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 02/resumo-aula-02-organizacao-administrativa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Organização Administrativa</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 03/resumo-aula-03-fundacoes-empresas-publicas-sociedades-de-economia-mista.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Fundações, Empresas Públicas e S.E.M.</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 04/resumo-aula-04-paraestatais-e-terceiro-setor.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Paraestatais e Terceiro Setor</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 05/resumo-aula-05-poderes-e-deveres-da-administracao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Poderes e Deveres da Administração</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Atos Administrativos</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 07 — Licitações Públicas</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html"><span class="di-bullet">·</span><span class="di-nome">Aula 08 — Lei 14.133/2021 - Parte 2</span></a>
       </div>
     </div>
 
-    <div class="card ficha" style="border-top-color:var(--purple);">
-      <div class="card-header ficha-head">
-        <div class="card-icon">📜</div>
-        <div class="ficha-titulos">
-          <div class="card-title" style="color:var(--purple);">DC — Direito Constitucional</div>
-          <div class="ficha-meta">7 aulas</div>
-        </div>
+    <div class="divisoria" style="border-left-color:var(--purple);">
+      <div class="divisoria-head">
+        <div class="divisoria-icon">📜</div>
+        <div class="divisoria-title" style="color:var(--purple);">DC — Direito Constitucional</div>
+        <div class="divisoria-meta">7 aulas</div>
       </div>
-      <div class="ficha-lista">
-        <a class="ficha-item" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html"><span class="ficha-nome">Aula 00 — Natureza, Conceito e Interpretação</span></a>
-        <a class="ficha-item" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html"><span class="ficha-nome">Aula 02 — Direitos e Deveres (art. 5º)</span></a>
-        <a class="ficha-item" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html"><span class="ficha-nome">Aula 03 — Direitos Individuais e Coletivos</span></a>
-        <a class="ficha-item" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="ficha-nome">Aula 04 — Direitos Sociais</span></a>
-        <a class="ficha-item" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html"><span class="ficha-nome">Aula 05 — Nacionalidade</span></a>
-        <a class="ficha-item" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html"><span class="ficha-nome">Aula 06 — Direitos Políticos</span> <span class="card-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span></a>
-        <a class="ficha-item" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html"><span class="ficha-nome">Aula 07 — Partidos Políticos</span> <span class="card-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span></a>
+      <div class="divisoria-list">
+        <a class="divisoria-item" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Natureza, Conceito e Interpretação</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Direitos e Deveres (art. 5º)</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Direitos Individuais e Coletivos</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Direitos Sociais</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Nacionalidade</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Direitos Políticos</span> <span class="card-tag di-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 07 — Partidos Políticos</span> <span class="card-tag di-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span></a>
       </div>
     </div>
 
-    <div class="card ficha" style="border-top-color:var(--amber);">
-      <div class="card-header ficha-head">
-        <div class="card-icon">👷</div>
-        <div class="ficha-titulos">
-          <div class="card-title" style="color:var(--amber);">DT — Direito do Trabalho</div>
-          <div class="ficha-meta">6 aulas</div>
-        </div>
+    <div class="divisoria" style="border-left-color:var(--amber);">
+      <div class="divisoria-head">
+        <div class="divisoria-icon">👷</div>
+        <div class="divisoria-title" style="color:var(--amber);">DT — Direito do Trabalho</div>
+        <div class="divisoria-meta">6 aulas</div>
       </div>
-      <div class="ficha-lista">
-        <a class="ficha-item" href="Direito do Trabalho/Aula 00/resumo-aula-00-relacoes-de-trabalho-e-emprego.html"><span class="ficha-nome">Aula 00 — Relações de Trabalho e Emprego</span></a>
-        <a class="ficha-item" href="Direito do Trabalho/Aula 01/resumo-aula-01-principios-do-direito-do-trabalho.html"><span class="ficha-nome">Aula 01 — Princípios do Direito do Trabalho</span></a>
-        <a class="ficha-item" href="Direito do Trabalho/Aula 02/resumo-aula-02-relacoes-de-trabalho-e-emprego.html"><span class="ficha-nome">Aula 02 — Relações de Trabalho e Emprego</span></a>
-        <a class="ficha-item" href="Direito do Trabalho/Aula 03/resumo-aula-03-contrato-de-trabalho.html"><span class="ficha-nome">Aula 03 — Contrato de Trabalho</span></a>
-        <a class="ficha-item" href="Direito do Trabalho/Aula 04/resumo-aula-04-termino-do-contrato-de-trabalho.html"><span class="ficha-nome">Aula 04 — Término do Contrato de Trabalho</span></a>
-        <a class="ficha-item" href="Direito do Trabalho/Aula 05/resumo-aula-05-jornada-de-trabalho-e-descansos.html"><span class="ficha-nome">Aula 05 — Jornada de Trabalho e Descansos</span></a>
+      <div class="divisoria-list">
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 00/resumo-aula-00-relacoes-de-trabalho-e-emprego.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Relações de Trabalho e Emprego</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 01/resumo-aula-01-principios-do-direito-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Princípios do Direito do Trabalho</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 02/resumo-aula-02-relacoes-de-trabalho-e-emprego.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Relações de Trabalho e Emprego</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 03/resumo-aula-03-contrato-de-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Contrato de Trabalho</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 04/resumo-aula-04-termino-do-contrato-de-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Término do Contrato de Trabalho</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 05/resumo-aula-05-jornada-de-trabalho-e-descansos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Jornada de Trabalho e Descansos</span></a>
       </div>
     </div>
 
-    <div class="card ficha" style="border-top-color:var(--red);">
-      <div class="card-header ficha-head">
-        <div class="card-icon">🔨</div>
-        <div class="ficha-titulos">
-          <div class="card-title" style="color:var(--red);">DPT — Direito Processual do Trabalho</div>
-          <div class="ficha-meta">5 aulas</div>
-        </div>
+    <div class="divisoria" style="border-left-color:var(--red);">
+      <div class="divisoria-head">
+        <div class="divisoria-icon">🔨</div>
+        <div class="divisoria-title" style="color:var(--red);">DPT — Direito Processual do Trabalho</div>
+        <div class="divisoria-meta">5 aulas</div>
       </div>
-      <div class="ficha-lista">
-        <a class="ficha-item" href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html"><span class="ficha-nome">Aula 00 — Introdução ao DPT</span></a>
-        <a class="ficha-item" href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html"><span class="ficha-nome">Aula 01 — Competência da JT</span></a>
-        <a class="ficha-item" href="Direito Processual do Trabalho/Aula 02/resumo-aula-02-servicos-auxiliares-da-justica-do-trabalho.html"><span class="ficha-nome">Aula 02 — Serviços Auxiliares da JT</span></a>
-        <a class="ficha-item" href="Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html"><span class="ficha-nome">Aula 03 — Prazos, Custas, Nulidades e Petição Inicial</span></a>
-        <a class="ficha-item" href="Direito Processual do Trabalho/Aula 04/resumo-aula-04-notificacao-do-reclamado.html"><span class="ficha-nome">Aula 04 — Notificação do Reclamado</span></a>
+      <div class="divisoria-list">
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Introdução ao DPT</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Competência da JT</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 02/resumo-aula-02-servicos-auxiliares-da-justica-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Serviços Auxiliares da JT</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Prazos, Custas, Nulidades e Petição Inicial</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 04/resumo-aula-04-notificacao-do-reclamado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Notificação do Reclamado</span></a>
       </div>
     </div>
 
-    <div class="card ficha" style="border-top-color:#0891b2;">
-      <div class="card-header ficha-head">
-        <div class="card-icon">📝</div>
-        <div class="ficha-titulos">
-          <div class="card-title" style="color:#0891b2;">PT — Português</div>
-          <div class="ficha-meta">6 aulas</div>
-        </div>
+    <div class="divisoria" style="border-left-color:#0891b2;">
+      <div class="divisoria-head">
+        <div class="divisoria-icon">📝</div>
+        <div class="divisoria-title" style="color:#0891b2;">PT — Português</div>
+        <div class="divisoria-meta">6 aulas</div>
       </div>
-      <div class="ficha-lista">
-        <a class="ficha-item" href="Portugu%C3%AAs/Aula%2000/resumo-aula-00-ortografia.html"><span class="ficha-nome">Aula 00 — Ortografia</span></a>
-        <a class="ficha-item" href="Portugu%C3%AAs/Aula%2001/resumo-aula-01-classes-palavras.html"><span class="ficha-nome">Aula 01 — Classes de Palavras I</span></a>
-        <a class="ficha-item" href="Portugu%C3%AAs/Aula%2002/resumo-aula-02-preposicoes-conjuncoes.html"><span class="ficha-nome">Aula 02 — Preposições e Conjunções</span></a>
-        <a class="ficha-item" href="Portugu%C3%AAs/Aula%2003/resumo-aula-03-pronomes-colocacao.html"><span class="ficha-nome">Aula 03 — Pronomes e Colocação Pronominal</span></a>
-        <a class="ficha-item" href="Portugu%C3%AAs/Aula%2004/resumo-aula-04-classe-palavras-verbos.html"><span class="ficha-nome">Aula 04 — Classe de Palavras: Verbos</span></a>
-        <a class="ficha-item" href="Portugu%C3%AAs/Aula%2005/resumo-aula-05-funcoes-sintaticas.html"><span class="ficha-nome">Aula 05 — Funções Sintáticas</span></a>
+      <div class="divisoria-list">
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2000/resumo-aula-00-ortografia.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Ortografia</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2001/resumo-aula-01-classes-palavras.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Classes de Palavras I</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2002/resumo-aula-02-preposicoes-conjuncoes.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Preposições e Conjunções</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2003/resumo-aula-03-pronomes-colocacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Pronomes e Colocação Pronominal</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2004/resumo-aula-04-classe-palavras-verbos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Classe de Palavras: Verbos</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2005/resumo-aula-05-funcoes-sintaticas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Funções Sintáticas</span></a>
       </div>
     </div>
 
-    <div class="card ficha" style="border-top-color:var(--blue-light);">
-      <div class="card-header ficha-head">
-        <div class="card-icon">💻</div>
-        <div class="ficha-titulos">
-          <div class="card-title" style="color:var(--blue-light);">INF — Informática</div>
-          <div class="ficha-meta">6 aulas</div>
-        </div>
+    <div class="divisoria" style="border-left-color:var(--blue-light);">
+      <div class="divisoria-head">
+        <div class="divisoria-icon">💻</div>
+        <div class="divisoria-title" style="color:var(--blue-light);">INF — Informática</div>
+        <div class="divisoria-meta">6 aulas</div>
       </div>
-      <div class="ficha-lista">
-        <a class="ficha-item" href="Inform%C3%A1tica/Aula%2000/resumo-aula-00-conceitos-basicos-de-redes.html"><span class="ficha-nome">Aula 00 — Conceitos Básicos de Redes</span></a>
-        <a class="ficha-item" href="Inform%C3%A1tica/Aula%2001/resumo-aula-01-protocolos-de-comunicacao.html"><span class="ficha-nome">Aula 01 — Protocolos de Comunicação</span></a>
-        <a class="ficha-item" href="Inform%C3%A1tica/Aula%2002/resumo-aula-02-sitios-de-busca-e-pesquisa.html"><span class="ficha-nome">Aula 02 — Sítios de Busca e Pesquisa</span></a>
-        <a class="ficha-item" href="Inform%C3%A1tica/Aula%2003/resumo-aula-03-computacao-em-nuvem.html"><span class="ficha-nome">Aula 03 — Computação em Nuvem</span></a>
-        <a class="ficha-item" href="Inform%C3%A1tica/Aula%2004/resumo-aula-04-redes-sociais.html"><span class="ficha-nome">Aula 04 — Redes Sociais</span></a>
-        <a class="ficha-item" href="Inform%C3%A1tica/Aula%2005/resumo-aula-05-internet-e-navegacao.html"><span class="ficha-nome">Aula 05 — Internet e Navegação</span></a>
+      <div class="divisoria-list">
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2000/resumo-aula-00-conceitos-basicos-de-redes.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Conceitos Básicos de Redes</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2001/resumo-aula-01-protocolos-de-comunicacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Protocolos de Comunicação</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2002/resumo-aula-02-sitios-de-busca-e-pesquisa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Sítios de Busca e Pesquisa</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2003/resumo-aula-03-computacao-em-nuvem.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Computação em Nuvem</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2004/resumo-aula-04-redes-sociais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Redes Sociais</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2005/resumo-aula-05-internet-e-navegacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Internet e Navegação</span></a>
       </div>
     </div>
 
@@ -1077,19 +1091,27 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="grid grid-2">
     <div class="card">
       <div class="card-header"><div class="card-icon">📋</div><div class="card-title">Agenda de Tarefas</div></div>
-      <div class="card-text">Planejamento e controle de estudos, ciclos de revisão, metas por disciplina.</div>
-      <div class="card-links"><span class="tag tag-gray">Em breve</span></div>
+      <div class="card-text">
+        <strong>Metas em aberto:</strong><br>
+        → <strong>RLM — Estruturas Lógicas (M18):</strong> pedido à mentora para <strong>zerar e recomeçar</strong> (não viu a tempo; prazo venceu) — atividades: vídeos 1 e 2 da Aula 00 (conceito de proposição; valor lógico e princípios básicos)<br>
+        → <strong>Português — Sintaxe (apenas questões):</strong> grande dificuldade em sintaxe — cadernos TEC: <strong>Iniciante</strong> (q. 01-40) e <strong>Experiente</strong> (q. 01-34), links no BACKLOG.md
+      </div>
+      <div class="card-links"><span class="tag tag-amber">Metas da mentora — 25/08/2026</span></div>
     </div>
   </div>
 
 <!-- REVISÃO DIRIGIDA -->
   <div class="section-title">🎯 Revisão dirigida — análise de desempenho (18/08/2026)</div>
+  <div class="callout callout-warn" style="margin-top:.4rem;">
+    <div class="callout-icon">⏸️</div>
+    <div><strong>Adiadas em 25/08/2026:</strong> as pendências abaixo não foram estudadas agora — foram registradas no BACKLOG para retomada futura. Prioridade momentânea: leva de questões TEC em andamento.</div>
+  </div>
   <div class="grid grid-2">
     <div class="card" style="border-color:var(--purple);">
       <div class="card-header"><div class="card-icon">1️⃣</div><div class="card-title" style="color:var(--purple);">Questões erradas → marcar resumos</div></div>
       <div class="card-text">
         <a href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html">DA Aula 00 · Princípios administrativos (M16.2)</a> <span class="card-tag">✔ concluída em 17/08/2026</span><br>
-        <a href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html">DA Aula 01 · Estado, governo e Administração Pública (M17.1)</a><br>
+        <a href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html">DA Aula 01 · Estado, governo e Administração Pública (M17.1)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
         <a href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html">DC Aula 06 · Direitos políticos (M16)</a> <span class="card-tag">✔ concluída em 18/08/2026</span><br>
         <a href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html">DC Aula 07 · Partidos políticos (M16)</a> <span class="card-tag">✔ concluída em 18/08/2026</span>
       </div>
@@ -1101,13 +1123,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card" style="border-color:var(--teal);">
       <div class="card-header"><div class="card-icon">3️⃣</div><div class="card-title" style="color:var(--teal);">Revisão teórica atenta</div></div>
       <div class="card-text">
-        <a href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html">DPT Aula 00 · Teoria geral, princípios e organização da JT (M18)</a><br>
-        <a href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html">DPT Aula 01 · Competência da JT (M19)</a><br>
-        <a href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html">AP Aula 00 · Conceitos introdutórios (M16)</a><br>
-        <a href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html">AP Aula 02 · Funções da administração (M17)</a><br>
-        <a href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html">DC Aula 02 · Direitos fundamentais — gerações, limites, eficácia (M18.1)</a><br>
-        <a href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html">DC Aula 03 · Direitos e deveres individuais/coletivos (M18.1)</a><br>
-RL · Estruturas e Equivalências Lógicas (M16/M17/M19) — <span class="tag tag-gray">Sem resumo</span>
+        <a href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html">DPT Aula 00 · Teoria geral, princípios e organização da JT (M18)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
+        <a href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html">DPT Aula 01 · Competência da JT (M19)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
+        <a href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html">AP Aula 00 · Conceitos introdutórios (M16)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
+        <a href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html">AP Aula 02 · Funções da administração (M17)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
+        <a href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html">DC Aula 02 · Direitos fundamentais — gerações, limites, eficácia (M18.1)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
+        <a href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html">DC Aula 03 · Direitos e deveres individuais/coletivos (M18.1)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
+RL · Estruturas e Equivalências Lógicas (M16/M17/M19) — <span class="tag tag-gray">Sem resumo</span> <span class="card-tag">⏸ adiada em 25/08/2026</span>
       </div>
     </div>
   </div>
