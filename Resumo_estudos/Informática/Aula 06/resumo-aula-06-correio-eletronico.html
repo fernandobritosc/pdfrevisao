@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Informática Aula 06: Correio Eletrônico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: .95rem;
+  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+}
+.aula .sec-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .section-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  position: relative;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: justify; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--sidebar); }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f5; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fae5e5;
+  border: 1px solid #efb4b4;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: justify;
+}
+.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d3f9e; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Informática — Aula 06</div>
+  <div class="sidebar-sub">Correio Eletrônico · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceitos básicos e requisitos</a>
+  <a href="#sec2">2. Sintaxe, assinatura e protocolos</a>
+  <a href="#sec3">3. Pastas, campos e fluxo de mensagens</a>
+  <a href="#sec4">4. Microsoft Outlook</a>
+  <a href="#sec5">5. Mozilla Thunderbird</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: simplificado + mapa mental + completo<br>
+    Estratégia Concursos — Diego Carvalho / Renato da Costa
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITOS BÁSICOS E REQUISITOS                      -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceitos básicos e requisitos</div>
+  </div>
+  <div class="sec-subtitle">O que é correio eletrônico, comunicação assíncrona e o que é preciso para usar — incidência variável por tópico</div>
+
+  <div class="card">
+    <div class="card-title">📧 Correio Eletrônico (E-Mail)</div>
+    <div class="card-text">
+      Método que permite <strong>compor, enviar e receber mensagens assíncronas</strong> por sistemas eletrônicos de comunicação. Inventado por <strong>Ray Tomlinson</strong> na década de 1970, opera no modelo de <strong>armazenamento e encaminhamento</strong>: servidores de e-mail aceitam, encaminham, entregam e armazenam mensagens.<br><br>
+      • <strong>Mensagem assíncrona:</strong> comunicação <strong>desconectada do tempo</strong> — emissor e receptor se comunicam quando têm disponibilidade (ex.: <strong>carta, e-mail</strong>)<br>
+      • <strong>Mensagem síncrona:</strong> exige que emissor e receptor estejam <strong>disponíveis simultaneamente</strong> (ex.: <strong>telefone, videoconferência</strong>)<br>
+      • No início as mensagens eram só texto curto; hoje suportam <strong>texto, áudio, vídeo</strong> e envio para <strong>múltiplos destinatários</strong> simultaneamente<br>
+      • Emissor e receptor precisam se conectar ao servidor apenas pelo tempo necessário para <strong>enviar ou receber</strong>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Requisitos fundamentais <span class="tag tag-red">ALTA</span></div>
+    <div class="card-text">
+      Para usar correio eletrônico são necessários <strong>dois pré-requisitos</strong>:<br><br>
+      → <strong>1. Conta em um Provedor de E-Mail</strong> — empresa que disponibiliza o serviço (ex.: Gmail, Outlook, Yahoo, UOL)<br>
+      → <strong>2. Ferramenta de correio eletrônico</strong> — um <strong>Cliente de E-Mail</strong> (ex.: Mozilla Thunderbird, Microsoft Outlook) <strong>ou</strong> um <strong>Webmail</strong> (ex.: Gmail.com, Outlook.com)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Conceito</th><th>O que é</th><th>Exemplos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Provedor de E-Mail</strong></td><td>Empresa que hospeda e disponibiliza serviços de e-mail</td><td>Gmail, Outlook, Yahoo, UOL</td></tr>
+        <tr><td><strong>Cliente de E-Mail</strong></td><td>Aplicação <strong>instalada localmente</strong> que envia/recebe e-mails</td><td>Mozilla Thunderbird, Microsoft Outlook, Outlook Express</td></tr>
+        <tr><td><strong>Webmail</strong></td><td>Aplicação <strong>hospedada em servidor web remoto</strong>, acessada via navegador</td><td>Gmail.com, Outlook.com, Yahoo.com</td></tr>
+        <tr><td><strong>Servidor de E-Mail</strong></td><td>Máquina especializada que <strong>envia, recebe e armazena</strong> e-mails em rede</td><td>Servidor do provedor</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Cliente de E-Mail</th><th>Webmail</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Armazenamento</strong></td><td>Limitado pelo <strong>disco rígido local</strong></td><td>Limitado pelo <strong>provedor</strong></td></tr>
+        <tr><td><strong>Protocolos</strong></td><td>Usa diretamente <strong>SMTP, POP3 e IMAP</strong></td><td>Usa diretamente <strong>HTTP/HTTPS</strong></td></tr>
+        <tr><td><strong>Offline</strong></td><td>E-mails <strong>podem ficar disponíveis offline</strong></td><td><strong>Jamais</strong> ficam disponíveis offline</td></tr>
+        <tr><td><strong>Recursos</strong></td><td><strong>Mais</strong> recursos e funcionalidades</td><td><strong>Menos</strong> recursos</td></tr>
+        <tr><td><strong>Portabilidade</strong></td><td><strong>Menos</strong> portátil/acessível</td><td><strong>Mais</strong> portátil/acessível</td></tr>
+        <tr><td><strong>Domínios</strong></td><td>Recomendável para <strong>múltiplos domínios</strong></td><td>Recomendável para <strong>um único domínio</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Cliente aceita qualquer provedor; webmail só o próprio:</strong> Gmail.com só aceita conta Gmail; Outlook.com só aceita outlook.com/hotmail.com. Já o <strong>Microsoft Outlook (cliente)</strong> aceita contas de <strong>qualquer provedor</strong> (Gmail, Yahoo, Outlook, etc.). Visual: webmail tem <strong>barra de endereço www</strong>; cliente não tem.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Microsoft confunde: <strong>Outlook.com</strong> = webmail; <strong>Microsoft Outlook</strong> = cliente de e-mail. Não são a mesma coisa.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Netiqueta e cuidados <span class="tag tag-amber">baixíssima → baixa</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Etiqueta na rede (Netiquette)</div>
+    <div class="card-text">
+      Conjunto de normas de conduta para comunicação na internet:<br><br>
+      → <strong>Evite CAIXA ALTA</strong> — equivale a GRITAR<br>
+      → Para <strong>múltiplos destinatários</strong>, use <strong>Cco (cópia oculta)</strong> para preservar privacidade<br>
+      → <strong>Confira o destinatário</strong> após escrever a mensagem<br>
+      → Escreva o <strong>assunto claro e objetivo</strong> + saudação inicial conforme formalidade<br>
+      → <strong>Anexe assinatura</strong> ao final de cada mensagem<br>
+      → Seja claro/cuidadoso ao escrever sobre terceiros; não repasse <strong>correntes/boatos</strong><br>
+      → Em comunicações profissionais, use <strong>linguagem formal</strong>, sem gírias/abreviações
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Cuidados ao usar leitores de e-mail</div>
+    <div class="card-text">
+      → Mantenha o leitor <strong>atualizado</strong> (e complementos) e com verificação automática de atualizações<br>
+      → <strong>Não use como navegador</strong> — desligue visualização em HTML<br>
+      → Cuidado com <strong>cookies</strong> (privacidade) e ao <strong>clicar em links</strong> — prefira digitar o endereço no navegador<br>
+      → Desconfie de <strong>anexos</strong> mesmo de conhecidos (remetente pode ser falsificado); verifique com <strong>antimalware</strong>; mostre <strong>extensões</strong> dos arquivos<br>
+      → Desligue abertura/execução automática de anexos e execução de <strong>JavaScript/Java</strong><br>
+      → Habilite marcação de <strong>mensagens suspeitas de fraude</strong>; use <strong>criptografia</strong> na conexão com o servidor
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — SINTAXE, ASSINATURA E PROTOCOLOS                    -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Sintaxe, assinatura e protocolos</div>
+  </div>
+  <div class="sec-subtitle">Como é formado um endereço de e-mail e quais protocolos transportam as mensagens</div>
+
+  <div class="card">
+    <div class="card-title">Sintaxe de endereços <span class="tag tag-amber">média</span></div>
+    <div class="card-text">
+      Formato válido: <code><strong>nomedorecipiente@nomedodomínio</strong></code><br><br>
+      → <strong>Nome do Recipiente</strong> (Parte Local / Conta): quem recebe — pessoa, lista, departamento. Pode seguir RFC 822 ou regras do provedor (ex.: Gmail: máx. 30 caracteres, só minúsculas, números e pontos)<br>
+      → <strong>@ (arroba = "at" = em/no):</strong> separa recipiente de domínio; <strong>obrigatório e deve haver apenas um</strong><br>
+      → <strong>Nome do Domínio</strong> (Host/Provedor): identificação do dispositivo que hospeda o serviço (ex.: gmail.com). Pode ter subdomínios: <code>estrategiaconcursos.com.br</code> → <em>estrategiaconcursos</em> (domínio) + <em>com</em> (setor comercial) + <em>br</em> (país)<br>
+      → Tanto recipiente quanto domínio <strong>não podem conter espaços</strong> e geralmente não podem conter <code>! # $ % &amp; ' * + / = ? ^ ` { | } ~</code> (depende do servidor)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Assinatura de e-mail <span class="tag tag-amber">baixa</span></div>
+    <div class="card-text">
+      Recurso que insere automaticamente ao final da mensagem informações como <strong>contato, endereço, cargo, saudação</strong> e até <strong>logotipo/imagem/HTML</strong>. Ex.: "Atenciosamente, Secretaria do Tesouro Nacional, Auditor Federal, (61) 4321-1234 + logo".
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Protocolos de e-mail <span class="tag tag-amber">média</span>
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Protocolo</th><th>Função</th><th>Porta TCP</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SMTP</strong><br><span style="font-size:.75rem;">Simple Mail Transfer Protocol</span></td><td><strong>Transmissão/envio</strong> — cliente → servidor e servidor → servidor</td><td><strong>25</strong> (padrão) / <strong>587</strong> (Brasil, com anti-spam)</td><td>Mnemônico: <strong>S</strong>ua <strong>M</strong>ensagem <strong>T</strong>á <strong>P</strong>artindo</td></tr>
+        <tr><td><strong>POP3</strong><br><span style="font-size:.75rem;">Post Office Protocol v3</span></td><td><strong>Recebimento</strong> simplificado — baixa, recebe e deleta</td><td><strong>110</strong></td><td>Dois modos: <strong>apaga após download</strong> (padrão em prova) ou <strong>mantém cópia</strong> no servidor</td></tr>
+        <tr><td><strong>IMAP</strong><br><span style="font-size:.75rem;">Internet Message Access Protocol</span></td><td><strong>Recebimento</strong> sem apagar — mantém no servidor</td><td><strong>143</strong> / <strong>993</strong> (SSL/TLS)</td><td>Permite ler <strong>sem transferir</strong>; acesso por <strong>múltiplos dispositivos</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Segurança (TLS/SSL):</strong> para garantir segurança entre cliente e servidores de entrada/saída, configura-se <strong>TLS</strong> (sucessor do SSL) — surgem as variantes <strong>POP3S, IMAPS e SMTPS</strong>. Questão CESGRANRIO/BB 2021 cobrou exatamente isso.</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Se nada for dito sobre o modo do POP3, considere o padrão: <strong>apaga as mensagens da caixa postal após o download</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — PASTAS, CAMPOS E FLUXO DE MENSAGENS                 -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Pastas, campos e fluxo de mensagens</div>
+  </div>
+  <div class="sec-subtitle">Onde as mensagens ficam, como são compostas e como responder/encaminhar</div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Pastas de e-mail
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Pasta</th><th>Incidência</th><th>O que armazena</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Caixa de Entrada</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Mensagens <strong>recebidas</strong>; organizada por remetente, assunto e data. Recebe como <strong>não lida</strong> por padrão (configurável)</td></tr>
+        <tr><td><strong>Caixa de Saída</strong></td><td><span class="tag tag-amber">média</span></td><td>Mensagens <strong>pendentes de envio</strong> (temporária) — falha de conexão → fica aqui até restabelecer; depois vai para Itens Enviados</td></tr>
+        <tr><td><strong>Itens Enviados</strong></td><td><span class="tag tag-amber">baixa</span></td><td>Mensagens <strong>enviadas com êxito</strong>; organizada por destinatário, assunto e data. Guarda como <strong>lida</strong></td></tr>
+        <tr><td><strong>Lixo Eletrônico / Spam</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Mensagens identificadas como <strong>spam</strong>; é possível marcar remetentes para mover automaticamente para cá</td></tr>
+        <tr><td><strong>Itens Excluídos / Lixeira</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Mensagens <strong>excluídas</strong> de outras pastas, ainda não eliminadas em definitivo (política varia por provedor)</td></tr>
+        <tr><td><strong>Rascunho</strong></td><td><span class="tag tag-red">Altíssima</span></td><td>Mensagens <strong>em redação</strong>, ainda não enviadas — para continuar editando depois</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Caixa de Saída × Itens Enviados × Rascunho:</strong> <strong>Rascunho</strong> = escrita, mas <strong>não enviada pelo usuário</strong>; <strong>Caixa de Saída</strong> = escrita e enviada pelo usuário, mas <strong>ainda em processo de envio pelo servidor</strong>; <strong>Itens Enviados</strong> = efetivamente enviada. Em <strong>webmails</strong>, em geral não há distinção entre Caixa de Saída e Itens Enviados (exceto alguns mobiles).</div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Estrutura da mensagem
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      E-mail = <strong>Cabeçalho</strong> (De:, Para:, Assunto:, Cc:, Cco: + metadados como Data, Hora, Tipo de Conteúdo, ID) + <strong>Corpo</strong> (conteúdo) + <strong>Anexo</strong> (pode integrar cabeçalho ou corpo). Visualizar cabeçalho completo: Gmail → três pontinhos → <em>Mostrar Original</em>; Outlook → Arquivo → Propriedades; Thunderbird → Visualizar → Cabeçalhos → Todos.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Campo</th><th>Incidência</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>De (From)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Remetente</strong>. Pode escolher entre contas configuradas; é possível enviar <strong>anonimamente</strong> (sites como deadfake.com)</td></tr>
+        <tr><td><strong>Para (To)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Destinatário(s)</strong> — pessoa, várias (separar com <strong>ponto-e-vírgula ;</strong>) ou lista. Entrega <strong>não garantida</strong> (caixa lotada, endereço inexistente → resposta automática ao remetente)</td></tr>
+        <tr><td><strong>Assunto (Subject)</strong></td><td><span class="tag tag-amber">baixa</span></td><td>Manchete que resume o corpo. Preenchimento <strong>facultativo</strong>; cortesia para o destinatário</td></tr>
+        <tr><td><strong>Cc (Com Cópia)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Carbon Copy</strong> — cópia para destinatários <strong>secundários</strong>; endereços ficam <strong>visíveis</strong> para todos (principais e secundários). Uso: dar ciência sem esperar resposta</td></tr>
+        <tr><td><strong>Cco (Com Cópia Oculta)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Blind Carbon Copy (Bcc)</strong> — igual ao Cc, mas <strong>oculta</strong> os destinatários: cada um só vê seu próprio endereço</td></tr>
+        <tr><td><strong>Conteúdo (Body)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Corpo / carga útil</strong>; permite formatação rica (fonte, negrito, itálico etc.). Campo <strong>não obrigatório</strong></td></tr>
+        <tr><td><strong>Anexo (Attachment)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td>Qualquer arquivo incorporado à mensagem; observar <strong>limite de tamanho</strong> do provedor e cuidado com <strong>executáveis/malware</strong>. Anexo fica no <strong>servidor</strong> — download/delete local não afeta o original</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Confirmação de entrega × leitura <span class="tag tag-amber">baixa</span></div>
+    <div class="card-text">
+      → <strong>Confirmação de Entrega:</strong> confirma que o e-mail chegou à <strong>caixa postal</strong> do destinatário (não que foi visto/lido)<br>
+      → <strong>Confirmação de Leitura:</strong> confirma que a mensagem foi <strong>aberta</strong> (não que foi lida de fato)<br>
+      → O destinatário <strong>pode se recusar</strong> a enviar confirmação de leitura; alguns programas nem suportam o recurso — <strong>não há como forçar</strong>
+    </div>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Responder, responder a todos e encaminhar <span class="tag tag-red">Altíssima</span>
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ação</th><th>Faz o quê</th><th>Prefixo no Assunto</th><th>Anexo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Responder</strong></td><td>Responde <strong>apenas ao remetente</strong></td><td><strong>Re:</strong> ou <strong>Ans:</strong></td><td><strong>Não</strong> reenvia anexos</td></tr>
+        <tr><td><strong>Responder a todos</strong></td><td>Responde ao <strong>remetente + todos em Para e Cc</strong> (não inclui Cco)</td><td><strong>Re:</strong> ou <strong>Ans:</strong></td><td><strong>Não</strong> reenvia anexos</td></tr>
+        <tr><td><strong>Encaminhar</strong></td><td>Envia a mensagem para <strong>quem não estava</strong> em Para/Cc; remetente/destinatários originais <strong>não são notificados</strong></td><td><strong>Enc:</strong> ou <strong>Fw:</strong> (Forward)</td><td><strong>Sim</strong> — anexos são encaminhados</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Cuidado clássico: Responder a todos com Cco</div>
+    <div class="card-text">
+      E-mail de <strong>Alice para Bruno (Cco: Carlos)</strong>:<br><br>
+      → <strong>Bruno responder:</strong> só Alice recebe (Bruno nem vê Carlos)<br>
+      → <strong>Bruno responder a todos:</strong> só Alice recebe (mesmo motivo)<br>
+      → <strong>Carlos responder:</strong> só Alice recebe (Carlos vê Bruno, mas resposta vai só para Alice)<br>
+      → <strong>Carlos responder a todos:</strong> <strong>Alice e Bruno recebem</strong> — Bruno descobre que Carlos estava em Cco!<br><br>
+      <span class="tag tag-red">Pegadinha</span> Na história da aula: analista envia ao técnico com juiz em Cc; técnico usa "Responder a todos" sem notar → juiz recebe a resposta grosseira.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Ao <strong>responder</strong> mensagem com anexo, o anexo <strong>não</strong> é reenviado (o remetente já o tem). Ao <strong>encaminhar</strong>, o anexo <strong>é</strong> incluído (o novo destinatário ainda não o tem).
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Webmail — arquitetura <span class="tag tag-amber">ALTA</span>
+  </h3>
+
+  <div class="card">
+    <div class="card-text">
+      Webmail = <strong>página web</strong> que serve de interface entre cliente e servidor de e-mail; por isso usa <strong>HTTP/HTTPS</strong> (não SMTP/POP/IMAP diretamente). Por trás, o servidor usa SMTP/POP/IMAP, mas o webmail em si fala HTTP.<br><br>
+      <strong>Fluxo Cliente de E-Mail:</strong> Cliente origem → <strong>SMTP</strong> → Servidor origem → <strong>SMTP</strong> → Servidor destino → <strong>POP3/IMAP</strong> → Cliente destino<br>
+      <strong>Fluxo Webmail:</strong> Webmail origem → <strong>HTTP</strong> → Servidor Web → <strong>SMTP</strong> → Servidor Correio origem → <strong>SMTP</strong> → Servidor Correio destino → <strong>POP/IMAP</strong> → Servidor Web destino → <strong>HTTP</strong> → Webmail destino<br><br>
+      • Mensagens ficam em <strong>pastas no servidor</strong> (não na máquina do usuário), ao contrário de clientes<br>
+      • Número ao lado da pasta = <strong>mensagens não lidas</strong><br>
+      • Vantagem: acesso de <strong>qualquer lugar</strong> via navegador; desvantagem: precisa estar <strong>online</strong><br>
+      • Gmail: inovação do <strong>Modo de Conversa</strong> (respostas agrupadas); anexo permanece no servidor mesmo após download; número ao lado do anexo = <strong>tamanho</strong> (ex.: 2.738 Kb); extensões bloqueadas: .pif, .bat, .exe, .scr, .vbs etc.; grande volume → <strong>compactar em um único arquivo</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — MICROSOFT OUTLOOK                                   -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Microsoft Outlook</div>
+  </div>
+  <div class="sec-subtitle">Cliente de e-mail do Pacote Office — gerenciamento de e-mails, contatos, calendários, tarefas e anotações</div>
+
+  <div class="card">
+    <div class="card-title">Conceitos básicos <span class="tag tag-red">ALTA</span></div>
+    <div class="card-text">
+      Aplicativo <strong>pago</strong> (separado ou com o Office), diferente do <strong>Outlook Express</strong> (antigo, só enviava/recebia e-mails). O Outlook gerencia e-mails <strong>+ contatos + calendários + tarefas + anotações</strong>.<br><br>
+      • Exibição padrão: <strong>Faixa de Opções</strong> dividida em guias → grupos → comandos<br>
+      • Elementos visíveis: Barra de Ferramentas de Acesso Rápido, Faixa de Opções, Barra de Títulos, Lista de Mensagens, Área de Visualização, Caixas Postais; <strong>Barra de Tarefas Pendentes</strong> (calendários/tarefas) <strong>não</strong> aparece por padrão<br>
+      • Arquivo de Dados: <strong>.pst</strong> (mensagens, calendários, tarefas, anotações) — pode ficar em <code>\Usuários\&lt;usuário&gt;\AppData\Local\Microsoft\Outlook</code>, <code>\Documents\Outlook Files</code> etc.; pode ser feito <strong>backup/restauração</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Característica</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td>Trabalha online/offline</td><td>Sim, como todo cliente</td></tr>
+        <tr><td>E-mail como anexo</td><td>Permite incluir <strong>um e-mail como anexo</strong> de outro</td></tr>
+        <tr><td>Correção ortográfica/gramatical</td><td>Sim</td></tr>
+        <tr><td>Pastas</td><td>Cria <strong>pastas e subpastas</strong>, inclusive dentro das nativas</td></tr>
+        <tr><td>HTML</td><td>Permite recursos avançados de <strong>formatação</strong> via HTML</td></tr>
+        <tr><td>IA (a partir de 2016)</td><td>Assistente que pode <strong>responder e-mails</strong></td></tr>
+        <tr><td>Categorias de cores</td><td>Atribui a e-mails, contatos, compromissos e tarefas</td></tr>
+        <tr><td>Múltiplas contas</td><td>Gerencia várias contas, <strong>independente do domínio</strong></td></tr>
+        <tr><td>Uso</td><td>Mais <strong>corporativo</strong> que pessoal</td></tr>
+        <tr><td>Lembretes / Ordenação</td><td>Define lembretes; ordena por remetente, data, assunto, tamanho</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Guias principais
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Guia Arquivo <span class="tag tag-red">ALTA</span></div>
+    <div class="card-text">
+      → <strong>Informações:</strong> gerenciar contas/protocolos, <strong>respostas automáticas (ausência temporária)</strong>, tamanho de caixa, regras e alertas<br>
+      → <strong>Abrir e Exportar:</strong> abrir calendários (.ics/.vcs), arquivos .pst, importar/exportar configurações e pastas compartilhadas<br>
+      → <strong>Conta do Office:</strong> dados do usuário/produto, atualizações<br>
+      → <strong>Opções:</strong> e-mails, calendários, pessoas, tarefas, pesquisas, idiomas, faixa de opções, suplementos, <strong>assinaturas</strong><br><br>
+      • <strong>Assinatura:</strong> Arquivo → Opções → Email → <em>Crie ou modifique assinaturas</em> — aceita texto, imagem, logo<br>
+      • <strong>Resposta automática:</strong> Arquivo → Informações → <em>Respostas Automáticas (Ausência Temporária)</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Guia Página Inicial <span class="tag tag-red">ALTA</span></div>
+    <div class="card-text">
+      → <strong>Novo:</strong> criar novo e-mail ou novo item (compromisso, reunião, contato, tarefa)<br>
+      → <strong>Excluir:</strong> mover conversa para Itens Excluídos, remover redundâncias, marcar como lixo eletrônico<br>
+      → <strong>Responder:</strong> responder, responder a todos, encaminhar, criar reunião, encaminhar como anexo/SMS, chamar remetente<br>
+      → <strong>Etapas Rápidas:</strong> automatizar ações (mover e marcar como lida, encaminhar ao gerente etc.)<br>
+      → <strong>Mover:</strong> mover/copiar itens; criar <strong>regra/filtro</strong> por remetente/destinatário/assunto<br>
+      → <strong>Marcas:</strong> marcar como não lido, categorizar, sinalizar para acompanhamento (aparece na barra de tarefas pendentes)<br>
+      → <strong>Localizar:</strong> catálogo de endereços, filtrar por não lidos/sinalizados<br><br>
+      <strong>Regras:</strong> movem, sinalizam e respondem automaticamente; tocam sons, movem para pastas, exibem alertas. Ex.: mover tudo de <em>@estrategiaconcursos.com.br</em> para pasta "Estratégia". Criação: botão direito na mensagem → <em>Regras → Criar Regra</em> (por remetente, assunto, destinatário).<br>
+      <strong>Nova mensagem:</strong> campos Para/Cc/Assunto/Corpo + Catálogo de Endereços, Verificar Nomes, Anexar Arquivo/Item (e-mail, compromisso, contato), Assinatura, Acompanhamento (sinalizador: hoje/amanhã/semana), Prioridade Alta/Baixa.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Guias Enviar/Receber, Pasta, Exibir e Ajuda</div>
+    <div class="card-text">
+      → <strong>Enviar e Receber</strong> <span class="tag tag-amber">baixa</span>: enviar/receber todas as pastas ou só pendentes; atualizar pastas específicas; baixar cabeçalhos (remetente, assunto, data) e marcar para download. Por padrão envia ao clicar em Enviar e verifica periodicamente; envio/recebimento manual: <strong>Enviar/Receber e-mails</strong><br>
+      → <strong>Pasta</strong> <span class="tag tag-amber">baixíssima</span>: criar nova pasta/pasta de pesquisa, renomear/copiar/mover/excluir, marcar tudo como lido, aplicar regras, mostrar em ordem alfabética, remover redundâncias<br>
+      → <strong>Exibir</strong> <span class="tag tag-amber">baixíssima</span>: trocar/personalizar modo de exibição, organizar por conversas, Auto Visualização, classificar, filtrar, layout do painel de leitura/pastas<br>
+      → <strong>Ajuda</strong> <span class="tag tag-amber">baixíssima</span>: ajuda, sugestão de recursos, treinamento
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Atalho</th><th>Ação</th></tr></thead>
+      <tbody>
+        <tr><td><code>CTRL + SHIFT + M</code></td><td>Nova mensagem (qualquer modo)</td></tr>
+        <tr><td><code>CTRL + N</code></td><td>Nova mensagem (modo E-Mail)</td></tr>
+        <tr><td><code>CTRL + M</code> ou <code>F9</code> <span class="tag tag-red">cai muito!</span></td><td>Verificar novas mensagens (Enviar/Receber)</td></tr>
+        <tr><td><code>CTRL + SHIFT + I</code> / <code>O</code></td><td>Alternar para Caixa de Entrada / Saída</td></tr>
+        <tr><td><code>CTRL + Y</code></td><td>Ir para outra pasta</td></tr>
+        <tr><td><code>CTRL + SHIFT + V</code></td><td>Mover item para pasta</td></tr>
+        <tr><td><code>CTRL + E</code> ou <code>F3</code></td><td>Ir para Caixa de Pesquisas</td></tr>
+        <tr><td><code>ALT + F</code> / <code>ALT + G</code></td><td>Abrir Guia Arquivo / Ir para "Diga-me"</td></tr>
+        <tr><td><code>CTRL + DEL</code></td><td>Mover conversa atual e futuras para Itens Excluídos</td></tr>
+        <tr><td><code>ALT + DEL</code></td><td>Remover conversas redundantes</td></tr>
+        <tr><td><code>CTRL + Q</code></td><td>Marcar como lida</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — MOZILLA THUNDERBIRD                                 -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Mozilla Thunderbird</div>
+  </div>
+  <div class="sec-subtitle">Cliente de e-mail gratuito, livre, multiplataforma e de código aberto (lançado em 2003)</div>
+
+  <div class="card">
+    <div class="card-title">Conceitos básicos <span class="tag tag-red">ALTA</span></div>
+    <div class="card-text">
+      Desenvolvido por voluntários da <strong>Mozilla Foundation</strong> (mesma do Firefox — não confundir: Firefox = navegador; Thunderbird = cliente de e-mail). É um aplicativo <strong>local</strong> (não baseado em navegador), poderoso e simples.<br><br>
+      • Para usar, configura <strong>servidores de entrada (POP/IMAP) e saída (SMTP)</strong><br>
+      • Recursos: suporte a <strong>XML</strong>, <strong>RSS/Atom</strong>, filtros anti-spam, importação de e-mails/catálogo, <strong>tags/marcadores</strong> (uma mensagem pode ter várias; 5 padrão, gerenciáveis), navegação entre mensagens, pop-ups de resumo, tarefas com agendamento, <strong>assinatura digital e criptografia</strong><br>
+      • Interface: <strong>abas</strong> para contas/tarefas/calendários; pastas à esquerda; e-mails ao centro (colunas: anexo, assunto, remetente, data); eventos do dia à direita<br>
+      • Permite <strong>confirmação de leitura</strong> (Menu Opções → Confirmação de Leitura) e <strong>Notificação de Status de Entrega</strong> (avisa quando o servidor do destinatário recebe)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Configuração de conta <span class="tag tag-red">ALTA</span></div>
+    <div class="card-text">
+      → <strong>Assistente de Configuração Automática:</strong> basta informar nome, e-mail e senha — ele busca portas, servidores e protocolos no banco de dados de provedores<br>
+      → Contas de <strong>webmails</strong> (Gmail, Hotmail, Yahoo) podem ser acessadas via Thunderbird<br>
+      → É possível configurar <strong>múltiplas contas</strong>, cada uma com seu local de arquivamento<br>
+      → Permite <strong>importar configurações/contas de outros clientes</strong> (ex.: do Outlook)<br>
+      → Conceito de <strong>perfil</strong>: diretório com (1) correio local + cópias do servidor e (2) alterações do usuário. Perfil padrão <em>default</em>; é possível criar outros e fazer <strong>backup</strong> (ex.: pendrive)<br>
+      → Escolha de protocolo de recebimento: <strong>POP3</strong> (manter localmente) ou <strong>IMAP</strong> (manter no servidor, acesso por qualquer dispositivo)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Pastas <span class="tag tag-amber">média</span></div>
+    <div class="card-text">
+      → <strong>Entrada:</strong> recebidas · <strong>Rascunhos:</strong> escritas não enviadas por opção · <strong>Saída:</strong> escritas não enviadas por impossibilidade · <strong>Enviados:</strong> enviadas · <strong>Lixeira:</strong> apagadas<br>
+      → <strong>Pastas Inteligentes:</strong> combinam pastas de várias contas (ex.: uma única Caixa de Entrada compartilhada)<br>
+      → <strong>Arquivar:</strong> move mensagens das pastas padrão para outras (ex.: <em>Todos os Arquivos</em>) — só <strong>manual</strong>, indexadas na busca; opção Copiar mantém na Caixa de Entrada<br>
+      → <strong>Compactar pasta:</strong> e-mails são armazenados localmente; ao excluir/mover, o arquivo em disco <strong>não diminui</strong> — fica marcado para exclusão até compactar (manual ou automático) para recuperar espaço e desempenho (vale também para IMAP, que mantém cópia local)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Envio, FileLink e vCard</div>
+    <div class="card-text">
+      → Nova mensagem: Arquivo → Nova Mensagem ou <em>Escrever Nova Mensagem</em>; ortografia verificada; formatação via <strong>HTML</strong> (fonte, cor etc.) ou tags HTML<br>
+      → Anexos: quase qualquer tipo, mas há <strong>limite de tamanho</strong> (definido pelo servidor do destinatário — Thunderbird não controla) e bloqueio por <strong>extensão</strong> (anti-malware). Envio para lista também é possível<br>
+      → <strong>FileLink:</strong> faz upload do anexo para serviço de armazenamento online e <strong>substitui por link</strong> — mais rápido e economiza disco para ambos<br>
+      → <strong>vCard:</strong> cartão de visitas digital (nome, endereço, telefone, site, imagens, geo, fuso) em vários idiomas; configura em Ferramentas → Configurar Contas → Editar Cartão; anexado para que o destinatário adicione o contato facilmente e para <strong>minimizar a assinatura</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Filtros, segurança e complementos</div>
+    <div class="card-text">
+      → <strong>Filtros (regras):</strong> organizam automaticamente — movem, deletam, encaminham etc. (ex.: mover e-mails de um domínio específico). Critério pode ser <strong>origem</strong> (não há bloqueio direto de remetente, mas há filtro para descartar). <strong>Filtro Rápido:</strong> digita na caixa e filtra instantaneamente por remetente, palavra, não lidas, anexos, estrela, tags, contatos<br>
+      → Ordenação por data, prioridade, destinatário, tamanho, status, anexos; caixa "Filtrar Mensagens" busca em remetente/destinatário/assunto/texto; pesquisa web integrada (Google/Bing) abre no navegador padrão<br>
+      → <strong>Segurança:</strong> <strong>Proteção Anti-Phishing (Antifraude)</strong> alerta sobre tentativa de golpe; integração com <strong>antivírus</strong> (quarentena antes de armazenar); <strong>Filtro Anti-spam adaptável</strong> (regras adaptáveis pelo usuário); assinaturas digitais, criptografia, certificados<br>
+      → <strong>Complementos:</strong> Gerenciador de Extensões (Ferramentas → Extensões) — extensões, temas, plugins; ex.: <strong>Lightning</strong> (calendário integrado)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Atalho</th><th>Ação</th></tr></thead>
+      <tbody>
+        <tr><td><code>CTRL + M</code> ou <code>CTRL + N</code></td><td>Novo e-mail</td></tr>
+        <tr><td><code>CTRL + O</code></td><td>Abre e-mail em nova aba</td></tr>
+        <tr><td><code>CTRL + W</code></td><td>Fecha aba</td></tr>
+        <tr><td><code>CTRL + E</code></td><td>Edita e-mail</td></tr>
+        <tr><td><code>CTRL + P</code></td><td>Imprime e-mail</td></tr>
+        <tr><td><code>N</code></td><td>Próxima mensagem não lida</td></tr>
+        <tr><td><code>CTRL + F</code></td><td>Localizar na página</td></tr>
+        <tr><td><code>CTRL + A</code></td><td>Seleciona todas as mensagens</td></tr>
+        <tr><td><code>CTRL + SHIFT + B</code></td><td>Catálogo de endereços</td></tr>
+        <tr><td><code>F5</code> / <code>SHIFT + F5</code></td><td>Atualiza caixa selecionada / todas as caixas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Thunderbird <strong>não bloqueia</strong> remetente diretamente — usa-se <strong>filtro de mensagens</strong> para descartar/mover automaticamente. E o FileLink <strong>não envia o arquivo</strong>, envia um <strong>link</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Temas mais cobrados em questões do TEC — contador por assunto</div>
+
+  <div class="card">
+    <div class="card-text">
+      Nenhuma questão do TEC colada ainda.
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+
+
+
+
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2004/resumo-aula-04-redes-sociais.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 04 · Redes Sociais</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+</body>
+</html>
