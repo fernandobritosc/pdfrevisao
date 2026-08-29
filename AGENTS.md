@@ -181,6 +181,16 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 - Assunto já coberto no resumo? **NÃO reescrever o bloco.**
 - MAS sempre checar se há **detalhe novo** (regra, exceção, artigo, pegadinha) que
   complemente o estudo. Se houver, adicionar só o detalhe novo.
+- **Análise completa da questão (regra do usuário, 29/08/2026)**: NUNCA pular
+  direto pro contador de incidência só porque o tema "já existe". Sempre:
+  1. Ler a **resolução inteira** da questão
+  2. Extrair o **ponto de aprendizado** (o que a questão ensina)
+  3. **Comparar** com o que está escrito no resumo
+  4. Se tiver qualquer **detalhe novo** (mesmo pequeno), adicionar ao resumo
+  5. Só então incrementar o contador de incidência
+  - Motivo: já perdemos vários detalhes (art. 841 §3º desistência, prescrição
+    em pluralidade de reclamados, etc.) por assumir que "tema já coberto" significava
+    "conteúdo completo".
 - Registrar o incremento de incidência (ver abaixo).
 
 ## Medição de incidência de temas (TEC)
