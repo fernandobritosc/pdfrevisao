@@ -805,10 +805,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">📧 Correio Eletrônico (E-Mail)</div>
     <div class="card-text">
       Método que permite <strong>compor, enviar e receber mensagens assíncronas</strong> por sistemas eletrônicos de comunicação. Inventado por <strong>Ray Tomlinson</strong> na década de 1970, opera no modelo de <strong>armazenamento e encaminhamento</strong>: servidores de e-mail aceitam, encaminham, entregam e armazenam mensagens.<br><br>
-      • <strong>Mensagem assíncrona:</strong> comunicação <strong>desconectada do tempo</strong> — emissor e receptor se comunicam quando têm disponibilidade (ex.: <strong>carta, e-mail</strong>)<br>
-      • <strong>Mensagem síncrona:</strong> exige que emissor e receptor estejam <strong>disponíveis simultaneamente</strong> (ex.: <strong>telefone, videoconferência</strong>)<br>
-      • No início as mensagens eram só texto curto; hoje suportam <strong>texto, áudio, vídeo</strong> e envio para <strong>múltiplos destinatários</strong> simultaneamente<br>
-      • Emissor e receptor precisam se conectar ao servidor apenas pelo tempo necessário para <strong>enviar ou receber</strong>
+      → <strong>Mensagem assíncrona:</strong> comunicação <strong>desconectada do tempo</strong> — emissor e receptor se comunicam quando têm disponibilidade (ex.: <strong>carta, e-mail</strong>)<br>
+      → <strong>Mensagem síncrona:</strong> exige que emissor e receptor estejam <strong>disponíveis simultaneamente</strong> (ex.: <strong>telefone, videoconferência</strong>)<br>
+      → No início: só texto curto; hoje suporta <strong>texto, áudio, vídeo</strong> e envio para <strong>múltiplos destinatários</strong> simultaneamente<br>
+      → Emissor e receptor só precisam se conectar ao servidor pelo tempo de <strong>enviar ou receber</strong>
     </div>
   </div>
 
@@ -849,12 +849,17 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="callout callout-info">
     <div class="callout-icon">ℹ️</div>
-    <div><strong>Cliente aceita qualquer provedor; webmail só o próprio:</strong> Gmail.com só aceita conta Gmail; Outlook.com só aceita outlook.com/hotmail.com. Já o <strong>Microsoft Outlook (cliente)</strong> aceita contas de <strong>qualquer provedor</strong> (Gmail, Yahoo, Outlook, etc.). Visual: webmail tem <strong>barra de endereço www</strong>; cliente não tem.</div>
+    <div><strong>Cliente × Webmail — compatibilidade e visual:</strong><br>
+    → <strong>Webmail só aceita o próprio provedor:</strong> Gmail.com só conta Gmail; Outlook.com só outlook.com/hotmail.com<br>
+    → <strong>Cliente aceita qualquer provedor:</strong> Microsoft Outlook (cliente) gerencia Gmail, Yahoo, Outlook etc. — independente do domínio<br>
+    → <strong>Visual:</strong> webmail tem <strong>barra de endereço www</strong>; cliente não tem</div>
   </div>
 
   <div class="gotcha">
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
-    Microsoft confunde: <strong>Outlook.com</strong> = webmail; <strong>Microsoft Outlook</strong> = cliente de e-mail. Não são a mesma coisa.
+    → <strong>Outlook.com</strong> = webmail; <strong>Microsoft Outlook</strong> = cliente de e-mail — não são a mesma coisa<br>
+    → Domínio <strong>.com.br</strong> indica apenas que o provedor é brasileiro — <strong>não restringe</strong> destinatários ao território nacional<br>
+    → <strong>Não existe "servidor central de e-mail da Internet"</strong>: a caixa postal fica no <strong>servidor do provedor</strong> do usuário; cliente de e-mail transfere as mensagens do servidor para a máquina local (não é o servidor que se chama "cliente")
   </div>
 
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
@@ -903,8 +908,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       Formato válido: <code><strong>nomedorecipiente@nomedodomínio</strong></code><br><br>
       → <strong>Nome do Recipiente</strong> (Parte Local / Conta): quem recebe — pessoa, lista, departamento. Pode seguir RFC 822 ou regras do provedor (ex.: Gmail: máx. 30 caracteres, só minúsculas, números e pontos)<br>
-      → <strong>@ (arroba = "at" = em/no):</strong> separa recipiente de domínio; <strong>obrigatório e deve haver apenas um</strong><br>
+      → <strong>@ (arroba = "at" = em/no):</strong> separa recipiente de domínio; <strong>obrigatório e deve haver apenas um</strong>; <strong>não tem relação com criptografia</strong> — apenas separa usuário de domínio<br>
       → <strong>Nome do Domínio</strong> (Host/Provedor): identificação do dispositivo que hospeda o serviço (ex.: gmail.com). Pode ter subdomínios: <code>estrategiaconcursos.com.br</code> → <em>estrategiaconcursos</em> (domínio) + <em>com</em> (setor comercial) + <em>br</em> (país)<br>
+      → <strong>Categorias:</strong> <em>.com</em> = comercial/empresa privada; <em>.org</em> = organização não governamental — não troque<br>
+      → <strong>País:</strong> sufixo indica onde o domínio foi registrado (ex.: <em>.br</em> = Brasil, <em>.us</em> = EUA — não ".usa"/".eua"); uso do país é <strong>facultativo</strong> — <code>yuri@enterprise.com</code> é válido mesmo sem <code>.us</code><br>
       → Tanto recipiente quanto domínio <strong>não podem conter espaços</strong> e geralmente não podem conter <code>! # $ % &amp; ' * + / = ? ^ ` { | } ~</code> (depende do servidor)
     </div>
   </div>
@@ -934,6 +941,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="callout callout-warn">
     <div class="callout-icon">⚠️</div>
     <div><strong>Segurança (TLS/SSL):</strong> para garantir segurança entre cliente e servidores de entrada/saída, configura-se <strong>TLS</strong> (sucessor do SSL) — surgem as variantes <strong>POP3S, IMAPS e SMTPS</strong>. Questão CESGRANRIO/BB 2021 cobrou exatamente isso.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">MIME — formatação de mensagens</div>
+    <div class="card-text">
+      → <strong>MIME (Multipurpose Internet Mail Extensions):</strong> norma da Internet para <strong>formatação de mensagens</strong> que permite o envio de arquivos de <strong>qualquer tipo</strong> em e-mail<br>
+      → Permite inserir <strong>texto, imagens, áudio e caracteres especiais</strong> — dispensa conversão prévia para ASCII<br>
+      → <strong>Não confunda:</strong> webmail usa <strong>HTTP/HTTPS</strong> (não POP/SMTP diretamente); cliente de e-mail acessa <strong>só na máquina onde foi configurado</strong> — não é acessível por navegador de qualquer computador
+    </div>
   </div>
 
   <div class="gotcha">
@@ -972,7 +988,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="callout callout-info">
     <div class="callout-icon">ℹ️</div>
-    <div><strong>Caixa de Saída × Itens Enviados × Rascunho:</strong> <strong>Rascunho</strong> = escrita, mas <strong>não enviada pelo usuário</strong>; <strong>Caixa de Saída</strong> = escrita e enviada pelo usuário, mas <strong>ainda em processo de envio pelo servidor</strong>; <strong>Itens Enviados</strong> = efetivamente enviada. Em <strong>webmails</strong>, em geral não há distinção entre Caixa de Saída e Itens Enviados (exceto alguns mobiles).</div>
+    <div><strong>Caixa de Saída × Itens Enviados × Rascunho:</strong><br>
+    → <strong>Rascunho:</strong> escrita, mas <strong>não enviada pelo usuário</strong><br>
+    → <strong>Caixa de Saída:</strong> escrita e enviada pelo usuário, mas <strong>ainda em processo de envio pelo servidor</strong><br>
+    → <strong>Itens Enviados:</strong> efetivamente enviada<br>
+    → Em <strong>webmails</strong>, em geral não há distinção entre Caixa de Saída e Itens Enviados (exceto alguns mobiles)</div>
   </div>
 
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
@@ -981,7 +1001,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="card">
     <div class="card-text">
-      E-mail = <strong>Cabeçalho</strong> (De:, Para:, Assunto:, Cc:, Cco: + metadados como Data, Hora, Tipo de Conteúdo, ID) + <strong>Corpo</strong> (conteúdo) + <strong>Anexo</strong> (pode integrar cabeçalho ou corpo). Visualizar cabeçalho completo: Gmail → três pontinhos → <em>Mostrar Original</em>; Outlook → Arquivo → Propriedades; Thunderbird → Visualizar → Cabeçalhos → Todos.
+      → <strong>Estrutura:</strong> <strong>Cabeçalho</strong> (De:, Para:, Assunto:, Cc:, Cco: + metadados — Data, Hora, Tipo de Conteúdo, ID) + <strong>Corpo</strong> (conteúdo) + <strong>Anexo</strong> (pode integrar cabeçalho ou corpo)<br>
+      → <strong>Visualizar cabeçalho completo:</strong><br>
+      → Gmail: três pontinhos → <em>Mostrar Original</em><br>
+      → Outlook: Arquivo → Propriedades<br>
+      → Thunderbird: Visualizar → Cabeçalhos → Todos
     </div>
   </div>
 
@@ -990,12 +1014,12 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <thead><tr><th>Campo</th><th>Incidência</th><th>Descrição</th></tr></thead>
       <tbody>
         <tr><td><strong>De (From)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Remetente</strong>. Pode escolher entre contas configuradas; é possível enviar <strong>anonimamente</strong> (sites como deadfake.com)</td></tr>
-        <tr><td><strong>Para (To)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Destinatário(s)</strong> — pessoa, várias (separar com <strong>ponto-e-vírgula ;</strong>) ou lista. Entrega <strong>não garantida</strong> (caixa lotada, endereço inexistente → resposta automática ao remetente)</td></tr>
-        <tr><td><strong>Assunto (Subject)</strong></td><td><span class="tag tag-amber">baixa</span></td><td>Manchete que resume o corpo. Preenchimento <strong>facultativo</strong>; cortesia para o destinatário</td></tr>
-        <tr><td><strong>Cc (Com Cópia)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Carbon Copy</strong> — cópia para destinatários <strong>secundários</strong>; endereços ficam <strong>visíveis</strong> para todos (principais e secundários). Uso: dar ciência sem esperar resposta</td></tr>
-        <tr><td><strong>Cco (Com Cópia Oculta)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Blind Carbon Copy (Bcc)</strong> — igual ao Cc, mas <strong>oculta</strong> os destinatários: cada um só vê seu próprio endereço</td></tr>
+        <tr><td><strong>Para (To)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Destinatário(s)</strong> — pessoa, várias (separar com <strong>ponto-e-vírgula ;</strong>) ou lista. <strong>Não precisa estar no catálogo</strong> — pode digitar qualquer endereço. Entrega <strong>não garantida</strong> (caixa lotada, endereço inexistente → resposta automática ao remetente)</td></tr>
+        <tr><td><strong>Assunto (Subject)</strong></td><td><span class="tag tag-amber">baixa</span></td><td>Manchete que resume o corpo. Preenchimento <strong>facultativo</strong> — pode ser omitido sem impedir o envio; cortesia para o destinatário saber o tema antes de abrir</td></tr>
+        <tr><td><strong>Cc (Com Cópia)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Carbon Copy</strong> — cópia para destinatários <strong>secundários</strong>; endereços ficam <strong>visíveis</strong> para todos (principais e secundários). Uso: dar ciência sem esperar resposta. Todos em Para/Cc/Cco saberão que o Cc recebeu</td></tr>
+        <tr><td><strong>Cco (Com Cópia Oculta)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Blind Carbon Copy (Bcc)</strong> — igual ao Cc, mas <strong>oculta</strong> os destinatários: cada um só vê seu próprio endereço; <strong>ninguém</strong> (Para/Cc/outros Cco) saberá que o Cco recebeu. Já quem está em Cco <strong>vê</strong> Para e Cc, mas não outros Ccos</td></tr>
         <tr><td><strong>Conteúdo (Body)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Corpo / carga útil</strong>; permite formatação rica (fonte, negrito, itálico etc.). Campo <strong>não obrigatório</strong></td></tr>
-        <tr><td><strong>Anexo (Attachment)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td>Qualquer arquivo incorporado à mensagem; observar <strong>limite de tamanho</strong> do provedor e cuidado com <strong>executáveis/malware</strong>. Anexo fica no <strong>servidor</strong> — download/delete local não afeta o original</td></tr>
+        <tr><td><strong>Anexo (Attachment)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Qualquer tipo de arquivo</strong> pode ser anexado (não só documentos/planilhas); observar <strong>limite de tamanho</strong> do provedor e cuidado com <strong>executáveis/malware</strong>. Anexo fica no <strong>servidor</strong> — download/delete local não afeta o original</td></tr>
       </tbody>
     </table>
   </div>
@@ -1027,11 +1051,27 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card" style="border-color:var(--amber);">
     <div class="card-title" style="color:var(--amber);">Cuidado clássico: Responder a todos com Cco</div>
     <div class="card-text">
-      E-mail de <strong>Alice para Bruno (Cco: Carlos)</strong>:<br><br>
-      → <strong>Bruno responder:</strong> só Alice recebe (Bruno nem vê Carlos)<br>
-      → <strong>Bruno responder a todos:</strong> só Alice recebe (mesmo motivo)<br>
-      → <strong>Carlos responder:</strong> só Alice recebe (Carlos vê Bruno, mas resposta vai só para Alice)<br>
-      → <strong>Carlos responder a todos:</strong> <strong>Alice e Bruno recebem</strong> — Bruno descobre que Carlos estava em Cco!<br><br>
+      <!-- Ilustração: e-mail original -->
+      <div style="background:#faf9f5;border:1px solid var(--line-strong);border-radius:10px;padding:.7rem .9rem;margin-bottom:.8rem;font-family:'IBM Plex Mono',Consolas,monospace;font-size:.78rem;line-height:1.5;">
+        <div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.3rem;"><span style="background:var(--blue);color:#fff;padding:.1rem .45rem;border-radius:4px;font-weight:700;font-size:.7rem;">Para:</span> <span style="background:#e3e9f4;color:#1d3f9e;padding:.15rem .5rem;border-radius:4px;">bruno@exemplo.com</span></div>
+        <div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.3rem;"><span style="background:var(--amber);color:#fff;padding:.1rem .45rem;border-radius:4px;font-weight:700;font-size:.7rem;">Cc:</span> <span style="color:var(--muted);font-style:italic;">— vazio —</span></div>
+        <div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.4rem;"><span style="background:#6b7280;color:#fff;padding:.1rem .45rem;border-radius:4px;font-weight:700;font-size:.7rem;">Cco:</span> <span style="background:#f3f4f6;color:#374151;padding:.15rem .5rem;border-radius:4px;border:1px dashed #9ca3af;">carlos@exemplo.com</span> <span style="font-size:.7rem;color:var(--muted);">← só Alice vê</span></div>
+        <div style="border-top:1px solid var(--line);padding-top:.4rem;font-family:'IBM Plex Sans',sans-serif;font-size:.82rem;color:var(--text2);">De: <strong style="color:var(--text);">alice@exemplo.com</strong> &nbsp;·&nbsp; Assunto: Reunião</div>
+        <div style="text-align:center;color:var(--muted);font-size:.7rem;margin-top:.35rem;">👁️ Bruno <strong>não vê</strong> Carlos &nbsp;|&nbsp; Carlos <strong>vê</strong> Bruno</div>
+      </div>
+      <!-- Fluxo de respostas -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.7rem;">
+        <div style="background:#fff;border:1px solid var(--line-strong);border-radius:8px;padding:.5rem .6rem;text-align:center;">
+          <div style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Se Bruno clica</div>
+          <div style="font-size:.78rem;margin:.2rem 0;"><strong>Responder</strong> → só <span style="color:var(--blue);font-weight:700;">Alice</span></div>
+          <div style="font-size:.78rem;"><strong>Responder a todos</strong> → só <span style="color:var(--blue);font-weight:700;">Alice</span> <span style="font-size:.7rem;color:var(--muted);">(não vê Cco)</span></div>
+        </div>
+        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .6rem;text-align:center;">
+          <div style="font-size:.7rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;">Se Carlos clica</div>
+          <div style="font-size:.78rem;margin:.2rem 0;"><strong>Responder</strong> → só <span style="color:var(--blue);font-weight:700;">Alice</span></div>
+          <div style="font-size:.78rem;"><strong>Responder a todos</strong> → <span style="color:var(--red);font-weight:700;">Alice + Bruno</span> <span style="font-size:.68rem;">⚠️ expõe Cco!</span></div>
+        </div>
+      </div>
       <span class="tag tag-red">Pegadinha</span> Na história da aula: analista envia ao técnico com juiz em Cc; técnico usa "Responder a todos" sem notar → juiz recebe a resposta grosseira.
     </div>
   </div>
@@ -1050,10 +1090,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       Webmail = <strong>página web</strong> que serve de interface entre cliente e servidor de e-mail; por isso usa <strong>HTTP/HTTPS</strong> (não SMTP/POP/IMAP diretamente). Por trás, o servidor usa SMTP/POP/IMAP, mas o webmail em si fala HTTP.<br><br>
       <strong>Fluxo Cliente de E-Mail:</strong> Cliente origem → <strong>SMTP</strong> → Servidor origem → <strong>SMTP</strong> → Servidor destino → <strong>POP3/IMAP</strong> → Cliente destino<br>
       <strong>Fluxo Webmail:</strong> Webmail origem → <strong>HTTP</strong> → Servidor Web → <strong>SMTP</strong> → Servidor Correio origem → <strong>SMTP</strong> → Servidor Correio destino → <strong>POP/IMAP</strong> → Servidor Web destino → <strong>HTTP</strong> → Webmail destino<br><br>
-      • Mensagens ficam em <strong>pastas no servidor</strong> (não na máquina do usuário), ao contrário de clientes<br>
-      • Número ao lado da pasta = <strong>mensagens não lidas</strong><br>
-      • Vantagem: acesso de <strong>qualquer lugar</strong> via navegador; desvantagem: precisa estar <strong>online</strong><br>
-      • Gmail: inovação do <strong>Modo de Conversa</strong> (respostas agrupadas); anexo permanece no servidor mesmo após download; número ao lado do anexo = <strong>tamanho</strong> (ex.: 2.738 Kb); extensões bloqueadas: .pif, .bat, .exe, .scr, .vbs etc.; grande volume → <strong>compactar em um único arquivo</strong>
+      → Mensagens ficam em <strong>pastas no servidor</strong> (não na máquina do usuário), ao contrário de clientes<br>
+      → Número ao lado da pasta = <strong>mensagens não lidas</strong><br>
+      → Vantagem: acesso de <strong>qualquer lugar</strong> via navegador; desvantagem: precisa estar <strong>online</strong><br>
+      → Gmail: inovação do <strong>Modo de Conversa</strong> (respostas agrupadas); anexo permanece no servidor mesmo após download; número ao lado do anexo = <strong>tamanho</strong> (ex.: 2.738 Kb); extensões bloqueadas: .pif, .bat, .exe, .scr, .vbs etc.; grande volume → <strong>compactar em um único arquivo</strong>
     </div>
   </div>
 </section>
@@ -1072,9 +1112,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">Conceitos básicos <span class="tag tag-red">ALTA</span></div>
     <div class="card-text">
       Aplicativo <strong>pago</strong> (separado ou com o Office), diferente do <strong>Outlook Express</strong> (antigo, só enviava/recebia e-mails). O Outlook gerencia e-mails <strong>+ contatos + calendários + tarefas + anotações</strong>.<br><br>
-      • Exibição padrão: <strong>Faixa de Opções</strong> dividida em guias → grupos → comandos<br>
-      • Elementos visíveis: Barra de Ferramentas de Acesso Rápido, Faixa de Opções, Barra de Títulos, Lista de Mensagens, Área de Visualização, Caixas Postais; <strong>Barra de Tarefas Pendentes</strong> (calendários/tarefas) <strong>não</strong> aparece por padrão<br>
-      • Arquivo de Dados: <strong>.pst</strong> (mensagens, calendários, tarefas, anotações) — pode ficar em <code>\Usuários\&lt;usuário&gt;\AppData\Local\Microsoft\Outlook</code>, <code>\Documents\Outlook Files</code> etc.; pode ser feito <strong>backup/restauração</strong>
+      → <strong>Exibição padrão:</strong> <strong>Faixa de Opções</strong> dividida em guias → grupos → comandos<br>
+      → <strong>Elementos visíveis:</strong> Barra de Ferramentas de Acesso Rápido, Faixa de Opções, Barra de Títulos, Lista de Mensagens, Área de Visualização, Caixas Postais; <strong>Barra de Tarefas Pendentes</strong> (calendários/tarefas) <strong>não</strong> aparece por padrão<br>
+      → <strong>Arquivo de Dados:</strong> <strong>.pst</strong> (mensagens, calendários, tarefas, anotações) — pode ficar em <code>\Usuários\&lt;usuário&gt;\AppData\Local\Microsoft\Outlook</code>, <code>\Documents\Outlook Files</code> etc.; pode ser feito <strong>backup/restauração</strong>
     </div>
   </div>
 
@@ -1107,8 +1147,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Abrir e Exportar:</strong> abrir calendários (.ics/.vcs), arquivos .pst, importar/exportar configurações e pastas compartilhadas<br>
       → <strong>Conta do Office:</strong> dados do usuário/produto, atualizações<br>
       → <strong>Opções:</strong> e-mails, calendários, pessoas, tarefas, pesquisas, idiomas, faixa de opções, suplementos, <strong>assinaturas</strong><br><br>
-      • <strong>Assinatura:</strong> Arquivo → Opções → Email → <em>Crie ou modifique assinaturas</em> — aceita texto, imagem, logo<br>
-      • <strong>Resposta automática:</strong> Arquivo → Informações → <em>Respostas Automáticas (Ausência Temporária)</em>
+      → <strong>Assinatura:</strong> Arquivo → Opções → Email → <em>Crie ou modifique assinaturas</em> — aceita texto, imagem, logo<br>
+      → <strong>Resposta automática:</strong> Arquivo → Informações → <em>Respostas Automáticas (Ausência Temporária)</em>
     </div>
   </div>
 
@@ -1123,7 +1163,20 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Marcas:</strong> marcar como não lido, categorizar, sinalizar para acompanhamento (aparece na barra de tarefas pendentes)<br>
       → <strong>Localizar:</strong> catálogo de endereços, filtrar por não lidos/sinalizados<br><br>
       <strong>Regras:</strong> movem, sinalizam e respondem automaticamente; tocam sons, movem para pastas, exibem alertas. Ex.: mover tudo de <em>@estrategiaconcursos.com.br</em> para pasta "Estratégia". Criação: botão direito na mensagem → <em>Regras → Criar Regra</em> (por remetente, assunto, destinatário).<br>
-      <strong>Nova mensagem:</strong> campos Para/Cc/Assunto/Corpo + Catálogo de Endereços, Verificar Nomes, Anexar Arquivo/Item (e-mail, compromisso, contato), Assinatura, Acompanhamento (sinalizador: hoje/amanhã/semana), Prioridade Alta/Baixa.
+      <strong>Nova mensagem:</strong> campos Para/Cc/Assunto/Corpo + Catálogo de Endereços, Verificar Nomes, Anexar Arquivo/Item (e-mail, compromisso, contato), Assinatura, Acompanhamento (sinalizador: hoje/amanhã/semana), Prioridade.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prioridade da mensagem — alerta de importância</div>
+    <div class="card-text">
+      → <strong>O que é:</strong> recurso que <strong>alerta o destinatário sobre o grau de importância</strong> da mensagem<br>
+      → <strong>Não confunda com:</strong> exclusão automática · codificação · tamanho de anexo · confirmação de leitura<br><br>
+      → <strong>3 níveis no Outlook:</strong><br>
+      → <strong>Alta</strong> — ponto de exclamação vermelho ❗<br>
+      → <strong>Média</strong> — padrão (quando não se define prioridade)<br>
+      → <strong>Baixa</strong> — seta azul para baixo ⬇️<br><br>
+      → <strong>Onde definir:</strong> janela de nova mensagem → opção <strong>Prioridade</strong> (Alta/Baixa); o ícone aparece na lista de mensagens
     </div>
   </div>
 
@@ -1171,10 +1224,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">Conceitos básicos <span class="tag tag-red">ALTA</span></div>
     <div class="card-text">
       Desenvolvido por voluntários da <strong>Mozilla Foundation</strong> (mesma do Firefox — não confundir: Firefox = navegador; Thunderbird = cliente de e-mail). É um aplicativo <strong>local</strong> (não baseado em navegador), poderoso e simples.<br><br>
-      • Para usar, configura <strong>servidores de entrada (POP/IMAP) e saída (SMTP)</strong><br>
-      • Recursos: suporte a <strong>XML</strong>, <strong>RSS/Atom</strong>, filtros anti-spam, importação de e-mails/catálogo, <strong>tags/marcadores</strong> (uma mensagem pode ter várias; 5 padrão, gerenciáveis), navegação entre mensagens, pop-ups de resumo, tarefas com agendamento, <strong>assinatura digital e criptografia</strong><br>
-      • Interface: <strong>abas</strong> para contas/tarefas/calendários; pastas à esquerda; e-mails ao centro (colunas: anexo, assunto, remetente, data); eventos do dia à direita<br>
-      • Permite <strong>confirmação de leitura</strong> (Menu Opções → Confirmação de Leitura) e <strong>Notificação de Status de Entrega</strong> (avisa quando o servidor do destinatário recebe)
+      → Para usar, configura <strong>servidores de entrada (POP/IMAP) e saída (SMTP)</strong><br>
+      → <strong>Recursos:</strong> suporte a <strong>XML</strong>, <strong>RSS/Atom</strong>, filtros anti-spam, importação de e-mails/catálogo, <strong>tags/marcadores</strong> (uma mensagem pode ter várias; 5 padrão, gerenciáveis), navegação entre mensagens, pop-ups de resumo, tarefas com agendamento, <strong>assinatura digital e criptografia</strong><br>
+      → <strong>Interface:</strong> <strong>abas</strong> para contas/tarefas/calendários; pastas à esquerda; e-mails ao centro (colunas: anexo, assunto, remetente, data); eventos do dia à direita<br>
+      → <strong>Confirmações:</strong> <strong>confirmação de leitura</strong> (Menu Opções → Confirmação de Leitura) e <strong>Notificação de Status de Entrega</strong> (avisa quando o servidor do destinatário recebe)
     </div>
   </div>
 
@@ -1256,7 +1309,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="card">
     <div class="card-text">
-      Nenhuma questão do TEC colada ainda.
+      <span class="tag tag-amber">Funcionalidades básicas e encaminhamento: 1</span>
+      <span class="tag tag-red">Campos Para/Cc/Cco — visibilidade (quem vê quem): 2</span>
+      <span class="tag tag-amber">Entrega de e-mail — não é garantida (confiabilidade): 1</span>
+      <span class="tag tag-amber">Prioridade da mensagem (Alta/Média/Baixa): 1</span>
+      <span class="tag tag-amber">MIME — norma para formatação (qualquer tipo de arquivo): 1</span>
+      <span class="tag tag-amber">Servidor × Cliente — caixa postal no servidor do provedor (não existe central): 1</span>
+      <span class="tag tag-amber">Sintaxe — símbolo @ (separador, não criptografia): 1</span>
+      <span class="tag tag-amber">Domínio — categoria (.com/.org) e país (.br/.us, facultativo): 1</span>
+      <span class="tag tag-amber">Campo Assunto — facultativo (pode omitir) e Anexo — qualquer tipo: 1</span>
     </div>
   </div>
 </section>
