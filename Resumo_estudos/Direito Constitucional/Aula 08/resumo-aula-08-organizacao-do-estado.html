@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DC Aula 08: Organização do Estado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: .95rem;
+  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+}
+.aula .sec-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .section-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  position: relative;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: justify; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--sidebar); }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f5; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fae5e5;
+  border: 1px solid #efb4b4;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: justify;
+}
+.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d3f9e; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+</style>
+
+<style id="rh-addons">
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Constitucional — Aula 08</div>
+  <div class="sidebar-sub">Organização do Estado · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Teoria Geral do Estado</a>
+  <a href="#sec2">2. Características da Federação</a>
+  <a href="#sec3">3. Classificações das Federações</a>
+  <a href="#sec4">4. Entes Federativos (art. 18)</a>
+  <a href="#sec5">5. Estados-Membros (art. 25)</a>
+  <a href="#sec6">6. DF, Municípios e Territórios</a>
+  <a href="#sec7">7. Alterações estruturais e Vedações</a>
+  <a href="#sec8">8. Bens Públicos</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: simplificado + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — TEORIA GERAL DO ESTADO                              -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Teoria Geral do Estado</div>
+  </div>
+  <div class="sec-subtitle">Elementos constitutivos, formas de Estado e a distinção entre federação e confederação</div>
+
+  <div class="card">
+    <div class="card-title">Elementos constitutivos do Estado</div>
+    <div class="card-text">
+      → <strong>Território:</strong> dimensão física sobre a qual o Estado exerce seus poderes (domínio espacial da ordem jurídica).<br><br>
+      → <strong>Povo:</strong> dimensão pessoal do Estado (seus nacionais).<br><br>
+      → <strong>Governo soberano:</strong> dimensão política — sua vontade não se subordina a nenhum outro poder, no plano interno ou internacional.
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <strong>Conceito de Estado (Ferreira Filho):</strong> "O Estado é uma associação humana (povo), radicada em base espacial (território), que vive sob o comando de uma autoridade (poder) não sujeita a qualquer outra (soberana)."
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Estado Unitário</div>
+      <div class="card-text">
+        Poder politicamente <strong>centralizado</strong>. Um único centro produtor de normas. Exemplo: Portugal.<br><br>
+        → Admite <strong>descentralização administrativa</strong> (execução de serviços públicos é distribuída).<br><br>
+        → <strong>Estados regionais</strong> (Itália, Espanha): descentralização administrativa + política (modelo intermediário).
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">Estado Federal</div>
+      <div class="card-text">
+        Poder politicamente <strong>descentralizado</strong>. Várias pessoas jurídicas com capacidade política e <strong>autonomia política</strong>. Pluralidade de ordenamentos jurídicos.<br><br>
+        Exemplo: <strong>Brasil</strong> (União, Estados, DF e Municípios).
+      </div>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Federação × Confederação:</strong><br>
+    → Federação: união <strong>indissolúvel</strong> de entes autônomos, fundada em <strong>Constituição</strong> — <strong>não há direito de secessão</strong>.<br>
+    → Confederação: reunião de Estados soberanos com base em <strong>tratado internacional</strong> (dissolúvel). Referência histórica: EUA (1781–1787).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Territórios NÃO são entes federativos.</strong> A organização político-administrativa da RFB compreende União, Estados, DF e Municípios, todos autônomos (art. 18, caput). Os Territórios integram a União e não possuem autonomia política.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CARACTERÍSTICAS DA FEDERAÇÃO                        -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Características da Federação</div>
+  </div>
+  <div class="sec-subtitle">Autonomia política (4 aptidões) e 7 características essenciais</div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">Autonomia política — 4 aptidões</div>
+    <div class="card-text">
+      → <strong>Auto-organização:</strong> elaboração de Constituições Estaduais (PCD Decorrente) e Leis Orgânicas (municípios).<br><br>
+      → <strong>Autolegislação:</strong> editar suas próprias leis dentro de suas competências constitucionais.<br><br>
+      → <strong>Autoadministração:</strong> exercer atribuições administrativas, tributárias e orçamentárias.<br><br>
+      → <strong>Autogoverno:</strong> eleger seus próprios representantes (Governadores, Prefeitos).
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">7 características de uma federação</div>
+      <div class="card-text">
+        → Repartição constitucional de competências<br>
+        → Indissolubilidade do vínculo federativo<br>
+        → Nacionalidade única<br>
+        → Rigidez constitucional<br>
+        → Mecanismo de intervenção<br>
+        → Tribunal Federativo (STF)<br>
+        → Participação na vontade nacional (Senado)
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Pontos de atenção</div>
+      <div class="card-text">
+        → <strong>Cláusula pétrea:</strong> princípio federativo não pode ser abolido por emenda constitucional.<br><br>
+        → <strong>STF como tribunal federativo:</strong> julga conflitos União × Estados e entre Estados. <strong>NÃO julga conflitos envolvendo Municípios.</strong><br><br>
+        → <strong>Senado Federal:</strong> representa Estados e DF. Municípios <strong>não</strong> participam da vontade nacional.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Autonomia × Soberania:</strong> os entes federativos são autônomos (auto-organização, autolegislação, autoadministração e autogoverno), mas <strong>só a RFB é soberana</strong>. A União representa a RFB no plano internacional, mas possui apenas autonomia.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — CLASSIFICAÇÕES DAS FEDERAÇÕES                       -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Classificações das Federações</div>
+  </div>
+  <div class="sec-subtitle">Origem, concentração de poder, desigualdades e repartição de competências</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Critério</th><th>Classificação</th><th>Exemplo/Brasil</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Quanto à origem</strong></td><td>Agregação (centrípeto) × Segregação (centrífugo)</td><td>Brasil = <strong>segregação</strong> (era unitário até 1891)</td></tr>
+        <tr><td><strong>Quanto à concentração de poder</strong></td><td>Centrípeta × Centrífuga × Equilíbrio</td><td>Brasil = <strong>centrípeta</strong> (tendência de federações por segregação)</td></tr>
+        <tr><td><strong>Quanto ao equacionamento de desigualdades</strong></td><td>Simétrica × Assimétrica</td><td>Brasil = <strong>assimétrica</strong> (art. 3º, III — reduzir desigualdades regionais)</td></tr>
+        <tr><td><strong>Quanto à repartição de competências</strong></td><td>Dual (clássica) × Cooperativa (neoclássica)</td><td>Brasil = <strong>cooperativa</strong> (arts. 23 e 24)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Origem × Concentração:</strong> federações que se formaram por <strong>segregação</strong> (centrífugo) tendem a ser <strong>centrípetas</strong> (concentração no centro). As que se formaram por <strong>agregação</strong> (centrípeto) tendem a ser <strong>centrífugas</strong> (descentralização).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — ENTES FEDERATIVOS (ART. 18)                         -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Entes Federativos — Art. 18, CF/88</div>
+  </div>
+  <div class="sec-subtitle">União, Estados, Distrito Federal e Municípios — todos autônomos</div>
+
+  <div class="legal-block">
+    <strong>Art. 18, caput:</strong> "A organização político-administrativa da República Federativa do Brasil compreende a União, os Estados, o Distrito Federal e os Municípios, todos autônomos, nos termos desta Constituição."
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">União</div>
+      <div class="card-text">
+        → PJ de direito público interno, sem personalidade internacional.<br>
+        → Representa a RFB no plano internacional (art. 21, I).<br>
+        → Editar <strong>leis nacionais</strong> (a todos submetidos) ou <strong>leis federais</strong> (ex.: Lei 8.112/90 — servidores federais).<br>
+        → <strong>Brasília</strong> é a capital federal (art. 18, § 1º), não confundir com o DF.
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Federação de 3º grau</div>
+      <div class="card-text">
+        Até a CF/88, os Municípios não eram entes federativos. Com a Carta Magna, passaram a ter autonomia política. A doutrina dominante reconhece que a federação brasileira é de <strong>3º grau</strong>.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Art. 18, § 2º:</strong> os Territórios Federais integram a União; não são dotados de autonomia política, sendo meras descentralizações administrativas (autarquias territoriais da União). Atualmente, não existe nenhum Território Federal.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — ESTADOS-MEMBROS (ART. 25)                           -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Estados-Membros — Art. 25, CF/88</div>
+  </div>
+  <div class="sec-subtitle">Auto-organização, autolegislação, poderes estaduais e princípios constitucionais</div>
+
+  <div class="legal-block">
+    <strong>Art. 25:</strong> "Os Estados organizam-se e regem-se pelas Constituições e leis que adotarem, observados os princípios desta Constituição."
+  </div>
+
+  <div class="card">
+    <div class="card-title">Princípios que limitam a autonomia estadual</div>
+    <div class="card-text">
+      → <strong>Princípios constitucionais sensíveis</strong> (art. 34, VII): forma republicana, direitos da pessoa humana, autonomia municipal, prestação de contas, aplicação mínima em ensino e saúde. <strong>Caso contrariados → intervenção federal.</strong><br><br>
+      → <strong>Princípios constitucionais extensíveis</strong> (art. 1º, I-V; art. 3º, I-IV; art. 4º, I-X): fundamentos e objetivos da RFB estendidos a Estados, Municípios e DF.<br><br>
+      → <strong>Princípios constitucionais estabelecidos</strong> (arts. 27; 28; 37, I-XXI; 39-41): normas de organização espalhadas pela Constituição.
+    </div>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Poder Legislativo</div>
+      <div class="card-text">
+        → <strong>Unicameral</strong> (Assembleia Legislativa).<br>
+        → Deputados estaduais: mandato de 4 anos, sistema proporcional.<br>
+        → Número = <strong>triplo</strong> dos DF (até 36); acima de 36, acrescentar DF acima de 12.
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Poder Executivo</div>
+      <div class="card-text">
+        → Governador: mandato de 4 anos, eleição no 1º domingo de outubro.<br>
+        → <strong>Posse em 6 de janeiro</strong> (EC 111/2021, efeito prático a partir de 2026).<br>
+        → Subsídios fixados por lei da Assembleia.
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--purple);">
+      <div class="card-title" style="color:var(--purple);">Poder Judiciário</div>
+      <div class="card-text">
+        → Estados organizam sua Justiça (art. 125).<br>
+        → Lei de organização judiciária de iniciativa do <strong>Tribunal de Justiça</strong>.<br>
+        → Justiça Militar estadual (art. 125, § 3º).
+      </div>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Emendas constitucionais estaduais:</strong> quórum de <strong>3/5</strong> dos membros da Assembleia Legislativa (ADI 6453/RO).<br>
+    <strong>Subsídio de deputados estaduais:</strong> fixado por lei em sentido formal; vinculação ao subsídio de deputados federais é <strong>inconstitucional</strong> (ADI 6437/MT).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — DF, MUNICÍPIOS E TERRITÓRIOS                        -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Distrito Federal, Municípios e Territórios</div>
+  </div>
+  <div class="sec-subtitle">Natureza híbrida do DF, autonomia municipal e regime dos Territórios</div>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-color:var(--teal);">
+      <div class="card-title" style="color:var(--teal);">Distrito Federal (art. 32)</div>
+      <div class="card-text">
+        → Ente federado autôno de <strong>natureza híbrida</strong> (características de Estados e Municípios).<br>
+        → Auto-organização por <strong>Lei Orgânica</strong> (votada em 2 turnos, 2/3 da Câmara Legislativa).<br>
+        → Atribuídas competências legislativas de Estados <strong>e</strong> Municípios (art. 32, § 1º e art. 147).<br>
+        → <strong>Não pode ser dividido em Municípios</strong> (art. 32, caput).<br>
+        → Organização do Judiciário, MP, polícia civil/militar = competência da <strong>União</strong> (art. 21, XIII e XIV).
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--amber);">
+      <div class="card-title" style="color:var(--amber);">Municípios (art. 29 e 29-A)</div>
+      <div class="card-text">
+        → Autonomia é <strong>princípio constitucional sensível</strong> (art. 34, VII, "c").<br>
+        → <strong>Não possuem Poder Judiciário.</strong><br>
+        → Poder Legislativo = <strong>unicameral</strong> (Câmara Municipal).<br>
+        → Lei Orgânica: votada em 2 turnos, 2/3 dos membros, interstício mínimo de 10 dias.<br>
+        → Prefeito: majoritário, 4 anos; eleições com 2 turnos se > 200 mil eleitores.<br>
+        → Subsídio dos vereadores: fixado pela Câmara, escalonado por população (20% a 75% do subsídio de deputados estaduais).
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>População do Município</th><th>Máximo de Vereadores</th><th>Subsídio Máximo (% do dep. estadual)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Até 10.000</td><td>9</td><td>20%</td></tr>
+        <tr><td>10.001 a 50.000</td><td>11</td><td>30%</td></tr>
+        <tr><td>50.001 a 100.000</td><td>13</td><td>40%</td></tr>
+        <tr><td>100.001 a 300.000</td><td>17</td><td>50%</td></tr>
+        <tr><td>300.001 a 500.000</td><td>19</td><td>60%</td></tr>
+        <tr><td>Acima de 500.000</td><td>55</td><td>75%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Territórios Federais (art. 33)</div>
+    <div class="card-text">
+      → Integram a União, <strong>não são entes federativos</strong>, não possuem autonomia política.<br>
+      → São <strong>autarquias territoriais da União</strong>.<br>
+      → Criados por <strong>lei complementar</strong>. Atualmente, não existe nenhum.<br>
+      → Governador: <strong>nomeado</strong> pelo Presidente (não eleito).<br>
+      → Poder Legislativo = Câmara Territorial (apenas função legislativa; controle externo = Congresso Nacional).<br>
+      → Elegem <strong>4 Deputados Federais</strong> (número fixo, não proporcional). <strong>Não elegem Senadores.</strong><br>
+      → Judiciário, MP e Defensoria: organizados e mantidos pela União (se > 100 mil habitantes).<br>
+      → <strong>Podem ser divididos em Municípios</strong> (diferente do DF).
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>DF × Município:</strong> o DF não pode ser dividido em Municípios, mas os Territórios podem. O DF não tem todas as competências estaduais (ex.: organização judiciária é privativa da União — art. 22, XVII).<br>
+    <strong>Subsídio de vereadores:</strong> Câmara não gastará mais de 70% da receita com folha (incluindo subsídio). Total com remuneração de vereadores ≤ 5% da receita do Município (art. 29, VII).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — ALTERAÇÕES ESTRUTURAIS E VEDAÇÕES FEDERATIVAS       -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Alterações Estruturais e Vedações Federativas</div>
+  </div>
+  <div class="sec-subtitle">Formação de Estados e Municípios · Vedações do art. 19</div>
+
+  <div class="grid grid-2">
+    <div class="card" style="border-color:var(--blue);">
+      <div class="card-title" style="color:var(--blue);">Formação de Estados (art. 18, § 3º)</div>
+      <div class="card-text">
+        → Incorporação, subdivisão ou desmembramento de Estados.<br>
+        → <strong>Requisitos:</strong><br>
+        → 1) Plebiscito da população diretamente interessada (art. 48, VI).<br>
+        → 2) Oitiva das Assembleias Legislativas (meramente opinativa).<br>
+        → 3) Lei complementar do Congresso Nacional (ato discricionário).<br>
+        → População afetada = <strong>toda a população do(s) Estado(s)</strong> (ADIN 2.650/DF).
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--green);">
+      <div class="card-title" style="color:var(--green);">Formação de Municípios (art. 18, § 4º)</div>
+      <div class="card-text">
+        → Criação, incorporação, fusão e desmembramento.<br>
+        → <strong>Requisitos:</strong><br>
+        → 1) LC federal fixando período para ocorrer.<br>
+        → 2) LO federal sobre estudos de viabilidade.<br>
+        → 3) Divulgação dos estudos de viabilidade.<br>
+        → 4) Plebiscito das populações envolvidas.<br>
+        → 5) LO estadual da Assembleia Legislativa.<br>
+        → <strong>EC 15/1996:</strong> proíbe criação de novos Municípios. LC 230/2026: autoriza desmembramento (15 anos), mas <strong>veda criação de novo Município</strong>.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Vedações Federativas (art. 19)</div>
+    <div class="card-text">
+      → <strong>I</strong> — Vedado estabelecer cultos religiosos ou igrejas, subvencioná-lhes, embaraçar-lhes o funcionamento ou manter relações de dependência/aliança (ressalvada colaboração de interesse público).<br><br>
+      → <strong>II</strong> — Vedado recusar fé aos documentos públicos.<br><br>
+      → <strong>III</strong> — Vedado criar distinções entre brasileiros ou preferências entre si.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — BENS PÚBLICOS                                       -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Bens Públicos</div>
+  </div>
+  <div class="sec-subtitle">Bens da União (art. 20) e Bens dos Estados (art. 26)</div>
+
+  <div class="card">
+    <div class="card-title">Bens da União (art. 20 — destaques)</div>
+    <div class="card-text">
+      → <strong>Terras devolutas</strong> indispensáveis à defesa de fronteiras, fortificações, vias federais e preservação ambiental (II).<br>
+      → <strong>Domínio hídrico:</strong> rios que banhem mais de 1 UF, sirvam de limites com outros países, ou se estendam a território estrangeiro (III).<br>
+      → <strong>Ilhas:</strong> fluviais/lacustres em zonas limítrofes; oceânicas e costeiras (exceto sede de Município) (IV).<br>
+      → <strong>Domínio marítimo:</strong> plataforma continental, ZEE, mar territorial, terrenos de marinha (V-VII).<br>
+      → <strong>Recursos minerais</strong> e potenciais de energia hidráulica (mesmo em rios estaduais) (VIII-IX).<br>
+      → <strong>Terras tradicionalmente ocupadas pelos índios</strong> — bens da União, de <strong>usufruto exclusivo</strong> dos índios (XI).
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Bens dos Estados (art. 26)</div>
+    <div class="card-text">
+      → Águas superficiais ou subterrâneas (ressalvadas obras da União).<br>
+      → Áreas em ilhas oceânicas/costeiras no domínio estadual.<br>
+      → Ilhas fluviais/lacustres não pertencentes à União.<br>
+      → Terras devolutas não compreendidas entre as da União.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Terrenos de marinha:</strong> são bens da União mesmo situados em ilhas costeiras sede de Municípios (RE 636199/ES).<br>
+    <strong>Potenciais hidráulicos:</strong> são bens da União mesmo em rios que banham apenas 1 Estado.<br>
+    <strong>Art. 176:</strong> jazidas e recursos minerais são propriedade distinta do solo — pertencem à União, mas o produto da lavra é da concessionária.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Nenhuma questão do TEC colada ainda.</div>
+
+  <div class="card">
+    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada ainda.
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<!-- Navegação entre aulas -->
+<div class="aula-nav">
+  <a href="../Aula 07/resumo-aula-07-partidos-politicos.html">
+    <div class="aula-nav-dir">← Anterior</div>
+    <div class="aula-nav-label">Aula 07 — Partidos Políticos</div>
+  </a>
+  <a class="placeholder"></a>
+</div>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+})();
+</script>
+
+</body>
+</html>
