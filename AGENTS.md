@@ -234,6 +234,9 @@ via badge verde na linha da aula:
 - Quando o usuário diz **"revisei Aula X"** (ou "revisada"), atualizar a data da
   revisão no badge da aula (formato: `🔁 dd/mm`).
 - Revisar de novo a mesma aula → apenas atualizar a data (sem contador).
+- **Ao encerrar uma aula** (comitar e encerrar sessão), **SEMPRE perguntar** ao
+  usuário se a sessão foi **primeira aula** (🆕) ou **revisão** (🔁), e registrar
+  no index antes de publicar. Não esperar o usuário cobrar.
 - Após marcar: atualizar o campo "Última atualização" no header do index,
   commitar e publicar no Surge (fluxo normal).
 - O badge fica na linha da aula, na coluna `ma-rev` (Plex Mono, verde).
