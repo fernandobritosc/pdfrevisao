@@ -224,21 +224,19 @@ Formato sugerido:
 
 ## Rastreabilidade de revisão (revisão espaçada)
 
-Registro de quais aulas já foram revisadas, direto no card da aula em
-`Resumo_estudos/index.html`, via tag verde:
+Registro de quais aulas já foram revisadas, no index em `Resumo_estudos/index.html`,
+via badge verde na linha da aula:
 
 ```html
-<span class="card-tag">🔁 revisada em 11/08/2026 · 2ª revisão</span>
+<span class="ma-rev">🔁 17/08</span>
 ```
 
-- Quando o usuário diz **"revisei Aula X"** (ou "revisada"), atualizar o card da
-  aula no index: data da revisão (horário de Brasília) + contador de revisões
-  (`1ª`, `2ª`, `3ª`...).
-- Revisar de novo a mesma aula → atualizar a data e **incrementar** o contador.
+- Quando o usuário diz **"revisei Aula X"** (ou "revisada"), atualizar a data da
+  revisão no badge da aula (formato: `🔁 dd/mm`).
+- Revisar de novo a mesma aula → apenas atualizar a data (sem contador).
 - Após marcar: atualizar o campo "Última atualização" no header do index,
   commitar e publicar no Surge (fluxo normal).
-- A classe `card-tag` já existe no CSS do index (verde) — basta inserir o span
-  no `card-meta`/`card-links` do card.
+- O badge fica na linha da aula, na coluna `ma-rev` (Plex Mono, verde).
 
 ## Backlog
 
