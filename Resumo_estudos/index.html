@@ -640,7 +640,7 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
 }
 .divisoria-list { display: flex; flex-direction: column; gap: .15rem; }
 .divisoria-item {
-  display: flex; align-items: baseline; gap: .4rem;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem;
   padding: .25rem .5rem .25rem .6rem;
   border-radius: 6px;
   text-decoration: none;
@@ -651,7 +651,17 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
 .divisoria-item:hover { background: #f0eee7; color: var(--text); }
 .divisoria-item .di-nome { font-weight: 600; color: var(--text); }
 .divisoria-item .di-tag { margin-left: .35rem; }
-.divisoria-item .di-bullet { color: var(--muted); font-size: .7rem; flex-shrink: 0; }</style>
+.divisoria-item .di-bullet { color: var(--muted); font-size: .7rem; flex-shrink: 0; }
+.divisoria-item .di-meta {
+  flex: 0 0 100%;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .64rem;
+  color: var(--muted);
+  margin-left: .95rem;
+  margin-top: -.1rem;
+  line-height: 1.25;
+}
+html[data-theme="dark"] .di-meta { color: var(--muted); }</style>
 
 
 
@@ -848,14 +858,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <p>Caderno de estudos para concursos — resumos, mapas mentais e incidência de temas (TEC)</p>
   <div style="margin-top:1rem; display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,.85); border:1px solid var(--line-strong); border-radius:999px; padding:.4rem 1rem; font-size:.8rem;">
     <span>🕐</span>
-<span style="font-weight:700; color:var(--ink);">Última atualização: 30/08/2026 01:00</span>
+<span style="font-weight:700; color:var(--ink);">Última atualização: 01/09/2026 21:01</span>
     <span style="color:var(--text2);">(horário de Brasília)</span>
   </div>
   <div style="margin-top:.7rem; display:inline-flex; gap:.45rem;">
     <a href="mudancas.html" style="display:inline-flex; align-items:center; gap:.35rem; background:rgba(255,255,255,.85); border:1px solid var(--line-strong); border-radius:999px; padding:.4rem 1rem; font-size:.8rem; font-weight:700; color:var(--ink); text-decoration:none;">📜 O que mudou</a>
   </div>
   <div class="header-stats">
-    <span><strong>54</strong> aulas resumidas</span>
+    <span><strong>55</strong> aulas resumidas</span>
     <span><strong>8</strong> matérias</span>
     <span>🔁 revisão espaçada ativa</span>
   </div>
@@ -946,7 +956,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     });
   })();
   </script>
-  <p style="color:var(--text2);font-size:.8rem;margin:-.3rem 0 1.2rem;">🟢 Tag verde no card = aula já revisada (revisão espaçada) — mostra a data da última revisão e o nº de revisões.</p>
+  <p style="color:var(--text2);font-size:.8rem;margin:-.3rem 0 1.2rem;">🟢 Tag verde no card = aula já revisada. 🆕 Data de criação extraída do git log (corrija se necessário).</p>
 
   <!-- DIVISÓRIAS DE MATÉRIA -->
   <div class="divisorias-wrap" style="display:flex;flex-direction:column;gap:1rem;">
@@ -958,13 +968,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="divisoria-meta">7 aulas</div>
       </div>
       <div class="divisoria-list">
-        <a class="divisoria-item" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Orçamento Público</span></a>
-        <a class="divisoria-item" href="AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Princípios Orçamentários</span></a>
-        <a class="divisoria-item" href="AFO/Aula 02/resumo-aula-02-creditos-adicionais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Créditos Ordinários e Adicionais</span></a>
-        <a class="divisoria-item" href="AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Ciclo Orçamentário</span></a>
-        <a class="divisoria-item" href="AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Orçamento Público: Conceito</span></a>
-        <a class="divisoria-item" href="AFO/Aula 05/resumo-aula-05-receita-publica-consolidado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Receita Pública</span></a>
-        <a class="divisoria-item" href="AFO/Aula 05/resumo-aula-05-divida-ativa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Dívida Ativa</span></a>
+        <a class="divisoria-item" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Orçamento Público</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Princípios Orçamentários</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="AFO/Aula 02/resumo-aula-02-creditos-adicionais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Créditos Ordinários e Adicionais</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Ciclo Orçamentário</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Orçamento Público: Conceito</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="AFO/Aula 05/resumo-aula-05-receita-publica-consolidado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Receita Pública</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="AFO/Aula 05/resumo-aula-05-divida-ativa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Dívida Ativa</span><span class="di-meta">🆕 11/08/2026</span></a>
       </div>
     </div>
 
@@ -975,13 +985,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="divisoria-meta">7 aulas</div>
       </div>
       <div class="divisoria-list">
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Conceitos Introdutórios</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 01/resumo-aula-01-teorias-administrativas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Teoria Geral da Administração</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Planejamento Estratégico</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Ferramentas Estratégicas</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Organização e Estrutura Organizacional</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Liderança</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Motivação</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Conceitos Introdutórios</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 01/resumo-aula-01-teorias-administrativas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Teoria Geral da Administração</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Planejamento Estratégico</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Ferramentas Estratégicas</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Organização e Estrutura Organizacional</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Liderança</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Motivação</span><span class="di-meta">🆕 22/08/2026</span></a>
       </div>
     </div>
 
@@ -992,15 +1002,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="divisoria-meta">9 aulas</div>
       </div>
       <div class="divisoria-list">
-        <a class="divisoria-item" href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Princípios Administrativos</span> <span class="card-tag di-tag">🔁 revisada em 17/08/2026 · 1ª revisão</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Estado, Governo e Administração Pública</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 02/resumo-aula-02-organizacao-administrativa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Organização Administrativa</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 03/resumo-aula-03-fundacoes-empresas-publicas-sociedades-de-economia-mista.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Fundações, Empresas Públicas e S.E.M.</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 04/resumo-aula-04-paraestatais-e-terceiro-setor.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Paraestatais e Terceiro Setor</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 05/resumo-aula-05-poderes-e-deveres-da-administracao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Poderes e Deveres da Administração</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Atos Administrativos</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 07 — Licitações Públicas</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html"><span class="di-bullet">·</span><span class="di-nome">Aula 08 — Lei 14.133/2021 - Parte 2</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Princípios Administrativos</span> <span class="card-tag di-tag">🔁 revisada em 17/08/2026 · 1ª revisão</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Estado, Governo e Administração Pública</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 02/resumo-aula-02-organizacao-administrativa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Organização Administrativa</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 03/resumo-aula-03-fundacoes-empresas-publicas-sociedades-de-economia-mista.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Fundações, Empresas Públicas e S.E.M.</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 04/resumo-aula-04-paraestatais-e-terceiro-setor.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Paraestatais e Terceiro Setor</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 05/resumo-aula-05-poderes-e-deveres-da-administracao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Poderes e Deveres da Administração</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Atos Administrativos</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 07 — Licitações Públicas</span><span class="di-meta">🆕 13/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html"><span class="di-bullet">·</span><span class="di-nome">Aula 08 — Lei 14.133/2021 - Parte 2</span><span class="di-meta">🆕 24/08/2026</span></a>
       </div>
     </div>
 
@@ -1011,14 +1021,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="divisoria-meta">7 aulas</div>
       </div>
       <div class="divisoria-list">
-        <a class="divisoria-item" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Natureza, Conceito e Interpretação</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Direitos e Deveres (art. 5º)</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Direitos Individuais e Coletivos</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Direitos Sociais</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Nacionalidade</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Direitos Políticos</span> <span class="card-tag di-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 07 — Partidos Políticos</span> <span class="card-tag di-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 08/resumo-aula-08-organizacao-do-estado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 08 — Organização do Estado</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Natureza, Conceito e Interpretação</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Direitos e Deveres (art. 5º)</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Direitos Individuais e Coletivos</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Direitos Sociais</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Nacionalidade</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Direitos Políticos</span> <span class="card-tag di-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 07 — Partidos Políticos</span> <span class="card-tag di-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Constitucional/Aula 08/resumo-aula-08-organizacao-do-estado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 08 — Organização do Estado</span><span class="di-meta">🆕 30/08/2026</span></a>
       </div>
     </div>
 
@@ -1029,12 +1039,12 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="divisoria-meta">6 aulas</div>
       </div>
       <div class="divisoria-list">
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 00/resumo-aula-00-relacoes-de-trabalho-e-emprego.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Relações de Trabalho e Emprego</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 01/resumo-aula-01-principios-do-direito-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Princípios do Direito do Trabalho</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 02/resumo-aula-02-relacoes-de-trabalho-e-emprego.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Relações de Trabalho e Emprego</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 03/resumo-aula-03-contrato-de-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Contrato de Trabalho</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 04/resumo-aula-04-termino-do-contrato-de-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Término do Contrato de Trabalho</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 05/resumo-aula-05-jornada-de-trabalho-e-descansos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Jornada de Trabalho e Descansos</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 00/resumo-aula-00-relacoes-de-trabalho-e-emprego.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Relações de Trabalho e Emprego</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 01/resumo-aula-01-principios-do-direito-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Princípios do Direito do Trabalho</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 02/resumo-aula-02-relacoes-de-trabalho-e-emprego.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Relações de Trabalho e Emprego</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 03/resumo-aula-03-contrato-de-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Contrato de Trabalho</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 04/resumo-aula-04-termino-do-contrato-de-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Término do Contrato de Trabalho</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito do Trabalho/Aula 05/resumo-aula-05-jornada-de-trabalho-e-descansos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Jornada de Trabalho e Descansos</span><span class="di-meta">🆕 12/08/2026</span></a>
       </div>
     </div>
 
@@ -1045,11 +1055,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="divisoria-meta">5 aulas</div>
       </div>
       <div class="divisoria-list">
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Introdução ao DPT</span></a>
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Competência da JT</span></a>
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 02/resumo-aula-02-servicos-auxiliares-da-justica-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Serviços Auxiliares da JT</span></a>
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Prazos, Custas, Nulidades e Petição Inicial</span></a>
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 04/resumo-aula-04-notificacao-do-reclamado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Notificação do Reclamado</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Introdução ao DPT</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Competência da JT</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 02/resumo-aula-02-servicos-auxiliares-da-justica-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Serviços Auxiliares da JT</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Prazos, Custas, Nulidades e Petição Inicial</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 04/resumo-aula-04-notificacao-do-reclamado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Notificação do Reclamado</span><span class="di-meta">🆕 21/08/2026</span></a>
       </div>
     </div>
 
@@ -1060,12 +1070,12 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="divisoria-meta">6 aulas</div>
       </div>
       <div class="divisoria-list">
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2000/resumo-aula-00-ortografia.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Ortografia</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2001/resumo-aula-01-classes-palavras.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Classes de Palavras I</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2002/resumo-aula-02-preposicoes-conjuncoes.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Preposições e Conjunções</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2003/resumo-aula-03-pronomes-colocacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Pronomes e Colocação Pronominal</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2004/resumo-aula-04-classe-palavras-verbos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Classe de Palavras: Verbos</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2005/resumo-aula-05-funcoes-sintaticas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Funções Sintáticas</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2000/resumo-aula-00-ortografia.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Ortografia</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2001/resumo-aula-01-classes-palavras.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Classes de Palavras I</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2002/resumo-aula-02-preposicoes-conjuncoes.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Preposições e Conjunções</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2003/resumo-aula-03-pronomes-colocacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Pronomes e Colocação Pronominal</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2004/resumo-aula-04-classe-palavras-verbos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Classe de Palavras: Verbos</span><span class="di-meta">🆕 15/08/2026</span></a>
+        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2005/resumo-aula-05-funcoes-sintaticas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Funções Sintáticas</span><span class="di-meta">🆕 15/08/2026</span></a>
       </div>
     </div>
 
@@ -1076,13 +1086,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="divisoria-meta">7 aulas</div>
       </div>
       <div class="divisoria-list">
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2000/resumo-aula-00-conceitos-basicos-de-redes.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Conceitos Básicos de Redes</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2001/resumo-aula-01-protocolos-de-comunicacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Protocolos de Comunicação</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2002/resumo-aula-02-sitios-de-busca-e-pesquisa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Sítios de Busca e Pesquisa</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2003/resumo-aula-03-computacao-em-nuvem.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Computação em Nuvem</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2004/resumo-aula-04-redes-sociais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Redes Sociais</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2005/resumo-aula-05-internet-e-navegacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Internet e Navegação</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2006/resumo-aula-06-correio-eletronico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Correio Eletrônico</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2000/resumo-aula-00-conceitos-basicos-de-redes.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Conceitos Básicos de Redes</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2001/resumo-aula-01-protocolos-de-comunicacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Protocolos de Comunicação</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2002/resumo-aula-02-sitios-de-busca-e-pesquisa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Sítios de Busca e Pesquisa</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2003/resumo-aula-03-computacao-em-nuvem.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Computação em Nuvem</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2004/resumo-aula-04-redes-sociais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Redes Sociais</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2005/resumo-aula-05-internet-e-navegacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Internet e Navegação</span><span class="di-meta">🆕 11/08/2026</span></a>
+        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2006/resumo-aula-06-correio-eletronico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Correio Eletrônico</span><span class="di-meta">🆕 29/08/2026</span></a>
       </div>
     </div>
 
