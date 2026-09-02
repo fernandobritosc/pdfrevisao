@@ -3,844 +3,264 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resumos — PDF Revisão ?v=idx16</title>
+<title>Resumos Hermes — caderno de estudos para concursos ?v=idx17</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --bg: #f5f4f0;
-  --sidebar: #ecebe5;
-  --card: #ffffff;
+  --surface: #ffffff;
   --border: #e2dfd7;
+  --border-strong: #c9c5ba;
   --text: #1f2733;
   --text2: #455064;
   --muted: #6b7484;
-  --blue: #2563eb;
-  --blue-light: #3b82f6;
-  --amber: #d97706;
-  --green: #059669;
-  --red: #dc2626;
-  --purple: #7c3aed;
-  --teal: #0d9488;
-  --panel: #ffffff;
-  --line: #e2dfd7;
-  --line-strong: #c9c5ba;
-  --dim: #6b7484;
+  --dim: #9ca3ab;
   --ink: #1f2733;
-  --mark: #fdf3d8;
+  --green: #059669;
+  --green-light: #d9f2e3;
+  --amber: #d97706;
+  --amber-light: #fbeecb;
+  --blue: #2563eb;
+  --shadow: 0 1px 3px rgba(31,39,51,.06), 0 4px 16px rgba(31,39,51,.04);
+  --shadow-hover: 0 4px 12px rgba(31,39,51,.08), 0 12px 40px rgba(31,39,51,.06);
   --radius: 12px;
+  --radius-sm: 8px;
+  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  --nav-h: 56px;
+  --mat-afo: #16a34a;
+  --mat-ap: #0d9488;
+  --mat-ad: #2563eb;
+  --mat-dc: #7c3aed;
+  --mat-dt: #d97706;
+  --mat-dpt: #dc2626;
+  --mat-pt: #0891b2;
+  --mat-inf: #3b82f6;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+html[data-theme="dark"] {
+  --bg: #17191f; --surface: #1f232b;
+  --border: #2e3340; --border-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #5a6272;
+  --ink: #e8ebf2;
+  --green: #3ad29f; --green-light: #143428;
+  --amber: #f0a92e; --amber-light: #38300f;
+  --blue: #6ea8fe;
+  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,.4), 0 12px 40px rgba(0,0,0,.3);
+}
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.72;
-  min-height: 100vh;
+  line-height: 1.6;
+  padding-top: var(--nav-h);
 }
 a { color: var(--blue); }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
 
-/* SIDEBAR (aula pages) */
-.aula .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 260px;
-  height: 100vh;
-  background: var(--sidebar);
-  border-right: 1px solid var(--line-strong);
-  padding: 1.5rem 1.25rem;
-  overflow-y: auto;
-  z-index: 100;
+/* NAVBAR */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem; z-index: 200;
+  backdrop-filter: blur(12px);
 }
-.aula .sidebar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+.nav-brand {
+  font-family: var(--font-display); font-weight: 800; font-size: 1rem;
+  color: var(--text); text-decoration: none; display: flex; align-items: center; gap: .5rem;
 }
-.aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: .8rem;
-  font-weight: 800;
-  color: #fff;
-  background: var(--ink);
-  padding: .45rem .6rem;
-  border-radius: 6px;
-  text-transform: uppercase;
-  letter-spacing: .05em;
+.nav-brand .nb-mark { color: var(--green); }
+.nav-links { display: flex; align-items: center; gap: 1.2rem; }
+.nav-links a {
+  font-size: .8rem; font-weight: 600; color: var(--text2); text-decoration: none;
+  transition: color .15s;
 }
-.aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .7rem;
-  color: var(--text2);
-  margin: .8rem 0 1rem;
-  padding-bottom: .6rem;
-  border-bottom: 1px solid var(--line);
+.nav-links a:hover { color: var(--blue); }
+.nav-links .btn-theme {
+  width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--surface); cursor: pointer; font-size: .85rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
 }
-.aula .sidebar a {
-  display: block;
-  padding: .35rem .5rem;
-  color: var(--text2);
-  text-decoration: none;
-  font-size: .8rem;
-  border-radius: 6px;
-  margin-bottom: 1px;
-}
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
-.aula .sidebar h3, .aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: .7rem;
-  font-weight: 700;
-  color: var(--ink);
-  padding: .35rem .5rem .2rem;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  margin: 18px 0 8px;
-}
-.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
-.aula .sidebar-nav {
-  margin-top: .5rem;
-  display: flex;
-  flex-direction: column;
-  gap: .35rem;
-}
-.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
-.aula .sidebar-footer {
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line-strong);
-  display: flex;
-  flex-direction: column;
-  gap: .35rem;
-}
-.aula .sidebar-footer a {
-  color: var(--text2);
-  text-decoration: none;
-  font-size: .75rem;
-  padding: .25rem .5rem;
-  border-radius: 6px;
-  transition: all .15s;
-}
-.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
-.aula .brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  display: block;
-  color: var(--ink);
-  text-decoration: none;
-}
-.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+.main { max-width: 1120px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-/* MAIN */
-.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
-.aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
-.aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+/* HERO */
+.hero { margin-bottom: 2.5rem; }
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: .7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--green);
+  margin-bottom: .35rem;
 }
-.aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+.hero h1 {
+  font-family: var(--font-display); font-size: 2.4rem; font-weight: 800;
+  color: var(--ink); line-height: 1.05; margin-bottom: .5rem;
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
-.aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.16rem;
-  font-weight: 700;
-  color: var(--ink);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  margin: 2rem 0 1rem;
-  padding-bottom: .4rem;
-  border-bottom: 2px solid var(--line-strong);
+.hero p { font-size: 1rem; color: var(--text2); max-width: 560px; }
+.hero-stats {
+  display: flex; gap: 2rem; flex-wrap: wrap; margin: 1rem 0 1.5rem;
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
-.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
-.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+.hero-stats .hs-item { display: flex; flex-direction: column; }
+.hero-stats .hs-num {
+  font-family: var(--font-display); font-size: 1.6rem; font-weight: 800;
+  color: var(--ink); line-height: 1.1;
+}
+.hero-stats .hs-label {
+  font-size: .72rem; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .04em; font-weight: 600;
+}
+.hero-search { width: 100%; max-width: 520px; position: relative; }
+.hero-search input {
+  width: 100%; padding: .7rem 1rem .7rem 2.6rem;
+  border: 1px solid var(--border-strong); border-radius: 999px;
+  font-size: .9rem; background: var(--surface); color: var(--text);
+  outline: none; transition: border-color .15s, box-shadow .15s;
+}
+.hero-search input:focus {
+  border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+.hero-search::before {
+  content: "🔍"; position: absolute; left: .85rem; top: 50%;
+  transform: translateY(-50%); font-size: .85rem; opacity: .6;
+}
+#resultados { margin: 1rem 0 0; }
+.r-item {
+  display: block; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: .65rem .95rem; margin-bottom: .55rem;
+  color: var(--text); text-decoration: none; box-shadow: var(--shadow);
+}
+.r-item:hover { border-color: var(--blue); }
+.r-title { font-weight: 700; font-size: .9rem; }
+.r-meta { font-family: var(--font-mono); font-size: .7rem; color: var(--text2); margin-top: .1rem; }
+.r-snippet { font-size: .8rem; color: var(--text2); margin-top: .3rem; line-height: 1.45; }
+.r-snippet mark { background: #ffe9a8; color: #1f2733; padding: 0 .12rem; border-radius: 3px; }
+html[data-theme="dark"] .r-snippet mark { background: #6e5a1e; color: #e6c36d; }
 
-/* HEADER */
-.header {
-  background: var(--card);
-  color: var(--ink);
-  padding: 2rem;
-  text-align: center;
-  border: 1px solid var(--line-strong);
-  border-top: 6px solid var(--ink);
-  border-radius: var(--radius);
-  margin-bottom: 1.5rem;
+/* STATS CARDS */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+  margin-bottom: 2.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
-.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
-
-/* CARDS */
-.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.card {
-  background: var(--card);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
-  position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
-  color: inherit;
-  text-decoration: none;
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem; box-shadow: var(--shadow);
 }
-.aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
-.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
-.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
-.card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
-.card-text + .card-text { margin-top: .65rem; }
-.card-text strong { color: var(--text); }
-.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
-.card-links a {
-  display: inline-block;
-  padding: .25rem .6rem;
-  border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .78rem;
-  font-weight: 600;
-  text-decoration: none;
-  background: #e3e9f4;
-  color: #1d3f9e;
-  border: 1px solid #1d3f9e;
-  transition: all .15s;
+.stat-card .sc-icon { font-size: 1.2rem; margin-bottom: .25rem; }
+.stat-card .sc-value {
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;
+  color: var(--ink); line-height: 1.1;
 }
-.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
-.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
-.card-tag {
-  display: inline-block;
-  padding: .2rem .5rem;
-  border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .7rem;
-  font-weight: 600;
-  background: #d9f2e3;
-  color: #0b5d3b;
+.stat-card .sc-label {
+  font-size: .72rem; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .04em; font-weight: 600; margin-top: .1rem;
 }
 
-/* CALLOUTS */
-.callout {
-  display: flex;
-  gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
-  font-size: .88rem;
-  line-height: 1.6;
-  margin: .8rem 0;
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
+/* SEÇÕES */
+.section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.2rem;
 }
-.callout strong { color: var(--amber); }
-.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
-.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
-.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
-.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
-.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
-
-/* MNEMONIC */
-.mnemonic {
-  background: var(--mark);
-  border: 2px dashed var(--amber);
-  border-radius: var(--radius);
-  padding: .85rem 1.15rem;
-  margin: .85rem 0;
+.section-head .sh-title {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--ink);
 }
-.mnemonic-label {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .7rem;
-  font-weight: 600;
-  color: var(--amber);
-  text-transform: uppercase;
-  letter-spacing: .07em;
-}
-.mnemonic-content {
-  font-size: .91rem;
-  font-weight: 700;
-  color: #7a5412;
-  letter-spacing: .01em;
-  margin-top: .15rem;
-  line-height: 1.7;
-  text-align: justify;
-  white-space: normal;
-}
-.mnemonic-content span {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  padding: .25rem 0;
-}
-.mnemonic-content .mnem-high {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 7px;
-  background: var(--amber);
-  color: #fff;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-weight: 800;
-  font-size: 1rem;
-  line-height: 1;
+.section-head .sh-link {
+  font-size: .78rem; font-weight: 600; color: var(--blue); text-decoration: none;
 }
 
-/* TABLES */
-.table-wrap {
-  overflow-x: auto;
-  margin: .8rem 0;
-  border-radius: 10px;
-  border: 1px solid var(--line-strong);
-  background: var(--card);
+/* MATÉRIAS GRID */
+.materias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.materia-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
 }
-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
-td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
-tbody tr:last-child td { border-bottom: none; }
-
-/* GOTCHA */
-.gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
-  margin: .75rem 0;
-  font-size: .88rem;
-  color: var(--text);
-  text-align: justify;
+.materia-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.materia-card .mc-bar { height: 4px; width: 100%; }
+.materia-card .mc-body { padding: 1rem 1.15rem .9rem; }
+.mc-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: .35rem;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.mc-head .mc-icon { font-size: 1.1rem; }
+.mc-head .mc-name { font-family: var(--font-display); font-size: .9rem; font-weight: 700; color: var(--ink); }
+.mc-head .mc-count { font-family: var(--font-mono); font-size: .7rem; font-weight: 600; color: var(--muted); margin-left: auto; margin-right: .6rem; }
+.mc-head .mc-badge {
+  font-family: var(--font-mono); font-size: .65rem; font-weight: 600;
+  background: var(--green-light); color: var(--green); padding: .15rem .45rem; border-radius: 5px;
+}
+.mc-progress { height: 4px; background: var(--border); border-radius: 2px; margin: .5rem 0; overflow: hidden; }
+.mc-progress .mc-pb-fill { height: 100%; border-radius: 2px; }
+.mc-aulas { display: flex; flex-direction: column; gap: .05rem; }
+.mc-aula {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .28rem .35rem; border-radius: 6px;
+  font-size: .78rem; color: var(--text2); text-decoration: none;
+  transition: background .1s;
+}
+.mc-aula:hover { background: var(--bg); }
+.mc-aula .ma-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.mc-aula .ma-name { font-weight: 600; color: var(--text); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mc-aula .ma-criada {
+  font-family: var(--font-mono); font-size: .62rem; color: var(--dim);
+  width: 4.2rem; text-align: right; flex-shrink: 0;
+}
+.mc-aula .ma-rev {
+  font-family: var(--font-mono); font-size: .6rem; font-weight: 600;
+  background: var(--green-light); color: var(--green); padding: .1rem .4rem;
+  border-radius: 4px; width: 5.4rem; text-align: center; flex-shrink: 0;
+}
+.mc-aula .ma-rev.none { background: transparent; color: transparent; }
 
-/* TAGS */
+/* AGENDA / REVISÃO DIRIGIDA */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+.info-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem; box-shadow: var(--shadow);
+}
+.info-card .ic-title {
+  font-family: var(--font-display); font-size: .95rem; font-weight: 700; color: var(--ink);
+  display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem;
+}
+.info-card .ic-text { font-size: .82rem; color: var(--text2); line-height: 1.55; }
+.info-card .ic-text a { color: var(--blue); }
+.info-card .ic-text .sep { display: block; margin-top: .4rem; }
+.callout-warn {
+  background: var(--amber-light); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); padding: .7rem 1rem; font-size: .84rem; color: var(--text2);
+  margin-bottom: 1.25rem;
+}
 .tag {
-  display: inline-block;
-  padding: .2rem .55rem;
-  border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .76rem;
-  font-weight: 600;
-  margin: 0 .2rem;
-  background: #e8e6df;
-  color: #455064;
+  display: inline-block; padding: .18rem .5rem; border-radius: 5px;
+  font-family: var(--font-mono); font-size: .68rem; font-weight: 600;
+  background: var(--green-light); color: var(--green); margin: 0 .1rem;
 }
-.tag-blue { background: #dbe6fb; color: #1d3f9e; }
-.tag-green { background: #d9f2e3; color: #0b5d3b; }
-.tag-amber { background: #fbeecb; color: #7a5412; }
-.tag-red { background: #f8d8d8; color: #9c1f1f; }
-.tag-purple { background: #e9e2f9; color: #5b3aa5; }
-.tag-teal { background: #d3f2ee; color: #0b5d55; }
-.tag-gray { background: #e5e7eb; color: #4b5563; }
-.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
-.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
-.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
-.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
-.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+.tag-gray { background: var(--border); color: var(--muted); }
 
-/* HIGHLIGHT */
-.highlight {
-  background: var(--mark);
-  padding: .15rem .35rem;
-  border-radius: 4px;
-  font-weight: 700;
-  color: var(--text);
+/* FOOTER */
+.footer {
+  text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem;
+  border-top: 1px solid var(--border); margin-top: 3rem; max-width: 1120px;
+  margin-left: auto; margin-right: auto;
 }
-.hl {
-  background: #e8e6df;
-  border-left: 3px solid var(--blue);
-  padding: 12px 14px;
-  border-radius: 0 8px 8px 0;
-  font-size: 13px;
-  color: var(--text);
-}
-
-/* PROGRESS */
-.progress-wrap {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(245,244,240,.92);
-  backdrop-filter: blur(8px);
-  padding: .6rem 0;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--line);
-}
-.progress-track {
-  height: 8px;
-  background: var(--card);
-  border-radius: 4px;
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-}
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--blue), var(--purple));
-  width: 0%;
-  transition: width .3s;
-}
-.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 260px;
-  right: 0;
-  height: 4px;
-  background: rgba(37,99,235,.2);
-  z-index: 100;
-}
-
-/* LEGAL BLOCK */
-.legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
-  border-radius: 8px;
-  padding: .7rem .9rem;
-  margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .82rem;
-  color: var(--text2);
-  line-height: 1.55;
-}
-.legal-block strong { color: #1d3f9e; }
-
-/* QUESTIONS / OPTIONS */
-.question {
-  background: #faf9f5;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--amber);
-  border-radius: var(--radius);
-  padding: 1.1rem 1.3rem;
-  margin: .9rem 0;
-  font-size: .85rem;
-}
-.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
-.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
-.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-.q-text { color: var(--text); margin: 6px 0; }
-.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
-.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
-.option {
-  background: #faf9f5;
-  border: 1px solid var(--line-strong);
-  padding: .5rem .75rem;
-  border-radius: 8px;
-  font-size: .82rem;
-  color: var(--text2);
-  line-height: 1.5;
-}
-.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
-.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
-.answer strong { color: var(--green); font-weight: 800; }
-.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
-.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
-
-/* DOTS */
-.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-.dot.g { background: var(--green); }
-.dot.b { background: var(--blue); }
-.dot.a { background: var(--amber); }
-.dot.r { background: var(--red); }
-.dot.p { background: var(--purple); }
-.dot.c { background: #0891b2; }
-
-/* EXAMPLE / FLOW */
-.example {
-  background: #f0eee7;
-  padding: 8px 10px;
-  border-radius: 6px;
-  margin: 4px 0;
-  font-size: 12px;
-  color: var(--text2);
-  font-style: italic;
-}
-.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
-.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
-.flow-arrow { color: var(--dim); font-size: 18px; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-ul { margin: 6px 0; padding-left: 22px; }
-li { margin: 4px 0; }
-
-/* LANDING */
-.container { max-width: 600px; margin: 0 auto; text-align: center; }
-.container h1 {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: .5rem;
-  background: linear-gradient(135deg, var(--blue), var(--green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
-.back-link {
-  display: inline-block;
-  color: #1d3f9e;
-  text-decoration: none;
-  font-size: .9rem;
-  margin-bottom: 1.5rem;
-}
-.back-link:hover { color: var(--blue-light); text-decoration: underline; }
-.btn {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background: var(--blue);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.2s;
-}
-.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
-.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
 .footer a { color: var(--blue); text-decoration: none; }
-.footer a:hover { text-decoration: underline; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
-  .aula .main { margin-left: 0; }
-  .aula .sidebar { display: none; }
-  .aula .progress-bar { left: 0; }
+  .materias-grid, .info-grid, .stats-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
-  .header { padding: 1.5rem 1rem; }
-  .header h1 { font-size: 1.4rem; }
-  .aula section, .aula .section { padding: 1.25rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 1.8rem; }
+  .nav-links a:not(.btn-theme) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
-
-/* LANDING — capa do caderno */
-.landing .header {
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--line-strong);
-  border-top: none;
-  border-radius: var(--radius);
-  padding: 2rem;
-  margin-bottom: 1.5rem;
-}
-.landing .header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--green), var(--blue), var(--purple), var(--amber), var(--teal));
-}
-.landing .header h1 {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: -.03em;
-  color: var(--ink);
-  line-height: 1.05;
-}
-.landing .header-eyebrow {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .68rem;
-  font-weight: 600;
-  color: var(--amber);
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  margin-bottom: .25rem;
-}
-.landing .header p { color: var(--text2); font-size: .92rem; margin-top: .35rem; }
-.landing .header-stats {
-  margin-top: .8rem;
-  display: flex;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  font-size: .78rem;
-  color: var(--text2);
-}
-.landing .header-stats span { display: inline-flex; align-items: center; gap: .2rem; }
-.landing .header-stats strong {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1rem;
-  color: var(--ink);
-}
-.landing .header-actions { margin-top: .8rem; display: flex; gap: .5rem; flex-wrap: wrap; }
-.landing .header-actions a {
-  display: inline-flex; align-items: center; gap: .35rem;
-  background: var(--card); border: 1px solid var(--line-strong); border-radius: 999px;
-  padding: .3rem .85rem; font-size: .78rem; color: var(--text); text-decoration: none;
-  transition: background .15s, border-color .15s;
-}
-.landing .header-actions a:hover { background: #ecebe5; border-color: var(--line-strong); }
-
-/* DIVISÓRIAS DE CADERNO */
-.divisoria {
-  background: var(--card);
-  border: 1px solid var(--line-strong);
-  border-left: 10px solid var(--line-strong);
-  border-radius: var(--radius);
-  padding: 1.2rem 1.4rem 1rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.04);
-  transition: box-shadow .15s;
-}
-.divisoria:hover { box-shadow: 0 6px 20px rgba(31,39,51,.08); }
-.divisoria-head { display: flex; align-items: center; gap: .6rem; margin-bottom: .65rem; }
-.divisoria-icon { font-size: 1.1rem; flex-shrink: 0; }
-.divisoria-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-.divisoria-meta {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .65rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  margin-left: auto;
-}
-.divisoria-list { display: flex; flex-direction: column; gap: .15rem; }
-.divisoria-item {
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem;
-  padding: .25rem .5rem .25rem .6rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: .84rem;
-  color: var(--text2);
-  transition: background .15s;
-}
-.divisoria-item:hover { background: #f0eee7; color: var(--text); }
-.divisoria-item .di-nome { font-weight: 600; color: var(--text); }
-.divisoria-item .di-tag { margin-left: .35rem; }
-.divisoria-item .di-bullet { color: var(--muted); font-size: .7rem; flex-shrink: 0; }
-.divisoria-item .di-meta {
-  flex: 0 0 100%;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .64rem;
-  color: var(--muted);
-  margin-left: .95rem;
-  margin-top: -.1rem;
-  line-height: 1.25;
-}
-html[data-theme="dark"] .di-meta { color: var(--muted); }</style>
-
-
-
-<style id="rh-addons">
-/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
-html[data-theme="dark"] {
-  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
-  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
-  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
-  --ink: #e8ebf2; --mark: #3a3117;
-  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
-  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
-}
-html[data-theme="dark"] .callout { background:#262a33; }
-html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
-html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
-html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
-html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
-html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
-html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
-html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
-html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
-html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
-html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
-html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
-html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
-html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
-html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
-html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
-html[data-theme="dark"] .tag.c { background:#10291e; }
-html[data-theme="dark"] .tag.d { background:#331a1a; }
-html[data-theme="dark"] .tag.a { background:#33290f; }
-html[data-theme="dark"] .tag.x { background:#2b1f45; }
-html[data-theme="dark"] .tag.i { background:#0f2f38; }
-html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
-html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
-html[data-theme="dark"] .card-links a:hover { color:#17191f; }
-html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
-html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
-html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
-html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
-html[data-theme="dark"] .aula .sidebar-title, .aula .sidebar-brand { color:#17191f; }
-html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
-html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
-html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
-html[data-theme="dark"] .question { background:#232733; }
-html[data-theme="dark"] .option { background:#232733; }
-html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
-html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
-html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
-html[data-theme="dark"] .legal-block { background:#262a33; }
-html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
-html[data-theme="dark"] .example { background:#262a33; }
-html[data-theme="dark"] .flow-box { background:#2a2e38; }
-html[data-theme="dark"] .hl { background:#2a2e38; }
-html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
-html[data-theme="dark"] .back-link { color:#a9c3ef; }
-html[data-theme="dark"] .btn { color:#17191f; }
-html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
-html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
-/* Toolbar flutuante (tema · fonte · topo) */
-.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
-.rh-toolbar button {
-  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
-  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
-  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
-  transition: transform .15s, border-color .15s;
-}
-.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
-.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
-.rh-toolbar button[hidden] { display: none; }
-@media (max-width: 768px) {
-  .rh-toolbar { right: .7rem; bottom: .7rem; }
-  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
-}
-
-/* Navegação entre aulas */
-.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
-.aula .aula-nav { margin-left: 260px; max-width: 960px; }
-.aula-nav a {
-  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
-  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
-  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
-}
-.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
-.aula-nav a.next { text-align: right; }
-.aula-nav .aula-nav-dir {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
-  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
-}
-.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
-.aula-nav a.placeholder { visibility: hidden; }
-@media (max-width: 900px) {
-  .aula .aula-nav { margin-left: 0; }
-  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
-}
-@page { margin: 1.2cm; }
-@media print {
-  html[data-theme="dark"] {
-  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
-  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
-  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
-  --ink: #1f2733; --mark: #fdf3d8;
-  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
-  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
-  }
-  html[data-theme="dark"] .callout { background:#f0eee7; }
-  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
-  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
-  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
-  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
-  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
-  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
-  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
-  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
-  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
-  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
-  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
-  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
-  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
-  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
-  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
-  html[data-theme="dark"] .tag.c { background:#dff3e9; }
-  html[data-theme="dark"] .tag.d { background:#fae5e5; }
-  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
-  html[data-theme="dark"] .tag.x { background:#ece5fa; }
-  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
-  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
-  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
-  html[data-theme="dark"] .card-links a:hover { color:#fff; }
-  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
-  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
-  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
-  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
-  html[data-theme="dark"] .aula .sidebar-title, .aula .sidebar-brand { color:#fff; }
-  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
-  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
-  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
-  html[data-theme="dark"] .question { background:#faf9f5; }
-  html[data-theme="dark"] .option { background:#faf9f5; }
-  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
-  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
-  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
-  html[data-theme="dark"] .legal-block { background:#f0eee7; }
-  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
-  html[data-theme="dark"] .example { background:#f0eee7; }
-  html[data-theme="dark"] .flow-box { background:#e8e6df; }
-  html[data-theme="dark"] .hl { background:#e8e6df; }
-  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
-  html[data-theme="dark"] .back-link { color:#1d3f9e; }
-  html[data-theme="dark"] .btn { color:#fff; }
-  body { background: #fff !important; color: #1f2733 !important; }
-  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
-  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
-  .aula section, .aula .section { padding: .6rem 0 !important; }
-  a { color: #1f2733 !important; text-decoration: none !important; }
-  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
-  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
-    box-shadow: none !important; break-inside: avoid;
-  }
-  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
-  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
-  thead, thead tr { background: #ecebe5 !important; }
-  th, td { border-color: #c9c5ba !important; }
-  tr:nth-child(even) { background: #faf9f5 !important; }
-  .tag, .card-tag { border: 1px solid #b6b2a6; }
-  .highlight { background: transparent !important; }
-  .mnemonic { background: #fff !important; }
-}
-#resultados { margin: -0.6rem 0 1.4rem; }
-.r-item { display: block; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: .65rem .95rem; margin-bottom: .55rem; color: var(--text); text-decoration: none; }
-.r-item:hover { border-color: var(--ink); box-shadow: 0 2px 6px rgba(31,39,51,.08); }
-.r-title { font-weight: 700; font-size: .9rem; }
-.r-meta { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; color: var(--text2); margin-top: .1rem; }
-.r-snippet { font-size: .8rem; color: var(--text2); margin-top: .3rem; line-height: 1.45; }
-.r-snippet mark { background: #ffe9a8; color: #1F2733; padding: 0 .12rem; border-radius: 3px; }
 </style>
-<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icons/icon-180.png">
@@ -851,343 +271,395 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 }
 </script>
 </head>
-<body class="landing">
+<body>
 
-<div class="header">
-  <h1>Resumos Hermes</h1>
-  <p>Caderno de estudos para concursos — resumos, mapas mentais e incidência de temas (TEC)</p>
-  <div style="margin-top:1rem; display:inline-flex; align-items:center; gap:.45rem; background:rgba(255,255,255,.85); border:1px solid var(--line-strong); border-radius:999px; padding:.4rem 1rem; font-size:.8rem;">
-    <span>🕐</span>
-<span style="font-weight:700; color:var(--ink);">Última atualização: 01/09/2026 21:01</span>
-    <span style="color:var(--text2);">(horário de Brasília)</span>
+<nav class="nav">
+  <a class="nav-brand" href="#"><span class="nb-mark">●</span> Resumos Hermes</a>
+  <div class="nav-links">
+    <a href="mudancas.html">O que mudou</a>
+    <a href="#materias">Matérias</a>
+    <a href="#agenda">Agenda</a>
+    <button class="btn-theme" id="rhTheme" aria-label="Alternar modo claro/escuro">🌙</button>
   </div>
-  <div style="margin-top:.7rem; display:inline-flex; gap:.45rem;">
-    <a href="mudancas.html" style="display:inline-flex; align-items:center; gap:.35rem; background:rgba(255,255,255,.85); border:1px solid var(--line-strong); border-radius:999px; padding:.4rem 1rem; font-size:.8rem; font-weight:700; color:var(--ink); text-decoration:none;">📜 O que mudou</a>
-  </div>
-  <div class="header-stats">
-    <span><strong>55</strong> aulas resumidas</span>
-    <span><strong>8</strong> matérias</span>
-    <span>🔁 revisão espaçada ativa</span>
-  </div>
-</div>
+</nav>
 
 <div class="main">
 
-  <input id="busca" type="text" placeholder="🔍 Buscar em todos os resumos (aula, tema ou conteúdo — ex.: MI coletivo)..." autocomplete="off" style="width:100%;padding:.8rem 1.1rem;border:1px solid var(--border);border-radius:10px;font-size:.95rem;background:var(--card);color:var(--text);margin-bottom:1.5rem;outline:none;">
-  <div id="resultados"></div>
-  <script>
-  (function () {
-    var input = document.getElementById('busca');
-    var res = document.getElementById('resultados');
-    var grid = document.querySelector('.divisorias-wrap');
-    var index = null;
-    fetch('search-index.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { index = d; }).catch(function () { index = null; });
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Caderno de estudos para concursos</div>
+    <h1>Resumos Hermes</h1>
+    <p>Resumos, mapas mentais e incidência de temas (TEC) — organizados por matéria e aula.</p>
+    <div class="hero-stats">
+      <div class="hs-item"><span class="hs-num">55</span><span class="hs-label">Aulas</span></div>
+      <div class="hs-item"><span class="hs-num">8</span><span class="hs-label">Matérias</span></div>
+      <div class="hs-item"><span class="hs-num">3</span><span class="hs-label">Revisadas</span></div>
+      <div class="hs-item"><span class="hs-num">01/09</span><span class="hs-label">Última atualização</span></div>
+    </div>
+    <div class="hero-search">
+      <input id="busca" type="text" placeholder="Buscar aula, tema ou conteúdo (ex.: MI coletivo)..." autocomplete="off">
+    </div>
+    <div id="resultados"></div>
+  </div>
 
-    function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card"><div class="sc-icon">📚</div><div class="sc-value">55</div><div class="sc-label">Aulas resumidas</div></div>
+    <div class="stat-card"><div class="sc-icon">📂</div><div class="sc-value">8</div><div class="sc-label">Matérias</div></div>
+    <div class="stat-card"><div class="sc-icon">🔁</div><div class="sc-value">3</div><div class="sc-label">Revisões concluídas</div></div>
+    <div class="stat-card"><div class="sc-icon">🕐</div><div class="sc-value">01/09</div><div class="sc-label">Última atualização</div></div>
+  </div>
 
-    function mark(snippet, terms) {
-      var out = esc(snippet);
-      terms.forEach(function (t) {
-        var re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-        out = out.replace(re, '<mark>$1</mark>');
-      });
-      return out;
-    }
+  <!-- MATÉRIAS -->
+  <div class="section-head" id="materias">
+    <div class="sh-title">📖 Matérias</div>
+    <a class="sh-link" href="mudancas.html">O que mudou →</a>
+  </div>
 
-    function snippetFor(it, terms) {
-      var low = it.x.toLowerCase();
-      var pos = -1;
-      terms.forEach(function (t) { var p = low.indexOf(t); if (p >= 0 && (pos < 0 || p < pos)) pos = p; });
-      var start = Math.max(0, pos - 70);
-      var end = Math.min(it.x.length, pos + terms.join(' ').length + 110);
-      return (start > 0 ? '…' : '') + it.x.slice(start, end) + (end < it.x.length ? '…' : '');
-    }
+  <div class="materias-grid">
 
-    function search(q) {
-      var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-      var out = [];
-      for (var i = 0; i < index.length; i++) {
-        var it = index[i];
-        var titleLow = (it.a + ' ' + it.t).toLowerCase();
-        var ok = true;
-        var score = 0;
-        for (var j = 0; j < terms.length; j++) {
-          if (titleLow.indexOf(terms[j]) >= 0) score += 5;
-          if (it.x.toLowerCase().indexOf(terms[j]) >= 0) score += 1;
-          else ok = false;
-        }
-        if (ok && score > 0) out.push({ it: it, score: score });
-      }
-      out.sort(function (a, b) { return b.score - a.score || (a.it.a + a.it.t).localeCompare(b.it.a + b.it.t); });
-      return out.slice(0, 15);
-    }
-
-    function render(items, q) {
-      var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-      if (!items.length) {
-        res.innerHTML = '<p style="color:var(--text2);font-size:.85rem;">Nada encontrado para <strong>' + esc(q) + '</strong>.</p>';
-        return;
-      }
-      res.innerHTML = items.map(function (o) {
-        var it = o.it;
-        return '<a class="r-item" href="' + encodeURI(it.u) + (it.s ? '#' + it.s : '') + '">' +
-          '<div class="r-title">' + esc(it.a) + (it.t ? ' · ' + esc(it.t) : '') + '</div>' +
-          '<div class="r-meta">' + esc(it.m) + '</div>' +
-          '<div class="r-snippet">' + mark(snippetFor(it, terms), terms) + '</div></a>';
-      }).join('');
-    }
-
-    var timer = null;
-    input.addEventListener('input', function () {
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        var q = input.value.trim();
-        if (q.length < 2) { res.innerHTML = ''; if (grid) grid.style.display = ''; return; }
-        if (index) {
-          if (grid) grid.style.display = 'none';
-          render(search(q), q);
-        } else {
-          if (grid) grid.style.display = '';
-          document.querySelectorAll('.divisoria').forEach(function (d) {
-            d.style.display = d.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
-          });
-        }
-      }, 150);
-    });
-  })();
-  </script>
-  <p style="color:var(--text2);font-size:.8rem;margin:-.3rem 0 1.2rem;">🟢 Tag verde no card = aula já revisada. 🆕 Data de criação extraída do git log (corrija se necessário).</p>
-
-  <!-- DIVISÓRIAS DE MATÉRIA -->
-  <div class="divisorias-wrap" style="display:flex;flex-direction:column;gap:1rem;">
-
-    <div class="divisoria" style="border-left-color:var(--green);">
-      <div class="divisoria-head">
-        <div class="divisoria-icon">💰</div>
-        <div class="divisoria-title" style="color:var(--green);">AFO — Administração Financeira e Orçamentária</div>
-        <div class="divisoria-meta">7 aulas</div>
-      </div>
-      <div class="divisoria-list">
-        <a class="divisoria-item" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Orçamento Público</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Princípios Orçamentários</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="AFO/Aula 02/resumo-aula-02-creditos-adicionais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Créditos Ordinários e Adicionais</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Ciclo Orçamentário</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Orçamento Público: Conceito</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="AFO/Aula 05/resumo-aula-05-receita-publica-consolidado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Receita Pública</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="AFO/Aula 05/resumo-aula-05-divida-ativa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Dívida Ativa</span><span class="di-meta">🆕 11/08/2026</span></a>
+    <!-- AFO -->
+    <div class="materia-card" data-mat="AFO">
+      <div class="mc-bar" style="background:var(--mat-afo)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">💰</span>
+          <span class="mc-name" style="color:var(--mat-afo)">AFO</span>
+          <span class="mc-count">7 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-afo)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Aula 00 — Orçamento Público</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Aula 01 — Princípios Orçamentários</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="AFO/Aula 02/resumo-aula-02-creditos-adicionais.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Aula 02 — Créditos Ordinários e Adicionais</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Aula 03 — Ciclo Orçamentário</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Aula 04 — Orçamento Público: Conceito</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="AFO/Aula 05/resumo-aula-05-receita-publica-consolidado.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Aula 05 — Receita Pública</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="AFO/Aula 05/resumo-aula-05-divida-ativa.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Aula 05 — Dívida Ativa</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+        </div>
       </div>
     </div>
 
-    <div class="divisoria" style="border-left-color:var(--teal);">
-      <div class="divisoria-head">
-        <div class="divisoria-icon">🏛️</div>
-        <div class="divisoria-title" style="color:var(--teal);">AP — Administração Pública e Geral</div>
-        <div class="divisoria-meta">7 aulas</div>
-      </div>
-      <div class="divisoria-list">
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Conceitos Introdutórios</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 01/resumo-aula-01-teorias-administrativas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Teoria Geral da Administração</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Planejamento Estratégico</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Ferramentas Estratégicas</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Organização e Estrutura Organizacional</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Liderança</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Motivação</span><span class="di-meta">🆕 22/08/2026</span></a>
-      </div>
-    </div>
-
-    <div class="divisoria" style="border-left-color:var(--blue);">
-      <div class="divisoria-head">
-        <div class="divisoria-icon">⚖️</div>
-        <div class="divisoria-title" style="color:var(--blue);">AD — Direito Administrativo</div>
-        <div class="divisoria-meta">9 aulas</div>
-      </div>
-      <div class="divisoria-list">
-        <a class="divisoria-item" href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Princípios Administrativos</span> <span class="card-tag di-tag">🔁 revisada em 17/08/2026 · 1ª revisão</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Estado, Governo e Administração Pública</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 02/resumo-aula-02-organizacao-administrativa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Organização Administrativa</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 03/resumo-aula-03-fundacoes-empresas-publicas-sociedades-de-economia-mista.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Fundações, Empresas Públicas e S.E.M.</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 04/resumo-aula-04-paraestatais-e-terceiro-setor.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Paraestatais e Terceiro Setor</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 05/resumo-aula-05-poderes-e-deveres-da-administracao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Poderes e Deveres da Administração</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Atos Administrativos</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 07 — Licitações Públicas</span><span class="di-meta">🆕 13/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html"><span class="di-bullet">·</span><span class="di-nome">Aula 08 — Lei 14.133/2021 - Parte 2</span><span class="di-meta">🆕 24/08/2026</span></a>
+    <!-- AD -->
+    <div class="materia-card" data-mat="AD">
+      <div class="mc-bar" style="background:var(--mat-ad)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">⚖️</span>
+          <span class="mc-name" style="color:var(--mat-ad)">Direito Administrativo</span>
+          <span class="mc-count">9 aulas</span>
+          <span class="mc-badge">1 revisada</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-ad)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 00 — Princípios Administrativos</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev">🔁 17/08 · 1ª</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 01 — Estado, Governo e Administração Pública</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 02/resumo-aula-02-organizacao-administrativa.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 02 — Organização Administrativa</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 03/resumo-aula-03-fundacoes-empresas-publicas-sociedades-de-economia-mista.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 03 — Fundações, Empresas Públicas e S.E.M.</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 04/resumo-aula-04-paraestatais-e-terceiro-setor.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 04 — Paraestatais e Terceiro Setor</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 05/resumo-aula-05-poderes-e-deveres-da-administracao.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 05 — Poderes e Deveres da Administração</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 06 — Atos Administrativos</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 07 — Licitações Públicas</span><span class="ma-criada">🆕 13/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Aula 08 — Lei 14.133/2021 - Parte 2</span><span class="ma-criada">🆕 24/08</span><span class="ma-rev none">—</span></a>
+        </div>
       </div>
     </div>
 
-    <div class="divisoria" style="border-left-color:var(--purple);">
-      <div class="divisoria-head">
-        <div class="divisoria-icon">📜</div>
-        <div class="divisoria-title" style="color:var(--purple);">DC — Direito Constitucional</div>
-        <div class="divisoria-meta">7 aulas</div>
-      </div>
-      <div class="divisoria-list">
-        <a class="divisoria-item" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Natureza, Conceito e Interpretação</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Direitos e Deveres (art. 5º)</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Direitos Individuais e Coletivos</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Direitos Sociais</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Nacionalidade</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Direitos Políticos</span> <span class="card-tag di-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 07 — Partidos Políticos</span> <span class="card-tag di-tag">🔁 revisada em 18/08/2026 · 1ª revisão</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Constitucional/Aula 08/resumo-aula-08-organizacao-do-estado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 08 — Organização do Estado</span><span class="di-meta">🆕 30/08/2026</span></a>
-      </div>
-    </div>
-
-    <div class="divisoria" style="border-left-color:var(--amber);">
-      <div class="divisoria-head">
-        <div class="divisoria-icon">👷</div>
-        <div class="divisoria-title" style="color:var(--amber);">DT — Direito do Trabalho</div>
-        <div class="divisoria-meta">6 aulas</div>
-      </div>
-      <div class="divisoria-list">
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 00/resumo-aula-00-relacoes-de-trabalho-e-emprego.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Relações de Trabalho e Emprego</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 01/resumo-aula-01-principios-do-direito-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Princípios do Direito do Trabalho</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 02/resumo-aula-02-relacoes-de-trabalho-e-emprego.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Relações de Trabalho e Emprego</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 03/resumo-aula-03-contrato-de-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Contrato de Trabalho</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 04/resumo-aula-04-termino-do-contrato-de-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Término do Contrato de Trabalho</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito do Trabalho/Aula 05/resumo-aula-05-jornada-de-trabalho-e-descansos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Jornada de Trabalho e Descansos</span><span class="di-meta">🆕 12/08/2026</span></a>
+    <!-- DC -->
+    <div class="materia-card" data-mat="DC">
+      <div class="mc-bar" style="background:var(--mat-dc)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📜</span>
+          <span class="mc-name" style="color:var(--mat-dc)">Direito Constitucional</span>
+          <span class="mc-count">8 aulas</span>
+          <span class="mc-badge">2 revisadas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-dc)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 00 — Natureza, Conceito e Interpretação</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 02 — Direitos e Deveres (art. 5º)</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 03 — Direitos Individuais e Coletivos</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 04 — Direitos Sociais</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 05 — Nacionalidade</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 06 — Direitos Políticos</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev">🔁 18/08 · 1ª</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 07 — Partidos Políticos</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev">🔁 18/08 · 1ª</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 08/resumo-aula-08-organizacao-do-estado.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 08 — Organização do Estado</span><span class="ma-criada">🆕 30/08</span><span class="ma-rev none">—</span></a>
+        </div>
       </div>
     </div>
 
-    <div class="divisoria" style="border-left-color:var(--red);">
-      <div class="divisoria-head">
-        <div class="divisoria-icon">🔨</div>
-        <div class="divisoria-title" style="color:var(--red);">DPT — Direito Processual do Trabalho</div>
-        <div class="divisoria-meta">5 aulas</div>
-      </div>
-      <div class="divisoria-list">
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Introdução ao DPT</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Competência da JT</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 02/resumo-aula-02-servicos-auxiliares-da-justica-do-trabalho.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Serviços Auxiliares da JT</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Prazos, Custas, Nulidades e Petição Inicial</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Direito Processual do Trabalho/Aula 04/resumo-aula-04-notificacao-do-reclamado.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Notificação do Reclamado</span><span class="di-meta">🆕 21/08/2026</span></a>
-      </div>
-    </div>
-
-    <div class="divisoria" style="border-left-color:#0891b2;">
-      <div class="divisoria-head">
-        <div class="divisoria-icon">📝</div>
-        <div class="divisoria-title" style="color:#0891b2;">PT — Português</div>
-        <div class="divisoria-meta">6 aulas</div>
-      </div>
-      <div class="divisoria-list">
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2000/resumo-aula-00-ortografia.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Ortografia</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2001/resumo-aula-01-classes-palavras.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Classes de Palavras I</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2002/resumo-aula-02-preposicoes-conjuncoes.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Preposições e Conjunções</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2003/resumo-aula-03-pronomes-colocacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Pronomes e Colocação Pronominal</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2004/resumo-aula-04-classe-palavras-verbos.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Classe de Palavras: Verbos</span><span class="di-meta">🆕 15/08/2026</span></a>
-        <a class="divisoria-item" href="Portugu%C3%AAs/Aula%2005/resumo-aula-05-funcoes-sintaticas.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Funções Sintáticas</span><span class="di-meta">🆕 15/08/2026</span></a>
+    <!-- AP -->
+    <div class="materia-card" data-mat="AP">
+      <div class="mc-bar" style="background:var(--mat-ap)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🏛️</span>
+          <span class="mc-name" style="color:var(--mat-ap)">Administração Pública e Geral</span>
+          <span class="mc-count">7 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-ap)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Aula 00 — Conceitos Introdutórios</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 01/resumo-aula-01-teorias-administrativas.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Aula 01 — Teoria Geral da Administração</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Aula 02 — Planejamento Estratégico</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Aula 03 — Ferramentas Estratégicas</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Aula 04 — Organização e Estrutura Organizacional</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Aula 05 — Liderança</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Aula 06 — Motivação</span><span class="ma-criada">🆕 22/08</span><span class="ma-rev none">—</span></a>
+        </div>
       </div>
     </div>
 
-    <div class="divisoria" style="border-left-color:var(--blue-light);">
-      <div class="divisoria-head">
-        <div class="divisoria-icon">💻</div>
-        <div class="divisoria-title" style="color:var(--blue-light);">INF — Informática</div>
-        <div class="divisoria-meta">7 aulas</div>
+    <!-- DT -->
+    <div class="materia-card" data-mat="DT">
+      <div class="mc-bar" style="background:var(--mat-dt)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">👷</span>
+          <span class="mc-name" style="color:var(--mat-dt)">Direito do Trabalho</span>
+          <span class="mc-count">6 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-dt)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito do Trabalho/Aula 00/resumo-aula-00-relacoes-de-trabalho-e-emprego.html"><span class="ma-dot" style="background:var(--mat-dt)"></span><span class="ma-name">Aula 00 — Relações de Trabalho e Emprego</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 01/resumo-aula-01-principios-do-direito-do-trabalho.html"><span class="ma-dot" style="background:var(--mat-dt)"></span><span class="ma-name">Aula 01 — Princípios do Direito do Trabalho</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 02/resumo-aula-02-relacoes-de-trabalho-e-emprego.html"><span class="ma-dot" style="background:var(--mat-dt)"></span><span class="ma-name">Aula 02 — Relações de Trabalho e Emprego</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 03/resumo-aula-03-contrato-de-trabalho.html"><span class="ma-dot" style="background:var(--mat-dt)"></span><span class="ma-name">Aula 03 — Contrato de Trabalho</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 04/resumo-aula-04-termino-do-contrato-de-trabalho.html"><span class="ma-dot" style="background:var(--mat-dt)"></span><span class="ma-name">Aula 04 — Término do Contrato de Trabalho</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 05/resumo-aula-05-jornada-de-trabalho-e-descansos.html"><span class="ma-dot" style="background:var(--mat-dt)"></span><span class="ma-name">Aula 05 — Jornada de Trabalho e Descansos</span><span class="ma-criada">🆕 12/08</span><span class="ma-rev none">—</span></a>
+        </div>
       </div>
-      <div class="divisoria-list">
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2000/resumo-aula-00-conceitos-basicos-de-redes.html"><span class="di-bullet">·</span><span class="di-nome">Aula 00 — Conceitos Básicos de Redes</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2001/resumo-aula-01-protocolos-de-comunicacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 01 — Protocolos de Comunicação</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2002/resumo-aula-02-sitios-de-busca-e-pesquisa.html"><span class="di-bullet">·</span><span class="di-nome">Aula 02 — Sítios de Busca e Pesquisa</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2003/resumo-aula-03-computacao-em-nuvem.html"><span class="di-bullet">·</span><span class="di-nome">Aula 03 — Computação em Nuvem</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2004/resumo-aula-04-redes-sociais.html"><span class="di-bullet">·</span><span class="di-nome">Aula 04 — Redes Sociais</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2005/resumo-aula-05-internet-e-navegacao.html"><span class="di-bullet">·</span><span class="di-nome">Aula 05 — Internet e Navegação</span><span class="di-meta">🆕 11/08/2026</span></a>
-        <a class="divisoria-item" href="Inform%C3%A1tica/Aula%2006/resumo-aula-06-correio-eletronico.html"><span class="di-bullet">·</span><span class="di-nome">Aula 06 — Correio Eletrônico</span><span class="di-meta">🆕 29/08/2026</span></a>
+    </div>
+
+    <!-- DPT -->
+    <div class="materia-card" data-mat="DPT">
+      <div class="mc-bar" style="background:var(--mat-dpt)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🔨</span>
+          <span class="mc-name" style="color:var(--mat-dpt)">Direito Processual do Trabalho</span>
+          <span class="mc-count">5 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-dpt)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html"><span class="ma-dot" style="background:var(--mat-dpt)"></span><span class="ma-name">Aula 00 — Introdução ao DPT</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html"><span class="ma-dot" style="background:var(--mat-dpt)"></span><span class="ma-name">Aula 01 — Competência da JT</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 02/resumo-aula-02-servicos-auxiliares-da-justica-do-trabalho.html"><span class="ma-dot" style="background:var(--mat-dpt)"></span><span class="ma-name">Aula 02 — Serviços Auxiliares da JT</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html"><span class="ma-dot" style="background:var(--mat-dpt)"></span><span class="ma-name">Aula 03 — Prazos, Custas, Nulidades e Petição Inicial</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 04/resumo-aula-04-notificacao-do-reclamado.html"><span class="ma-dot" style="background:var(--mat-dpt)"></span><span class="ma-name">Aula 04 — Notificação do Reclamado</span><span class="ma-criada">🆕 21/08</span><span class="ma-rev none">—</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PT -->
+    <div class="materia-card" data-mat="PT">
+      <div class="mc-bar" style="background:var(--mat-pt)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📝</span>
+          <span class="mc-name" style="color:var(--mat-pt)">Português</span>
+          <span class="mc-count">6 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-pt)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2000/resumo-aula-00-ortografia.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Aula 00 — Ortografia</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2001/resumo-aula-01-classes-palavras.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Aula 01 — Classes de Palavras I</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2002/resumo-aula-02-preposicoes-conjuncoes.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Aula 02 — Preposições e Conjunções</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2003/resumo-aula-03-pronomes-colocacao.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Aula 03 — Pronomes e Colocação Pronominal</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2004/resumo-aula-04-classe-palavras-verbos.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Aula 04 — Classe de Palavras: Verbos</span><span class="ma-criada">🆕 15/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2005/resumo-aula-05-funcoes-sintaticas.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Aula 05 — Funções Sintáticas</span><span class="ma-criada">🆕 15/08</span><span class="ma-rev none">—</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- INF -->
+    <div class="materia-card" data-mat="INF">
+      <div class="mc-bar" style="background:var(--mat-inf)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">💻</span>
+          <span class="mc-name" style="color:var(--mat-inf)">Informática</span>
+          <span class="mc-count">7 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-inf)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Inform%C3%A1tica/Aula%2000/resumo-aula-00-conceitos-basicos-de-redes.html"><span class="ma-dot" style="background:var(--mat-inf)"></span><span class="ma-name">Aula 00 — Conceitos Básicos de Redes</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Inform%C3%A1tica/Aula%2001/resumo-aula-01-protocolos-de-comunicacao.html"><span class="ma-dot" style="background:var(--mat-inf)"></span><span class="ma-name">Aula 01 — Protocolos de Comunicação</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Inform%C3%A1tica/Aula%2002/resumo-aula-02-sitios-de-busca-e-pesquisa.html"><span class="ma-dot" style="background:var(--mat-inf)"></span><span class="ma-name">Aula 02 — Sítios de Busca e Pesquisa</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Inform%C3%A1tica/Aula%2003/resumo-aula-03-computacao-em-nuvem.html"><span class="ma-dot" style="background:var(--mat-inf)"></span><span class="ma-name">Aula 03 — Computação em Nuvem</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Inform%C3%A1tica/Aula%2004/resumo-aula-04-redes-sociais.html"><span class="ma-dot" style="background:var(--mat-inf)"></span><span class="ma-name">Aula 04 — Redes Sociais</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Inform%C3%A1tica/Aula%2005/resumo-aula-05-internet-e-navegacao.html"><span class="ma-dot" style="background:var(--mat-inf)"></span><span class="ma-name">Aula 05 — Internet e Navegação</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Inform%C3%A1tica/Aula%2006/resumo-aula-06-correio-eletronico.html"><span class="ma-dot" style="background:var(--mat-inf)"></span><span class="ma-name">Aula 06 — Correio Eletrônico</span><span class="ma-criada">🆕 29/08</span><span class="ma-rev none">—</span></a>
+        </div>
       </div>
     </div>
 
   </div>
 
   <!-- AGENDA -->
-  <div class="section-title">📅 AG — Agenda</div>
-  <div class="grid grid-2">
-    <div class="card">
-      <div class="card-header"><div class="card-icon">📋</div><div class="card-title">Agenda de Tarefas</div></div>
-      <div class="card-text">
+  <div class="section-head" id="agenda">
+    <div class="sh-title">📅 Agenda</div>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ic-title">📋 Agenda de Tarefas</div>
+      <div class="ic-text">
         <strong>Metas em aberto:</strong><br>
         → <strong>RLM — Estruturas Lógicas (M18):</strong> pedido à mentora para <strong>zerar e recomeçar</strong> (não viu a tempo; prazo venceu) — atividades: vídeos 1 e 2 da Aula 00 (conceito de proposição; valor lógico e princípios básicos)<br>
-        → <strong>Português — Sintaxe (apenas questões):</strong> grande dificuldade em sintaxe — cadernos TEC: <strong>Iniciante</strong> (q. 01-40) e <strong>Experiente</strong> (q. 01-34), links no BACKLOG.md
+        <span class="sep">→ <strong>Português — Sintaxe (apenas questões):</strong> grande dificuldade em sintaxe — cadernos TEC: <strong>Iniciante</strong> (q. 01-40) e <strong>Experiente</strong> (q. 01-34), links no BACKLOG.md</span>
       </div>
-      <div class="card-links"><span class="tag tag-amber">Metas da mentora — 25/08/2026</span></div>
+      <div class="ic-text sep"><span class="tag">Metas da mentora — 25/08/2026</span></div>
     </div>
   </div>
 
-<!-- REVISÃO DIRIGIDA -->
-  <div class="section-title">🎯 Revisão dirigida — análise de desempenho (18/08/2026)</div>
-  <div class="callout callout-warn" style="margin-top:.4rem;">
-    <div class="callout-icon">⏸️</div>
-    <div><strong>Adiadas em 25/08/2026:</strong> as pendências abaixo não foram estudadas agora — foram registradas no BACKLOG para retomada futura. Prioridade momentânea: leva de questões TEC em andamento.</div>
+  <!-- REVISÃO DIRIGIDA -->
+  <div class="section-head">
+    <div class="sh-title">🎯 Revisão dirigida — análise de desempenho</div>
   </div>
-  <div class="grid grid-2">
-    <div class="card" style="border-color:var(--purple);">
-      <div class="card-header"><div class="card-icon">1️⃣</div><div class="card-title" style="color:var(--purple);">Questões erradas → marcar resumos</div></div>
-      <div class="card-text">
-        <a href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html">DA Aula 00 · Princípios administrativos (M16.2)</a> <span class="card-tag">✔ concluída em 17/08/2026</span><br>
-        <a href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html">DA Aula 01 · Estado, governo e Administração Pública (M17.1)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
-        <a href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html">DC Aula 06 · Direitos políticos (M16)</a> <span class="card-tag">✔ concluída em 18/08/2026</span><br>
-        <a href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html">DC Aula 07 · Partidos políticos (M16)</a> <span class="card-tag">✔ concluída em 18/08/2026</span>
+  <div class="callout-warn"><strong>Adiadas em 25/08/2026:</strong> as pendências abaixo não foram estudadas agora — foram registradas no BACKLOG para retomada futura. Prioridade momentânea: leva de questões TEC em andamento.</div>
+  <div class="info-grid">
+    <div class="info-card" style="border-top:3px solid var(--mat-dc);">
+      <div class="ic-title">1️⃣ Questões erradas → marcar resumos</div>
+      <div class="ic-text">
+        <a href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html">DA Aula 00 · Princípios administrativos (M16.2)</a> <span class="tag">✔ concluída em 17/08/2026</span><br>
+        <a href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html">DA Aula 01 · Estado, governo e Administração Pública (M17.1)</a> <span class="tag tag-gray">⏸ adiada em 25/08/2026</span><br>
+        <a href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html">DC Aula 06 · Direitos políticos (M16)</a> <span class="tag">✔ concluída em 18/08/2026</span><br>
+        <a href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html">DC Aula 07 · Partidos políticos (M16)</a> <span class="tag">✔ concluída em 18/08/2026</span>
       </div>
     </div>
-    <div class="card" style="border-color:var(--amber);">
-      <div class="card-header"><div class="card-icon">2️⃣</div><div class="card-title" style="color:var(--amber);">Resolver novamente</div></div>
-      <div class="card-text">RL · Estruturas Lógicas (M18)<br><span class="tag tag-gray">Sem resumo — material ausente</span></div>
+    <div class="info-card" style="border-top:3px solid var(--mat-dt);">
+      <div class="ic-title">2️⃣ Resolver novamente</div>
+      <div class="ic-text">RL · Estruturas Lógicas (M18)<br><span class="tag tag-gray">Sem resumo — material ausente</span></div>
     </div>
-    <div class="card" style="border-color:var(--teal);">
-      <div class="card-header"><div class="card-icon">3️⃣</div><div class="card-title" style="color:var(--teal);">Revisão teórica atenta</div></div>
-      <div class="card-text">
-        <a href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html">DPT Aula 00 · Teoria geral, princípios e organização da JT (M18)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
-        <a href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html">DPT Aula 01 · Competência da JT (M19)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
-        <a href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html">AP Aula 00 · Conceitos introdutórios (M16)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
-        <a href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html">AP Aula 02 · Funções da administração (M17)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
-        <a href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html">DC Aula 02 · Direitos fundamentais — gerações, limites, eficácia (M18.1)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
-        <a href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html">DC Aula 03 · Direitos e deveres individuais/coletivos (M18.1)</a> <span class="card-tag">⏸ adiada em 25/08/2026</span><br>
-RL · Estruturas e Equivalências Lógicas (M16/M17/M19) — <span class="tag tag-gray">Sem resumo</span> <span class="card-tag">⏸ adiada em 25/08/2026</span>
+    <div class="info-card" style="border-top:3px solid var(--mat-pt);">
+      <div class="ic-title">3️⃣ Revisão teórica atenta</div>
+      <div class="ic-text">
+        <a href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html">DPT Aula 00 · Teoria geral, princípios e organização da JT (M18)</a> <span class="tag tag-gray">⏸ adiada em 25/08/2026</span><br>
+        <a href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html">DPT Aula 01 · Competência da JT (M19)</a> <span class="tag tag-gray">⏸ adiada em 25/08/2026</span><br>
+        <a href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html">AP Aula 00 · Conceitos introdutórios (M16)</a> <span class="tag tag-gray">⏸ adiada em 25/08/2026</span><br>
+        <a href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html">AP Aula 02 · Funções da administração (M17)</a> <span class="tag tag-gray">⏸ adiada em 25/08/2026</span><br>
+        <a href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html">DC Aula 02 · Direitos fundamentais — gerações, limites, eficácia (M18.1)</a> <span class="tag tag-gray">⏸ adiada em 25/08/2026</span><br>
+        <a href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html">DC Aula 03 · Direitos e deveres individuais/coletivos (M18.1)</a> <span class="tag tag-gray">⏸ adiada em 25/08/2026</span><br>
+        RL · Estruturas e Equivalências Lógicas (M16/M17/M19) — <span class="tag tag-gray">Sem resumo</span> <span class="tag tag-gray">⏸ adiada em 25/08/2026</span>
       </div>
     </div>
-  </div>
-
-  <div class="callout callout-info" style="margin-top:2rem;">
-    <div class="callout-icon">ℹ️</div>
-    <div><strong>Template base:</strong> todos os resumos seguem o template unificado em <code>templates/template-sumario.html</code>. Para gerar novas aulas, copie o template, preencha os placeholders e publique.</div>
-  </div>
-
-  <div class="callout callout-info" style="margin-top:1rem;">
-    <div class="callout-icon">ℹ️</div>
-    <div><strong>Como usar:</strong> os links em destaque já estão disponíveis. Os demais serão atualizados conforme os resumos forem criados.</div>
   </div>
 
 </div>
 
-
-
-
-<!--rh:ui-->
-<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
-  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
-  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
-  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
-  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+<div class="footer">
+  Resumos Hermes · <a href="mudancas.html">O que mudou</a><br>
+  Feito para estudar — não para decorar.
 </div>
+
+<!-- BUSCA -->
 <script>
-(function(){
-  var root=document.documentElement;
-  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
-      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
-  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
-  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
-  icon();
-  var steps=[90,95,100,107,114],cur=100;
-  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
-  if(steps.indexOf(cur)<0){cur=100;}
-  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
-  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
-  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
-  apply();
-  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+(function () {
+  var input = document.getElementById('busca');
+  var res = document.getElementById('resultados');
+  var grid = document.querySelector('.materias-grid');
+  var index = null;
+  fetch('search-index.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { index = d; }).catch(function () { index = null; });
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function mark(snippet, terms) {
+    var out = esc(snippet);
+    terms.forEach(function (t) {
+      var re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      out = out.replace(re, '<mark>$1</mark>');
+    });
+    return out;
+  }
+  function snippetFor(it, terms) {
+    var low = it.x.toLowerCase();
+    var pos = -1;
+    terms.forEach(function (t) { var p = low.indexOf(t); if (p >= 0 && (pos < 0 || p < pos)) pos = p; });
+    var start = Math.max(0, pos - 70);
+    var end = Math.min(it.x.length, pos + terms.join(' ').length + 110);
+    return (start > 0 ? '…' : '') + it.x.slice(start, end) + (end < it.x.length ? '…' : '');
+  }
+  function search(q) {
+    var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    var out = [];
+    for (var i = 0; i < index.length; i++) {
+      var it = index[i];
+      var titleLow = (it.a + ' ' + it.t).toLowerCase();
+      var ok = true;
+      var score = 0;
+      for (var j = 0; j < terms.length; j++) {
+        if (titleLow.indexOf(terms[j]) >= 0) score += 5;
+        if (it.x.toLowerCase().indexOf(terms[j]) >= 0) score += 1;
+        else ok = false;
+      }
+      if (ok && score > 0) out.push({ it: it, score: score });
+    }
+    out.sort(function (a, b) { return b.score - a.score || (a.it.a + a.it.t).localeCompare(b.it.a + b.it.t); });
+    return out.slice(0, 15);
+  }
+  function render(items, q) {
+    var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!items.length) {
+      res.innerHTML = '<p style="color:var(--text2);font-size:.85rem;">Nada encontrado para <strong>' + esc(q) + '</strong>.</p>';
+      return;
+    }
+    res.innerHTML = items.map(function (o) {
+      var it = o.it;
+      return '<a class="r-item" href="' + encodeURI(it.u) + (it.s ? '#' + it.s : '') + '">' +
+        '<div class="r-title">' + esc(it.a) + (it.t ? ' · ' + esc(it.t) : '') + '</div>' +
+        '<div class="r-meta">' + esc(it.m) + '</div>' +
+        '<div class="r-snippet">' + mark(snippetFor(it, terms), terms) + '</div></a>';
+    }).join('');
+  }
+  function filterGrid(q) {
+    var ql = q.toLowerCase();
+    var any = false;
+    document.querySelectorAll('.materia-card').forEach(function (card) {
+      var show = !ql || card.textContent.toLowerCase().indexOf(ql) >= 0;
+      card.style.display = show ? '' : 'none';
+      if (show) any = true;
+    });
+    if (!any && ql) {
+      res.innerHTML = '<p style="color:var(--text2);font-size:.85rem;">Nada encontrado para <strong>' + esc(q) + '</strong>.</p>';
+    }
+  }
+  var timer = null;
+  input.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      var q = input.value.trim();
+      res.innerHTML = '';
+      if (q.length < 2) {
+        if (grid) grid.style.display = '';
+        filterGrid('');
+        return;
+      }
+      if (index) {
+        if (grid) grid.style.display = 'none';
+        render(search(q), q);
+      } else {
+        if (grid) grid.style.display = '';
+        filterGrid(q);
+      }
+    }, 150);
+  });
 })();
 </script>
-<!--/rh:ui-->
+
+<!-- TEMA -->
+<script>
+(function(){
+  var root = document.documentElement;
+  var bT = document.getElementById('rhTheme');
+  function icon() { bT.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
+  bT.addEventListener('click', function() {
+    var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', t);
+    try { localStorage.setItem('rh-theme', t); } catch(e) {}
+    icon();
+  });
+  icon();
+})();
+</script>
 </body>
 </html>

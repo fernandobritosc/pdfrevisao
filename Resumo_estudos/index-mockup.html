@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumos Hermes — mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --border: #e2dfd7;
+  --border-strong: #c9c5ba;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --dim: #9ca3ab;
+  --ink: #1f2733;
+  --green: #059669;
+  --green-light: #d9f2e3;
+  --amber: #d97706;
+  --blue: #2563eb;
+  --shadow: 0 1px 3px rgba(31,39,51,.06), 0 4px 16px rgba(31,39,51,.04);
+  --shadow-hover: 0 4px 12px rgba(31,39,51,.08), 0 12px 40px rgba(31,39,51,.06);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  --nav-h: 56px;
+  --mat-blue: #2563eb;
+  --mat-green: #16a34a;
+  --mat-teal: #0d9488;
+  --mat-purple: #7c3aed;
+  --mat-amber: #d97706;
+  --mat-red: #dc2626;
+  --mat-cyan: #0891b2;
+  --mat-indigo: #3b82f6;
+}
+html[data-theme="dark"] {
+  --bg: #17191f;
+  --surface: #1f232b;
+  --border: #2e3340;
+  --border-strong: #3a4050;
+  --text: #d7dbe4;
+  --text2: #a8b0c0;
+  --muted: #7d8698;
+  --dim: #5a6272;
+  --ink: #e8ebf2;
+  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,.4), 0 12px 40px rgba(0,0,0,.3);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-top: var(--nav-h);
+}
+
+/* NAVBAR */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem; z-index: 200;
+  backdrop-filter: blur(12px); background: rgba(255,255,255,.92);
+}
+html[data-theme="dark"] .nav { background: rgba(31,35,43,.95); }
+.nav-brand {
+  font-family: var(--font-display); font-weight: 800; font-size: 1rem;
+  color: var(--text); text-decoration: none; display: flex; align-items: center; gap: .5rem;
+}
+.nav-brand .nb-mark { color: var(--green); }
+.nav-links { display: flex; align-items: center; gap: 1.2rem; }
+.nav-links a {
+  font-size: .8rem; font-weight: 600; color: var(--text2); text-decoration: none;
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-links .btn-theme {
+  width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--surface); cursor: pointer; font-size: .85rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.main { max-width: 1120px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* HERO */
+.hero { margin-bottom: 2.5rem; }
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: .7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--green);
+  margin-bottom: .35rem;
+}
+.hero h1 {
+  font-family: var(--font-display); font-size: 2.4rem; font-weight: 800;
+  color: var(--ink); line-height: 1.05; margin-bottom: .5rem;
+}
+.hero p { font-size: 1rem; color: var(--text2); max-width: 540px; }
+.hero-stats {
+  display: flex; gap: 2rem; flex-wrap: wrap; margin: 1rem 0 1.5rem;
+}
+.hero-stats .hs-item {
+  display: flex; flex-direction: column;
+}
+.hero-stats .hs-num {
+  font-family: var(--font-display); font-size: 1.6rem; font-weight: 800;
+  color: var(--ink); line-height: 1.1;
+}
+.hero-stats .hs-label {
+  font-size: .72rem; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .04em; font-weight: 600;
+}
+.hero-search {
+  width: 100%; max-width: 480px; position: relative;
+}
+.hero-search input {
+  width: 100%; padding: .7rem 1rem .7rem 2.6rem;
+  border: 1px solid var(--border-strong); border-radius: 999px;
+  font-size: .9rem; background: var(--surface); color: var(--text);
+  outline: none; transition: border-color .15s, box-shadow .15s;
+}
+.hero-search input:focus {
+  border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+.hero-search::before {
+  content: "🔍"; position: absolute; left: .85rem; top: 50%;
+  transform: translateY(-50%); font-size: .85rem; opacity: .6;
+}
+
+/* STATS CARDS */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem;
+  box-shadow: var(--shadow);
+}
+.stat-card .sc-icon { font-size: 1.2rem; margin-bottom: .25rem; }
+.stat-card .sc-value {
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;
+  color: var(--ink); line-height: 1.1;
+}
+.stat-card .sc-label {
+  font-size: .72rem; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .04em; font-weight: 600; margin-top: .1rem;
+}
+
+/* MATÉRIAS GRID */
+.section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.section-head .sh-title {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+  color: var(--ink);
+}
+.section-head .sh-link {
+  font-size: .78rem; font-weight: 600; color: var(--blue); text-decoration: none;
+}
+.materias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.materia-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
+}
+.materia-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.materia-card .mc-bar {
+  height: 4px; width: 100%;
+}
+.materia-card .mc-body { padding: 1rem 1.15rem .9rem; }
+.mc-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: .35rem;
+}
+.mc-head .mc-icon { font-size: 1.1rem; }
+.mc-head .mc-name {
+  font-family: var(--font-display); font-size: .9rem; font-weight: 700; color: var(--ink);
+}
+.mc-head .mc-count {
+  font-family: var(--font-mono); font-size: .7rem; font-weight: 600;
+  color: var(--muted); margin-left: auto; margin-right: .5rem;
+}
+.mc-head .mc-badge {
+  font-family: var(--font-mono); font-size: .65rem; font-weight: 600;
+  background: var(--green-light); color: var(--green); padding: .15rem .45rem;
+  border-radius: 5px;
+}
+.mc-progress {
+  height: 4px; background: var(--border); border-radius: 2px; margin: .5rem 0;
+  overflow: hidden;
+}
+.mc-progress .mc-pb-fill {
+  height: 100%; border-radius: 2px; width: 0%;
+}
+.mc-aulas { display: flex; flex-direction: column; gap: .15rem; }
+.mc-aula {
+  display: flex; align-items: center; gap: .4rem;
+  padding: .2rem .35rem; border-radius: 5px;
+  font-size: .78rem; color: var(--text2); text-decoration: none;
+  transition: background .1s;
+}
+.mc-aula:hover { background: var(--bg); }
+.mc-aula .ma-dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.mc-aula .ma-name { font-weight: 600; color: var(--text); flex: 1; }
+.mc-aula .ma-date { font-family: var(--font-mono); font-size: .62rem; color: var(--dim); }
+.mc-aula .ma-rev {
+  font-family: var(--font-mono); font-size: .6rem; font-weight: 600;
+  background: var(--green-light); color: var(--green); padding: .1rem .35rem;
+  border-radius: 4px;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem;
+  border-top: 1px solid var(--border); margin-top: 3rem; max-width: 1120px;
+  margin-left: auto; margin-right: auto;
+}
+.footer a { color: var(--blue); text-decoration: none; }
+
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .materias-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 1.8rem; }
+  .nav-links a:not(.btn-theme) { display: none; }
+}
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="#"><span class="nb-mark">●</span> Resumos Hermes</a>
+  <div class="nav-links">
+    <a href="#">Início</a>
+    <a href="#">O que mudou</a>
+    <a href="#">Busca</a>
+    <button class="btn-theme" id="mTheme">🌙</button>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Caderno de estudos para concursos</div>
+    <h1>Resumos Hermes</h1>
+    <p>Resumos, mapas mentais e incidência de temas (TEC) — organizados por matéria e aula.</p>
+    <div class="hero-stats">
+      <div class="hs-item"><span class="hs-num">55</span><span class="hs-label">Aulas</span></div>
+      <div class="hs-item"><span class="hs-num">8</span><span class="hs-label">Matérias</span></div>
+      <div class="hs-item"><span class="hs-num">3</span><span class="hs-label">Revisadas</span></div>
+      <div class="hs-item"><span class="hs-num">10</span><span class="hs-label">Dias de estudo</span></div>
+    </div>
+    <div class="hero-search"><input type="text" placeholder="Buscar aula, tema ou conteúdo..."></div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="sc-icon">📚</div>
+      <div class="sc-value">55</div>
+      <div class="sc-label">Aulas resumidas</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-icon">📂</div>
+      <div class="sc-value">8</div>
+      <div class="sc-label">Matérias</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-icon">🔁</div>
+      <div class="sc-value">3</div>
+      <div class="sc-label">Revisões concluídas</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-icon">🕐</div>
+      <div class="sc-value">01/09</div>
+      <div class="sc-label">Última atualização</div>
+    </div>
+  </div>
+
+  <!-- SECTION HEADER -->
+  <div class="section-head">
+    <div class="sh-title">📖 Matérias</div>
+    <a class="sh-link" href="mudancas.html">O que mudou →</a>
+  </div>
+
+  <!-- MATÉRIAS GRID -->
+  <div class="materias-grid">
+
+    <!-- AFO -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-green)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">💰</span>
+          <span class="mc-name" style="color:var(--mat-green)">AFO</span>
+          <span class="mc-count">7 aulas</span>
+          <span class="mc-badge">1 revisada</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-green)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html">
+            <span class="ma-dot" style="background:var(--mat-green)"></span>
+            <span class="ma-name">Aula 00 — Orçamento Público</span>
+            <span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html">
+            <span class="ma-dot" style="background:var(--mat-green)"></span>
+            <span class="ma-name">Aula 01 — Princípios Orçamentários</span>
+            <span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="AFO/Aula 02/resumo-aula-02-creditos-adicionais.html">
+            <span class="ma-dot" style="background:var(--mat-green)"></span>
+            <span class="ma-name">Aula 02 — Créditos Ordinários e Adicionais</span>
+            <span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html">
+            <span class="ma-dot" style="background:var(--mat-green)"></span>
+            <span class="ma-name">Aula 03 — Ciclo Orçamentário</span>
+            <span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html">
+            <span class="ma-dot" style="background:var(--mat-green)"></span>
+            <span class="ma-name">Aula 04 — Orçamento Público: Conceito</span>
+            <span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="AFO/Aula 05/resumo-aula-05-receita-publica-consolidado.html">
+            <span class="ma-dot" style="background:var(--mat-green)"></span>
+            <span class="ma-name">Aula 05 — Receita Pública</span>
+            <span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="AFO/Aula 05/resumo-aula-05-divida-ativa.html">
+            <span class="ma-dot" style="background:var(--mat-green)"></span>
+            <span class="ma-name">Aula 05 — Dívida Ativa</span>
+            <span class="ma-date">🆕 11/08</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-blue)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">⚖️</span>
+          <span class="mc-name" style="color:var(--mat-blue)">Direito Administrativo</span>
+          <span class="mc-count">9 aulas</span>
+          <span class="mc-badge">1 revisada</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-blue)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 00 — Princípios Administrativos</span><span class="ma-date">🆕 11/08</span><span class="ma-rev">🔁 17/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 01 — Estado, Governo e Adm. Pública</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 02/resumo-aula-02-organizacao-administrativa.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 02 — Organização Administrativa</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 03/resumo-aula-03-fundacoes-empresas-publicas-sociedades-de-economia-mista.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 03 — Fundações, Empresas Públicas e S.E.M.</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 04/resumo-aula-04-paraestatais-e-terceiro-setor.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 04 — Paraestatais e Terceiro Setor</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 05/resumo-aula-05-poderes-e-deveres-da-administracao.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 05 — Poderes e Deveres da Adm.</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 06 — Atos Administrativos</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 07 — Licitações Públicas</span><span class="ma-date">🆕 13/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html">
+            <span class="ma-dot" style="background:var(--mat-blue)"></span><span class="ma-name">Aula 08 — Lei 14.133/2021 - Parte 2</span><span class="ma-date">🆕 24/08</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DC -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-purple)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📜</span>
+          <span class="mc-name" style="color:var(--mat-purple)">Direito Constitucional</span>
+          <span class="mc-count">8 aulas</span>
+          <span class="mc-badge">2 revisadas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-purple)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html">
+            <span class="ma-dot" style="background:var(--mat-purple)"></span><span class="ma-name">Aula 00 — Natureza, Conceito e Interpretação</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html">
+            <span class="ma-dot" style="background:var(--mat-purple)"></span><span class="ma-name">Aula 02 — Direitos e Deveres (art. 5º)</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html">
+            <span class="ma-dot" style="background:var(--mat-purple)"></span><span class="ma-name">Aula 03 — Direitos Individuais e Coletivos</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html">
+            <span class="ma-dot" style="background:var(--mat-purple)"></span><span class="ma-name">Aula 04 — Direitos Sociais</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html">
+            <span class="ma-dot" style="background:var(--mat-purple)"></span><span class="ma-name">Aula 05 — Nacionalidade</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html">
+            <span class="ma-dot" style="background:var(--mat-purple)"></span><span class="ma-name">Aula 06 — Direitos Políticos</span><span class="ma-date">🆕 11/08</span><span class="ma-rev">🔁 18/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html">
+            <span class="ma-dot" style="background:var(--mat-purple)"></span><span class="ma-name">Aula 07 — Partidos Políticos</span><span class="ma-date">🆕 11/08</span><span class="ma-rev">🔁 18/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 08/resumo-aula-08-organizacao-do-estado.html">
+            <span class="ma-dot" style="background:var(--mat-purple)"></span><span class="ma-name">Aula 08 — Organização do Estado</span><span class="ma-date">🆕 30/08</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AP -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-teal)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🏛️</span>
+          <span class="mc-name" style="color:var(--mat-teal)">Administração Pública e Geral</span>
+          <span class="mc-count">7 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-teal)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html">
+            <span class="ma-dot" style="background:var(--mat-teal)"></span><span class="ma-name">Aula 00 — Conceitos Introdutórios</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 01/resumo-aula-01-teorias-administrativas.html">
+            <span class="ma-dot" style="background:var(--mat-teal)"></span><span class="ma-name">Aula 01 — Teoria Geral da Administração</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html">
+            <span class="ma-dot" style="background:var(--mat-teal)"></span><span class="ma-name">Aula 02 — Planejamento Estratégico</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html">
+            <span class="ma-dot" style="background:var(--mat-teal)"></span><span class="ma-name">Aula 03 — Ferramentas Estratégicas</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html">
+            <span class="ma-dot" style="background:var(--mat-teal)"></span><span class="ma-name">Aula 04 — Organização e Estrutura Organizacional</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html">
+            <span class="ma-dot" style="background:var(--mat-teal)"></span><span class="ma-name">Aula 05 — Liderança</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html">
+            <span class="ma-dot" style="background:var(--mat-teal)"></span><span class="ma-name">Aula 06 — Motivação</span><span class="ma-date">🆕 22/08</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DT -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-amber)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">👷</span>
+          <span class="mc-name" style="color:var(--mat-amber)">Direito do Trabalho</span>
+          <span class="mc-count">6 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-amber)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito do Trabalho/Aula 00/resumo-aula-00-relacoes-de-trabalho-e-emprego.html">
+            <span class="ma-dot" style="background:var(--mat-amber)"></span><span class="ma-name">Aula 00 — Relações de Trabalho e Emprego</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 01/resumo-aula-01-principios-do-direito-do-trabalho.html">
+            <span class="ma-dot" style="background:var(--mat-amber)"></span><span class="ma-name">Aula 01 — Princípios do Direito do Trabalho</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 02/resumo-aula-02-relacoes-de-trabalho-e-emprego.html">
+            <span class="ma-dot" style="background:var(--mat-amber)"></span><span class="ma-name">Aula 02 — Relações de Trabalho e Emprego</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 03/resumo-aula-03-contrato-de-trabalho.html">
+            <span class="ma-dot" style="background:var(--mat-amber)"></span><span class="ma-name">Aula 03 — Contrato de Trabalho</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 04/resumo-aula-04-termino-do-contrato-de-trabalho.html">
+            <span class="ma-dot" style="background:var(--mat-amber)"></span><span class="ma-name">Aula 04 — Término do Contrato de Trabalho</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito do Trabalho/Aula 05/resumo-aula-05-jornada-de-trabalho-e-descansos.html">
+            <span class="ma-dot" style="background:var(--mat-amber)"></span><span class="ma-name">Aula 05 — Jornada de Trabalho e Descansos</span><span class="ma-date">🆕 12/08</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DPT -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-red)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🔨</span>
+          <span class="mc-name" style="color:var(--mat-red)">Direito Processual do Trabalho</span>
+          <span class="mc-count">5 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-red)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html">
+            <span class="ma-dot" style="background:var(--mat-red)"></span><span class="ma-name">Aula 00 — Introdução ao DPT</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html">
+            <span class="ma-dot" style="background:var(--mat-red)"></span><span class="ma-name">Aula 01 — Competência da JT</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 02/resumo-aula-02-servicos-auxiliares-da-justica-do-trabalho.html">
+            <span class="ma-dot" style="background:var(--mat-red)"></span><span class="ma-name">Aula 02 — Serviços Auxiliares da JT</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 03/resumo-aula-03-prazos-custas-nulidades-peticao-inicial.html">
+            <span class="ma-dot" style="background:var(--mat-red)"></span><span class="ma-name">Aula 03 — Prazos, Custas, Nulidades e Petição Inicial</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Direito Processual do Trabalho/Aula 04/resumo-aula-04-notificacao-do-reclamado.html">
+            <span class="ma-dot" style="background:var(--mat-red)"></span><span class="ma-name">Aula 04 — Notificação do Reclamado</span><span class="ma-date">🆕 21/08</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PT + INF numa row -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-cyan)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📝</span>
+          <span class="mc-name" style="color:var(--mat-cyan)">Português</span>
+          <span class="mc-count">6 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-cyan)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Português/Aula 00/resumo-aula-00-ortografia.html">
+            <span class="ma-dot" style="background:var(--mat-cyan)"></span><span class="ma-name">Aula 00 — Ortografia</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Português/Aula 01/resumo-aula-01-classes-palavras.html">
+            <span class="ma-dot" style="background:var(--mat-cyan)"></span><span class="ma-name">Aula 01 — Classes de Palavras I</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Português/Aula 02/resumo-aula-02-preposicoes-conjuncoes.html">
+            <span class="ma-dot" style="background:var(--mat-cyan)"></span><span class="ma-name">Aula 02 — Preposições e Conjunções</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Português/Aula 03/resumo-aula-03-pronomes-colocacao.html">
+            <span class="ma-dot" style="background:var(--mat-cyan)"></span><span class="ma-name">Aula 03 — Pronomes e Colocação Pronominal</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Português/Aula 04/resumo-aula-04-classe-palavras-verbos.html">
+            <span class="ma-dot" style="background:var(--mat-cyan)"></span><span class="ma-name">Aula 04 — Classe de Palavras: Verbos</span><span class="ma-date">🆕 15/08</span>
+          </a>
+          <a class="mc-aula" href="Português/Aula 05/resumo-aula-05-funcoes-sintaticas.html">
+            <span class="ma-dot" style="background:var(--mat-cyan)"></span><span class="ma-name">Aula 05 — Funções Sintáticas</span><span class="ma-date">🆕 15/08</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-indigo)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">💻</span>
+          <span class="mc-name" style="color:var(--mat-indigo)">Informática</span>
+          <span class="mc-count">7 aulas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-indigo)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Informática/Aula 00/resumo-aula-00-conceitos-basicos-de-redes.html">
+            <span class="ma-dot" style="background:var(--mat-indigo)"></span><span class="ma-name">Aula 00 — Conceitos Básicos de Redes</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Informática/Aula 01/resumo-aula-01-protocolos-de-comunicacao.html">
+            <span class="ma-dot" style="background:var(--mat-indigo)"></span><span class="ma-name">Aula 01 — Protocolos de Comunicação</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Informática/Aula 02/resumo-aula-02-sitios-de-busca-e-pesquisa.html">
+            <span class="ma-dot" style="background:var(--mat-indigo)"></span><span class="ma-name">Aula 02 — Sítios de Busca e Pesquisa</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Informática/Aula 03/resumo-aula-03-computacao-em-nuvem.html">
+            <span class="ma-dot" style="background:var(--mat-indigo)"></span><span class="ma-name">Aula 03 — Computação em Nuvem</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Informática/Aula 04/resumo-aula-04-redes-sociais.html">
+            <span class="ma-dot" style="background:var(--mat-indigo)"></span><span class="ma-name">Aula 04 — Redes Sociais</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Informática/Aula 05/resumo-aula-05-internet-e-navegacao.html">
+            <span class="ma-dot" style="background:var(--mat-indigo)"></span><span class="ma-name">Aula 05 — Internet e Navegação</span><span class="ma-date">🆕 11/08</span>
+          </a>
+          <a class="mc-aula" href="Informática/Aula 06/resumo-aula-06-correio-eletronico.html">
+            <span class="ma-dot" style="background:var(--mat-indigo)"></span><span class="ma-name">Aula 06 — Correio Eletrônico</span><span class="ma-date">🆕 29/08</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  Resumos Hermes · <a href="https://resumos-hermes.surge.sh">resumos-hermes.surge.sh</a><br>
+  Feito para estudar — não para decorar.
+</div>
+
+<script>
+(function(){
+  var btn = document.getElementById('mTheme');
+  var root = document.documentElement;
+  function icon() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'; }
+  btn.addEventListener('click', function() {
+    var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', t);
+    try { localStorage.setItem('rh-theme', t); } catch(e) {}
+    icon();
+  });
+  icon();
+})();
+</script>
+</body>
+</html>
