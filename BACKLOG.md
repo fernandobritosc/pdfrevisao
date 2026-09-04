@@ -98,6 +98,11 @@ conforme a disciplina (ex.: Português, AP e DPT têm material no repositório).
   (2) vídeo 2 da Aula 00 — "Estruturas Lógicas - Valor lógico e Princípios Básicos".
   Material de RL não existe no repositório (sem resumos) — oferecer criação se o
   usuário trouxer PDFs/vídeos.
+- **Agendado em 04/09/2026** — vídeos 5 a 8 da Aula 00:
+  - Vídeo 5 — "Estruturas Lógicas - Proposições Compostas" (descanso 5-10 min)
+  - Vídeo 6 — "Estruturas Lógicas - Conectivos, Simbologias e Operações"
+  - Vídeo 7 — "Estruturas Lógicas - Tabela-verdade do 'não'" (descanso 5-10 min)
+  - Vídeo 8 — "Estruturas Lógicas - Outras Formas de Negação"
 
 **Português — Sintaxe (apenas questões)**:
 - Usuário relata **grande dificuldade em sintaxe**; meta nova é somente questões.
