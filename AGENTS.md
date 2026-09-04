@@ -191,6 +191,16 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
   - Motivo: já perdemos vários detalhes (art. 841 §3º desistência, prescrição
     em pluralidade de reclamados, etc.) por assumir que "tema já coberto" significava
     "conteúdo completo".
+- **Trava de evidência (regra do usuário, 04/09/2026)**: NUNCA concluir que um
+  ponto "já está coberto" sem citar o trecho exato do resumo (card + linha)
+  que o cobre. Match de grep não é cobertura — é preciso ler o card. Se não
+  há trecho citável, o ponto é novo e entra no resumo.
+- **Propor melhorias no AGENTS.md (regra do usuário, 04/09/2026)**: sempre que
+  eu sentir dificuldade recorrente (contexto, ambiguidade de regra, etapa que
+  vivo pulando, atrito no fluxo), devo **propor proativamente** o ajuste de
+  regra — apresentar o texto exato a adicionar/alterar e aplicar após
+  confirmação. Não esperar o usuário cobrar; o AGENTS.md é o contrato vivo
+  do projeto.
 - Registrar o incremento de incidência (ver abaixo).
 
 ## Medição de incidência de temas (TEC)
