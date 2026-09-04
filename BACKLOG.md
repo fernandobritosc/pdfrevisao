@@ -101,13 +101,17 @@ conforme a disciplina (ex.: Português, AP e DPT têm material no repositório).
 
 **Português — Sintaxe (apenas questões)**:
 - Usuário relata **grande dificuldade em sintaxe**; meta nova é somente questões.
-- Atividades da mentora:
-  - **ALUNO INICIANTE** (não estudou/domina o assunto): questões 01–40
-    (Tempo ideal: 80 min) — Caderno "LS - INICIANTE TRIBUNAIS - PORTUGUÊS IN. - CADERNO 04"
+- **1 - Revisão**: revisar por resumos e anotações todos os pontos de sintaxe
+  (descanso de 10-15 min se necessário).
+- **2 - Questões erradas/favoritas/em dúvida** (refazer):
+  - **ALUNO INICIANTE**: questões **01–15** (páginas 38–42, Aula 5 do PDF Simplificado)
+    — Caderno "LS - INICIANTE TRIBUNAIS - PORTUGUÊS IN. - CADERNO 04"
     → https://www.tecconcursos.com.br/s/Q4QvJr
-  - **ALUNO EXPERIENTE** (já estudou a parte teórica): questões 01–34
-    (Tempo ideal: 68 min) — Caderno "LS - INICIANTE TRIBUNAIS - PORTUGUÊS - CADERNO 12"
-    → https://www.tecconcursos.com.br/s/Q4QvQG
+  - **ALUNO EXPERIENTE**:
+    - Caderno "LS - INICIANTE TRIBUNAIS - PORTUGUÊS - CADERNO 11"
+      → https://www.tecconcursos.com.br/s/Q4QvEv
+    - Caderno "LS - INICIANTE TRIBUNAIS - PORTUGUÊS - CADERNO 12"
+      → https://www.tecconcursos.com.br/s/Q4QvQG
 - **Ação**: registrar os links dos cadernos para consulta; quando o usuário colar
   questões de sintaxe, processar como conteúdo de estudo no resumo de Português
   Aula 05 (funções sintáticas) e incrementar incidência.
