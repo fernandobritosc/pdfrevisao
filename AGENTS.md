@@ -219,18 +219,24 @@ conteúdos, antes do rodapé ou em subseção dedicada).
   Só manter tag própria quando o tema não se encaixar em princípio central
   (ex.: `Lei 9.784/1999 — rol do art. 2º, parágrafo único`).
 
-Formato sugerido:
+Formato padrão (regra do usuário, 04/09/2026) — agrupado por faixa, ordenado por
+contagem decrescente, **um tema por linha** (`<br>` após cada tag):
 
 ```html
-<div class="card">
-  <div class="card-title">📊 Incidência de temas (TEC)</div>
-  <div class="card-text">
-    <span class="tag tag-red">Impessoalidade: 7</span>
-    <span class="tag tag-amber">Eficiência: 3</span>
-    ...
-  </div>
+<div class="card-text">
+  <strong>Alta incidência 🔴</strong><br>
+  <span class="tag tag-red">Tema A: 21</span><br>
+  <span class="tag tag-red">Tema B: 11</span><br><br>
+  <strong>Média incidência 🟡</strong><br>
+  <span class="tag tag-amber">Tema C: 2</span><br><br>
+  <strong>Baixa incidência ⚪</strong><br>
+  <span class="tag">Tema D: 1</span><br>
+  ...
 </div>
 ```
+
+- Faixas por contagem: **≥3 = vermelha**, **=2 = âmbar**, **=1 = neutra** (sem sufixo de cor).
+- Cores normalizadas pela contagem — não manter cor antiga ao mudar de faixa.
 
 ## Rastreabilidade de revisão (revisão espaçada)
 
