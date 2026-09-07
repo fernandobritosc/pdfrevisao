@@ -110,6 +110,14 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
   usuário apontar divergência com o texto legal.
 - **Espaçamento entre parágrafos**: manter o CSS `.card-text + .card-text { margin-top: .65rem; }`
   em todos os resumos (já aplicado globalmente).
+- **Cards empilhados (regra do usuário, 07/09/2026)**: nos resumos, cards ficam em
+  **coluna única** (um embaixo do outro, grade de 1 coluna) — nunca lado a lado em
+  `grid-2`/`grid-3`. Leitura vertical em qualquer tela, padrão travado na Aula 08.
+- **Ordem de livro (regra do usuário, 07/09/2026)**: seções em ordem lógica de estudo
+  (teoria → entes/formação → regimes dos entes → competências → intervenção →
+  bens → vedações → incidência TEC). Seção inchada ou misturada deve ser dividida
+  (ex.: intervenção em seção própria, fora de competências); fusões óbvias devem ser
+  feitas (ex.: características + classificações). Sidebar e numeração acompanham.
 - **HTML válido**: após qualquer edição, validar tags com
   `check-all-html.py` (Temp/opencode) — o material deve ter **zero problemas**
   de balanceamento. Bugs pré-existentes de gerador legado (auto_resumo.py:
@@ -153,10 +161,19 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
   **primeira linha**; as linhas seguintes usam apenas o nome do assunto (ex.:
   `→ Estabilidade:`, `→ Prazo:`, `→ Acordo:`). NUNCA repetir o rótulo
   `📌 Aprendizado` a cada linha de assunto.
-- **Sem campo "Pegadinha" (regra do usuário, 19/08/2026)**: os blocos TEC NÃO têm
+- **Linhas com contexto (regra do usuário, 07/09/2026)**: toda linha de aprendizado
+  traz **regra + contexto** (porquê/quem/como/consequência), nunca só a regra seca —
+  ex.: em vez de `Repeler invasão (art. 34, II): estrangeira ou de uma UF em outra`,
+  escrever `... — defesa da integridade nacional; decretação de ofício pelo Presidente
+  (espontânea, sem provocação exigida no art. 36)`. Aplicar em todo conteúdo novo e,
+  quando uma linha antiga for tocada, enriquecê-la no mesmo padrão.
+- **Sem campo "Pegadinha" (regra do usuário, 19/08/2026; redação variada de 06/09/2026)**: os blocos TEC NÃO têm
   o campo `🚨 Pegadinha`. Erros comuns de interpretação entram como linha própria
-  dentro do Aprendizado, iniciada por `→ ⚠️ Cuidado:` — sem usar "assertiva",
-  "a banca", "enunciado", "alternativa" ou qualquer referência a questão/prova.
+  dentro do Aprendizado, iniciada por `→ ⚠️` + rótulo variado conforme o contexto
+  (`Atenção:`, `Não confundir:`, `Exceção:`, `Detalhe:`, `Distinção:`, `Limite:`,
+  `Regra:`, `Para fixar:` etc.) — variar dentro do mesmo card/seção, sem repetir o
+  mesmo rótulo em sequência e sem usar "assertiva", "a banca", "enunciado",
+  "alternativa" ou qualquer referência a questão/prova.
 - **Foco na assertiva correta (regra do usuário, 23/08/2026)**: em questões de
   múltiplas afirmativas/alternativas, o bloco principal registra o aprendizado da
   alternativa **GABARITADA** (o que está certo — é ela que orienta a revisão).
