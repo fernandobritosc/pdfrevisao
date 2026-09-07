@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO 06: Despesas Públicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: .95rem;
+  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+}
+.aula .sec-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .section-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  position: relative;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: justify; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content span.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--sidebar); }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f5; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fae5e5;
+  border: 1px solid #efb4b4;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: justify;
+}
+.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d3f9e; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 06</div>
+  <div class="sidebar-sub">Despesas Públicas</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito</a>
+  <a href="#sec2">2. Forma de ingresso</a>
+  <a href="#sec3">3. Programação quali × quanti</a>
+  <a href="#sec4">4. Natureza C-G-MM-EE-DD</a>
+  <a href="#sec5">5. Doutrinárias</a>
+  <a href="#sec6">6. Lei 4.320/64</a>
+  <a href="#sec7">7. Funcional e programática</a>
+  <a href="#sec8">8. Mnemônicos e pegadinhas</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+</aside>
+
+<div class="main">
+
+<div class="header">
+  <h1>💰 AFO — Aula 06: Despesas Públicas</h1>
+  <p>Conceito · Forma de ingresso · Programação · Natureza C-G-MM-EE-DD · Doutrinárias · Lei 4.320/64 · Funcional e programática · Material base: simplificado + mapa + completo · Estratégia Concursos · Luciana de Paula Marinho</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Conceito de Despesa Pública</div></div>
+  <div class="sec-subtitle">Baleeiro · Tesouro Nacional · Autorização legislativa</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito (Aliomar Baleeiro)</div></div>
+    <div class="card-text">
+      → Aplicação de certa quantia em dinheiro, por autoridade ou agente público competente, <strong>dentro de autorização legislativa</strong>, para execução de fim a cargo do governo — sem dotação na LOA, não há despesa orçamentária.<br><br>
+      → <strong>Tesouro Nacional:</strong> aplicação de recursos do Estado para custear serviços de ordem pública ou investir no desenvolvimento econômico — compromisso de gasto autorizado pelo Poder competente para necessidade da coletividade prevista no orçamento.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Regra de ouro da despesa orçamentária</div></div>
+    <div class="card-text">
+      → Despesa orçamentária = transação que <strong>depende de autorização legislativa</strong> (dotação na LOA ou créditos adicionais) — e obedece aos estágios: fixação, empenho, liquidação e pagamento.<br><br>
+      → ⚠️ <strong>Não confundir:</strong><br>
+      → Terceiro setor <strong>não</strong> realiza despesa pública — só entes públicos e pessoas de direito público.<br>
+      → Autorização legislativa é <strong>indispensável</strong> — "independe de autorização" está sempre errado.
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Forma de ingresso / dispêndio</div></div>
+  <div class="sec-subtitle">Orçamentária × Extraorçamentária — dinheiro do Estado vs. dinheiro de terceiros</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Despesa orçamentária</div></div>
+    <div class="card-text">
+      → Fixada nas leis orçamentárias ou de créditos adicionais, em bases legais — <strong>depende de autorização legislativa</strong> e segue os estágios (fixação, empenho, liquidação, pagamento).<br><br>
+      → Ex.: construção de prédios públicos, manutenção de rodovias, pagamento de servidores — gasto definitivo do Estado com o próprio dinheiro.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Despesa extraorçamentária</div></div>
+    <div class="card-text">
+      → <strong>Não</strong> consignada no orçamento — devolução de recursos transitórios de <strong>terceiros</strong> (recebidos como receita extraorçamentária); <strong>não depende</strong> de autorização legislativa, pois o dinheiro nunca foi do Estado.<br><br>
+      → Ex.: restituição de cauções, pagamento de restos a pagar, resgate de ARO, repasse de consignações em folha — mero repasse a quem é de direito.<br><br>
+      → ⚠️ <strong>Para fixar:</strong><br>
+      → Inscrição em restos a pagar = <strong>receita</strong> extraorçamentária.<br>
+      → Pagamento de restos a pagar = <strong>despesa</strong> extraorçamentária.
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Não confundir:</strong> "natureza" aqui (forma de ingresso) ≠ classificação por <strong>natureza da despesa</strong> (C-G-MM-EE-DD, sec4) — mesmo nome, classificações diferentes.</div></div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Programação orçamentária: qualitativa × quantitativa</div></div>
+  <div class="sec-subtitle">MTO — no que gastar vs. quanto gastar</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Programação qualitativa — no que será gasta a verba</div></div>
+    <div class="card-text">
+      → O programa de trabalho responde "no que será despendida a verba" — blocos: esfera, institucional, funcional, estrutura programática e programa/ação.<br><br>
+      → Ex.: Função (classificação funcional) é qualitativa; atende à necessidade de informação de Poderes, sociedade e privados sobre as finanças públicas.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Programação quantitativa — volume de recursos</div></div>
+    <div class="card-text">
+      → <strong>Física:</strong> quanto do produto entregar — meta física por ação, regionalizada, em cada ano.<br><br>
+      → <strong>Financeira:</strong> o que adquirir e com quais recursos — natureza da despesa, IDUSO, fonte, IDOC, resultado primário e dotação.<br><br>
+      → Ex.: grupo de natureza da despesa é quantitativo — mede o montante necessário.
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Discriminação mínima (art. 6º, Portaria 163/2001):</strong> na LOA, por natureza, no mínimo categoria econômica + GND + modalidade de aplicação.</div></div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Natureza da despesa — C-G-MM-EE-DD</div></div>
+  <div class="sec-subtitle">Portaria 163/2001 · Código de 8 dígitos (C G MM EE DD)</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Categoria econômica — 1º dígito (efeito na economia)</div></div>
+    <div class="card-text">
+      → Critério econômico: mede o impacto do gasto na economia do país.<br><br>
+      → <strong>3 — Correntes:</strong> não contribuem diretamente para formar/adquirir bem de capital (consumo do Estado).<br><br>
+      → <strong>4 — Capital:</strong> contribuem diretamente para formar/adquirir bem de capital.<br><br>
+      → ⚠️ <strong>Detalhe:</strong><br>
+      → Multas e juros de despesas de capital entram nas <strong>correntes</strong>.<br>
+      → Programas especiais de trabalho com dotação global entram no <strong>capital</strong>.<br>
+      → Reservas (<strong>9</strong>: contingência e RPPS) não são nem correntes nem capital.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Grupo de natureza — GND, 2º dígito (PESSOAL JUR OU / INV INV AMOR)</div></div>
+    <div class="card-text">
+      → Agrega elementos com o mesmo objeto de gasto.<br><br>
+      → Correntes: <strong>1</strong> Pessoal e Encargos Sociais (ativos, inativos, pensionistas, mandatos, cargos e funções + encargos, art. 18 da LRF) · <strong>2</strong> Juros e Encargos da Dívida (juros, comissões, dívida mobiliária) · <strong>3</strong> Outras Despesas Correntes (material de consumo, diárias, subvenções, auxílios — o residual).<br><br>
+      → Capital: <strong>4</strong> Investimentos (obras, imóveis para obras, instalações, equipamentos, material permanente, softwares) · <strong>5</strong> Inversões Financeiras (bens já em uso, títulos sem aumento de capital, constituição/aumento de capital) · <strong>6</strong> Amortização da Dívida (principal + atualização monetária/cambial).<br><br>
+      → ⚠️ <strong>Distinção:</strong><br>
+      → Juros e encargos → categoria <strong>corrente</strong>; amortização (principal) → categoria <strong>capital</strong>.<br>
+      → Grupo <strong>9</strong> (reservas) não executa — serve de fonte para créditos adicionais, que aí sim classificam a despesa nos grupos próprios.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Modalidade de aplicação — 3º e 4º dígitos (para quem vai o dinheiro)</div></div>
+    <div class="card-text">
+      → Informação <strong>gerencial</strong>: transferência ou aplicação direta — serve para <strong>eliminar a dupla contagem</strong> dos recursos transferidos/descentralizados.<br><br>
+      → <strong>20</strong> União · <strong>30</strong> Estados/DF · <strong>40</strong> Municípios · <strong>50</strong> privadas sem fins lucrativos · <strong>60</strong> privadas com fins lucrativos · <strong>70</strong> multigovernamentais · <strong>80</strong> exterior · <strong>90</strong> aplicações diretas (a mais usada — o próprio dono da dotação gasta) · <strong>91</strong> direta entre órgãos do fiscal/seguridade · <strong>99</strong> a definir.<br><br>
+      → Rastrear repasse a outro ente (ex.: verba federal aplicada por Estado em cultura) = olhar a <strong>modalidade</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Elemento e subelemento — 5º/6º e 7º/8º dígitos (com o quê se gasta)</div></div>
+    <div class="card-text">
+      → <strong>Elemento:</strong> identifica o objeto do gasto — vencimentos (11), diárias, material de consumo, serviços de terceiros – PJ (39, ex.: energia elétrica), obras, auxílios, sentenças judiciais (91).<br><br>
+      → <strong>Subelemento (desdobramento):</strong> detalha o elemento para escrituração e controle — uso <strong>facultativo</strong> por cada ente (nunca obrigatório).<br><br>
+      → ⚠️ <strong>Não confundir:</strong><br>
+      → Elemento/subelemento identificam <strong>objeto do gasto</strong> — nada têm a ver com cota/repasse (movimentação financeira do SIAFI/Tesouro, Decreto 93.872/1986).
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Discriminação mínima (art. 6º, Portaria 163/2001):</strong> na LOA, por natureza, no mínimo categoria econômica + GND + modalidade de aplicação.</div></div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Classificações doutrinárias</div></div>
+  <div class="sec-subtitle">Institucional · Afetação patrimonial · Regularidade</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Competência institucional — quem gasta</div></div>
+    <div class="card-text">
+      → Federal, estadual, distrital e municipal — classifica pelo ente político que institui/realiza a despesa.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Afetação patrimonial — mexe no patrimônio líquido?</div></div>
+    <div class="card-text">
+      → <strong>Efetiva:</strong> reduz a situação líquida no momento da realização — fato modificativo diminutivo; em geral, despesas <strong>correntes</strong>.<br><br>
+      → <strong>Não efetiva (mutação):</strong> não reduz — fato permutativo (troca um ativo por outro); em geral, despesas de <strong>capital</strong>.<br><br>
+      → ⚠️ <strong>Exceção nos dois sentidos:</strong><br>
+      → Corrente <strong>não</strong> efetiva: material para estoque e adiantamentos (permutativos).<br>
+      → Capital <strong>efetiva</strong>: transferências de capital — ex.: Estado transfere a Município para construir escola (variação diminutiva em quem transfere).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Regularidade — todo ano ou eventual?</div></div>
+    <div class="card-text">
+      → <strong>Ordinárias:</strong> perenes, contínuas, todo exercício — pessoal, encargos, serviços de terceiros.<br><br>
+      → <strong>Extraordinárias:</strong> eventuais, imprevisíveis, fora da rotina — calamidade pública, guerras, comoção interna.
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Lei 4.320/1964 — classificação própria</div></div>
+  <div class="sec-subtitle">Arts. 12 a 21 · Custeio, subvenções, investimentos e a diferença da Portaria 163</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Despesas correntes na 4.320 (art. 12)</div></div>
+    <div class="card-text">
+      → <strong>Custeio:</strong> manutenção de serviços já criados, inclusive conservação e adaptação de bens imóveis.<br><br>
+      → <strong>Transferências correntes:</strong> sem contraprestação direta em bens/serviços — contribuições e subvenções a outras entidades públicas ou privadas.<br><br>
+      → ⚠️ <strong>Detalhe:</strong> na 4.320, pessoal ativo = <strong>custeio</strong>; mas inativos e juros da dívida = <strong>transferências correntes</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Subvenções — sociais × econômicas (art. 12, §3º)</div></div>
+    <div class="card-text">
+      → Subvenção = transferência para cobrir <strong>custeio</strong> da beneficiada.<br><br>
+      → <strong>Sociais:</strong> assistencial ou cultural, <strong>sem fins lucrativos</strong> (públicas ou privadas) — visam serviços essenciais (assistência, saúde, educação), calculadas por unidade de serviço com padrão mínimo de eficiência (art. 16) e só para entidade com funcionamento satisfatório (art. 17).<br><br>
+      → <strong>Econômicas:</strong> empresas (públicas ou privadas) de caráter <strong>industrial, comercial, agrícola ou pastoril</strong> — cobrem déficits de manutenção (art. 18), diferença de preços de revenda e bonificações a produtores.<br><br>
+      → ⚠️ <strong>Limite:</strong> LOA <strong>não</strong> ajuda empresa lucrativa, salvo subvenção com <strong>autorização em lei especial</strong> (art. 19; Decreto 93.872, art. 61).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Despesas de capital na 4.320</div></div>
+    <div class="card-text">
+      → <strong>Investimentos:</strong> obras, imóveis para obras, programas especiais, instalações, equipamentos, material permanente e capital de empresa <strong>não</strong> comercial/financeira — discriminados por projeto (art. 20); programa especial que não segue a execução normal vai por <strong>dotação global</strong> (exceção à discriminação).<br><br>
+      → <strong>Inversões financeiras:</strong> bens já em uso, títulos sem aumento de capital, capital de empresa <strong>comercial/financeira</strong>.<br><br>
+      → <strong>Transferências de capital:</strong> investimentos/inversões que <strong>outra</strong> pessoa (pública ou privada) vai realizar — auxílios ou contribuições + <strong>amortização da dívida</strong>; LOA não dá auxílio para incorporar ao patrimônio de privada lucrativa (art. 21).<br><br>
+      → ⚠️ <strong>Não confundir — inversões 4.320 × natureza:</strong><br>
+      → Na 4.320: AGRIN (agrícola/industrial) = <strong>investimento</strong>; COMFIN (comercial/financeiro) = <strong>inversão</strong>.<br>
+      → Na natureza (Portaria 163): qualquer constituição/aumento de capital = <strong>inversão</strong>, sem restrição.<br>
+      → ⚠️ Amortização: na 4.320 é <strong>elemento</strong> (transferências de capital); na 163 é <strong>GND 6</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Outros artigos e a dica de prova</div></div>
+    <div class="card-text">
+      → <strong>Unidade orçamentária (art. 14):</strong> serviços do mesmo órgão com dotação própria — quem recebe e executa a dotação; excepcionalmente, unidade subordinada.<br><br>
+      → <strong>Elementos (art. 15):</strong> na LO, despesa discriminada no mínimo por elementos (pessoal, material, serviços, obras); permanente = duração <strong>superior a 2 anos</strong>.<br><br>
+      → <strong>Quadro de Capital (arts. 23 a 26):</strong> receitas e despesas de capital em quadro por decreto (mínimo triênio, reajuste anual contínuo); programas com metas objetivas; proposta com programa anual atualizado.<br><br>
+      → ⚠️ <strong>Regra de prova — discriminação mínima:</strong><br>
+      → Citou a lei 4.320 → <strong>elementos</strong> (art. 15).<br>
+      → Citou a Portaria 163 → <strong>categoria + GND + modalidade</strong> (art. 6º).<br>
+      → Não citou nenhuma → <strong>qualquer das duas</strong> está correta.
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Funcional, institucional, esfera e programática</div></div>
+  <div class="sec-subtitle">Portaria 42/1999 · PPA · IDUSO/IDOC</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Funcional — em quê? (Portaria 42/1999)</div></div>
+    <div class="card-text">
+      → <strong>Função</strong> (2 dígitos): maior agregação por área de atuação — missão institucional do órgão.<br><br>
+      → <strong>Subfunção</strong> (3 dígitos): partição da função, natureza básica das ações aglutinadas.<br><br>
+      → ⚠️ <strong>Não confundir:</strong><br>
+      → <strong>Matricialidade:</strong> subfunção combina com função <strong>diferente</strong> da sua — despesa compartilhada entre áreas.<br>
+      → Ações sempre ligadas à subfunção da sua área específica.<br>
+      → <strong>Encargos Especiais:</strong> sem bem/serviço gerado (dívidas, sentenças, indenizações) — agregação neutra, programa <strong>0000</strong>, ações de Operações Especiais.<br><br>
+      → Comum e <strong>obrigatória a todos os entes</strong> (inclusive pequenos Municípios) — por isso permite a <strong>consolidação nacional</strong> dos gastos.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Institucional, esfera e estrutura programática</div></div>
+    <div class="card-text">
+      → <strong>Institucional — quem?</strong> órgão (2 dígitos) + UO (3 dígitos); órgão/UO <strong>não</strong> equivalem a estrutura administrativa — dotações vão para a UO, que responde pela ação.<br><br>
+      → <strong>Esfera — qual orçamento?</strong> <strong>10</strong> fiscal · <strong>20</strong> seguridade · <strong>30</strong> investimentos (só estatais independentes — CNJ, órgão judiciário, vai no <strong>fiscal</strong>).<br><br>
+      → <strong>Programática — para quê?</strong> programa (4) + ação (4) + subtítulo (4); subtítulo = localização física, sem mudar finalidade/produto/metas; na União, detalhado por esfera, GND, modalidade, IDUSO e fonte.<br><br>
+      → <strong>Atividade</strong> (contínua — manutenção) × <strong>Projeto</strong> (limitado no tempo — expansão) × <strong>Operação Especial</strong> (sem produto, sem contraprestação).<br><br>
+      → <strong>PO</strong> (gerencial, fora da LOA): detalha a ação abaixo do subtítulo — produção intermediária, etapas, acompanhamento intensivo, descentralizadas, reservado, padronizado.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">IDUSO e IDOC — de onde vem o dinheiro</div></div>
+    <div class="card-text">
+      → <strong>IDUSO:</strong> contrapartida nacional de empréstimos/doações (BIRD, BID, desempenho, outros, doações) vs. outras aplicações; inclui saúde (LC 141/2012) e ensino (Lei 9.394/1996) — consta da LOA e créditos.<br><br>
+      → <strong>IDOC:</strong> identifica doação internacional ou operação de crédito na ação — contrapartida de empréstimo usa IDUSO 1–4 + IDOC da operação; de doação, IDUSO 5 + IDOC 5.
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Mnemônicos e pegadinhas de prova</div></div>
+  <div class="sec-subtitle">Decore rápido · Inversões clássicas da banca</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🧠</div><div class="card-title">Mnemônicos</div></div>
+    <div class="card-text">
+      → <strong>GND correntes — PESSOAL JUR OU:</strong> 1 Pessoal · 2 JUros · 3 OUtras.<br><br>
+      → <strong>GND capital — INV INV AMOR:</strong> 4 INVestimentos · 5 INVersões · 6 AMORtização.<br><br>
+      → <strong>Natureza — C-G-MM-EE-DD:</strong> 8 dígitos (1-1-2-2-2).<br><br>
+      → <strong>Inversões na 4.320 — AGRIN/COMFIN:</strong> AGRícola/INdustrial = investimento; COMercial/FINanceiro = inversão.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha — Revisão anual de servidores (RE 905357)</div>
+    → Revisão geral anual <strong>exige cumulativamente</strong> dotação na <strong>LOA</strong> + previsão na <strong>LDO</strong> (art. 169, §1º) — sem os dois, não há reajuste.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha — Regime orçamentário misto (art. 35, Lei 4.320)</div>
+    → Receitas pelo <strong>caixa</strong> (arrecadação) × despesas pela <strong>competência</strong> (empenho) — no patrimonial, ambos pela competência (receita no lançamento, despesa na liquidação).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha — Fora da LOA (art. 3º, parágrafo único)</div>
+    → ARO, emissão de papel-moeda e compensatórias <strong>não</strong> entram na LOA — por isso ARO e consignações são extraorçamentárias.
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha — Art. 16 da LRF (despesas novas)</div>
+    → Rotineiras/ordinárias já previstas e irrelevantes (conceito na LDO) <strong>dispensam</strong> estimativa de impacto + declaração (ON AGU 52/2014; art. 16, §3º).
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha — Intraorçamentárias (MCASP)</div>
+    → Entre órgãos do fiscal/seguridade do <strong>mesmo ente</strong> (treinamento, RPPS patronal, tributo de estatal dependente) — só movimentam, não criam receita nova.
+  </div>
+</section>
+
+<!-- SECAO 9 -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Incidência de temas (TEC)</div></div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada ainda.
+    </div>
+  </div>
+</section>
+
+</div>
+
+
+
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula 05/resumo-aula-05-receita-publica-consolidado.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 05 · Receita Pública</span></a>
+  <a class="next" href="../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+</body>
+</html>
