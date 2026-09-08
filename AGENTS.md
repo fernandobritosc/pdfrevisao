@@ -167,6 +167,10 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
   escrever `... — defesa da integridade nacional; decretação de ofício pelo Presidente
   (espontânea, sem provocação exigida no art. 36)`. Aplicar em todo conteúdo novo e,
   quando uma linha antiga for tocada, enriquecê-la no mesmo padrão.
+- **Nunca suprimir (regra do usuário, 07/09/2026)**: ao reescrever, dividir, fundir
+  ou enriquecer qualquer card/linha, **NUNCA remover detalhe existente** — só
+  reorganizar e acrescentar. Condensação que apague informação (exemplo, valor,
+  ressalva, agente, condição) é proibida, mesmo que o texto fique mais longo.
 - **Sem campo "Pegadinha" (regra do usuário, 19/08/2026; redação variada de 06/09/2026)**: os blocos TEC NÃO têm
   o campo `🚨 Pegadinha`. Erros comuns de interpretação entram como linha própria
   dentro do Aprendizado, iniciada por `→ ⚠️` + rótulo variado conforme o contexto
