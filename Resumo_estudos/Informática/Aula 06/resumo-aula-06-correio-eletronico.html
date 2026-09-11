@@ -1004,7 +1004,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Estrutura:</strong> <strong>Cabeçalho</strong> (De:, Para:, Assunto:, Cc:, Cco: + metadados — Data, Hora, Tipo de Conteúdo, ID) + <strong>Corpo</strong> (conteúdo) + <strong>Anexo</strong> (pode integrar cabeçalho ou corpo)<br>
       → <strong>Visualizar cabeçalho completo:</strong><br>
       → Gmail: três pontinhos → <em>Mostrar Original</em><br>
-      → Outlook: Arquivo → Propriedades<br>
+      → Outlook: Arquivo → Propriedades → Segurança → Configurações → Opção de Entrega<br>
       → Thunderbird: Visualizar → Cabeçalhos → Todos
     </div>
   </div>
@@ -1016,7 +1016,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <tr><td><strong>De (From)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Remetente</strong>. Pode escolher entre contas configuradas; é possível enviar <strong>anonimamente</strong> (sites como deadfake.com)</td></tr>
         <tr><td><strong>Para (To)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Destinatário(s)</strong> — pessoa, várias (separar com <strong>ponto-e-vírgula ;</strong>) ou lista. <strong>Não precisa estar no catálogo</strong> — pode digitar qualquer endereço. Entrega <strong>não garantida</strong> (caixa lotada, endereço inexistente → resposta automática ao remetente)</td></tr>
         <tr><td><strong>Assunto (Subject)</strong></td><td><span class="tag tag-amber">baixa</span></td><td>Manchete que resume o corpo. Preenchimento <strong>facultativo</strong> — pode ser omitido sem impedir o envio; cortesia para o destinatário saber o tema antes de abrir</td></tr>
-        <tr><td><strong>Cc (Com Cópia)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Carbon Copy</strong> — cópia para destinatários <strong>secundários</strong>; endereços ficam <strong>visíveis</strong> para todos (principais e secundários). Uso: dar ciência sem esperar resposta. Todos em Para/Cc/Cco saberão que o Cc recebeu</td></tr>
+        <tr><td><strong>Cc (Com Cópia)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Carbon Copy</strong> — cópia para destinatários <strong>secundários</strong>; endereços ficam <strong>visíveis</strong> para todos em Para e Cc. Uso: dar ciência sem esperar resposta</td></tr>
         <tr><td><strong>Cco (Com Cópia Oculta)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Blind Carbon Copy (Bcc)</strong> — igual ao Cc, mas <strong>oculta</strong> os destinatários: cada um só vê seu próprio endereço; <strong>ninguém</strong> (Para/Cc/outros Cco) saberá que o Cco recebeu. Já quem está em Cco <strong>vê</strong> Para e Cc, mas não outros Ccos</td></tr>
         <tr><td><strong>Conteúdo (Body)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Corpo / carga útil</strong>; permite formatação rica (fonte, negrito, itálico etc.). Campo <strong>não obrigatório</strong></td></tr>
         <tr><td><strong>Anexo (Attachment)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Qualquer tipo de arquivo</strong> pode ser anexado (não só documentos/planilhas); observar <strong>limite de tamanho</strong> do provedor e cuidado com <strong>executáveis/malware</strong>. Anexo fica no <strong>servidor</strong> — download/delete local não afeta o original</td></tr>
@@ -1060,7 +1060,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div style="text-align:center;color:var(--muted);font-size:.7rem;margin-top:.35rem;">👁️ Bruno <strong>não vê</strong> Carlos &nbsp;|&nbsp; Carlos <strong>vê</strong> Bruno</div>
       </div>
       <!-- Fluxo de respostas -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.7rem;">
+      <div style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.7rem;">
         <div style="background:#fff;border:1px solid var(--line-strong);border-radius:8px;padding:.5rem .6rem;text-align:center;">
           <div style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Se Bruno clica</div>
           <div style="font-size:.78rem;margin:.2rem 0;"><strong>Responder</strong> → só <span style="color:var(--blue);font-weight:700;">Alice</span></div>
@@ -1072,7 +1072,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <div style="font-size:.78rem;"><strong>Responder a todos</strong> → <span style="color:var(--red);font-weight:700;">Alice + Bruno</span> <span style="font-size:.68rem;">⚠️ expõe Cco!</span></div>
         </div>
       </div>
-      <span class="tag tag-red">Pegadinha</span> Na história da aula: analista envia ao técnico com juiz em Cc; técnico usa "Responder a todos" sem notar → juiz recebe a resposta grosseira.
+      → ⚠️ <strong>Atenção:</strong> na história da aula, o analista envia ao técnico com o juiz em Cc; o técnico usa "Responder a todos" sem notar → o juiz recebe a resposta grosseira.
     </div>
   </div>
 
@@ -1093,7 +1093,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → Mensagens ficam em <strong>pastas no servidor</strong> (não na máquina do usuário), ao contrário de clientes<br>
       → Número ao lado da pasta = <strong>mensagens não lidas</strong><br>
       → Vantagem: acesso de <strong>qualquer lugar</strong> via navegador; desvantagem: precisa estar <strong>online</strong><br>
-      → Gmail: inovação do <strong>Modo de Conversa</strong> (respostas agrupadas); anexo permanece no servidor mesmo após download; número ao lado do anexo = <strong>tamanho</strong> (ex.: 2.738 Kb); extensões bloqueadas: .pif, .bat, .exe, .scr, .vbs etc.; grande volume → <strong>compactar em um único arquivo</strong>
+      → Gmail: inovação do <strong>Modo de Conversa</strong> (respostas agrupadas); <strong>Programar envio</strong> (agenda data/hora — setinha ao lado de Enviar); <strong>Modo confidencial</strong> (mais segurança); anexo permanece no servidor mesmo após download; número ao lado do anexo = <strong>tamanho</strong> (ex.: 2.738 Kb); limite de <strong>25 MB</strong> por mensagem; grande volume → <strong>compactar em um único arquivo</strong><br><br>
+      → <strong>Spoofing</strong> (falsificação de remetente): no Gmail, <strong>denuncia-se como spam</strong> — ensina o filtro e remove da caixa de entrada.<br><br>
+      → <strong>Extensões bloqueadas no Gmail:</strong><br>
+      → .pif<br>
+      → .bat<br>
+      → .exe<br>
+      → .scr<br>
+      → .vbs
     </div>
   </div>
 </section>
@@ -1174,7 +1181,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Não confunda com:</strong> exclusão automática · codificação · tamanho de anexo · confirmação de leitura<br><br>
       → <strong>3 níveis no Outlook:</strong><br>
       → <strong>Alta</strong> — ponto de exclamação vermelho ❗<br>
-      → <strong>Média</strong> — padrão (quando não se define prioridade)<br>
+      → <strong>Média</strong> — nível intermediário, sem ícone especial<br>
       → <strong>Baixa</strong> — seta azul para baixo ⬇️<br><br>
       → <strong>Onde definir:</strong> janela de nova mensagem → opção <strong>Prioridade</strong> (Alta/Baixa); o ícone aparece na lista de mensagens
     </div>
@@ -1308,16 +1315,20 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">Temas mais cobrados em questões do TEC — contador por assunto</div>
 
   <div class="card">
+    <div class="card-title">📊 Incidência de temas (TEC)</div>
     <div class="card-text">
-      <span class="tag tag-amber">Funcionalidades básicas e encaminhamento: 1</span>
-      <span class="tag tag-red">Campos Para/Cc/Cco — visibilidade (quem vê quem): 2</span>
-      <span class="tag tag-amber">Entrega de e-mail — não é garantida (confiabilidade): 1</span>
-      <span class="tag tag-amber">Prioridade da mensagem (Alta/Média/Baixa): 1</span>
-      <span class="tag tag-amber">MIME — norma para formatação (qualquer tipo de arquivo): 1</span>
-      <span class="tag tag-amber">Servidor × Cliente — caixa postal no servidor do provedor (não existe central): 1</span>
-      <span class="tag tag-amber">Sintaxe — símbolo @ (separador, não criptografia): 1</span>
-      <span class="tag tag-amber">Domínio — categoria (.com/.org) e país (.br/.us, facultativo): 1</span>
-      <span class="tag tag-amber">Campo Assunto — facultativo (pode omitir) e Anexo — qualquer tipo: 1</span>
+      <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Campos Para/Cc/Cco — visibilidade (quem vê quem): 2</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Funcionalidades básicas e encaminhamento: 1</span><br>
+      <span class="tag">Entrega de e-mail — não é garantida (confiabilidade): 1</span><br>
+      <span class="tag">Prioridade da mensagem (Alta/Média/Baixa): 1</span><br>
+      <span class="tag">MIME — norma para formatação (qualquer tipo de arquivo): 1</span><br>
+      <span class="tag">Servidor × Cliente — caixa postal no servidor do provedor (não existe central): 1</span><br>
+      <span class="tag">Sintaxe — símbolo @ (separador, não criptografia): 1</span><br>
+      <span class="tag">Domínio — categoria (.com/.org) e país (.br/.us, facultativo): 1</span><br>
+      <span class="tag">Campo Assunto — facultativo (pode omitir) e Anexo — qualquer tipo: 1</span><br>
+      <span class="tag">Atalhos de teclado (Outlook/Thunderbird): 1</span><br>
     </div>
   </div>
 </section>
