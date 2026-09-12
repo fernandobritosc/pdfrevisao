@@ -258,6 +258,11 @@ contagem decrescente, **um tema por linha** (`<br>` após cada tag):
 
 - Faixas por contagem: **≥3 = vermelha**, **=2 = âmbar**, **=1 = neutra** (sem sufixo de cor).
 - Cores normalizadas pela contagem — não manter cor antiga ao mudar de faixa.
+- **Incidência agregada por seção (regra do usuário, 11/09/2026)**: cada tag traz
+  o **nome da seção** a que o tema pertence e o contador **soma as questões da
+  seção** — ex.: `Seção 4 — Barreiras (Robbins + Palo Alto): 5`. O objetivo é o
+  usuário priorizar **seções** inteiras na revisão. Dentro de cada faixa, ordenar
+  por seção (sec1 → secN).
 
 ## Rastreabilidade de revisão (revisão espaçada)
 

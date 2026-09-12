@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AP Aula 07: Comunicação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+}
+.aula .sidebar-brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .section-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  position: relative;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: justify; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--sidebar); }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f5; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+.gotcha {
+  background: #fae5e5;
+  border: 1px solid #efb4b4;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: justify;
+}
+.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.legal-block {
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d3f9e; }
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+@media (max-width: 900px) {
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+
+<style id="rh-addons">
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+}
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap { display: none; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open { display: block; }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div>
+    <div class="sidebar-brand">📚 PDF Revisão</div>
+    <div class="sidebar-sub">Resumos estruturados</div>
+  </div>
+
+  <div class="sidebar-nav">
+    <a href="../../../index.html">← Voltar ao índice</a>
+    <a href="#sec1" class="active">1. Conceito e Funções</a>
+    <a href="#sec2">2. Processo de Comunicação</a>
+    <a href="#sec3">3. Eficiente × Eficaz</a>
+    <a href="#sec4">4. Barreiras</a>
+    <a href="#sec5">5. Meios — Ricos × Pobres</a>
+    <a href="#sec6">6. Tipos e Métodos</a>
+    <a href="#sec7">7. Fluxos de Direção</a>
+    <a href="#sec8">8. Redes de Comunicação</a>
+    <a href="#sec9">9. Comunicação Pública</a>
+    <a href="#sec10">10. Incidência (TEC)</a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div style="font-size:.7rem;color:var(--text2);">AP Aula 07 · Comunicação</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label">Progresso: <span id="pct">0%</span></div>
+    <div class="progress-track">
+      <div class="progress-fill" id="bar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>AP Aula 07 — Comunicação</h1>
+    <p>Administração Geral e Pública · funções, processo, barreiras, canais, fluxos, redes e comunicação pública</p>
+  </div>
+
+  <!-- SEC 1 -->
+  <section id="sec1" class="section">
+    <div class="section-title"><span class="tag tag-blue">1</span> Conceito e Funções</div>
+    <div class="section-subtitle">Transmissão + compreensão · ligada à Direção · 4 funções de Chiavenato</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Definições de prova</div></div>
+      <div class="card-text">
+        <strong>Chiavenato:</strong> comunicar é tornar <span class="highlight">"algo" comum</span> (mensagem, notícia, informação, significado) — <span class="highlight">"uma ponte que transporta esse algo de uma pessoa para outra ou de uma organização para outra"</span>.<br><br>
+        <strong>Robbins:</strong> <span class="highlight">"transferência e compreensão de significado"</span> — transmitir <strong>não basta</strong>: sem compreensão não há comunicação (ex.: japonês falando com quem não fala japonês).
+      </div>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Comunicação = transmissão (emissor) + compreensão (destinatário).</strong> Ligada sobretudo à função <strong>Direção</strong> (motivar e liderar), mas presente em planejamento, organização e controle.</div></div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🏢</div><div class="card-title">Organizacional × Interpessoal</div></div>
+      <div class="card-text">
+        → <strong>Organizacional interna:</strong> empresa → funcionários — alinha o time com informações sobre a própria empresa (sem ela, cada um trabalha no escuro)<br>
+        → <strong>Organizacional externa:</strong> empresa → outras empresas e público externo (clientes, fornecedores) — cuida da imagem e das relações de mercado<br>
+        → <strong>Interpessoal:</strong> entre membros de um grupo — a comunicação do dia a dia, pessoa com pessoa
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title">Organizacional integrada — 4 tipos (Kunsch)</div></div>
+      <div class="card-text">
+        → <strong>Institucional:</strong> melhora a <strong>imagem</strong> perante sociedade, consumidores e investidores (gestão estratégica de RP).<br><br>
+        → <strong>Administrativa:</strong> transmite os <strong>dados administrativos</strong> a todos os setores — amarra planejar, organizar, dirigir e controlar.<br><br>
+        → <strong>Interna:</strong> viabiliza a interação com os <strong>colaboradores</strong> (diálogo, troca, participação em todos os níveis) — sua primeira função estratégica é <strong>difundir visão, missão e valores</strong>.<br><br>
+        → <strong>Mercadológica:</strong> <strong>vende</strong> e melhora a imagem de produtos/serviços (marketing e vendas).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">4 Funções (Chiavenato)</div></div>
+      <div class="card-text">
+        → <strong>Controle:</strong> molda comportamento — seguir normas/regulamentos (escrita) ou reportar problemas ao superior (verbal); sem ela, cada um age por conta própria<br>
+        → <strong>Motivação:</strong> move as pessoas — orienta para objetivos, feedbacks, avaliação de desempenho, reforço do desejável<br>
+        → <strong>Expressão emocional:</strong> dá vazão ao que o funcionário sente — exterioriza satisfação/insatisfação, funcionando como termômetro do clima<br>
+        → <strong>Informação:</strong> alimenta decisões — sem dado circulando, ninguém decide bem
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 2 -->
+  <section id="sec2" class="section">
+    <div class="section-title"><span class="tag tag-blue">2</span> Processo de Comunicação</div>
+    <div class="section-subtitle">Elementos · duas abordagens (banca varia!) · habilidades · receptor ambíguo</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🔄</div><div class="card-title">Elementos (abordagem completa)</div></div>
+      <div class="card-text">
+        → <strong>Remetente/Fonte:</strong> inicia — codifica a ideia<br>
+        → <strong>Mensagem:</strong> produto físico da codificação — a ideia já codificada, pronta para atravessar o canal<br>
+        → <strong>Transmissor:</strong> meio/aparelho que codifica (ex.: o texto em português)<br>
+        → <strong>Codificação:</strong> põe a informação em forma transmissível e compreensível<br>
+        → <strong>Canal:</strong> veículo por onde flui (formal: intranet, e-mail corporativo; informal: redes sociais)<br>
+        → <strong>Receptor:</strong> meio/aparelho que decodifica (ex.: Adobe Reader)<br>
+        → <strong>Decodificação:</strong> traduz em significado — aqui moram as <strong>distorções</strong> (não conhece o código; dificuldade de interpretar; dessintonia: ansiedade, cansaço, desatenção)<br>
+        → <strong>Destinatário/Destino:</strong> quem recebe no final da linha (pessoa, grupo ou organização) — destino final da mensagem<br>
+        → <strong>Ruído:</strong> interferência interna/externa em <strong>qualquer etapa</strong> (quase sempre vindo das barreiras)<br>
+        → <strong>Feedback/Retroação:</strong> <strong>elo final</strong> do processo — reação do destinatário que diz se houve compreensão (se inapropriada, a comunicação falhou)<br>
+        → <strong>Feedforward:</strong> o inverso no tempo — em vez de apontar falhas passadas, orienta <strong>ações futuras</strong> de aprimoramento (ex.: "no próximo projeto, tente esta abordagem")
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Completa × Aglutinada — as 2 abordagens da banca</div></div>
+      <div class="card-text">
+        → A banca varia — até Chiavenato muda entre obras. Decore a <strong>equivalência</strong>:
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Abordagem completa</th><th>Abordagem aglutinada</th></tr></thead>
+          <tbody>
+            <tr><td>Remetente/Fonte <strong>+</strong> Transmissor</td><td><strong>Emissor</strong></td></tr>
+            <tr><td>Codificação</td><td>Codificação</td></tr>
+            <tr><td>Canal</td><td>Canal</td></tr>
+            <tr><td>Decodificação</td><td>Decodificação</td></tr>
+            <tr><td>Receptor <strong>+</strong> Destinatário</td><td><strong>Receptor</strong></td></tr>
+            <tr><td>Feedback/Retroação</td><td>Feedback/Retroação</td></tr>
+            <tr><td>Mensagem e Ruído</td><td>Mensagem e Ruído (ora entram, ora não)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-text">
+        → <strong>Trio garantido:</strong> <strong>remetente/emissor/fonte, canal e destinatário</strong> aparecem em toda questão — mensagem, ruído e feedback variam conforme a banca.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">➡️</div><div class="card-title">Linear × Rede — os modelos de direção</div></div>
+      <div class="card-text">
+        → <strong>Linear:</strong> via de <strong>mão única</strong> — emissor e receptor <strong>dissociados</strong>, sem feedback (ex.: TV, rádio, jornal: a mensagem flui num só sentido).<br><br>
+        → <strong>Rede:</strong> o oposto — <strong>muitas direções e sentidos</strong>, atores interagindo e fazendo circular discursos e opiniões.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧠</div><div class="card-title">Habilidades e o termo "receptor"</div></div>
+      <div class="card-text">
+        → <strong>Codificar:</strong> escrita e fala — transformar ideia em mensagem (quem escreve/fala bem, transmite melhor)<br>
+        → <strong>Decodificar:</strong> leitura e escuta — extrair o sentido da mensagem (quem lê/ouve mal, entende errado)<br>
+        → <strong>Ambas:</strong> conhecimento, atitudes e pensamento — o repertório que sustenta as duas pontas<br><br>
+        → ⚠️ <strong>Atenção:</strong> "receptor" na prova pode ser o <strong>aparelho decodificador</strong> ou o <strong>destinatário</strong> — leia o contexto (o próprio Fantini usa receptor = destinatário, avisando entre parênteses).
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 3 -->
+  <section id="sec3" class="section">
+    <div class="section-title"><span class="tag tag-blue">3</span> Eficiente × Eficaz</div>
+    <div class="section-subtitle">Meios × objetivo (Chiavenato)</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Comunicação Eficiente (meios)</th><th>Comunicação Eficaz (objetivo)</th></tr></thead>
+        <tbody>
+          <tr><td>Emissor fala bem</td><td>Mensagem clara, objetiva e unívoca</td></tr>
+          <tr><td>Transmissor funciona bem</td><td>Significado consoante e consistente</td></tr>
+          <tr><td>Canal sem ruído</td><td>Destinatário compreende</td></tr>
+          <tr><td>Canal é o meio mais apropriado</td><td>Comunicação totalmente completada</td></tr>
+          <tr><td>Receptor funciona bem</td><td>Mensagem torna-se comum às partes</td></tr>
+          <tr><td>Destinatário ouve bem</td><td>Feedback confirmando compreensão perfeita</td></tr>
+          <tr><td>Sem ruídos internos/externos</td><td>Mesmo significado para emissor e destinatário</td></tr>
+          <tr><td>Bom relacionamento emissor-destinatário</td><td>Mensagem produz consequência</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Resumo:</strong> eficiente = <strong>meios</strong> · eficaz = <strong>objetivo de transmitir com significado</strong>.</div></div>
+  </section>
+
+  <!-- SEC 4 -->
+  <section id="sec4" class="section">
+    <div class="section-title"><span class="tag tag-blue">4</span> Barreiras à Comunicação</div>
+    <div class="section-subtitle">Fontes de ruído · Robbins (9) · Chiavenato (3) · Macêdo (4 grupos) · cognitivas</div>
+
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Barreiras = fontes de ruído:</strong> fatores indesejados que distorcem o significado — a mensagem decodificada sai diferente da enviada.</div></div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🔇</div><div class="card-title">Ruídos × Interferências (Escola de Palo Alto)</div></div>
+      <div class="card-text">
+        → <strong>Ruídos:</strong> elementos <strong>físicos e externos</strong> aos comunicadores (sala inadequada, multidão, arquitetura, interrupções como telefonemas).<br><br>
+        → <strong>Interferências:</strong> <strong>internas</strong> aos comunicadores, em 3 classes:<br>
+      → <strong>Cognitivas:</strong> crenças que impedem expressar/compreender (ex.: crendices sobre o papel do médico)<br>
+      → <strong>Emocionais:</strong> transtornos, emoções extremas, desinteresse de quem escuta<br>
+      → <strong>Socioculturais:</strong> distância cultural que quebra a reciprocidade ("para quê falar se ele vive em outro mundo?")
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🚧</div><div class="card-title">Robbins — 9 barreiras</div></div>
+      <div class="card-text">
+        → <strong>Filtragem:</strong> emissor manipula p/ parecer favorável e <strong>evitar problemas</strong> — mostra só o positivo e omite o ruim (nota 6,0 = "maior da sala"; gerente esconde o mau desempenho)<br>
+        → <strong>Percepção seletiva:</strong> o receptor vê e ouve <strong>seletivamente</strong> — filtra o mundo pelas próprias necessidades, motivações, interesses e expectativas do momento (ex.: focado num projeto, ignora o e-mail do treinamento). Na decodificação, projeta ainda valores e preconceitos (Papa na TV)<br>
+        → <strong>Sobrecarga:</strong> volume além da capacidade finita de processamento — perde-se informação (14 apostilas em 12h; 200 e-mails por dia)<br>
+        → <strong>Emoções:</strong> estado (feliz/triste) contamina a leitura (e-mail da pós)<br>
+        → <strong>Linguagem/semântica:</strong> idade, cultura, educação — mesma palavra, sentidos distintos ("cagado" = sortudo)<br>
+        → <strong>Medo/ansiedade:</strong> aversão a se comunicar, foge da interação (apresentação em sala)<br>
+        → <strong>Diferenças de gênero:</strong> homens = status/poder/independência; mulheres = conexão/intimidade ("sinto muito" com sentidos distintos) — não vale para todos<br>
+        → <strong>Politicamente correto:</strong> ajusta o vocabulário p/ não ofender e não diz o que queria ("cego"→"deficiente visual")<br>
+        → <strong>Silêncio:</strong> calar p/ evitar conflito impede a transmissão
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🧱</div><div class="card-title">Chiavenato — 3 tipos</div></div>
+      <div class="card-text">
+        → <strong>Pessoais:</strong> vêm de dentro — limitações, emoções, valores, crenças (preocupação, desatenção, hábitos, preconceitos, sentimentos); cada pessoa filtra o mundo pelo que carrega<br>
+        → <strong>Físicas:</strong> vêm do ambiente — tudo que atrapalha materialmente a transmissão (canal congestionado, falhas mecânicas, interferências, distância)<br>
+        → <strong>Semânticas:</strong> vêm dos símbolos — palavras, gestos, gírias e idiomas que significam coisas diferentes para cada lado (a decodificação trai)
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">👥</div><div class="card-title">Macêdo — por polo + cognitivas</div></div>
+      <div class="card-text">
+        → <strong>No emissor:</strong> travas de quem emite — timidez, medo, dificuldade de expressão, sem carisma, destinatário/canal/momento errados, supor conhecimento prévio (escolhas ruins na origem já nascem tortas)<br>
+        → <strong>No receptor:</strong> travas de quem recebe — preocupação, preconceitos, desinteresse, distração, pressa, impaciência, defensividade, desconfiança, resistência, conclusões precipitadas (a mensagem chega, mas não entra)<br>
+        → <strong>Em ambos:</strong> travas da relação — hostilidade, intenções ocultas, estado emocional, relacionamento, percepções, hierarquia, educação, cultura (quando a relação é ruim, qualquer mensagem azeda)<br>
+        → <strong>No ambiente:</strong> travas do entorno — ruídos externos, interrupções, canal inadequado (o cenário sabota o recado)<br><br>
+        → <strong>Consonância:</strong> significado percebido = enviado — a mensagem "bateu" com o que o receptor já sabia (sem barreira)<br>
+        → <strong>Dissonância:</strong> percebido ≠ enviado — a novidade chocou-se com as ideias antigas (com barreira)<br>
+        → <strong>Omissão:</strong> suprime elementos importantes — o conteúdo chega amputado<br>
+        → <strong>Distorção:</strong> modifica o conteúdo original — chega diferente do que saiu
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 5 -->
+  <section id="sec5" class="section">
+    <div class="section-title"><span class="tag tag-blue">5</span> Meios — Canais Ricos × Pobres</div>
+    <div class="section-subtitle">Riqueza = nº de sinais · escolher pelo conteúdo e pelo receptor</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📡</div><div class="card-title">Ricos × Pobres</div></div>
+      <div class="card-text">
+        → <strong>Ricos:</strong> carregam <strong>múltiplos sinais ao mesmo tempo</strong> (palavra + tom de voz + gesto + expressão) — por isso a compreensão é melhor, o feedback sai na hora e a ambiguidade cai. O preço: <strong>tempo</strong> (conversa um a um) e <strong>pouca gente</strong> alcançada. Use quando for <strong>importante, complexo, ambíguo</strong> ou quando precisar ter <strong>certeza de que entenderam</strong>.<br><br>
+        → <strong>Pobres:</strong> carregam <strong>poucos sinais</strong> (só o texto) — por isso são <strong>rápidos</strong>, chegam a <strong>muita gente</strong> de uma vez e <strong>ficam registrados</strong> (dá para reler, arquivar, auditar e reenviar). Use para o <strong>rotineiro e simples</strong>, que não precisa de discussão.
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Vantagens Pobres</th><th>Vantagens Ricos</th></tr></thead>
+        <tbody>
+          <tr><td>Menos tempo; mais pessoas; planejável; registrada; armazenável; replicável; rápidos e fáceis; p/ rotinas</td><td>Mais sinais; pessoal; feedback instantâneo; mão dupla; resposta rápida; melhor discussão; menos ambiguidade; p/ importantes/complexas/ambíguas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Mais rico → Mais pobre</th></tr></thead>
+        <tbody>
+          <tr><td>Relatórios/boletins formais → Memorandos/cartas → Discursos gravados → E-mails → Grupos online → Voice-mails → Discursos ao vivo → Conversas telefônicas → Videoconferências → Conversas cara a cara (escala FGV: <strong>memorando</strong> entre os mais pobres; <strong>videoconferência</strong> quase no topo)</td></tr>
+          <tr><td>Telefone capta <strong>entonação + resposta imediata</strong>; cara a cara soma <strong>gestos, respiração, expressões</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>Mensagem rotineira p/ 30 pessoas (ex.: vendas do dia) = <span class="highlight">e-mail (pobre)</span>: economiza tempo e atinge todos. Mudança estratégica com resistência (novas atividades, nova sede) = <span class="highlight">cara a cara</span>: sinais, dúvidas e comprometimento.</div>
+  </section>
+
+  <!-- SEC 6 -->
+  <section id="sec6" class="section">
+    <div class="section-title"><span class="tag tag-blue">6</span> Tipos e Métodos</div>
+    <div class="section-subtitle">Verbal × Escrita × Não-verbal · Formal × Informal (boatos)</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>O quê</th><th>Prós</th><th>Contras</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Verbal/Oral</strong> (fala; principal p/ liderar)</td><td>Conversa, reunião, debate, palestra</td><td>Rápida, pessoal, feedback instantâneo</td><td>Menos confiável — distorce a cada repasse ("telefone sem fio" na hierarquia)</td></tr>
+          <tr><td><strong>Escrita</strong> (linguagem escrita/simbólica)</td><td>E-mail, carta, relatório, memorando</td><td>Confiável, tangível, arquivável, planejável (escreve, apaga, confere)</td><td>Consome tempo; sem feedback instantâneo</td></tr>
+          <tr><td><strong>Não-verbal</strong> (corpo e ações)</td><td>Gestos, expressões, posturas (alegria, medo, raiva); ação do chefe no WhatsApp "autoriza" o uso</td><td>Revela o não dito</td><td>Ambígua sem contexto</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Robbins:</strong> as 2 mensagens top da linguagem corporal são <strong>afeição/interesse</strong> (gosta = aproxima/toca) e <strong>status relativo</strong> (superior cruza pernas; inferior desconfortável).</div></div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🤸</div><div class="card-title">5 linguagens do não-verbal</div></div>
+      <div class="card-text">
+        → <strong>Aparência física:</strong> a <strong>primeira</strong> mensagem no face a face — vestimenta, cabelo, idade, sexo mostram como a pessoa quer ser vista e tratada<br>
+        → <strong>Tacêsica:</strong> o <strong>toque</strong> (e o autoque) — afeto, atração, persuasão; autotoque entrega tensão e baixa estima; varia com a cultura<br>
+        → <strong>Proxêmica:</strong> a <strong>distância</strong> entre as pessoas — denuncia o tipo de relação (<em>sociofugal</em> rejeita contato; <em>sociopetal</em> propicia)<br>
+        → <strong>Paralinguagem:</strong> os <strong>sons sem palavras</strong> — grunhidos, bocejos, suspiros (características da expressão vocal)<br>
+        → <strong>Cinésica:</strong> os <strong>movimentos do corpo</strong> — sobretudo expressões faciais
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Formal</th><th>Informal</th></tr></thead>
+        <tbody>
+          <tr><td>Mensagens de <strong>trabalho</strong>; segue <strong>autoridade/hierarquia</strong>; canais formais da organização (ex.: e-mail corporativo com metas)</td><td>Mensagens de <strong>relacionamento</strong>; <strong>qualquer direção</strong>; canais espontâneos (corredor, almoço, WhatsApp)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🗣️</div><div class="card-title">Boatos (redes de rumores)</div></div>
+      <div class="card-text">
+        → Nascem de reação a situações <strong>importantes + ambíguas</strong> (incerteza e ansiedade) — em geral nos <strong>níveis baixos</strong>; raramente é só "fofoca".<br><br>
+        → O gestor <strong>não ignora</strong>: monitora as redes informais, capta preocupações e minimiza rumores infundados.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 7 -->
+  <section id="sec7" class="section">
+    <div class="section-title"><span class="tag tag-blue">7</span> Fluxos de Direção</div>
+    <div class="section-subtitle">Vertical (desce/sobe) · Horizontal (lados) · Transversal (tudo junto)</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">⬆️</div><div class="card-title">Vertical, Horizontal e Transversal</div></div>
+      <div class="card-text">
+        → <strong>Descendente</strong> (cima → baixo): ordens e orientações descendo a hierarquia — tarefas, feedbacks, e-mail com novas políticas. É a via da <strong>autoridade</strong>: quanto mais níveis, mais formalização.<br><br>
+        → <strong>Ascendente</strong> (baixo → cima, <em>bottom-up</em>): a base alimentando o topo — andamento, metas batidas, sugestões de melhoria, problemas e insatisfações. É a via do <strong>retorno</strong>: sem ela o chefe decide no escuro.<br><br>
+        → <strong>Horizontal/Lateral</strong> (mesmo nível): pares resolvendo entre si — pessoas, grupos ou gestores do mesmo degrau (ex.: departamentos coordenando um projeto). É a via da <strong>agilidade</strong>: corta caminho e fortalece o time (a queridinha das organizações modernas) — mas pode <strong>violar canais formais</strong> (passar por cima do chefe; decidir sem seu conhecimento).<br><br>
+        → <strong>Transversal/Diagonal/Multidirecional</strong> (todas ao mesmo tempo): vertical + horizontal cruzados — níveis e departamentos juntos na mesma conversa. É a via da <strong>inovação</strong>: organizações flexíveis trabalhando em equipes <strong>multidisciplinares</strong>, com gente comprometida e participativa.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🤝</div><div class="card-title">Ajuste espontâneo — coordenar conversando</div></div>
+      <div class="card-text">
+        → <strong>Mecanismo mais simples</strong> de coordenação: nada além da <strong>comunicação entre os responsáveis</strong> pelas atividades, para equilibrar <strong>quantidades, tempos/velocidades e direções</strong>.<br><br>
+        → Pode ser <strong>formal ou informal</strong> (na maioria, informal) — até empresa minúscula sem estrutura usa; nas complexas, <strong>complementa</strong> os demais mecanismos.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 8 -->
+  <section id="sec8" class="section">
+    <div class="section-title"><span class="tag tag-blue">8</span> Redes de Comunicação</div>
+    <div class="section-subtitle">Formais × Informais · Centralizadas × Descentralizadas</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Formais</th><th>Informais ("rádio peão/corredor", rumores)</th></tr></thead>
+        <tbody>
+          <tr><td>Criadas e geridas pela organização; fluem na <strong>cadeia de comando</strong></td><td><strong>Espontâneas</strong>; furam hierarquia; conectam qualquer um</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title">Redes entre órgãos — governo em rede</div></div>
+      <div class="card-text">
+        → Redes <strong>entre órgãos governamentais e esferas</strong> servem ao <strong>alinhamento e ao compartilhamento</strong> de informações — rede reúne pessoas e instituições em torno de <strong>objetivos comuns</strong>.<br><br>
+        → <strong>Governo em rede</strong> (Mintzberg): sistema <strong>interligado</strong> de relações para resolver problemas — conectar, comunicar e colaborar (exige capacidade tecnológica, RH e estrutura flexível).<br><br>
+      → <strong>Redes organizacionais (Nohria):</strong> modelo <strong>horizontal</strong> (não vertical) — <strong>abertas e policêntricas</strong>; <em>network</em> é forma <strong>ampla</strong> (não restrita) de contatos.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📻</div><div class="card-title">Rede de rumores — 3 marcas (Robbins)</div></div>
+      <div class="card-text">
+        → <strong>Não controlada</strong> pela direção — nasce espontânea da necessidade de relação interpessoal, fora da cadeia de comando<br>
+        → Vista como <strong>mais confiável</strong> que os comunicados da cúpula — o funcionário acredita mais no colega do que no informe oficial<br>
+        → Serve a <strong>interesses pessoais</strong> de quem participa — cada um usa a rede em proveito próprio
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Centralizadas (no gestor)</th><th>Descentralizadas (livres)</th></tr></thead>
+        <tbody>
+          <tr><td>Equipe fala <strong>pelo gestor</strong>, que recebe e decide · <strong>rápidas no simples</strong> (Chiavenato)</td><td>Trocam entre si até o <strong>consenso</strong> · <strong>lentas no simples, rápidas no complexo</strong> (várias cabeças pensando)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🕸️</div><div class="card-title">Cadeia × Roda × Todos os canais (redes formais)</div></div>
+      <div class="card-text">
+        → <strong>Cadeia:</strong> segue rígido a hierarquia — cada um fala só com quem vem <strong>antes ou depois</strong> (gerente ↔ diretor ↔ supervisor). <strong>Alta precisão</strong>, velocidade <strong>moderada</strong>, liderança e satisfação <strong>moderadas</strong>. É <strong>centralizada</strong>.<br><br>
+        → <strong>Roda:</strong> tudo passa pelo <strong>líder-condutor</strong> central. <strong>Alta precisão</strong> e <strong>alta velocidade</strong> — mas emergência de líder <strong>alta</strong> (dependência) e satisfação <strong>baixa</strong>. Bem <strong>centralizada</strong>.<br><br>
+        → <strong>Todos os canais:</strong> todos falam com todos, em qualquer direção. Precisão só <strong>moderada</strong> (muita conversa distorce), velocidade <strong>alta</strong>, liderança <strong>nula</strong> e satisfação <strong>alta</strong>. <strong>Descentralizada</strong>.<br><br>
+        → ⚠️ <strong>Para fixar:</strong> precisão máxima = <strong>cadeia e roda</strong> (contato direto); velocidade máxima = <strong>roda e todos os canais</strong>; satisfação máxima = <strong>todos os canais</strong>.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 9 -->
+  <section id="sec9" class="section">
+    <div class="section-title"><span class="tag tag-blue">9</span> Comunicação Pública</div>
+    <div class="section-subtitle">Matos: 4 tipos · art. 37, § 1º (impessoalidade)</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title">4 tipos (Matos)</div></div>
+      <div class="card-text">
+        → Processo <strong>político de interação</strong> (expressão, interpretação, diálogo) — sinônimo de comunicação governamental.<br><br>
+        → <strong>Estatal:</strong> a comunicação <strong>do Estado</strong> (normas, princípios e rotinas da comunicação social do governo).<br><br>
+        → <strong>Sociedade civil organizada:</strong> entidades que atuam na esfera pública <strong>em defesa da coletividade</strong>.<br><br>
+        → <strong>Institucional dos órgãos:</strong> <strong>promoção da imagem, dos serviços e das realizações</strong> do governo — é aqui que mora o limite do art. 37, § 1º.<br><br>
+        → <strong>Política:</strong> foco em <strong>partidos e eleições</strong>.
+      </div>
+    </div>
+
+    <div class="legal-block">
+      <strong>Art. 37, § 1º, CF:</strong> "A publicidade dos atos, programas, obras, serviços e campanhas dos órgãos públicos deverá ter caráter educativo, informativo ou de orientação social, dela não podendo constar nomes, símbolos ou imagens que caracterizem promoção pessoal de autoridades ou servidores públicos."
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>Publicidade institucional <strong>nunca</strong> pode virar promoção pessoal — é a impessoalidade em ação (sem nomes, símbolos ou imagens de autoridades/servidores).</div>
+  </section>
+
+  <!-- SEC 10 -->
+  <section id="sec10" class="section">
+    <div class="section-title"><span class="tag tag-green">10</span> Incidência de temas (TEC)</div>
+    <div class="section-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-icon">📊</div><div class="card-title">Incidência registrada</div></div>
+      <div class="card-text">
+        <strong>Alta incidência 🔴</strong><br>
+        <span class="tag tag-red">Seção 4 — Barreiras (Robbins + Palo Alto): 5</span><br>
+        <span class="tag tag-red">Seção 5 — Canais ricos × pobres: 3</span><br>
+        <span class="tag tag-red">Seção 2 — Processo de comunicação: 4</span><br>
+        <span class="tag tag-red">Seção 8 — Redes de comunicação: 3</span><br><br>
+        <strong>Média incidência 🟡</strong><br>
+        <span class="tag tag-amber">Seção 6 — Tipos e não-verbal: 2</span><br>
+        <span class="tag tag-amber">Seção 7 — Fluxos e coordenação: 2</span><br><br>
+        <strong>Baixa incidência ⚪</strong><br>
+        <span class="tag">Seção 1 — Conceito e tipos (Kunsch): 1</span><br>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  const sections = document.querySelectorAll('section[id]');
+  const bar = document.getElementById('bar');
+  const pct = document.getElementById('pct');
+  function update(){
+    const h = window.innerHeight;
+    let cur = 0, total = sections.length;
+    sections.forEach(s=>{
+      const r = s.getBoundingClientRect();
+      if(r.top <= h*0.6) cur++;
+    });
+    const v = Math.round((cur/total)*100);
+    bar.style.width = v+'%';
+    pct.textContent = v+'%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+</script>
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2006/resumo-aula-06-motivacao.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 06 · Motivação</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  apply();
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+</body>
+</html>
