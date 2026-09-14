@@ -171,6 +171,7 @@
 ### 9. Contabilidade Aplicada ao Setor Público
 | Status | Assunto | Resumo | Trilha Estratégia |
 |--------|---------|--------|-------------------|
+| ✅ | Aspectos Introdutórios (conceito, campo, objeto, objetivo, usuários, RCPGs) | Aula 00 CP | — |
 | ❌ | NBC TSP — Estrutura Conceitual | — | Tarefa 1, 5, 10, 15 |
 | ❌ | NBC TSP 01 a 04, 06-13, 15, 23, 25, 34 | — | Tarefa 1, 5, 10, 15 |
 | ❌ | MCASP Parte I — Procedimentos Orçamentários | — | — |
