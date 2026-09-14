@@ -7,6 +7,14 @@ Guia de trabalho deste projeto. Leia antes de qualquer tarefa.
 Gerar e manter resumos de estudo para concursos públicos a partir de PDFs de aulas
 (Estratégia Concursos, TEC Concursos, etc.), publicados como HTML navegável.
 
+**Duas trilhas de estudo:**
+- **[TJ/TRT]** — Mentoria, aulas em andamento (trilha original)
+- **[TCE-GO]** — Autodidata, Trilha Estratégica (Prof. Fábio de Castro Dias)
+  - Cargo: Técnico de Controle Externo - Técnico Administrativo (A01)
+  - Banca: FCC | Prova: 17/01/2027 | Inscrições: 05/10 a 06/11/2026
+  - Trilha completa: `Resumo_estudos/tce-go-trilha.html`
+  - Mapeamento: `Resumo_estudos/tce-go-trilha.md`
+
 ## Estrutura de pastas
 
 ```
@@ -27,6 +35,8 @@ PDF Revisão/
 │   ├── <Matéria>/
 │   │   └── <Aula XX>/
 │   │       └── resumo-aula-XX-<tema>.html    ← resumo final no padrão
+│   ├── tce-go-trilha.html             ← painel visual da trilha TCE-GO
+│   ├── tce-go-trilha.md               ← mapeamento completo TCE-GO
 │   └── templates/
 │       ├── template-sumario.html      ← template base do resumo
 │       └── COMO-USAR.md
@@ -128,6 +138,19 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
 - **Linguagem**: português brasileiro, tom direto e objetivo.
 - **Estrutura**: seguir o template-sumario; sidebar, seções numeradas, cards, callouts,
   mnemônicos, gotchas, tabelas.
+- **Precisão ao reportar seção (regra do usuário, 13/09/2026)**: quando o usuário
+  pergunta "onde ficou?", **NUNCA** responder de memória — sempre grep/read no
+  arquivo para confirmar a seção exata ANTES de responder. Dizer "sec 5" quando
+  está na sec 7 quebra a confiança e faz o usuário perder tempo conferindo.
+- **Títulos de card didáticos (regra do usuário, 13/09/2026)**: card titles não
+  devem ser genéricos ("Art. 478 CLT (texto original)"). Preferir títulos que
+  **expliquem o porquê** ou façam pergunta: "Art. 478 CLT — por que não é mais
+  aplicado?", "O que muda na prática?". O estudante deve entender o motivo antes
+  de decorar o número.
+- **Explicações contextuais (regra do usuário, 13/09/2026)**: todo bloco de lei
+  antiga ou dispositivo revogado deve trazer **por que saiu do radar** (norma que
+  o substituiu, contexto histórico) antes de listar os números. Enumeração seca
+  de parâmetros sem contexto não fixa o conteúdo.
 
 ## Formato de conversão de questão → conteúdo de estudo
 

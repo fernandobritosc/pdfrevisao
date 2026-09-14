@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trilha TCE-GO — Resumos Hermes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f5f4f0; --surface: #ffffff; --border: #e2dfd7; --border-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #9ca3ab; --ink: #1f2733;
+  --green: #059669; --green-light: #d9f2e3; --amber: #d97706; --amber-light: #fbeecb;
+  --red: #dc2626; --red-light: #fee2e2; --blue: #2563eb;
+  --shadow: 0 1px 3px rgba(31,39,51,.06), 0 4px 16px rgba(31,39,51,.04);
+  --shadow-hover: 0 4px 12px rgba(31,39,51,.08), 0 12px 40px rgba(31,39,51,.06);
+  --radius: 12px; --radius-sm: 8px;
+  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  --mat-afo: #16a34a; --mat-ap: #0d9488; --mat-ad: #2563eb; --mat-dc: #7c3aed;
+  --mat-dt: #d97706; --mat-dpt: #dc2626; --mat-pt: #0891b2; --mat-inf: #3b82f6;
+}
+html[data-theme="dark"] {
+  --bg: #17191f; --surface: #1f232b; --border: #2e3340; --border-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #5a6272; --ink: #e8ebf2;
+  --green: #3ad29f; --green-light: #143428; --amber: #f0a92e; --amber-light: #38300f;
+  --red: #f87171; --red-light: #3b1111; --blue: #6ea8fe;
+  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; padding-top: 56px; }
+a { color: var(--blue); }
+.main { max-width: 1120px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* NAVBAR */
+.nav { position: fixed; top: 0; left: 0; right: 0; height: 56px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; z-index: 200; backdrop-filter: blur(12px); }
+.nav-brand { font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+.nav-brand .nb-mark { color: var(--green); }
+.nav-links { display: flex; align-items: center; gap: 1.2rem; }
+.nav-links a { font-size: .8rem; font-weight: 600; color: var(--text2); text-decoration: none; transition: color .15s; }
+.nav-links a:hover { color: var(--blue); }
+.nav-links .active { color: var(--green); }
+
+/* HERO */
+.hero { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 2px solid var(--border); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--green); margin-bottom: .35rem; }
+.hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 800; color: var(--ink); line-height: 1.05; margin-bottom: .5rem; }
+.hero .subtitle { font-size: 1rem; color: var(--text2); max-width: 100%; margin-bottom: 1rem; }
+
+/* STATS */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; text-align: center; }
+.stat-card .sc-icon { font-size: 1.2rem; margin-bottom: .25rem; }
+.stat-card .sc-value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--green); }
+.stat-card .sc-label { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+/* SECTION HEAD */
+.section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+.sh-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; }
+.sh-link { font-family: var(--font-mono); font-size: .75rem; color: var(--blue); text-decoration: none; }
+
+/* MATERIAS GRID */
+.materias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
+.materia-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s; }
+.materia-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.mc-bar { height: 4px; width: 100%; }
+.mc-body { padding: 1rem 1.15rem .9rem; }
+.mc-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: .35rem;
+}
+.mc-head .mc-icon { font-size: 1.1rem; }
+.mc-head .mc-name { font-family: var(--font-display); font-size: .9rem; font-weight: 700; color: var(--ink); }
+.mc-head .mc-count { font-family: var(--font-mono); font-size: .7rem; font-weight: 600; color: var(--muted); margin-left: auto; margin-right: .6rem; }
+.mc-head .mc-badge {
+  font-family: var(--font-mono); font-size: .65rem; font-weight: 600;
+  background: var(--green-light); color: var(--green); padding: .15rem .45rem; border-radius: 5px;
+}
+.mc-progress { height: 4px; background: var(--border); border-radius: 2px; margin: .5rem 0; overflow: hidden; }
+.mc-progress .mc-pb-fill { height: 100%; border-radius: 2px; }
+.mc-aulas { display: flex; flex-direction: column; gap: .05rem; }
+.mc-aula {
+  display: flex; align-items: center; gap: .4rem; font-size: .82rem; color: var(--text2);
+  text-decoration: none; padding: .35rem .5rem; border-radius: 6px; transition: background .15s;
+}
+.mc-aula:hover { background: var(--bg); color: var(--text); }
+.ma-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.ma-name { flex: 1; line-height: 1.35; }
+.ma-status { font-family: var(--font-mono); font-size: .6rem; font-weight: 600; padding: 1px 5px; border-radius: 3px; flex-shrink: 0; }
+.ma-done { background: var(--green-light); color: var(--green); }
+.ma-partial { background: var(--amber-light); color: var(--amber); }
+.ma-missing { background: var(--red-light); color: var(--red); }
+
+/* FOOTER */
+.footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: .8rem; color: var(--muted); text-align: center; }
+.footer a { color: var(--text2); }
+
+@media (max-width: 768px) {
+  .materias-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <a class="nav-brand" href="index.html"><span class="nb-mark">●</span> Resumos Hermes</a>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="mudancas.html">O que mudou</a>
+    <a href="tce-go-trilha.html" class="active">TCE-GO</a>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">📋 Trilha de Estudos</div>
+    <h1>TCE-GO — Técnico de Controle Externo</h1>
+    <div class="subtitle">FCC · 17/01/2027 · Cargo A01 · Trilha Estratégica (Prof. Fábio de Castro Dias)</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card"><div class="sc-icon">📚</div><div class="sc-value">14</div><div class="sc-label">Matérias no edital</div></div>
+    <div class="stat-card"><div class="sc-icon">✅</div><div class="sc-value">55</div><div class="sc-label">Aulas TJ existentes</div></div>
+    <div class="stat-card"><div class="sc-icon">📋</div><div class="sc-value">18</div><div class="sc-label">Tarefas Trilha</div></div>
+    <div class="stat-card"><div class="sc-icon">❌</div><div class="sc-value">~20</div><div class="sc-label">Aulas novas</div></div>
+  </div>
+
+  <!-- CONHECIMENTOS GERAIS -->
+  <div class="section-head">
+    <div class="sh-title">📝 Conhecimentos Gerais (25 questões — 25%)</div>
+  </div>
+  <div class="materias-grid">
+
+    <!-- PORTUGUÊS -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-pt)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📝</span>
+          <span class="mc-name" style="color:var(--mat-pt)">Língua Portuguesa</span>
+          <span class="mc-count">25 questões</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:60%;background:var(--mat-pt)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2000/resumo-aula-00-ortografia.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Ortografia e acentuação</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2001/resumo-aula-01-classes-palavras.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Classes das palavras</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2002/resumo-aula-02-preposicoes-conjuncoes.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Preposições e conjunções</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2003/resumo-aula-03-pronomes-colocacao.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Pronomes e colocação</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2004/resumo-aula-04-classe-palavras-verbos.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Verbos</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Portugu%C3%AAs/Aula%2005/resumo-aula-05-funcoes-sintaticas.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">Funções sintáticas</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Redação oficial</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Emprego do crase</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Figuras de linguagem</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Regência nominal e verbal</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Concordância nominal e verbal</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Pontuação</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MATEMÁTICA -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#6366f1"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🔢</span>
+          <span class="mc-name" style="color:#6366f1">Matemática e Raciocínio Lógico</span>
+          <span class="mc-count">Incluir no edital</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:0%;background:#6366f1"></div></div>
+        <div class="mc-aulas">
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Proposições lógicas e tabelas verdade</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Operações com inteiros e racionais</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Porcentagem e regra de três</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Razão e proporção</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEGISLAÇÃO INSTITUCIONAL -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#8b5cf6"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📜</span>
+          <span class="mc-name" style="color:#8b5cf6">Legislação Institucional</span>
+          <span class="mc-count">Exclusiva TCE</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:0%;background:#8b5cf6"></div></div>
+        <div class="mc-aulas">
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">CF/88: fiscalização contábil, financeira, orçamentária</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Controle interno x controle externo</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Constituição de Goiás sobre o TCE-GO</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Lei Orgânica TCE-GO (Lei 16.168/2007)</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Regimento Interno (Res. 22/2008)</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Regime Jurídico Servidores (Lei 20.756/2020)</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Código de Ética TCE-GO</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">LGPD institucional</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONHECIMENTOS ESPECÍFICOS -->
+  <div class="section-head">
+    <div class="sh-title">⚖️ Conhecimentos Específicos (45 questões — 90%)</div>
+  </div>
+  <div class="materias-grid">
+
+    <!-- DIREITO ADMINISTRATIVO -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-ad)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">⚖️</span>
+          <span class="mc-name" style="color:var(--mat-ad)">Direito Administrativo</span>
+          <span class="mc-count">9 aulas TJ</span>
+          <span class="mc-badge">1 revisada</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:85%;background:var(--mat-ad)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Administrativo/Aula 00/resumo-aula-00-principios-administrativos.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Princípios administrativos</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 01/resumo-aula-01-estado-governo-e-administracao-publica.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Estado, governo e ADM pública</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 02/resumo-aula-02-organizacao-administrativa.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Organização administrativa</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 03/resumo-aula-03-fundacoes-empresas-publicas-sociedades-de-economia-mista.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Fundações, empresas públicas, SEM</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 04/resumo-aula-04-paraestatais-e-terceiro-setor.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Paraestatais e terceiro setor</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 05/resumo-aula-05-poderes-e-deveres-da-administracao.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Poderes e deveres da administração</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Atos administrativos</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Licitações públicas</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html"><span class="ma-dot" style="background:var(--mat-ad)"></span><span class="ma-name">Lei 14.133/2021 - Parte 2</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Processo administrativo (Lei estadual 13.800/2001)</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Responsabilidade civil do Estado</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Lei de Improbidade (8.429/92, alt. 14.230/2021)</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LICITAÇÕES -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#0ea5e9"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📋</span>
+          <span class="mc-name" style="color:#0ea5e9">Licitações e Contratos Administrativos</span>
+          <span class="mc-count">Base: DA 07-08</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:30%;background:#0ea5e9"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html"><span class="ma-dot" style="background:#0ea5e9"></span><span class="ma-name">Princípios e governança das contratações</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Administrativo/Aula 08/resumo-aula-08-lei-14133-2021-parte-2.html"><span class="ma-dot" style="background:#0ea5e9"></span><span class="ma-name">Lei 14.133/2021</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Planejamento: PAC, ETP, TR, matriz de riscos</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Modalidades de licitação e critérios de julgamento</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Contratação direta: dispensa e inexigibilidade</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">SRP, credenciamento, pré-qualificação</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Formalização e execução de contratos</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Fiscalização e gestão contratual</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Sanções administrativas e processo sancionador</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Portal Nacional de Contratações Públicas (PNCP)</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIREITO CONSTITUCIONAL -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-dc)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📜</span>
+          <span class="mc-name" style="color:var(--mat-dc)">Direito Constitucional</span>
+          <span class="mc-count">8 aulas TJ</span>
+          <span class="mc-badge">3 revisadas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:80%;background:var(--mat-dc)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Natureza, conceito e interpretação</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Direitos e deveres (art. 5º)</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Direitos individuais e coletivos</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Direitos sociais</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Nacionalidade</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Direitos políticos</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Partidos políticos</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 08/resumo-aula-08-organizacao-do-estado.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Organização do Estado</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Tribunais de Contas e Ministério Público de Contas</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Funções essenciais à Justiça</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROLE EXTERNO -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#ec4899"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🔍</span>
+          <span class="mc-name" style="color:#ec4899">Noções de Controle Externo</span>
+          <span class="mc-count">Exclusiva TCE</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:0%;background:#ec4899"></div></div>
+        <div class="mc-aulas">
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Controle interno x controle externo</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Competências e natureza jurídica dos TCs</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Instrumentos de fiscalização</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Tipos de auditoria</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Normas INTOSAI e NBASP</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Planejamento de auditoria</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Técnicas e procedimentos</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Achados de auditoria</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Prestação e tomada de contas</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AFO -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-afo)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">💰</span>
+          <span class="mc-name" style="color:var(--mat-afo)">Administração Financeira e Orçamentária</span>
+          <span class="mc-count">7 aulas TJ</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:70%;background:var(--mat-afo)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Orçamento público</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Princípios orçamentários</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="AFO/Aula 02/resumo-aula-02-creditos-adicionais.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Créditos ordinários e adicionais</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Ciclo orçamentário</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Orçamento: conceito</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="AFO/Aula 05/resumo-aula-05-receita-publica-consolidado.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Receita pública</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="AFO/Aula 05/resumo-aula-05-divida-ativa.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Dívida ativa</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="AFO/Aula 06/resumo-aula-06-despesas-publicas.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">Despesas públicas</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">PPA, LDO e LOA (aprofundar CF)</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Restos a pagar</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Despesas com pessoal e limites</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Lei de Responsabilidade Fiscal</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTABILIDADE -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#f59e0b"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">📊</span>
+          <span class="mc-name" style="color:#f59e0b">Contabilidade Aplicada ao Setor Público</span>
+          <span class="mc-count">Exclusiva TCE · 4 tarefas</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:0%;background:#f59e0b"></div></div>
+        <div class="mc-aulas">
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">NBC TSP — Estrutura Conceitual</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">NBC TSP 01 a 04, 06-13, 15, 23, 25, 34</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">MCASP Parte I — Procedimentos Orçamentários</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">MCASP Parte II — Procedimentos Patrimoniais</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">MCASP Parte IV — Plano de Contas</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">MCASP Parte V — Demonstrações Contábeis</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Prestação de Contas ao TC</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADM PÚBLICA -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:var(--mat-ap)"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🏛️</span>
+          <span class="mc-name" style="color:var(--mat-ap)">Administração Pública</span>
+          <span class="mc-count">8 aulas TJ</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:65%;background:var(--mat-ap)"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Conceitos introdutórios</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 01/resumo-aula-01-teorias-administrativas.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Teorias administrativas</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Planejamento estratégico</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Ferramentas estratégicas</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Estrutura organizacional</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Liderança</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Motivação</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 07/resumo-aula-07-comunicacao.html"><span class="ma-dot" style="background:var(--mat-ap)"></span><span class="ma-name">Comunicação</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Gestão da qualidade nos serviços públicos</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Balanced Scorecard</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Gestão de projetos e processos</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Governança e governabilidade</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADM GERAL -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#14b8a6"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🏢</span>
+          <span class="mc-name" style="color:#14b8a6">Administração Geral</span>
+          <span class="mc-count">Parcial</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:40%;background:#14b8a6"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="ma-dot" style="background:#14b8a6"></span><span class="ma-name">Escolas administrativas e evolução</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 00/resumo-aula-00-conceitos-introdutorios.html"><span class="ma-dot" style="background:#14b8a6"></span><span class="ma-name">Funções do administrador</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Processo decisório</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Organização Racional do Trabalho</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Eficiência e eficácia</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Centralização e descentralização</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Visão sistêmica</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADM ESTRATÉGICA -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#8b5cf6"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">🎯</span>
+          <span class="mc-name" style="color:#8b5cf6">Administração Estratégica</span>
+          <span class="mc-count">Parcial</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:40%;background:#8b5cf6"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 02/resumo-aula-02-planejamento-estrategico.html"><span class="ma-dot" style="background:#8b5cf6"></span><span class="ma-name">Planejamento estratégico</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 03/resumo-aula-03-ferramentas-estrategicas.html"><span class="ma-dot" style="background:#8b5cf6"></span><span class="ma-name">SWOT, 5 forças</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Missão, visão e valores</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">RBV (Visão Baseada em Recursos)</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Business Model Canvas</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Balanced Scorecard</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Cadeia de Valor</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPORTAMENTO ORGANIZACIONAL -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#f472b6"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">👥</span>
+          <span class="mc-name" style="color:#f472b6">Comportamento Organizacional</span>
+          <span class="mc-count">Parcial</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:50%;background:#f472b6"></div></div>
+        <div class="mc-aulas">
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 05/resumo-aula-05-lideranca.html"><span class="ma-dot" style="background:#f472b6"></span><span class="ma-name">Liderança</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 06/resumo-aula-06-motivacao.html"><span class="ma-dot" style="background:#f472b6"></span><span class="ma-name">Motivação</span><span class="ma-status ma-done">✅</span></a>
+          <a class="mc-aula" href="Administração Pública e Geral/Aula 07/resumo-aula-07-comunicacao.html"><span class="ma-dot" style="background:#f472b6"></span><span class="ma-name">Comunicação</span><span class="ma-status ma-done">✅</span></a>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Valores, atitudes e satisfação</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Personalidade e emoções</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Equipes de trabalho</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Conflito e negociação</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Clima e cultura organizacional</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GESTÃO DE PESSOAS -->
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#ef4444"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">👤</span>
+          <span class="mc-name" style="color:#ef4444">Gestão de Pessoas</span>
+          <span class="mc-count">Exclusiva TCE</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:0%;background:#ef4444"></div></div>
+        <div class="mc-aulas">
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Departamento pessoal e rotinas</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Recrutamento e seleção</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Treinamento e desenvolvimento</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Avaliação de desempenho</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Remuneração e benefícios</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Gestão do conhecimento</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Qualidade de vida no trabalho</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Diversidade e inclusão</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Teletrabalho e trabalho híbrido</span><span class="ma-status ma-missing">❌</span></div>
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Lei 20.756/2020 (servidor GO)</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DISCURSIVA -->
+  <div class="section-head">
+    <div class="sh-title">✍️ Discursiva (100 pts — ~29,4%)</div>
+  </div>
+  <div class="materias-grid">
+    <div class="materia-card">
+      <div class="mc-bar" style="background:#64748b"></div>
+      <div class="mc-body">
+        <div class="mc-head">
+          <span class="mc-icon">✍️</span>
+          <span class="mc-name" style="color:#64748b">Redação Dissertativo-Argumentativa</span>
+          <span class="mc-count">100 pontos</span>
+        </div>
+        <div class="mc-progress"><div class="mc-pb-fill" style="width:0%;background:#64748b"></div></div>
+        <div class="mc-aulas">
+          <div class="mc-aula"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">Redação sobre assunto de interesse geral</span><span class="ma-status ma-missing">❌</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <a href="index.html">← Voltar ao index</a> · <a href="mudancas.html">O que mudou</a> · Trilha TCE-GO · Resumos Hermes
+  </div>
+
+</div>
+</body>
+</html>
