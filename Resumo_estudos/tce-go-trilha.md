@@ -54,6 +54,7 @@
 ### 3. Legislação Institucional
 | Status | Assunto | Resumo | Trilha Estratégia |
 |--------|---------|--------|-------------------|
+| ✅ | Aula 00 — Administração Pública (conceito, regime jurídico, princípios, agentes, responsabilidade civil) | Aula 00 | Tarefa 11 |
 | ❌ | CF/88: fiscalização contábil, financeira, orçamentária | — | Tarefa 11 |
 | ❌ | Controle interno x controle externo | — | Tarefa 11 |
 | ❌ | Constituição de Goiás sobre TCE-GO | — | — |
@@ -63,7 +64,7 @@
 | ❌ | Código de Ética TCE-GO | — | — |
 | ❌ | LGPD institucional | — | — |
 
-**Status:** ❌ Nenhum resumo — precisa criar 2-3 aulas
+**Status:** 🟡 Aula 00 pronta (base de AP); faltam Lei Orgânica, Regimento Interno e leis específicas
 
 ---
 
