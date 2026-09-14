@@ -81,6 +81,11 @@ TEC coladas em conteúdo de estudo e incrementar a incidência.
      (seção `Agenda — Trilha NN`) as tarefas da trilha em curso, com status ✅/❌;
      quando o usuário concluir e passar a próxima trilha, **substituir** a agenda
      (regra do usuário, 13/09/2026 — evita abrir o PDF da trilha toda hora).
+   - **Status inicial da agenda (regra do usuário, 13/09/2026)**: ao criar a
+     agenda, marcar ✅ as tarefas cuja aula já tem estudo comprovado no repo
+     (resumo existe + aula estudada no index/card TCE-GO, ou revisão com badge
+     🔁) e ❌ o resto (sem material, sem resumo ou revisão/questões sem
+     evidência); o usuário corrige os números se preciso.
 
 ## Ambiente opencode (reproduzir em máquina nova)
 
