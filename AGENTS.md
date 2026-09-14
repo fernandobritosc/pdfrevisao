@@ -77,6 +77,10 @@ TEC coladas em conteúdo de estudo e incrementar a incidência.
    `Matérias` do `Resumo_estudos/index.html` — a aula vive só na trilha: link no
    card `TCE-GO` do index + linha ✅ no painel `tce-go-trilha.html` e na tabela do
    `tce-go-trilha.md`.
+   - **Agenda da trilha ativa**: manter no fim do painel `tce-go-trilha.html`
+     (seção `Agenda — Trilha NN`) as tarefas da trilha em curso, com status ✅/❌;
+     quando o usuário concluir e passar a próxima trilha, **substituir** a agenda
+     (regra do usuário, 13/09/2026 — evita abrir o PDF da trilha toda hora).
 
 ## Ambiente opencode (reproduzir em máquina nova)
 
