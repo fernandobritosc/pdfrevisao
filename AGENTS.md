@@ -72,6 +72,11 @@ TEC coladas em conteúdo de estudo e incrementar a incidência.
    - Commitar e **`git push origin main` SOMENTE quando o usuário encerrar a aula**
      — commit único de encerramento, com as mudanças acumuladas.
    - O `.gitignore` já exclui `*.pdf` e `Resumo_estudos.rar` do versionamento.
+7. **Aulas exclusivas do TCE-GO (regra do usuário, 13/09/2026)**: quando o usuário
+   avisar no início que a aula pertence ao TCE, **NÃO criar materia-card** na grade
+   `Matérias` do `Resumo_estudos/index.html` — a aula vive só na trilha: link no
+   card `TCE-GO` do index + linha ✅ no painel `tce-go-trilha.html` e na tabela do
+   `tce-go-trilha.md`.
 
 ## Ambiente opencode (reproduzir em máquina nova)
 
