@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Contabilidade Pública Aula 00: Aspectos Introdutórios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: .95rem;
+  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+}
+.aula .sec-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  position: relative;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: justify; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--sidebar); }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f5; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+.gotcha {
+  background: #fae5e5;
+  border: 1px solid #efb4b4;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: justify;
+}
+.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.legal-block {
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d3f9e; }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+@media (max-width: 900px) {
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+}
+@media (max-width: 768px) {
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+<style id="rh-addons">
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .aula-nav { display: none !important; }
+  .aula .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .table-wrap, .callout, .gotcha, .legal-block { box-shadow: none !important; break-inside: avoid; }
+}
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .legal-block { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .legal-block.rev-open { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .legal-block { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Contabilidade Pública — Aula 00</div>
+  <div class="sidebar-sub">Aspectos Introdutórios · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Raio-X FCC e conceito</a>
+  <a href="#sec2">2. Campo de aplicação</a>
+  <a href="#sec3">3. Estatais e casos especiais</a>
+  <a href="#sec4">4. Objeto e patrimônio público</a>
+  <a href="#sec5">5. Bens públicos em detalhe</a>
+  <a href="#sec6">6. Objetivo e RCPGs</a>
+  <a href="#sec7">7. Usuários da informação</a>
+  <a href="#sec8">8. Base normativa e aspectos</a>
+  <a href="#sec9">9. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: completo + simplificado + mapa mental<br>
+    Estratégia Concursos · Gilmar Possati
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — RAIO-X FCC E CONCEITO                               -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Raio-X FCC e conceito de CASP</div>
+  </div>
+  <div class="sec-subtitle">TCE-GO pós-edital (banca FCC) · Gilmar Possati · como a banca cobra e o que é a Contabilidade Aplicada ao Setor Público</div>
+
+  <div class="card">
+    <div class="card-title">Como a FCC cobra Contabilidade Pública</div>
+    <div class="card-text">
+      → <strong>Integração lógica:</strong> a FCC não divide em tópicos isolados — combina Lei 4.320/1964 com NBCs TSP e reflexos no PCASP na mesma questão, em geral com eventos em cadeia (contratação → entrega → pagamento) exigindo os impactos orçamentários e patrimoniais de cada etapa.<br><br>
+      → <strong>Peso de Custos:</strong> cobrança recorrente e extensa de Custos no Setor Público (NBC TSP 34) — dominar sistemas de acumulação, métodos de custeio (direto, absorção, ABC) e classificação de objetos de custos.<br><br>
+      → <strong>Excesso de informações:</strong> enunciados com dados extras (distratores) para testar foco no que é relevante — ex.: tabelas longas de dotações em que só algumas linhas impactam o cálculo.<br><br>
+      → <strong>Cálculos exigidos:</strong> resultado da execução orçamentária, saldo de dotações, superávit/déficit financeiro, resultado patrimonial, resultado financeiro e fluxos operacionais e de investimento na DFC<br><br>
+      → Mensuração inicial do imobilizado/intangível (custos atribuíveis e tributos não recuperáveis) com depreciação/amortização (NBC TSP 07 e 08)<br><br>
+      → Impairment: valor recuperável é o <strong>maior</strong> entre valor justo líquido de despesas de venda e valor em uso (NBC TSP 09 e 10).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Macrotópico</th><th>Frequência estimada*</th><th>Principais focos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>NBCs TSP</strong></td><td>~35%</td><td>Custos (NBC TSP 34), Imobilizado e depreciação (07), Impairment (09 e 10), Estoques (04)</td></tr>
+        <tr><td><strong>Demonstrações (DCASP)</strong></td><td>~34%</td><td>Balanço Orçamentário (saldos de dotação, excesso/insuficiência de arrecadação), Balanço Patrimonial (ativos e passivos), DFC, Balanço Financeiro</td></tr>
+        <tr><td><strong>Estrutura Conceitual e Variações</strong></td><td>~14%</td><td>Características qualitativas, reconhecimento de ativos e passivos, VPD/VPA qualitativas e quantitativas (DVP)</td></tr>
+        <tr><td><strong>PCASP e escrituração</strong></td><td>~12%</td><td>Empenho, liquidação, pagamento, recebimento; natureza da informação (orçamentária, patrimonial e de controle)</td></tr>
+        <tr><td><strong>Outros temas</strong></td><td>~5%</td><td>Provisões e contingências (03), Intangível (08), Benefícios Sociais, Ativo Biológico</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>*Base:</strong> análise de 170 questões recentes da FCC citada na aula. Prioridades absolutas: Variações Patrimoniais, Balanço Orçamentário e Patrimonial, NBC TSP 34, NBC TSP 07 e escrituração (PCASP). Prioridades altas: NBC TSP 09/10, NBC TSP 04, Balanço Financeiro e Estrutura Conceitual. Nas demais normas, o custo-benefício é baixo — dominar os conceitos básicos.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conceito de CASP — por que não há conceito oficial?</div>
+    <div class="card-text">
+      → <strong>Hoje não existe conceito oficial</strong> de Contabilidade Aplicada ao Setor Público (CASP): a NBC T 16.1, que trazia a definição, foi <strong>revogada</strong> pela NBC TSP – Estrutura Conceitual, e a Estrutura Conceitual <strong>não trouxe nenhuma definição</strong> de Contabilidade Pública.<br><br>
+      → O conceito antigo segue útil para entender o contexto — e é ele que as bancas ainda usam como base: <span class="highlight">ramo da ciência contábil que aplica, no processo gerador de informações, os Princípios de Contabilidade e as normas contábeis direcionados ao controle patrimonial de entidades do setor público</span> — mas não pode mais ser exigido de forma literal, pois a norma que o previa caiu.<br><br>
+      → <strong>Ramo da ciência contábil:</strong> a Contabilidade é ciência social com vários ramos (Societária, Gerencial, Tributária etc.) — a CASP é um deles, também chamada de Contabilidade Pública ou Contabilidade Governamental.<br><br>
+      → <strong>Processo gerador de informações:</strong> como em todo ramo, a finalidade é gerar informações úteis à tomada de decisão — a CASP só se distingue pela aplicação direcionada.<br><br>
+      → <strong>Princípios de Contabilidade:</strong> a Resolução CFC 750/93 foi revogada, mas os princípios seguem tratados direta ou indiretamente na Estrutura Conceitual — se a resolução convivesse com a EC, haveria duas estruturas conceituais paralelas em conflito, como já ocorria no setor privado.<br><br>
+      → <strong>Normas contábeis:</strong> Lei 4.320/1964, Lei 10.180/2001, LRF, NBCs TSP e MCASP (detalhadas na seção 8) — o método das partidas dobradas vale aqui como na Contabilidade Geral.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha clássica</div>
+    Afirmar que a CASP tem <strong>sistema, legislação e princípios próprios, diferentes</strong> dos da contabilidade empresarial está <strong>errado</strong> — princípios, sistema (partidas dobradas) e a essência da ciência são os mesmos; o que muda é a <strong>aplicação</strong> (controle patrimonial de entidades do setor público × de entidades privadas). Pelo mesmo motivo, a Contabilidade Pública <strong>não é ciência autônoma</strong> — é ramo da ciência contábil.
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Estratégia por nível:</strong> iniciante — passar por toda a parte introdutória e entender o regime duplo (orçamentário × patrimonial) antes das questões mistas da FCC, com base de Contabilidade Geral. Intermediário — normas técnicas de alta prioridade + prática intensa de demonstrações. Avançado — baterias de testes e simulados, sutilezas e velocidade nos cálculos.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CAMPO DE APLICAÇÃO                                  -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Campo de aplicação: antigo × novo</div>
+  </div>
+  <div class="sec-subtitle">NBC T 16.1 (revogada, só como apoio) × NBC TSP – Estrutura Conceitual (vigente e exigível)</div>
+
+  <div class="card">
+    <div class="card-title">Campo "antigo" (NBC T 16.1) — revogado, cuidado com a pegadinha</div>
+    <div class="card-text">
+      → Abrangia <strong>todas as entidades do setor público</strong>, em dois escopos — terminologia que <strong>não vale mais</strong> e que o examinador adora ressuscitar para testar quem está atualizado.<br><br>
+      → <strong>Integralmente:</strong> entidades governamentais (incluía estatais dependentes), serviços sociais (Sistema S) e conselhos profissionais.<br><br>
+      → <strong>Parcialmente:</strong> demais entidades (incluía estatais independentes) e pessoas físicas equiparadas — com o objetivo de garantir prestação de contas e instrumentalização do controle social.<br><br>
+      → Estatais no modelo antigo: dependente = escopo integral; independente = escopo parcial.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Campo "novo" (Estrutura Conceitual) — obrigatório × facultativo</div>
+    <div class="card-text">
+      → A EC e as NBCs TSP aplicam-se <strong>obrigatoriamente às entidades do setor público</strong> quanto à elaboração e divulgação dos RCPGs — e a segregação agora é <strong>obrigatório × facultativo</strong> (nunca mais integral × parcial).<br><br>
+      → <strong>Obrigatório:</strong> governos nacional, estaduais, distrital e municipais e seus Poderes (incluídos Tribunais de Contas, Defensorias e Ministério Público)<br><br>
+      → Órgãos, secretarias, departamentos, agências, autarquias, fundações instituídas e mantidas pelo poder público<br><br>
+      → Fundos, consórcios públicos e congêneres da administração direta e indireta, <strong>inclusive estatais dependentes</strong> — engloba quem está no orçamento fiscal e no orçamento da seguridade social.<br><br>
+      → <strong>Facultativo</strong> (ou por determinação de regulador/fiscalizador): demais entidades e estatais independentes — engloba quem está no orçamento de investimento.<br><br>
+      → <strong>Estatais dependentes</strong> são as controladas que recebem do controlador recursos para pessoal, custeio em geral ou capital (neste último, excluídos os de aumento de participação acionária) — as demais controladas são independentes.<br><br>
+      → Na prática: Petrobras e Banco do Brasil só aplicam CASP se optarem ou se um fiscalizador/regulador determinar — ex.: TCU determinando à Petrobras, CVM determinando ao Banco do Brasil.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Critério</th><th>Antigo (NBC T 16.1) — revogado</th><th>Novo (Estrutura Conceitual) — vigente</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Lógica</strong></td><td>Integral × parcial</td><td><strong>Obrigatório × facultativo</strong></td></tr>
+        <tr><td><strong>Escopo forte</strong></td><td>Governamentais, Sistema S, conselhos</td><td>Governos + Poderes (TC, MP, Defensorias), órgãos, autarquias, fundações mantidas, fundos, consórcios, <strong>estatais dependentes</strong></td></tr>
+        <tr><td><strong>Escopo fraco</strong></td><td>Demais entidades, estatais independentes, PF equiparadas</td><td>Demais entidades e <strong>estatais independentes</strong> (facultativo ou por determinação de regulador/fiscalizador)</td></tr>
+        <tr><td><strong>Orçamento</strong></td><td>—</td><td>Obrigatório = fiscal + seguridade social; facultativo = investimento</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Quando há mudança normativa, o examinador insere o <strong>revogado como se vigente</strong>: qualquer alternativa que descreva o campo atual com os termos <strong>"integralmente/parcialmente"</strong>, que exclua as <strong>estatais dependentes</strong> do obrigatório, ou que obrigue <strong>estatais independentes</strong> a aplicar as NBCs TSP está errada. Para quem estuda pela primeira vez o risco é menor — o alerta vale sobretudo para quem está se atualizando e decorou o modelo antigo.
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Quem recebe recurso e NÃO está no campo:</strong> pessoas físicas ou jurídicas prestadoras de serviços ao Poder Público (o recurso é mera remuneração pelo serviço) e quem recebe por indenização ou sentença judicial — nenhum dos dois integra o campo de aplicação da CASP.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ESTATAIS E CASOS ESPECIAIS                           -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Estatais e casos especiais</div>
+  </div>
+  <div class="sec-subtitle">Dependentes × independentes, conselhos profissionais e Sistema S — o ponto que a FCC mais explora no campo de aplicação</div>
+
+  <div class="card">
+    <div class="card-title">Estatais dependentes — por que caem no obrigatório?</div>
+    <div class="card-text">
+      → <strong>Conceito:</strong> empresas controladas que recebem do ente controlador recursos para pagamento de despesas com pessoal, despesas de custeio em geral ou despesas de capital — neste último caso, excluídos os provenientes de aumento de participação acionária.<br><br>
+      → Por dependerem do Tesouro, estão dentro do <strong>escopo obrigatório</strong> e aplicam <strong>dupla legislação</strong>: a societária (Lei 6.404/76) e a do setor público.<br><br>
+      → <strong>Exemplos da aula:</strong> Embrapa, EBC e Imbel (empresas públicas); Nuclep e INB (sociedades de economia mista) — não precisa decorar empresa por empresa, e sim o critério da dependência.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estatais independentes — por que ficam no facultativo?</div>
+    <div class="card-text">
+      → São <strong>todas as demais controladas</strong> que não se enquadram como dependentes — em princípio <strong>fora do alcance</strong> da EC e das NBCs TSP, aplicando-as só facultativamente ou por determinação de regulador/fiscalizador.<br><br>
+      → <strong>Exemplos da aula:</strong> Correios e Caixa Econômica Federal (empresas públicas); Petrobras e Banco do Brasil (sociedades de economia mista).<br><br>
+      → Autarquia hospitalar municipal, por contraste, é entidade governamental típica: observa <strong>obrigatoriamente</strong> as normas e técnicas da CASP — e suas demonstrações seguem a Lei 4.320/1964 e as NBCs TSP, nunca a Lei 6.404/76.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>EBSERH × Petrobras:</strong> a Empresa Brasileira de Serviços Hospitalares, por ser estatal <strong>dependente</strong>, está no escopo <strong>obrigatório</strong> (alternativa que diga "parcialmente" está errada — vocabulário revogado, além do enquadramento errado). A Petrobras, estatal <strong>independente</strong>, está no escopo <strong>facultativo</strong> — alternativa que a obrigue está errada.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conselhos profissionais — a divergência que a banca cobra</div>
+    <div class="card-text">
+      → A Estrutura Conceitual <strong>não fala explicitamente</strong> dos conselhos de regulamentação profissional — e há divergência viva sobre eles.<br><br>
+      → <strong>Entendimento do CFC:</strong> conselhos são autarquias, logo estariam no escopo <strong>obrigatório</strong>.<br><br>
+      → <strong>Entendimento da STN (MCASP):</strong> conselhos aplicam as normas da CASP de forma <strong>facultativa</strong> — e foi esse o entendimento seguido em questão recente sobre demonstrações pelo MCASP.<br><br>
+      → Na dúvida em prova, seguir o comando da questão: se citar o MCASP, conselho = facultativo.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sistema S — por que saiu do integral e voltou pela porta do TCU?</div>
+    <div class="card-text">
+      → A EC também é <strong>silente</strong> sobre os Serviços Sociais Autônomos; pela interpretação do próprio CFC, não são obrigados às normas do setor público — por serem entidades sem fins lucrativos, aplicam a <strong>ITG 2002 (R1)</strong>.<br><br>
+      → Pela norma revogada o Sistema S aplicava <strong>integralmente</strong> a CASP — cenário que mudou: hoje o enquadramento-base é o <strong>facultativo</strong> (só por opção ou determinação de fiscalizador/regulador).<br><br>
+      → <strong>Detalhe que atualiza tudo:</strong> o Acórdão TCU 991/2019 determinava a aplicação só para parte do Sistema S, mas o <strong>Acórdão TCU 1.567/2020 ampliou a determinação aos demais serviços sociais autônomos</strong> — entendimento mais atualizado: Sistema S no escopo obrigatório <strong>por determinação do TCU</strong>.
+    </div>
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — OBJETO                                               -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Objeto: o patrimônio público</div>
+  </div>
+  <div class="sec-subtitle">O ponto mais direto da aula — e a pegadinha mais batida do tema</div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Objeto da CASP — só existe uma resposta certa</div>
+    <div class="card-text">
+      → O objeto da Contabilidade Pública é o <span class="highlight">PATRIMÔNIO PÚBLICO</span> — ponto.<br><br>
+      → <strong>Não</strong> é o orçamento público, <strong>não</strong> é o planejamento público, <strong>não</strong> é o comportamento das contas públicas: a CASP estuda e processa informações orçamentárias para controlar o patrimônio, mas o orçamento é instrumento, nunca objeto.<br><br>
+      → Esse conhecimento sozinho já resolve questões — inclusive a que trocou "patrimônio público" por só "patrimônio" e manteve o gabarito certo pelo sentido estrito.
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <strong>Patrimônio Público (conceito didático, de norma revogada — a EC não definiu outro):</strong> "conjunto de direitos e bens, tangíveis ou intangíveis, onerados ou não, adquiridos, formados, produzidos, recebidos, mantidos ou utilizados pelas entidades do setor público, que seja portador ou represente um fluxo de benefícios, presente ou futuro, inerente à prestação de serviços públicos ou à exploração econômica por entidades do setor público e suas obrigações."
+  </div>
+
+  <div class="card">
+    <div class="card-title">Dissecando o conceito — cada termo conta</div>
+    <div class="card-text">
+      → <strong>Bens:</strong> itens avaliados em moeda que satisfazem necessidades da entidade — ex.: veículos em atividade.<br><br>
+      → <strong>Direitos:</strong> valores a receber de terceiros gerados pela operação — ex.: contas a receber.<br><br>
+      → <strong>Obrigações:</strong> dívidas contratadas com terceiros — ex.: contas a pagar.<br><br>
+      → <strong>Tangíveis</strong> (materiais/corpóreos, têm substância física — veículos, imóveis) × <strong>intangíveis</strong> (imateriais/incorpóreos — marcas como a da Petrobras, patentes).<br><br>
+      → <strong>Onerados ou não:</strong> onerar é dar o bem em garantia contra inadimplemento — ex.: hipotecas e penhores.<br><br>
+      → <strong>As cinco origens:</strong> adquiridos (compra de imóvel)<br>
+      → formados/produzidos (gasolina produzida pela Petrobras)<br>
+      → recebidos (imóvel doado)<br>
+      → mantidos (imóvel para aluguel)<br>
+      → utilizados (veículo em serviço).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Classe (CC, art. 99)</th><th>Definição</th><th>Exemplos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>I — Uso comum do povo</strong></td><td>Usufruídos pela sociedade como um todo</td><td>Rios, mares, estradas, ruas e praças</td></tr>
+        <tr><td><strong>II — Uso especial</strong></td><td>Usados pela Administração para atingir seus fins</td><td>Edifícios ou terrenos de serviço — hospitais, bibliotecas, museus, aquartelamentos</td></tr>
+        <tr><td><strong>III — Dominicais</strong></td><td>Domínio do Poder Público, sem fim específico; objeto de direito pessoal ou real</td><td>Prédio desocupado, terrenos sem uso específico</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Parágrafo único do art. 99:</strong> não dispondo a lei em contrário, consideram-se <strong>dominicais</strong> os bens de pessoa jurídica de direito público a que se tenha dado estrutura de direito privado — o padrão, salvo lei em contrário, é dominical.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — BENS PÚBLICOS EM DETALHE                             -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Bens públicos em detalhe</div>
+  </div>
+  <div class="sec-subtitle">Quais bens entram no patrimônio, regime jurídico e detalhamento do MCASP</div>
+
+  <div class="card">
+    <div class="card-title">Quais bens a Contabilidade Pública controla?</div>
+    <div class="card-text">
+      → <strong>Uso especial e dominicais:</strong> todos controlados, sem exceção.<br><br>
+      → <strong>Uso comum do povo:</strong> só os que <strong>absorveram ou absorvem recursos públicos</strong> ou os <strong>recebidos em doação</strong> — incluídos no ativo não circulante da entidade que os administra ou controla, estejam ou não afetos à operação.<br><br>
+      → <strong>Entram:</strong> praças, ruas, pontes — consumiram recursos para existir.<br><br>
+      → <strong>Não entram:</strong> rios, mares, praias em estado natural — bens naturais que não consumiram recursos para construção.<br><br>
+      → Item que liste as três classes como objeto sem ressalvar o filtro do uso comum continua certo: incompleto não é errado em certo/errado.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regime jurídico dos bens — o que decorar</div>
+    <div class="card-text">
+      → <strong>Inalienáveis</strong> enquanto conservarem a qualificação, na forma da lei: uso comum do povo e uso especial.<br><br>
+      → <strong>Alienáveis</strong>, observadas as exigências legais: dominicais.<br><br>
+      → <strong>Nenhum</strong> bem público é suscetível a usucapião — comum, especial ou dominical.<br><br>
+      → O uso comum dos bens públicos pode ser <strong>gratuito ou retribuído</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Detalhamento do MCASP — como o manual abre cada classe</div>
+    <div class="card-text">
+      → <strong>Uso especial:</strong> edifícios ou terrenos de serviço da administração federal, estadual ou municipal, inclusive autarquias e fundações públicas — imóveis residenciais, terrenos, glebas, aquartelamentos, aeroportos, açudes, fazendas, museus, hospitais, hotéis, entre outros.<br><br>
+      → <strong>Dominiais:</strong> patrimônio das pessoas jurídicas de direito público como objeto de direito pessoal ou real — inclusive, salvo lei em contrário, os de entidade com estrutura de direito privado: apartamentos, armazéns, casas, glebas, terrenos, lojas, bens da reforma agrária, imóveis a alienar, entre outros.<br><br>
+      → <strong>Uso comum do povo:</strong> domínio público, construídos ou não por pessoa jurídica de direito público.<br><br>
+      → <strong>Imóveis em andamento:</strong> valores ainda não concluídos — obras em andamento, estudos e projetos (limpeza de terreno, topografia etc.) e benfeitorias em propriedade de terceiros, entre outros.
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Art. 83 × art. 89 da Lei 4.320/1964:</strong> o art. 83 (evidenciar perante a Fazenda Pública quem arrecada, gasta, administra ou guarda bens) liga-se ao <strong>campo de aplicação</strong>; o art. 89 (evidenciar fatos orçamentários, financeiros, patrimoniais e industriais) liga-se ao <strong>objetivo</strong> — distinção cobrada na seção 8.</div>
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — OBJETIVO E RCPGs                                      -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Objetivo e RCPGs</div>
+  </div>
+  <div class="sec-subtitle">Objetivo herdado da NBC T 16.1 × objetivo vigente da Estrutura Conceitual e os Relatórios Contábeis de Propósito Geral</div>
+
+  <div class="card">
+    <div class="card-title">Objetivo herdado (NBC T 16.1) — revogado, mas válido como entendimento</div>
+    <div class="card-text">
+      → Fornecer aos usuários informações sobre os <strong>resultados alcançados</strong> e os aspectos de natureza <strong>orçamentária, econômica, financeira e física</strong> do patrimônio e suas mutações — em apoio à tomada de decisão, à prestação de contas e ao controle social.<br><br>
+      → <strong>Orçamentária:</strong> previsão da receita, fixação da despesa e execução do orçamento.<br><br>
+      → <strong>Financeira:</strong> fluxo de caixa — entradas recolhidas aos cofres e pagamentos efetuados.<br><br>
+      → <strong>Econômica:</strong> resultados do período e escolhas de aplicação dos recursos (não há dinheiro para tudo).<br><br>
+      → <strong>Física:</strong> existência física dos elementos patrimoniais, notadamente os ativos.<br><br>
+      → <strong>Tomada de decisão</strong> (âmbito interno, via demonstrações) <strong>× prestação de contas</strong> (controle interno/Controladorias e externo/Tribunais — ex.: Relatório de Gestão federal, IN TCU 84/2020) <strong>× controle social</strong> (sociedade civil organizada).
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Objetivo vigente (Estrutura Conceitual) — o que levar para a prova</div>
+    <div class="card-text">
+      → O objetivo principal da <strong>maioria</strong> das entidades do setor público é <strong>prestar serviços à sociedade, em vez de obter lucros e gerar retorno a investidores</strong>.<br><br>
+      → O objetivo da elaboração e divulgação da informação contábil: <span class="highlight">fornecer informações úteis aos usuários dos RCPGs para prestação de contas e responsabilização (accountability) e tomada de decisão</span>.<br><br>
+      → O instrumento desse objetivo são os <strong>RCPGs</strong> — que existem, em última análise, para atender ao objetivo maior da CASP: fornecer informações.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">RCPGs — os componentes centrais da transparência</div>
+    <div class="card-text">
+      → São os <strong>componentes centrais da transparência</strong> da informação contábil de governos e entidades do setor público, aprimorando-a e favorecendo-a.<br><br>
+      → Elaborados para as <strong>necessidades dos usuários em geral</strong> — sem o propósito de atender finalidades ou necessidades específicas de determinados grupos.<br><br>
+      → Podem compreender <strong>múltiplos relatórios</strong>, cada qual atendendo a certos aspectos dos objetivos e do alcance da divulgação.<br><br>
+      → Abrangem as <strong>demonstrações contábeis (com notas explicativas)</strong> e a apresentação de informações que <strong>aprimoram, complementam e suplementam</strong> essas demonstrações.<br><br>
+      → Quem tem prerrogativa de <strong>exigir relatório para necessidade específica</strong> pode achar o RCPG útil — mas o RCPG não é elaborado para isso.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>RCPG sem poder comprobatório?</strong> Errado — o objetivo inclui <strong>responsabilização (accountability)</strong>, logo o RCPG dá publicidade à prestação de contas <strong>e</strong> serve à responsabilização de gestores. <strong>RCPG que não pode ser adaptado?</strong> Errado também — usuários com prerrogativa podem exigir relatórios para necessidades específicas e aproveitar o RCPG; o que a norma diz é que ele <strong>não é elaborado</strong> com essa finalidade.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — USUÁRIOS                                             -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Usuários da informação contábil</div>
+  </div>
+  <div class="sec-subtitle">Primários × secundários na NBC TSP – Estrutura Conceitual — tema repetido à exaustão nas provas</div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Usuários primários — quem decide o conteúdo do RCPG</div>
+    <div class="card-text">
+      → <strong>Usuários dos serviços e seus representantes</strong> — os representantes são os <strong>membros do Poder Legislativo</strong>, que usam os RCPGs extensiva e continuamente nessa condição.<br><br>
+      → <strong>Provedores de recursos e seus representantes</strong> — governos obtêm recursos de contribuintes, doadores e credores para prestar serviços; quem provê quer informação para decidir.<br><br>
+      → Em forma curta: cidadãos que recebem os serviços, provedores de recursos e membros do Legislativo.<br><br>
+      → Os RCPGs são elaborados e divulgados <strong>principalmente</strong> para esses usuários quando eles não têm prerrogativa de exigir divulgação sob medida.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quem usa o RCPG sem ser usuário primário?</div>
+    <div class="card-text">
+      → Responsáveis pelas estatísticas de finanças públicas<br>
+      → Analistas<br>
+      → Mídia<br>
+      → Consultores financeiros<br>
+      → Grupos de interesse público ou privado<br>
+      → Agências reguladoras e supervisoras<br>
+      → Entidades de auditoria<br>
+      → Comissões do Poder Legislativo ou de outro órgão do governo<br>
+      → Órgãos centrais de orçamento e controle<br>
+      → Agências de classificação de risco<br>
+      → Entidades emprestadoras de recursos e de fomento.<br><br>
+      → Todos podem achar a informação útil para propósitos distintos — mesmo assim <strong>não são primários</strong>, e os RCPGs <strong>não são elaborados nem divulgados para necessidades específicas ou particulares</strong>: alternativa que diga o contrário está errada.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    <strong>Membros × comissões do Legislativo:</strong> os <strong>membros</strong> do Poder Legislativo são usuários <strong>primários</strong> (representantes dos usuários e provedores), mas as <strong>comissões</strong> do Poder Legislativo aparecem na lista dos <strong>secundários</strong> — sem lógica aparente, então levar ao pé da letra: questão que troque um pelo outro está errada.
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — BASE NORMATIVA E ASPECTOS                             -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Base normativa e aspectos contábeis</div>
+  </div>
+  <div class="sec-subtitle">Leis, NBCs TSP, MCASP, Sistema de Contabilidade Federal e os três aspectos (orçamentário, patrimonial e fiscal)</div>
+
+  <div class="card">
+    <div class="card-title">Lei 4.320/1964 — a lei de base orçamentária com Título patrimonial</div>
+    <div class="card-text">
+      → Estatui normas gerais de Direito Financeiro para elaboração e controle dos orçamentos e balanços da União, Estados, Municípios e DF — lei fundamental, embora antiga e com vários dispositivos sem aplicabilidade após leis posteriores como a LRF.<br><br>
+      → Caráter eminentemente <strong>orçamentário</strong> (princípios, execução e controle do orçamento — muito explorada em AFO), mas com dispositivos patrimoniais importantíssimos: o <strong>Título IX</strong>, sobre demonstrações contábeis.<br><br>
+      → <strong>Art. 83</strong> (campo): a contabilidade evidenciará perante a Fazenda Pública quem arrecada, gasta, administra ou guarda bens.<br><br>
+      → <strong>Art. 89</strong> (objetivo): a contabilidade evidenciará os fatos orçamentários, financeiros, patrimoniais e industriais.<br><br>
+      → <strong>Art. 34:</strong> exercício financeiro coincide com o ano civil.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Lei 10.180/2001 — por que ela estrutura os sistemas?</div>
+    <div class="card-text">
+      → Organiza os Sistemas de Planejamento e Orçamento Federal, Administração Financeira Federal, <strong>Contabilidade Federal</strong> e Controle Interno do Executivo Federal — para cada sistema, finalidades, organização e competências.<br><br>
+      → <strong>Sistema de Contabilidade Federal:</strong> registro, tratamento e controle das operações orçamentárias, financeiras e patrimoniais da União, com vistas às demonstrações contábeis.<br><br>
+      → <strong>Competências das unidades do Sistema:</strong> manter e aprimorar o Plano de Contas Único da União<br>
+      → estabelecer normas e procedimentos de registro dos atos e fatos da gestão orçamentária, financeira e patrimonial<br>
+      → registrar atos/fatos ilegais ou irregulares e providenciar a responsabilização, comunicando chefia e controle interno<br>
+      → instituir, manter e aprimorar sistemas de informação contábil e gerencial<br>
+      → realizar tomadas de contas de ordenadores e responsáveis por bens, valores e dano ao erário<br>
+      → consolidar os balanços de União, Estados, DF e Municípios para o Balanço do Setor Público Nacional<br>
+      → elaborar os Balanços Gerais da União<br>
+      → integrar-se com demais Poderes e esferas em assuntos de contabilidade.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">LRF (LC 101/2000) — de onde veio e o que amarrou?</div>
+    <div class="card-text">
+      → Nascida do desequilíbrio fiscal dos anos 1990 e do ajuste pactuado com o FMI em 1999: normas de finanças públicas para a responsabilidade na gestão fiscal.<br><br>
+      → Regulamenta a Constituição nos pontos de finanças públicas — <strong>art. 163</strong> (I finanças públicas; II dívida; III garantias; IV títulos da dívida; V fiscalização financeira; VI câmbio; VII crédito oficial), <strong>art. 169</strong> (limites de pessoal), <strong>art. 165, II, §9º</strong> (gestão financeira e patrimonial, fundos) e <strong>art. 250</strong> (fundo da previdência).<br><br>
+      → Fixou limites de dívida consolidada, garantias, operações de crédito, restos a pagar e pessoal, pelo equilíbrio das contas e pela transparência.<br><br>
+      → Exigiu a <strong>consolidação nacional das contas</strong>, exercida pela STN via publicação anual do <strong>BSPN</strong> (União + Estados + DF + Municípios).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">NBCs TSP — as normas-mãe da convergência</div>
+    <div class="card-text">
+      → Editadas pelo <strong>CFC</strong> na convergência aos padrões internacionais, com orientações específicas para o campo da CASP.<br><br>
+      → <strong>Estrutura Conceitual:</strong> elaboração e divulgação de informação contábil de propósito geral.<br><br>
+      → <strong>Receitas e despesas correntes:</strong> TSP 01 (sem contraprestação) e 02 (com contraprestação).<br><br>
+      → <strong>Ativo:</strong> 04 Estoques, 06 Propriedade para investimento, 07 Imobilizado, 08 Intangível, 09/10 Impairment (não gerador × gerador de caixa).<br><br>
+      → <strong>Demonstrações:</strong> 11 Apresentação, 12 Fluxos de caixa, 13 Informação orçamentária.<br><br>
+      → <strong>Foco FCC:</strong> 34 Custos, 07 Imobilizado, 09/10 Impairment, 04 Estoques, 03 Provisões e contingentes, 08 Intangível, 15 Benefícios a empregados, 23 Políticas contábeis e erros, 25 Evento subsequente, 26 Agro, 29 Benefícios sociais, 30–33 Instrumentos financeiros, 05 Concessões.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">MCASP — por que é a principal fonte de estudo?</div>
+    <div class="card-text">
+      → <strong>Não é norma:</strong> é o conjunto de procedimentos (orçamentários, patrimoniais e específicos) que orienta os gestores na aplicação do arcabouço da CASP.<br><br>
+      → Editado pela <strong>STN</strong>, órgão central de Contabilidade do Governo Federal, para orientar União, Estados e Municípios na convergência — detalhista, operacional e fértil para o examinador.<br><br>
+      → <strong>6 partes:</strong> Geral (CASP)<br>
+      → I — Procedimentos Contábeis Orçamentários<br>
+      → II — Procedimentos Contábeis Patrimoniais<br>
+      → III — Procedimentos Contábeis Específicos<br>
+      → IV — PCASP<br>
+      → V — DCASP.<br><br>
+      → Aplica-se obrigatoriamente às entidades do setor público (mesmo rol do escopo obrigatório); conselhos e estatais independentes, facultativamente ou por determinação de regulador/fiscalizador.
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title" style="color:var(--purple);">Três aspectos da CASP — qual relatório prova qual?</div>
+    <div class="card-text">
+      → <strong>Orçamentário:</strong> registro e evidenciação do orçamento (aprovação e execução) — registros de natureza orçamentária baseiam o <strong>RREO</strong> e os Balanços <strong>Orçamentário e Financeiro</strong>.<br><br>
+      → <strong>Patrimonial:</strong> registro e evidenciação da composição patrimonial (reconhecimento, mensuração e evidenciação de ativos, passivos e variações) — instrumentos <strong>BP e DVP</strong>; é para este aspecto que contribui primordialmente a convergência internacional.<br><br>
+      → <strong>Fiscal:</strong> apuração e evidenciação dos indicadores da LRF (pessoal, operações de crédito, dívida consolidada, caixa, primário e nominal) para verificar o equilíbrio — instrumentos <strong>RGF e RREO</strong>.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Comparação do MCASP</th><th>Regra</th><th>Detalhe cobrado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Demonstrações × relatórios fiscais</strong></td><td>Objetivos <strong>diferentes</strong></td><td>Demonstrações: prestação de contas e decisão; fiscais: política fiscal, impacto na economia, comparação nacional/internacional</td></tr>
+        <tr><td><strong>Demonstrações × relatórios fiscais</strong></td><td>Muito em <strong>comum</strong></td><td>Ambos voltados a ativos, passivos, receitas, despesas e fluxos de caixa — e interligados</td></tr>
+        <tr><td><strong>Demonstrações × relatórios orçamentários</strong></td><td><strong>Não</strong> têm muito em comum</td><td>O paralelo "muito em comum" vale para os fiscais, não para os orçamentários</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Regimes e exercício:</strong> regime <strong>orçamentário misto</strong> — receitas na arrecadação (caixa) e despesas no empenho (competência); regime <strong>patrimonial integralmente por competência</strong>. Exercício financeiro = ano civil (art. 34). Alternativa que aplique "competência pura" ao orçamentário está errada.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — INCIDÊNCIA                                           -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Conteúdo de estudo extraído das questões do TEC — sem replicar a questão</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Para fechar — os 5 pontos que mais decidem questão</div></div>
+    <div class="card-text">
+      → Campo novo é <strong>obrigatório × facultativo</strong> — integral/parcial morreu com a NBC T 16.1.<br><br>
+      → Dependente <strong>obriga</strong> (EBSERH, Embrapa), independente <strong>faculta</strong> (Petrobras, BB).<br><br>
+      → Objeto é <strong>patrimônio público</strong> — nunca orçamento.<br><br>
+      → Uso comum só entra com <strong>recurso absorvido ou doação</strong>.<br><br>
+      → Primários: <strong>usuários, provedores e Legislativo</strong> — RCPG nunca é sob medida.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada ainda.
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<!-- Navegação entre aulas -->
+<div class="aula-nav">
+  <a href="../../index.html">
+    <div class="aula-nav-dir">← Anterior</div>
+    <div class="aula-nav-label">Índice de resumos</div>
+  </a>
+  <a class="placeholder"></a>
+</div>
+
+<div class="footer">Contabilidade Pública · Aula 00 — Aspectos Introdutórios · Estratégia Concursos (Gilmar Possati) · TCE-GO pós-edital</div>
+
+<!--rh:ui-->
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<div id="rhMarkPanel"><div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div><button type="button" id="rhmpExp">⬇ exportar</button><button type="button" id="rhmpImp">⬆ importar</button></div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.legal-block') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.getElementById('rhMarkPanel');
+  var nEl=document.getElementById('rhmpN');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title');
+    var txt=t?t.textContent.trim():'';
+    if(!txt){var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.legal-block';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length){
+      document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+      document.querySelectorAll(SEL).forEach(function(el){ if(saved.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+      save();
+    }
+  }catch(e){}
+  render();
+})();
+</script>
+<!--/rh:ui-->
+</body>
+</html>
