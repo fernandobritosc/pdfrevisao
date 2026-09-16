@@ -755,6 +755,34 @@ html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .questio
 #rhMarkPanel button:hover { border-color: var(--blue); }
 @media print { #rhMarkPanel { display: none !important; } }
 </style>
+<style id="rh-tdah">
+/* ===== RH TDAH: respiro visual + âncoras de progresso (só Aula 01) ===== */
+.aula .main > section { margin-bottom: 2rem; padding-bottom: 1.2rem; border-bottom: 1px dashed var(--line-strong); }
+.aula .sec-header { flex-wrap: wrap; gap: .4rem; }
+.aula .sec-num { background: #0891B2; color: #fff; border: none; }
+section.tdah-done .sec-num { background: var(--green); }
+.aula .card { padding: 1.1rem 1.35rem; }
+.aula .card-text { line-height: 1.8; }
+.aula .card[style*="--green"] { background: #f2fbf6; }
+html[data-theme="dark"] .aula .card[style*="--green"] { background: #10291e; }
+.tdah-min { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem; font-weight: 600; color: var(--muted); border: 1px solid var(--line-strong); border-radius: 20px; padding: .1rem .55rem; margin-left: .6rem; white-space: nowrap; }
+.tdah-check { margin-left: .5rem; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--text2); background: var(--card); border: 1px solid var(--line-strong); border-radius: 20px; padding: .25rem .7rem; cursor: pointer; display: inline-flex; align-items: center; gap: .35rem; }
+.tdah-check .tdah-box { display: inline-flex; align-items: center; justify-content: center; width: 1rem; height: 1rem; border-radius: 50%; border: 1.5px solid var(--muted); color: transparent; font-size: .65rem; line-height: 1; }
+.tdah-check[aria-pressed="true"] { border-color: var(--green); color: var(--green); }
+.tdah-check[aria-pressed="true"] .tdah-box { background: var(--green); border-color: var(--green); color: #fff; }
+.tdah-progress { margin-top: 1rem; padding: .6rem .7rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--card); }
+.tdah-progress-num { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; font-weight: 600; color: var(--text); }
+.tdah-bar { height: 6px; border-radius: 4px; background: var(--line); margin-top: .4rem; overflow: hidden; }
+.tdah-fill { height: 100%; background: linear-gradient(90deg, #0891B2, var(--green)); width: 0; }
+.tdah-done-msg { font-size: .75rem; color: var(--green); font-weight: 700; margin-top: .35rem; }
+html.rh-focus .aula .card, html.rh-focus .aula .callout, html.rh-focus .aula .table-wrap { opacity: .3; }
+html.rh-focus .aula .card:hover, html.rh-focus .aula .callout:hover, html.rh-focus .aula .table-wrap:hover { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  html.rh-focus .aula .card, html.rh-focus .aula .callout, html.rh-focus .aula .table-wrap { transition: opacity .2s; }
+}
+.tdah-resume { position: fixed; left: 50%; transform: translateX(-50%); bottom: 1.1rem; z-index: 301; background: #0891B2; color: #fff; border: none; border-radius: 24px; padding: .6rem 1.2rem; font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; font-size: .85rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(31,39,51,.3); }
+@media print { .tdah-resume, .tdah-check, .tdah-min, .tdah-progress { display: none !important; } }
+</style>
 <script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
 
 <link rel="manifest" href="/manifest.webmanifest">
@@ -783,6 +811,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <a href="#sec8">8. Numeral</a>
   <a href="#sec9">9. Interjeição</a>
   <a href="#sec10">10. Palavras especiais</a>
+  <a href="#sec11">11. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
   <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
   <hr class="sidebar-divider">
@@ -818,11 +847,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   
     <div class="card" style="border-color:var(--green);">
-      <div class="card-title" style="color:var(--green);">Variáveis</div>
+      <div class="card-title" style="color:var(--green);">Variáveis — flexionam em gênero e número</div>
       <div class="card-text">Concordam em gênero e número.<br>Substantivo, Adjetivo, Pronome, Numeral, Verbo.</div>
     </div>
     <div class="card">
-      <div class="card-title">Invariáveis</div>
+      <div class="card-title">Invariáveis — sem flexão, sem concordância</div>
       <div class="card-text">Sem flexão, sem concordância.<br>Advérbios, Conjunções, Preposições.</div>
     </div>
   
@@ -893,17 +922,17 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Flexão de número</h3>
   <div class="card" style="margin-bottom:.8rem;">
     <div class="card-text">
-      • Regra geral: plural em <strong>-S</strong> (carros, meninas)<br>
-      • Terminações variadas: reitores, cônsules, faróis, fuzis, animais<br>
-      • Sem plural: ônix, tórax<br>
-      • Só no plural: núpcias, fezes, férias, arredores<br>
-      • <strong>-ão</strong>: maioria em -ões (mãos, irmãos); alguns em -ães (capelães, alemães); vários admitem 2-3 formas
+      → Regra geral: plural em <strong>-S</strong> (carros, meninas)<br>
+      → Terminações variadas: reitores, cônsules, faróis, fuzis, animais<br>
+      → Sem plural: ônix, tórax<br>
+      → Só no plural: núpcias, fezes, férias, arredores<br>
+      → <strong>-ão</strong>: maioria em -ões (mãos, irmãos); alguns em -ães (capelães, alemães); vários admitem 2-3 formas
     </div>
   </div>
 
-  <div class="mnemonic">
-    <div class="mnemonic-label">🧠 Plural dos compostos</div>
-    <div class="mnemonic-content">
+  <div class="card">
+    <div class="card-title">Plural dos compostos — quem varia, varia</div>
+    <div class="card-text">
       <span class="tag tag-green">Regra geral:</span> “quem varia varia; quem não varia não varia”<br>
       <span class="tag tag-blue">2º elemento especifica o 1º:</span> banhos-maria OU banhos-marias<br>
       <span class="tag tag-blue">Sub + preposição + sub:</span> só o 1º varia → pés de moleque, mãos de obra<br>
@@ -914,16 +943,16 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Grau do substantivo</h3>
   
     <div class="card">
-      <div class="card-title">Diminutivo</div>
+      <div class="card-title">Diminutivo — sufixos e plural</div>
       <div class="card-text">Sufixos: -inho/-zinha.<br>Plural: corta-se o /S/ e acrescenta -zinhos/-zinhas.<br>
         animal → animaizinhos<br>
         coração → coraçõezinhos</div>
     </div>
     <div class="card">
-      <div class="card-title">Aumentativo</div>
+      <div class="card-title">Aumentativo — sufixos e formas</div>
       <div class="card-text">Sufixos: -ão, -zão, -arra, -az, etc.<br>
         Ex.: sabichão, carrão, padreco, gentalha<br>
-        <strong>Pegadinha:</strong> aumentativo de “pata” é “patorra”, não “pataca”.</div>
+        <strong>⚠️ Atenção:</strong> aumentativo de “pata” é “patorra”, não “pataca”.</div>
     </div>
   
 </section>
@@ -936,15 +965,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card">
       <div class="card-title">Classificação por estrutura</div>
       <div class="card-text">
-        • <strong>Simples:</strong> 1 radical → belo<br>
-        • <strong>Composto:</strong> >1 radical → lítero-musical
+        → <strong>Simples:</strong> 1 radical → belo<br>
+        → <strong>Composto:</strong> >1 radical → lítero-musical
       </div>
     </div>
     <div class="card">
       <div class="card-title">Classificação por origem</div>
       <div class="card-text">
-        • <strong>Primitivo:</strong> não derivado → bom<br>
-        • <strong>Derivado:</strong> de outra palavra → bondoso
+        → <strong>Primitivo:</strong> não derivado → bom<br>
+        → <strong>Derivado:</strong> de outra palavra → bondoso
       </div>
     </div>
   
@@ -962,9 +991,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </table>
   </div>
 
-  <div class="mnemonic">
-    <div class="mnemonic-label">🧠 Formação dos adjetivos pátrios</div>
-    <div class="mnemonic-content">
+  <div class="card">
+    <div class="card-title">Adjetivos pátrios — como se formam os sufixos</div>
+    <div class="card-text">
       /ês/: português, francês, camaronês<br>
       /ano/: goiano, americano, africano<br>
       /ense/: estadunidense, fluminense<br>
@@ -983,7 +1012,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Flexão dos compostos</h3>
   
     <div class="card">
-      <div class="card-title">Regra geral</div>
+      <div class="card-title">Flexão dos compostos — por que só o 2º elemento varia?</div>
       <div class="card-text">Só o 2º item vai para o plural: luso-americanos, afro-brasileiras.</div>
     </div>
     <div class="card">
@@ -1004,6 +1033,24 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <tr><td>Muda classe</td><td>alemão comunista / comunista alemão</td><td>Muda sentido e classe</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="card" style="margin-top:.8rem;border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Ordem do adjetivo — quando a inversão muda o sentido</div>
+    <div class="card-text">
+      <strong>📌 Aprendizado:</strong> antepor o adjetivo ao substantivo pode mudar o sentido de modo significativo — "produto verdadeiro" (= original, não falsificado) ≠ "verdadeiro produto" (= o produto certo, a real intenção por trás da fachada); o mesmo contraste vale para "mãe verdadeira" (= biológica, não falsa) ≠ "verdadeira mãe" (= quem se aproxima do que se concebe por mãe).<br><br>
+      → Adjetivos que não mudam de sentido com a inversão: "vantagens fantásticas" = "fantásticas vantagens", "notícias falsas" = "falsas notícias", "reflexão necessária" = "necessária reflexão" — a troca de ordem é semanticamente neutra nesses casos.<br><br>
+      → ⚠️ Detalhe: "alheios", como adjetivo (= de outrem, de outras pessoas: "interesses alheios"), continua adjetivo mesmo anteposto ("alheios interesses", sem mudança de sentido) — só funciona como substantivo (= os não parentes) em usos como "dar valor aos alheios".
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:.8rem;border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Adjetivo e contexto — quando a escolha é adequada</div>
+    <div class="card-text">
+      <strong>📌 Aprendizado:</strong> o adjetivo precisa combinar com o contexto da frase — "marcha ritmada" é adequado porque ritmado = que tem ritmo, segue um padrão rítmico, e a marcha dos soldados é uniforme, com ritmo de fato.<br><br>
+      → Escolhas inadequadas pelo descompasso de sentido: "movimentos frenéticos" (= exaltados, muito agitados) não combina com a valsa, dança de movimentos mais lentos; "movimentos oscilantes" (= que se movem de modo alternado, instáveis) não combina com quem sofre um ataque e desmaia, pois cai de uma vez só — oscilar é próprio de quem tropeça ou se desequilibra.<br><br>
+      → ⚠️ Distinção: pêndulo move-se num vaivém de um lado para o outro, então "movimento giratório" é inadequado — giratório caberia aos ponteiros do relógio; "força convulsiva" (= descontrolada, contorcida) não combina com as ondas do mar — o adequado seria "impetuosa" (violenta, poderosa).
+    </div>
   </div>
 
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Grau do adjetivo</h3>
@@ -1047,20 +1094,29 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </table>
   </div>
 
+  <div class="card" style="margin-top:.8rem;border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Locução → adjetivo — quando a troca preserva o sentido</div>
+    <div class="card-text">
+      <strong>📌 Aprendizado:</strong> trocar locução adjetiva por um adjetivo só é adequado quando o sentido original se preserva — "pensamento sem clareza" = "pensamento obscuro", no sentido de obscuro como sem clareza, difícil de explicar ou compreender.<br><br>
+      → Trocas que quebram o sentido: "revolução sem chefia" ≠ "revolução anarquista", pois anarquista indica o objetivo da revolução (instaurar a anarquia, negação do princípio da autoridade), não a ausência de liderança; "crime sem motivação" ≠ "crime anônimo" — o equivalente seria "crime desmotivado", já que anônimo = de autoria desconhecida.<br><br>
+      → ⚠️ Detalhe: "acéfalo" = sem cabeça (por extensão, falta de inteligência), nada a ver com "sem título"; "inesgotável" = que não se esgota, ilimitado — sem relação com "sem esgoto", que indica problema de saneamento básico.
+    </div>
+  </div>
+
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Valor objetivo x subjetivo</h3>
   
     <div class="card">
-      <div class="card-title">Objetivo</div>
+      <div class="card-title">Valor objetivo — fato, sem interpretação</div>
       <div class="card-text">Fato, não depende de interpretação. Podem ser retirados sem prejuízo gramatical?<br>
-        • carro preto<br>
-        • turista japonês<br>
-        • nota mensal</div>
+        → carro preto<br>
+        → turista japonês<br>
+        → nota mensal</div>
     </div>
     <div class="card">
-      <div class="card-title">Subjetivo</div>
+      <div class="card-title">Valor subjetivo — opinião, acessório</div>
       <div class="card-text">Expressam opinião, são acessórios.<br>
-        • carro bonito<br>
-        • turista animado<br>
+        → carro bonito<br>
+        → turista animado<br>
         Podem ser retirados sem prejuízo gramatical.</div>
     </div>
   
@@ -1072,26 +1128,38 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   
     <div class="card">
-      <div class="card-title">Características</div>
+      <div class="card-title">Características do advérbio — invariável que modifica verbo, adjetivo ou oração</div>
       <div class="card-text">
-        • Invariável (não flexiona)<br>
-        • Modifica verbo, adjetivo, outro advérbio ou oração<br>
-        • <strong>Exceção:</strong> TODO pode variar: “chegou todo sujo / a esposa o recebeu toda paciente”<br>
-        • Interrogativos: onde, quando, como, por que</div>
+        → Invariável (não flexiona)<br>
+        → Modifica verbo, adjetivo, outro advérbio ou oração<br>
+        → <strong>Exceção:</strong> TODO pode variar: “chegou todo sujo / a esposa o recebeu toda paciente”<br>
+        → Interrogativos: onde, quando, como, por que</div>
     </div>
     <div class="card">
       <div class="card-title">Circunstâncias adverbiais</div>
       <div class="card-text">
-        • <strong>Tempo:</strong> hoje, ontem, amanhã, logo<br>
-        • <strong>Lugar:</strong> aqui, ali, lá, abaixo, acima<br>
-        • <strong>Modo:</strong> bem, mal, assim, depressa<br>
-        • <strong>Intensidade:</strong> muito, demais, pouco, bastante<br>
-        • <strong>Negação:</strong> não, nunca, jamais<br>
-        • <strong>Afirmação:</strong> sim, certamente, realmente</div>
+        → <strong>Tempo:</strong> hoje, ontem, amanhã, logo<br>
+        → <strong>Lugar:</strong> aqui, ali, lá, abaixo, acima<br>
+        → <strong>Modo:</strong> bem, mal, assim, depressa<br>
+        → <strong>Intensidade:</strong> muito, demais, pouco, bastante<br>
+        → <strong>Negação:</strong> não, nunca, jamais<br>
+        → <strong>Afirmação:</strong> sim, certamente, realmente</div>
     </div>
   
 
   <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>-mente:</strong> 99% dos advérbios em -mente são de modo, mas nem todos. O contexto define a circunstância.</div></div>
+
+  <div class="card" style="margin-top:.8rem;border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Advérbios em -mente que não indicam modo</div>
+    <div class="card-text">
+      <strong>📌 Aprendizado:</strong> nem todo advérbio terminado em -mente é de modo — o contexto define a circunstância; "suavemente" e "docemente" são de modo (indicam como o fato aconteceu: respirar suavemente, coisa sua docemente).<br><br>
+      → Ordem/sequência: "primeiramente, pretendo falar de advérbio"<br>
+      → Tempo: "faço provas bimestralmente"<br>
+      → Dúvida: "ele provavelmente não retornará" (possível + -mente = valor de dúvida)<br>
+      → Intensidade: "cerveja estupidamente gelada"<br>
+      → Afirmação: "certamente o Brasil será um país desenvolvido"
+    </div>
+  </div>
 
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">Palavras denotativas</h3>
   <div class="table-wrap">
@@ -1108,11 +1176,25 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </table>
   </div>
 
-  <div class="gotcha">
-    <div class="gotcha-title">🚨 Pegadinha: “só” pode ser adjetivo, advérbio ou denotativa</div>
-    • <strong>Só João</strong> fuma = denotativa de exclusão<br>
-    • <strong>João só</strong> fuma = advérbio de exclusão<br>
-    • Estou <strong>só</strong> = adjetivo (=sozinho)
+  <div class="card">
+    <div class="card-title">“Só” — como saber se é adjetivo, advérbio ou denotativa?</div>
+    <div class="card-text">
+      → <strong>Só João</strong> fuma = denotativa de exclusão<br>
+      → <strong>João só</strong> fuma = advérbio de exclusão<br>
+      → Estou <strong>só</strong> = adjetivo (=sozinho)
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:.8rem;border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">“Mais” — advérbio ou pronome indefinido?</div>
+    <div class="card-text">
+      <strong>📌 Aprendizado:</strong> "mais" é <strong>advérbio</strong> de intensidade (invariável) quando modifica verbo, adjetivo ou outro advérbio — a estrutura mostra a quem ele se liga:<br>
+      → verbo + <strong>mais</strong> (advérbio) + advérbio: "se sente <strong>mais e mais</strong> excluído" — intensifica o outro "mais"<br>
+      → verbo + <strong>mais</strong> (advérbio) + adjetivo: "é <strong>mais</strong> revolucionário"<br>
+      → pronome + <strong>mais</strong> (advérbio) + verbo: "quando você <strong>mais</strong> precisa, ele não aparece"<br>
+      → verbo + <strong>mais</strong> (advérbio) + verbo: "não tenho <strong>mais</strong> de sair para aproveitá-lo"<br><br>
+      → Quando "mais" se liga a <strong>substantivo</strong>, muda de classe — verbo + <strong>mais</strong> (pronome indefinido) + substantivo: "põe <strong>mais água</strong> no feijão". O teste é trocar por "muito": como flexiona ("muita água") para concordar com o substantivo, não pode ser advérbio, que é invariável.
+    </div>
   </div>
 </section>
 
@@ -1124,24 +1206,24 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card">
       <div class="card-title">Artigo definido</div>
       <div class="card-text">
-        • o, os, a, as<br>
-        • Refere-se a substantivo conhecido/familiar<br>
-        • Indica precisão: “o político” = político específico<br>
-        • Aglutina com preposições: no, na, dos, das</div>
+        → o, os, a, as<br>
+        → Refere-se a substantivo conhecido/familiar<br>
+        → Indica precisão: “o político” = político específico<br>
+        → Aglutina com preposições: no, na, dos, das</div>
     </div>
     <div class="card">
       <div class="card-title">Artigo indefinido</div>
       <div class="card-text">
-        • um, uns, uma, umas<br>
-        • Refere-se a substantivo vago/inespecífico<br>
-        • Expressa intensificação: “ela tem uma força!”<br>
-        • Aproximação: “ela deve ter uns 57 anos”</div>
+        → um, uns, uma, umas<br>
+        → Refere-se a substantivo vago/inespecífico<br>
+        → Expressa intensificação: “ela tem uma força!”<br>
+        → Aproximação: “ela deve ter uns 57 anos”</div>
     </div>
   
 
   <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>“Todo” + artigo:</strong><br>
-    • “Toda casa precisa de reforma” = todas as casas (genérico)<br>
-    • “Toda <strong>a</strong> casa precisa de reforma” = a casa inteira (completude)</div></div>
+    → “Toda casa precisa de reforma” = todas as casas (genérico)<br>
+    → “Toda <strong>a</strong> casa precisa de reforma” = a casa inteira (completude)</div></div>
 
   <div class="card" style="margin-top:.8rem;">
     <div class="card-text">
@@ -1196,55 +1278,72 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   
     <div class="card">
-      <div class="card-title">O, A, Os, As</div>
+      <div class="card-title">O, A, Os, As — artigo, pronome ou preposição?</div>
       <div class="card-text">
-        • Substantivo: “o a é uma vogal”<br>
-        • Artigo definido: “a menina comeu as balas”<br>
-        • Pronome oblíquo átono: “Ele a odeia”<br>
-        • Pronome demonstrativo: “comprei a que estava mais barata”<br>
-        • Preposição: “Ele se referiu a João”</div>
+        → Substantivo: “o a é uma vogal”<br>
+        → Artigo definido: “a menina comeu as balas”<br>
+        → Pronome oblíquo átono: “Ele a odeia”<br>
+        → Pronome demonstrativo: “comprei a que estava mais barata”<br>
+        → Preposição: “Ele se referiu a João”</div>
     </div>
     <div class="card">
-      <div class="card-title">Só</div>
+      <div class="card-title">“Só” — advérbio, denotativa ou adjetivo?</div>
       <div class="card-text">
-        • Advérbio: “Você só reclama”<br>
-        • Denotativa: “Só você reclama”<br>
-        • Adjetivo: “Estou só” (=sozinho)</div>
+        → Advérbio: “Você só reclama”<br>
+        → Denotativa: “Só você reclama”<br>
+        → Adjetivo: “Estou só” (=sozinho)</div>
     </div>
     <div class="card">
-      <div class="card-title">Até</div>
+      <div class="card-title">“Até” — preposição, denotativa ou advérbio?</div>
       <div class="card-text">
-        • Preposição: “Fui até a última parte”<br>
-        • Denotativa: “Até o padre riu”<br>
-        • Advérbio: “Ele até riu de mim”</div>
+        → Preposição: “Fui até a última parte”<br>
+        → Denotativa: “Até o padre riu”<br>
+        → Advérbio: “Ele até riu de mim” — quando tem sentido de inclusão ("inclusive/também") e modifica o verbo; ex.: "carregando até roçados de arroz e de feijão"</div>
     </div>
     <div class="card">
-      <div class="card-title">Ainda</div>
+      <div class="card-title">“Ainda” — cinco valores conforme o contexto</div>
       <div class="card-text">
-        • Tempo: “você ainda não entendeu”<br>
-        • Enfático: “cheguei ainda agora”<br>
-        • Adição: “faz faculdade, ainda trabalha”<br>
-        • Ressalva: “se ainda fosse competente”<br>
-        • Oposição: “você ainda o recompensa”</div>
+        → Tempo: “você ainda não entendeu”<br>
+        → Enfático: “cheguei ainda agora”<br>
+        → Adição: “faz faculdade, ainda trabalha”<br>
+        → Ressalva: “se ainda fosse competente”<br>
+        → Oposição: “você ainda o recompensa”</div>
     </div>
     <div class="card">
-      <div class="card-title">Mesmo</div>
+      <div class="card-title">“Mesmo” — sete classificações possíveis</div>
       <div class="card-text">
-        • Demonstrativo: “Eu mesma cozinho”<br>
-        • Comparativo: “falam do mesmo modo”<br>
-        • Especificativo: “somos da mesma cidade”<br>
-        • Denotativa: “Todos morreram, mesmo a mãe”<br>
-        • Advérbio: “Ele canta mesmo!”<br>
-        • Preposição acidental: “mesmo cansado”<br>
-        • Locução concessiva: “mesmo que eu falhe”</div>
+        → Demonstrativo: “Eu mesma cozinho”<br>
+        → Comparativo: “falam do mesmo modo”<br>
+        → Especificativo: “somos da mesma cidade”<br>
+        → Denotativa: “Todos morreram, mesmo a mãe”<br>
+        → Advérbio: “Ele canta mesmo!”<br>
+        → Preposição acidental: “mesmo cansado”<br>
+        → Locução concessiva: “mesmo que eu falhe”</div>
     </div>
     <div class="card">
-      <div class="card-title">O mesmo</div>
+      <div class="card-title">“O mesmo” — quando evitar na retomada?</div>
       <div class="card-text">
-        • Evite retomar pessoas/objetos com “o mesmo” (=ele/eles)<br>
-        • Correto quando significa “a mesma coisa/o mesmo fato”: “todos morreram, o mesmo ocorrerá com você”</div>
+        → Evite retomar pessoas/objetos com “o mesmo” (=ele/eles)<br>
+        → Correto quando significa “a mesma coisa/o mesmo fato”: “todos morreram, o mesmo ocorrerá com você”</div>
     </div>
   
+</section>
+
+<section id="sec11">
+  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Incidência de temas (TEC)</div></div>
+  <div class="sec-subtitle">Temas mais cobrados nas questões coladas</div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Seção 4 — Adjetivo (sentido e adequação ao contexto): 2</span><br>
+      <span class="tag tag-amber">Seção 6 — Advérbio (classes do “mais”, -mente): 2</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 5 — Expressões nominais (locução → adjetivo): 1</span><br>
+      <span class="tag">Seção 6 — Advérbio (classes do “mais”): 1</span><br>
+      <span class="tag">Seção 10 — Palavras especiais (classes do “até”): 1</span><br>
+    </div>
+  </div>
 </section>
 
 <div class="callout callout-success" style="margin: 2rem 1.5rem 1rem;">
@@ -1257,6 +1356,68 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
 
 
+<script id="rh-tdah-js">
+(function(){
+  var KEY='rh-tdah-'+location.pathname;
+  var store={done:[],pos:0};
+  try{store=Object.assign(store,JSON.parse(localStorage.getItem(KEY)||'{}'));}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+  var secs=Array.prototype.slice.call(document.querySelectorAll('.aula section[id^="sec"]'));
+  secs.forEach(function(sec){
+    var head=sec.querySelector('.sec-header');
+    if(!head)return;
+    var words=(sec.textContent||'').trim().split(/\s+/).length;
+    var pill=document.createElement('span');pill.className='tdah-min';pill.textContent='≈ '+Math.max(1,Math.round(words/180))+' min';
+    head.appendChild(pill);
+    var btn=document.createElement('button');btn.type='button';btn.className='tdah-check';
+    btn.title='Marcar seção como lida';btn.setAttribute('aria-pressed','false');
+    btn.innerHTML='<span class="tdah-box" aria-hidden="true">✓</span><span>Li esta seção</span>';
+    if(store.done.indexOf(sec.id)>=0){sec.classList.add('tdah-done');btn.setAttribute('aria-pressed','true');}
+    btn.addEventListener('click',function(){
+      var i=store.done.indexOf(sec.id);
+      if(i>=0){store.done.splice(i,1);sec.classList.remove('tdah-done');btn.setAttribute('aria-pressed','false');}
+      else{store.done.push(sec.id);sec.classList.add('tdah-done');btn.setAttribute('aria-pressed','true');}
+      save();renderCount();
+    });
+    head.appendChild(btn);
+  });
+  var counter=document.createElement('div');counter.className='tdah-progress';
+  var side=document.querySelector('.aula .sidebar');
+  if(side)side.appendChild(counter);
+  function renderCount(){
+    var n=document.querySelectorAll('.aula section.tdah-done').length;
+    var pct=secs.length?Math.round(n/secs.length*100):0;
+    counter.innerHTML='<div class="tdah-progress-num">'+n+'/'+secs.length+' seções</div>'
+      +'<div class="tdah-bar"><div class="tdah-fill" style="width:'+pct+'%"></div></div>'
+      +(n===secs.length&&secs.length?'<div class="tdah-done-msg">Aula concluída 🎉</div>':'');
+  }
+  renderCount();
+  var tb=document.querySelector('.rh-toolbar');
+  if(tb){
+    var bf=document.createElement('button');bf.type='button';bf.title='Modo foco: esmaece os outros cards';
+    bf.setAttribute('aria-label','Alternar modo foco');bf.setAttribute('aria-pressed','false');bf.textContent='🎯';
+    bf.addEventListener('click',function(){
+      var on=document.documentElement.classList.toggle('rh-focus');
+      bf.classList.toggle('on',on);bf.setAttribute('aria-pressed',on?'true':'false');
+    });
+    tb.insertBefore(bf,tb.firstChild);
+  }
+  var resumeBtn=null;
+  function hideResume(){if(resumeBtn){resumeBtn.remove();resumeBtn=null;}}
+  if(store.pos&&store.pos>=400&&Math.abs((window.scrollY||0)-store.pos)>=300){
+    resumeBtn=document.createElement('button');resumeBtn.type='button';resumeBtn.className='tdah-resume';
+    resumeBtn.textContent='Continuar de onde parei ↓';
+    resumeBtn.addEventListener('click',function(){window.scrollTo({top:store.pos,behavior:'smooth'});hideResume();});
+    document.body.appendChild(resumeBtn);
+  }
+  var t=null;
+  window.addEventListener('scroll',function(){
+    hideResume();
+    if(t)clearTimeout(t);
+    t=setTimeout(function(){store.pos=window.scrollY||document.documentElement.scrollTop;save();},400);
+  },{passive:true});
+})();
+</script>
 <!--rh:ui-->
 <nav class="aula-nav" aria-label="Navegação entre aulas">
   <a class="prev" href="../Aula%2000/resumo-aula-00-ortografia.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 00 · Ortografia</span></a>
