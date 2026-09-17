@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Legislação Institucional (TCE-GO) Aula 00: Administração Pública</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.aula .sidebar-sub {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: .95rem;
+  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+}
+.aula .sec-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  position: relative;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: justify; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--sidebar); }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f5; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+.gotcha {
+  background: #fae5e5;
+  border: 1px solid #efb4b4;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: justify;
+}
+.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.legal-block {
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d3f9e; }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+@media (max-width: 900px) {
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+}
+@media (max-width: 768px) {
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+<style id="rh-addons">
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .aula-nav { display: none !important; }
+  .aula .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .table-wrap, .callout, .gotcha, .legal-block { box-shadow: none !important; break-inside: avoid; }
+}
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .legal-block { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .legal-block.rev-open { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .legal-block { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Legislação Institucional (TCE-GO) — Aula 00</div>
+  <div class="sidebar-sub">Administração Pública · vConsolidado</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito de Administração Pública</a>
+  <a href="#sec2">2. Organização da Administração</a>
+  <a href="#sec3">3. Regime jurídico</a>
+  <a href="#sec4">4. Princípios explícitos (LIMPE)</a>
+  <a href="#sec5">5. Princípios implícitos</a>
+  <a href="#sec6">6. Agentes públicos (parte 1)</a>
+  <a href="#sec7">7. Agentes públicos (parte 2)</a>
+  <a href="#sec8">8. Responsabilidade civil do Estado</a>
+  <a href="#sec9">9. Outras disposições e militares</a>
+  <a href="#sec10">10. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: completo + simplificado + mapa mental<br>
+    Estratégia Concursos · Controle Externo
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO DE ADMINISTRAÇÃO PÚBLICA               -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de Administração Pública</div>
+  </div>
+  <div class="sec-subtitle">TCE-GO pós-edital (banca FCC) · Legislação Institucional Aula 00 · sentidos, atividades típicas e avaliação de políticas públicas</div>
+
+  <div class="card">
+    <div class="card-title">Sentido amplo × sentido estrito — por que a distinção cai em prova?</div>
+    <div class="card-text">
+      → <strong>Sentido amplo:</strong> engloba, além dos órgãos e entidades que exercem função administrativa, os chamados <strong>órgãos políticos</strong> (que exercem função política).<br><br>
+      → <strong>Sentido estrito:</strong> engloba <strong>tão somente</strong> os órgãos e entidades que exercem função administrativa — nada de função política.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sentido objetivo × subjetivo — qual critério o Brasil adota?</div>
+    <div class="card-text">
+      → <strong>Subjetivo (formal ou orgânico):</strong> diz respeito aos <strong>sujeitos</strong> que o ordenamento considera integrantes da Administração — órgãos públicos (Administração direta) + entidades da indireta (autarquias, fundações, sociedades de economia mista e empresas públicas). É o critério adotado no Brasil.<br><br>
+      → <strong>Objetivo (material ou funcional):</strong> diz respeito ao <strong>conjunto de atividades</strong> da função administrativa do Estado. Atividades típicas: <strong>fomento</strong> (estímulo à iniciativa privada), <strong>polícia administrativa</strong> (restrições a direitos individuais), <strong>serviço público</strong> (necessidades da coletividade) e <strong>intervenção</strong> (regulação e fiscalização estatal sobre atividades econômicas).
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>EC nº 109/21 — avaliação de políticas públicas (art. 37, § 16):</strong> os órgãos e entidades da administração pública, individual ou conjuntamente, devem realizar avaliação das políticas públicas, inclusive com divulgação do objeto avaliado e dos resultados alcançados, na forma da lei — preocupação do constituinte reformador com efetividade e resultado das ações governamentais em prol da sociedade.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — ORGANIZAÇÃO DA ADMINISTRAÇÃO PÚBLICA                -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Organização da Administração Pública</div>
+  </div>
+  <div class="sec-subtitle">Centralização × descentralização · direta × indireta · as 4 entidades e o art. 37, XIX e XX</div>
+
+  <div class="card">
+    <div class="card-title">Centralizado × descentralizado — onde nasce a direta e a indireta?</div>
+    <div class="card-text">
+      → <strong>Atuação centralizada:</strong> o Estado não delega competência a ninguém — exerce por meio de órgão público (ex.: União assegura a defesa nacional, art. 21, III, via Ministério da Defesa). Órgãos são <strong>entes despersonalizados</strong> (sem personalidade jurídica própria) e compõem a <strong>Administração Direta</strong>: conjunto de órgãos que integram os entes políticos (União, Estados, DF e Municípios).<br><br>
+      → <strong>Atuação descentralizada:</strong> o Estado atribui a outra pessoa a competência para a tarefa — surgem <strong>entidades com personalidade jurídica própria</strong>, que compõem a <strong>Administração Indireta</strong> (CF/88: autarquias, fundações públicas, empresas públicas e sociedades de economia mista).<br><br>
+      → ⚠️ <strong>Não confundir:</strong> <strong>descentralização</strong> = transferência da titularidade a pessoa jurídica criada para executar; <strong>desconcentração</strong> = técnica de distribuição de competências <strong>dentro de uma única pessoa jurídica</strong> (ex.: Delegacias e Superintendências Regionais dentro da Receita Federal).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As 4 entidades da indireta — o que diferencia cada uma?</div>
+    <div class="card-text">
+      → <strong>Autarquias:</strong> pessoas jurídicas de <strong>direito público</strong>, exercem atividade típica da administração — <strong>criadas por lei</strong>. Ex.: INSS, IBAMA, BACEN, ANATEL, ANVISA.<br><br>
+      → <strong>Fundações públicas:</strong> podem ter personalidade de <strong>direito público</strong> (equiparadas às autarquias — fundações autárquicas, <strong>criadas por lei</strong>) ou de <strong>direito privado</strong> (<strong>criação autorizada por lei</strong>). Em ambos os casos, cabe a <strong>lei complementar definir as áreas de atuação</strong>. Ex.: FUNAI e FUNASA.<br><br>
+      → <strong>Empresas públicas:</strong> pessoas jurídicas de <strong>direito privado</strong> que, em regra, exploram atividades econômicas (mas podem prestar serviços públicos) — capital social <strong>100% público</strong>, qualquer forma jurídica, <strong>criação autorizada por lei</strong>. Ex.: CEF e ECT.<br><br>
+      → <strong>Sociedades de economia mista:</strong> pessoas jurídicas de <strong>direito privado</strong> (em regra, atividade econômica; podem prestar serviço público) — diferem da EP porque são <strong>constituídas sob forma de sociedade anônima</strong> e a <strong>maioria das ações é do Estado, sem exigir capital 100% público</strong>; criação autorizada por lei. Ex.: Banco do Brasil e Petrobras.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 37, XIX e XX — criação, subsidiárias e participação em privada</div>
+    <div class="card-text">
+      → <strong>XIX:</strong> somente por <strong>lei específica</strong> pode ser <strong>criada autarquia</strong> e <strong>autorizada a instituição</strong> de empresa pública, sociedade de economia mista e fundação — cabendo a lei complementar, neste último caso, definir as áreas de atuação.<br><br>
+      → <strong>XX:</strong> depende de <strong>autorização legislativa, em cada caso</strong>, a criação de <strong>subsidiárias</strong> das entidades do inciso anterior, assim como a <strong>participação de qualquer delas em empresa privada</strong> — como a autorização se dá <strong>por lei, não há necessidade de aprovação do Poder Executivo</strong>.<br><br>
+      → ⚠️ <strong>Detalhe:</strong> a "lei específica" do XIX é <strong>lei ordinária</strong> — dizer que a criação depende de <strong>lei complementar</strong> está errado (a LC só define as <strong>áreas de atuação das fundações</strong>); e "criar" ≠ "autorizar": a autarquia <strong>passa a existir com a aprovação da lei</strong>, enquanto EP, SEM e fundação <strong>só existem após o registro dos atos constitutivos</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — REGIME JURÍDICO                                    -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Regime Jurídico da Administração × Regime Jurídico-Administrativo</div>
+  </div>
+  <div class="sec-subtitle">Duas expressões parecidas, significados diferentes — e os 2 pilares do regime de direito público</div>
+
+  <div class="card">
+    <div class="card-title">Por que não são sinônimos?</div>
+    <div class="card-text">
+      → <strong>Regime Jurídico da Administração:</strong> conjunto de normas (princípios e regras) a que se submete a Administração — engloba o <strong>regime de direito público + o regime de direito privado</strong>. Com supremacia sobre o particular (relação <strong>vertical</strong>), vigora o direito público; em pé de igualdade (relação <strong>horizontal</strong>), o direito privado.<br><br>
+      → <strong>Regime jurídico-administrativo:</strong> é <strong>apenas o regime de direito público</strong> a que se submete a Administração — rege as relações em que ela atua com supremacia (relação vertical, dotada de prerrogativas especiais).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 2 pilares do regime jurídico-administrativo</div>
+    <div class="card-text">
+      → <strong>Supremacia do interesse público:</strong> em conflito entre interesse público e particular, aquele prevalece — daí as <strong>prerrogativas especiais</strong> e a verticalidade (ex.: determinar a desapropriação de um imóvel).<br><br>
+      → <strong>Indisponibilidade do interesse público:</strong> a Administração só pode atuar <strong>quando autorizada por lei, nos limites da norma</strong> — veda ao administrador renunciar a direitos do Poder Público ou onerar injustificadamente a sociedade.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — PRINCÍPIOS EXPLÍCITOS (LIMPE)                   -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Princípios Explícitos — LIMPE (art. 37, caput)</div>
+  </div>
+  <div class="sec-subtitle">Legalidade, impessoalidade, moralidade, publicidade e eficiência — vinculam direta e indireta, 3 Poderes, todos os entes</div>
+
+  <div class="card">
+    <div class="card-title">Legalidade — por que Administração e particular se submetem de forma oposta?</div>
+    <div class="card-text">
+      → <strong>Administração:</strong> só pode fazer o que está <strong>expressamente previsto em normas</strong> (lei em sentido amplo — inclui atos infralegais: decretos, portarias, instruções normativas). Age <strong>segundo a lei</strong> (<em>secundum legem</em>), jamais contra (<em>contra legem</em>) ou além da lei (<em>praeter legem</em>) com base em costumes — é a submissão do Estado à lei que concretiza a vontade do povo em um Estado democrático de direito.<br><br>
+      → <strong>Particular:</strong> lógica invertida — lícito fazer <strong>tudo que a lei não proíbe</strong>, com maior liberdade de atuação.<br><br>
+      → <strong>Discricionariedade:</strong> quando a norma deixa margem de escolha ao administrador, há discricionariedade — liberdade <strong>dentro</strong> da lei, nunca fora dela.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Impessoalidade — quais são as 4 acepções cobradas?</div>
+    <div class="card-text">
+      → <strong>1) Finalidade:</strong> toda atuação busca o interesse público — ato com objetivo diverso é <strong>nulo por desvio de finalidade</strong> (decorre da supremacia do interesse público). Em sentido <strong>amplo</strong>, atendimento do interesse público; em sentido <strong>estrito</strong>, a finalidade específica prevista em lei — atendida a específica, a ampla também foi.<br><br>
+      → <strong>2) Vedação à promoção pessoal:</strong> o agente não pode usar realizações da Administração para se promover — base no art. 37, § 1º: publicidade de atos, programas, obras, serviços e campanhas tem caráter <strong>educativo, informativo ou de orientação social</strong>, sem nomes, símbolos ou imagens de promoção pessoal.<br><br>
+      → <strong>3) Isonomia:</strong> igualdade de acesso — ex.: exigência de <strong>concurso público</strong> e pagamento das dívidas do Estado em <strong>ordem cronológica de precatórios</strong> (art. 100).<br><br>
+      → <strong>4) Imputação ao órgão:</strong> atos do agente imputam-se ao <strong>órgão/entidade</strong>, não à pessoa (art. 37, § 6º) — daí a validade dos atos de <strong>agente de fato (putativo)</strong>: quem ingressou irregularmente, mas pela <strong>teoria da aparência</strong> parece servidor de direito, tem os atos mantidos quando atingem terceiros de boa-fé.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Moralidade — o que acontece com o ato imoral e quem pode atacá-lo?</div>
+    <div class="card-text">
+      → <strong>Exige atuação ética, proba e de boa-fé</strong> — não basta agir segundo a lei; ato contrário à moralidade <strong>pode ser anulado</strong>.<br><br>
+      → <strong>Ação popular (art. 5º, LXXIII):</strong> qualquer <strong>cidadão</strong> é parte legítima para anular ato lesivo ao patrimônio público, à moralidade administrativa, ao meio ambiente e ao patrimônio histórico-cultural — autor <strong>isento de custas e sucumbência, salvo má-fé comprovada</strong>.<br><br>
+      → <strong>Improbidade (art. 37, § 4º):</strong> importa <strong>suspensão dos direitos políticos, perda da função pública, indisponibilidade dos bens e ressarcimento ao erário</strong>, na forma e gradação da lei, <strong>sem prejuízo da ação penal</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Publicidade — quais são as 2 acepções e qual é o limite do sigilo?</div>
+    <div class="card-text">
+      → <strong>1) Publicação como requisito de eficácia:</strong> atos administrativos <strong>gerais, de efeitos externos</strong>, ou que <strong>onerem o patrimônio público</strong>, só produzem efeitos após publicados em órgão oficial (ex.: Portaria no DOU).<br><br>
+      → <strong>2) Transparência:</strong> dever de dar conhecimento da conduta interna aos administrados — art. 5º, XXXIII: todos têm direito a receber informações de interesse particular, coletivo ou geral, <strong>no prazo da lei, sob pena de responsabilidade</strong>, ressalvadas as de sigilo <strong>imprescindível à segurança da sociedade e do Estado</strong>.<br><br>
+      → ⚠️ <strong>Detalhe:</strong> o STF validou a divulgação de <strong>remuneração bruta, cargos, funções e lotação</strong> de servidores — não há intimidade/vida privada porque são dados do agente <strong>nessa qualidade</strong> (§ 6º do art. 37).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Eficiência — por que a EC nº 19/98 mudou o modelo de Administração?</div>
+    <div class="card-text">
+      → <strong>Mais recente dos explícitos</strong> (EC nº 19/98): quebrou o paradigma da administração <strong>burocrática</strong> em favor da <strong>gerencial</strong> — ênfase em <strong>resultados</strong> e no cidadão como <strong>cliente</strong> dos serviços. Não basta legalidade: exige <strong>qualidade dos serviços e racionalidade dos gastos</strong>.<br><br>
+      → <strong>Manifestações na CF:</strong> avaliação especial de desempenho como <strong>condição da estabilidade</strong> (art. 41, § 4º); perda do cargo por <strong>avaliação periódica</strong> (art. 41, § 1º, III, via LC, com ampla defesa); <strong>contratos de gestão/desempenho</strong> com metas (art. 37, § 8º); <strong>participação do usuário</strong> na administração (art. 37, § 3º); <strong>escolas de governo</strong> e cursos como requisito de promoção (art. 39, § 2º); <strong>prêmio de produtividade</strong> com economia de despesas correntes (art. 39, § 7º); <strong>economicidade</strong> como parâmetro do controle (art. 70, caput).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PRINCÍPIOS IMPLÍCITOS                               -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Princípios Implícitos</div>
+  </div>
+  <div class="sec-subtitle">Não estão no art. 37, mas decorrem do ordenamento — noções essenciais para o Direito Constitucional</div>
+
+  <div class="card">
+    <div class="card-title">Controle judicial, autotutela e segurança jurídica — quem controla os atos?</div>
+    <div class="card-text">
+      → <strong>Sindicabilidade (jurisdição única):</strong> o Brasil adota o <strong>sistema inglês</strong> — o Judiciário controla os atos administrativos (inafastabilidade, art. 5º, XXXV: a lei não excluirá lesão ou ameaça a direito). Difere do <strong>sistema francês</strong> (contencioso administrativo), em que o Judiciário não aprecia esses atos.<br><br>
+      → <strong>Autotutela:</strong> a Administração controla os próprios atos — <strong>anula</strong> os ilegais (deles não se originam direitos) e <strong>revoga</strong> por conveniência/oportunidade, respeitados direitos adquiridos e sempre ressalvada a apreciação judicial (Súmula 473 STF; art. 53 da Lei 9.784/99: anular <strong>deve</strong>, revogar <strong>pode</strong>).<br><br>
+      → <strong>Segurança jurídica (art. 2º da Lei 9.784/99):</strong> normas interpretadas para atender o fim público, <strong>vedada a aplicação retroativa de nova interpretação</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Motivação, razoabilidade/proporcionalidade e continuidade — como invalidam o ato?</div>
+    <div class="card-text">
+      → <strong>Motivação:</strong> motivo é a situação de fato/direito que autoriza o ato; motivação é a <strong>declaração desses motivos</strong>.<br><br>
+      → <strong>Razoabilidade e proporcionalidade</strong> (implícitos na CF; expressos na Lei 9.784/99): proporcionalidade = <strong>adequação entre meios e fins</strong> — ato desproporcional é invalidável pelo Judiciário. Três aspectos: <strong>adequação</strong> (meio mais adequado ao fim), <strong>necessidade</strong> (meio menos oneroso) e <strong>proporcionalidade em sentido estrito</strong> (balanço meios × fins).<br><br>
+      → <strong>Continuidade do serviço público:</strong> serviços não podem ser paralisados — fundamenta <strong>restrições ao direito de greve</strong> dos servidores (art. 37, VII, norma de eficácia limitada).
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — AGENTES PÚBLICOS (PARTE 1)                       -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Agentes Públicos — acesso, concurso e cargos</div>
+  </div>
+  <div class="sec-subtitle">Art. 37, I, II, IV, V, VIII e IX · quem pode ocupar, como ingressa e a jurisprudência do STF</div>
+
+  <div class="card">
+    <div class="card-title">Acesso (art. 37, I) — por que só a lei define requisitos?</div>
+    <div class="card-text">
+      → Cargos, empregos e funções são acessíveis aos <strong>brasileiros que preencham os requisitos em lei</strong> — e aos <strong>estrangeiros, na forma da lei</strong> (só quando a lei autorizar, sem distinções arbitrárias por país de origem; vale para residentes ou não).<br><br>
+      → <strong>Súmula Vinculante 44:</strong> exame psicotécnico só se a <strong>lei do cargo</strong> o exigir — edital sozinho não basta.<br><br>
+      → <strong>Súmula 683:</strong> limite de idade só se justificado pela <strong>natureza das atribuições</strong> (art. 7º, XXX) — fixar limite <strong>via edital não supre</strong> a exigência de lei.<br><br>
+      → ⚠️ <strong>Detalhe:</strong> editais não podem restringir pessoas com <strong>tatuagem</strong>, salvo conteúdo que viole valores constitucionais.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Concurso público (art. 37, II) — quais regras nunca podem faltar?</div>
+    <div class="card-text">
+      → Investidura em cargo ou emprego depende de aprovação prévia em concurso de <strong>provas ou de provas e títulos</strong> — <strong>nunca só títulos</strong>; títulos têm caráter <strong>classificatório, jamais eliminatório</strong>. Vale para direta e indireta, <strong>inclusive EP e SEM</strong>; só para <strong>cargos efetivos</strong> (comissionados independem).<br><br>
+      → <strong>Validade (art. 37, III):</strong> definida no edital — <strong>até 2 anos, prorrogável uma vez por igual período</strong>; nomeações/contratações só dentro da validade.<br><br>
+      → <strong>Prioridade (art. 37, IV):</strong> no prazo <strong>improrrogável</strong> do edital (finda a validade + prorrogação), o aprovado tem <strong>prioridade sobre novos concursados</strong> para o mesmo cargo — a CF não impede novo concurso na validade, mas o anterior prevalece.<br><br>
+      → ⚠️ <strong>Não confundir:</strong> aprovado <strong>dentro das vagas</strong> tem <strong>direito subjetivo à nomeação</strong> (só afastado em situação excepcionalíssima: superveniência + imprevisibilidade + gravidade — RE 598.099); preterição ocorre se a vaga for preenchida ainda que temporariamente havendo necessidade + vaga; eliminação por responder a inquérito/ação <strong>sem condenação transitada em julgado</strong> fere a presunção de inocência; questão fora do edital admite controle judicial (edital é a lei do concurso); <strong>cláusula de barreira e cláusulas eliminatórias são constitucionais</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">PcD e temporários — quem define as regras de cada um?</div>
+    <div class="card-text">
+      → <strong>PcD (art. 37, VIII):</strong> a <strong>lei reserva percentual</strong> e define critérios de admissão — nunca o administrador; conforme as atribuições, a lei pode prever <strong>sem reserva</strong>. Lei 8.112/90, art. 5º, § 2º: inscrição se atribuições compatíveis + reserva de <strong>até 20%</strong>.<br><br>
+      → <strong>Temporários (art. 37, IX):</strong> contratação por <strong>tempo determinado</strong>, sem concurso e sem cargo — 3 requisitos cumulativos: <strong>excepcional interesse público + temporariedade + hipóteses expressas em lei</strong> do ente contratante. STF: lei com hipóteses <strong>abrangentes/genéricas</strong> ou para <strong>serviços típicos de carreira permanente</strong> sem excepcional relevância é inconstitucional (ADI 3116). Sujeitam-se ao <strong>RGPS</strong> e às lides na <strong>Justiça comum</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Comissionados e funções de confiança (art. 37, V) — onde o nepotismo entra?</div>
+    <div class="card-text">
+      → Ambos destinam-se <strong>apenas a direção, chefia e assessoramento</strong> — cargo comissionado com atribuição técnica/operacional é inconstitucional (ex.: capelão comissionado em segurança pública — ADI 6.669). <strong>Funções de confiança: exclusivamente por ocupantes de cargo efetivo</strong> (EC 19/98); <strong>cargos em comissão: livre nomeação/exoneração</strong>, com <strong>percentual mínimo</strong> de servidores de carreira previsto em lei.<br><br>
+      → <strong>Nepotismo — Súmula Vinculante 13:</strong> nomear cônjuge, companheiro ou parente até o <strong>3º grau</strong> (reta, colateral ou afinidade) da autoridade nomeante ou de servidor de direção/chefia/assessoramento da mesma pessoa jurídica, para cargo em comissão, confiança ou função gratificada — <strong>incluindo o nepotismo cruzado</strong> (designações recíprocas) — viola a CF. A vedação <strong>não alcança cargos políticos</strong> (ex.: irmão nomeado secretário estadual).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Direitos sociais — sindicalização, greve e o rol do art. 39, § 3º</div>
+    <div class="card-text">
+      → <strong>Sindicalização (art. 37, VI, eficácia plena):</strong> garantida ao servidor civil — mas a <strong>Súmula 679 veda convenção coletiva</strong> para fixar vencimentos; aos <strong>militares são vedadas sindicalização e greve</strong> (art. 142, IV).<br><br>
+      → <strong>Greve (art. 37, VII, eficácia limitada):</strong> depende de lei específica ainda não editada — o STF mandou aplicar a Lei 7.783/89 (setor privado) no que couber; <strong>inaplicável a forças policiais</strong>; regra é o <strong>desconto dos dias parados</strong>, salvo greve provocada por conduta ilícita do Poder Público.<br><br>
+      → <strong>Rol do art. 39, § 3º</strong> (podendo leis de cada ente criar outras vantagens, ex. auxílio-alimentação — Lei 8.460/92): salário mínimo unificado (STF Tema 900: <strong>vedado pagar abaixo do mínimo mesmo em jornada reduzida</strong>); garantia de salário nunca inferior ao mínimo na remuneração variável; <strong>13º</strong> integral; noturno superior ao diurno; salário-família ao dependente de baixa renda; jornada <strong>8h/dia e 44h/semana</strong>; repouso semanal preferencialmente aos domingos; <strong>hora extra +50% no mínimo</strong>; férias + <strong>1/3</strong>; licença-gestante sem prejuízo; licença-paternidade legal; proteção do mercado da mulher; redução de riscos; <strong>vedação de discriminação</strong> por sexo, idade, cor ou estado civil.
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Forma de remuneração</th><th>Conceito</th><th>Quem recebe</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Subsídio</strong></td><td>Parcela única, sem qualquer acréscimo (gratificação, adicional, abono, prêmio, verba de representação)</td><td>Obrigatório: membros de Poder, detentores de mandato, Ministros de Estado, secretários estaduais/municipais (art. 39, § 4º) + carreiras listadas (AGU, Defensoria, PGFN, procuradorias, PF, PRF, polícias civis/militares, bombeiros); facultativo para organizados em carreira (art. 39, § 8º)</td></tr>
+        <tr><td><strong>Vencimentos</strong></td><td>Vencimento do cargo efetivo + vantagens pecuniárias permanentes (art. 41, Lei 8.112/90)</td><td>Servidores públicos (estatutários)</td></tr>
+        <tr><td><strong>Salário</strong></td><td>Contraprestação celetista</td><td>Empregados públicos (ex.: presidente de empresa pública)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fixação, teto e travas — art. 37, X a XV</div>
+    <div class="card-text">
+      → <strong>Fixação (X):</strong> remuneração e subsídio <strong>só por lei específica</strong>, com iniciativa privativa em cada caso + <strong>revisão geral anual, mesma data, sem distinção de índices</strong> — previsão orçamentária sozinha não autoriza ato administrativo. Alguns subsídios fixam-se por <strong>decreto legislativo</strong>, sem sanção (art. 49). <strong>EC 103/19 (§ 9º): vedada a incorporação</strong> de vantagem temporária ou de função/confiança/comissão à remuneração do efetivo.<br><br>
+      → <strong>Teto (XI):</strong> ninguém excede o <strong>subsídio dos Ministros do STF</strong> (inclui vantagens pessoais, proventos e pensões, cumulados ou não). Subtetos: <strong>Municípios</strong> — subsídio do <strong>Prefeito</strong> para todos (STF: teto de desembargador para municipal é inconstitucional); <strong>Estados/DF</strong> — <strong>Governador</strong> (Executivo), <strong>deputados estaduais/distritais</strong> (Legislativo), <strong>desembargadores do TJ limitados a 90,25% do STF</strong> (Judiciário, MP, procuradores, defensores — mas o STF afastou o limite para a <strong>magistratura estadual</strong>, por isonomia). <strong>Teto único estadual</strong> facultativo via emenda estadual = subsídio dos desembargadores, <strong>exceto parlamentares</strong> (§ 12, EC 47/05). <strong>Parcelas indenizatórias legais escapam</strong> do teto; em EP/SEM e subsidiárias, o teto só vale para as que recebem recursos públicos para pessoal/custeio (§ 9º do art. 37 na numeração da aula). Na <strong>acumulação autorizada, o teto incide por vínculo, não pela soma</strong> (STF 2017).<br><br>
+      → <strong>Travas:</strong> <strong>XII</strong> — vencimentos do Legislativo e Judiciário não superiores aos do Executivo (cargos semelhantes); <strong>XIII</strong> — vedada <strong>vinculação/equiparação</strong> remuneratória (efeito cascata/repique; SV 42: vincular reajuste estadual/municipal a índice federal é inconstitucional); <strong>XIV</strong> — adicionais calculados sobre o <strong>vencimento básico</strong>, sem cascata; <strong>XV</strong> — subsídio e vencimentos <strong>irredutíveis</strong> (ressalvas: teto, XIV, impostos) — criar/majorar tributo é permitido, e a <strong>forma de cálculo pode mudar, o valor não</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — ACUMULAÇÃO, MANDATO, ESTABILIDADE, RPPS  -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Agentes Públicos — acumulação, mandato eletivo, estabilidade e previdência (cont.)</div>
+  </div>
+  <div class="sec-subtitle">Art. 37, XVI, XVII e § 10 · art. 38 · arts. 39 a 41 · RPPS × RGPS e as aposentadorias pós-EC 103/19</div>
+
+  <div class="card">
+    <div class="card-title">Acumulação remunerada (art. 37, XVI e XVII) — quando pode?</div>
+    <div class="card-text">
+      → Regra: <strong>vedada</strong> — proibição ampla: todas as esferas, todos os Poderes, direta e indireta (<strong>inclui EP e SEM</strong>, art. 37, XVII — personalidade privada não exclui). Só atividades <strong>públicas</strong> (privadas são livres, se compatíveis com o regime do cargo).<br><br>
+      → Exceções (sempre com <strong>compatibilidade de horários</strong> + teto do XI): <strong>a)</strong> dois cargos de <strong>professor</strong>; <strong>b)</strong> um cargo de professor com outro de <strong>qualquer natureza</strong> (EC nº 138/2025 derrubou a exigência de cargo técnico/científico); <strong>c)</strong> dois cargos/empregos <strong>privativos de profissionais de saúde</strong> regulamentados. Outras permissões na CF: vereador + outro cargo (art. 38, III); juízes no <strong>magistério</strong> (art. 95, parágrafo único, I); membros do <strong>MP no magistério</strong> (art. 128, § 5º, II, d); militares das <strong>Forças Armadas</strong> em cargo/emprego privativo de saúde, com <strong>prevalência da atividade militar</strong> (art. 142, § 3º, EC 77/14).<br><br>
+      → <strong>Proventos (§ 10):</strong> vedada a percepção simultânea de <strong>proventos do RPPS (arts. 40, 42, 142) + remuneração da ativa</strong> — exceto cargos <strong>acumuláveis</strong>, <strong>eletivos</strong> e <strong>comissionados</strong> de livre nomeação.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mandato eletivo (art. 38) — quem se afasta e quem acumula?</div>
+    <div class="card-text">
+      → <strong>Federal, estadual ou distrital (I):</strong> servidor (efetivo <strong>ou comissionado</strong>) fica <strong>afastado</strong> e recebe <strong>obrigatoriamente a remuneração do mandato</strong>.<br><br>
+      → <strong>Prefeito (II):</strong> afastado, com <strong>opção</strong> entre remuneração do cargo e do mandato.<br><br>
+      → <strong>Vereador (III):</strong> havendo <strong>compatibilidade de horários, acumula</strong> cargo + mandato com as <strong>duas remunerações</strong>; sem compatibilidade, afasta-se e opta.<br><br>
+      → <strong>Efeitos (IV e V):</strong> tempo de afastamento conta como <strong>tempo de serviço para tudo, exceto promoção por merecimento</strong>; segurado de RPPS <strong>permanece filiado</strong> no ente de origem.<br><br>
+      → <strong>Estabilidade não impede candidatura:</strong> o servidor estável pode concorrer sem exonerar-se — eleito, aplicam-se as regras acima; o afastamento para concorrer segue a lei eleitoral, sem prejuízo automático dos vencimentos.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estabilidade (art. 41) — quais os 4 requisitos e como se perde?</div>
+    <div class="card-text">
+      → Só para <strong>estatutário em cargo efetivo</strong> (nunca comissionado). Requisitos: <strong>concurso + nomeação para efetivo + 3 anos de efetivo exercício + avaliação especial de desempenho</strong> por comissão (§ 4º) — contagem da <strong>entrada em exercício</strong> (não posse/nomeação).<br><br>
+      → <strong>Perda:</strong> sentença judicial <strong>transitada em julgado</strong>; <strong>processo administrativo</strong> com ampla defesa; <strong>avaliação periódica de desempenho</strong> via LC, com ampla defesa; <strong>excesso de despesa com pessoal</strong> (art. 169, § 3º — após cortar 20% de comissionados/funções e exonerar não estáveis).<br><br>
+      → <strong>Demissão invalidada por sentença (§ 2º):</strong> o estável é <strong>reintegrado</strong>; o ocupante da vaga, se estável, é <strong>reconduzido</strong> à origem <strong>sem indenização</strong>, aproveitado em outro cargo ou posto em <strong>disponibilidade com remuneração proporcional</strong> ao tempo de serviço. <strong>Cargo extinto/desnecessário (§ 3º):</strong> estável em <strong>disponibilidade</strong> (proporcional) até o <strong>aproveitamento</strong>.<br><br>
+      → ⚠️ <strong>Distinção:</strong> <strong>reintegração</strong> = demitido que volta por sentença; <strong>recondução</strong> = estável que ocupava a vaga e volta à origem; <strong>readaptação</strong> (art. 37, § 13, EC 103/19) = servidor com limitação física/mental investido em cargo compatível (habilitação + escolaridade exigidas), <strong>mantida a remuneração de origem</strong> — se recuperar, volta à origem; se piorar sem readaptação possível, aposenta por incapacidade permanente.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Previdência (art. 40) — RPPS × RGPS e as 3 aposentadorias</div>
+    <div class="card-text">
+      → <strong>RPPS:</strong> servidores <strong>titulares de cargo efetivo</strong> (União, Estados, DF, Municípios + autarquias e fundações) — caráter <strong>contributivo e solidário</strong> (contribuem ente, ativos, aposentados e pensionistas; equilíbrio financeiro e atuarial). <strong>RGPS:</strong> celetistas, <strong>exclusivamente comissionados</strong>, empregos públicos, temporários e <strong>mandatos eletivos</strong> (novidade EC 103/19). EC 103/19: <strong>vedados novos RPPS</strong> e <strong>vedado mais de um RPPS/gestor por ente</strong> (§§ 20 e 22).<br><br>
+      → <strong>Aposentadorias (§ 1º):</strong> <strong>incapacidade permanente</strong> (insuscetível de readaptação + avaliações periódicas obrigatórias); <strong>compulsória aos 75</strong> (70 ou 75 na forma de LC — LC 152/15 já fixou 75 para todos, inclusive Judiciário/MP/Defensoria/TCs; não se aplica a exclusivamente comissionado; sabatina repetida para ministros foi suspensa — ADI 5316); <strong>voluntária</strong> — idade mínima da CF só vale para a <strong>União (62 mulher / 65 homem)</strong>; Estados/DF/Municípios definem as suas por emenda (mais tempo de contribuição em LC do ente). <strong>Proventos (§ 2º):</strong> nunca abaixo do mínimo nem acima do <strong>teto do RGPS</strong>; cálculo <strong>desconstitucionalizado</strong> (§ 3º — lei do ente); <strong>vedada complementação</strong>, salvo via previdência complementar.<br><br>
+      → <strong>Complementar (adesão facultativa, benefício conforme contribuição):</strong> antes facultativa, após a EC 103/19 os entes são <strong>obrigados a instituí-la</strong> por lei do Executivo — porque o RPPS passou a ter o teto do RGPS. <strong>Especial (§§ 4º-A a 4º-C e 5º):</strong> deficiência (avaliação biopsicossocial), exposição efetiva a agentes nocivos (vedada caracterização por categoria) e policiais/penitenciários/socioeducativos; <strong>professor reduz 5 anos</strong> (60 homem / 57 mulher) com efetivo magistério na educação infantil e fundamental/médio. <strong>Abono de permanência (§ 19):</strong> quem completa requisitos da voluntária e fica em atividade — cada ente decide se institui; até o valor da contribuição, até a compulsória. <strong>Pensão por morte:</strong> valor nunca inferior ao mínimo, regras na lei de cada ente (morte de agente de segurança em serviço pode ter tratamento diferenciado).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — RESPONSABILIDADE CIVIL DO ESTADO                 -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Responsabilidade Civil do Estado (art. 37, § 6º)</div>
+  </div>
+  <div class="sec-subtitle">Teoria do risco administrativo · responsabilidade objetiva, excludentes e ação regressiva</div>
+
+  <div class="card">
+    <div class="card-title">Por que o Estado indeniza sem dolo ou culpa?</div>
+    <div class="card-text">
+      → Responsabilidade <strong>extracontratual</strong> (sem contrato) e <strong>civil</strong> (obrigação de indenizar). O Brasil adota a <strong>teoria do risco administrativo</strong>: responsabilidade <strong>objetiva</strong> — o Estado indeniza danos de seus agentes <strong>nessa qualidade</strong>, <strong>independentemente de dolo ou culpa</strong>.<br><br>
+      → <strong>Alcance:</strong> pessoas jurídicas de <strong>direito público</strong>; pessoas jurídicas de <strong>direito privado prestadoras de serviço público</strong> (EP e SEM prestadoras); e <strong>privadas fora da Administração</strong> que prestam serviço público (<strong>concessionárias e permissionárias</strong>). STF: objetiva perante <strong>usuários e não usuários</strong> do serviço.<br><br>
+      → ⚠️ <strong>Não confundir:</strong> a objetiva <strong>não é absoluta</strong> — afastada por <strong>culpa exclusiva da vítima, caso fortuito/força maior e fato exclusivo de terceiro</strong>; culpa concorrente da vítima <strong>mitiga</strong> (reparte o quantum). <strong>Regresso:</strong> a Administração cobra do agente <strong>por ação regressiva</strong>, só se ele agiu com <strong>dolo ou culpa</strong> (ex.: motorista de concessionária acima da velocidade — empresa indeniza objetivamente e regressa contra ele).<br><br>
+      → <strong>Atos judiciais:</strong> regra é a <strong>não responsabilização</strong> — exceção: <strong>erro judiciário penal</strong> e <strong>prisão além do tempo da sentença</strong> (art. 5º, LXXV).<br><br>
+      → ⚠️ <strong>Detalhe:</strong> a ação de danos ajuíza-se <strong>contra o Estado ou a PJ prestadora — o agente é parte ilegítima</strong>, só integrando o polo passivo do regresso (Tema 940, RE 1027633); a objetiva <strong>alcança omissões</strong> (RE 608880); e o <strong>risco integral</strong> (danos nucleares e ambientais) <strong>não admite excludentes</strong> — diferente do risco administrativo.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — OUTRAS DISPOSIÇÕES + MILITARES DOS ESTADOS          -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Outras Disposições Constitucionais e Militares dos Estados (art. 42)</div>
+  </div>
+  <div class="sec-subtitle">Administração tributária · contrato de desempenho · licitação · improbidade · PM/CBM</div>
+
+  <div class="card">
+    <div class="card-title">Administração tributária, desempenho, licitação e improbidade — o que a CF exige?</div>
+    <div class="card-text">
+      → <strong>Fazenda (XVIII e XXII):</strong> administração fazendária e servidores fiscais têm <strong>precedência</strong> sobre os demais setores; administrações tributárias (todas as esferas) são <strong>atividades essenciais</strong>, com <strong>recursos prioritários</strong> (até vinculação de impostos) e atuação <strong>integrada</strong> (cadastros e informações compartilhados) — mas <strong>não criam nem majoram tributo por regulamento</strong> (legalidade tributária, art. 150, I).<br><br>
+      → <strong>Contrato de desempenho (§ 8º, EC 19/98 — administração gerencial):</strong> amplia a <strong>autonomia gerencial, orçamentária e financeira</strong> de órgãos/entidades da direta e indireta mediante contrato com <strong>metas de desempenho</strong> — a lei dispõe sobre prazo, controles/avaliação/direitos/obrigações/responsabilidade dos dirigentes e remuneração do pessoal. Conceito legal (Lei 13.934/19, art. 2º): acordo supervisor × supervisionado com metas, prazos e indicadores, em troca de flexibilidades/autonomias. Mantém-se o nome <strong>contrato de gestão</strong> para agências executivas (Lei 9.649/98, art. 51) e organizações sociais (Lei 9.637/98). Vale para <strong>qualquer órgão/entidade da direta e indireta — inclusive empresa pública dependente</strong> de recursos do Tesouro; <strong>não confundir</strong> com agência executiva — qualificação dada por <strong>decreto presidencial</strong> à autarquia/fundação que celebra o contrato com o ministério supervisor.<br><br>
+      → <strong>Licitação (XXI):</strong> <strong>obrigatória</strong> para obras, serviços, compras e alienações — procedimento formal que assegura <strong>igualdade entre concorrentes</strong> e busca a <strong>proposta mais vantajosa</strong>, só admitindo exigências técnicas/econômicas <strong>indispensáveis</strong>; exceções (dispensa/inexigibilidade) em <strong>rol taxativo</strong> na legislação — eficiência <strong>não autoriza</strong> dispensar por conveniência.<br><br>
+      → <strong>Improbidade (§ 4º, Lei 8.429/92):</strong> atos de natureza <strong>civil</strong> que ferem princípios da administração (enriquecimento ilícito, prejuízo ao erário, atentado a princípios) — sanções: <strong>suspensão de direitos políticos, perda da função, indisponibilidade de bens e ressarcimento</strong>, sem prejuízo do penal.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Militares dos Estados (art. 42) — quem são e quais regras os regem?</div>
+    <div class="card-text">
+      → <strong>Conceito:</strong> membros das <strong>Polícias Militares e Corpos de Bombeiros Militares</strong> — Forças Armadas (Exército, Marinha, Aeronáutica) são só "militares"; <strong>policiais civis são servidores civis</strong>. PM/CBM são <strong>forças auxiliares e reserva do Exército</strong>, subordinadas (com as civis) aos <strong>Governadores</strong> — a eles cabe a <strong>iniciativa de lei</strong> sobre o regime dos militares estaduais.<br><br>
+      → <strong>Estatuto (§ 1º):</strong> aplicam-se elegibilidade de militar (<strong>art. 14, § 8º</strong>: menos de 10 anos afasta-se; mais de 10 é agregado e, eleito, vai à inatividade na diplomação); contagem de tempo de contribuição/serviço (<strong>art. 40, § 9º</strong>); <strong>sem HC contra punição disciplinar militar</strong> quanto ao mérito (legalidade pode ser discutida — art. 142, § 2º); regras do <strong>art. 142, § 3º</strong> (patentes conferidas pelos governadores; PM/bombeiro em cargo civil permanente vai à <strong>reserva</strong>, salvo acumulação de saúde; em cargo temporário fica <strong>agregado</strong> — só promoção por antiguidade — e após <strong>2 anos vai à reserva</strong>; <strong>vedadas sindicalização e greve</strong>; <strong>sem filiação partidária</strong> em serviço ativo, podendo candidatar-se). Direitos garantidos: art. 7º (13º, salário-família, férias, licenças gestante/paternidade, creche até 5 anos) e art. 37 (teto XI, XIII, XIV, XV + acumulação de saúde com prevalência militar). <strong>Pensionistas (§ 2º):</strong> regras em <strong>lei específica de cada Estado</strong>; corporações regidas por <strong>Código de Ética e Disciplina</strong> (lei estadual específica).<br><br>
+      → <strong>Acumulação — EC 101/19 (§ 3º):</strong> militar estadual pode acumular com <strong>prevalência da atividade militar</strong>: 1 cargo de <strong>professor</strong>; outro cargo de <strong>qualquer natureza</strong>, se professor na corporação; 1 cargo/emprego de <strong>saúde</strong>, se profissional de saúde na corporação.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — INCIDÊNCIA                                          -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Conteúdo de estudo extraído das questões do TEC — sem replicar a questão</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Para fechar — os pontos que mais decidem questão</div></div>
+    <div class="card-text">
+      → Amplo × estrito e objetivo × subjetivo — o Brasil adota o <strong>subjetivo</strong>.<br><br>
+      → Descentralização (outra PJ) × desconcentração (mesma PJ) — e o XIX/XX do art. 37.<br><br>
+      → LIMPE com as 4 acepções da impessoalidade e as 2 da publicidade.<br><br>
+      → Concurso: nunca só títulos; 2 anos + prorrogação; direito subjetivo dentro das vagas.<br><br>
+      → Teto por vínculo na acumulação; vereador acumula com compatibilidade; estabilidade após 3 anos + avaliação especial.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-text">
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 8 — Responsabilidade civil e contrato de gestão: 3</span><br><br>
+      <strong>Média incidência 🟡</strong><br>
+      <br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 2 — Organização da Administração: 1</span><br>
+      <span class="tag">Seção 6 — Agentes Públicos (parte 1): 1</span><br>
+      <span class="tag">Seção 7 — Agentes Públicos (parte 2): 2</span><br>
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<!-- Navegação entre aulas -->
+<div class="aula-nav">
+  <a href="../../index.html">
+    <div class="aula-nav-dir">← Anterior</div>
+    <div class="aula-nav-label">Índice de resumos</div>
+  </a>
+  <a class="placeholder"></a>
+</div>
+
+<div class="footer">Legislação Institucional (TCE-GO) · Aula 00 — Administração Pública · Estratégia Concursos (Controle Externo) · TCE-GO pós-edital</div>
+
+<!--rh:ui-->
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<div id="rhMarkPanel"><div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div><button type="button" id="rhmpExp">⬇ exportar</button><button type="button" id="rhmpImp">⬆ importar</button></div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.legal-block') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.getElementById('rhMarkPanel');
+  var nEl=document.getElementById('rhmpN');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title');
+    var txt=t?t.textContent.trim():'';
+    if(!txt){var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.legal-block';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length){
+      document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+      document.querySelectorAll(SEL).forEach(function(el){ if(saved.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+      save();
+    }
+  }catch(e){}
+  render();
+})();
+</script>
+<!--/rh:ui-->
+</body>
+</html>
