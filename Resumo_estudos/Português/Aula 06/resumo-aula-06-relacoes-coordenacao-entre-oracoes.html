@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Português Aula 06: Relações de coordenação entre orações</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-num {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: .95rem;
+  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+}
+.aula .sec-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .section-title {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  position: relative;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .7rem 1rem;
+  border-radius: 10px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: justify; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--sidebar); }
+th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
+td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f5; }
+tr:hover { background: rgba(37,99,235,.06); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fae5e5;
+  border: 1px solid #efb4b4;
+  border-left: 4px solid var(--red);
+  border-radius: 10px;
+  padding: .65rem .9rem;
+  margin: .75rem 0;
+  font-size: .88rem;
+  color: var(--text);
+  text-align: justify;
+}
+.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--blue);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: #1d3f9e; }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Português — Aula 06</div>
+  <div class="sidebar-sub">Relações de coordenação entre orações · Estratégia Concursos</div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Período, frase e oração</a>
+  <a href="#sec2">2. Orações coordenadas</a>
+  <a href="#sec3">3. Subordinadas substantivas</a>
+  <a href="#sec4">4. Subordinadas adjetivas</a>
+  <a href="#sec5">5. Adverbiais I</a>
+  <a href="#sec6">6. Adverbiais II</a>
+  <a href="#sec7">7. Reduzidas × desenvolvidas</a>
+  <a href="#sec8">8. Paralelismo</a>
+  <a href="#sec9">9. Palavra QUE</a>
+  <a href="#sec10">10. Palavra SE</a>
+  <a href="#sec11">11. Palavra COMO</a>
+  <a href="#sec12">12. Pontos que mais caem em prova</a>
+  <a href="#sec13">13. Incidência de temas</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">Fonte: Aula 06 - Relações de coordenação entre orações (simplificado + completo)<br>Estratégia Concursos · Felipe Luccas</div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="header">
+  <h1>📝 Português — Aula 06: Relações de coordenação entre orações</h1>
+  <p>Período composto · Coordenação × subordinação · Reduzidas · Paralelismo · QUE, SE, COMO · Material base: simplificado + completo · Estratégia Concursos · Felipe Luccas</p>
+</div>
+
+<!-- SECAO 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Período, frase e oração — coordenação × subordinação</div></div>
+  <div class="sec-subtitle">A base de tudo: onde o período termina, como contar orações e como diferenciar independência de dependência</div>
+
+  <div class="card">
+    <div class="card-title">Período e contagem de orações</div>
+    <div class="card-text">
+      → <strong>Período</strong> é a unidade de texto que vai até uma <strong>pontuação definitiva</strong>, que exige recomeço com letra maiúscula<br>
+      → <strong>Ponto final (.)</strong> — encerra o período<br>
+      → <strong>Exclamação (!)</strong> — encerra o período<br>
+      → <strong>Reticências (...)</strong> — encerram o período<br>
+      → <strong>Interrogação (?)</strong> — encerra o período<br><br>
+      → Para <strong>contar orações</strong>, o mais prático é <strong>contar os verbos</strong>: cada verbo (ou locução) vale uma oração<br>
+      → <strong>Período simples</strong> = 1 oração (“Sou sortudo demais ou não?”)<br>
+      → <strong>Período composto</strong> = mais de uma oração, por coordenação, subordinação ou mistura (período misto)<br>
+      → <strong>Frase nominal</strong> = sem verbo (“Que dia!”) — não é oração
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Coordenação × subordinação — o teste do sentido isolado</div>
+    <div class="card-text">
+      → <strong>Coordenação</strong> = orações <strong>independentes</strong>, com sentido completo quando isoladas: “Acordei atrasado para o trabalho” / “Saí” — são frases sozinhas<br>
+      → <strong>Subordinação</strong> = a dependente é <strong>fragmento sem sentido</strong> quando isolada: “Sem tomar café...” (falta algo — funciona como adjunto adverbial de “saí”)<br>
+      → <strong>Outro par:</strong> “Cheguei ao trabalho no horário” (completo) × “Apesar de ter esse contratempo...” (fragmento — subordinada concessiva)<br><br>
+      → <strong>Período misto</strong> mistura os dois tipos — é a estrutura mais recorrente em prova: “Assim que saí (temporal da 2), percebi que tinha esquecido meu celular (OD da 2), porque eu tinha deixado em cima da mesa (causal da 3) e nem lembrei (coordenada aditiva da 2)...”
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Termos coordenados e subordinadas coordenadas entre si</div>
+    <div class="card-text">
+      → <strong>Termos coordenados</strong> são termos listados, organizados, com a <strong>mesma função sintática</strong>: “Comprei roupas, calçados, acessórios” — três objetos diretos coordenados<br><br>
+      → <strong>Subordinadas podem vir coordenadas entre si:</strong> “Quero que você goste do hotel e que volte” — as orações 2 e 3 são subordinadas (objetos diretos de “quero”), apenas <strong>listadas</strong> pela conjunção coordenativa “e”<br>
+      → A oração <strong>não deixa de ser subordinada</strong> — ela só está sendo organizada por um elemento coordenativo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exceções na contagem de orações — quando verbo não vale oração</div>
+    <div class="card-text">
+      → <strong>Locução verbal = 1 oração:</strong> “Tentamos ser felizes” — dois verbos, uma só oração<br>
+      → <strong>“Ser + que” expletivo = 1 oração:</strong> “Minha mãe é que manda na casa” — o “é...que” é realce, pode ser retirado sem prejuízo<br>
+      → <strong>Comparativa com verbo implícito = 2 orações:</strong> “Trabalho tanto quanto meu concorrente (trabalha)” — o segundo verbo está implícito, mas a oração existe<br><br>
+      → <strong>Verbos causativos</strong> (deixar, fazer, mandar) <strong>e sensitivos</strong> (ver, ouvir, sentir) <strong>formam 2 orações</strong>, não locução verbal: “deixe aborrecer”, “fez desistir”, “mandei ir”<br>
+      → <strong>Exemplo:</strong> “Mandei-o procurar ajuda” — o pronome oblíquo “o” é <strong>sujeito do infinitivo</strong> (como se fosse “mandei ELE procurar”)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    “Mandei-o procurar” parece locução verbal, mas são <strong>duas orações</strong> em período composto — o “o” não é objeto direto de “mandei”, e sim sujeito de “procurar”. Com causativos e sensitivos, o oblíquo átono pode ser sujeito do infinitivo.
+  </div>
+</section>
+
+<!-- SECAO 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Orações coordenadas</div></div>
+  <div class="sec-subtitle">Independentes sintaticamente: não exercem função em outra oração — são como duas orações principais lado a lado</div>
+
+  <div class="card">
+    <div class="card-title">Assindéticas × sindéticas</div>
+    <div class="card-text">
+      → <strong>Assindéticas</strong> = sem conjunção (sem síndeto/conector): “Acordei atrasado, saí correndo”<br>
+      → <strong>Sindéticas</strong> = com conjunção coordenativa (com síndeto): “Acordei atrasado <strong>e</strong> saí”<br><br>
+      → As sindéticas se dividem em 5 tipos — <strong>Conclusivas, Explicativas, Aditivas, Adversativas e Alternativas</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Conjunções</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Conclusivas</strong></td><td>logo, pois deslocado (depois do verbo), portanto, por conseguinte, por isso, assim, sendo assim, desse modo</td><td><em>Estudei pouco, por conseguinte não passei.</em></td></tr>
+        <tr><td><strong>Explicativas</strong></td><td>que, porque, pois antes do verbo, porquanto</td><td><em>Estude muito, porquanto não vai vir fácil a prova.</em></td></tr>
+        <tr><td><strong>Aditivas</strong></td><td>e, nem (= e não), não só... mas também, não só... como também, bem como, não só... mas ainda</td><td><em>Comprei não só frutas, como legumes.</em></td></tr>
+        <tr><td><strong>Adversativas</strong></td><td>mas, porém, contudo, todavia, entretanto, no entanto, não obstante</td><td><em>Estudei pouco, não obstante passei no concurso.</em></td></tr>
+        <tr><td><strong>Alternativas</strong></td><td>ou, ou... ou, ora... ora, já... já, quer... quer, seja... seja, talvez... talvez</td><td><em>Ou você mergulha no projeto ou desiste de vez.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>
+    <strong>Posição do “pois” decide tudo:</strong> <strong>antes do verbo</strong> = explicativa (“Estude, pois o edital sai”); <strong>deslocado, depois do verbo</strong> = conclusiva (“Estudou, passou pois no concurso” — equivale a “portanto”).
+  </div></div>
+
+  <div class="card">
+    <div class="card-title">“Mas” entre orações independentes — por que é sempre oposição coordenada?</div>
+    <div class="card-text">
+      → <strong>📌 Aprendizado:</strong> “mas” é conjunção coordenativa <strong>adversativa</strong> — liga duas orações <strong>independentes</strong>, e a oração por ele introduzida é <strong>coordenada sindética adversativa</strong>, com sentido de <strong>oposição</strong> em relação à anterior<br><br>
+      → <strong>Exemplo:</strong> “Fez sucesso, mas não convenceu” — cada oração tem sentido completo isolada; o “mas” só contrasta os sentidos, sem criar dependência sintática<br><br>
+      → ⚠️ <strong>Não confundir:</strong> oposição coordenada (“mas” + orações independentes, verbo no indicativo) ≠ concessão subordinada (“embora” + oração dependente, normalmente com verbo no subjuntivo, que quebra uma expectativa)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Dois-pontos com valor explicativo — por que equivalem a “pois”?</div>
+    <div class="card-text">
+      → O sinal de <strong>dois-pontos</strong> pode introduzir uma <strong>explicação</strong> — nesse caso, equivale à conjunção explicativa <strong>“pois”</strong><br>
+      → <strong>Exemplo:</strong> “Eu tive uma grande vantagem que meus filhos não tiveram: eu nasci pobre” = “...não tiveram, <strong>pois</strong> eu nasci pobre”<br><br>
+      → <strong>Para fixar:</strong> “assim que” e “quando” expressam tempo; “mas” expressa oposição; “portanto” expressa conclusão — nenhum deles substitui dois-pontos explicativos
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Subordinadas substantivas</div></div>
+  <div class="sec-subtitle">Introduzidas pela conjunção integrante que/se; exercem função típica de substantivo e passam no teste ISTO/DISTO</div>
+
+  <div class="hl">
+    <strong>Teste universal:</strong> troque a oração por <strong>ISTO / DISSO / NISTO</strong>. Se a troca funcionar, é substantiva — a preposição que sobrar indica a função (OD, OI, CN).
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Teste</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Subjetiva</strong> (sujeito oracional, verbo no singular)</td><td>ISSO é...</td><td><em>É importante que se estude sempre.</em> / <em>É proibido fumar.</em></td></tr>
+        <tr><td><strong>Objetiva direta</strong></td><td>verbo + ISSO</td><td><em>Disse que ele deveria procurar ajuda.</em> / <em>Não sei se ele vem.</em></td></tr>
+        <tr><td><strong>Objetiva indireta</strong></td><td>verbo + DISSO</td><td><em>Desconfio de que ela conversa com a tartaruga.</em> / <em>Insisti em falar com o médico.</em></td></tr>
+        <tr><td><strong>Completiva nominal</strong> (complementa nome transitivo)</td><td>nome + DISSO</td><td><em>Tenho desconfiança de que ela conversa com a tartaruga.</em> / <em>Ele tinha medo de reprovar.</em></td></tr>
+        <tr><td><strong>Apositiva</strong> (após dois-pontos)</td><td>aposto = ISSO</td><td><em>Tenho um sonho: que eu passe logo no concurso.</em> / <em>Tenho um sonho: passar logo no concurso.</em></td></tr>
+        <tr><td><strong>Predicativa</strong> (após verbo de ligação)</td><td>sujeito é ISSO</td><td><em>A intenção é que eu gabarite a prova.</em> / <em>A intenção é gabaritar a prova.</em></td></tr>
+        <tr><td><strong>Agente da passiva</strong></td><td>por + QUEM</td><td><em>As vagas foram conquistadas por quem se preparou.</em></td></tr>
+        <tr><td><strong>Justapostas</strong> (interrogativas indiretas, sem conjunção)</td><td>verbo + ISSO</td><td><em>Ignoro quem economizou.</em> / <em>Descobri quando ele começou a desconfiar.</em> / <em>Falava a quem quisesse ouvir.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Objetiva direta — por que o “se” integrante e o “com” enfático caem tanto?</div>
+    <div class="card-text">
+      → A oração introduzida pela conjunção integrante <strong>“SE”</strong> é normalmente <strong>objetiva direta</strong>: “Não sei se ele vem” = “Não sei ISSO”<br>
+      → Em “Fazer <strong>com</strong> que ele desista”, o “com” é <strong>preposição enfática</strong> — a oração continua <strong>objetiva direta</strong>, não indireta<br>
+      → Excepcionalmente, a integrante pode vir <strong>implícita</strong>: “Esperamos (que) tomem vergonha os eleitores!”<br><br>
+      → <strong>Detalhe:</strong> “Mandei-o procurar ajuda” (reduzida de infinitivo) — o “o” é sujeito do infinitivo, caso raro de oblíquo com função de sujeito
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Subjetiva × predicativa — por que o artigo na principal decide?</div>
+    <div class="card-text">
+      → Com <strong>sujeito oracional</strong>, o verbo fica no <strong>singular</strong>: “É importante estudar sempre” = “ISSO é importante”<br>
+      → <strong>Regra do artigo:</strong> se houver <strong>artigo ou pronome</strong> na oração principal, a substantiva é <strong>predicativa</strong><br>
+      → <strong>“Certo é que todos querem passar”</strong> (= Isto é certo) — <strong>subjetiva</strong>, sem artigo<br>
+      → <strong>“O certo é que todos querem passar”</strong> (= O certo é isto) — <strong>predicativa</strong>, com artigo “O”<br><br>
+      → <strong>Para fixar:</strong> “Mas é claro que a gramática do inglês não é a mesma...” — a oração é <strong>sujeito</strong> (“ISTO é claro”), não complemento de “claro”
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">“Estima-se que...” — por que a oração é sujeito e não objeto direto?</div>
+    <div class="card-text">
+      → <strong>📌 Aprendizado:</strong> verbo transitivo direto + <strong>SE apassivador</strong> com sujeito oracional — o que seria OD na ativa vira <strong>sujeito paciente oracional</strong> (= subordinada substantiva <strong>subjetiva</strong>), e o verbo fica na <strong>3ª pessoa do singular</strong><br><br>
+      → <strong>Teste da conversão:</strong> “Estima-se que tenham sido gastos milhões” = <strong>“É estimado que tenham sido gastos milhões”</strong> (passiva analítica com SER + particípio) — se a conversão funciona, o “se” é PA e a oração é sujeito<br><br>
+      → <strong>Sem o “se”:</strong> “Estima que tenham sido gastos milhões” — volta a <strong>OD oracional</strong> com <strong>sujeito oculto</strong> (alguém estima ISSO)<br><br>
+      → ⚠️ <strong>Exceção:</strong> nem todo “se” com VTD é apassivador — no reflexivo o “se” é <strong>OI</strong> (“a si mesmo”), com sujeito oculto e OD nominal: “Deu-se o direito de tirar férias” / “Arrogou-se o poder de decisão”
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Completiva nominal e justapostas — o que não pode faltar?</div>
+    <div class="card-text">
+      → <strong>Completiva nominal</strong> complementa <strong>nomes transitivos</strong> (substantivo abstrato, adjetivo): “Tenho receio de falar com o médico”<br>
+      → A <strong>preposição pode ser suprimida</strong>: “Estava desejoso (de) que ele viesse” / “Duvidei (de) que ele fosse passar” — na prova, dê preferência ao uso da preposição<br>
+      → <strong>CN reduzida após adjetivo e com “em”:</strong> “são capazes <strong>de aceitar</strong> as verdades” (CN do adjetivo “capazes” — capazes de quê?) / “temos dificuldade <strong>em abrir mão</strong> das crenças” (CN do substantivo “dificuldade” — dificuldade em quê?) — a preposição varia conforme a regência do nome<br><br>
+      → <strong>Justapostas</strong> ocorrem nas <strong>interrogativas indiretas</strong> e são iniciadas por <strong>pronomes</strong> (que, quanto, qual) ou <strong>advérbios interrogativos</strong> (como, onde, quando, por que) — não há conjunção, as orações ficam “postas uma ao lado da outra”<br>
+      → <strong>Exemplos:</strong> “Vejo quão felizes são vocês” / “Falava a quem quisesse ouvir”
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Subordinadas adjetivas</div></div>
+  <div class="sec-subtitle">Equivalem a adjetivo, funcionam como adjunto adnominal e são introduzidas por pronome relativo que retoma o antecedente</div>
+
+  <div class="card">
+    <div class="card-title">Equivalência com o adjetivo — por que a função é adjunto adnominal?</div>
+    <div class="card-text">
+      → <strong>“O time vencedor foi vaiado”</strong> (adjetivo modificando “time”, sujeito) = <strong>“O time que venceu foi vaiado”</strong> (oração adjetiva modificando “time”)<br>
+      → A oração se refere a um <strong>substantivo antecedente</strong> e é introduzida por <strong>pronome relativo</strong> (que, o qual, onde...)<br>
+      → O relativo tem <strong>função anafórica</strong>: retoma o antecedente dentro da oração adjetiva
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Explicativa × restritiva — por que a vírgula muda tudo?</div>
+    <div class="card-text">
+      → <strong>Explicativa = COM vírgulas</strong> — informação acessória, ampliação sobre antecedente já definido: “Meu aluno, que mora no interior, estuda on-line” (tenho um aluno; ele mora no interior)<br>
+      → <strong>Restritiva = SEM vírgula</strong> — individualiza, restringe a um ser específico do grupo: “Meu aluno que mora no interior estuda on-line” (tenho vários alunos; só o do interior estuda on-line)<br><br>
+      → <strong>Retirar a vírgula muda o sentido</strong> — passa de explicativa para restritiva: “Meu filho, que mora em Brasília, toca violão” (um filho) × “Meu filho que mora em Brasília toca violão” (vários filhos)<br>
+      → O mesmo vale para <strong>adjetivo entre vírgulas</strong>: “O menino, cansado, foi dormir” (acréscimo) × “O menino cansado foi dormir” (qual menino?)<br><br>
+      → <strong>Restrição impossível:</strong> com seres únicos (substantivos próprios), a vírgula é obrigatória — “O grande Machado de Assis, que escreveu Quincas Borba, era um gênio” (retirar daria a ideia absurda de vários Machados de Assis)
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div>
+    <strong>Cuidado com a vírgula intercalada:</strong> em “um restaurante que, apesar de simpático, me pareceu estranho”, a oração iniciada por “que” é <strong>restritiva</strong> — as vírgulas isolam só a expressão adverbial concessiva “apesar de simpático”, não a adjetiva.
+  </div></div>
+
+  <div class="card">
+    <div class="card-title">“Que seja” explícito — por que não altera o sentido?</div>
+    <div class="card-text">
+      → Inserir <strong>“que seja”</strong> antes do particípio apenas <strong>revela o pronome relativo</strong> e deixa a adjetiva mais explícita, sem mudar sentido nem correção<br>
+      → <strong>Exemplo:</strong> “uma nova configuração da atividade econômica, (que seja) pautada na ética...” — a oração adjetiva reduzida de particípio continua a mesma
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Adverbiais I — causa, consequência, condição, tempo</div></div>
+  <div class="sec-subtitle">Exercem função de advérbio: trazem circunstância com conjunção subordinativa + verbo</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Conjunções</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Causal</strong> (origem, antes do fato)</td><td>porque, visto que, já que, que, como, porquanto; “haja vista” (= por causa de)</td><td><em>Visto que acabara a luz, acendi uma vela.</em> / <em>Como não tinha Coca, bebi Pepsi.</em></td></tr>
+        <tr><td><strong>Consecutiva</strong> (consequência; “tão...que”)</td><td>de sorte/modo/forma/jeito que, que (com antecedente tal, tão, cada, tanto, tamanho)</td><td><em>Comi tanto no rodízio que fiquei 16 horas sem fome.</em> / <em>A fome era tamanha que o leão comeu salada.</em></td></tr>
+        <tr><td><strong>Condicional</strong> (hipótese + subjuntivo)</td><td>se, caso, contanto/desde que, salvo/exceto se, a não ser/menos que, sem que, uma vez que (+ subjuntivo)</td><td><em>Se quiser passar, estude regularmente.</em> / <em>Caso pague, exija o recibo.</em> / <em>Sem que estude, não há como passar.</em></td></tr>
+        <tr><td><strong>Temporal</strong></td><td>quando, enquanto, antes/depois que, logo/assim que, todas as vezes que, desde/sempre que, agora que, mal (= assim que)</td><td><em>Mal ele saiu, o ônibus passou.</em> / <em>Assim que ela chegar, conte a verdade.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Causal — o que a banca realmente cobra?</div>
+    <div class="card-text">
+      → <strong>Causa é a origem</strong> do evento e ocorre <strong>antes</strong> dele — e toda causa tem uma consequência: “Visto que acabara a luz (causa), acendi uma vela (consequência)”<br>
+      → <strong>“Haja vista” tem sentido de causa</strong> — equivale a “devido a / por conta de / por causa de”<br>
+      → <strong>“Quando” pontual = tempo:</strong> “quando passar por situação em que sofreu agressão” exprime temporalidade<br><br>
+      → <strong>Limite nebuloso:</strong> causa também explica — os próprios gramáticos reconhecem que <strong>não há limites claros</strong> entre causa e explicação, então a banca <strong>não cobra</strong> essa diferença (nos casos raros, valem os critérios da aula de conectivos)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Condicional e temporal — quais equivalências decorar?</div>
+    <div class="card-text">
+      → <strong>“Uma vez que + subjuntivo” = condição:</strong> “Uma vez que pague, exija o recibo” (= se pagar...)<br>
+      → <strong>“Sem que” = condição negativa:</strong> “Sem que estude, não há como passar” (= se não estudar...)<br>
+      → <strong>“Mal” = “assim que”:</strong> “Mal ele saiu” = “Assim que ele saiu” — valor temporal, não concessivo<br><br>
+      → <strong>Distinção:</strong> “enquanto” é temporal (ação simultânea), não final — o conectivo de finalidade é “para (que) / a fim de (que)”
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Adverbiais II — concessão, finalidade, proporção, comparação, conformidade</div></div>
+  <div class="sec-subtitle">A segunda metade das adverbiais: expectativa quebrada, propósito, proporção, paralelo e acordo</div>
+
+  <div class="card">
+    <div class="card-title">Concessiva — por que o subjuntivo é a marca?</div>
+    <div class="card-text">
+      → <strong>Concessão = expectativa quebrada:</strong> um fato cria a expectativa de um resultado, mas o desfecho é oposto — “Embora haja avanço científico (expectativa), a ciência não resolve o problema (desfecho oposto)”<br>
+      → <strong>Conjunções:</strong> embora, mesmo/ainda que, apesar de que, conquanto, por mais/posto que, se bem que, não obstante, malgrado<br>
+      → O verbo normalmente vem no <strong>SUBJUNTIVO</strong> (terminações -A / -E / -SSE): “Embora fosse mulato, gago e epilético, Machado de Assis fundou a Academia” / “Posto que estivessem grávidas, as guerreiras lutavam” / “Não obstante durma pouco, está animado”<br><br>
+      → Com <strong>preposição</strong>, o verbo vai ao <strong>infinitivo em reduzida</strong>: “Por mais que fosse engenheiro...” = “Apesar de ser engenheiro...” — a substituição exige adaptar o verbo<br>
+      → Formas com “que seja” também são concessivas: “Os trabalhadores, pobres que sejam, mantêm as contas em dia” / “Por mais inteligente que seja, precisa estudar!”
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    “Não obstante” é <strong>dupla</strong>: como coordenada <strong>adversativa</strong>, vem com verbo no <strong>indicativo</strong> (“Estudei pouco, não obstante fui aprovado”); como subordinada <strong>concessiva</strong>, vem com verbo no <strong>subjuntivo</strong> (“Não obstante tenha medo, nunca deixo de tentar”). O modo verbal denuncia a classificação.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Final — por que o “para” + verbo quase sempre entrega?</div>
+    <div class="card-text">
+      → Indica <strong>propósito, motivo, finalidade</strong>: para que, a fim de que, de modo/sorte que, porque (= para que), que<br>
+      → <strong>Exemplos:</strong> “Dou exemplos para que você entenda tudo” / “Fiz o que pude porque você passasse logo” (= para que passasse)<br><br>
+      → <strong>O “para” antes de verbo quase sempre indica finalidade</strong> — são adverbiais finais <strong>reduzidas de infinitivo</strong>: “para absolver o presente” / “para louvar os bons tempos antigos” exprimem finalidades
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Proporcional, comparativa e conformativa — como não confundir?</div>
+    <div class="card-text">
+      → <strong>Proporcional</strong> = relação de proporcionalidade: à medida/proporção que, ao passo que, quanto mais/menos... mais/menos — “Quanto mais estudo, mais sorte tenho” / “À medida que o tempo passa, a confiança aumenta”<br><br>
+      → <strong>Comparativa</strong> = comparação ou contraste: como, assim como, tal qual/como, mais/menos que, tanto quanto — as palavras <strong>tanto e quanto são correlatas</strong><br>
+      → O verbo da comparativa costuma vir <strong>implícito</strong> (é o mesmo da principal): “Ele estuda tanto quanto seu tio médico (estuda)” / “Corria como um touro”<br><br>
+      → <strong>Conformativa</strong> = acordo, “de acordo com”: como, conforme, consoante, segundo — “A prova se desenrolou como tínhamos treinado!” / “Tudo correu conforme planejamos”<br>
+      → <strong>“Como atestam” = conforme, não comparação:</strong> “como atestam clássicos do pensamento político” = “conforme atestam...” — valor conformativo
+    </div>
+  </div>
+
+  <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div>
+    <strong>Oração adverbial antecipada exige vírgula:</strong> “Cercado de costumes e hábitos por todos os lados, o direito tem fama...” — a adverbial (de sentido causal: “por estar cercado...”) vem antes da principal, então a vírgula após “lados” é <strong>obrigatória</strong>.
+  </div></div>
+</section>
+
+<!-- SECAO 7 -->
+<section id="sec7">
+  <div class="sec-header"><div class="sec-num">7</div><div class="sec-title">Reduzidas × desenvolvidas</div></div>
+  <div class="sec-subtitle">Sem conectivo + verbo em forma nominal × com conectivo + verbo conjugado — e a conversão entre elas</div>
+
+  <div class="card">
+    <div class="card-title">Desenvolvida × reduzida — qual a diferença formal?</div>
+    <div class="card-text">
+      → <strong>Desenvolvida</strong> = conectivo (conjunção integrante, pronome relativo ou conjunção adverbial) + <strong>verbo conjugado</strong><br>
+      → <strong>Reduzida</strong> = sem conectivo, verbo em <strong>forma nominal</strong> (infinitivo, gerúndio, particípio) — pode ter preposição, mas <strong>nunca</strong> conjunção nem pronome relativo; é “menor”, com menos elementos<br><br>
+      → <strong>Converter = desenvolver:</strong> (1) inserir conjunção ou pronome relativo + (2) conjugar o verbo<br>
+      → <strong>“Ao me ver”</strong> (reduzida de infinitivo, com preposição) → <strong>“Quando me vir”</strong> (desenvolvida, conjunção temporal + futuro do subjuntivo)<br>
+      → <strong>“Vi alguém chorando”</strong> (gerúndio, sem conjunção) → <strong>“Vi alguém que chorava”</strong> (relativo + imperfeito)<br>
+      → <strong>“Terminado o serviço”</strong> (particípio, sem conjunção) → <strong>“Assim que terminou o serviço”</strong> (temporal + pretérito perfeito)<br><br>
+      → <strong>Na conversão, manter o tempo correlato</strong> da principal e a <strong>voz verbal</strong> — e, ao inserir o “que”, o verbo tende ao subjuntivo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estruturas clássicas — por que Ao / A / Por / Sem + infinitivo valem ouro?</div>
+    <div class="card-text">
+      → <strong>Ao + infinitivo = Tempo:</strong> “Ao chegar, avise” (= quando chegar) / “Ao coletar um dado...” (= quando um dado é coletado) / “ao estudar em casa” (= quando estudam)<br>
+      → <strong>A + infinitivo = Condição:</strong> “A persistirem os sintomas, consulte um médico” (= se persistirem)<br>
+      → <strong>Por + infinitivo = Causa:</strong> “Por ser muito capacitado, ganhava muito” (= porque é) — diferente de Ao + infinitivo, que é tempo<br>
+      → <strong>Sem + infinitivo = Concessão:</strong> “Sem se preparar, passou no concurso” (mesmo sem se preparar...)<br>
+      → <strong>Sem + infinitivo = Condição negativa:</strong> “Sem se preparar, não passará” (= se não se preparar...)<br><br>
+      → <strong>Exemplos substantivos e adjetivos em reduzida:</strong> subjetivas (“Não é legal comprar produtos falsos”), objetivas diretas (“dizem ter se casado”), objetivas indiretas (“depende de ter constância”), predicativas (“a única maneira de passar é estudar muito”), completivas nominais (“tinha medo de reprovar”), apositivas (“só nos resta uma opção: estudarmos muito”), adjetivas (“mulher de negligenciar os filhos” = que negligencia; “último livro a ser escrito” = que foi escrito)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sentido ambíguo e reduzidas cristalizadas — quando não converter?</div>
+    <div class="card-text">
+      → O sentido da reduzida <strong>pode ser ambíguo</strong> e admitir mais de uma conversão conforme o contexto: “Em se plantando, tudo dá” (= quando plantamos — tempo / se plantarmos — hipótese)<br>
+      → <strong>Reduzidas cristalizadas não se desenvolvem</strong> — são fixas na língua, não tente dar sentido a todas:<br>
+      → <strong>“Coube-nos pagar a conta”</strong><br>
+      → <strong>“Ele, além de ser bonito, era gentil”</strong><br>
+      → <strong>“Longe de desanimar, empolgou-se”</strong><br>
+      → <strong>“Não faz outra coisa senão estudar”</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    “Por + infinitivo” é <strong>causa</strong> (“por ser = porque é”), enquanto “ao + infinitivo” é <strong>tempo</strong> (“ao chegar = quando cheguei”) — trocar um pelo outro <strong>altera o sentido</strong>. E “e suprimir” (adição) × “ao suprimir” (tempo) também mudam o sentido, sem erro gramatical.
+  </div>
+</section>
+
+<!-- SECAO 8 -->
+<section id="sec8">
+  <div class="sec-header"><div class="sec-num">8</div><div class="sec-title">Paralelismo</div></div>
+  <div class="sec-subtitle">Coordenar constituintes de mesma forma: simetria gramatical — e coerência de sentido</div>
+
+  <div class="card">
+    <div class="card-title">Paralelismo sintático — por que a forma precisa ser simétrica?</div>
+    <div class="card-text">
+      → A norma culta recomenda coordenar <strong>constituintes do mesmo tipo</strong>: adjetivo com adjetivo, substantivo com substantivo, termo preposicionado com preposicionado, desenvolvida com desenvolvida<br>
+      → <strong>Quebra clássica — adjetivo + oração adjetiva:</strong> “Tenho um primo inteligente e que tem muito dinheiro” (sem paralelismo — mesma função de adjunto adnominal, formas diferentes)<br>
+      → <strong>Correção:</strong> “Tenho um primo inteligente e rico” (dois adjetivos) ou “Tenho um primo que é inteligente e que é rico” (duas adjetivas)<br><br>
+      → <strong>Quebra clássica — reduzida + desenvolvida:</strong> “Estudo por estar desempregado e porque aspiro a uma vida melhor” (sem paralelismo)<br>
+      → <strong>Correção:</strong> “Estudo por estar desempregado e por aspirar a uma vida melhor” (duas reduzidas) ou “Estudo porque estou desempregado e porque aspiro a uma vida melhor” (duas desenvolvidas)<br><br>
+      → <strong>Exceção que é OK:</strong> adjetivo + locução adjetiva e advérbio + locução adverbial são estruturas equivalentes — “João é rude e sem paciência” / “Anda rapidamente e com pressa”
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conectivos, correlações e o “isto é” — onde o paralelismo aparece?</div>
+    <div class="card-text">
+      → Os elementos que estabelecem paralelismo são os <strong>aditivos</strong> (E, Nem), as <strong>correlações aditivas</strong> (não só... mas/como também; tanto... quanto) e as <strong>alternativas</strong> (ou... ou; quer... quer; seja... seja)<br>
+      → <strong>“É necessário que você estude E que você revise”</strong> (duas desenvolvidas) / “Não gosto de ser ofendido, nem de ser elogiado” (duas reduzidas) / “Seja por bem, seja por mal, serei aprovado” (dois termos preposicionados)<br>
+      → <strong>Quebra:</strong> “Não gosto de chuva nem de que faça sol” (substantivo + oração — sem paralelismo)<br><br>
+      → Partículas explicativas como <strong>“isto é”, “ou seja”, “quer dizer”</strong> exigem paralelismo: “Ricardo enriqueceu com investimentos arriscados, isto é, negociando ações...” (nominal + oração — assimétrico; o ajuste seria “com negociação de ações”, duas formas nominais)<br>
+      → <strong>Casos de prova:</strong> “planejam nova manifestação pública e interditar o acesso” (nominal + oração — sem paralelismo); “O tumulto começava na esquina de minha rua e que era perto dos gabinetes” (nominal + adjetiva — sem paralelismo)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regência compartilhada — por que o complemento precisa atender aos dois verbos?</div>
+    <div class="card-text">
+      → Se dois verbos dividem <strong>um mesmo complemento</strong>, ele precisa atender à <strong>regência dos dois</strong> — não dá para usar um complemento só com verbos de regências diferentes<br>
+      → <strong>“Esse é o contrato que assinei e concordei”</strong> — errado, porque “assinar” pede OD e “concordar” pede OI com “com”; a correção repõe a preposição: “que assinei e com que concordei”<br>
+      → Pela mesma lógica, <strong>“Eu gosto e respeito meu professor”</strong> é incorreto (“gostar” pede “de”)<br>
+      → <strong>Inverso:</strong> “Mande-me tudo que conseguir sobre as manobras de minha tia e se meu tio encontrou os documentos” — o segundo termo não pode ser complemento de “mande-me”; o ajuste inclui outro verbo: “Descubra tudo... e (descubra) se meu tio encontrou...”
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Paralelismo semântico — quando a forma está certa e o sentido quebra?</div>
+    <div class="card-text">
+      → Paralelismo semântico = <strong>coerência de sentido</strong> entre os coordenados — a forma pode estar simétrica e a frase continuar incoerente<br>
+      → <strong>“O policial fez duas operações: uma no Morro do Juramento e outra no pulmão”</strong> — referência geográfica × órgão cirúrgico; até o sentido de “operação” muda<br>
+      → <strong>“Heber tem um carro a diesel e um carro nacional”</strong> — combustível × origem; a lógica seria nacional × importado, ou diesel × álcool<br>
+      → <strong>“Rodrigo é gentil e técnico de informática”</strong> — qualidade pessoal × profissão, sem o mesmo nível semântico<br><br>
+      → <strong>Ressalva:</strong> a ruptura pode se justificar pelo contexto — “Marcela amou-me durante quinze dias e onze contos de réis” (tempo = dinheiro, porque ela era interesseira); “Gastei trinta dias para ir do Rócio Grande ao coração de Marcela” (“coração” como ponto de chegada, objetivo)
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div>
+    <strong>Ressalva decisiva:</strong> paralelismo <strong>não é norma gramatical rígida</strong> — é diretriz estilística de harmonia, operação não obrigatória. A banca <strong>não</strong> considera errada toda frase sem paralelismo perfeito: ela pergunta <strong>se há ou não</strong> paralelismo, ou pede <strong>reescritura</strong> que o observe.
+  </div></div>
+</section>
+
+<!-- SECAO 9 -->
+<section id="sec9">
+  <div class="sec-header"><div class="sec-num">9</div><div class="sec-title">Palavra QUE</div></div>
+  <div class="sec-subtitle">Todas as faces do “que”: preposição, pronomes, substantivo, advérbio, expletiva e cada valor de conjunção</div>
+
+  <div class="card">
+    <div class="card-title">“Que” não conjunção — como reconhecer cada uso?</div>
+    <div class="card-text">
+      → <strong>Preposição acidental:</strong> “Primeiro que tudo, tenho que passar na prova”<br>
+      → <strong>Pronome relativo</strong> (retoma antecedente, introduz adjetiva): “O aluno que estuda passa”<br>
+      → <strong>Pronome indefinido</strong> (acompanha substantivo, ideia de “qual/quais”, pode ser exclamativo): “Sei que intenções você tem” / “Que ideia mais descabida!” / “Que mulher tinhosa!”<br>
+      → <strong>Pronome interrogativo:</strong> “(O) Que houve aqui?” (o “o” é expletivo) / “Não sei que intenções você tem” (interrogativa indireta, sem ponto de interrogação)<br>
+      → <strong>Substantivo</strong> (sempre acentuado): “Essa mulher tem um quê de cigana”<br>
+      → <strong>Advérbio de intensidade:</strong> “Que chato!”<br>
+      → <strong>Interjeição</strong> (surpresa, admiração): “Que! Não acredito que fez isso!”<br>
+      → <strong>Partícula expletiva SER + QUE</strong> (pode ser retirada sem prejuízo — só realce/ênfase): “Você é que manda” (= você manda) / “Fui eu que te sustentei” / “Quase que caí da varanda” / “Naturalmente que disse sim”
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">“Que” conjunção — qual o valor de cada ocorrência?</div>
+    <div class="card-text">
+      → <strong>Explicativa:</strong> “Estude, que o edital já vai sair”<br>
+      → <strong>Alternativa</strong> (= quer... quer): “Que chova, que faça sol, irei à praia”<br>
+      → <strong>Adversativa</strong> (= mas não): “Culpem todos, que não a mim!”<br>
+      → <strong>Aditiva</strong> (reiteração): “Você fala que fala, hein, meu amigo!”<br>
+      → <strong>Consecutiva</strong> (com intensificador tão/tanto/tal): “Bebi tanto que passei mal” / “Ele não sai à rua que não encontre um amigo” (= sem encontrar)<br>
+      → <strong>Comparativa</strong> (“do” facultativo): “Estudo mais (do) que você”<br>
+      → <strong>Final:</strong> “Estudo para que meu filho tenha uma vida melhor” / “Faço votos que sejas feliz!”<br>
+      → <strong>Concessiva</strong> (= ainda que): “Estude constantemente, pouco que seja”<br>
+      → <strong>Temporal:</strong> “Agora que eu ia viajar, chove”<br>
+      → <strong>Integrante</strong> (introduz substantiva — teste ISTO): “Quero que você se exploda!” (= quero ISTO) / “É preciso que estudemos” (= é preciso ISTO)
+    </div>
+  </div>
+
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>
+    <strong>Análise da substantiva com “que/se”:</strong> “Estava claro que ele era preguiçoso” = “Estava claro ISTO” = “Isto estava claro” (sujeito); “Quero que você se exploda” = “Quero ISTO” (OD); “Não sei se ele estuda” = “Não sei ISTO” (OD); “Discordo de que aumentem impostos” = “Discordo DISTO” (OI); “A certeza de que vou passar me alivia” = “A certeza DISTO” (CN — substantivo abstrato de sentimento + complemento paciente).
+  </div></div>
+
+  <div class="card">
+    <div class="card-title">Relativo em 3 passos — como descobrir a função do “que”?</div>
+    <div class="card-text">
+      → <strong>Passo 1 — Isolar</strong> a oração adjetiva iniciada pelo “QUE” relativo<br>
+      → <strong>Passo 2 — Substituir</strong> o “QUE” pelo antecedente dentro dessa oração<br>
+      → <strong>Passo 3 — Organizar e analisar</strong> a função do antecedente — a função que ele assumir é a função do “QUE”<br><br>
+      → <strong>“A menina [que roubava livros] foi presa”</strong> → “[A menina roubava livros]” → “a menina” seria sujeito, logo o “que” é <strong>sujeito</strong><br>
+      → <strong>“O filme a [que me referi] é chato”</strong> → “[me referi ao filme]” → “o filme” seria objeto indireto, logo o “que” é <strong>objeto indireto</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Funções que o “que” relativo assume — quais decorar?</div>
+    <div class="card-text">
+      → <strong>Sujeito:</strong> “Estes são os atletas que representarão o país” (atletas representarão)<br>
+      → <strong>Objeto direto:</strong> “Comprei o fone que você queria” (queria o fone)<br>
+      → <strong>Objeto indireto:</strong> “Este é o curso de que preciso” (preciso do curso)<br>
+      → <strong>Complemento nominal:</strong> “Estas são as medicações de que ele tem necessidade” (necessidade de medicações)<br>
+      → <strong>Predicativo do sujeito:</strong> “Ela era a esposa que muitas gostariam de ser” (ser a esposa)<br>
+      → <strong>Agente da passiva:</strong> “Este é o animal por que fui atacado” (atacado pelo animal)<br>
+      → <strong>Adjunto adverbial:</strong> “O acidente ocorreu no dia em que eles chegaram” (chegaram naquele dia)<br><br>
+      → <strong>Regra de ouro:</strong> o sujeito da adjetiva é o próprio “que” — o antecedente <strong>nem integra a oração</strong>: em “os objetos que nos cercam movimentam relações”, o sujeito de “cercam” é o “que”, não “os processos”; “os processos” é sujeito da principal (“movimentam”)
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 10 -->
+<section id="sec10">
+  <div class="sec-header"><div class="sec-num">10</div><div class="sec-title">Palavra SE</div></div>
+  <div class="sec-subtitle">Do apassivador ao expletivo: cada “se” tem teste próprio — e a transitividade do verbo denuncia metade deles</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Função</th><th>Estrutura / teste</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PA (apassivador)</strong> — voz passiva sintética</td><td>VTD + SE (agente externo pratica, sujeito sofre)</td><td><em>Vendem-se casas.</em> (= casas são vendidas)</td></tr>
+        <tr><td><strong>PIS (indeterminação do sujeito)</strong></td><td>VI / VTI / VL + SE (sem OD possível)</td><td><em>Vive-se bem aqui.</em> / <em>Trata-se de uma exceção.</em> / <em>Sempre se está sujeito a erros.</em></td></tr>
+        <tr><td><strong>Integrante</strong> — OD oracional</td><td>verbo + SE = ISSO</td><td><em>Não quero saber se ele nasceu pobre.</em> (= saber isso)</td></tr>
+        <tr><td><strong>Condicional</strong></td><td>hipótese (= caso)</td><td><em>Se eu estudar sempre, serei aprovado.</em></td></tr>
+        <tr><td><strong>Causal</strong> (= já que, fato real)</td><td>causa real</td><td><em>Se você gosta dela, por que não a procura?</em> (= porque gosta)</td></tr>
+        <tr><td><strong>Reflexivo</strong> — OD (age em si)</td><td>sujeito animado age deliberadamente em si</td><td><em>Minha tia se barbeia.</em> / <em>O menino feriu-se com a faca.</em></td></tr>
+        <tr><td><strong>Recíproco</strong> — OD (um ao outro)</td><td>ação mútua</td><td><em>Irmão e irmã se abraçaram.</em> (= um ao outro)</td></tr>
+        <tr><td><strong>PIV</strong> (parte do verbo, sem função)</td><td>verbo pronominal, quase sempre VI/VTI; não sai sem o “se”</td><td><em>Candidatou-se à presidência.</em> / <em>Ele sempre se queixa da família.</em></td></tr>
+        <tr><td><strong>Expletivo</strong> (pode retirar)</td><td>retirada sem prejuízo</td><td><em>Vão-se minhas últimas economias.</em> / <em>Passaram-se anos e ela não voltou.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Critérios de desempate — passiva × reflexiva × PIV, como decidir?</div>
+    <div class="card-text">
+      → <strong>VTD + agente externo = passiva:</strong> além do VTD, precisa estar claro o sentido passivo — alguém de fora pratica e o sujeito sofre: “João se vacinou” (o médico vacinou João)<br>
+      → <strong>VTI / VI = nunca passiva:</strong> verbos pronominais são quase sempre intransitivos ou transitivos indiretos — se o verbo for VTI, com certeza não há voz passiva e dificilmente haverá reflexiva<br>
+      → <strong>Animado agindo deliberadamente em si = reflexiva:</strong> “Maria se penteia cuidadosamente” / “João se amarrou ao tronco” (prende a si mesmo) — o “se” é OD<br>
+      → <strong>Espontâneo / inanimado = PIV:</strong> “A criança caiu e se afogou” (não afogou a si própria; sem agente externo) / “O barco se partiu nas rochas” (efeito natural) / “As nuvens se movimentam” (inanimado; “são movimentadas” teria outro sentido — conversão artificial denuncia que não era passiva)<br>
+      → <strong>“Consertam-se relógios” só pode ser passiva</strong> — relógio não conserta a si mesmo; só há dúvida passiva × reflexiva quando o sujeito puder logicamente praticar a ação em si<br><br>
+      → <strong>Verbos pronominais típicos</strong> (se é parte integrante, sem função): atrever-se, alegrar-se, admirar-se, orgulhar-se, arrepender-se, queixar-se, sentar-se, suicidar-se, afogar-se, partir-se — e a banca adora o “se” expletivo em “rir” e “sorrir”
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    “Eles se julgam com o direito...” (julgam a si mesmos — <strong>reflexivo</strong>) × “...se castigam as moças...” (as moças são castigadas — <strong>apassivador</strong>): o mesmo texto traz dois “se” de classes diferentes. E “sempre se encontrava uma alma boa” é <strong>PA</strong> (“era encontrada”), em próclise pelo advérbio “sempre”.
+  </div>
+</section>
+
+<!-- SECAO 11 -->
+<section id="sec11">
+  <div class="sec-header"><div class="sec-num">11</div><div class="sec-title">Palavra COMO</div></div>
+  <div class="sec-subtitle">Da interjeição à conjunção causal antecipada: o sentido — não o nome — é o que a banca cobra</div>
+
+  <div class="card">
+    <div class="card-title">“Como” não conjunção — quais os usos?</div>
+    <div class="card-text">
+      → <strong>Interjeição</strong> (surpresa): “Como?! Não acredito no que estou ouvindo!”<br>
+      → <strong>Verbo comer</strong> (1ª pessoa): “Eu não como carne!”<br>
+      → <strong>Pronome relativo</strong> (retoma modo/maneira/forma/jeito): “A maneira como você fala magoa” / “Essa não é a forma como você deve estudar”<br>
+      → <strong>Preposição acidental</strong> (na qualidade de / por): “Ele joga como atacante” / “Machado de Assis, como romancista, nunca foi superado” / “tiveram como prêmio uma medalha”<br>
+      → <strong>Advérbio interrogativo</strong> (modo, em interrogativa direta): “Como lidar com as críticas?”<br>
+      → <strong>Advérbio de intensidade</strong> (= quão): “Como é grande o meu amor por você”<br>
+      → <strong>Valor de exemplificação</strong> (palavra denotativa): “técnicas abusivas, como tornar pública a dívida” — “tornar pública” é um exemplo de técnica, não comparação
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">“Como” conjunção — aditiva, comparativa, conformativa ou causal?</div>
+    <div class="card-text">
+      → <strong>Aditiva</strong> (correlações tanto... como; não só... como): “Tanto corro de dia, como nado à noite” / “Não só estudo, como reviso”<br>
+      → <strong>Comparativa</strong> (paralelo entre qualidades/ações): “Ele canta como um anjo” / “Amou-a como se fosse a última” (comparação hipotética)<br>
+      → <strong>Conformativa</strong> (acordo — conforme/consoante/segundo): “Como todos sabem, não existe milagre em concurso” / “O mundo é um moinho, como dizia Cartola”<br>
+      → <strong>Causal antecipada</strong> (vem antes da consequência): “Como choveu, a rua está molhada”<br><br>
+      → <strong>“Como atestam” = conforme:</strong> “como atestam clássicos do pensamento político” equivale a “conforme/consoante/segundo atestam” — valor conformativo, não comparação
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">“Como” introduzindo substantivas justapostas — por que a função dele é adjunto adverbial?</div>
+    <div class="card-text">
+      → Como advérbio, o “como” pode iniciar <strong>substantiva justaposta</strong> (sem conjunção integrante) — e dentro da oração que introduz ele é <strong>adjunto adverbial de modo</strong><br>
+      → <strong>Objetiva direta:</strong> “Desejo saber como vai” / “Ignoramos como ele gastou tanto”<br>
+      → <strong>Predicativa:</strong> “Sua produtividade não está como a diretoria deseja”<br>
+      → <strong>Subjetiva:</strong> “Até agora, não se sabe como ficarão as leis trabalhistas”<br>
+      → <strong>Completiva nominal:</strong> “Fui convencido de como deveria agir”<br><br>
+      → Com valor de intensidade (= quão), também introduz justaposta: “Ninguém esquece como foi difícil passar” (= quão difícil) / “Descobrimos como eram infelizes os vaidosos” (= quão infelizes)
+    </div>
+  </div>
+</section>
+
+<!-- SECAO 12 -->
+<section id="sec12">
+  <div class="sec-header"><div class="sec-num">12</div><div class="sec-title">Pontos que mais caem em prova</div></div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-text">
+      → <strong>Contagem de orações:</strong> contar verbos — com as exceções: locução verbal = 1 oração; “ser + que” expletivo = 1 oração; comparativa com verbo implícito = 2 orações; causativos/sensitivos = 2 orações<br>
+      → <strong>Coordenadas e o “pois”:</strong> antes do verbo = explicativa; deslocado depois do verbo = conclusiva; dois-pontos explicativos = “pois”<br>
+      → <strong>Subjetiva × predicativa:</strong> artigo ou pronome na principal (“O certo é que...”) = predicativa; sem eles (“Certo é que...”) = subjetiva; verbo sempre no singular<br>
+      → <strong>Explicativa × restritiva:</strong> COM vírgula = explicativa; SEM vírgula = restritiva — retirar a vírgula muda o sentido; “que seja” explícito não altera nada<br>
+      → <strong>Concessiva no subjuntivo:</strong> embora, ainda que, conquanto, posto que, por mais que + subjuntivo (-A/-E/-SSE); com preposição vai ao infinitivo (“apesar de ser”)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ Regras técnicas</div>
+    <div class="card-text">
+      → <strong>Ao / A / Por / Sem + infinitivo:</strong> Ao = tempo; A = condição; Por = causa (“por ser” = porque é); Sem = concessão ou condição negativa<br>
+      → <strong>Paralelismo em reescritura:</strong> mesma forma nos coordenados (reduzida com reduzida, desenvolvida com desenvolvida); “isto é / ou seja” exige paralelismo; complemento compartilhado atende à regência dos dois verbos<br>
+      → <strong>SER + QUE expletivo:</strong> pode ser retirado sem prejuízo (“Você é que manda” = “Você manda”)<br>
+      → <strong>SE:</strong> VTD + SE = passiva; VI/VTI/VL + SE = sujeito indeterminado; animado agindo em si = reflexivo (OD); espontâneo/inanimado = PIV (sem função)<br>
+      → <strong>Relativo em 3 passos:</strong> isolar a adjetiva, substituir o “que” pelo antecedente, analisar a função — o sujeito da adjetiva é o próprio “que”<br>
+      → <strong>Adverbial antecipada exige vírgula;</strong> “para” + verbo quase sempre = finalidade; “como atestam” = conforme (conformativa)
+    </div>
+  </div>
+
+  <div class="callout callout-success"><div class="callout-icon">✅</div><div>
+    <strong>Dica final:</strong> diante de período longo, siga a sequência: conte os <strong>verbos</strong> → teste o <strong>sentido isolado</strong> (coordenação × subordinação) → aplique <strong>ISTO/DISTO</strong> (substantivas) → confira <strong>vírgulas</strong> (adjetivas) e <strong>modo verbal</strong> (concessivas no subjuntivo). Período misto é o padrão da prova.
+  </div></div>
+</section>
+
+<!-- SECAO 13 -->
+<section id="sec13">
+  <div class="sec-header"><div class="sec-num">13</div><div class="sec-title">Incidência de temas (TEC)</div></div>
+  <div class="sec-subtitle">Temas mais cobrados nas questões coladas — será alimentado conforme as questões do TEC forem coladas</div>
+
+  <div class="card">
+    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-text">
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 3 — Subordinadas substantivas: 3</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 2 — Orações coordenadas: 1</span><br>
+      <span class="tag">Seção 10 — Palavra SE: 1</span><br>
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2005/resumo-aula-05-funcoes-sintaticas.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 05 · Funções Sintáticas</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+</body>
+</html>
