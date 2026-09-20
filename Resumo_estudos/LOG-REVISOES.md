@@ -9,6 +9,30 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+## 2026-09-20
+
+**`Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html`** — revisão (13 questões TEC: FCC/AOCP/FUMARC, competência material e territorial)
+- Novos cards Seção 2: empregador itinerante §3º (quem viaja × contratação recupera competência); atleta + cartório (art. 236, não-servidor); espécies do gênero + art. 643 + avulso pré-EC45; confederação no STF (art. 103, temáticos IV/V/IX — corrigido "XI" da resolução); inciso IX (PIS Súmula 300, quadro Súmula 19).
+- Enriquecidos sem suprimir: gotcha greve (obrigação de fazer; trio possessório); gotcha sindical (patronos fora × dano moral com nexo); card acidente (título + →); card regra geral (treinamentos não fixam).
+- Layout: 14 gotchas verticalizados (→ + `<br><br>`); `grid-3` dos incisos em coluna única; zebra `.card-alt` nos incisos pares.
+- Incidência: Seção 2 → 16 🔴, Seção 3 → 7 🔴 (tags ordenadas por seção).
+
+**`Direito Processual do Trabalho/Aula 00/resumo-aula-00-processo-do-trabalho.html`** — revisão (1 TEC organização da JT)
+- Incidência Seção 6 → 10 🔴 + tags reordenadas por seção.
+
+**`Direito Processual do Trabalho/Aula 05/resumo-aula-05-audiencia-provas-sentenca-ritos.html`** — revisão (1 TEC revista no sumaríssimo, já coberta)
+- Primeira incidência: Seção 6 — Ritos → 1 ⚪.
+
+**`Direito Processual do Trabalho/Aula 02/resumo-aula-02-servicos-auxiliares-da-justica-do-trabalho.html`** — alterações pré-existentes (sessão anterior), commitadas junto
+- Nova Seção 6 "Partes e jus postulandi" (sidebar renumerada); card art. 682 (Presidente do TRT); Diretor de Secretaria: posse pelo juiz após nomeação pelo presidente do TRT; secretários não conciliam.
+
+**`Administração Pública e Geral/Aula 04/resumo-aula-04-estrutura-organizacional.html`** — alteração pré-existente, commitada junto
+- Cor de tag (Especialização do trabalho: `tag-red` → neutra, contagem 1).
+
+**`BACKLOG.md`** — Item F: Súmulas 416 (MS × agravo) e 456 (representação 5 dias, não 10) guardadas para a futura aula de Execução/Recursos.
+
+**`Resumo_estudos/index.html`** — badges 🔁 20/09: AP Aula 04; DPT 00, 01, 02, 05. Última atualização: 20/09/2026 02:25.
+
 ## 2026-08-18
 
 **`Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html`** — revisão dirigida (DC M16)

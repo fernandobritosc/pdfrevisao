@@ -146,3 +146,23 @@ recomendou reforços antes de fechar a meta atual e baixar a próxima.
 TEC nos resumos indicados + incrementar incidência; ao revisar cada aula,
 atualizar a tag `🔁 revisada` no card do index. RL: oferecer criação de material
 se o usuário trouxer PDFs.
+
+## Item F — Aprendizados TEC guardados (sem aula de destino, 20/09/2026)
+
+**Origem**: questão FCC 2018 TRT-6 (#618110, afirmativas II e III — gabarito só I).
+Usuário escolheu **guardar** (não arquivar em aula provisória). Ao criar a aula
+de **Execução** (item II) ou de **Recursos/Pressupostos** (item III), transformar
+em blocos 📌/⚖️ e incrementar a incidência da seção correspondente.
+
+**II — MS × agravo de petição (Súmula 416 TST)**: o agravo de petição deve
+delimitar justificadamente **matéria e valores** (art. 897, §1º, CLT — Lei
+8.432/1992); **não fere direito líquido e certo** o prosseguimento da execução
+quanto aos tópicos e valores **não especificados** → MS **não cabe** aí.
+Destino: futura aula de Execução.
+
+**III — Representação irregular (Súmula 456 TST, art. 76 CPC/2015)**: na
+**originária**, o juiz dá **5 dias** (a banca troca por **10** — ERRADO) para
+sanar; descumprida → **extingue sem mérito** (reclamante) ou **revel**
+(reclamado). Na **recursal**, o relator dá 5 dias; descumprida → **não conhece**
+o recurso (recorrente) ou **desentranha contrarrazões** (recorrido). Destino:
+futura aula de Recursos (ou Aula 03/Nulidades — decidir na época).

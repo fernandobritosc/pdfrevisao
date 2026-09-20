@@ -125,6 +125,11 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
   II", "(art. 22, § 2º, I)") e gabaritos não são verticalizados. É a regra padrão:
   **aplicar proativamente**, sem o usuário pedir, sempre que identificar
   enumeração em linha corrida em qualquer arquivo do Resumo_estudos.
+- **Negrito em enumerações inline (regra do usuário, 18/09/2026)**: quando a
+  enumeração ficar em linha corrida (sem verticalizar), os termos principais vão
+  em **negrito** (`<strong>`) — rótulos de grupo e nomes de itens (ex.:
+  **Complementares**, **Clareza**). Vale também para cabeças de linha `→` (ex.:
+  **Níveis:**, **Risco:**).
 - **Verificação de dispositivo legal (regra crítica)**: **NUNCA** citar artigo,
   inciso, parágrafo ou alínea de lei de memória — sempre conferir o texto exato
   no arquivo-fonte da lei da pasta da aula (`L14133.md` para a Lei 14.133/2021,
