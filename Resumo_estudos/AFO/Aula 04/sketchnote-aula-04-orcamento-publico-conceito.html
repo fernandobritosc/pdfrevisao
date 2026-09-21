@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — AFO Aula 04: Orçamento Público</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Archivo:wght@700;800&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --green:#16a34a; --blue:#2563eb; --amber:#d97706; --red:#dc2626; --purple:#7c3aed; --teal:#0d9488;
+  --mark:#fef08a; --card:#fffef9; --line:#1f2733;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6 url('');font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+/* washi tape */
+.tape{position:absolute;top:10px;left:50%;transform:translateX(-50%) rotate(-2deg);background:rgba(22,163,74,.92);color:#fff;font-family:'Caveat',cursive;font-size:1.15rem;font-weight:700;padding:.1rem 1.4rem;border-left:2px dashed rgba(255,255,255,.7);border-right:2px dashed rgba(255,255,255,.7);box-shadow:0 2px 4px rgba(0,0,0,.2);z-index:5;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis}
+header.hero{padding:3.4rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#dcfce7 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);background:#dcfce7;border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:640px;margin:.4rem auto 0}
+.sub a{color:var(--blue)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.orc{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:640px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--green)}
+.orc .big{font-size:2.6rem}
+.orc b{font-family:Archivo;font-size:1.02rem;letter-spacing:-.01em}
+.orc span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:#dcfce7}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1;display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem}
+.note h2 .ico{font-size:1.6rem;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.15))}
+.note h2 .n{background:var(--ink);color:#fff;font-family:Archivo;font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"➜";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:#dcfce7} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.evo{display:flex;align-items:stretch;gap:.2rem;margin:.6rem 0;flex-wrap:wrap}
+.evo .step{flex:1;min-width:105px;border:2px dashed var(--ink);border-radius:10px;padding:.4rem .4rem;text-align:center;background:#fff;font-size:.75rem}
+.evo .step b{display:block;font-size:.78rem}
+.evo .step.star{border-style:solid;background:#dcfce7;box-shadow:3px 3px 0 var(--green)}
+.evo .arrow{align-self:center;font-weight:800;font-size:1rem}
+.musg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-top:.5rem}
+@media(max-width:520px){.musg{grid-template-columns:1fr}}
+.musg div{border:2px solid var(--ink);border-radius:10px;padding:.5rem;text-align:center;background:#fff}
+.musg div b{display:block;font-size:.8rem}
+.musg div span{font-size:.74rem;color:var(--ink2)}
+.musg .a{background:#dbeafe} .musg .d{background:#fee2e2} .musg .e{background:#fef9c3}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem}
+.gotcha b{color:var(--red)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem}
+@media(max-width:520px){.duo{grid-template-columns:1fr}}
+.duo div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .6rem;background:#fff;font-size:.78rem;color:var(--ink2)}
+.duo div b{color:var(--ink);display:block;font-size:.79rem;margin-bottom:.15rem}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--amber);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:Archivo;font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--green)}
+.back:hover{transform:translateY(-2px)}
+.wide{grid-column:1/-1}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="tape">✎ sketchnote experimental — aula 04</div>
+<header class="hero">
+<div class="kicker">AFO · Aula 04 · Orçamento Público</div>
+<h1><span class="hl">Orçamento público</span> numa página 🎯</h1>
+<p class="sub">Conceito · espécies · tipos · natureza · funções de Musgrave · normas gerais.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-04-orcamento-publico-conceito.html">resumo da Aula 04</a>.</p>
+</header>
+<div class="center-node">
+<div class="orc"><div class="big">💰</div><div><b>ORÇAMENTO = prevê receita + fixa despesa</b><br><span>1 ano · em equilíbrio · autoriza (não impõe tudo) · LOA = orçamento operacional</span></div></div>
+</div>
+<div class="tri"><span class="pill">📥 receita se <b>estima</b></span><span class="pill">📤 despesa se <b>fixa</b></span><span class="pill">⚖️ equilíbrio LRF art. 1º §1º</span></div>
+<main>
+<section class="note wide" aria-label="Evolução das espécies">
+<h2><span class="n">1</span> 🧬 Evolução das espécies <span class="tag t-green">cai muito!</span></h2>
+<div class="evo">
+<div class="step">📒<b>Tradicional</b>meios · sem plano · incremental</div><div class="arrow">→</div>
+<div class="step">📊<b>Desempenho</b>resultado · sem vínculo central</div><div class="arrow">→</div>
+<div class="step">🔄<b>Base zero</b>justifica TUDO do zero / ano</div><div class="arrow">→</div>
+<div class="step star">⭐<b>Programa</b>elo plano ↔ execução · <b>modelo do Brasil</b></div>
+</div>
+<ul>
+<li><strong>Tradicional</strong> = peça contábil, foco no gasto, controle político do Legislativo (Estado Liberal)</li>
+<li><strong>Desempenho/funcional</strong> = objeto do gasto vira secundário, <strong>resultado</strong> vira primário — mas segue sem planejamento central</li>
+<li><strong>Base zero / por estratégia</strong> = rompe incrementalismo, pacotes de decisão, ônus da prova do gestor</li>
+<li><strong>Programa (PPBS, EUA 1950)</strong> = metas físicas + financeiras, classificação <strong>funcional-programática</strong>, controle mede <strong>eficiência · eficácia · efetividade</strong> — DL 200/67 art. 16 + Dec. 2.829/98</li>
+<li><strong>Participativo</strong> = cidadão protagonista (audiências, prioridades de investimento) — <strong>não</strong> dispensa voto da LOA</li>
+</ul>
+<div class="gotcha">🚨 <b>Programa ≠ Desempenho:</b> só o programa integra planejamento. Moderno = <b>programa + desempenho</b> · NÃO moderno = tradicional + incremental.</div>
+</section>
+<section class="note" aria-label="Tipos">
+<h2><span class="n">2</span> 🏛️ Tipos <span class="tag">regime</span></h2>
+<ul>
+<li><strong>Legislativo</strong> 📜 — Legislativo faz tudo, Executivo só executa · CF <strong>1891</strong></li>
+<li><strong>Executivo</strong> 👑 — Executivo faz tudo · regime autoritário · CF <strong>1937</strong></li>
+<li><strong>Misto</strong> 🤝 — Executivo <strong>elabora + executa</strong> · Legislativo <strong>vota + controla</strong> · <strong>CF/88 ✓</strong></li>
+</ul>
+<div class="gotcha">🚨 <b>Tipo ≠ espécie:</b> tipo = quem faz · espécie = técnica.</div>
+</section>
+<section class="note" aria-label="Conceito">
+<h2><span class="n">3</span> 💡 Conceito em 3 frases</h2>
+<ul>
+<li>📚 <strong>Baleeiro:</strong> Executivo <strong>prevê</strong>, Legislativo <strong>autoriza</strong> despesas + arrecadação criada em lei</li>
+<li>🔗 <strong>Giacomoni:</strong> curto prazo que operacionaliza o médio/longo — conceito <strong>muda com o tempo</strong></li>
+<li>🗳️ <strong>Abrúcio + Loureiro:</strong> principal documento de <strong>políticas públicas</strong> — escolher prioridades = ato político</li>
+</ul>
+<p><span class="tag t-blue"><strong>P</strong>olítica</span><span class="tag t-green"><strong>E</strong>conômica</span><span class="tag t-purple"><strong>J</strong>urídica</span><span class="tag t-yellow"><strong>F</strong>inanceira</span><span class="tag">Técnica</span><br>CESPE 2022: instrumento de planejamento anual em equilíbrio · FGV 2022: avaliar demandas + escolher = <strong>natureza política</strong></p>
+</section>
+<section class="note" aria-label="Natureza juridica">
+<h2><span class="n">4</span> ⚖️ Natureza jurídica</h2>
+<ul>
+<li>📄 <strong>Lei só FORMAL</strong> (doutrina majoritária) — efeitos concretos, <strong>não</strong> cria direito subjetivo</li>
+<li>⏳ <strong>Temporária</strong> (vale p/ o exercício) · ⭐ <strong>Especial</strong> (rito do art. 166) · 📝 <strong>Ordinária</strong> (maioria simples)</li>
+<li>🏛️ <strong>STF ADI 5449:</strong> <strong>cabe ADI</strong> contra LOA, LDO e crédito extraordinário — basta controvérsia constitucional</li>
+</ul>
+</section>
+<section class="note" aria-label="Musgrave">
+<h2><span class="n">5</span> 🎭 Musgrave: as 3 funções <span class="tag t-red">top incidência 🔴</span></h2>
+<div class="musg">
+<div class="a">🏗️<b>Alocativa</b><span>bens públicos que o mercado não entrega (saneamento, Correios no interior)</span></div>
+<div class="d">❤️<b>Distributiva</b><span>IR progressivo + transferências · equidade (CF art. 3º III)</span></div>
+<div class="e">📈<b>Estabilizadora</b><span>demanda agregada · emprego + preços · anticíclica</span></div>
+</div>
+<div class="gotcha">🚨 Vulnerável ≠ distributiva: se o Estado <b>oferta o bem</b> = alocativa. Distributiva = <b>redistribui renda</b>. Estabilizadora <b>não destina bens</b>.</div>
+</section>
+<section class="note" aria-label="Atividade financeira">
+<h2><span class="n">6</span> 🏦 Atividade financeira + Lei 4.320</h2>
+<ul>
+<li><strong>1.</strong> obter receita (originária + derivada) <strong>2.</strong> criar crédito <strong>3.</strong> gerir (orçamento!) <strong>4.</strong> despender</li>
+<li>🤝 Art. 24 CF: União + Estados + DF legislam <strong>concorrentemente</strong> (União = normas gerais)</li>
+<li>📕 <strong>Lei 4.320/64</strong> = normas gerais · status <strong>sui generis</strong>: ordinária formal + complementar material · <strong>LRF ≠ normas gerais!</strong></li>
+</ul>
+</section>
+<section class="note wide" aria-label="Detalhes que a banca ama">
+<h2><span class="n">★</span> 🎯 Detalhes que a banca ama</h2>
+<div class="duo">
+<div>🔬<b>OBZ × PPBS (Wildavsky)</b>OBZ = abrangência <strong>vertical</strong>: tudo do <strong>zero todo ano</strong>, compara <strong>fundos</strong> alternativos · PPBS/programa = abrangência <strong>horizontal</strong>: compara <strong>programas</strong> · OBZ opera por <strong>pacotes de decisão</strong> e define prioridades por <strong>custo-benefício</strong></div>
+<div>📐<b>Incremental · flexível · folga</b><strong>Incremental</strong> = % sobre o ano anterior, <strong>sem analisar alternativas</strong> (conta de luz, água) · <strong>Flexível</strong> = ajusta ao nível <strong>real</strong> de atividade, melhor p/ avaliar desempenho · <strong>Folga (slack)</strong> = subestimar receita / superestimar despesa — distorce e ineficiente</div>
+<div>✅<b>Autorizativo × impositivo mitigado</b>Regra = <strong>autorizativo</strong> (autoriza despesa, estima receita — não impõe execução integral) · exceção: <strong>emendas individuais e de bancada são impositivas</strong> (execução obrigatória) · Executivo <strong>contingencia</strong> discricionárias p/ cumprir a meta de resultado primário da LDO</div>
+<div>❤️<b>Distributiva: instrumentos + fórmula</b><strong>Tributo progressivo + gasto regressivo</strong> (cobra de quem tem mais, gasta em quem tem menos) · instrumentos: <strong>transferências, subsídios, isenções, renúncia fiscal, remuneração mínima, IR negativo</strong> · transferência <strong>condicionada</strong> (bolsa + escola/saúde) = renda hoje + futuro amanhã</div>
+<div>📈<b>Estabilizadora: marcador anticíclico</b>Marcador = gasto <strong>temporário</strong> em desaceleração (preservar emprego/renda) · permanente = alocativa! · metas: <strong>emprego, preços, balanço de pagamentos, crescimento</strong> · instrumentos: compras/gasto + <strong>juros + títulos públicos</strong></div>
+<div>📕<b>4.320 × LRF + resto</b><strong>4.320/64</strong> = normas gerais (sui generis) · <strong>LRF ≠ normas gerais</strong> (é responsabilidade fiscal) · receita <strong>originária</strong> (patrimônio: vendas, aluguéis) × <strong>derivada</strong> (império: tributos, multas) · participativo: <strong>ECidade art. 44 + LRF art. 48</strong>, foco em <strong>investimentos</strong> · <strong>Jèze (ato-condição):</strong> serviço criado em lei tem consignação <strong>obrigatória</strong> · orçamento <strong>exige lei, nunca decreto</strong></div>
+</div>
+</section>
+<section class="note wide" aria-label="Decore">
+<h2><span class="n">★</span> 🧠 Para levar p/ prova — T · D · B · P · P</h2>
+<p><span class="tag t-yellow"><strong>T</strong>radicional</span> → <span class="tag t-blue"><strong>D</strong>esempenho</span> → <span class="tag t-purple"><strong>B</strong>ase zero</span> → <span class="tag t-green"><strong>P</strong>rograma 🇧🇷</span> → <span class="tag t-green"><strong>P</strong>articipativo</span> &nbsp;·&nbsp; Tipos: <strong>1891</strong> Legislativo · <strong>1937</strong> Executivo · <strong>1988</strong> Misto &nbsp;·&nbsp; Musgrave: <strong>A</strong>loca · <strong>D</strong>istribui · <strong>E</strong>stabiliza &nbsp;·&nbsp; Natureza: <strong>formal + temporária + especial + ordinária</strong></p>
+</section>
+</main>
+<footer>
+<div class="biz">✏️ Gostou do formato? <span>T</span><span>D</span><span>B</span><span>P</span><span>P</span> — me diz se vira padrão!</div>
+<a class="back" href="resumo-aula-04-orcamento-publico-conceito.html">← voltar ao resumo completo</a>
+</footer>
+</div>
+</body>
+</html>
