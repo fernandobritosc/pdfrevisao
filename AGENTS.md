@@ -304,7 +304,18 @@ contagem decrescente, **um tema por linha** (`<br>` após cada tag):
   o **nome da seção** a que o tema pertence e o contador **soma as questões da
   seção** — ex.: `Seção 4 — Barreiras (Robbins + Palo Alto): 5`. O objetivo é o
   usuário priorizar **seções** inteiras na revisão. Dentro de cada faixa, ordenar
-  por seção (sec1 → secN).
+  por contagem decrescente, com desempate por seção (sec1 → secN)
+  (ordem por quantidade confirmada como certa pelo usuário em 20/09/2026).
+
+## Sketchnote (versão visual de bolso)
+
+Resumo visual de 1 página por aula, arquivo à parte: `Resumo_estudos/<Matéria>/<Aula XX>/sketchnote-aula-XX-<tema>.html`
+(padrão travado em 21/09/2026 na Aula 04 de AFO: nó central escuro + pílulas + faixa evolutiva + blocos + link
+bidirecional com o resumo completo no topo e no rodapé).
+
+- **Filtro do sketchnote (regra do usuário, 21/09/2026)**: só entram temas de **alta e média incidência (TEC)** +
+  **pegadinhas clássicas**; temas de baixa incidência ficam só no resumo. O sketchnote é leitura de ~5 min
+  pré-prova — engordar além do filtro o transforma num segundo resumo e anula a função.
 
 ## Rastreabilidade de revisão (revisão espaçada)
 

@@ -33,6 +33,31 @@ Registro das alterações feitas nos resumos. Formato:
 
 **`Resumo_estudos/index.html`** — badges 🔁 20/09: AP Aula 04; DPT 00, 01, 02, 05. Última atualização: 20/09/2026 02:25.
 
+**`AFO/Aula 04/resumo-aula-04-orcamento-publico-conceito.html`** — revisão (TEC Musgrave, conceito, espécies, natureza)
+- Sec 5: saneamento vulnerável=alocativa; transferência direta=distributiva típica; condicionada (imediato+longo prazo); alcance amplo; instrumentos + IR negativo; Limite eficiência×equidade federativa (CF art. 3º III + 165 §7º); entes; financiamento não contributivo; gasto regressivo+tributo progressivo; gasto temporário=estabilizadora; bens públicos≠estabilizadora; meios (juros/títulos/regulação); só 3 funções.
+- Sec 3: previsão×fixação; LRF art. 1º §1º; só-controle=tradicional; gerencial + ato-condição (Jèze); ≠despesa/fundo/federalismo.
+- Sec 4: especial (art. 166); ordinária (PPA/LDO/LOA/suplementares); nunca decreto; autorizativo+estimativo; anti-"exclusivamente" (impositivo mitigado).
+- Sec 1: participativo (Estatuto art. 44 + LRF art. 48; investimentos; critérios; limite Legislativo); card controle/desempenho (flexível, folga).
+- Negrito em enumerações inline + `<br><br>` entre assuntos (revisão geral de espaçamento).
+- Incidência: Sec5→14, Espécies→12, Conceito→9, Sec4→3 (Alta, ordem por quantidade).
+
+**`AFO/Aula 03/resumo-aula-03-ciclo-orcamentario.html`** — revisão (1 TEC: orçamento como planejamento e controle)
+- Card art. 75: 📌 planejamento/execução/controle (autorizado × arrecadado/empenhado/liquidado/pago).
+- Incidência normalizada + nova tag Sec5→1 ⚪.
+
+**`AFO/Aula 01/resumo-aula-01-principios-orcamentarios.html`** — revisão (1 TEC: LOA não cria tributo)
+- Sec 6: 📌 instituir/majorar tributo=matéria estranha (legalidade estrita). Criada sec14 de incidência (Sec6→1 ⚪) + sidebar.
+
+**`AFO/Aula 06/resumo-aula-06-despesas-publicas.html`** — revisão (1 TEC: empenho prévio)
+- Sec 1: → empenho prévio (4.320 arts. 59-60). Incidência: nova tag Sec1→1 ⚪.
+
+**Incidências (30 arquivos, todas as matérias)** — normalização ao padrão AGENTS (faixas/cores/`<br>`/seção; ordem por quantidade, desempate por seção — confirmado pelo usuário)
+- Prefixos `Seção N` + cores corrigidas (ex.: DA07 art. 92:4 neutra→🔴; DPT04 três `:2` red→🟡); lendas de esquema antigo removidas; 2 tags sem seção determinável mantidas (APG05 Estilos×Traços; PORT02 Causais).
+- Bugs legados corrigidos: `</strong>` DA08/DT05, `</div>` DT04; duplicação hora ficta (DT05).
+- `AGENTS.md`: ordenação dentro da faixa = quantidade decrescente (20/09/2026).
+
+**`Resumo_estudos/index.html`** — badges 🔁 20/09: AFO 01, 03, 04, 06. Última atualização: 20/09/2026 23:40.
+
 ## 2026-08-18
 
 **`Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html`** — revisão dirigida (DC M16)
