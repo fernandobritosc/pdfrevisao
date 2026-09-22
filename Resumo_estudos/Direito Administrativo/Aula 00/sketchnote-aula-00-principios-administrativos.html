@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — DA Aula 00: Princípios Administrativos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Archivo:wght@700;800&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --green:#16a34a; --blue:#2563eb; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#dbeafe 0,transparent 40%),radial-gradient(circle at 85% 20%,#fef9c3 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);background:#dbeafe;border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:640px;margin:.4rem auto 0}
+.sub a{color:var(--blue)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.shield{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:660px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--blue)}
+.shield .big{font-size:2.6rem}
+.shield b{font-family:Archivo;font-size:1.02rem;letter-spacing:-.01em}
+.shield span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:#dbeafe}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9);grid-column:span 2}
+.note.wide2{grid-column:span 3}
+.note.wide{grid-column:1/-1}
+@media(max-width:820px){.note,.note.wide2{grid-column:span 1}}
+@media(max-width:560px){.note,.note.wide2,.note.wide{grid-column:1/-1}}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:Archivo;font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"➜";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:#dcfce7} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem}
+@media(max-width:520px){.versus{grid-template-columns:1fr}}
+.versus div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .6rem;background:#fff;font-size:.78rem;color:var(--ink2)}
+.versus div b{color:var(--ink);display:block;font-size:.79rem;margin-bottom:.15rem}
+.versus .a{border-color:var(--blue)} .versus .b{border-color:var(--amber)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem}
+@media(max-width:520px){.duo{grid-template-columns:1fr}}
+.duo div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .6rem;background:#fff;font-size:.78rem;color:var(--ink2)}
+.duo div b{color:var(--ink);display:block;font-size:.79rem;margin-bottom:.15rem}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem}
+.gotcha b{color:var(--red)}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--blue);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:Archivo;font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--blue)}
+.back:hover{transform:translateY(-2px)}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.shield{flex-direction:column;text-align:center;gap:.4rem}}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">DA · Aula 00 · Princípios Administrativos</div>
+<h1><span class="hl">LIMPE</span> numa página 🛡️</h1>
+<p class="sub">Legalidade · impessoalidade · moralidade · publicidade · eficiência + duelos implícitos.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-00-principios-administrativos.html">resumo da Aula 00</a>.</p>
+</header>
+<div class="center-node">
+<div class="shield"><div class="big">⚖️</div><div><b>art. 37, caput — direta + indireta, todos os Poderes e esferas</b><br><span>Prerrogativas (supremacia) × sujeições (indisponibilidade) · sem hierarquia → ponderação</span></div></div>
+</div>
+<div class="tri"><span class="pill">📜 <b>expressos</b> = rol LIMPE</span><span class="pill">💭 <b>implícitos</b> = nome fora da letra</span><span class="pill">⚖️ conflito? <b>harmoniza</b></span></div>
+<main>
+<section class="note" aria-label="Legalidade">
+<h2><span class="n">L</span> 📜 Legalidade <span class="tag t-yellow">média 🟡</span></h2>
+<ul>
+<li>Você: tudo exceto o <strong>proibido</strong> (art. 5º, II) × Adm: só o que a lei <strong>autoriza</strong> (estrita)</li>
+<li>Você: <strong>secundum + praeter legem</strong> · Adm: <strong>só secundum</strong>, nunca contra nem além</li>
+<li>Exceções: <strong>MP</strong>, estado de <strong>defesa</strong>, estado de <strong>sítio</strong></li>
+<li><strong>Juridicidade</strong> = lei + regulamento + princípios — ato legal mas imoral <strong>cai</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="Impessoalidade">
+<h2><span class="n">I</span> 🎭 Impessoalidade <span class="tag t-red">top 🔴</span></h2>
+<ul>
+<li><strong>Finalidade</strong> pública (ampla) + específica da lei (estrita)</li>
+<li><strong>Agente de fato:</strong> ato imputado ao Estado, <strong>válido</strong> mesmo sem concurso</li>
+<li><strong>Isonomia:</strong> licitação com <strong>neutralidade absoluta</strong>, edital objetivo</li>
+<li><strong>Promoção pessoal:</strong> nada de nome/símbolo/imagem (§ 1º) — nem por norma interna (<strong>ADI 6522</strong>)</li>
+<li><strong>Impedimento/suspeição:</strong> parente ou amigo do investigado não decide</li>
+</ul>
+<div class="gotcha">🚨 Nome do prefeito na obra = <b>impessoalidade</b> (não publicidade). Deriva do <b>republicano</b>.</div>
+</section>
+<section class="note" aria-label="Moralidade">
+<h2><span class="n">M</span> 🤝 Moralidade</h2>
+<ul>
+<li>Análise <strong>objetiva</strong>: dispensa intenção — imoral sem querer ser, vale dentro da repartição</li>
+<li><strong>Nepotismo (SV 13):</strong> cônjuge/parente até <strong>3º grau</strong>, recíproca incluída — base <strong>direta na CF</strong></li>
+<li><strong>Lei 14.230/21</strong> (art. 11, XI): nepotismo = <strong>improbidade</strong></li>
+<li>Cargo <strong>político</strong>: só se sem capacidade técnica ou com <strong>troca de favores</strong></li>
+</ul>
+</section>
+<section class="note wide2" aria-label="Publicidade">
+<h2><span class="n">P</span> 📢 Publicidade <span class="tag t-yellow">média 🟡</span></h2>
+<ul>
+<li>Requisito de <strong>eficácia</strong>, não de validade · viabiliza o <strong>controle</strong> dos agentes</li>
+<li>Concretiza por <strong>petição + certidões + divulgação ex officio</strong> · rege a <strong>LAI 12.527/11</strong></li>
+<li>Salário + nome: <strong>pode</strong> · CPF completo + endereço: <strong>não</strong> (RE 652.777)</li>
+<li>Exceção: sigilo imprescindível à <strong>segurança</strong> (art. 5º, XXXIII)</li>
+</ul>
+</section>
+<section class="note wide2" aria-label="Eficiencia">
+<h2><span class="n">E</span> 🚀 Eficiência <span class="tag t-red">alta 🔴</span></h2>
+<ul>
+<li><strong>EC 19/1998</strong> (não a 20!) — marca do gerencialismo: qualidade + <strong>baixo custo</strong></li>
+<li>2 aspectos: <strong>agente</strong> (desempenho, perda do cargo) + <strong>organização</strong> (controle por resultados)</li>
+<li><strong>≠ menor preço:</strong> barato com qualidade inferior não é eficiente</li>
+<li><strong>EC 109/21</strong> (art. 37, § 16): avaliar políticas públicas = eficiência</li>
+</ul>
+</section>
+<section class="note wide" aria-label="Duelos implicitos">
+<h2><span class="n">★</span> ⚔️ Duelos implícitos <span class="tag t-red">tutela × autotutela 🔴</span></h2>
+<div class="duo">
+<div><b>🪞 Autotutela × 🏛️ tutela</b>→ <strong>Autotutela</strong> = mesma PJ: <strong>anula</strong> o ilegal + <strong>revoga</strong> o inconveniente (Súm <strong>346/473</strong>, art. 53) — de ofício ou provocada<br>→ <strong>Tutela</strong> = Direta × Indireta: controle <strong>finalístico</strong>, exceção, <strong>nunca presumido</strong> (só vinculação)<br>→ Judiciário: anula <strong>só por provocação</strong>, jamais revoga mérito<br>→ Limites: decadência <strong>5 anos</strong> (art. 54, salvo má-fé) + <strong>contraditório</strong> sempre</div>
+<div><b>⬆️ Supremacia × 🔒 indisponibilidade</b>→ <strong>Supremacia</strong> = prerrogativas: desapropriação, polícia, cláusulas exorbitantes — <strong>não</strong> vale em locação, seguro ou Estado-empresário<br>→ <strong>Indisponibilidade</strong> = sujeições: licitar, concursar — presente em <strong>toda</strong> atuação<br>→ <strong>Razoabilidade</strong> (3 tempos: adequação, necessidade, strictu) limita a discricionariedade sem invadir o mérito<br>→ <strong>Motivação</strong> é a regra (fato + direito); exceção: exoneração <strong>ad nutum</strong> · PAD sem advogado: <strong>ok</strong> (SV 5)</div>
+</div>
+<div class="gotcha">🚨 Pegadinhas: rol do art. 37 tem <b>só 5</b> (supremacia, impulso oficial, eticidade <b>fora</b>) · <b>segurança jurídica</b> = estabilidade (adquirido, perfeito, julgada), não "bom senso" (isso é razoabilidade).</div>
+</section>
+<section class="note wide" aria-label="Decore">
+<h2><span class="n">★</span> 🧠 Para levar p/ prova — L · I · M · P · E</h2>
+<p><span class="tag t-blue"><strong>L</strong>egalidade</span> → <span class="tag t-purple"><strong>I</strong>mpessoalidade 👑</span> → <span class="tag t-yellow"><strong>M</strong>oralidade (SV 13)</span> → <span class="tag t-green"><strong>P</strong>ublicidade (eficácia!)</span> → <span class="tag t-red"><strong>E</strong>ficiência (EC 19!)</span><br><br>→ <strong>Sem hierarquia:</strong> conflito = <strong>ponderação</strong>, não subsunção<br>→ <strong>Autotutela:</strong> anula ilegal + revoga inconveniente (Súm 473)<br>→ <strong>Tutela:</strong> finalística, excepcional, nunca presumida</p>
+</section>
+</main>
+<footer>
+<div class="biz">✏️ Sketchnote — DA Aula 00 · <span>L</span><span>I</span><span>M</span><span>P</span><span>E</span></div>
+<a class="back" href="resumo-aula-00-principios-administrativos.html">← voltar ao resumo completo</a>
+</footer>
+</div>
+</body>
+</html>

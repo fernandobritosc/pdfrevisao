@@ -316,6 +316,14 @@ bidirecional com o resumo completo no topo e no rodapé).
 - **Filtro do sketchnote (regra do usuário, 21/09/2026)**: só entram temas de **alta e média incidência (TEC)** +
   **pegadinhas clássicas**; temas de baixa incidência ficam só no resumo. O sketchnote é leitura de ~5 min
   pré-prova — engordar além do filtro o transforma num segundo resumo e anula a função.
+- **Layout adaptável (regra do usuário, 21/09/2026)**: o layout do sketchnote **pode mudar a cada aula** conforme a
+  característica que combine com o assunto (linha evolutiva, confronto de tipos, mapa de funções etc.) — o padrão
+  da Aula 04 de AFO é base, não camisa de força.
+- **Criação e atualização (regra do usuário, 21/09/2026)**: **toda vez que o usuário encerrar uma aula, criar o
+  sketchnote dela** junto no encerramento; e **atualizar o sketchnote sempre que a aula sofrer alteração**
+  (questão TEC colada, correção, novo conteúdo) — o sketchnote acompanha o resumo.
+- **Fundo liso (regra do usuário, 21/09/2026)**: sketchnotes nesse estilo usam fundo de papel **liso, sem grade
+  quadriculada** — a grade briga com as bordas e polui a leitura.
 
 ## Rastreabilidade de revisão (revisão espaçada)
 
