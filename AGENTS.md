@@ -194,6 +194,11 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 - **Separação de assuntos**: dentro de um mesmo bloco (card/callout/gotcha), cada
   assunto ocupa linha própria iniciada por **`→`** (quebra com `<br>`); não criar um
   novo bloco a cada assunto.
+- **Um → por assunto, sem exceção (regra do usuário, 22/09/2026)**: é proibido
+  espremer dois ou mais assuntos/termos numa mesma linha ou parágrafo separados
+  por `;` ou `e` — cada um ganha sua linha `→` própria com contexto, mesmo em
+  cards de sigla ou enumerações curtas. Vale para conteúdo novo e para qualquer
+  linha antiga que for tocada.
 - **Espaçamento entre parágrafos/assuntos (regra do usuário, 15/08/2026)**: quando
   houver separação entre parágrafos ou assuntos, usar **`<br><br>`** (dupla quebra)
   entre eles — texto colado (um único `<br>`) dificulta a leitura. Aplicar sempre

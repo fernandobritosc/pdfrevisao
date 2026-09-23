@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sketchnote · Direito Administrativo · Aula 06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f9fd; --ink:#13203c; --ink2:#41527a; --red:#d62f57;
+  --y:rgba(255,208,45,.78);  --ys:rgba(255,208,45,.28);
+  --m:rgba(70,205,155,.62);  --ms:rgba(70,205,155,.22);
+  --p:rgba(255,110,150,.55); --ps:rgba(255,110,150,.2);
+  --b:rgba(90,160,255,.55);  --bs:rgba(90,160,255,.2);
+  --f-display:'Permanent Marker','Segoe Print','Bradley Hand','Comic Sans MS',cursive;
+  --f-note:'Caveat','Segoe Print','Bradley Hand','Comic Sans MS',cursive;
+  --f-body:'Patrick Hand','Segoe Print','Bradley Hand','Comic Sans MS',sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f172a; --ink:#e8eefc; --ink2:#a9b8dc; --red:#ff7b98;
+    --y:rgba(255,208,45,.42);  --ys:rgba(255,208,45,.14);
+    --m:rgba(70,205,155,.4);   --ms:rgba(70,205,155,.13);
+    --p:rgba(255,110,150,.4);  --ps:rgba(255,110,150,.14);
+    --b:rgba(90,160,255,.42);  --bs:rgba(90,160,255,.15);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f172a; --ink:#e8eefc; --ink2:#a9b8dc; --red:#ff7b98;
+  --y:rgba(255,208,45,.42);  --ys:rgba(255,208,45,.14);
+  --m:rgba(70,205,155,.4);   --ms:rgba(70,205,155,.13);
+  --p:rgba(255,110,150,.4);  --ps:rgba(255,110,150,.14);
+  --b:rgba(90,160,255,.42);  --bs:rgba(90,160,255,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{
+  background-color:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:19px;line-height:1.38;
+  min-height:100%;
+}
+.sheet{max-width:1240px;margin:0 auto;padding:28px 20px 60px}
+.ico{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.arr{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;flex:none;color:var(--ink2)}
+.hl{background:linear-gradient(transparent 52%,var(--y) 52%,var(--y) 94%,transparent 94%);padding:0 .12em;border-radius:2px}
+.hm{background:linear-gradient(transparent 52%,var(--m) 52%,var(--m) 94%,transparent 94%);padding:0 .12em}
+.hp{background:linear-gradient(transparent 52%,var(--p) 52%,var(--p) 94%,transparent 94%);padding:0 .12em}
+.hb{background:linear-gradient(transparent 52%,var(--b) 52%,var(--b) 94%,transparent 94%);padding:0 .12em}
+.note{font-family:var(--f-note);font-weight:700;font-size:1.3rem;line-height:1.1;color:var(--ink2)}
+small,.small{font-size:.86em;color:var(--ink2)}
+b,strong{font-weight:700;}
+.box{position:relative;isolation:isolate;padding:18px 20px 18px}
+.box::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  border:2.6px solid var(--ink);
+  border-radius:255px 14px 225px 14px/14px 225px 14px 255px;
+  background:var(--fill,transparent);
+  filter:url(#rough);
+}
+.box:nth-child(even)::before{border-radius:14px 235px 16px 245px/235px 14px 245px 16px}
+.fy{--fill:var(--ys)} .fm{--fill:var(--ms)} .fp{--fill:var(--ps)} .fb{--fill:var(--bs)}
+.trap::before{border-color:var(--red);border-style:dashed;--fill:var(--ps)}
+.box h3{font-family:var(--f-note);font-weight:700;font-size:1.65rem;line-height:1;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.box h3 .ico{width:1.35em;height:1.35em}
+.trap h3{color:var(--red)}
+.box p+p,.box p+ul,.box ul+p{margin-top:8px}
+ul.dots{list-style:none}
+ul.dots li{position:relative;padding-left:1.15em;margin:5px 0}
+ul.dots li::before{content:"›";position:absolute;left:.15em;top:-.08em;font-family:var(--f-display);color:var(--red)}
+.tilt-l{transform:rotate(-.55deg)} .tilt-r{transform:rotate(.5deg)}
+.grid{display:grid;gap:26px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:820px){.g2{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:26px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.center{justify-content:center;text-align:center}
+.hero{position:relative;padding:8px 0 30px;text-align:left}
+.tape{
+  display:inline-block;position:relative;font-family:var(--f-note);font-weight:700;font-size:1.5rem;
+  padding:4px 20px;background:var(--y);color:var(--ink);transform:rotate(-2deg);
+}
+.tape::before,.tape::after{content:"";position:absolute;top:0;width:14px;height:100%;background:var(--paper);opacity:.85;clip-path:polygon(0 0,100% 8%,0 30%,100% 55%,0 78%,100% 100%,0 100%)}
+.tape::before{left:-6px}.tape::after{right:-6px;transform:scaleX(-1)}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,5.6vw,3.7rem);line-height:1.02;margin:16px 0 10px;letter-spacing:.005em;padding-right:clamp(0px,14vw,190px)}
+h1 span{display:block}
+.hero-ico{position:absolute;right:0;top:0;width:clamp(90px,18vw,190px);height:auto;color:var(--ink);opacity:.95}
+.hero .tores{font-family:var(--f-note);font-weight:700;font-size:1.25rem;color:var(--ink2)}
+.hero .tores a{color:var(--ink);text-decoration:underline wavy;text-underline-offset:3px}
+.route{margin-top:18px;gap:8px 6px}
+.chip{
+  font-family:var(--f-note);font-weight:700;font-size:1.3rem;line-height:1.05;padding:7px 20px;position:relative;isolation:isolate;display:inline-block;
+}
+.chip::before{content:"";position:absolute;inset:0;z-index:-1;border:2.4px solid var(--ink);border-radius:30px 18px 32px 20px/20px 30px 18px 32px;background:var(--c,transparent);filter:url(#rough)}
+.c-y{--c:var(--y)}.c-m{--c:var(--m)}.c-p{--c:var(--p)}.c-b{--c:var(--b)}
+a.chip{color:var(--ink);text-decoration:none}
+a.chip:hover{transform:translateY(-2px)}
+.panel{margin-top:38px}
+.ph{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.pn{
+  width:54px;height:54px;flex:none;display:grid;place-items:center;font-family:var(--f-display);font-size:1.7rem;position:relative;isolation:isolate;
+}
+.pn::before{content:"";position:absolute;inset:0;z-index:-1;border:2.8px solid var(--ink);border-radius:52% 48% 55% 45%/48% 55% 45% 52%;background:var(--c);filter:url(#rough)}
+.ph h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,4.2vw,2.5rem);line-height:1.05}
+.ph .note{flex-basis:100%;margin-left:68px;margin-top:-6px}
+@media(max-width:560px){.ph .note{margin-left:0}}
+.squig{display:block;width:100%;height:16px;margin:34px 0 0;color:var(--ink2);opacity:.7}
+.squig path{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:300px}
+th,td{padding:7px 10px;text-align:left;vertical-align:top;border-bottom:2px dashed var(--ink2)}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--f-note);font-weight:700;font-size:1.35rem;line-height:1.05}
+td:first-child,th:first-child{color:var(--ink2)}
+td+td,th+th{border-left:2px dashed var(--ink2)}
+.tw.tight th,.tw.tight td{padding:6px 8px;font-size:.95em}
+.vs{font-family:var(--f-display);color:var(--red);font-size:1.5rem;padding:0 4px}
+.strip{
+  display:flex;align-items:stretch;gap:0;flex-wrap:wrap;position:relative;isolation:isolate;
+  border:2.6px solid var(--ink);border-radius:18px 220px 18px 230px/220px 18px 230px 18px;
+  background:var(--ms);filter:url(#rough);overflow:hidden;margin-bottom:22px;
+}
+.strip .st{flex:1 1 160px;padding:12px 16px;text-align:center;position:relative}
+.strip .st+.st{border-left:2px dashed var(--ink)}
+@media(max-width:700px){.strip .st+.st{border-left:0;border-top:2px dashed var(--ink)}}
+.strip .st b{font-family:var(--f-note);font-size:1.3rem;display:block;line-height:1.05}
+.strip .st span{font-size:.9em;color:var(--ink2)}
+.rule{position:relative;isolation:isolate;padding:14px 18px;text-align:center;font-size:1.15em}
+.rule::before{content:"";position:absolute;inset:0;z-index:-1;border:3px solid var(--ink);border-radius:20px 240px 20px 250px/240px 20px 250px 20px;background:var(--y);filter:url(#rough)}
+.rule .t{font-family:var(--f-note);font-weight:700;font-size:1.5rem;display:block;line-height:1}
+.check li{list-style:none;position:relative;padding-left:1.7em;margin:6px 0}
+.check li::before{content:"";position:absolute;left:0;top:.28em;width:1em;height:1em;border:2.4px solid var(--ink);border-radius:3px 5px 3px 6px}
+.check li::after{content:"✓";position:absolute;left:.12em;top:-.08em;font-family:var(--f-display);color:var(--red);font-size:1.15em}
+.src{margin-top:34px;text-align:center;color:var(--ink2);font-size:.9em}
+.backlink{margin-top:26px;text-align:center}
+.theme-toggle{
+  position:fixed;right:1.1rem;bottom:1.1rem;z-index:300;width:46px;height:46px;border-radius:50%;
+  border:2.6px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;
+  font-size:1.3rem;line-height:1;display:grid;place-items:center;
+  box-shadow:3px 3px 0 rgba(0,0,0,.25);
+}
+.theme-toggle:hover{transform:translateY(-2px)}
+@media(max-width:560px){
+  body{font-size:18px}
+  .sheet{padding:18px 14px 48px}
+  .hero-ico{display:none}
+  .tilt-l,.tilt-r{transform:none}
+}
+@media print{
+  .box,.chip,.rule,.panel,.strip{break-inside:avoid}
+  .tilt-l,.tilt-r{transform:none}
+  .backlink,.theme-toggle{display:none}
+}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="rough" x="-4%" y="-4%" width="108%" height="108%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <symbol id="i-doc" viewBox="0 0 64 64"><path d="M16 8 H40 L50 18 V56 H16 Z M40 8 V18 H50"/><path d="M22 28 H44 M22 36 H44 M22 44 H35"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 64 64"><path d="M32 8 V54 M18 54 H46 M10 20 H54"/><path d="M10 20 L3 38 H19 Z M54 20 L45 38 H61 Z"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 64 64"><path d="M32 7 C19 7 13 18 18 29 C21 35 24 37 24 43 H40 C40 37 43 35 46 29 C51 18 45 7 32 7 Z"/><path d="M26 49 H38 M28 55 H36"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 64 64"><path d="M32 8 L58 54 H6 Z"/><path d="M32 24 V38"/><circle cx="32" cy="46" r="1.2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 64 64"><path d="M32 7 L52 15 V32 C52 46 42 54 32 58 C22 54 12 46 12 32 V15 Z"/><path d="M23 32 L30 39 L42 25"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 64 64"><path d="M50 22 A20 20 0 1 0 52 34"/><path d="M50 8 V22 H36"/><path d="M24 32 H40 M32 24 V40"/></symbol>
+    <symbol id="a-r" viewBox="0 0 80 30"><path d="M4 18 C20 6 42 26 72 14"/><path d="M61 5 L73 14 L60 23"/></symbol>
+  </defs>
+</svg>
+
+<main class="sheet">
+
+<header class="hero">
+  <svg class="ico hero-ico" aria-hidden="true" style="stroke-width:1.6"><use href="#i-doc"/></svg>
+  <span class="tape">Direito Administrativo · Aula 06</span>
+  <h1><span>Atos</span><span>administrativos</span></h1>
+  <div class="note">a aula em um olhar — vida, vícios e saneamento do ato</div>
+  <p class="tores">versão de bolso — o estudo completo está no <a href="resumo-aula-06-atos-administrativos.html">resumo da Aula 06</a></p>
+  <div class="row route" aria-label="Roteiro da aula">
+    <span class="chip c-b">PATI</span>
+    <svg class="arr" width="46" height="20" viewBox="0 0 80 30" aria-hidden="true"><use href="#a-r"/></svg>
+    <span class="chip c-m">Anulação × Revogação</span>
+    <svg class="arr" width="46" height="20" viewBox="0 0 80 30" aria-hidden="true"><use href="#a-r"/></svg>
+    <span class="chip c-y">Espécies</span>
+    <svg class="arr" width="46" height="20" viewBox="0 0 80 30" aria-hidden="true"><use href="#a-r"/></svg>
+    <span class="chip c-p">Convalidação</span>
+    <svg class="arr" width="46" height="20" viewBox="0 0 80 30" aria-hidden="true"><use href="#a-r"/></svg>
+    <span class="chip c-b">Cai em prova</span>
+  </div>
+</header>
+
+<section class="panel" id="p1">
+  <div class="ph" style="--c:var(--b)">
+    <span class="pn">1</span>
+    <h2>Atributos — PATI</h2>
+    <span class="note">o que está em todo ato × o que só alguns têm</span>
+  </div>
+
+  <div class="grid g2">
+    <div class="box fb tilt-l">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>Em TODOS os atos</h3>
+      <ul class="dots">
+        <li><b>Presunção de legitimidade/veracidade</b> — o ato nasce tido como legal e verdadeiro</li>
+        <li><b>Tipicidade</b> — o ato se amolda à hipótese legal que o autoriza</li>
+        <li><span class="hl">Presunção de veracidade → inversão do ônus da prova</span> — quem alega invalidade prova o vício</li>
+        <li><b>Exceção (PAD):</b> a inversão não é absoluta — em processo disciplinar, a Administração tem o dever de provar a infração</li>
+      </ul>
+    </div>
+    <div class="box fm tilt-r">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-warn"/></svg>Só em ALGUNS atos</h3>
+      <ul class="dots">
+        <li><b>Imperatividade</b> — impõe deveres mesmo sem consentimento do administrado</li>
+        <li><b>Autoexecutoriedade</b> — a Administração executa por conta própria, sem autorização prévia do Judiciário</li>
+        <li><b>Exigibilidade</b> (meios indiretos — o próprio administrado cumpre) × <b>Executoriedade</b> (meios diretos/força — a Administração executa)</li>
+        <li><span class="hl">Autoexecutoriedade ≠ ausência de controle judicial</span> (prévio ou posterior)</li>
+      </ul>
+    </div>
+    <div class="box trap tilt-l">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-warn"/></svg>Pegadinha da multa</h3>
+      <ul class="dots">
+        <li>Multa tem <b>imperatividade</b>, mas <b>não</b> tem autoexecutoriedade — cobrança coercitiva exige <b>execução fiscal</b></li>
+      </ul>
+    </div>
+    <div class="box fy tilt-r">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg>Legalidade × veracidade</h3>
+      <ul class="dots">
+        <li><b>Legitimidade:</b> presume-se que o ato foi praticado em <b>conformidade com a lei</b></li>
+        <li><b>Veracidade:</b> presume-se verdadeiros os <b>fatos alegados</b> pela Administração — é daí que vem a inversão do ônus</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<svg class="squig" viewBox="0 0 400 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q14 0 26 8 T50 8 T74 8 T98 8 T122 8 T146 8 T170 8 T194 8 T218 8 T242 8 T266 8 T290 8 T314 8 T338 8 T362 8 T386 8 L398 8"/></svg>
+
+<section class="panel" id="p2">
+  <div class="ph" style="--c:var(--m)">
+    <span class="pn">2</span>
+    <h2>Vida do ato: anulação × revogação</h2>
+    <span class="note">do nascimento à extinção — quem desfaz, quando e com que efeitos</span>
+  </div>
+
+  <div class="strip" aria-label="Linha da vida do ato">
+    <div class="st"><b>Nascimento</b><span>perfeição — ato concluído</span></div>
+    <div class="st"><b>Eficácia</b><span>produz efeitos no mundo</span></div>
+    <div class="st"><b>Válido ≠ perfeito ≠ eficaz</b><span>não é a mesma coisa</span></div>
+    <div class="st"><b>Extinção</b><span>anulação · revogação · naturais</span></div>
+    <div class="st"><b>Saneamento</b><span>convalidação — ex tunc</span></div>
+  </div>
+
+  <div class="stack">
+    <div class="box tilt-r">
+      <h3>Anulação <span class="vs">×</span> Revogação</h3>
+      <div class="tw tight"><table>
+        <thead><tr><th></th><th>Anulação</th><th>Revogação</th></tr></thead>
+        <tbody>
+          <tr><td>Ato</td><td><span class="hl">inválido</span> (vício de legalidade)</td><td><span class="hm">válido</span>, mas inconveniente/impróprio</td></tr>
+          <tr><td>Efeitos</td><td><b>ex tunc</b> — retroage à origem</td><td><b>ex nunc</b> — conserva os efeitos já produzidos</td></tr>
+          <tr><td>Quem</td><td>Administração <b>e</b> Judiciário</td><td><b>só</b> a Administração — Judiciário não revoga (mérito)</td></tr>
+          <tr><td>Base</td><td>legalidade</td><td>conveniência e oportunidade</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="grid g2">
+      <div class="box trap tilt-l">
+        <h3><svg class="ico" aria-hidden="true"><use href="#i-warn"/></svg>Limites da revogação</h3>
+        <ul class="dots">
+          <li><b>Não recai</b> sobre atos com <b>direitos adquiridos</b> nem sobre ato <b>já revogado</b></li>
+          <li><b>Meros atos administrativos</b> (certidões, atestados, votos) não são revogáveis — seus efeitos decorrem da lei</li>
+          <li>Só quem <b>editou</b> o ato (ou autoridade com competência para rever de ofício ou por recurso) pode revogar</li>
+        </ul>
+      </div>
+      <div class="box fy tilt-r">
+        <h3><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg>Forma × motivo</h3>
+        <ul class="dots">
+          <li><b>Ausência de motivação</b> (quando obrigatória) = vício de <b>forma</b>, <b>sanável</b></li>
+          <li>Vício de <b>motivo/finalidade</b> = <b>insanável</b></li>
+          <li>Vício de <b>objeto</b>: <b>único</b> = insanável · <b>plúrimo</b> = sanável</li>
+        </ul>
+      </div>
+    </div>
+    <div class="box fb tilt-l">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg>Outras formas de retirada (todas ex nunc)</h3>
+      <ul class="dots">
+        <li><b>Cassação:</b> o beneficiário <b>descumpriu as condições</b> do ato (ex.: licença cassada)</li>
+        <li><b>Caducidade:</b> <b>nova lei</b> torna o ato ilegal ou incompatível</li>
+        <li><b>Contraposição:</b> novo ato com <b>efeitos opostos</b> (ex.: exoneração × nomeação)</li>
+        <li>Só a <b>anulação</b> é ex tunc — revogação, cassação, caducidade e contraposição são ex nunc</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<svg class="squig" viewBox="0 0 400 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q14 0 26 8 T50 8 T74 8 T98 8 T122 8 T146 8 T170 8 T194 8 T218 8 T242 8 T266 8 T290 8 T314 8 T338 8 T362 8 T386 8 L398 8"/></svg>
+
+<section class="panel" id="p3">
+  <div class="ph" style="--c:var(--y)">
+    <span class="pn">3</span>
+    <h2>Espécies e classificação</h2>
+    <span class="note">normativos × negociais · o trio licença, autorização e permissão</span>
+  </div>
+
+  <div class="stack">
+    <div class="box tilt-l">
+      <h3>Licença <span class="vs">×</span> Autorização <span class="vs">×</span> Permissão</h3>
+      <div class="tw tight"><table>
+        <thead><tr><th></th><th>Licença</th><th>Autorização</th><th>Permissão</th></tr></thead>
+        <tbody>
+          <tr><td>Regime</td><td><span class="hl">vinculada</span></td><td><span class="hp">discricionária</span></td><td><span class="hp">discricionária</span></td></tr>
+          <tr><td>Duração</td><td><b>definitiva</b> — direito subjetivo</td><td><b>precária</b></td><td><b>precária</b></td></tr>
+          <tr><td>Interesse</td><td>Particular (ex.: CNH, alvará)</td><td><b>Particular</b> (ex.: porte de arma, uso de bem público)</td><td><b>Público</b> (ex.: quiosque em praça pública)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small" style="margin-top:8px">Cinco espécies clássicas — <b>NONEP</b>: <b>N</b>ormativos · <b>O</b>rdinatórios · <b>E</b>nunciativos · <b>N</b>egociais · <b>P</b>unitivos. Negociais = atos de consentimento, em que a vontade da Administração <b>coincide</b> com a do particular.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="box fb tilt-r">
+        <h3><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg>Classificação que cai</h3>
+        <ul class="dots">
+          <li><b>Ato complexo:</b> mais de uma manifestação de vontade para existir (ex.: aposentadoria — com <span class="hl">registro no TCU</span>)</li>
+          <li><b>Ato de colegiado é simples</b>, não complexo — a pluralidade de membros não gera ato complexo</li>
+          <li><b>Publicidade:</b> falta de intimação/publicação pode gerar <b>nulidade</b> quando a lei condiciona o ato à ciência do interessado</li>
+          <li><b>Vinculados</b> (sem margem de escolha) × <b>discricionários</b> (margem no motivo e no objeto)</li>
+        </ul>
+      </div>
+      <div class="box trap tilt-l">
+        <h3><svg class="ico" aria-hidden="true"><use href="#i-warn"/></svg>Não troque</h3>
+        <ul class="dots">
+          <li><b>Silêncio administrativo não é ato administrativo</b> — é fato jurídico administrativo</li>
+          <li><b>Ordinatórios</b> derivam do poder <b>hierárquico</b>, não do regulamentar</li>
+          <li><b>Visto</b> atesta legitimidade <b>formal</b>, sem concordância com o conteúdo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box fy tilt-r">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-scale"/></svg>Prerrogativas: império × gestão × expediente</h3>
+      <ul class="dots">
+        <li><b>Império (autoridade):</b> a Administração age com <b>supremacia</b> unilateral e coercitiva — ex.: poder de polícia</li>
+        <li><b>Gestão:</b> horizontalidade com o particular, <b>sem supremacia</b> — igual ao direito privado (compra, venda, aluguel)</li>
+        <li><b>Expediente:</b> rotina interna <b>sem conteúdo decisório</b> — só dá andamento a processos e papéis</li>
+        <li>Quanto maior a prerrogativa, mais próximo do <b>ato administrativo típico</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<svg class="squig" viewBox="0 0 400 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q14 0 26 8 T50 8 T74 8 T98 8 T122 8 T146 8 T170 8 T194 8 T218 8 T242 8 T266 8 T290 8 T314 8 T338 8 T362 8 T386 8 L398 8"/></svg>
+
+<section class="panel" id="p4">
+  <div class="ph" style="--c:var(--p)">
+    <span class="pn">4</span>
+    <h2>Convalidação — o saneamento</h2>
+    <span class="note">teoria dualista · ex tunc · o que sana e o que trava</span>
+  </div>
+
+  <div class="grid g2">
+    <div class="box fp tilt-l" style="--fill:var(--ps)">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-refresh"/></svg>Regra do jogo</h3>
+      <ul class="dots">
+        <li><b>Dualista:</b> ato <b>nulo</b> (vício insanável, não convalida) × ato <b>anulável</b> (vício sanável, convalida)</li>
+        <li><span class="hl">Efeitos ex tunc</span> — a sanatória retroage à origem; ato que <b>já começou a produzir efeitos</b> convida normalmente</li>
+        <li>Controle de <b>legalidade, não de mérito</b> — vinculados <b>e</b> discricionários podem ser convalidados</li>
+        <li>3 requisitos do art. 55 (L9784): <b>sem lesão ao interesse público</b> · <b>sem prejuízo a terceiros</b> · <b>vício sanável</b></li>
+        <li>Excepcionalmente, saneamento por <b>ato do particular</b></li>
+      </ul>
+    </div>
+    <div class="box fy tilt-r">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>Sanável × insanável</h3>
+      <ul class="dots">
+        <li><b>FoCo sanável:</b> forma não essencial + competência <b>não exclusiva</b></li>
+        <li><b>Objeto plúrimo</b> (mais de uma providência) sanável — objeto <b>único</b>, motivo e finalidade insanáveis</li>
+        <li><span class="hl">Competência exclusiva e em razão da matéria</span> — nunca sanáveis</li>
+        <li>Espécies: <b>ratificação</b> (só forma/competência) · <b>reforma</b> · <b>conversão</b></li>
+      </ul>
+    </div>
+    <div class="box trap tilt-l">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-warn"/></svg>Quando TRAVA a convalidação</h3>
+      <ul class="dots">
+        <li>Vício de <b>objeto único, motivo ou finalidade</b> (inclusive desvio de finalidade)</li>
+        <li>Defeito <b>já impugnado</b> perante a Administração ou o Judiciário</li>
+        <li>Vício <b>estabilizado</b> por prescrição ou decadência</li>
+        <li><b>Má-fé</b> — vício imputado à parte que se beneficiará do ato</li>
+        <li>Lesão ao <b>interesse público</b> · prejuízo a <b>terceiros</b> · defeito <b>grave e manifesto</b> (teoria da evidência)</li>
+      </ul>
+    </div>
+    <div class="box fb tilt-r">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg>Ratificação em uma linha</h3>
+      <ul class="dots">
+        <li>Vício de <b>incompetência</b> convalida por <b>ratificação</b>, desde que a competência seja <b>delegável</b> — mesma autoridade ou superior hierárquico</li>
+        <li><b>Não se ratifica:</b> competência exclusiva nem incompetência em razão da matéria</li>
+        <li>A ratificação <b>não alcança</b> motivo, objeto nem finalidade</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<svg class="squig" viewBox="0 0 400 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q14 0 26 8 T50 8 T74 8 T98 8 T122 8 T146 8 T170 8 T194 8 T218 8 T242 8 T266 8 T290 8 T314 8 T338 8 T362 8 T386 8 L398 8"/></svg>
+
+<section class="panel" id="p5">
+  <div class="ph" style="--c:var(--b)">
+    <span class="pn">5</span>
+    <h2>Cai em prova</h2>
+    <span class="note">checklist final — alta incidência + pegadinhas clássicas</span>
+  </div>
+
+  <div class="grid g2">
+    <div class="box fm tilt-l">
+      <h3>Alta incidência</h3>
+      <ul class="check">
+        <li><b>PATI:</b> presunção + tipicidade em <b>todos</b>; imperatividade + autoexecutoriedade só em <b>alguns</b></li>
+        <li><b>Anulação:</b> inválido, <b>ex tunc</b>, adm + Judiciário · <b>Revogação:</b> válido, <b>ex nunc</b>, só a adm</li>
+        <li>Revogação <b>não</b> atinge direitos adquiridos nem meros atos (certidão)</li>
+        <li><b>Cassação</b> (descumpriu condições) · <b>Caducidade</b> (nova lei) · <b>Contraposição</b> (ato oposto) — todas <b>ex nunc</b></li>
+        <li><b>Licença</b> = vinculada + definitiva · <b>Autorização</b> = discricionária + precária (interesse <b>particular</b>) · <b>Permissão</b> = discricionária + precária (interesse <b>público</b>)</li>
+        <li><b>Espécies:</b> normativos (geral e abstrata) × negociais (individualizadores)</li>
+        <li><b>Ato complexo</b> × <b>colegiado = simples</b> · publicidade: falta de intimação → possível nulidade</li>
+        <li><b>Convalidação:</b> ex tunc · competência exclusiva e objeto único <b>não</b> convalidam · plúrimo convalida</li>
+        <li>Limites: impugnado · prescrito/decadente · má-fé · lesão ao interesse · terceiros · evidência</li>
+      </ul>
+    </div>
+    <div class="box trap tilt-r">
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-warn"/></svg>Pegadinhas clássicas</h3>
+      <ul class="dots">
+        <li><b>Silêncio</b> administrativo não é ato administrativo</li>
+        <li><b>Perfeito ≠ eficaz ≠ válido</b> — três estados distintos</li>
+        <li>Certidão <b>não é revogável</b> (mero ato administrativo)</li>
+        <li>Multa: imperatividade <b>sem</b> autoexecutoriedade</li>
+        <li>Motivação ausente = vício de <b>forma</b> (sanável), não de motivo</li>
+        <li>Ato de colegiado <b>não</b> é ato complexo</li>
+        <li>Judiciário <b>não</b> revoga — só anula</li>
+      </ul>
+      <div class="rule" style="margin-top:14px;font-size:1em"><span class="t" style="display:inline">Na prova:</span> <b>ex tunc</b> = anula/convalida · <b>ex nunc</b> = revoga.</div>
+    </div>
+  </div>
+
+  <p class="src">Filtro do sketchnote: alta e média incidência (TEC) + pegadinhas clássicas — detalhes e baixa incidência ficam no resumo.</p>
+  <div class="backlink"><a class="chip c-m" href="resumo-aula-06-atos-administrativos.html">← voltar ao resumo completo</a></div>
+</section>
+
+</main>
+<button type="button" id="themeToggle" class="theme-toggle" aria-label="Alternar modo claro/escuro" title="Modo claro/escuro">🌙</button>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeToggle');
+  function current(){
+    try{var t=localStorage.getItem('rh-theme');if(t==='dark'||t==='light')return t;}catch(e){}
+    return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  }
+  function apply(t){
+    if(t==='dark'){root.setAttribute('data-theme','dark');}
+    else{root.setAttribute('data-theme','light');}
+    try{localStorage.setItem('rh-theme',t);}catch(e){}
+    btn.textContent=(t==='dark')?'☀️':'🌙';
+  }
+  btn.addEventListener('click',function(){
+    apply(root.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+  apply(current());
+})();
+</script>
+</body>
+</html>
