@@ -9,6 +9,19 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+## 2026-09-24
+
+**`Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html`** — revisão (15 questões TEC)
+- Conteúdo novo: Sec 2 — card "Estrangeiro a serviço de OUTRO país" (serviço a país terceiro → nato), linha "Fato já qualificado como serviço", linha "Se a exceção incide (qualificação à luz da CF)"; Sec 4 — gotcha praças × oficialato (§3º, VI restringe só o oficialato; magistratura, MP/PGR e inteligência fora da lista); Sec 5 — linhas "Crime comum DEPOIS da naturalização não enseja extradição" e "Pressupostos da extradição" (dupla tipificação, pena ≤30 anos posição oscilante do STF, LII, não ser nato); Sec 6 — card "Quem pode perder" (I só naturalizado × II natos e naturalizados), linha "§5º reaquisição só ampara o nato (nacionalidade originária)" — decisão do usuário 24/09, e linha "⚠️ cancelamento × extradição" (institutos distintos).
+- Reorganização do card "Art. 12, I — 'a'" (blocos: Regra → Território → Exceção + 2 condições cumulativas → o que NÃO configura → fato já qualificado → qualificação à luz da CF), sem supressão de conteúdo.
+- Incidência Sec 8 (todas 🔴): S2→18, S4→14, S6→10, S5→8, S3→6.
+
+**`Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html`** — só increments de incidência (idade mínima → 7; tags reordenadas).
+
+**`Direito Constitucional/Aula 05/sketchnote-aula-05-nacionalidade.html`** — criado (padrão AFO 04: fundo liso, nó central escuro, pílulas, faixa a→b→c, 7 blocos, link bidirecional com o resumo).
+
+**`Resumo_estudos/index.html`** — badge 🔁 24/09: DC Aula 05. Última atualização: 24/09/2026 21:03.
+
 ## 2026-09-20
 
 **`Direito Processual do Trabalho/Aula 01/resumo-aula-01-competencia-da-justica-do-trabalho.html`** — revisão (13 questões TEC: FCC/AOCP/FUMARC, competência material e territorial)
