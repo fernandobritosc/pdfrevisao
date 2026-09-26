@@ -6,7 +6,7 @@
 <title>Resumo — AP Aula 05: Liderança</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f5f4f0;
@@ -29,7 +29,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #0d9488;
+  --mat-strong: #0b7a70;
+  --mat-soft: #e6f4f2;
+  --mat-line: #b8e3de;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +44,8 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
 
 /* SIDEBAR (aula pages) */
 .aula .sidebar {
@@ -62,11 +66,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
 .aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -86,7 +90,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-color: #43506b;
 }
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -102,9 +106,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .sidebar h3, .aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--ink);
@@ -121,8 +125,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
   gap: .35rem;
 }
 .aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
 .aula .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -141,7 +145,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
 .aula .brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -154,32 +158,33 @@ html[data-theme="dark"] .aula .sidebar-brand {
 /* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
 .aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
 }
 .aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
 .aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.16rem;
   font-weight: 700;
   color: var(--ink);
@@ -189,7 +194,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   padding-bottom: .4rem;
   border-bottom: 2px solid var(--line-strong);
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
 .subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
 .aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
 
@@ -204,7 +209,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
 
 /* CARDS */
@@ -213,23 +218,24 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
 .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
 .card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -237,7 +243,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .25rem .6rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .78rem;
   font-weight: 600;
   text-decoration: none;
@@ -252,7 +258,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .2rem .5rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   background: #d9f2e3;
@@ -263,8 +269,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -273,7 +279,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
@@ -288,7 +294,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   margin: .85rem 0;
 }
 .mnemonic-label {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   color: var(--amber);
@@ -321,7 +327,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 7px;
   background: var(--amber);
   color: #fff;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
   font-size: 1rem;
   line-height: 1;
@@ -336,34 +342,34 @@ html[data-theme="dark"] .aula .sidebar-brand {
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
 tbody tr:last-child td { border-bottom: none; }
 
 /* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
 
 /* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
@@ -393,7 +399,7 @@ tbody tr:last-child td { border-bottom: none; }
 }
 .hl {
   background: #e8e6df;
-  border-left: 3px solid var(--blue);
+  border-left: 3px solid var(--mat);
   padding: 12px 14px;
   border-radius: 0 8px 8px 0;
   font-size: 13px;
@@ -424,7 +430,7 @@ tbody tr:last-child td { border-bottom: none; }
   width: 0%;
   transition: width .3s;
 }
-.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
 .progress-bar {
   position: fixed;
   top: 0;
@@ -437,18 +443,18 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* LEGAL BLOCK */
 .legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
   border-radius: 8px;
   padding: .7rem .9rem;
   margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .82rem;
   color: var(--text2);
   line-height: 1.55;
 }
-.legal-block strong { color: #1d3f9e; }
+.legal-block strong { color: var(--mat-strong); }
 
 /* QUESTIONS / OPTIONS */
 .question {
@@ -510,7 +516,7 @@ li { margin: 4px 0; }
 /* LANDING */
 .container { max-width: 600px; margin: 0 auto; text-align: center; }
 .container h1 {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: .5rem;
@@ -519,7 +525,7 @@ li { margin: 4px 0; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
 .back-link {
   display: inline-block;
   color: #1d3f9e;
@@ -571,6 +577,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #2dd4bf; --mat-strong: #7de0d6; --mat-soft: #0f3330; --mat-line: #14584f;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -600,9 +607,9 @@ html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
 html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
-html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] .aula .sec-num { color:#b39af5;box-shadow:none; }
 html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
-html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] tr:hover { background:rgba(179,154,245,.08); }
 html[data-theme="dark"] .question { background:#232733; }
 html[data-theme="dark"] .option { background:#232733; }
 html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
@@ -617,13 +624,13 @@ html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
 html[data-theme="dark"] .back-link { color:#a9c3ef; }
 html[data-theme="dark"] .btn { color:#17191f; }
 html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
-html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #4c3a75; }
 /* Toolbar flutuante (tema · fonte · topo) */
 .rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
 .rh-toolbar button {
   width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
   background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
   box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
   transition: transform .15s, border-color .15s;
 }
@@ -646,7 +653,7 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
 .aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
 .aula-nav a.next { text-align: right; }
 .aula-nav .aula-nav-dir {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
   color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
 }
 .aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
@@ -748,8 +755,8 @@ html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .questio
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
   padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
 #rhMarkPanel.show { display: block; }
-#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
-#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
   background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
   color: var(--text); cursor: pointer; margin-right: .3rem; }
 #rhMarkPanel button:hover { border-color: var(--blue); }
@@ -769,61 +776,44 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 <body class="aula">
 
 <!-- SIDEBAR -->
-<nav class="sidebar">
-  <div>
-    <div class="sidebar-brand">📚 PDF Revisão</div>
-    <div class="sidebar-sub">Resumos estruturados</div>
+<aside class="sidebar">
+  <div class="sidebar-title">Administração Pública e Geral — Aula 05</div>
+  <div class="sidebar-sub">Liderança · Resumos estruturados</div>
   <div class="sr-box">
     <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
     <div class="sr-info"><span id="sr-count"></span><button id="sr-clear" type="button">limpar</button></div>
   </div>
-  </div>
-
-  <div class="sidebar-nav">
-    <a href="../../../index.html">← Voltar ao índice</a>
-    <a href="#sec1" class="active">1. Função Direção</a>
-    <a href="#sec2">2. Liderança × Chefia</a>
-    <a href="#sec3">3. Tipos de Poder</a>
-    <a href="#sec4">4. Teorias: Traços</a>
-    <a href="#sec5">5. Teorias: Estilos</a>
-    <a href="#sec6">6. Grid Blake/Mouton</a>
-    <a href="#sec7">7. Fiedler</a>
-    <a href="#sec8">8. Hersey/Blanchard</a>
-    <a href="#sec9">9. House: Caminho-Meta</a>
-    <a href="#sec10">10. Teorias Emergentes</a>
-    <a href="#sec11">11. Gestão de Conflitos</a>
-    <a href="#sec12">12. Incidência (TEC)</a>
-  </div>
-
-  <div class="sidebar-footer">
-    <div style="font-size:.7rem;color:var(--text2);">AP Aula 05 · Liderança</div>
-  </div>
-</nav>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec2">2. Liderança × Chefia</a>
+  <a href="#sec3">3. Tipos de Poder</a>
+  <a href="#sec4">4. Teorias: Traços</a>
+  <a href="#sec5">5. Teorias: Estilos</a>
+  <a href="#sec6">6. Grid Blake/Mouton</a>
+  <a href="#sec7">7. Fiedler</a>
+  <a href="#sec8">8. Hersey/Blanchard</a>
+  <a href="#sec9">9. House: Caminho-Meta</a>
+  <a href="#sec10">10. Teorias Emergentes</a>
+  <a href="#sec11">11. Gestão de Conflitos</a>
+  <a href="#sec12">12. Incidência (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../../index.html" style="color:var(--mat-strong);font-size:.78rem;">← Voltar ao índice</a>
+</aside>
 
 <!-- MAIN -->
-<main class="main">
+<div class="main">
 
-  <!-- PROGRESS -->
-  <div class="progress-wrap">
-    <div class="progress-label">Progresso: <span id="pct">0%</span></div>
-    <div class="progress-track">
-      <div class="progress-fill" id="bar" style="width:0%"></div>
-    </div>
-  </div>
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>AP Aula 05 — Liderança</h1>
-    <p>Função Direção · Liderança × Chefia · Poder · Teorias · FGV</p>
-  </div>
 
   <!-- SEC 1 -->
   <section id="sec1" class="section">
-    <div class="section-title"><span class="tag tag-blue">1</span> Função Direção</div>
-    <div class="section-subtitle">3ª fase do processo administrativo (PODC)</div>
+    <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Função Direção</div>
+  </div>
+    <div class="sec-subtitle">3ª fase do processo administrativo (PODC)</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">O que é a Função Direção?</div></div>
+      <div class="card-title">O que é a Função Direção?</div>
       <div class="card-text">
         A <strong>Direção</strong> é a função administrativa responsável por <span class="highlight">conduzir as pessoas</span> em direção aos objetivos organizacionais. Segundo <strong>Chiavenato</strong>, ela se desdobra nos três níveis organizacionais:<br>
         → <strong>Institucional:</strong> presidente direciona diretores<br>
@@ -837,8 +827,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 2 -->
   <section id="sec2" class="section">
-    <div class="section-title"><span class="tag tag-blue">2</span> Liderança × Chefia</div>
-    <div class="section-subtitle">Duas coisas completamente diferentes</div>
+    <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Liderança × Chefia</div>
+  </div>
+    <div class="sec-subtitle">Duas coisas completamente diferentes</div>
 
     <div class="table-wrap">
       <table>
@@ -856,7 +849,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Dica de prova:</strong> o chefe não é necessariamente o líder, e o líder não é necessariamente o chefe. O ideal é que o chefe também seja um bom líder.</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Liderança segundo Chiavenato — 4 enfoques</div></div>
+      <div class="card-title">Liderança segundo Chiavenato — 4 enfoques</div>
       <div class="card-text">
         → <strong>1) Fenômeno de influência interpessoal</strong> — capacidade de influenciar pessoas<br>
         → <strong>2) Processo de redução da incerteza</strong> de um grupo — dá rumo quando há ambiguidade<br>
@@ -868,8 +861,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 3 -->
   <section id="sec3" class="section">
-    <div class="section-title"><span class="tag tag-blue">3</span> Tipos de Poder</div>
-    <div class="section-subtitle">Formas de influência sobre as pessoas</div>
+    <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Tipos de Poder</div>
+  </div>
+    <div class="sec-subtitle">Formas de influência sobre as pessoas</div>
 
     <div class="table-wrap">
       <table>
@@ -891,11 +887,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 4 -->
   <section id="sec4" class="section">
-    <div class="section-title"><span class="tag tag-blue">4</span> Teorias da Liderança — Traços</div>
-    <div class="section-subtitle">O líder nasce pronto? Teoria superada</div>
+    <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Teorias da Liderança — Traços</div>
+  </div>
+    <div class="sec-subtitle">O líder nasce pronto? Teoria superada</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Teoria de Traços de Personalidade</div></div>
+      <div class="card-title">Teoria de Traços de Personalidade</div>
       <div class="card-text">
         A mais antiga. Defende que o líder <strong>nasce líder</strong> (líder nato), com características inatas. NÃO pode ser aprendida.<br><br>
         Aspectos analisados: físicos, habilidades, personalidade, fatores sociais, características relacionadas à tarefa.<br><br>
@@ -911,11 +910,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 5 -->
   <section id="sec5" class="section">
-    <div class="section-title"><span class="tag tag-blue">5</span> Teorias dos Estilos de Liderança</div>
-    <div class="section-subtitle">Comportamentais — padrões de ações praticadas pelo líder (estilos autocrático, democrático, liberal)</div>
+    <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Teorias dos Estilos de Liderança</div>
+  </div>
+    <div class="sec-subtitle">Comportamentais — padrões de ações praticadas pelo líder (estilos autocrático, democrático, liberal)</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">White e Lippitt — 3 Estilos</div></div>
+      <div class="card-title">White e Lippitt — 3 Estilos</div>
       <div class="card-text">
         <strong>Autocrática:</strong> líder decide sozinho, sem participação do grupo. Produtividade alta, satisfação baixa.<br>
         <strong>Democrática:</strong> grupo participa das decisões. Satisfação alta, produtividade boa.<br>
@@ -925,7 +927,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Universidade de Ohio — 2 Dimensões</div></div>
+      <div class="card-title">Universidade de Ohio — 2 Dimensões</div>
       <div class="card-text">
         <strong>Estrutura de Iniciação:</strong> preocupação com organização, metas, prazos, padronização do desempenho.<br>
         <strong>Consideração:</strong> preocupação com relacionamento interpessoal, confiança, respeito.<br><br>
@@ -934,7 +936,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Universidade de Michigan — Teoria Bidimensional</div></div>
+      <div class="card-title">Universidade de Michigan — Teoria Bidimensional</div>
       <div class="card-text">
         <strong>Orientada para tarefa/produção:</strong> foco em resultados, cumprimento de metas. Similar a Estrutura de Iniciação.<br>
         <strong>Orientada para pessoas/relacionamentos:</strong> foco em necessidades dos funcionários. Similar a Consideração.
@@ -942,7 +944,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Likert — 04 Sistemas Gerenciais</div></div>
+      <div class="card-title">Likert — 04 Sistemas Gerenciais</div>
       <div class="card-text">
         <strong>1) Autoritário-coercitivo:</strong> decisões centralizadas, controle rígido, ameaças, comunicação vertical descendente. Ex: construção civil.<br>
         <strong>2) Autoritário-benevolente:</strong> decisões centralizadas mas com pequena delegação, feedbacks ocasionais. Ex: indústrias.<br>
@@ -954,7 +956,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> Likert não é “4 tipos de liderança” em abstrato. São <span class="highlight">4 sistemas gerenciais/administrativos</span> baseados no estilo de autoridade do líder. A banca pode inverter os nomes.</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">McGregor — Teorias X e Y</div></div>
+      <div class="card-title">McGregor — Teorias X e Y</div>
       <div class="card-text">
         <strong>Teoria X (visão pessimista):</strong> pessoas são naturalmente preguiçosas, evitam responsabilidades e precisam de controle rígido.<br>
         <strong>Teoria Y (visão otimista):</strong> trabalhadores são motivados, buscam realização no trabalho e podem se autogerir com apoio e incentivo.<br><br>
@@ -963,7 +965,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Aceitação da autoridade — Barnard</div></div>
+      <div class="card-title">Aceitação da autoridade — Barnard</div>
       <div class="card-text">
         A legitimidade de uma ordem <strong>não vem só da hierarquia</strong>: a autoridade só é efetiva <span class="highlight">quando aceita pelo subordinado</span> — o funcionário <strong>tem</strong> capacidade de julgar se a ordem é legítima.<br><br>
         Condições para aceitar a ordem:<br>
@@ -977,11 +979,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 6 -->
   <section id="sec6" class="section">
-    <div class="section-title"><span class="tag tag-amber">6</span> Grid Gerencial — Blake e Mouton</div>
-    <div class="section-subtitle">Preocupação com pessoas × produção</div>
+    <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Grid Gerencial — Blake e Mouton</div>
+  </div>
+    <div class="sec-subtitle">Preocupação com pessoas × produção</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Os 5 Estilos</div></div>
+      <div class="card-title">Os 5 Estilos</div>
       <div class="card-text">
         Eixo vertical: preocupação com a <strong>produção</strong> (1 a 9)<br>
         Eixo horizontal: preocupação com as <strong>pessoas</strong> (1 a 9)<br><br>
@@ -1000,11 +1005,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 7 -->
   <section id="sec7" class="section">
-    <div class="section-title"><span class="tag tag-amber">7</span> Teoria da Contingência de Fiedler</div>
-    <div class="section-subtitle">Estilo fixo + situação favorável</div>
+    <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Teoria da Contingência de Fiedler</div>
+  </div>
+    <div class="sec-subtitle">Estilo fixo + situação favorável</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito</div></div>
+      <div class="card-title">Conceito</div>
       <div class="card-text">
         O desempenho depende de: <strong>estilo do líder</strong> × <strong>grau de controle da situação</strong>.<br><br>
         <strong>Estilos do líder:</strong><br>
@@ -1020,7 +1028,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Conclusões Fiedler:</strong><br>→ Situações <strong>muito favoráveis ou muito desfavoráveis</strong> → líder orientado para <strong>tarefa</strong><br>→ Situações <strong>moderadas</strong> → líder orientado para <strong>relacionamentos</strong><br>→ Estilo do líder é <span class="highlight">fixo</span> — a organização deve encaixá-lo na situação adequada.</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Teoria do Recurso Cognitivo (Fiedler & Garcia, 1986)</div></div>
+      <div class="card-title">Teoria do Recurso Cognitivo (Fiedler & Garcia, 1986)</div>
       <div class="card-text">
         → <strong>Tarefas complexas:</strong> inteligência do líder importa mais<br>
         → <strong>Alto estresse:</strong> experiência do líder importa mais<br>
@@ -1031,11 +1039,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 8 -->
   <section id="sec8" class="section">
-    <div class="section-title"><span class="tag tag-amber">8</span> Teoria Situacional — Hersey e Blanchard</div>
-    <div class="section-subtitle">Foco nos liderados: maturidade M1-M4</div>
+    <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Teoria Situacional — Hersey e Blanchard</div>
+  </div>
+    <div class="sec-subtitle">Foco nos liderados: maturidade M1-M4</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Maturidade dos Liderados</div></div>
+      <div class="card-title">Maturidade dos Liderados</div>
       <div class="card-text">
         Combinação de <strong>motivação</strong> × <strong>capacidade/competência</strong> — a banca também chama de <strong>prontidão</strong> (nível 1 a 4):<br><br>
         <span class="tag tag-red">M1</span> Baixa motivação + Baixa capacidade<br>
@@ -1064,11 +1075,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 9 -->
   <section id="sec9" class="section">
-    <div class="section-title"><span class="tag tag-amber">9</span> Teoria do Caminho-Meta — House</div>
-    <div class="section-subtitle">O líder como facilitador do caminho</div>
+    <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Teoria do Caminho-Meta — House</div>
+  </div>
+    <div class="sec-subtitle">O líder como facilitador do caminho</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">4 Tipos de Liderança</div></div>
+      <div class="card-title">4 Tipos de Liderança</div>
       <div class="card-text">
         O líder deve <strong>facilitar</strong> o caminho dos subordinados para atingir suas metas, removendo barreiras.<br><br>
         <strong>1) Apoiador/Incentivador:</strong> preocupa-se com bem-estar. Indicado para tarefas repetitivas/estruturadas.<br>
@@ -1083,11 +1097,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 10 -->
   <section id="sec10" class="section">
-    <div class="section-title"><span class="tag tag-amber">10</span> Teorias Emergentes</div>
-    <div class="section-subtitle">Transacional × Transformacional × Carismática × Visionária × Autêntica × Servidora × LMX</div>
+    <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Teorias Emergentes</div>
+  </div>
+    <div class="sec-subtitle">Transacional × Transformacional × Carismática × Visionária × Autêntica × Servidora × LMX</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Liderança Transacional</div></div>
+      <div class="card-title">Liderança Transacional</div>
       <div class="card-text">
         Baseada na <strong>troca</strong>: recompensa por esforço. O líder promete recompensas pelo bom desempenho.<br><br>
         Estilos:<br>
@@ -1100,7 +1117,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Liderança Transformacional</div></div>
+      <div class="card-title">Liderança Transformacional</div>
       <div class="card-text">
         O líder <strong>inspira</strong> os liderados a transcendêrem seus próprios interesses. Causa impacto profundo, é revolucionário e transformador.<br><br>
         4 comportamentos (Bass):<br>
@@ -1115,7 +1132,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card" style="border-left-color:var(--purple);">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title" style="color:var(--purple);">Liderança Carismática</div></div>
+      <div class="card-title" style="color:var(--purple);">Liderança Carismática</div>
       <div class="card-text">
         Baseada no <strong>carisma</strong>. Os liderados atribuem características extraordinárias ao líder.<br><br>
         Características (Conger e Kanungo):<br>
@@ -1129,7 +1146,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card" style="border-left-color:var(--teal);">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title" style="color:var(--teal);">Liderança Visionária</div></div>
+      <div class="card-title" style="color:var(--teal);">Liderança Visionária</div>
       <div class="card-text">
         Foco na <strong>visão</strong> de futuro da organização. O líder “vende” a visão aos liderados, fazendo-os “comprar” o objetivo global.<br><br>
         A visão responde: <span class="highlight">“O que eu quero ser?”</span> (futuro desejado da organização).<br>
@@ -1138,21 +1155,21 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Liderança Autêntica</div></div>
+      <div class="card-title">Liderança Autêntica</div>
       <div class="card-text">
         Baseada na <strong>confiança</strong> e na <strong>ética</strong>. O líder é honesto com seus liderados e espera que eles sejam igualmente transparentes com suas opiniões.
       </div>
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Liderança Servidora</div></div>
+      <div class="card-title">Liderança Servidora</div>
       <div class="card-text">
         O líder faz de tudo para <strong>prover as melhores condições</strong> aos liderados: realiza a provisão de recursos e <strong>remove obstáculos</strong> para o trabalho da equipe.
       </div>
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">LMX — Teoria de Troca entre Líderes e Liderados</div></div>
+      <div class="card-title">LMX — Teoria de Troca entre Líderes e Liderados</div>
       <div class="card-text">
         O líder estabelece um <strong>“grupo de dentro”</strong> (in-group): com ele se relaciona melhor e dá as melhores <strong>recompensas, avaliações e cargos</strong>, com base na <strong>afinidade pessoal</strong> com os integrantes — e não no trabalho que desempenham. Os demais formam o “grupo de fora” (out-group).
       </div>
@@ -1174,8 +1191,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 11 -->
   <section id="sec11" class="section">
-    <div class="section-title"><span class="tag tag-green">11</span> Gestão de Conflitos — Chiavenato</div>
-    <div class="section-subtitle">5 estilos: assertividade (próprios interesses) × cooperação (interesses da outra parte)</div>
+    <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Gestão de Conflitos — Chiavenato</div>
+  </div>
+    <div class="sec-subtitle">5 estilos: assertividade (próprios interesses) × cooperação (interesses da outra parte)</div>
 
     <div class="table-wrap">
       <table>
@@ -1193,7 +1213,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="callout callout-danger"><div class="callout-icon">🚨</div><div><strong>Pegadinha:</strong> a <strong>transigência</strong> é a solução <span class="highlight">temporária</span> (ambos cedem um pouco); a <strong>colaboração</strong> é a solução <span class="highlight">definitiva</span> (todos ganham). A banca troca as duas.<br><br><strong>Segregação de funções no serviço público NÃO acirra conflitos</strong> — é mecanismo de clareza de responsabilidades e evita conflitos de interesses (assertiva falsa clássica).</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Negociação distributiva × integrativa (Robbins)</div></div>
+      <div class="card-title">Negociação distributiva × integrativa (Robbins)</div>
       <div class="card-text">
         <strong>Distributiva (barganha distributiva):</strong> soma-zero — o ganho de um lado é perda de igual magnitude para o outro; derrota e vitória apenas parciais; táticas <span class="highlight">competitivas</span>. Ex.: venda de carro usado, negociação salarial.<br>
         <strong>Integrativa (barganha integrativa):</strong> busca a <span class="highlight">solução ganha-ganha</span>; constrói relacionamentos de longo prazo; táticas cooperativas — preferível quando há possibilidade de acordo que beneficie todos.<br><br>
@@ -1204,7 +1224,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Tipos de conflito (Robbins)</div></div>
+      <div class="card-title">Tipos de conflito (Robbins)</div>
       <div class="card-text">
         → <strong>Conflito de tarefa:</strong> desacordo sobre o <span class="highlight">conteúdo e os objetivos</span> do trabalho<br>
         → <strong>Conflito de relacionamento:</strong> tensões pessoais e incompatibilidades entre membros — não ligadas à tarefa<br>
@@ -1214,7 +1234,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Mediação × conciliação</div></div>
+      <div class="card-title">Mediação × conciliação</div>
       <div class="card-text">
         → <strong>Conciliação:</strong> administrada por um <span class="highlight">conciliador</span> imparcial que aproxima as partes, controla as negociações e <strong>pode sugerir/formular propostas</strong> de solução<br>
         → <strong>Mediação:</strong> meio <span class="highlight">não adversarial</span>; o <strong>mediador NÃO pode opinar</strong> sobre a melhor solução — seu papel é <span class="highlight">restabelecer a comunicação</span> para que as próprias partes encontrem a solução<br><br>
@@ -1225,11 +1245,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 12 -->
   <section id="sec12" class="section">
-    <div class="section-title"><span class="tag tag-green">12</span> Incidência de temas (TEC)</div>
-    <div class="section-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
+    <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+    <div class="sec-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
 
     <div class="card" style="border-left-color:var(--red);">
-      <div class="card-header"><div class="card-icon">🔴</div><div class="card-title" style="color:var(--red);">Alta incidência — revisar primeiro</div></div>
+      <div class="card-title" style="color:var(--red);">Alta incidência — revisar primeiro</div>
       <div class="card-text">
         <strong>Alta incidência 🔴</strong><br>
         <span class="tag tag-red">Seção 8 — Liderança situacional (Hersey e Blanchard): 6</span><br>
@@ -1239,7 +1262,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card" style="border-left-color:var(--amber);">
-      <div class="card-header"><div class="card-icon">🟠</div><div class="card-title" style="color:var(--amber);">Incidência média</div></div>
+      <div class="card-title" style="color:var(--amber);">Incidência média</div>
       <div class="card-text">
         <strong>Média incidência 🟡</strong><br>
         <span class="tag tag-amber">Seção 5 — Teorias comportamentais (estilos): 2</span><br>
@@ -1250,7 +1273,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🟡</div><div class="card-title">Incidência baixa — revisão de manutenção</div></div>
+      <div class="card-title">Incidência baixa — revisão de manutenção</div>
       <div class="card-text">
         <strong>Baixa incidência ⚪</strong><br>
         <span class="tag">Seção 1 — Conceito de liderança (motivação p/ missão e visão): 1</span><br>
@@ -1265,28 +1288,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </section>
 
-</main>
+</div><!-- .main -->
 
-<script>
-(function(){
-  const sections = document.querySelectorAll('section[id]');
-  const bar = document.getElementById('bar');
-  const pct = document.getElementById('pct');
-  function update(){
-    const h = window.innerHeight;
-    let cur = 0, total = sections.length;
-    sections.forEach(s=>{
-      const r = s.getBoundingClientRect();
-      if(r.top <= h*0.6) cur++;
-    });
-    const v = Math.round((cur/total)*100);
-    bar.style.width = v+'%';
-    pct.textContent = v+'%';
-  }
-  window.addEventListener('scroll', update, {passive:true});
-  update();
-})();
-</script>
 
 
 

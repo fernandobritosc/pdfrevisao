@@ -6,7 +6,7 @@
 <title>Resumo — AP Aula 06: Motivação</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f5f4f0;
@@ -29,7 +29,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #0d9488;
+  --mat-strong: #0b7a70;
+  --mat-soft: #e6f4f2;
+  --mat-line: #b8e3de;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +44,8 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
 
 /* SIDEBAR (aula pages) */
 .aula .sidebar {
@@ -62,11 +66,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
 .aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -86,7 +90,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-color: #43506b;
 }
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -102,9 +106,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .sidebar h3, .aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--ink);
@@ -121,8 +125,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
   gap: .35rem;
 }
 .aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
 .aula .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -141,7 +145,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
 .aula .brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -154,32 +158,33 @@ html[data-theme="dark"] .aula .sidebar-brand {
 /* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
 .aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
 }
 .aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
 .aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.16rem;
   font-weight: 700;
   color: var(--ink);
@@ -189,7 +194,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   padding-bottom: .4rem;
   border-bottom: 2px solid var(--line-strong);
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
 .subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
 .aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
 
@@ -204,7 +209,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
 
 /* CARDS */
@@ -213,23 +218,24 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
 .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
 .card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -237,7 +243,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .25rem .6rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .78rem;
   font-weight: 600;
   text-decoration: none;
@@ -252,7 +258,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .2rem .5rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   background: #d9f2e3;
@@ -263,8 +269,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -273,7 +279,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
@@ -288,7 +294,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   margin: .85rem 0;
 }
 .mnemonic-label {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   color: var(--amber);
@@ -321,7 +327,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 7px;
   background: var(--amber);
   color: #fff;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
   font-size: 1rem;
   line-height: 1;
@@ -336,34 +342,34 @@ html[data-theme="dark"] .aula .sidebar-brand {
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
 tbody tr:last-child td { border-bottom: none; }
 
 /* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
 
 /* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
@@ -393,7 +399,7 @@ tbody tr:last-child td { border-bottom: none; }
 }
 .hl {
   background: #e8e6df;
-  border-left: 3px solid var(--blue);
+  border-left: 3px solid var(--mat);
   padding: 12px 14px;
   border-radius: 0 8px 8px 0;
   font-size: 13px;
@@ -424,7 +430,7 @@ tbody tr:last-child td { border-bottom: none; }
   width: 0%;
   transition: width .3s;
 }
-.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
 .progress-bar {
   position: fixed;
   top: 0;
@@ -437,18 +443,18 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* LEGAL BLOCK */
 .legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
   border-radius: 8px;
   padding: .7rem .9rem;
   margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .82rem;
   color: var(--text2);
   line-height: 1.55;
 }
-.legal-block strong { color: #1d3f9e; }
+.legal-block strong { color: var(--mat-strong); }
 
 /* QUESTIONS / OPTIONS */
 .question {
@@ -510,7 +516,7 @@ li { margin: 4px 0; }
 /* LANDING */
 .container { max-width: 600px; margin: 0 auto; text-align: center; }
 .container h1 {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: .5rem;
@@ -519,7 +525,7 @@ li { margin: 4px 0; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
 .back-link {
   display: inline-block;
   color: #1d3f9e;
@@ -571,6 +577,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #2dd4bf; --mat-strong: #7de0d6; --mat-soft: #0f3330; --mat-line: #14584f;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -600,9 +607,9 @@ html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
 html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
-html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] .aula .sec-num { color:#b39af5;box-shadow:none; }
 html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
-html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] tr:hover { background:rgba(179,154,245,.08); }
 html[data-theme="dark"] .question { background:#232733; }
 html[data-theme="dark"] .option { background:#232733; }
 html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
@@ -617,13 +624,13 @@ html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
 html[data-theme="dark"] .back-link { color:#a9c3ef; }
 html[data-theme="dark"] .btn { color:#17191f; }
 html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
-html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #4c3a75; }
 /* Toolbar flutuante (tema · fonte · topo) */
 .rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
 .rh-toolbar button {
   width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
   background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
   box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
   transition: transform .15s, border-color .15s;
 }
@@ -646,7 +653,7 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
 .aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
 .aula-nav a.next { text-align: right; }
 .aula-nav .aula-nav-dir {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
   color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
 }
 .aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
@@ -748,8 +755,8 @@ html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .questio
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
   padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
 #rhMarkPanel.show { display: block; }
-#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
-#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
   background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
   color: var(--text); cursor: pointer; margin-right: .3rem; }
 #rhMarkPanel button:hover { border-color: var(--blue); }
@@ -768,64 +775,47 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 </head>
 <body class="aula">
 <!-- SIDEBAR -->
-<nav class="sidebar">
-  <div>
-    <div class="sidebar-brand">📚 PDF Revisão</div>
-    <div class="sidebar-sub">Resumos estruturados</div>
+<aside class="sidebar">
+  <div class="sidebar-title">Administração Pública e Geral — Aula 06</div>
+  <div class="sidebar-sub">Motivação · Resumos estruturados</div>
   <div class="sr-box">
     <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
     <div class="sr-info"><span id="sr-count"></span><button id="sr-clear" type="button">limpar</button></div>
   </div>
-  </div>
-
-  <div class="sidebar-nav">
-    <a href="../../../index.html">← Voltar ao índice</a>
-    <a href="#sec1" class="active">1. Conceito</a>
-    <a href="#sec2">2. Intrínseca × Extrínseca</a>
-    <a href="#sec3">3. Ciclo Motivacional</a>
-    <a href="#sec4">4. Mapa das Teorias</a>
-    <a href="#sec5">5. Maslow</a>
-    <a href="#sec6">6. ERC (Alderfer)</a>
-    <a href="#sec7">7. Bifatorial (Herzberg)</a>
-    <a href="#sec8">8. Necessidades Adquiridas — McClelland</a>
-    <a href="#sec9">9. Teoria X e Y (McGregor)</a>
-    <a href="#sec10">10. Equidade (Adams)</a>
-    <a href="#sec11">11. Vroom + Locke</a>
-    <a href="#sec12">12. Autoeficácia · Cognitiva · Campo</a>
-    <a href="#sec13">13. Reforço (Skinner)</a>
-    <a href="#sec14">14. Características do Trabalho</a>
-    <a href="#sec15">15. Incidência (TEC)</a>
-  </div>
-
-  <div class="sidebar-footer">
-    <div style="font-size:.7rem;color:var(--text2);">AP Aula 06 · Motivação</div>
-  </div>
-</nav>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec2">2. Intrínseca × Extrínseca</a>
+  <a href="#sec3">3. Ciclo Motivacional</a>
+  <a href="#sec4">4. Mapa das Teorias</a>
+  <a href="#sec5">5. Maslow</a>
+  <a href="#sec6">6. ERC (Alderfer)</a>
+  <a href="#sec7">7. Bifatorial (Herzberg)</a>
+  <a href="#sec8">8. Necessidades Adquiridas — McClelland</a>
+  <a href="#sec9">9. Teoria X e Y (McGregor)</a>
+  <a href="#sec10">10. Equidade (Adams)</a>
+  <a href="#sec11">11. Vroom + Locke</a>
+  <a href="#sec12">12. Autoeficácia · Cognitiva · Campo</a>
+  <a href="#sec13">13. Reforço (Skinner)</a>
+  <a href="#sec14">14. Características do Trabalho</a>
+  <a href="#sec15">15. Incidência (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../../index.html" style="color:var(--mat-strong);font-size:.78rem;">← Voltar ao índice</a>
+</aside>
 
 <!-- MAIN -->
-<main class="main">
+<div class="main">
 
-  <!-- PROGRESS -->
-  <div class="progress-wrap">
-    <div class="progress-label">Progresso: <span id="pct">0%</span></div>
-    <div class="progress-track">
-      <div class="progress-fill" id="bar" style="width:0%"></div>
-    </div>
-  </div>
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>AP Aula 06 — Motivação</h1>
-    <p>Conceito · Ciclo motivacional · Teorias de conteúdo · Teorias de processo/conjunto</p>
-  </div>
 
   <!-- SEC 1 -->
   <section id="sec1" class="section">
-    <div class="section-title"><span class="tag tag-blue">1</span> Conceito de Motivação</div>
-    <div class="section-subtitle">Vontade de fazer algo condicionada pela satisfação de necessidades</div>
+    <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de Motivação</div>
+  </div>
+    <div class="sec-subtitle">Vontade de fazer algo condicionada pela satisfação de necessidades</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Definições de prova</div></div>
+      <div class="card-title">Definições de prova</div>
       <div class="card-text">
         <strong>Robbins (2014):</strong> motivação é <span class="highlight">"a vontade de fazer algo, condicionada pela capacidade que essa ação tem de satisfazer alguma necessidade individual"</span>.<br><br>
         <strong>Gregory et al (2002):</strong> representa <span class="highlight">"um conjunto de forças que leva as pessoas a se engajarem em algum tipo de comportamento mais do que qualquer outro comportamento alternativo"</span>.
@@ -835,7 +825,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Motivação é um processo INDIVIDUAL (não coletivo)!</strong> Cada pessoa deve encontrar a sua própria motivação.</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">3 Componentes da motivação</div></div>
+      <div class="card-title">3 Componentes da motivação</div>
       <div class="card-text">
         → <strong>Direção:</strong> para onde o esforço é canalizado<br>
         → <strong>Intensidade:</strong> quanto de esforço a pessoa emprega<br>
@@ -844,10 +834,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">DIP — a contagem certa dos componentes</div></div>
+      <div class="card-title">DIP — a contagem certa dos componentes</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> os componentes básicos da motivação são <strong>TRÊS</strong> — macete <span class="highlight">DIP</span>: Direção · Intensidade · Persistência<br><br>
-        → ⚠️ <strong>Fundamento:</strong>item que diz "dois componentes: direção e intensidade" está <strong>errado</strong> — a banca omite justamente a Persistência para invalidar. Se faltar qualquer um dos três, o item cai.<br><br>
+        → ⚠️ <strong>Fundamento:</strong> item que diz "dois componentes: direção e intensidade" está <strong>errado</strong> — a banca omite justamente a Persistência para invalidar. Se faltar qualquer um dos três, o item cai.<br><br>
         ⚖️ <strong>Referência:</strong> CHIAVENATO. <em>Introdução à Teoria Geral da Administração</em>. 7. ed. Elsevier, 2003.
       </div>
     </div>
@@ -855,8 +845,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 2 -->
   <section id="sec2" class="section">
-    <div class="section-title"><span class="tag tag-blue">2</span> Intrínseca × Extrínseca · Motivação × Desempenho</div>
-    <div class="section-subtitle">Origem interna ou externa · desempenho vai além da motivação</div>
+    <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Intrínseca × Extrínseca · Motivação × Desempenho</div>
+  </div>
+    <div class="sec-subtitle">Origem interna ou externa · desempenho vai além da motivação</div>
 
     <div class="table-wrap">
       <table>
@@ -869,7 +862,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📈</div><div class="card-title">Motivação × Desempenho — o tripé</div></div>
+      <div class="card-title">Motivação × Desempenho — o tripé</div>
       <div class="card-text">
         O desempenho é resultado do tripé:<br>
         → <strong>Motivação:</strong> fator <span class="highlight">necessário, mas NÃO suficiente</span> para o bom desempenho<br>
@@ -881,24 +874,24 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>A formulação clássica: "a motivação é fator <span class="highlight">necessário e suficiente</span>" para o bom desempenho — <strong>ERRADA</strong>. Motivação é necessária, mas não basta: sem competências (CHA) ou em ambiente desfavorável, mesmo o profissional motivado tem desempenho prejudicado.</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Liderança × motivação — a relação direta existe</div></div>
+      <div class="card-title">Liderança × motivação — a relação direta existe</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> mesmo sendo um processo <strong>intrínseco</strong> ao indivíduo, a motivação pode ser acionada por estímulos externos — logo, <strong>é possível estabelecer relação direta</strong> entre o estado de motivação do indivíduo e o estilo/atuação da sua <span class="highlight">liderança</span>: o líder pode estimular, engajar e motivar<br><br>
         → Grupos de motivos que influenciam o desempenho (Maximiano): os <strong>internos</strong> (intrínsecos à pessoa) e os <strong>externos</strong> (oferecidos pelo ambiente/organização — incentivos, recompensas, liderança)<br><br>
-        → ⚠️ <strong>Atenção:</strong>dizer que a liderança não se relaciona com a motivação sob o argumento de ser ela "processo intrínseco" está errado — intrínseco <strong>não</strong> significa imune a influência externa.<br><br>
+        → ⚠️ <strong>Atenção:</strong> dizer que a liderança não se relaciona com a motivação sob o argumento de ser ela "processo intrínseco" está errado — intrínseco <strong>não</strong> significa imune a influência externa.<br><br>
         ⚖️ <strong>Referência:</strong> MAXIMIANO. <em>Introdução à administração</em>. 5. ed. Atlas, 2000.
       </div>
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Modelo de motivação intrínseca — Kenneth Thomas</div></div>
+      <div class="card-title">Modelo de motivação intrínseca — Kenneth Thomas</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> o modelo de Thomas descreve a motivação intrínseca por meio de quatro noções:<br>
         → <strong>Significação:</strong> o objetivo da tarefa é importante e significativo<br>
         → <strong>Escolha:</strong> capacidade de usar julgamento e liberdade quando se completam tarefas<br>
         → <strong>Competência:</strong> sentimentos de realização associados à execução de um trabalho de alta qualidade<br>
         → <strong>Progresso:</strong> sentimento de que se está realizando alguma coisa importante e de que a tarefa está avançando<br><br>
-        → ⚠️ <strong>Não confundir:</strong>os sentimentos de realização ligados à execução de um trabalho de alta qualidade pertencem à noção de <span class="highlight">Competência</span> — não à noção de Significação, que trata apenas da importância/significado do objetivo da tarefa.<br><br>
+        → ⚠️ <strong>Não confundir:</strong> os sentimentos de realização ligados à execução de um trabalho de alta qualidade pertencem à noção de <span class="highlight">Competência</span> — não à noção de Significação, que trata apenas da importância/significado do objetivo da tarefa.<br><br>
         ⚖️ <strong>Referência:</strong> THOMAS apud KINICKI; KREITNER. <em>Comportamento Organizacional</em>. 6. ed. McGraw-Hill, 2006.
       </div>
     </div>
@@ -906,11 +899,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 3 -->
   <section id="sec3" class="section">
-    <div class="section-title"><span class="tag tag-blue">3</span> Ciclo Motivacional — Chiavenato</div>
-    <div class="section-subtitle">O comportamento humano é uma sequência contínua e incessante de ciclos</div>
+    <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Ciclo Motivacional — Chiavenato</div>
+  </div>
+    <div class="sec-subtitle">O comportamento humano é uma sequência contínua e incessante de ciclos</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🔄</div><div class="card-title">As etapas do ciclo</div></div>
+      <div class="card-title">As etapas do ciclo</div>
       <div class="card-text">
         → <strong>Estado de Equilíbrio:</strong> ponto de partida — o indivíduo está tranquilo, em equilíbrio interno, sem necessidade ativa (repouso do ciclo).<br><br>
         → <strong>Estímulo ou Incentivo:</strong> algo externo ou interno acontece e desperta uma necessidade que antes não existia.<br><br>
@@ -935,19 +931,22 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Chiavenato:</strong> após o ciclo se completar, desencadeiam-se novos ciclos, indefinidamente — o comportamento individual é uma <span class="highlight">contínua e incessante sequência de ciclos motivacionais</span>.</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Ordem das etapas — iniciais</div></div>
+      <div class="card-title">Ordem das etapas — iniciais</div>
       <div class="card-text"><strong>E</strong>quilíbrio → <strong>E</strong>stímulo → <strong>N</strong>ecessidade → <strong>T</strong>ensão → <strong>C</strong>omportamento → <strong>S</strong>atisfação</div>
     </div>
   </section>
 
   <!-- SEC 4 -->
   <section id="sec4" class="section">
-    <div class="section-title"><span class="tag tag-blue">4</span> Mapa das Teorias Motivacionais</div>
-    <div class="section-subtitle">Conteúdo explica "O QUÊ" motiva · Processo explica "COMO" ocorre</div>
+    <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Mapa das Teorias Motivacionais</div>
+  </div>
+    <div class="sec-subtitle">Conteúdo explica "O QUÊ" motiva · Processo explica "COMO" ocorre</div>
 
-    <div class="grid grid-2">
+    <div class="grid">
       <div class="card">
-        <div class="card-header"><div class="card-icon">📦</div><div class="card-title">Teorias de CONTEÚDO — "O QUE" motiva</div></div>
+        <div class="card-title">Teorias de CONTEÚDO — "O QUE" motiva</div>
         <div class="card-text">
           Buscam explicar <span class="highlight">o que</span> motiva o indivíduo:<br>
           → Hierarquia das Necessidades (<strong>Maslow</strong>)<br>
@@ -958,7 +957,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         </div>
       </div>
       <div class="card">
-        <div class="card-header"><div class="card-icon">⚙️</div><div class="card-title">Teorias de PROCESSO — "COMO" ocorre</div></div>
+        <div class="card-title">Teorias de PROCESSO — "COMO" ocorre</div>
         <div class="card-text">
           Buscam explicar <span class="highlight">como</span> o processo de motivação ocorre:<br>
           → Equidade / Justiça Organizacional (<strong>Adams</strong>)<br>
@@ -974,11 +973,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 5 -->
   <section id="sec5" class="section">
-    <div class="section-title"><span class="tag tag-amber">5</span> Hierarquia das Necessidades — Maslow</div>
-    <div class="section-subtitle">Pirâmide: satisfação nível a nível, de baixo para cima</div>
+    <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Hierarquia das Necessidades — Maslow</div>
+  </div>
+    <div class="sec-subtitle">Pirâmide: satisfação nível a nível, de baixo para cima</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Os 5 níveis (da base para o topo)</div></div>
+      <div class="card-title">Os 5 níveis (da base para o topo)</div>
       <div class="card-text">
         → <strong>Fisiológicas:</strong> necessidades básicas do indivíduo (alimento, água, sono etc.)<br>
         → <strong>Segurança:</strong> estar livre de perigos "físicos" e "psicológicos"<br>
@@ -996,7 +998,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         → <strong>Princípio básico:</strong> o ser humano é motivado por necessidades <span class="highlight">não satisfeitas</span> — uma necessidade já satisfeita deixa de ser fonte de motivação</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Base para o topo — iniciais</div></div>
+      <div class="card-title">Base para o topo — iniciais</div>
       <div class="card-text"><strong>F</strong>isiológicas · <strong>S</strong>egurança · <strong>S</strong>ociais · <strong>E</strong>stima · <strong>A</strong>utorrealização</div>
     </div>
 
@@ -1006,7 +1008,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         Para Lacombe e Heilborn, a hierarquia representa uma <span class="highlight">tendência média</span>, não uma escala rígida — as necessidades de cada pessoa variam no tempo, em função da sua satisfação e das alterações na hierarquia de valores.</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Autorrealização na prática — o que a hierarquia exige do gestor</div></div>
+      <div class="card-title">Autorrealização na prática — o que a hierarquia exige do gestor</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> para motivar pela <strong>autorrealização</strong> (topo da pirâmide), o gestor deve saber que os colaboradores só buscam essa necessidade <strong>após satisfeitos os níveis inferiores</strong>: fisiológicas → segurança → sociais → estima.<br><br>
         → <strong>Subsistência na base:</strong> a teoria inclui as necessidades fisiológicas (subsistência) como base primária da pirâmide.<br><br>
@@ -1018,7 +1020,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Benefícios de emprego × nível da pirâmide</div></div>
+      <div class="card-title">Benefícios de emprego × nível da pirâmide</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> a hierarquia divide-se em necessidades <strong>primárias/básicas</strong> (fisiológicas e segurança) e <strong>secundárias</strong> (sociais, estima e autorrealização). Tradução de ofertas típicas de anúncio de emprego:<br><br>
         → <strong>Trabalho criativo / autonomia para realizar o trabalho:</strong> <span class="highlight">autorrealização</span> — usar o próprio potencial, desenvolvimento pessoal.<br><br>
@@ -1034,7 +1036,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Itens de trabalho × nível da pirâmide</div></div>
+      <div class="card-title">Itens de trabalho × nível da pirâmide</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> classificação de itens típicos cobrados em questões de correlação:<br>
         → <strong>Promoções / orgulho e reconhecimento:</strong> <span class="highlight">estima</span> — prestígio, reconhecimento e valorização<br>
@@ -1047,7 +1049,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Frases do colaborador × nível da pirâmide</div></div>
+      <div class="card-title">Frases do colaborador × nível da pirâmide</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> declarações típicas de engajamento traduzidas para a hierarquia de Maslow:<br><br>
         → "Eu adoro trabalhar aqui" = <span class="highlight">autorrealização</span> — amor pelo que faz, realização do próprio potencial (talento altamente engajado).<br><br>
@@ -1062,7 +1064,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Primárias × secundárias — e o que a teoria NÃO diz</div></div>
+      <div class="card-title">Primárias × secundárias — e o que a teoria NÃO diz</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> divisão oficial dos níveis: <strong>primárias</strong> = fisiológicas e segurança; <strong>secundárias</strong> = sociais, estima e <span class="highlight">autorrealização</span> — chamar a autorrealização de necessidade "primária" ou de "mais importante" invalida o item.<br><br>
         → Não há ranking de importância: satisfeito um nível inferior, o seguinte <span class="highlight">passa a dominar o comportamento</span>.<br><br>
@@ -1076,7 +1078,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Premissas clássicas — saúde, comportamento e gestão</div></div>
+      <div class="card-title">Premissas clássicas — saúde, comportamento e gestão</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> três premissas de Maslow (Maximiano) cobradas em lista:<br>
         → Quanto mais <span class="highlight">elevado</span> o nível das necessidades, mais <strong>saudável</strong> a pessoa é — Maslow estudou pessoas saudáveis e bem-sucedidas para mapear o potencial humano<br>
@@ -1089,11 +1091,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 6 -->
   <section id="sec6" class="section">
-    <div class="section-title"><span class="tag tag-amber">6</span> Teoria ERC — Alderfer</div>
-    <div class="section-subtitle">Existência · Relacionamento · Crescimento — podem ser ativadas simultaneamente</div>
+    <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Teoria ERC — Alderfer</div>
+  </div>
+    <div class="sec-subtitle">Existência · Relacionamento · Crescimento — podem ser ativadas simultaneamente</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Os 3 grupos (e a tradução a partir de Maslow)</div></div>
+      <div class="card-title">Os 3 grupos (e a tradução a partir de Maslow)</div>
       <div class="card-text">
         → <strong>Existência:</strong> necessidades fisiológicas + necessidades de segurança, de Maslow<br>
         → <strong>Relacionamento:</strong> necessidades sociais + fatores externos das necessidades de estima, de Maslow<br>
@@ -1116,7 +1121,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Frustração-regressão — o diferencial da ERC</div></div>
+      <div class="card-title">Frustração-regressão — o diferencial da ERC</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> conceito que distingue a ERC de Maslow: quando uma necessidade <strong>mais elevada não pode ser satisfeita</strong>, o indivíduo <span class="highlight">regride</span> e passa a buscar com mais força uma necessidade <strong>inferior</strong><br><br>
         → Ex.: bloqueado no crescimento (sem oportunidades de desenvolvimento), o funcionário volta o foco aos relacionamentos no trabalho (necessidade de relacionamento)<br>
@@ -1128,16 +1133,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 7 -->
   <section id="sec7" class="section">
-    <div class="section-title"><span class="tag tag-amber">7</span> Teoria Bifatorial — Herzberg</div>
-    <div class="section-subtitle">Fatores motivacionais geram satisfação · higiênicos evitam insatisfação</div>
+    <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Teoria Bifatorial — Herzberg</div>
+  </div>
+    <div class="sec-subtitle">Fatores motivacionais geram satisfação · higiênicos evitam insatisfação</div>
 
-    <div class="grid grid-2">
+    <div class="grid">
       <div class="card">
-        <div class="card-header"><div class="card-icon">⭐</div><div class="card-title">Fatores Motivacionais — satisfacientes</div></div>
+        <div class="card-title">Fatores Motivacionais — satisfacientes</div>
         <div class="card-text">Relacionados ao <strong>trabalho em si</strong> e aos <strong>aspectos pessoais</strong> de realização profissional — são <span class="highlight">intrínsecos</span>, inerentes à pessoa (gosto pelo trabalho, aumento de conhecimento e responsabilidade). Influenciam a satisfação, produzindo <strong>efeito duradouro</strong>.</div>
       </div>
       <div class="card">
-        <div class="card-header"><div class="card-icon">🧹</div><div class="card-title">Fatores Higiênicos — insatisfacientes</div></div>
+        <div class="card-title">Fatores Higiênicos — insatisfacientes</div>
         <div class="card-text">Fatores <strong>externos</strong>, relativos ao <strong>ambiente de trabalho</strong> (tipo de supervisão, salário, status). Influenciam a insatisfação; mesmo quando ótimos, apenas a <strong>evitam</strong> — não elevam substancial e duradouramente a satisfação.</div>
       </div>
     </div>
@@ -1155,7 +1163,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>A teoria tem <span class="highlight">DUAS escalas independentes</span>, não uma só: o contrário de satisfação <strong>não</strong> é insatisfação — é <strong>ausência de satisfação</strong>; o contrário de insatisfação é <strong>ausência de insatisfação</strong>.<br><br>Motivacionais mexem só na escala da satisfação (presentes → satisfação; ausentes → neutro). Higiênicos mexem só na escala da insatisfação (presentes → neutro; ausentes → insatisfação).<br><br>Consequência: salário alto <strong>nunca</strong> gera satisfação — no máximo evita a insatisfação.</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Os pares que a banca troca</div></div>
+      <div class="card-title">Os pares que a banca troca</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> fixar as equivalências exatas da teoria bifatorial:<br><br>
         → A Teoria dos Dois Fatores (Herzberg) é uma teoria de <strong>CONTEÚDO</strong> — responde "o quê" motiva, ao lado de Maslow, Alderfer, McClelland e McGregor (não é de processo, que responde "como" a motivação ocorre).<br><br>
@@ -1168,7 +1176,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Classificação de exemplo — o que é o quê</div></div>
+      <div class="card-title">Classificação de exemplo — o que é o quê</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> classificar fator de Herzberg pelo critério <strong>conteúdo do trabalho (intrínseco) × ambiente de trabalho (extrínseco)</strong>:<br><br>
         → <strong>Motivacionais (satisfacientes):</strong> responsabilidade, crescimento (perspectiva de evolução), realização profissional, reconhecimento, gosto pelo trabalho, aumento de conhecimento.<br><br>
@@ -1184,11 +1192,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 8 -->
   <section id="sec8" class="section">
-    <div class="section-title"><span class="tag tag-amber">8</span> Necessidades Adquiridas — McClelland</div>
-    <div class="section-subtitle">Realização · Poder · Afiliação — e quem vira bom gestor</div>
+    <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Necessidades Adquiridas — McClelland</div>
+  </div>
+    <div class="sec-subtitle">Realização · Poder · Afiliação — e quem vira bom gestor</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">As 3 necessidades</div></div>
+      <div class="card-title">As 3 necessidades</div>
       <div class="card-text">
         → <strong>Necessidade de Realização:</strong> necessidade de alcançar o sucesso — o objetivo principal do indivíduo é a realização pessoal (e <strong>não</strong> a recompensa pelo sucesso em si)<br>
         → <strong>Necessidade de Poder:</strong> necessidade de controlar e influenciar as pessoas — fazer com que se comportem de maneira que <span class="highlight">não o fariam naturalmente</span><br>
@@ -1198,13 +1209,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       </div>
     </div>
 
-    <div class="grid grid-2">
+    <div class="grid">
       <div class="card" style="border-left-color:var(--amber);">
-        <div class="card-header"><div class="card-icon">🎯</div><div class="card-title" style="color:var(--amber);">Alta necessidade de Realização</div></div>
+        <div class="card-title" style="color:var(--amber);">Alta necessidade de Realização</div>
         <div class="card-text">Prefere trabalhar <span class="highlight">sozinho</span>, com <span class="highlight">autonomia</span>, em atividades de bastante responsabilidade e com certo grau de risco — quer alcançar <strong>objetivos difíceis</strong> (casos complexos, de difícil solução) e ser <span class="highlight">reconhecido pela ação que realizou</span>.<br><br>Em geral, <strong>NÃO são bons líderes</strong>.</div>
       </div>
       <div class="card" style="border-left-color:var(--purple);">
-        <div class="card-header"><div class="card-icon">👔</div><div class="card-title" style="color:var(--purple);">Alta necessidade de Poder</div></div>
+        <div class="card-title" style="color:var(--purple);">Alta necessidade de Poder</div>
         <div class="card-text">Tendem a ser <span class="highlight">gestores de sucesso</span>.</div>
       </div>
     </div>
@@ -1212,7 +1223,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>Quem tem alta necessidade de realização <strong>não costuma ser bom líder</strong> (prefere trabalhar sozinho). Quem tende ao sucesso na gestão é o de alta necessidade de <strong>poder</strong>. A banca inverte os dois.</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Leitura de perfil — afiliação forte, realização fraca</div></div>
+      <div class="card-title">Leitura de perfil — afiliação forte, realização fraca</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> as necessidades adquiridas admitem <strong>grau</strong> (forte/fraca) — tradução de perfis típicos:<br><br>
         → Valorizar fortemente boas relações e proximidade com colegas = <span class="highlight">forte necessidade de afiliação</span>.<br><br>
@@ -1227,16 +1238,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 9 -->
   <section id="sec9" class="section">
-    <div class="section-title"><span class="tag tag-amber">9</span> Teoria X e Y — McGregor</div>
-    <div class="section-subtitle">Duas visões opostas do trabalhador</div>
+    <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Teoria X e Y — McGregor</div>
+  </div>
+    <div class="sec-subtitle">Duas visões opostas do trabalhador</div>
 
-    <div class="grid grid-2">
+    <div class="grid">
       <div class="card" style="border-left-color:var(--red);">
-        <div class="card-header"><div class="card-icon">❌</div><div class="card-title" style="color:var(--red);">Teoria X — pessimista</div></div>
+        <div class="card-title" style="color:var(--red);">Teoria X — pessimista</div>
         <div class="card-text">O indivíduo é <strong>naturalmente preguiçoso</strong> e possui <strong>aversão ao trabalho</strong>. Portanto, precisa ser <span class="highlight">controlado e dirigido</span>.</div>
       </div>
       <div class="card" style="border-left-color:var(--green);">
-        <div class="card-header"><div class="card-icon">✅</div><div class="card-title" style="color:var(--green);">Teoria Y — otimista</div></div>
+        <div class="card-title" style="color:var(--green);">Teoria Y — otimista</div>
         <div class="card-text">O indivíduo é <strong>naturalmente laborioso e produtivo</strong>. Portanto, é capaz de se <span class="highlight">autodirigir e autocontrolar</span>.</div>
       </div>
     </div>
@@ -1244,7 +1258,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>A banca adora inverter: <span class="highlight">X = preguiçoso/controlado</span>, <span class="highlight">Y = laborioso/autônomo</span>. Nunca o contrário. (Tema também cobrado na aula de Liderança.)</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Pressupostos opostos</div></div>
+      <div class="card-title">Pressupostos opostos</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> X e Y são conjuntos de premissas <strong>opostas</strong> sobre a natureza humana no trabalho:<br><br>
         → Teoria X: indivíduo desmotivado e preguiçoso, com aversão ao trabalho.<br><br>
@@ -1257,7 +1271,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Não confundir com outras teorias</div></div>
+      <div class="card-title">Não confundir com outras teorias</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> distinguir McGregor das teorias que a banca mistura:<br><br>
         → <strong>Reforço positivo × negativo é de Skinner, não de McGregor:</strong> a Teoria do Reforço (<strong>Skinner</strong>) explica a motivação pelo <strong>condicionamento operante</strong> — o comportamento é moldado por suas consequências: o reforço positivo <em>adiciona</em> um estímulo agradável após o comportamento desejado (elogio, bônus) para aumentá-lo; o reforço negativo <em>remove</em> um estímulo aversivo (ex.: dispensar de uma tarefa desagradável) também para aumentá-lo; a punição busca reduzir o comportamento. McGregor não trata de consequências nem de condicionamento — trata de <strong>premissas sobre a natureza humana</strong>, não de mecanismos de recompensa.<br><br>
@@ -1267,7 +1281,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Retrato completo da Teoria X</div></div>
+      <div class="card-title">Retrato completo da Teoria X</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> o retrato do trabalhador segundo a Teoria X reúne traços que os itens costumam apresentar separados — o conjunto completo exige:<br><br>
         → Evita naturalmente o trabalho (preguiçoso, aversão ao esforço), <span class="highlight">resiste a mudanças</span> — a <span class="highlight">"Hipótese da mediocridade das massas"</span>: o trabalho é um mal necessário e o trabalhador o faz para conseguir dinheiro.<br><br>
@@ -1282,7 +1296,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Estilo de gestão acoplado a cada teoria</div></div>
+      <div class="card-title">Estilo de gestão acoplado a cada teoria</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> cada visão da natureza humana vem acoplada a um estilo de administrar:<br><br>
         → Teoria X — abordagem tradicional, convicções negativas: gestão <span class="highlight">autocrática e impositiva</span>, com supervisão constante.<br><br>
@@ -1294,7 +1308,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Enquadramento teórico</div></div>
+      <div class="card-title">Enquadramento teórico</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> situar McGregor nas classificações da disciplina:<br><br>
         → A dicotomia X/Y é obra de McGregor dentro da <span class="highlight">Escola Comportamentalista</span> — que foca no estudo do comportamento humano nas organizações; não confundir com Científica (Taylor), Sistêmica ou Qualidade.<br><br>
@@ -1306,11 +1320,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 10 -->
   <section id="sec10" class="section">
-    <div class="section-title"><span class="tag tag-green">10</span> Equidade / Justiça Organizacional (Comparação Social) — Adams</div>
-    <div class="section-subtitle">Comparações sociais definem a percepção de justiça</div>
+    <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Equidade / Justiça Organizacional (Comparação Social) — Adams</div>
+  </div>
+    <div class="sec-subtitle">Comparações sociais definem a percepção de justiça</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">03 situações percebidas (relação retribuições–esforços)</div></div>
+      <div class="card-title">03 situações percebidas (relação retribuições–esforços)</div>
       <div class="card-text">
         → <strong>Inequidade Negativa:</strong> o indivíduo entende que sua relação "retribuições–esforços" é <strong>menor</strong> do que a relação dos outros<br>
         → <strong>Equidade:</strong> entende que sua relação é <strong>justa</strong>, quando comparada à relação dos outros<br>
@@ -1331,7 +1348,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Classificar o referencial — o que importa é ONDE está a comparação</div></div>
+      <div class="card-title">Classificar o referencial — o que importa é ONDE está a comparação</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> o ponto de referência define-se por duas perguntas — <strong>quem</strong> é o parâmetro (eu ou outra pessoa) e <strong>onde</strong> ocorre a experiência comparada (mesma empresa ou fora):<br><br>
         → Ex-colega de turma contratado na <strong>mesma empresa</strong>, em outra área, com salário maior = <span class="highlight">outro-interno</span> — o vínculo antigo de faculdade não torna a comparação "externa"; vale onde a pessoa trabalha hoje.<br><br>
@@ -1343,7 +1360,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🔀</div><div class="card-title">Frente à inequidade — 06 alternativas</div></div>
+      <div class="card-title">Frente à inequidade — 06 alternativas</div>
       <div class="card-text">
         → <strong>Modificar seus esforços/insumos:</strong> ajustar o próprio trabalho para que os benefícios passem a ser "compatíveis" — ex.: trabalhar menos ao sentir que recebe pouco pelo que entrega.<br><br>
         → <strong>Mudar seus resultados:</strong> agir para modificar as recompensas recebidas — ex.: pedir aumento ou promoção.<br><br>
@@ -1367,21 +1384,24 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Distributiva × processual na prática</div></div>
+      <div class="card-title">Distributiva × processual na prática</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> avaliação de desempenho <span class="highlight">não transparente</span>, em que "sempre as mesmas pessoas recebem as avaliações mais altas", gera percepção de injustiça <span class="highlight">processual</span> — a queixa é sobre <strong>como</strong> se avalia (processo), não sobre <strong>quanto</strong> cada um recebe (distribuição)<br><br>
-        → ⚠️ <strong>Fundamento:</strong>se o relato fosse sobre valores ou quantidades distribuídas de forma desigual, seria distributiva — o gatilho da processual é a falta de transparência e a repetição do resultado
+        → ⚠️ <strong>Fundamento:</strong> se o relato fosse sobre valores ou quantidades distribuídas de forma desigual, seria distributiva — o gatilho da processual é a falta de transparência e a repetição do resultado
       </div>
     </div>
   </section>
 
   <!-- SEC 11 -->
   <section id="sec11" class="section">
-    <div class="section-title"><span class="tag tag-green">11</span> Expectância — Vroom · Objetivos — Locke</div>
-    <div class="section-subtitle">Esforço → desempenho → recompensa → metas pessoais</div>
+    <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Expectância — Vroom · Objetivos — Locke</div>
+  </div>
+    <div class="sec-subtitle">Esforço → desempenho → recompensa → metas pessoais</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🔗</div><div class="card-title">As 3 relações de Vroom</div></div>
+      <div class="card-title">As 3 relações de Vroom</div>
       <div class="card-text">
         → <strong>Expectativa</strong> (esforço → desempenho): crença do funcionário de que seu esforço levará ao desempenho desejado<br>
         → <strong>Instrumentalidade</strong> (desempenho → recompensa): crença de que, atingido o desempenho esperado, receberá recompensas da empresa<br>
@@ -1390,7 +1410,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🔗</div><div class="card-title">A cadeia de Vroom — elo por elo</div></div>
+      <div class="card-title">A cadeia de Vroom — elo por elo</div>
       <div class="card-text">
         <strong>Esforço</strong> →(Expectância)→ <strong>Desempenho</strong> →(Instrumentalidade)→ <strong>Recompensa</strong> →(Valência)→ <strong>Metas pessoais</strong><br><br>
         Cada elo da corrente é uma pergunta que o funcionário responde:<br>
@@ -1402,7 +1422,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Os 3 construtos básicos — contagem e nomes oficiais</div></div>
+      <div class="card-title">Os 3 construtos básicos — contagem e nomes oficiais</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> a teoria comportamental da expectância (<strong>Victor Vroom</strong>) baseia-se em <strong>TRÊS construtos básicos</strong>: <span class="highlight">valência</span> · <span class="highlight">expectância</span> (ou expectativa) · <span class="highlight">instrumentalidade</span>. A motivação é produto das expectativas sobre as próprias habilidades de atingir resultados e do valor dado às recompensas.<br><br>
         → <strong>Mnemônico VEI:</strong> <span class="highlight">V</span>alência · <span class="highlight">E</span>xpectativa · <span class="highlight">I</span>nstrumentalidade.<br><br>
@@ -1414,7 +1434,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">Definição de Objetivos — Locke</div></div>
+      <div class="card-title">Definição de Objetivos — Locke</div>
       <div class="card-text">Objetivos que conduzem a melhores desempenhos:<br>
         → <strong>Específicos</strong><br>
         → <strong>Difíceis</strong><br>
@@ -1426,39 +1446,45 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 12 -->
   <section id="sec12" class="section">
-    <div class="section-title"><span class="tag tag-green">12</span> Autoeficácia · Avaliação Cognitiva · Campo</div>
-    <div class="section-subtitle">Três teorias curtas e muito cobradas</div>
+    <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Autoeficácia · Avaliação Cognitiva · Campo</div>
+  </div>
+    <div class="sec-subtitle">Três teorias curtas e muito cobradas</div>
 
-    <div class="grid grid-2">
+    <div class="grid">
       <div class="card">
-        <div class="card-header"><div class="card-icon">💪</div><div class="card-title">Teoria da Autoeficácia</div></div>
+        <div class="card-title">Teoria da Autoeficácia</div>
         <div class="card-text">Crença do funcionário de que ele <strong>é capaz</strong> de desempenhar determinada tarefa. Quanto maior a autoeficácia, <span class="highlight">maior a motivação</span> e melhores os desempenhos.<br><br>A motivação para a tarefa está ligada à crença de concluí-la com sucesso — e uma das formas de desenvolver autoeficácia é o <span class="highlight">sucesso passado</span> (quem teve êxito antes tende a ter elevada autoeficácia).<br><br>
         → <strong>Resposta ao feedback negativo:</strong> quem tem <span class="highlight">alta</span> autoeficácia responde com mais determinação e motivação; quem tem <span class="highlight">baixa</span> autoeficácia tende a perder o empenho e a motivação<br><br>
-        → ⚠️ <strong>Distinção:</strong>"o ambiente determina o comportamento por meio de consequências" <strong>não</strong> é autoeficácia — mecanismo de consequências é a teoria do Reforço (<strong>Skinner</strong>); autoeficácia trata da crença na própria capacidade.</div>
+        → ⚠️ <strong>Distinção:</strong> "o ambiente determina o comportamento por meio de consequências" <strong>não</strong> é autoeficácia — mecanismo de consequências é a teoria do Reforço (<strong>Skinner</strong>); autoeficácia trata da crença na própria capacidade.</div>
       </div>
       <div class="card">
-        <div class="card-header"><div class="card-icon">🎁</div><div class="card-title">Teoria da Avaliação Cognitiva</div></div>
+        <div class="card-title">Teoria da Avaliação Cognitiva</div>
         <div class="card-text">A introdução de <strong>recompensas externas</strong> para trabalhos que antes eram gratificantes simplesmente pelo conteúdo <span class="highlight">tende a DIMINUIR a motivação</span>.</div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🌐</div><div class="card-title">Teoria de Campo — Lewin</div></div>
+      <div class="card-title">Teoria de Campo — Lewin</div>
       <div class="card-text">O comportamento humano é derivado da <strong>totalidade dos fatos coexistentes</strong> — ou seja, resulta da <span class="highlight">interação entre a pessoa e o "meio ambiente"</span> em que ela está inserida.<br><br>
       → <strong>Valências positivas:</strong> tendem a <span class="highlight">atrair</span> o indivíduo<br>
       → <strong>Valências negativas:</strong> campo dinâmico de forças que <span class="highlight">afasta</span> o indivíduo (repulsa, fuga, desprazer, aversão) — o inverso das positivas<br>
       → As valências são influenciadas pela <strong>percepção</strong> que o indivíduo tem do objeto ou da pessoa, bem como por suas <strong>necessidades e motivações</strong><br><br>
-      → ⚠️ <strong>Fundamento:</strong>valência negativa <strong>não</strong> é vetor de punição aplicado pela organização — é a relação do <strong>indivíduo com a coisa/situação</strong>, não punição deliberada (Skinner)</div>
+      → ⚠️ <strong>Fundamento:</strong> valência negativa <strong>não</strong> é vetor de punição aplicado pela organização — é a relação do <strong>indivíduo com a coisa/situação</strong>, não punição deliberada (Skinner)</div>
     </div>
   </section>
 
   <!-- SEC 13 -->
   <section id="sec13" class="section">
-    <div class="section-title"><span class="tag tag-green">13</span> Teoria do Reforço / Ambiente — Skinner</div>
-    <div class="section-subtitle">Consequências passadas moldam comportamentos futuros</div>
+    <div class="sec-header">
+    <div class="sec-num">13</div>
+    <div class="sec-title">Teoria do Reforço / Ambiente — Skinner</div>
+  </div>
+    <div class="sec-subtitle">Consequências passadas moldam comportamentos futuros</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Ideia central</div></div>
+      <div class="card-title">Ideia central</div>
       <div class="card-text">Busca entender como as <strong>consequências</strong> (positivas ou negativas) geradas por comportamentos "passados" influenciam os <strong>comportamentos futuros</strong>.<br><br>
       → <strong>Fundamento — Lei do Efeito (Thorndyke):</strong> comportamento que gera resultado <strong>agradável</strong> tende a <strong>se repetir</strong>; comportamento que gera resultado <strong>desagradável</strong> tende a <strong>não se repetir</strong>. A Teoria do Reforço desconsidera os aspectos internos do indivíduo (o que acontece "dentro" da pessoa) — apenas o comportamento em resposta ao estímulo ambiental: é o <strong>ambiente que determina o comportamento</strong>.</div>
     </div>
@@ -1474,7 +1500,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">As 4 definições</div></div>
+      <div class="card-title">As 4 definições</div>
       <div class="card-text">
         → <strong>Reforço Positivo:</strong> comportamento desejável seguido de uma <strong>consequência positiva</strong><br>
         → <strong>Reforço Negativo:</strong> comportamento desejável seguido da <strong>retirada de uma consequência negativa</strong><br>
@@ -1490,18 +1516,21 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         → O reforço negativo também aparece como <span class="highlight">"aprendizado da abstenção"</span>: o funcionário comporta-se como desejado para EVITAR situação desagradável — ex.: supervisor não critica nem sanciona quem passou a chegar no horário; remover o estímulo aversivo fortalece o comportamento e não é punição</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Matriz 2×2 — resumo</div></div>
+      <div class="card-title">Matriz 2×2 — resumo</div>
       <div class="card-text">Desejável + acrescenta = <span class="tag tag-green">R+</span> · Desejável + retira = <span class="tag tag-green">R−</span> · Indesejável + acrescenta = <span class="tag tag-red">Punição</span> · Indesejável + retira = <span class="tag tag-red">Extinção</span></div>
     </div>
   </section>
 
   <!-- SEC 14 -->
   <section id="sec14" class="section">
-    <div class="section-title"><span class="tag tag-green">14</span> Características do Trabalho — Hackman e Oldham (MCT)</div>
-    <div class="section-subtitle">O desenho do cargo determina a motivação — dimensões centrais, estados críticos e estratégias de redesenho</div>
+    <div class="sec-header">
+    <div class="sec-num">14</div>
+    <div class="sec-title">Características do Trabalho — Hackman e Oldham (MCT)</div>
+  </div>
+    <div class="sec-subtitle">O desenho do cargo determina a motivação — dimensões centrais, estados críticos e estratégias de redesenho</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Ideia central e os 3 estados psicológicos críticos</div></div>
+      <div class="card-title">Ideia central e os 3 estados psicológicos críticos</div>
       <div class="card-text">
         O <strong>MCT (modelo das características do trabalho)</strong>, de <strong>Hackman e Oldham</strong>, concentra-se nas <span class="highlight">propriedades motivacionais específicas dos cargos</span>: quanto mais o trabalho é desenhado com certas características essenciais, maiores a motivação, a satisfação e a produtividade. No centro da teoria estão os <strong>estados psicológicos críticos</strong>, que determinam a extensão em que as características do cargo aumentam as respostas dos funcionários à tarefa:<br>
         → <strong>Experiência do significado do trabalho:</strong> perceber o próprio trabalho como importante e valioso<br>
@@ -1512,7 +1541,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">As 5 dimensões centrais (tangíveis)</div></div>
+      <div class="card-title">As 5 dimensões centrais (tangíveis)</div>
       <div class="card-text">
         → <strong>Variedade de habilidades:</strong> grau em que o cargo inclui uma variedade de atividades que envolvem diferentes habilidades e talentos<br>
         → <strong>Identidade da tarefa:</strong> grau em que o cargo requer a conclusão do trabalho como um todo e de seus segmentos identificáveis<br>
@@ -1523,7 +1552,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">As 5 dimensões — iniciais (VISAR)</div></div>
+      <div class="card-title">As 5 dimensões — iniciais (VISAR)</div>
       <div class="card-text"><strong>V</strong>ariedade · <strong>I</strong>dentidade · <strong>S</strong>ignificado · <strong>A</strong>utonomia · <strong>R</strong>etorno → <strong>VISAR</strong></div>
     </div>
 
@@ -1541,7 +1570,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧩</div><div class="card-title">Trabalho repetitivo + falta de feedback — a estratégia que resolve os dois</div></div>
+      <div class="card-title">Trabalho repetitivo + falta de feedback — a estratégia que resolve os dois</div>
       <div class="card-text">
         📌 <strong>Aprendizado:</strong> quando a equipe convive com trabalho repetitivo (aplicação sempre das mesmas capacidades) e ausência de feedback claro sobre o trabalho, a iniciativa adequada pelo MCT é <strong>estabelecer relação com os clientes</strong> — ela ataca os dois problemas ao mesmo tempo:<br><br>
         → <strong>Feedback:</strong> o contato direto com o cliente gera <span class="highlight">retorno imediato</span> sobre o desempenho (gratidão, sugestões, questionamentos recebidos na hora).<br><br>
@@ -1558,11 +1587,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 15 -->
   <section id="sec15" class="section">
-    <div class="section-title"><span class="tag tag-green">15</span> Incidência de temas (TEC)</div>
-    <div class="section-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
+    <div class="sec-header">
+    <div class="sec-num">15</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+    <div class="sec-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🟡</div><div class="card-title">Incidência registrada</div></div>
+      <div class="card-title">Incidência registrada</div>
       <div class="card-text">
         <strong>Alta incidência 🔴</strong><br>
         <span class="tag tag-red">Seção 5 — Hierarquia das necessidades (Maslow): 21</span><br>
@@ -1586,32 +1618,12 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </section>
 
-</main>
+</div><!-- .main -->
 
-<script>
-(function(){
-  const sections = document.querySelectorAll('section[id]');
-  const bar = document.getElementById('bar');
-  const pct = document.getElementById('pct');
-  function update(){
-    const h = window.innerHeight;
-    let cur = 0, total = sections.length;
-    sections.forEach(s=>{
-      const r = s.getBoundingClientRect();
-      if(r.top <= h*0.6) cur++;
-    });
-    const v = Math.round((cur/total)*100);
-    bar.style.width = v+'%';
-    pct.textContent = v+'%';
-  }
-  window.addEventListener('scroll', update, {passive:true});
-  update();
-})();
-</script>
 
 <!--rh:ui-->
 <nav class="aula-nav" aria-label="Navegação entre aulas">
-  <a class="prev" href="../Aula%2005/resumo-aula-05-lideranca.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 05 · Liderança ?v=AP06a</span></a>
+  <a class="prev" href="../Aula%2005/resumo-aula-05-lideranca.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 05 · Liderança</span></a>
   <a class="next" href="../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
 </nav>
 <div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">

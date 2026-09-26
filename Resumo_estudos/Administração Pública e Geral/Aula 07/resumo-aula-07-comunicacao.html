@@ -6,7 +6,7 @@
 <title>Resumo — AP Aula 07: Comunicação</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f5f4f0;
@@ -29,7 +29,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #0d9488;
+  --mat-strong: #0b7a70;
+  --mat-soft: #e6f4f2;
+  --mat-line: #b8e3de;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +44,10 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
 .aula .sidebar {
   position: fixed;
   top: 0;
@@ -60,11 +66,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
-.aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -75,8 +81,16 @@ a { color: var(--blue); }
   text-transform: uppercase;
   letter-spacing: .05em;
 }
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -92,7 +106,18 @@ a { color: var(--blue); }
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
 .aula .sidebar-nav {
   margin-top: .5rem;
   display: flex;
@@ -100,8 +125,8 @@ a { color: var(--blue); }
   gap: .35rem;
 }
 .aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
 .aula .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -110,12 +135,56 @@ a { color: var(--blue); }
   flex-direction: column;
   gap: .35rem;
 }
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
 .aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.16rem;
   font-weight: 700;
   color: var(--ink);
@@ -125,7 +194,11 @@ a { color: var(--blue); }
   padding-bottom: .4rem;
   border-bottom: 2px solid var(--line-strong);
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
 .header {
   background: var(--card);
   color: var(--ink);
@@ -136,34 +209,68 @@ a { color: var(--blue); }
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
-  margin-bottom: 1rem;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -172,11 +279,61 @@ a { color: var(--blue); }
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
 .callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
 .table-wrap {
   overflow-x: auto;
   margin: .8rem 0;
@@ -185,30 +342,34 @@ a { color: var(--blue); }
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
 tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
@@ -219,6 +380,16 @@ tbody tr:last-child td { border-bottom: none; }
 .tag-green { background: #d9f2e3; color: #0b5d3b; }
 .tag-amber { background: #fbeecb; color: #7a5412; }
 .tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
 .highlight {
   background: var(--mark);
   padding: .15rem .35rem;
@@ -226,19 +397,16 @@ tbody tr:last-child td { border-bottom: none; }
   font-weight: 700;
   color: var(--text);
 }
-.legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
-  border-radius: 8px;
-  padding: .7rem .9rem;
-  margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
-  font-size: .82rem;
-  color: var(--text2);
-  line-height: 1.55;
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--mat);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
 }
-.legal-block strong { color: #1d3f9e; }
+
+/* PROGRESS */
 .progress-wrap {
   position: sticky;
   top: 0;
@@ -262,21 +430,144 @@ tbody tr:last-child td { border-bottom: none; }
   width: 0%;
   transition: width .3s;
 }
-.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
 .footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
 .footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
   .aula .main { margin-left: 0; }
   .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
 }
 @media (max-width: 768px) {
   .header { padding: 1.5rem 1rem; }
   .header h1 { font-size: 1.4rem; }
   .aula section, .aula .section { padding: 1.25rem; }
 }
-</style>
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
 
 <style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
 html[data-theme="dark"] {
   --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
   --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
@@ -284,6 +575,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #2dd4bf; --mat-strong: #7de0d6; --mat-soft: #0f3330; --mat-line: #14584f;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -291,25 +583,64 @@ html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;
 html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
 html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
 html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
 html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
 html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
 html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
 html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
 html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#b39af5;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(179,154,245,.08); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
 html[data-theme="dark"] .legal-block { background:#262a33; }
 html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
-html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #4c3a75; }
+/* Toolbar flutuante (tema · fonte · topo) */
 .rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
 .rh-toolbar button {
   width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
   background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
   box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
   transition: transform .15s, border-color .15s;
 }
 .rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
 .rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
 .rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
 .aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
 .aula .aula-nav { margin-left: 260px; max-width: 960px; }
 .aula-nav a {
@@ -320,7 +651,7 @@ html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
 .aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
 .aula-nav a.next { text-align: right; }
 .aula-nav .aula-nav-dir {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
   color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
 }
 .aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
@@ -331,16 +662,103 @@ html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
 }
 @page { margin: 1.2cm; }
 @media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
   body { background: #fff !important; color: #1f2733 !important; }
   .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
   .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
   a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
 }
-html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap { display: none; }
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
 html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
-html.rh-rev .table-wrap.rev-open { display: block; }
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
 .rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
 .rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
 </style>
 <script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
 
@@ -355,59 +773,42 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 </head>
 <body class="aula">
 <!-- SIDEBAR -->
-<nav class="sidebar">
-  <div>
-    <div class="sidebar-brand">📚 PDF Revisão</div>
-    <div class="sidebar-sub">Resumos estruturados</div>
+<aside class="sidebar">
+  <div class="sidebar-title">Administração Pública e Geral — Aula 07</div>
+  <div class="sidebar-sub">Comunicação · Resumos estruturados</div>
   <div class="sr-box">
     <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
     <div class="sr-info"><span id="sr-count"></span><button id="sr-clear" type="button">limpar</button></div>
   </div>
-  </div>
-
-  <div class="sidebar-nav">
-    <a href="../../../index.html">← Voltar ao índice</a>
-    <a href="#sec1" class="active">1. Conceito e Funções</a>
-    <a href="#sec2">2. Processo de Comunicação</a>
-    <a href="#sec3">3. Eficiente × Eficaz</a>
-    <a href="#sec4">4. Barreiras</a>
-    <a href="#sec5">5. Meios — Ricos × Pobres</a>
-    <a href="#sec6">6. Tipos e Métodos</a>
-    <a href="#sec7">7. Fluxos de Direção</a>
-    <a href="#sec8">8. Redes de Comunicação</a>
-    <a href="#sec9">9. Comunicação Pública</a>
-    <a href="#sec10">10. Incidência (TEC)</a>
-  </div>
-
-  <div class="sidebar-footer">
-    <div style="font-size:.7rem;color:var(--text2);">AP Aula 07 · Comunicação</div>
-  </div>
-</nav>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec2">2. Processo de Comunicação</a>
+  <a href="#sec3">3. Eficiente × Eficaz</a>
+  <a href="#sec4">4. Barreiras</a>
+  <a href="#sec5">5. Meios — Ricos × Pobres</a>
+  <a href="#sec6">6. Tipos e Métodos</a>
+  <a href="#sec7">7. Fluxos de Direção</a>
+  <a href="#sec8">8. Redes de Comunicação</a>
+  <a href="#sec9">9. Comunicação Pública</a>
+  <a href="#sec10">10. Incidência (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../../index.html" style="color:var(--mat-strong);font-size:.78rem;">← Voltar ao índice</a>
+</aside>
 
 <!-- MAIN -->
-<main class="main">
+<div class="main">
 
-  <!-- PROGRESS -->
-  <div class="progress-wrap">
-    <div class="progress-label">Progresso: <span id="pct">0%</span></div>
-    <div class="progress-track">
-      <div class="progress-fill" id="bar" style="width:0%"></div>
-    </div>
-  </div>
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>AP Aula 07 — Comunicação</h1>
-    <p>Administração Geral e Pública · funções, processo, barreiras, canais, fluxos, redes e comunicação pública</p>
-  </div>
 
   <!-- SEC 1 -->
   <section id="sec1" class="section">
-    <div class="section-title"><span class="tag tag-blue">1</span> Conceito e Funções</div>
-    <div class="section-subtitle">Transmissão + compreensão · ligada à Direção · 4 funções de Chiavenato</div>
+    <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito e Funções</div>
+  </div>
+    <div class="sec-subtitle">Transmissão + compreensão · ligada à Direção · 4 funções de Chiavenato</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Definições de prova</div></div>
+      <div class="card-title">Definições de prova</div>
       <div class="card-text">
         <strong>Chiavenato:</strong> comunicar é tornar <span class="highlight">"algo" comum</span> (mensagem, notícia, informação, significado) — <span class="highlight">"uma ponte que transporta esse algo de uma pessoa para outra ou de uma organização para outra"</span>.<br><br>
         <strong>Robbins:</strong> <span class="highlight">"transferência e compreensão de significado"</span> — transmitir <strong>não basta</strong>: sem compreensão não há comunicação (ex.: japonês falando com quem não fala japonês).
@@ -417,7 +818,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Comunicação = transmissão (emissor) + compreensão (destinatário).</strong> Ligada sobretudo à função <strong>Direção</strong> (motivar e liderar), mas presente em planejamento, organização e controle.</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🏢</div><div class="card-title">Organizacional × Interpessoal</div></div>
+      <div class="card-title">Organizacional × Interpessoal</div>
       <div class="card-text">
         → <strong>Organizacional interna:</strong> empresa → funcionários — alinha o time com informações sobre a própria empresa (sem ela, cada um trabalha no escuro)<br>
         → <strong>Organizacional externa:</strong> empresa → outras empresas e público externo (clientes, fornecedores) — cuida da imagem e das relações de mercado<br>
@@ -426,7 +827,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title">Organizacional integrada — 4 tipos (Kunsch)</div></div>
+      <div class="card-title">Organizacional integrada — 4 tipos (Kunsch)</div>
       <div class="card-text">
         → <strong>Institucional:</strong> melhora a <strong>imagem</strong> perante sociedade, consumidores e investidores (gestão estratégica de RP).<br><br>
         → <strong>Administrativa:</strong> transmite os <strong>dados administrativos</strong> a todos os setores — amarra planejar, organizar, dirigir e controlar.<br><br>
@@ -436,7 +837,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🎯</div><div class="card-title">4 Funções (Chiavenato)</div></div>
+      <div class="card-title">4 Funções (Chiavenato)</div>
       <div class="card-text">
         → <strong>Controle:</strong> molda comportamento — seguir normas/regulamentos (escrita) ou reportar problemas ao superior (verbal); sem ela, cada um age por conta própria<br>
         → <strong>Motivação:</strong> move as pessoas — orienta para objetivos, feedbacks, avaliação de desempenho, reforço do desejável<br>
@@ -448,11 +849,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 2 -->
   <section id="sec2" class="section">
-    <div class="section-title"><span class="tag tag-blue">2</span> Processo de Comunicação</div>
-    <div class="section-subtitle">Elementos · duas abordagens (banca varia!) · habilidades · receptor ambíguo</div>
+    <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Processo de Comunicação</div>
+  </div>
+    <div class="sec-subtitle">Elementos · duas abordagens (banca varia!) · habilidades · receptor ambíguo</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🔄</div><div class="card-title">Elementos (abordagem completa)</div></div>
+      <div class="card-title">Elementos (abordagem completa)</div>
       <div class="card-text">
         → <strong>Remetente/Fonte:</strong> inicia — codifica a ideia<br>
         → <strong>Mensagem:</strong> produto físico da codificação — a ideia já codificada, pronta para atravessar o canal<br>
@@ -469,7 +873,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">⚖️</div><div class="card-title">Completa × Aglutinada — as 2 abordagens da banca</div></div>
+      <div class="card-title">Completa × Aglutinada — as 2 abordagens da banca</div>
       <div class="card-text">
         → A banca varia — até Chiavenato muda entre obras. Decore a <strong>equivalência</strong>:
       </div>
@@ -493,7 +897,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">➡️</div><div class="card-title">Linear × Rede — os modelos de direção</div></div>
+      <div class="card-title">Linear × Rede — os modelos de direção</div>
       <div class="card-text">
         → <strong>Linear:</strong> via de <strong>mão única</strong> — emissor e receptor <strong>dissociados</strong>, sem feedback (ex.: TV, rádio, jornal: a mensagem flui num só sentido).<br><br>
         → <strong>Rede:</strong> o oposto — <strong>muitas direções e sentidos</strong>, atores interagindo e fazendo circular discursos e opiniões.
@@ -501,7 +905,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧠</div><div class="card-title">Habilidades e o termo "receptor"</div></div>
+      <div class="card-title">Habilidades e o termo "receptor"</div>
       <div class="card-text">
         → <strong>Codificar:</strong> escrita e fala — transformar ideia em mensagem (quem escreve/fala bem, transmite melhor)<br>
         → <strong>Decodificar:</strong> leitura e escuta — extrair o sentido da mensagem (quem lê/ouve mal, entende errado)<br>
@@ -513,8 +917,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 3 -->
   <section id="sec3" class="section">
-    <div class="section-title"><span class="tag tag-blue">3</span> Eficiente × Eficaz</div>
-    <div class="section-subtitle">Meios × objetivo (Chiavenato)</div>
+    <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Eficiente × Eficaz</div>
+  </div>
+    <div class="sec-subtitle">Meios × objetivo (Chiavenato)</div>
 
     <div class="table-wrap">
       <table>
@@ -537,13 +944,16 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 4 -->
   <section id="sec4" class="section">
-    <div class="section-title"><span class="tag tag-blue">4</span> Barreiras à Comunicação</div>
-    <div class="section-subtitle">Fontes de ruído · Robbins (9) · Chiavenato (3) · Macêdo (4 grupos) · cognitivas</div>
+    <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Barreiras à Comunicação</div>
+  </div>
+    <div class="sec-subtitle">Fontes de ruído · Robbins (9) · Chiavenato (3) · Macêdo (4 grupos) · cognitivas</div>
 
     <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Barreiras = fontes de ruído:</strong> fatores indesejados que distorcem o significado — a mensagem decodificada sai diferente da enviada.</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🔇</div><div class="card-title">Ruídos × Interferências (Escola de Palo Alto)</div></div>
+      <div class="card-title">Ruídos × Interferências (Escola de Palo Alto)</div>
       <div class="card-text">
         → <strong>Ruídos:</strong> elementos <strong>físicos e externos</strong> aos comunicadores (sala inadequada, multidão, arquitetura, interrupções como telefonemas).<br><br>
         → <strong>Interferências:</strong> <strong>internas</strong> aos comunicadores, em 3 classes:<br>
@@ -554,7 +964,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🚧</div><div class="card-title">Robbins — 9 barreiras</div></div>
+      <div class="card-title">Robbins — 9 barreiras</div>
       <div class="card-text">
         → <strong>Filtragem:</strong> emissor manipula p/ parecer favorável e <strong>evitar problemas</strong> — mostra só o positivo e omite o ruim (nota 6,0 = "maior da sala"; gerente esconde o mau desempenho)<br>
         → <strong>Percepção seletiva:</strong> o receptor vê e ouve <strong>seletivamente</strong> — filtra o mundo pelas próprias necessidades, motivações, interesses e expectativas do momento (ex.: focado num projeto, ignora o e-mail do treinamento). Na decodificação, projeta ainda valores e preconceitos (Papa na TV)<br>
@@ -569,7 +979,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🧱</div><div class="card-title">Chiavenato — 3 tipos</div></div>
+      <div class="card-title">Chiavenato — 3 tipos</div>
       <div class="card-text">
         → <strong>Pessoais:</strong> vêm de dentro — limitações, emoções, valores, crenças (preocupação, desatenção, hábitos, preconceitos, sentimentos); cada pessoa filtra o mundo pelo que carrega<br>
         → <strong>Físicas:</strong> vêm do ambiente — tudo que atrapalha materialmente a transmissão (canal congestionado, falhas mecânicas, interferências, distância)<br>
@@ -578,7 +988,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">👥</div><div class="card-title">Macêdo — por polo + cognitivas</div></div>
+      <div class="card-title">Macêdo — por polo + cognitivas</div>
       <div class="card-text">
         → <strong>No emissor:</strong> travas de quem emite — timidez, medo, dificuldade de expressão, sem carisma, destinatário/canal/momento errados, supor conhecimento prévio (escolhas ruins na origem já nascem tortas)<br>
         → <strong>No receptor:</strong> travas de quem recebe — preocupação, preconceitos, desinteresse, distração, pressa, impaciência, defensividade, desconfiança, resistência, conclusões precipitadas (a mensagem chega, mas não entra)<br>
@@ -594,11 +1004,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 5 -->
   <section id="sec5" class="section">
-    <div class="section-title"><span class="tag tag-blue">5</span> Meios — Canais Ricos × Pobres</div>
-    <div class="section-subtitle">Riqueza = nº de sinais · escolher pelo conteúdo e pelo receptor</div>
+    <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Meios — Canais Ricos × Pobres</div>
+  </div>
+    <div class="sec-subtitle">Riqueza = nº de sinais · escolher pelo conteúdo e pelo receptor</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📡</div><div class="card-title">Ricos × Pobres</div></div>
+      <div class="card-title">Ricos × Pobres</div>
       <div class="card-text">
         → <strong>Ricos:</strong> carregam <strong>múltiplos sinais ao mesmo tempo</strong> (palavra + tom de voz + gesto + expressão) — por isso a compreensão é melhor, o feedback sai na hora e a ambiguidade cai. O preço: <strong>tempo</strong> (conversa um a um) e <strong>pouca gente</strong> alcançada. Use quando for <strong>importante, complexo, ambíguo</strong> ou quando precisar ter <strong>certeza de que entenderam</strong>.<br><br>
         → <strong>Pobres:</strong> carregam <strong>poucos sinais</strong> (só o texto) — por isso são <strong>rápidos</strong>, chegam a <strong>muita gente</strong> de uma vez e <strong>ficam registrados</strong> (dá para reler, arquivar, auditar e reenviar). Use para o <strong>rotineiro e simples</strong>, que não precisa de discussão.
@@ -629,8 +1042,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 6 -->
   <section id="sec6" class="section">
-    <div class="section-title"><span class="tag tag-blue">6</span> Tipos e Métodos</div>
-    <div class="section-subtitle">Verbal × Escrita × Não-verbal · Formal × Informal (boatos)</div>
+    <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Tipos e Métodos</div>
+  </div>
+    <div class="sec-subtitle">Verbal × Escrita × Não-verbal · Formal × Informal (boatos)</div>
 
     <div class="table-wrap">
       <table>
@@ -646,7 +1062,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Robbins:</strong> as 2 mensagens top da linguagem corporal são <strong>afeição/interesse</strong> (gosta = aproxima/toca) e <strong>status relativo</strong> (superior cruza pernas; inferior desconfortável).</div></div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🤸</div><div class="card-title">5 linguagens do não-verbal</div></div>
+      <div class="card-title">5 linguagens do não-verbal</div>
       <div class="card-text">
         → <strong>Aparência física:</strong> a <strong>primeira</strong> mensagem no face a face — vestimenta, cabelo, idade, sexo mostram como a pessoa quer ser vista e tratada<br>
         → <strong>Tacêsica:</strong> o <strong>toque</strong> (e o autoque) — afeto, atração, persuasão; autotoque entrega tensão e baixa estima; varia com a cultura<br>
@@ -666,7 +1082,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🗣️</div><div class="card-title">Boatos (redes de rumores)</div></div>
+      <div class="card-title">Boatos (redes de rumores)</div>
       <div class="card-text">
         → Nascem de reação a situações <strong>importantes + ambíguas</strong> (incerteza e ansiedade) — em geral nos <strong>níveis baixos</strong>; raramente é só "fofoca".<br><br>
         → O gestor <strong>não ignora</strong>: monitora as redes informais, capta preocupações e minimiza rumores infundados.
@@ -676,11 +1092,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 7 -->
   <section id="sec7" class="section">
-    <div class="section-title"><span class="tag tag-blue">7</span> Fluxos de Direção</div>
-    <div class="section-subtitle">Vertical (desce/sobe) · Horizontal (lados) · Transversal (tudo junto)</div>
+    <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Fluxos de Direção</div>
+  </div>
+    <div class="sec-subtitle">Vertical (desce/sobe) · Horizontal (lados) · Transversal (tudo junto)</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">⬆️</div><div class="card-title">Vertical, Horizontal e Transversal</div></div>
+      <div class="card-title">Vertical, Horizontal e Transversal</div>
       <div class="card-text">
         → <strong>Descendente</strong> (cima → baixo): ordens e orientações descendo a hierarquia — tarefas, feedbacks, e-mail com novas políticas. É a via da <strong>autoridade</strong>: quanto mais níveis, mais formalização.<br><br>
         → <strong>Ascendente</strong> (baixo → cima, <em>bottom-up</em>): a base alimentando o topo — andamento, metas batidas, sugestões de melhoria, problemas e insatisfações. É a via do <strong>retorno</strong>: sem ela o chefe decide no escuro.<br><br>
@@ -690,7 +1109,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🤝</div><div class="card-title">Ajuste espontâneo — coordenar conversando</div></div>
+      <div class="card-title">Ajuste espontâneo — coordenar conversando</div>
       <div class="card-text">
         → <strong>Mecanismo mais simples</strong> de coordenação: nada além da <strong>comunicação entre os responsáveis</strong> pelas atividades, para equilibrar <strong>quantidades, tempos/velocidades e direções</strong>.<br><br>
         → Pode ser <strong>formal ou informal</strong> (na maioria, informal) — até empresa minúscula sem estrutura usa; nas complexas, <strong>complementa</strong> os demais mecanismos.
@@ -700,8 +1119,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 8 -->
   <section id="sec8" class="section">
-    <div class="section-title"><span class="tag tag-blue">8</span> Redes de Comunicação</div>
-    <div class="section-subtitle">Formais × Informais · Centralizadas × Descentralizadas</div>
+    <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Redes de Comunicação</div>
+  </div>
+    <div class="sec-subtitle">Formais × Informais · Centralizadas × Descentralizadas</div>
 
     <div class="table-wrap">
       <table>
@@ -713,7 +1135,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title">Redes entre órgãos — governo em rede</div></div>
+      <div class="card-title">Redes entre órgãos — governo em rede</div>
       <div class="card-text">
         → Redes <strong>entre órgãos governamentais e esferas</strong> servem ao <strong>alinhamento e ao compartilhamento</strong> de informações — rede reúne pessoas e instituições em torno de <strong>objetivos comuns</strong>.<br><br>
         → <strong>Governo em rede</strong> (Mintzberg): sistema <strong>interligado</strong> de relações para resolver problemas — conectar, comunicar e colaborar (exige capacidade tecnológica, RH e estrutura flexível).<br><br>
@@ -722,7 +1144,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📻</div><div class="card-title">Rede de rumores — 3 marcas (Robbins)</div></div>
+      <div class="card-title">Rede de rumores — 3 marcas (Robbins)</div>
       <div class="card-text">
         → <strong>Não controlada</strong> pela direção — nasce espontânea da necessidade de relação interpessoal, fora da cadeia de comando<br>
         → Vista como <strong>mais confiável</strong> que os comunicados da cúpula — o funcionário acredita mais no colega do que no informe oficial<br>
@@ -740,7 +1162,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🕸️</div><div class="card-title">Cadeia × Roda × Todos os canais (redes formais)</div></div>
+      <div class="card-title">Cadeia × Roda × Todos os canais (redes formais)</div>
       <div class="card-text">
         → <strong>Cadeia:</strong> segue rígido a hierarquia — cada um fala só com quem vem <strong>antes ou depois</strong> (gerente ↔ diretor ↔ supervisor). <strong>Alta precisão</strong>, velocidade <strong>moderada</strong>, liderança e satisfação <strong>moderadas</strong>. É <strong>centralizada</strong>.<br><br>
         → <strong>Roda:</strong> tudo passa pelo <strong>líder-condutor</strong> central. <strong>Alta precisão</strong> e <strong>alta velocidade</strong> — mas emergência de líder <strong>alta</strong> (dependência) e satisfação <strong>baixa</strong>. Bem <strong>centralizada</strong>.<br><br>
@@ -752,11 +1174,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 9 -->
   <section id="sec9" class="section">
-    <div class="section-title"><span class="tag tag-blue">9</span> Comunicação Pública</div>
-    <div class="section-subtitle">Matos: 4 tipos · art. 37, § 1º (impessoalidade)</div>
+    <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Comunicação Pública</div>
+  </div>
+    <div class="sec-subtitle">Matos: 4 tipos · art. 37, § 1º (impessoalidade)</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">🏛️</div><div class="card-title">4 tipos (Matos)</div></div>
+      <div class="card-title">4 tipos (Matos)</div>
       <div class="card-text">
         → Processo <strong>político de interação</strong> (expressão, interpretação, diálogo) — sinônimo de comunicação governamental.<br><br>
         → <strong>Estatal:</strong> a comunicação <strong>do Estado</strong> (normas, princípios e rotinas da comunicação social do governo).<br><br>
@@ -775,11 +1200,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- SEC 10 -->
   <section id="sec10" class="section">
-    <div class="section-title"><span class="tag tag-green">10</span> Incidência de temas (TEC)</div>
-    <div class="section-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
+    <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+    <div class="sec-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
 
     <div class="card">
-      <div class="card-header"><div class="card-icon">📊</div><div class="card-title">Incidência registrada</div></div>
+      <div class="card-title">Incidência registrada</div>
       <div class="card-text">
         <strong>Alta incidência 🔴</strong><br>
         <span class="tag tag-red">Seção 4 — Barreiras (Robbins + Palo Alto): 5</span><br>
@@ -795,28 +1223,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </section>
 
-</main>
+</div><!-- .main -->
 
-<script>
-(function(){
-  const sections = document.querySelectorAll('section[id]');
-  const bar = document.getElementById('bar');
-  const pct = document.getElementById('pct');
-  function update(){
-    const h = window.innerHeight;
-    let cur = 0, total = sections.length;
-    sections.forEach(s=>{
-      const r = s.getBoundingClientRect();
-      if(r.top <= h*0.6) cur++;
-    });
-    const v = Math.round((cur/total)*100);
-    bar.style.width = v+'%';
-    pct.textContent = v+'%';
-  }
-  window.addEventListener('scroll', update, {passive:true});
-  update();
-})();
-</script>
 
 <!--rh:ui-->
 <nav class="aula-nav" aria-label="Navegação entre aulas">

@@ -201,8 +201,10 @@ seguem este padrão** (CSS já portado no `template-sumario.html`):
   `--mat-soft`/`--mat-line` escuros) no bloco `rh-addons` e no bloco de impressão.
 - **Callouts/pegadinhas**: fundo tinted suave, faixa lateral grossa colorida por
   tipo (perigo/atenção = vermelho/âmbar), radius 12px.
-- Aulas antigas migram para este padrão quando forem tocadas (correção, questão
-  TEC ou redesign solicitado) — não é obrigatório reestilizar em massa.
+- **Migração obrigatória (regra do usuário, 25/09/2026)**: **sempre** migrar para o
+  novo padrão — toda aula antiga tocada (correção, questão TEC, revisão, qualquer
+  ajuste) é migrada ao padrão atual **na mesma alteração**; nenhuma aula permanece
+  no padrão antigo após ser editada.
 
 ## Formato de conversão de questão → conteúdo de estudo
 
