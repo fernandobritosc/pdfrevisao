@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resumos Hermes — caderno de estudos para concursos ?v=idx18</title>
+<title>Resumos Hermes — caderno de estudos para concursos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -24,13 +24,15 @@
   --amber: #d97706;
   --amber-light: #fbeecb;
   --blue: #2563eb;
+  --red: #dc2626;
+  --mat-li: #8b5cf6;
   --shadow: 0 1px 3px rgba(31,39,51,.06), 0 4px 16px rgba(31,39,51,.04);
   --shadow-hover: 0 4px 12px rgba(31,39,51,.08), 0 12px 40px rgba(31,39,51,.06);
-  --radius: 12px;
+  --radius: 14px;
   --radius-sm: 8px;
-  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
   --nav-h: 56px;
   --mat-afo: #16a34a;
   --mat-ap: #0d9488;
@@ -50,6 +52,10 @@ html[data-theme="dark"] {
   --green: #3ad29f; --green-light: #143428;
   --amber: #f0a92e; --amber-light: #38300f;
   --blue: #6ea8fe;
+  --red: #f87b7b;
+  --mat-afo: #4ade80; --mat-ap: #2dd4bf; --mat-ad: #6ea8fe; --mat-dc: #b39af5;
+  --mat-dt: #f0a92e; --mat-dpt: #f87b7b; --mat-pt: #22d3ee; --mat-inf: #93c5fd;
+  --mat-cp: #f472b6; --mat-li: #c4b0fb;
   --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
   --shadow-hover: 0 4px 12px rgba(0,0,0,.4), 0 12px 40px rgba(0,0,0,.3);
 }
@@ -132,7 +138,7 @@ a { color: var(--blue); }
 .r-item {
   display: block; background: var(--surface); border: 1px solid var(--border);
   border-radius: 10px; padding: .65rem .95rem; margin-bottom: .55rem;
-  color: var(--text); text-decoration: none; box-shadow: var(--shadow);
+  color: var(--text); text-decoration: none;
 }
 .r-item:hover { border-color: var(--blue); }
 .r-title { font-weight: 700; font-size: .9rem; }
@@ -148,7 +154,7 @@ html[data-theme="dark"] .r-snippet mark { background: #6e5a1e; color: #e6c36d; }
 }
 .stat-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1rem 1.25rem; box-shadow: var(--shadow);
+  border-radius: var(--radius); padding: 1rem 1.25rem;
 }
 .stat-card .sc-icon { font-size: 1.2rem; margin-bottom: .25rem; }
 .stat-card .sc-value {
@@ -166,10 +172,11 @@ html[data-theme="dark"] .r-snippet mark { background: #6e5a1e; color: #e6c36d; }
 /* SEÇÕES */
 .section-head {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.2rem; padding-bottom: .45rem;
+  border-bottom: 2px solid var(--border);
 }
 .section-head .sh-title {
-  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--ink);
+  font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--ink);
 }
 .section-head .sh-link {
   font-size: .78rem; font-weight: 600; color: var(--blue); text-decoration: none;
@@ -178,13 +185,22 @@ html[data-theme="dark"] .r-snippet mark { background: #6e5a1e; color: #e6c36d; }
 /* MATÉRIAS GRID */
 .materias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 .materia-card {
+  display: flex; align-items: stretch;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); overflow: hidden;
-  box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
 }
-.materia-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-.materia-card .mc-bar { height: 4px; width: 100%; }
-.materia-card .mc-body { padding: 1rem 1.15rem .9rem; }
+.materia-card:hover { border-color: var(--border-strong); }
+.materia-card[data-mat="AFO"]:hover { border-color: var(--mat-afo); }
+.materia-card[data-mat="AD"]:hover { border-color: var(--mat-ad); }
+.materia-card[data-mat="DC"]:hover { border-color: var(--mat-dc); }
+.materia-card[data-mat="AP"]:hover { border-color: var(--mat-ap); }
+.materia-card[data-mat="DT"]:hover { border-color: var(--mat-dt); }
+.materia-card[data-mat="DPT"]:hover { border-color: var(--mat-dpt); }
+.materia-card[data-mat="PT"]:hover { border-color: var(--mat-pt); }
+.materia-card[data-mat="INF"]:hover { border-color: var(--mat-inf); }
+.materia-card[data-mat="TCE-GO"]:hover { border-color: var(--amber); }
+.materia-card .mc-bar { width: 5px; flex-shrink: 0; }
+.materia-card .mc-body { padding: 1rem 1.15rem .9rem; flex: 1; min-width: 0; }
 .mc-head {
   display: flex; align-items: center; justify-content: space-between; margin-bottom: .35rem;
 }
@@ -222,7 +238,7 @@ html[data-theme="dark"] .r-snippet mark { background: #6e5a1e; color: #e6c36d; }
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
 .info-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1rem 1.25rem; box-shadow: var(--shadow);
+  border-radius: var(--radius); padding: 1rem 1.25rem;
 }
 .info-card .ic-title {
   font-family: var(--font-display); font-size: .95rem; font-weight: 700; color: var(--ink);
@@ -304,11 +320,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <!-- STATS -->
   <div class="stats-grid">
-    <div class="stat-card"><div class="sc-icon">📚</div><div class="sc-value">56</div><div class="sc-label">Aulas resumidas</div></div>
+    <div class="stat-card"><div class="sc-icon">📚</div><div class="sc-value">61</div><div class="sc-label">Aulas resumidas</div></div>
     <div class="stat-card"><div class="sc-icon">📂</div><div class="sc-value">8</div><div class="sc-label">Matérias</div></div>
-    <div class="stat-card"><div class="sc-icon">🔁</div><div class="sc-value">5</div><div class="sc-label">Revisões concluídas</div></div>
+    <div class="stat-card"><div class="sc-icon">🔁</div><div class="sc-value">26</div><div class="sc-label">Revisões concluídas</div></div>
     <div class="stat-card"><div class="sc-icon">🏛️</div><div class="sc-value">65%</div><div class="sc-label">Trilha TCE-GO</div></div>
-    <div class="stat-card"><div class="sc-icon">🕐</div><div class="sc-value date">24/09/2026 21:03</div><div class="sc-label">Última atualização · Brasília</div></div>
+    <div class="stat-card"><div class="sc-icon">🕐</div><div class="sc-value date">25/09/2026 22:02</div><div class="sc-label">Última atualização · Brasília</div></div>
   </div>
 
   <!-- MATÉRIAS -->
@@ -326,7 +342,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="mc-head">
           <span class="mc-icon">💰</span>
           <span class="mc-name" style="color:var(--mat-afo)">AFO</span>
-          <span class="mc-count">7 aulas</span>
+          <span class="mc-count">8 aulas</span>
+          <span class="mc-badge">5 revisadas</span>
         </div>
         <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-afo)"></div></div>
         <div class="mc-aulas">
@@ -350,7 +367,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <span class="mc-icon">⚖️</span>
           <span class="mc-name" style="color:var(--mat-ad)">Direito Administrativo</span>
           <span class="mc-count">9 aulas</span>
-          <span class="mc-badge">1 revisada</span>
+          <span class="mc-badge">4 revisadas</span>
         </div>
         <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-ad)"></div></div>
         <div class="mc-aulas">
@@ -375,14 +392,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <span class="mc-icon">📜</span>
           <span class="mc-name" style="color:var(--mat-dc)">Direito Constitucional</span>
           <span class="mc-count">8 aulas</span>
-          <span class="mc-badge">3 revisadas</span>
+          <span class="mc-badge">4 revisadas</span>
         </div>
         <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-dc)"></div></div>
         <div class="mc-aulas">
           <a class="mc-aula" href="Direito Constitucional/Aula 00/resumo-aula-00-natureza-conceito-interpretacao.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 00 — Natureza, Conceito e Interpretação</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
           <a class="mc-aula" href="Direito Constitucional/Aula 02/resumo-aula-02-direitos-e-deveres-art5.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 02 — Direitos e Deveres (art. 5º)</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
           <a class="mc-aula" href="Direito Constitucional/Aula 03/resumo-aula-03-direitos-e-deveres-individuais-coletivos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 03 — Direitos Individuais e Coletivos</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
-          <a class="mc-aula" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 04 — Direitos Sociais</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev none">—</span></a>
+          <a class="mc-aula" href="Direito Constitucional/Aula 04/resumo-aula-04-direitos-sociais.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 04 — Direitos Sociais</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev">🔁 25/09</span></a>
           <a class="mc-aula" href="Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 05 — Nacionalidade</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev">🔁 24/09</span></a>
           <a class="mc-aula" href="Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 06 — Direitos Políticos</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev">🔁 18/08</span></a>
           <a class="mc-aula" href="Direito Constitucional/Aula 07/resumo-aula-07-partidos-politicos.html"><span class="ma-dot" style="background:var(--mat-dc)"></span><span class="ma-name">Aula 07 — Partidos Políticos</span><span class="ma-criada">🆕 11/08</span><span class="ma-rev">🔁 18/08</span></a>
@@ -398,7 +415,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="mc-head">
           <span class="mc-icon">🏛️</span>
           <span class="mc-name" style="color:var(--mat-ap)">Administração Pública e Geral</span>
-          <span class="mc-count">7 aulas</span>
+          <span class="mc-count">8 aulas</span>
+          <span class="mc-badge">5 revisadas</span>
         </div>
         <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-ap)"></div></div>
         <div class="mc-aulas">
@@ -422,6 +440,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <span class="mc-icon">👷</span>
           <span class="mc-name" style="color:var(--mat-dt)">Direito do Trabalho</span>
           <span class="mc-count">6 aulas</span>
+          <span class="mc-badge">2 revisadas</span>
         </div>
         <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-dt)"></div></div>
         <div class="mc-aulas">
@@ -442,7 +461,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <div class="mc-head">
           <span class="mc-icon">🔨</span>
           <span class="mc-name" style="color:var(--mat-dpt)">Direito Processual do Trabalho</span>
-          <span class="mc-count">5 aulas</span>
+          <span class="mc-count">6 aulas</span>
+          <span class="mc-badge">4 revisadas</span>
         </div>
         <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-dpt)"></div></div>
         <div class="mc-aulas">
@@ -464,6 +484,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <span class="mc-icon">📝</span>
           <span class="mc-name" style="color:var(--mat-pt)">Português</span>
           <span class="mc-count">7 aulas</span>
+          <span class="mc-badge">1 revisada</span>
         </div>
         <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-pt)"></div></div>
         <div class="mc-aulas">
@@ -486,6 +507,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <span class="mc-icon">💻</span>
           <span class="mc-name" style="color:var(--mat-inf)">Informática</span>
           <span class="mc-count">7 aulas</span>
+          <span class="mc-badge">1 revisada</span>
         </div>
         <div class="mc-progress"><div class="mc-pb-fill" style="width:100%;background:var(--mat-inf)"></div></div>
         <div class="mc-aulas">
@@ -580,7 +602,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
           <a class="mc-aula" href="AFO/Aula 00/resumo-aula-00-orcamento-publico.html"><span class="ma-dot" style="background:var(--mat-afo)"></span><span class="ma-name">💰 AFO Aula 00 — Orçamento Público</span><span class="ma-criada">✅ Estudado</span></a>
           <a class="mc-aula" href="Portugu%C3%AAs/Aula%2000/resumo-aula-00-ortografia.html"><span class="ma-dot" style="background:var(--mat-pt)"></span><span class="ma-name">📝 PT Aula 00 — Ortografia</span><span class="ma-criada">✅ Estudado</span></a>
           <a class="mc-aula" href="Contabilidade Pública/Aula 00/resumo-aula-00-aspectos-introdutorios.html"><span class="ma-dot" style="background:var(--mat-cp)"></span><span class="ma-name">📝 CP Aula 00 — Aspectos Introdutórios</span><span class="ma-criada">✅ Estudado</span></a>
-          <a class="mc-aula" href="Legislação institucional - TCE/Aula 00/resumo-aula-00-administracao-publica.html"><span class="ma-dot" style="background:#8b5cf6"></span><span class="ma-name">📜 LI Aula 00 — Administração Pública</span><span class="ma-criada">✅ Estudado</span></a>
+          <a class="mc-aula" href="Legislação institucional - TCE/Aula 00/resumo-aula-00-administracao-publica.html"><span class="ma-dot" style="background:var(--mat-li)"></span><span class="ma-name">📜 LI Aula 00 — Administração Pública</span><span class="ma-criada">✅ Estudado</span></a>
           <div class="mc-aula" style="color:var(--red); cursor:default;"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">❌ Contabilidade Pública — 4 tarefas (criar aulas)</span><span class="ma-criada">Novo</span></div>
           <div class="mc-aula" style="color:var(--red); cursor:default;"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">❌ Controle Externo — exclusiva TCE (criar aulas)</span><span class="ma-criada">Novo</span></div>
           <div class="mc-aula" style="color:var(--red); cursor:default;"><span class="ma-dot" style="background:var(--red)"></span><span class="ma-name">❌ Gestão de Pessoas — exclusiva TCE (criar aulas)</span><span class="ma-criada">Novo</span></div>

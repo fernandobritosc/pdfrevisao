@@ -6,7 +6,7 @@
 <title>Resumo — DC Aula 04: Direitos Sociais</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f5f4f0;
@@ -29,7 +29,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #7c3aed;
+  --mat-strong: #6d28d9;
+  --mat-soft: #f3edfd;
+  --mat-line: #ddccf9;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +44,8 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
 
 /* SIDEBAR (aula pages) */
 .aula .sidebar {
@@ -62,11 +66,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
 .aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -86,7 +90,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-color: #43506b;
 }
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -102,9 +106,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .sidebar h3, .aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--ink);
@@ -121,8 +125,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
   gap: .35rem;
 }
 .aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
 .aula .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -141,7 +145,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
 .aula .brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -154,32 +158,33 @@ html[data-theme="dark"] .aula .sidebar-brand {
 /* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
 .aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
 }
 .aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
 .aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.16rem;
   font-weight: 700;
   color: var(--ink);
@@ -189,7 +194,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   padding-bottom: .4rem;
   border-bottom: 2px solid var(--line-strong);
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
 .subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
 .aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
 
@@ -204,7 +209,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
 
 /* CARDS */
@@ -213,23 +218,24 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
 .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
 .card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -237,7 +243,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .25rem .6rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .78rem;
   font-weight: 600;
   text-decoration: none;
@@ -252,7 +258,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .2rem .5rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   background: #d9f2e3;
@@ -263,8 +269,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -273,7 +279,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
@@ -288,7 +294,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   margin: .85rem 0;
 }
 .mnemonic-label {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   color: var(--amber);
@@ -321,7 +327,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 7px;
   background: var(--amber);
   color: #fff;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
   font-size: 1rem;
   line-height: 1;
@@ -336,34 +342,34 @@ html[data-theme="dark"] .aula .sidebar-brand {
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
 tbody tr:last-child td { border-bottom: none; }
 
 /* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
 
 /* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
@@ -393,7 +399,7 @@ tbody tr:last-child td { border-bottom: none; }
 }
 .hl {
   background: #e8e6df;
-  border-left: 3px solid var(--blue);
+  border-left: 3px solid var(--mat);
   padding: 12px 14px;
   border-radius: 0 8px 8px 0;
   font-size: 13px;
@@ -424,7 +430,7 @@ tbody tr:last-child td { border-bottom: none; }
   width: 0%;
   transition: width .3s;
 }
-.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
 .progress-bar {
   position: fixed;
   top: 0;
@@ -437,18 +443,18 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* LEGAL BLOCK */
 .legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
   border-radius: 8px;
   padding: .7rem .9rem;
   margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .82rem;
   color: var(--text2);
   line-height: 1.55;
 }
-.legal-block strong { color: #1d3f9e; }
+.legal-block strong { color: var(--mat-strong); }
 
 /* QUESTIONS / OPTIONS */
 .question {
@@ -510,7 +516,7 @@ li { margin: 4px 0; }
 /* LANDING */
 .container { max-width: 600px; margin: 0 auto; text-align: center; }
 .container h1 {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: .5rem;
@@ -519,7 +525,7 @@ li { margin: 4px 0; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
 .back-link {
   display: inline-block;
   color: #1d3f9e;
@@ -571,6 +577,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #b39af5; --mat-strong: #c9b6f2; --mat-soft: #2b2145; --mat-line: #4c3a75;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -600,9 +607,9 @@ html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
 html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
-html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] .aula .sec-num { color:#b39af5;box-shadow:none; }
 html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
-html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] tr:hover { background:rgba(179,154,245,.08); }
 html[data-theme="dark"] .question { background:#232733; }
 html[data-theme="dark"] .option { background:#232733; }
 html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
@@ -617,13 +624,13 @@ html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
 html[data-theme="dark"] .back-link { color:#a9c3ef; }
 html[data-theme="dark"] .btn { color:#17191f; }
 html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
-html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #4c3a75; }
 /* Toolbar flutuante (tema · fonte · topo) */
 .rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
 .rh-toolbar button {
   width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
   background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
   box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
   transition: transform .15s, border-color .15s;
 }
@@ -646,7 +653,7 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
 .aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
 .aula-nav a.next { text-align: right; }
 .aula-nav .aula-nav-dir {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
   color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
 }
 .aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
@@ -748,8 +755,8 @@ html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .questio
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
   padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
 #rhMarkPanel.show { display: block; }
-#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
-#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
   background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
   color: var(--text); cursor: pointer; margin-right: .3rem; }
 #rhMarkPanel button:hover { border-color: var(--blue); }
@@ -772,6 +779,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 <aside class="sidebar">
   <div class="sidebar-title">Direito Constitucional — Aula 04</div>
   <div class="sidebar-sub">Direitos Sociais · vConsolidado</div>
+  <div class="sr-box">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
   <div class="sidebar-heading">Navegação</div>
   <a href="#sec1">1. Direitos sociais: natureza e dimensão</a>
   <a href="#sec2">2. Rol do art. 6º da CF/88</a>
@@ -781,7 +792,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <a href="#sec6">6. Pontos que mais caem em prova</a>
   <a href="#sec7">7. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
-  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="../../index.html" style="color:var(--mat-strong);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-04-direitos-sociais.html" style="color:var(--green);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
   <hr class="sidebar-divider">
   <div style="font-size:.65rem;color:var(--text2);">
     Fontes: simplificado + completo + mapa mental<br>
@@ -806,9 +818,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">Conceito e natureza jurídica</div>
     <div class="card-text">
       Os direitos sociais são <strong>prestações positivas (ações)</strong> realizadas pelo Estado para melhorar a qualidade de vida dos <strong>hipossuficientes</strong> (os mais necessitados). Por isso, o Estado deve garantir acesso a educação, saúde, alimentação, trabalho, entre outros.<br><br>
-      • São <strong>direitos fundamentais de 2ª dimensão/geração</strong> (obrigação de "fazer", prestações positivas), visando concretizar a <strong>igualdade material</strong> e realizar a justiça social<br>
-      • Constituem <strong>normas de ordem pública</strong>, com característica de serem <strong>imperativas</strong> (Alexandre de Moraes)<br>
-      • <strong>Origem:</strong> crise do Estado liberal com o avanço da industrialização — a mera consagração da igualdade formal não bastava; marco: <strong>Constituição de Weimar (1919)</strong>
+      → São <strong>direitos fundamentais de 2ª dimensão/geração</strong> (obrigação de "fazer", prestações positivas), visando concretizar a <strong>igualdade material</strong> e realizar a justiça social<br>
+      → <strong>Prestações positivas e negativas:</strong> a regra é a prestação positiva (agir estatal), mas há <strong>direitos sociais de defesa</strong> (liberdades sociais — sindicalização, greve, férias, repouso semanal, limitação da jornada) que reclamam <strong>abstenção</strong> do Estado, sem depender de alocação de recursos nem de concretização legislativa<br>
+      → Constituem <strong>normas de ordem pública</strong>, com característica de serem <strong>imperativas</strong> (Alexandre de Moraes)<br>
+      → <strong>Origem:</strong> crise do Estado liberal com o avanço da industrialização — a mera consagração da igualdade formal não bastava; marco: <strong>Constituição de Weimar (1919)</strong>
     </div>
   </div>
 
@@ -816,13 +829,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">Localização na CF/88</div>
     <div class="card-text">
       Na CF/88, os direitos sociais estão relacionados principalmente nos <strong>arts. 6º a 11</strong>, mas também em outros dispositivos:<br>
-      • <strong>Art. 194</strong> — seguridade social<br>
-      • <strong>Art. 196</strong> — direito à saúde<br>
-      • <strong>Art. 205</strong> — direito à educação
+      → <strong>Art. 194</strong> — seguridade social<br>
+      → <strong>Art. 196</strong> — direito à saúde<br>
+      → <strong>Art. 205</strong> — direito à educação
     </div>
   </div>
 
-  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
     Eficácia das normas de direitos sociais
   </h3>
 
@@ -841,27 +854,34 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div><strong>Atenção:</strong> o fato é que a implementação dos direitos sociais depende de prestações positivas do Estado. Por isso, sua carga de eficácia é <strong>menor que a dos direitos de 1ª geração</strong>, que dependem essencialmente de "obrigações de não fazer" do Estado.</div>
   </div>
 
-  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
     Três princípios da concretização
   </h3>
 
-  <div class="grid grid-3">
+  <div>
     <div class="card">
-      <div class="card-title">📌 Reserva do possível</div>
+      <div class="card-title">Reserva do possível</div>
       <div class="card-text">
         O Estado efetiva os direitos sociais <strong>"na medida do financeiramente possível"</strong>. Não basta alegar falta de recursos: é preciso <strong>demonstrar objetivamente</strong> a inexistência de recursos públicos e a falta de previsão orçamentária da despesa. Dois limites: <strong>suficiência de recursos públicos</strong> + <strong>previsão orçamentária</strong>. FGV chama de <strong>reserva do possível fática</strong>.
       </div>
     </div>
     <div class="card">
-      <div class="card-title">📌 Mínimo existencial</div>
+      <div class="card-title">Mínimo existencial</div>
       <div class="card-text">
         Núcleo de prestações essenciais para uma <strong>existência digna</strong>. É <strong>limitação à reserva do possível</strong>: a reserva só pode ser alegada após garantido o mínimo existencial. Obrigação <strong>inafastável</strong> do Estado. Os gastos públicos devem priorizar o mínimo existencial.
       </div>
     </div>
     <div class="card">
-      <div class="card-title">📌 Vedação ao retrocesso</div>
+      <div class="card-title">Vedação ao retrocesso</div>
       <div class="card-text">
-        As conquistas sociais já alcançadas <strong>não podem ser desconstituídas</strong> — a proteção social não pode piorar. Para Canotilho, os direitos sociais constituem garantia institucional + direito subjetivo, limitando o legislador: são inconstitucionais medidas que anulem, revoguem ou aniquilem o <strong>núcleo essencial</strong>, sem esquemas alternativos ou compensatórios.
+        As conquistas sociais já alcançadas <strong>não podem ser desconstituídas</strong> — a proteção social não pode piorar. Para Canotilho, os direitos sociais constituem garantia institucional + direito subjetivo, limitando o legislador: são inconstitucionais medidas que anulem, revoguem ou aniquilem o <strong>núcleo essencial</strong>, sem esquemas alternativos ou compensatórios.<br><br>
+        → <strong>Outras denominações:</strong> vedação do regresso social ou efeito <em>cliquet</em> — origem na Europa (Alemanha, Portugal e Espanha), com aplicação mais frequente no âmbito dos direitos sociais<br><br>
+        → <strong>Dimensão negativa:</strong> o legislador, ao editar leis e atos normativos, deve respeitar o grau de densidade normativa já alcançado pelos direitos fundamentais sociais (na esfera constitucional ou infraconstitucional), sem suprimi-los ou reduzi-los — a supressão/redução só é legítima com esquemas alternativos ou compensatórios, evitando a piora do grau de realização<br><br>
+        → <strong>Dimensão positiva:</strong> dever de os Poderes Públicos implementarem os direitos sociais, em contínuo processo de melhoria e redução das desigualdades, promovendo o avanço social — conteúdo <strong>não acolhido pela doutrina majoritária</strong><br><br>
+        → <strong>O que se protege:</strong> o <strong>grau de efetivação</strong> dos direitos sociais, e não uma política pública específica — a política que já atingiu seu objetivo pode ser descontinuada ou substituída por outra, desde que não ocorra piora do grau de efetivação<br><br>
+        → <strong>Exemplo (Bolsa Família):</strong> o programa concretiza a renda básica familiar (art. 6º, p. único — "programa <strong>permanente</strong>" exigido pela EC 114/2021); a prestação mantida por anos <strong>incorpora-se ao patrimônio jurídico</strong> dos beneficiários — o Estado pode reformular requisitos e valores ou unificar programas, mas <strong>extingui-lo por completo</strong>, deixando as famílias na situação anterior, seria retrocesso social; quanto mais próximo do <strong>mínimo existencial</strong>, mais forte a vedação<br><br>
+        → <strong>Modificação é possível:</strong> o direito alcançado pode ser modificado ou até revertido — o que veda é a aniquilação sem contrapartida; autorização legislativa ou ampla discussão prévia, isoladamente, <strong>não</strong> legitimam a redução<br><br>
+        → <strong>Fundamento:</strong> princípio <strong>implícito</strong> (não previsto expressamente na CF/88) — deriva do objetivo fundamental de construir uma sociedade livre, justa e solidária (art. 3º, I, CF/88)
       </div>
     </div>
   </div>
@@ -874,11 +894,12 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card" style="border-color:var(--green);">
     <div class="card-title" style="color:var(--green);">Judicialização das políticas públicas — direito à saúde</div>
     <div class="card-text">
-      • O direito à saúde (art. 196) é <strong>direito público subjetivo</strong>, impondo aos entes federativos dever de atuação positiva<br>
-      • O Estado pode ser obrigado a <strong>manter estoque mínimo</strong> de medicamento usado no combate a doença grave<br>
-      • O juiz pode determinar <strong>bloqueio e sequestro de verbas públicas</strong> (STJ) — medida <strong>excepcional</strong>, só quando configurado que o Estado não cumpre a obrigação e a demora traz risco à saúde e à vida<br>
-      • Regra: não há fornecimento de medicamento <strong>sem registro na Anvisa</strong> (RE 657.718) — exceções em casos de mora irrazoável da Anvisa; ações devem ser propostas <strong>em face da União</strong><br>
-      • O Judiciário pode determinar <strong>obras emergenciais em presídios</strong> — não se invoca separação de Poderes nem reserva do possível (RE 592.581)
+      → O direito à saúde (art. 196) é <strong>direito público subjetivo</strong>, impondo aos entes federativos dever de atuação positiva<br>
+      → O Estado pode ser obrigado a <strong>manter estoque mínimo</strong> de medicamento usado no combate a doença grave<br>
+      → O juiz pode determinar <strong>bloqueio e sequestro de verbas públicas</strong> (STJ) — medida <strong>excepcional</strong>, só quando configurado que o Estado não cumpre a obrigação e a demora traz risco à saúde e à vida<br>
+      → Regra: não há fornecimento de medicamento <strong>sem registro na Anvisa</strong> (RE 657.718) — exceção: casos de mora irrazoável da Anvisa<br>
+      → Legitimidade passiva: ações devem ser propostas <strong>em face da União</strong><br>
+      → O Judiciário pode determinar <strong>obras emergenciais em presídios</strong> — não se invoca separação de Poderes nem reserva do possível (RE 592.581)
     </div>
   </div>
 </section>
@@ -896,7 +917,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Art. 6º — texto da Constituição</div>
     <div class="card-text">
-      "São direitos sociais a <strong>educação</strong>, a <strong>saúde</strong>, a <strong>alimentação</strong>, o <strong>trabalho</strong>, a <strong>moradia</strong>, o <strong>transporte</strong>, o <strong>lazer</strong>, a <strong>segurança</strong>, a <strong>previdência social</strong>, a <strong>proteção à maternidade e à infância</strong>, a <strong>assistência aos desamparados</strong>, na forma desta Constituição."
+      "São direitos sociais a <strong>educação</strong>, a <strong>saúde</strong>, a <strong>alimentação</strong>, o <strong>trabalho</strong>, a <strong>moradia</strong>, o <strong>transporte</strong>, o <strong>lazer</strong>, a <strong>segurança</strong>, a <strong>previdência social</strong>, a <strong>proteção à maternidade e à infância</strong>, a <strong>assistência aos desamparados</strong>, na forma desta Constituição."<br><br>
+      → ⚠️ Não confundir: o texto constitucional fala em assistência aos <strong>desamparados</strong> (não "desempregados") — a troca dessa palavra é a pegadinha clássica nas questões do rol do art. 6º
     </div>
   </div>
 
@@ -907,7 +929,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
     Inclusões pelo Poder Constituinte Derivado
   </h3>
 
@@ -924,7 +946,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="gotcha">
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
-    <strong>Moradia, alimentação e transporte</strong> não faziam parte do texto original da CF/88. As bancas adoram cobrar justamente esses três (EC 26/2000, EC 64/2010 e EC 90/2015). Se a assertiva disser que constavam do texto original, está <strong>errada</strong>.
+    <strong>Moradia, alimentação e transporte</strong> não faziam parte do texto original da CF/88. As bancas adoram cobrar justamente esses três (EC 26/2000, EC 64/2010 e EC 90/2015). Se a assertiva disser que constavam do texto original, está <strong>errada</strong>.<br><br>
+    → <strong>Limite do direito à moradia:</strong> é <strong>constitucional</strong> a penhora de bem de família pertencente a <strong>fiador</strong> de contrato de locação, seja residencial, seja comercial — a execução não afronta o direito social de moradia (art. 6º, CF), por expressa previsão legal (Lei 8.009/90, art. 3º, VII) — RE 407.888/SP e RE 1307334 (Tema 1127, repercussão geral, STF)<br><br>
+    → <strong>Infiltrados do art. 5º:</strong> bancas enxertam direitos <strong>individuais</strong> no rol social para induzir erro — <strong>propriedade</strong> (art. 5º, XXII), presidiárias permanecer com filhos na amamentação (art. 5º, L), gratuidade do registro civil de nascimento e certidão de óbito aos reconhecidamente pobres (art. 5º, LXXVI) e assistência jurídica integral e gratuita (art. 5º, LXXIV) <strong>não são direitos sociais</strong> do art. 6º; na dúvida, conferir se o direito está na lista literal do art. 6º
   </div>
 
   <div class="card" style="border-color:var(--amber);">
@@ -953,9 +977,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Caput do art. 7º</div>
     <div class="card-text">
-      "São direitos dos <strong>trabalhadores urbanos e rurais</strong>, além de outros que visem à melhoria de sua condição social". O caput <strong>equipara os direitos do trabalhador rural aos do trabalhador urbano</strong>.
+      "São direitos dos <strong>trabalhadores urbanos e rurais</strong>, além de outros que visem à melhoria de sua condição social". O caput <strong>equipara os direitos do trabalhador rural aos do trabalhador urbano</strong>.<br><br>
+      → <strong>Rol aberto:</strong> a parte final do caput ("além de outros...") torna o catálogo de direitos sociais <strong>exemplificativo</strong> — não se esgota na previsão expressa, compreendendo também direitos sociais <strong>implícitos</strong> (ex.: direito à desconexão)<br>
+      → <strong>Incorporação ao patrimônio jurídico:</strong> prestações estatais que, com o tempo, se incorporam ao patrimônio jurídico do indivíduo, uma vez estabelecidas, <strong>não podem ser retomadas</strong> — sob pena de ofensa à vedação ao retrocesso
     </div>
   </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
+    Incisos I a VIII — do emprego protegido às garantias de renda
+  </h3>
 
   <div class="table-wrap">
     <table>
@@ -964,28 +994,64 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <tr><td><strong>I</strong></td><td>Relação de emprego protegida contra despedida arbitrária ou sem justa causa (lei complementar → indenização compensatória)</td><td>Segurança no emprego; norma de eficácia limitada; <strong>sem indenização na despedida por justa causa</strong></td></tr>
         <tr><td><strong>II</strong></td><td>Seguro-desemprego</td><td>Só em caso de <strong>desemprego involuntário</strong> — bancas invertem para "voluntário"</td></tr>
         <tr><td><strong>III</strong></td><td>FGTS</td><td>Recolhido pelo empregador à alíquota de <strong>8%</strong>; <strong>não é direito dos servidores públicos estatutários</strong></td></tr>
-        <tr><td><strong>IV</strong></td><td>Salário mínimo</td><td>Fixado em lei (reserva legal), <strong>nacionalmente unificado</strong>, com reajustes que preservem o poder aquisitivo; <strong>vedada a vinculação</strong> para qualquer fim (SV nº 4)</td></tr>
-        <tr><td><strong>V</strong></td><td>Piso salarial proporcional à extensão e à complexidade do trabalho</td><td>Fixado por categoria mediante <strong>negociação coletiva</strong></td></tr>
+        <tr><td><strong>IV</strong></td><td>Salário mínimo</td><td>Fixado em lei (reserva legal), <strong>nacionalmente unificado</strong> — sem variação regional, e dispositivos da CLT sobre "salário mínimo regional" não foram recepcionados pela CF; reajustes que preservem o poder aquisitivo — critérios objetivos da <strong>Lei 12.382/2011</strong> permitem reajuste por <strong>decreto</strong> (constitucionalidade reconhecida pelo STF); <strong>vedada a vinculação</strong> para qualquer fim (SV nº 4)</td></tr>
+        <tr><td><strong>V</strong></td><td>Piso salarial proporcional à extensão e à complexidade do trabalho</td><td>Fixado por categoria mediante <strong>negociação coletiva</strong>; ⚠️ não confundir: o <strong>nacionalmente unificado</strong> e fixado em lei é o <strong>salário mínimo</strong> (IV) — o piso salarial (V) <strong>não</strong> é unificado nem serve de base para 13º e férias</td></tr>
         <tr><td><strong>VI</strong></td><td>Irredutibilidade do salário</td><td>Exceção: <strong>convenção ou acordo coletivo</strong>; guarda relação com a vedação ao retrocesso</td></tr>
         <tr><td><strong>VII</strong></td><td>Garantia de salário, nunca inferior ao mínimo, para remuneração variável</td><td>Ex.: comissão de vendedor — nunca abaixo do salário mínimo</td></tr>
         <tr><td><strong>VIII</strong></td><td>Décimo terceiro salário</td><td>Com base na <strong>remuneração integral ou no valor da aposentadoria</strong> (gratificação natalina)</td></tr>
-        <tr><td><strong>IX</strong></td><td>Remuneração do trabalho noturno superior à do diurno</td><td>Valor do adicional noturno definido pela <strong>legislação infraconstitucional</strong>, não pela CF</td></tr>
-        <tr><td><strong>X</strong></td><td>Proteção do salário</td><td><strong>Crime a retenção dolosa</strong> — salário é verba de natureza alimentar</td></tr>
-        <tr><td><strong>XI</strong></td><td>Participação nos lucros ou resultados</td><td><strong>Desvinculada da remuneração</strong>; participação na gestão é excepcional; norma de eficácia limitada</td></tr>
-        <tr><td><strong>XII</strong></td><td>Salário-família</td><td>Benefício previdenciário <strong>somente ao trabalhador de baixa renda</strong>; pago em cotas por dependente; critérios em lei</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
+    Incisos IX a XVII — remuneração, jornada, descansos e férias
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Inciso</th><th>Direito</th><th>Ponto de prova</th></tr></thead>
+      <tbody>
+        <tr><td><strong>IX</strong></td><td>Remuneração do trabalho noturno superior à do diurno</td><td>Valor do adicional definido pela <strong>legislação infraconstitucional</strong>, não pela CF — CLT (urbano): noturno é o trabalho <strong>entre 22h e 5h</strong>, com <strong>hora ficta de 52min30s</strong> e adicional de <strong>20%</strong></td></tr>
+        <tr><td><strong>X</strong></td><td>Proteção do salário</td><td><strong>Crime a retenção dolosa</strong> — verba de natureza alimentar; ainda sem lei que defina o tipo penal (STJ)</td></tr>
+        <tr><td><strong>XI</strong></td><td>Participação nos lucros ou resultados</td><td><strong>Desvinculada da remuneração</strong>; participação na gestão é excepcional; norma de eficácia limitada; em <strong>empresas estatais</strong>, é constitucional a PLR observar <strong>diretrizes específicas fixadas pelo Poder Executivo</strong> a que a estatal esteja sujeita (ADI 5417 — estatais são competentes para negociar coletivamente a PLR)</td></tr>
+        <tr><td><strong>XII</strong></td><td>Salário-família</td><td>Benefício previdenciário <strong>somente ao trabalhador de baixa renda</strong>; pago em cotas por dependente — filho <strong>menor de 14 anos ou inválido de qualquer idade</strong>; abrange urbanos, rurais, avulsos e domésticos (LC 150/2015); critérios em lei</td></tr>
         <tr><td><strong>XIII</strong></td><td>Jornada</td><td>Até <strong>8 horas diárias e 44 semanais</strong>; compensação de horários e redução da jornada mediante acordo ou convenção coletiva</td></tr>
-        <tr><td><strong>XIV</strong></td><td>Turnos ininterruptos de revezamento</td><td>Jornada de <strong>6 horas</strong>; pode ser aumentada por negociação coletiva</td></tr>
+        <tr><td><strong>XIV</strong></td><td>Turnos ininterruptos de revezamento</td><td>Jornada de <strong>6 horas</strong>; pode ser aumentada por negociação coletiva; intervalos de descanso/alimentação <strong>não descaracterizam</strong> o sistema (Súmula 675 do STF); fixada jornada de 6 a 8h por negociação coletiva, a 7ª e a 8ª horas <strong>não são extras</strong> (Súmula 423 do TST)</td></tr>
         <tr><td><strong>XV</strong></td><td>Repouso semanal remunerado</td><td><strong>Preferencialmente</strong> aos domingos — não há obrigação de ser no domingo</td></tr>
         <tr><td><strong>XVI</strong></td><td>Serviço extraordinário</td><td>Superior, <strong>no mínimo</strong>, em <strong>50%</strong> ao normal — expressão "no mínimo"!</td></tr>
         <tr><td><strong>XVII</strong></td><td>Férias anuais remuneradas</td><td>Com, <strong>pelo menos, 1/3</strong> a mais do salário normal; duração das férias deixada à legislação infraconstitucional</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
+    Incisos XVIII a XXV — proteções da família e da saúde do trabalhador
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Inciso</th><th>Direito</th><th>Ponto de prova</th></tr></thead>
+      <tbody>
         <tr><td><strong>XVIII</strong></td><td>Licença à gestante</td><td><strong>120 dias</strong>, sem prejuízo do emprego e do salário; também é direito das servidoras públicas</td></tr>
-        <tr><td><strong>XIX</strong></td><td>Licença-paternidade</td><td>Nos termos fixados em <strong>lei</strong></td></tr>
+        <tr><td><strong>XIX</strong></td><td>Licença-paternidade</td><td>Nos termos fixados em <strong>lei</strong>; até a lei, <strong>5 dias</strong> (art. 10, § 1º, ADCT); a Lei 13.257/2016 acrescentou <strong>15 dias</strong> (Programa Empresa Cidadã), chegando ao total de <strong>20 dias</strong></td></tr>
         <tr><td><strong>XX</strong></td><td>Proteção do mercado de trabalho da mulher</td><td>Incentivos específicos — busca da igualdade material (gêneros); norma de eficácia limitada</td></tr>
-        <tr><td><strong>XXI</strong></td><td>Aviso prévio proporcional ao tempo de serviço</td><td>Mínimo de <strong>30 dias</strong>, nos termos da lei; aplica-se a contratos por tempo indeterminado</td></tr>
-        <tr><td><strong>XXII</strong></td><td>Redução dos riscos inerentes ao trabalho</td><td>Normas de saúde, higiene e segurança — ampara as <strong>NRs</strong> do Ministério do Trabalho e Emprego</td></tr>
-        <tr><td><strong>XXIII</strong></td><td>Adicional para atividades penosas, insalubres ou perigosas</td><td>Na forma da lei (ex.: adicional de periculosidade e de insalubridade)</td></tr>
+        <tr><td><strong>XXI</strong></td><td>Aviso prévio proporcional ao tempo de serviço</td><td>Mínimo de <strong>30 dias</strong>; regulamentado pela <strong>Lei 12.506/2011</strong>: +<strong>3 dias por ano de serviço</strong>, até o máximo de <strong>90 dias</strong> no total; os 3 dias contam <strong>já a partir do 1º ano completo</strong> (1 ano = 33 dias; 15 anos = 75 dias; teto de 90 em 20 anos — Nota Técnica 184/2012 do MTE); aviso prévio maior concedido em <strong>norma coletiva</strong> computa-se integralmente como <strong>tempo de serviço</strong> (OJ 367 da SDI-1 do TST)</td></tr>
+        <tr><td><strong>XXII</strong></td><td>Redução dos riscos inerentes ao trabalho</td><td>Normas de saúde, higiene e segurança — ampara as <strong>NRs</strong> do Ministério do Trabalho e Emprego; riscos <strong>intrínsecos</strong> aos processos produtivos, e o dever de reduzi-los é do <strong>empregador</strong> (não do trabalhador nem "da sociedade") — a CF fala em <strong>reduzir</strong>, não "eliminar"</td></tr>
+        <tr><td><strong>XXIII</strong></td><td>Adicional para atividades penosas, insalubres ou perigosas</td><td>Na forma da lei — <strong>apenas o adicional de atividades penosas segue sem lei de regulamentação</strong>, não podendo ser exercido; insalubres e perigosas já têm adicional em lei (CLT)</td></tr>
         <tr><td><strong>XXIV</strong></td><td>Aposentadoria</td><td>Benefício previdenciário assegurado aos trabalhadores</td></tr>
-        <tr><td><strong>XXV</strong></td><td>Assistência gratuita em creches e pré-escolas</td><td>Filhos e dependentes <strong>desde o nascimento até 5 (cinco) anos</strong></td></tr>
+        <tr><td><strong>XXV</strong></td><td>Assistência gratuita em creches e pré-escolas</td><td>Filhos e dependentes <strong>desde o nascimento até 5 (cinco) anos</strong> — redação atual dada pela <strong>EC 53/2006</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
+    Incisos XXVI a XXXIV — negociação coletiva, igualdade e prescrição
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Inciso</th><th>Direito</th><th>Ponto de prova</th></tr></thead>
+      <tbody>
         <tr><td><strong>XXVI</strong></td><td>Reconhecimento das convenções e acordos coletivos</td><td>Fontes do direito do trabalho (negociação coletiva)</td></tr>
         <tr><td><strong>XXVII</strong></td><td>Proteção em face da automação</td><td>Na forma da lei; norma de eficácia limitada</td></tr>
         <tr><td><strong>XXVIII</strong></td><td>Seguro contra acidentes de trabalho</td><td>A cargo do empregador, <strong>sem excluir a indenização</strong> quando este incorrer em dolo ou culpa</td></tr>
@@ -999,33 +1065,69 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </table>
   </div>
 
-  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Licença-gestante × licença-adotante — por que os prazos devem ser iguais (RE 788.889/PE)</div>
+    <div class="card-text">
+      O STF fixou a tese de que os prazos da <strong>licença-gestante</strong> não podem ser <strong>superiores</strong> aos prazos da <strong>licença-adotante</strong>, inclusive no que diz respeito às <strong>prorrogações</strong>. Assim, se uma lei concede <strong>120 dias</strong> de licença à gestante, deverão ser concedidos também <strong>120 dias</strong> de licença à adotante.<br><br>
+      → <strong>Origem do julgado:</strong> o STF declarou <strong>inconstitucional</strong> o art. 210 da Lei 8.112/90, que concedia apenas <strong>90 dias</strong> de licença à adotante (RE 788.889/PE, Rel. Min. Barroso, j. 10.03.2016)<br>
+      → <strong>Idade da criança não reduz o prazo:</strong> na licença adotante, é inconstitucional fixar prazos diversos em função da idade da criança adotada — lei que dava 30 dias ao adotar criança maior de 10 anos caiu (criança adotada é grupo vulnerável, que demanda esforço adicional da família para adaptação); a tese veio por <strong>mutação constitucional/overruling</strong>, superando antigo entendimento do STF<br>
+      → <strong>Estende-se a servidores comissionados:</strong> é inconstitucional restringir a licença adotante aos ocupantes de cargos de <strong>provimento efetivo</strong> — o regime jurídico único aplica-se a todos os servidores, efetivos ou em comissão<br>
+      → <strong>Programa Empresa Cidadã:</strong> a lei federal prevê prorrogação da licença-maternidade por mais <strong>60 dias</strong>, viabilizando duração total de <strong>180 dias</strong> — mas, do ponto de vista constitucional, a duração da licença-maternidade é de <strong>120 dias</strong>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Licença-maternidade para o pai solo — por que o STF estendeu (RE 1348854/DF)</div>
+    <div class="card-text">
+      A licença-maternidade (art. 7º, XVIII, CF/88, regulamentada pelo art. 207 da Lei 8.112/1990) <strong>estende-se ao pai, genitor monoparental ("pai solo")</strong> — criança gerada, por exemplo, por fertilização in vitro com gestação por substituição ("barriga solidária"), sem presença materna na família.<br><br>
+      → <strong>Sem previsão legal:</strong> não existe lei prevendo o benefício para o pai — o STF o reconheceu direto da Constituição, com repercussão geral (Tema 1182, Rel. Min. Alexandre de Moraes, j. 12.05.2022)<br>
+      → <strong>Fundamento:</strong> proteção integral da criança com absoluta prioridade (art. 227, CF) + isonomia de direitos entre homem e mulher (art. 5º, I, CF) — a ratio dos arts. 6º e 7º não é só salvaguardar a mulher, mas efetivar a proteção ao recém-nascido<br>
+      → <strong>Alcance:</strong> licença-maternidade <strong>e salário-maternidade</strong> pelo mesmo prazo garantido à mulher pela legislação de regência — sem cumulação com a licença-paternidade
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A pergunta "qual direito do art. 7º ainda <strong>não pode ser exercido</strong>?" tem resposta única: o adicional de remuneração para atividades <strong>penosas</strong> (XXIII) — <strong>não existe atualmente lei que o regulamente</strong>.<br><br>
+    → <strong>Não confundir:</strong> as atividades <strong>insalubres e perigosas</strong> já têm adicional previsto em lei (CLT) e são pagas aos trabalhadores enquadrados nos requisitos<br>
+    → <strong>Já regulamentados e exercíveis:</strong> aviso prévio proporcional (XXI — Lei 12.506/2011), seguro contra acidentes de trabalho (XXVIII) e salário-família (XII)<br>
+    → <strong>Não depende de regulamentação:</strong> proibição de trabalho noturno, perigoso ou insalubre a menores de 18 (XXXIII) — norma de eficácia plena<br>
+    → <strong>Proteção do salário (X):</strong> a CF constitui <strong>crime</strong> a retenção dolosa do salário, mas ainda não há lei definindo o tipo penal — STJ (HC 177.508/PB): a conduta <strong>não se subsume à apropriação indébita</strong> (art. 168, CP), pois o numerário é de propriedade do empregador até a entrega, sem a inversão da posse exigida para a tipicidade<br>
+    → <strong>Limite:</strong> o adicional do XXIII alcança somente atividades <strong>penosas, insalubres ou perigosas</strong> — "atividades degradantes" <strong>não</strong> dá direito a adicional (não constam do rol constitucional)
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
     Inciso I — segurança no emprego (aprofundamento)
   </h3>
 
   <div class="card">
     <div class="card-text">
-      • A proteção alcança somente a <strong>despedida arbitrária ou sem justa causa</strong> — <strong>não haverá indenização</strong> na despedida por justa causa<br>
-      • Até a lei complementar, vale o <strong>art. 10 do ADCT</strong>: indenização de <strong>40% sobre os depósitos do FGTS</strong><br>
-      • A CF/88 <strong>extinguiu a estabilidade decenal</strong> da CLT (não recepcionada); hoje a despedida arbitrária é permitida, mas gera indenização<br>
-      • <strong>Vedação absoluta à dispensa arbitrária ou sem justa causa</strong> (art. 10, ADCT): a) empregado eleito para cargo de direção de comissões internas de prevenção de acidentes (<strong>CIPA</strong>), do registro da candidatura até um ano após o fim do mandato; b) <strong>empregada gestante</strong>, da confirmação da gravidez até <strong>cinco meses após o parto</strong><br>
-      • <strong>Dispensa em massa:</strong> exige <strong>intervenção sindical prévia</strong>, que não se confunde com autorização prévia do sindicato nem com celebração de convenção ou acordo coletivo (RE 999.435)
+      → A proteção alcança somente a <strong>despedida arbitrária ou sem justa causa</strong> — <strong>não haverá indenização</strong> na despedida por justa causa<br>
+      → Até a lei complementar, vale o <strong>art. 10 do ADCT</strong>: indenização de <strong>40% sobre os depósitos do FGTS</strong><br>
+      → A CF/88 <strong>extinguiu a estabilidade decenal</strong> da CLT (não recepcionada); hoje a despedida arbitrária é permitida, mas gera indenização<br>
+      → <strong>Vedação absoluta à dispensa arbitrária ou sem justa causa</strong> (art. 10, ADCT):<br>
+      → a) empregado eleito para cargo de direção de comissões internas de prevenção de acidentes (<strong>CIPA</strong>), do registro da candidatura até um ano após o fim do mandato<br>
+      → b) <strong>empregada gestante</strong>, da confirmação da gravidez até <strong>cinco meses após o parto</strong><br>
+      → <strong>Dispensa em massa:</strong> exige <strong>intervenção sindical prévia</strong>, que não se confunde com autorização prévia do sindicato nem com celebração de convenção ou acordo coletivo (RE 999.435)
     </div>
   </div>
 
   <div class="callout callout-warn">
     <div class="callout-icon">⚠️</div>
-    <div><strong>Vedação de vinculação do salário mínimo:</strong> SV nº 4 — salvo nos casos previstos na CF, o salário mínimo não pode ser usado como indexador de base de cálculo de vantagem de servidor público ou de empregado, nem ser substituído por decisão judicial. O STF, no RE 842.157, admitiu a fixação de <strong>pensão alimentícia</strong> com base no salário mínimo. Pode-se usar múltiplos do salário mínimo como mera referência para o piso de categorias especializadas, mas são vedados <strong>reajustamentos automáticos futuros</strong>.</div>
+    <div><strong>Vedação de vinculação do salário mínimo:</strong> SV nº 4 — salvo nos casos previstos na CF, o salário mínimo não pode ser usado como indexador de base de cálculo de vantagem de servidor público ou de empregado, nem ser substituído por decisão judicial. O STF, no RE 842.157, admitiu a fixação de <strong>pensão alimentícia</strong> com base no salário mínimo. Pode-se usar múltiplos do salário mínimo como mera referência para o piso de categorias especializadas, mas são vedados <strong>reajustamentos automáticos futuros</strong>.<br><br>
+    → Exceção provisória: a <strong>base de cálculo do adicional de insalubridade</strong> permanece sendo o <strong>salário mínimo</strong>, até que sobrevenha norma ou lei regulamentadora sobre o tema</div>
   </div>
 
   <div class="gotcha">
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
-    <strong>Exceções à regra do salário mínimo:</strong> conscritos podem receber remuneração inferior (SV nº 6 — praças prestadoras de serviço militar inicial); presos podem receber <strong>3/4 do salário mínimo</strong> como remuneração do trabalho do preso (STF — ADPF 336). Já <strong>servidores públicos não podem receber remuneração inferior ao salário mínimo</strong>, ainda que em jornada reduzida (RE 964.659).
+    <strong>Exceções à regra do salário mínimo:</strong> conscritos podem receber remuneração inferior (SV nº 6 — praças prestadoras de serviço militar inicial; fundamento no RE 570.177 — Tema 15: a CF <strong>não estendeu aos militares</strong> a garantia de remuneração não inferior ao salário mínimo); presos podem receber <strong>3/4 do salário mínimo</strong> como remuneração do trabalho do preso (STF — ADPF 336). Já <strong>servidores públicos não podem receber remuneração inferior ao salário mínimo</strong>, ainda que em jornada reduzida (RE 964.659).<br><br>
+    → <strong>Aprendiz:</strong> garante-se o <strong>salário mínimo hora</strong> (proporcional às horas de teoria e prática) e, salvo condição mais favorável em contrato ou negociação coletiva, <strong>não faz jus ao piso salarial da categoria</strong> (art. 428, § 2º, CLT)
   </div>
 
   <div class="gotcha">
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
-    O <strong>salário-família</strong> só é devido ao trabalhador de <strong>baixa renda</strong> — assertiva que diga que independe da renda auferida está <strong>errada</strong> (TRT 2ª Região). E o <strong>seguro contra acidentes de trabalho</strong> não exclui a indenização quando o empregador incorre em dolo ou culpa.
+    <strong>Salário-família</strong> só é devido ao trabalhador de <strong>baixa renda</strong> — assertiva que diga que independe da renda auferida está <strong>errada</strong>.<br>
+    → <strong>Seguro contra acidentes de trabalho</strong> não exclui a indenização quando o empregador incorre em dolo ou culpa.
   </div>
 </section>
 
@@ -1049,8 +1151,36 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card" style="border-color:var(--amber);">
     <div class="card-title" style="color:var(--amber);">Trabalhadores domésticos — art. 7º, parágrafo único (EC nº 72/2013)</div>
     <div class="card-text">
-      A EC nº 72/2013 assegurou importantes direitos trabalhistas aos empregados domésticos, buscando <strong>igualdade de direitos entre os domésticos e os demais trabalhadores urbanos e rurais</strong>. Mesmo após a emenda, <strong>nem todos</strong> os direitos foram assegurados aos domésticos.<br><br>
-      São assegurados à categoria dos trabalhadores domésticos os direitos dos incisos <strong>IV, VI, VII, VIII, X, XIII, XV, XVI, XVII, XVIII, XIX, XXI, XXII, XXIV, XXVI, XXX, XXXI e XXXIII</strong> e, atendidas as condições legais, os dos incisos <strong>I, II, III, IX, XII, XXV e XXVIII</strong>, bem como a integração à previdência social.
+      A EC nº 72/2013 assegurou importantes direitos trabalhistas aos empregados domésticos, buscando <strong>igualdade de direitos entre os domésticos e os demais trabalhadores urbanos e rurais</strong>. Mesmo após a emenda, <strong>nem todos</strong> os direitos foram assegurados aos domésticos — o parágrafo único do art. 7º divide os direitos em <strong>dois grupos</strong>:<br><br>
+      <strong>Grupo 1 — eficácia imediata</strong> (independem de qualquer regulamentação ou condição):<br>
+      → <strong>IV:</strong> salário mínimo nacionalmente unificado<br>
+      → <strong>VI:</strong> irredutibilidade do salário (salvo convenção/acordo coletivo)<br>
+      → <strong>VII:</strong> garantia de salário nunca inferior ao mínimo (remuneração variável)<br>
+      → <strong>VIII:</strong> décimo terceiro salário<br>
+      → <strong>X:</strong> proteção do salário (retenção dolosa é crime)<br>
+      → <strong>XIII:</strong> jornada de 8h diárias e 44h semanais<br>
+      → <strong>XV:</strong> repouso semanal remunerado (preferencialmente domingo)<br>
+      → <strong>XVI:</strong> serviço extraordinário com adicional mínimo de 50%<br>
+      → <strong>XVII:</strong> férias anuais com 1/3 a mais<br>
+      → <strong>XVIII:</strong> licença-gestante de 120 dias<br>
+      → <strong>XIX:</strong> licença-paternidade<br>
+      → <strong>XXI:</strong> aviso prévio proporcional (mínimo 30 dias)<br>
+      → <strong>XXII:</strong> redução dos riscos do trabalho<br>
+      → <strong>XXIV:</strong> aposentadoria<br>
+      → <strong>XXVI:</strong> reconhecimento de convenções e acordos coletivos<br>
+      → <strong>XXX:</strong> proibição de discriminação por sexo, idade, cor ou estado civil<br>
+      → <strong>XXXI:</strong> proibição de discriminação do portador de deficiência<br>
+      → <strong>XXXIII:</strong> proibição de trabalho a menores (aprendiz a partir de 14)<br><br>
+      <strong>Grupo 2 — eficácia limitada</strong> (assegurados somente <strong>atendidas as condições estabelecidas em lei</strong> e observada a simplificação tributária):<br>
+      → <strong>I:</strong> relação de emprego protegida contra despedida arbitrária<br>
+      → <strong>II:</strong> seguro-desemprego<br>
+      → <strong>III:</strong> FGTS<br>
+      → <strong>IX:</strong> remuneração do trabalho noturno superior à do diurno<br>
+      → <strong>XII:</strong> salário-família<br>
+      → <strong>XXV:</strong> assistência gratuita em creches e pré-escolas (até 5 anos)<br>
+      → <strong>XXVIII:</strong> seguro contra acidentes de trabalho<br>
+      → <strong>Integração à previdência social</strong> do doméstico<br><br>
+      → ⚠️ Detalhe: a divisão em grupos é o que decide questões — ex.: aviso prévio (XXI) vale de imediato, mas seguro-desemprego (II), FGTS (III), trabalho noturno (IX) e seguro-acidente (XXVIII) só valem nas condições da lei; na prova, a banca costuma afirmar que esses do Grupo 2 "não se aplicam" ao doméstico — aplicam, mas condicionados
     </div>
   </div>
 
@@ -1085,7 +1215,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title" style="color:var(--green);">Servidores públicos — art. 39, § 3º, CF</div>
     <div class="card-text">
       Aplica-se aos servidores ocupantes de cargo público o disposto nos incisos <strong>IV, VII, VIII, IX, XII, XIII, XV, XVI, XVII, XVIII, XIX, XX, XXII e XXX</strong> do art. 7º, podendo a lei estabelecer requisitos diferenciados de admissão quando a natureza do cargo exigir.<br><br>
-      Destaques: <strong>férias + 1/3</strong> (XVII) aplica-se a domésticos e servidores; <strong>adicional para atividades penosas/insalubres/perigosas</strong> (XXIII) aplica-se a servidores, mas <strong>não</strong> a domésticos; <strong>remuneração do trabalho noturno</strong> (IX) aplica-se somente ao servidor (não ao doméstico); <strong>aviso prévio</strong> (XXI) não se aplica aos servidores (estabilidade).
+      <strong>Destaques:</strong><br>
+      → <strong>Férias + 1/3 (XVII):</strong> aplica-se a domésticos e a servidores<br>
+      → <strong>Adicional para atividades penosas/insalubres/perigosas (XXIII):</strong> <strong>não</strong> se aplica a servidores — o XXIII <strong>não</strong> consta do rol do art. 39, § 3º; e também <strong>não</strong> se aplica a domésticos (fora das duas listas do parágrafo único do art. 7º)<br>
+      → <strong>Remuneração do trabalho noturno (IX):</strong> aplica-se a servidores (art. 39, § 3º); a domésticos, apenas <strong>atendidas as condições estabelecidas em lei</strong> (lista condicional do parágrafo único do art. 7º)<br>
+      → <strong>Aviso prévio (XXI):</strong> não se aplica aos servidores, por serem detentores de estabilidade<br><br>
+      <strong>Sem equiparação salarial entre regimes:</strong><br>
+      → <strong>Empregado de empresa privada × servidor público:</strong> vedada a equiparação de salários — o art. 37, XIII, CF proíbe a vinculação ou equiparação de vencimentos no serviço público, pois regimes jurídicos distintos geram direitos e deveres distintos (ADI 191 + Súmula 339 do STF)<br>
+      → <strong>Terceirizado × empregado do tomador:</strong> mesmo exercendo idênticas funções, não há equiparação de remuneração — agentes econômicos distintos, que não se sujeitam a decisões empresariais alheias (RE 635.546, red. p/ ac. Min. Barroso, j. 29.03.2021 — tese de repercussão geral)
     </div>
   </div>
 </section>
@@ -1100,7 +1237,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
   <div class="sec-subtitle">Sindicatos, greve, colegiados e representante dos empregados</div>
 
-  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
     Art. 8º — associação profissional ou sindical
   </h3>
 
@@ -1115,14 +1252,16 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <tr><td><strong>V</strong></td><td>Ninguém será obrigado a filiar-se ou manter-se filiado</td><td><strong>Liberdade de inscrição sindical</strong>; corolário da liberdade de associação (art. 5º, XX)</td></tr>
         <tr><td><strong>VI</strong></td><td>Participação obrigatória dos sindicatos nas negociações coletivas</td><td>Convenções (sindicato dos trabalhadores + sindicato patronal) e acordos coletivos (sindicato + empresa)</td></tr>
         <tr><td><strong>VII</strong></td><td>Aposentado filiado pode votar e ser votado</td><td>Ampla participação — pode ser eleito dirigente sindical</td></tr>
-        <tr><td><strong>VIII</strong></td><td>Estabilidade sindical</td><td>Vedada a dispensa desde o <strong>registro da candidatura</strong> e, se eleito, <strong>ainda que suplente</strong>, até <strong>1 ano após o fim do mandato</strong>, salvo falta grave</td></tr>
+        <tr><td><strong>VIII</strong></td><td>Estabilidade sindical</td><td>Vedada a dispensa do <strong>empregado sindicalizado</strong> desde o <strong>registro da candidatura</strong> a cargo de direção ou representação sindical e, se eleito, <strong>ainda que suplente</strong>, até <strong>1 ano após o fim do mandato</strong>, salvo falta grave nos termos da lei</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="callout callout-info">
     <div class="callout-icon">ℹ️</div>
-    <div><strong>Contribuição confederativa × contribuição sindical:</strong> a <strong>confederativa</strong> (art. 8º, IV) é facultativa, cobrada apenas dos filiados (SV nº 40), sem natureza tributária. A <strong>sindical</strong> (art. 149, CF) tem valor fixado por lei; até a Reforma Trabalhista era obrigatória (natureza tributária), mas com a <strong>Lei 13.467/2017</strong> passou a ser recolhida apenas com autorização do empregado — na prática facultativa e sem natureza tributária.</div>
+    <div><strong>Contribuição confederativa × contribuição sindical:</strong><br>
+    → <strong>Confederativa (art. 8º, IV):</strong> facultativa, cobrada apenas dos filiados (SV nº 40), sem natureza tributária<br>
+    → <strong>Sindical (art. 149, CF):</strong> valor fixado por lei; até a Reforma Trabalhista era obrigatória (natureza tributária), mas com a <strong>Lei 13.467/2017</strong> passou a ser recolhida apenas com autorização do empregado — na prática facultativa e sem natureza tributária</div>
   </div>
 
   <div class="gotcha">
@@ -1136,26 +1275,29 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">
     Arts. 9º a 11
   </h3>
 
-  <div class="grid grid-3">
+  <div>
     <div class="card">
-      <div class="card-title">📌 Art. 9º — Direito de greve</div>
+      <div class="card-title">Art. 9º — Direito de greve</div>
       <div class="card-text">
         Compete aos trabalhadores decidir sobre a oportunidade e os interesses a defender. Não é direito absoluto: a lei define os <strong>serviços ou atividades essenciais</strong> e o atendimento das necessidades inadiáveis da comunidade; os <strong>abusos</strong> sujeitam os responsáveis às penas da lei.<br><br>
-        <strong>Eficácia:</strong> trabalhadores da iniciativa privada (CLT) = norma de <strong>eficácia contida</strong>; servidores públicos = norma de <strong>eficácia limitada</strong> (depende de lei regulamentadora).
+        <strong>Eficácia:</strong> trabalhadores da iniciativa privada (CLT) = norma de <strong>eficácia contida</strong>; servidores públicos = norma de <strong>eficácia limitada</strong> (depende de lei regulamentadora).<br><br>
+        → <strong>Abusividade da greve de servidores:</strong> julgada pela <strong>Justiça comum</strong> (federal ou estadual), e não pela Justiça do Trabalho — vale para servidores celetistas da administração direta, autarquias e fundações de direito público (STF, RE 846854/SP — Tema 544)<br>
+        → <strong>Dissídio de greve de servidores:</strong> greve de âmbito nacional, que abranja mais de uma região da Justiça Federal ou mais de uma unidade da Federação → competência do <strong>STJ</strong> (aplicação analógica do art. 2º, I, "a", da Lei 7.701/88) — não do STF<br>
+        → <strong>Vedação absoluta:</strong> o exercício do direito de greve, sob qualquer forma ou modalidade, é vedado aos <strong>policiais civis</strong> e a todos os servidores que atuem diretamente na área de <strong>segurança pública</strong> (STF, ARE 654432/GO)
       </div>
     </div>
     <div class="card">
-      <div class="card-title">📌 Art. 10 — Participação em colegiados</div>
+      <div class="card-title">Art. 10 — Participação em colegiados</div>
       <div class="card-text">
         Participação de trabalhadores e empregadores nos colegiados de órgãos públicos em que seus interesses <strong>profissionais ou previdenciários</strong> sejam objeto de discussão e deliberação. Ex.: Conselho Nacional de Previdência Social (CNPS).
       </div>
     </div>
     <div class="card">
-      <div class="card-title">📌 Art. 11 — Representante dos empregados</div>
+      <div class="card-title">Art. 11 — Representante dos empregados</div>
       <div class="card-text">
         Nas empresas de <strong>mais de 200 empregados</strong>, é assegurada a eleição de um representante com a <strong>finalidade exclusiva</strong> de promover o entendimento direto com os empregadores.
       </div>
@@ -1164,7 +1306,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="gotcha">
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
-    O representante dos empregados só existe em empresas com <strong>mais de 200 (duzentos)</strong> empregados — assertiva que diga "mais de cem" está <strong>errada</strong> (PRF/2014).
+    O representante dos empregados só existe em empresas com <strong>mais de 200 (duzentos)</strong> empregados — assertiva que diga "mais de cem" está <strong>errada</strong>.
   </div>
 </section>
 
@@ -1179,37 +1321,55 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">Revisão rápida antes da prova</div>
 
   <div class="card">
-    <div class="card-title">🎯 Alta incidência</div>
+    <div class="card-title">Alta incidência</div>
     <div class="card-text">
-      • <strong>Rol do art. 6º:</strong> moradia (EC 26/2000), alimentação (EC 64/2010) e transporte (EC 90/2015) — <strong>não estavam no texto original</strong><br>
-      • <strong>Rol exemplificativo</strong> segundo o STF (ADI 639)<br>
-      • <strong>Seguro-desemprego:</strong> somente desemprego <strong>involuntário</strong><br>
-      • <strong>FGTS:</strong> 8% a cargo do empregador; <strong>não</strong> é direito dos servidores estatutários<br>
-      • <strong>Salário mínimo:</strong> reserva legal, nacionalmente unificado, <strong>vedada vinculação</strong> (SV nº 4); exceções: conscritos (SV nº 6) e presos (3/4)<br>
-      • <strong>Irredutibilidade do salário:</strong> exceção por convenção ou acordo coletivo<br>
-      • <strong>13º salário:</strong> remuneração integral ou valor da aposentadoria<br>
-      • <strong>Hora-extra:</strong> <strong>no mínimo</strong> 50% superior — não é exatamente 50%<br>
-      • <strong>Férias:</strong> pelo menos <strong>1/3</strong> a mais<br>
-      • <strong>Licença-gestante:</strong> <strong>120 dias</strong>; licença-paternidade nos termos da lei<br>
-      • <strong>Creches e pré-escolas:</strong> do nascimento até <strong>5 anos</strong><br>
-      • <strong>Aviso prévio:</strong> proporcional, mínimo de <strong>30 dias</strong><br>
-      • <strong>Prescrição trabalhista:</strong> 5 anos (quinquenal), até 2 anos após a extinção do contrato<br>
-      • <strong>Menores:</strong> 16 anos (regra) · aprendiz a partir de 14 · vedado noturno/perigoso/insalubre a menores de 18<br>
-      • <strong>Seguro contra acidentes de trabalho:</strong> não exclui indenização por dolo ou culpa do empregador
+      → <strong>Rol do art. 6º — moradia:</strong> inserida pela <strong>EC 26/2000</strong> — <strong>não estava no texto original</strong><br>
+      → <strong>Rol do art. 6º — alimentação:</strong> inserida pela <strong>EC 64/2010</strong> — <strong>não estava no texto original</strong><br>
+      → <strong>Rol do art. 6º — transporte:</strong> inserido pela <strong>EC 90/2015</strong> — <strong>não estava no texto original</strong><br>
+      → <strong>Rol exemplificativo</strong> segundo o STF (ADI 639)<br>
+      → <strong>Seguro-desemprego:</strong> somente desemprego <strong>involuntário</strong><br>
+      → <strong>FGTS:</strong> 8% a cargo do empregador; <strong>não</strong> é direito dos servidores estatutários<br>
+      → <strong>Salário mínimo:</strong> reserva legal, nacionalmente unificado, <strong>vedada vinculação</strong> (SV nº 4)<br>
+      → <strong>Salário mínimo — exceções:</strong> conscritos (SV nº 6) e presos (3/4)<br>
+      → <strong>Irredutibilidade do salário:</strong> exceção por convenção ou acordo coletivo<br>
+      → <strong>13º salário:</strong> remuneração integral ou valor da aposentadoria<br>
+      → <strong>Hora-extra:</strong> <strong>no mínimo</strong> 50% superior — não é exatamente 50%<br>
+      → <strong>Férias:</strong> pelo menos <strong>1/3</strong> a mais<br>
+      → <strong>Licença-gestante:</strong> <strong>120 dias</strong><br>
+      → <strong>Licença-paternidade:</strong> nos termos da lei<br>
+      → <strong>Creches e pré-escolas:</strong> do nascimento até <strong>5 anos</strong><br>
+      → <strong>Aviso prévio:</strong> proporcional, mínimo de <strong>30 dias</strong><br>
+      → <strong>Prescrição trabalhista:</strong> 5 anos (quinquenal), até 2 anos após a extinção do contrato<br>
+      → <strong>Menores — regra:</strong> qualquer trabalho vedado a menores de <strong>16</strong><br>
+      → <strong>Menores — aprendiz:</strong> a partir de <strong>14</strong><br>
+      → <strong>Menores — vedação:</strong> trabalho noturno, perigoso ou insalubre a menores de <strong>18</strong><br>
+      → <strong>Seguro contra acidentes de trabalho:</strong> não exclui indenização por dolo ou culpa do empregador
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-title">Pegadinhas frequentes</div>
     <div class="card-text">
-      • Domésticos <strong>não têm</strong>: piso salarial (V), PLR (XI), jornada de 6h em turnos de revezamento (XIV), proteção do mercado da mulher (XX), adicional de atividades penosas/insalubres/perigosas (XXIII), proteção contra a automação (XXVII), ação prescricional (XXIX), vedação à distinção manual/técnico/intelectual (XXXII), igualdade com o avulso (XXXIV)<br>
-      • <strong>Unicidade sindical:</strong> base territorial não inferior à área de um Município; conflito resolvido pela anterioridade<br>
-      • <strong>Estabilidade sindical:</strong> registro da candidatura até 1 ano após o mandato, mesmo suplente, salvo falta grave<br>
-      • <strong>Contribuição confederativa:</strong> facultativa, só filiados (SV nº 40), sem natureza tributária<br>
-      • <strong>Greve:</strong> CLT = eficácia contida · servidores públicos = eficácia limitada<br>
-      • <strong>Representante dos empregados:</strong> só em empresas com <strong>mais de 200</strong> empregados<br>
-      • <strong>Vedação ao retrocesso</strong> e proteção à maternidade/infância: direitos fundamentais ligados às <strong>cláusulas pétreas</strong> (art. 60, § 4º)<br>
-      • <strong>Reserva do possível:</strong> precisa de comprovação objetiva de falta de recursos e de previsão orçamentária
+      → <strong>Domésticos não têm</strong> — piso salarial proporcional à extensão e à complexidade do trabalho (V)<br>
+      → <strong>Domésticos não têm</strong> — participação nos lucros ou resultados (XI)<br>
+      → <strong>Domésticos não têm</strong> — jornada de 6 horas em turnos ininterruptos de revezamento (XIV)<br>
+      → <strong>Domésticos não têm</strong> — proteção do mercado de trabalho da mulher (XX)<br>
+      → <strong>Domésticos não têm</strong> — adicional para atividades penosas/insalubres/perigosas (XXIII)<br>
+      → <strong>Domésticos não têm</strong> — proteção em face da automação (XXVII)<br>
+      → <strong>Domésticos não têm</strong> — ação prescricional de 5 anos até o limite de 2 anos após a extinção do contrato (XXIX)<br>
+      → <strong>Domésticos não têm</strong> — vedação à distinção entre trabalho manual, técnico e intelectual (XXXII)<br>
+      → <strong>Domésticos não têm</strong> — igualdade de direitos com o trabalhador avulso (XXXIV)<br>
+      → <strong>Adicional de atividades penosas (XXIII):</strong> único direito do art. 7º ainda <strong>sem regulamentação</strong> — não pode ser exercido; insalubres e perigosas já têm adicional em lei (CLT)<br>
+      → <strong>Unicidade sindical:</strong> base territorial não inferior à área de um Município<br>
+      → <strong>Conflito de unicidade:</strong> resolvido pela anterioridade (primeiro registro)<br>
+      → <strong>Estabilidade sindical:</strong> registro da candidatura até 1 ano após o mandato, mesmo suplente, salvo falta grave<br>
+      → <strong>Contribuição confederativa:</strong> facultativa, só filiados (SV nº 40), sem natureza tributária<br>
+      → <strong>Greve — trabalhadores da iniciativa privada (CLT):</strong> norma de eficácia contida<br>
+      → <strong>Greve — servidores públicos:</strong> norma de eficácia limitada<br>
+      → <strong>Representante dos empregados:</strong> só em empresas com <strong>mais de 200</strong> empregados<br>
+      → <strong>Vedação ao retrocesso:</strong> direito fundamental ligado às <strong>cláusulas pétreas</strong> (art. 60, § 4º)<br>
+      → <strong>Proteção à maternidade e à infância:</strong> direito fundamental ligado às <strong>cláusulas pétreas</strong> (art. 60, § 4º)<br>
+      → <strong>Reserva do possível:</strong> precisa de comprovação objetiva de falta de recursos e de previsão orçamentária
     </div>
   </div>
 
@@ -1230,9 +1390,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
 
   <div class="card">
-    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-title">Contador de temas</div>
     <div class="card-text">
-      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 3 — Direitos dos trabalhadores (art. 7º): 24</span><br>
+      <span class="tag tag-red">Seção 5 — Direitos sociais coletivos (arts. 8º-11): 8</span><br>
+      <span class="tag tag-red">Seção 1 — Natureza e dimensão dos direitos sociais: 4</span><br>
+      <span class="tag tag-red">Seção 2 — Rol do art. 6º da CF/88: 3</span><br>
     </div>
   </div>
 </section>
@@ -1364,5 +1528,122 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 </script>
 
 <!--/rh:ui-->
+
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card);
+  border: 1px solid var(--border); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: .3rem; font-family: 'JetBrains Mono', monospace;
+  font-size: .62rem; color: var(--text2);
+}
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong); font-family: 'JetBrains Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, q) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        return norm(n.nodeValue).indexOf(q) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0, idx;
+      while ((idx = low.indexOf(q, i)) >= 0) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mk);
+        i = idx + q.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function run() {
+    var q = norm(input.value.trim());
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    if (q) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        if (norm(b.textContent).indexOf(q) >= 0) { found++; highlight(b, q); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      if (found) {
+        var first = null;
+        for (var k = 0; k < blocks.length; k++) {
+          if (!blocks[k].classList.contains('sr-hide')) {
+            first = blocks[k].querySelector('mark.sr-hit');
+            if (first) break;
+          }
+        }
+        if (first) {
+          first.classList.add('sr-first');
+          first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+    }
+  }
+  input.addEventListener('input', run);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(); }
+  });
+  clear.addEventListener('click', function () { input.value = ''; run(); input.focus(); });
+  run();
+})();
+</script>
 </body>
 </html>

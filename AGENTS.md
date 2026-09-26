@@ -113,6 +113,7 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
      - `build-search-index.py` → gera `Resumo_estudos/search-index.json` (busca full-text do index).
      - `build-changelog.py` → gera `Resumo_estudos/mudancas.html` (página "O que mudou", via git log) — rodar **antes de todo deploy** (Passo 8 da skill).
      - `apply-review-mode.py` / `apply-marks-mode.py` / `apply-pwa.py` → injetam os add-ons nos resumos (modo revisão 🧠, marcação 🏷, PWA offline); idempotentes, rodar após regenerar resumos pelo template.
+    - `apply-search.py` → injeta o campo de busca por palavra no sidebar de **todos** os `resumo-aula-*.html` (filtro de cards/gotchas/callouts + destaque âmbar das ocorrências + primeira ocorrência em vermelho com rolagem automática + contador "X de Y blocos"); idempotente, ignora acentos/maiúsculas; rodar após regenerar resumos pelo template (regra do usuário, 25/09/2026 — aprovado em teste na DC Aula 04 e expandido aos 61 resumos).
 3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
    configurar algum no futuro, registrar aqui (nome, `type`, `command`).
 4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.
@@ -170,6 +171,38 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
   antiga ou dispositivo revogado deve trazer **por que saiu do radar** (norma que
   o substituiu, contexto histórico) antes de listar os números. Enumeração seca
   de parâmetros sem contexto não fixa o conteúdo.
+
+### Padrão visual travado dos resumos (regra do usuário, 24/09/2026)
+
+Redesign aprovado no piloto da Aula 04 de DC — **toda aula nova e todo redesign
+seguem este padrão** (CSS já portado no `template-sumario.html`):
+
+- **Cor da matéria comanda o visual** (`--mat`): sidebar (faixa superior 4px,
+  link ativo), numerais de seção, filete sob o título, faixa lateral dos cards,
+  cabeçalhos de tabela, hovers e progresso. Paleta por matéria: AFO `#16A34A`,
+  AP `#0D9488`, AD `#2563EB`, DC `#7C3AED`, DT `#D97706`, DPT `#DC2626`,
+  PT `#0891B2`, INF `#3B82F6`. Tokens derivados por matéria: `--mat-strong`,
+  `--mat-soft` (fundo pálido), `--mat-line` (filete).
+- **Tipografia**: **Space Grotesk** (títulos/display — sec-title 1.42rem peso
+  700/800, card-title 1.02rem), **IBM Plex Sans** (corpo `.9rem`,
+  line-height 1.65), **JetBrains Mono** (th, tags, gotcha-title, metadados).
+- **Texto sempre alinhado à esquerda** — nunca justificado em tela (cria "rios").
+- **Assinatura**: numerais grandes de seção (2.5rem, Space Grotesk, cor
+  `--mat`, transparente) na margem, com filete `--mat-line` sob o `sec-header`.
+- **Cards flat**: sem sombra, sem lift no hover (só a borda responde com
+  `--mat-line`), faixa lateral esquerda de 5px na cor `--mat`,
+  `.card + .card { margin-top: 1rem; }`.
+- **Tabelas leves**: `th` em fundo `--mat-soft`, JetBrains Mono uppercase
+  (`.74rem`), filete `--mat-line` de 2px; zebra sutil; hover `--mat` a 5%.
+- **Emojis só em alertas** — ⚠️ em callouts e 🚨 em pegadinhas; **nunca** em
+  títulos de card/seção.
+- **Respiro**: seções com padding `2rem 3rem`; radius 14px.
+- **Dark mode**: overrides próprios da cor da matéria (`--mat` claro,
+  `--mat-soft`/`--mat-line` escuros) no bloco `rh-addons` e no bloco de impressão.
+- **Callouts/pegadinhas**: fundo tinted suave, faixa lateral grossa colorida por
+  tipo (perigo/atenção = vermelho/âmbar), radius 12px.
+- Aulas antigas migram para este padrão quando forem tocadas (correção, questão
+  TEC ou redesign solicitado) — não é obrigatório reestilizar em massa.
 
 ## Formato de conversão de questão → conteúdo de estudo
 
