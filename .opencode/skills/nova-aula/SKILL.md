@@ -1,12 +1,21 @@
 ---
 name: nova-aula
-description: Use para processar uma aula nova de concurso: converter PDFs de aula (Estratégia Concursos/TEC) em .md, excluir os PDFs, gerar o resumo HTML no padrão do template-sumario, atualizar o card do index.html, commitar+pushar e publicar no Surge (resumos-hermes.surge.sh). Também use para transformar questões coladas do TEC em blocos de aprendizado (📌 Aprendizado / ⚖️ Base legal) e incrementar a seção "Incidência de temas (TEC)".
+description: Use para processar uma aula nova de concurso (converter PDF → .md → resumo HTML no padrão atual → índice → deploy) e para transformar questões coladas do TEC em blocos de aprendizado com incremento de incidência. Também use para migração de aulas antigas ao padrão visual atual, criação/atualização de sketchnote e encerramento de aula (commit único + push).
 ---
 
-# nova-aula — Ciclo completo de aula (conversão → resumo → índice → git → Surge)
+# nova-aula — Ciclo completo de aula
 
-Processa UMA aula do início ao fim. Siga os passos na ordem exata. Nada de
-improvisar conteúdo: tudo vem dos PDFs convertidos.
+Processa UMA aula do início ao fim, em fases. Siga a ordem exata. Nada de
+improvisar conteúdo: tudo vem dos PDFs convertidos e da lei-fonte.
+
+## Regra zero — Contrato do projeto
+
+**LEIA o `AGENTS.md` da raiz ANTES de qualquer fase.** Ele é o contrato vivo:
+regras de qualidade, formato de conversão de questão, padrão visual travado,
+medição de incidência e sketchnote. Em conflito entre este arquivo e o
+AGENTS.md, vale o AGENTS.md (mais recente).
+
+---
 
 ## Inputs
 
@@ -15,114 +24,224 @@ improvisar conteúdo: tudo vem dos PDFs convertidos.
 - **Tema** (ex: `Organização do Estado`)
 
 Se o usuário não fornecer, detecte: procure PDFs em qualquer `<Matéria>/aula NN/`
-e pergunte qual processar (tool `question`).
+e pergunte qual processar.
+
+---
 
 ## Fatos operacionais (deste ambiente)
 
 - Raiz do projeto: `C:\Programação\hermes\PDF Revisão` (é o repo git, branch `main`).
-- Python p/ conversão (PyMuPDF/fitz): `C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe`
+- Python (PyMuPDF/fitz e scripts de build): `C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe`
+- Validador de HTML: `C:\Users\uniao\AppData\Local\Temp\opencode\check-html.py`
+  (uso: `<python> check-html.py <arquivo.html>` → deve imprimir `ERROS: zero` e `ABERTAS: zero`).
 - Surge: `& "C:\Program Files\nodejs\npx.cmd" surge ...` com `$env:SURGE_LOGIN="fernandobritosc@gmail.com"`.
   - `--force` NÃO é argumento válido do surge — nunca usar.
 - Repo remoto: `https://github.com/fernandobritosc/pdfrevisao.git` (`origin`, branch `main`).
 - `.gitignore` já exclui `*.pdf` e `Resumo_estudos.rar`.
+- Scripts de build/pós-processamento (raiz do repo):
+  - `build-search-index.py` → gera `Resumo_estudos/search-index.json` (rodar ANTES de todo deploy).
+  - `build-changelog.py` → gera `Resumo_estudos/mudancas.html` (rodar ANTES de todo deploy).
+  - `apply-search.py` → injeta busca por palavra no sidebar de todos os `resumo-aula-*.html`.
+  - `apply-review-mode.py` / `apply-marks-mode.py` / `apply-pwa.py` → add-ons (🧠 revisão, 🏷 marcação, PWA offline).
+  - Todos idempotentes; rodar após regenerar resumos pelo template.
 
-## Passo 1 — Detectar PDFs
+---
 
-Listar `PDF Revisão/<Matéria>/aula NN/` (ex: `Direito Constitucional/aula 08/`).
-Se houver PDFs: continuar. Se só houver `.md` (já convertidos) e sobrar PDF:
-excluir o PDF e pular para o Passo 3. Se não houver nada: avisar o usuário.
+## FASE A — Detectar e converter PDFs
 
-## Passo 2 — Converter PDF → Markdown e excluir o PDF
-
-Para cada PDF, extrair todo o texto com PyMuPDF. Padrão do script:
+1. Listar `PDF Revisão/<Matéria>/aula NN/` (ex: `Direito Constitucional/aula 08/`).
+   - Há PDFs → continuar.
+   - Só `.md` já convertidos e sobrou PDF → excluir o PDF e pular para a FASE B.
+   - Nada → avisar o usuário.
+2. Extrair todo o texto com PyMuPDF:
 
 ```powershell
-& "<python-do-venv>" -c "import fitz, sys; d=fitz.open(sys.argv[1]); print('\n\n'.join(p.get_text() for p in d))" "<caminho-do-pdf>" > "<caminho-do-md>"
+& "<python>" -c "import fitz, sys; d=fitz.open(sys.argv[1]); print('\n\n'.join(p.get_text() for p in d))" "<caminho-do-pdf>" > "<caminho-do-md>"
 ```
 
-- Nome-base do `.md`: `aula-NN-<Tema sem acentos/espacos vira hifen? NÃO: manter espaços>`. Padrão existente dos arquivos: `aula-07-Partidos Politicos-completo.md` — ou seja, `aula-NN-<Tema>` com espaços preservados e **sem acentos**, seguido do sufixo.
-- Sufixos esperados (detectar no nome do PDF): `completo`, `simplificado`, `mapa mental`, `marcacao do aprovado` (sem acento). Se o PDF não trouxer sufixo, inferir pela ordem/propósito (conteúdo integral ↔ condensado ↔ síntese ↔ marcações).
-- **Após cada conversão, excluir o PDF** (regra do AGENTS.md). Conferir que o `.md` ficou legível (ler o começo; se vier lixo/encoding quebrado, re-extrair e sanear).
+3. Nomeação: `aula-NN-<Tema>` com espaços preservados e **sem acentos**
+   (padrão existente, ex: `aula-07-Partidos Politicos-completo.md`), seguido do sufixo.
+4. Sufixos esperados (detectar no nome do PDF): `completo`, `simplificado`,
+   `mapa mental`, `marcacao do aprovado`. Sem sufixo → inferir pela ordem/propósito.
+5. **Após cada conversão, excluir o PDF** (regra do AGENTS.md).
+6. Conferir que o `.md` ficou legível (ler o começo; se vier lixo/encoding
+   quebrado, re-extrair e sanear).
 
-## Passo 3 — Estudar o padrão antes de escrever
+---
 
-LER antes de gerar o HTML:
-1. `Resumo_estudos/templates/template-sumario.html` — estrutura base (sidebar, seções numeradas, cards, callouts, mnemônicos, gotchas, tabelas).
-2. O resumo mais recente da MESMA matéria (ex: `Resumo_estudos/Direito Constitucional/Aula 06/resumo-aula-06-direitos-politicos.html`) — para manter CSS, classes (`sec1..sec9`) e ordem de seções idênticos.
+## FASE B — Estudar o padrão antes de escrever
 
-## Passo 4 — Gerar o resumo HTML
+LER, nesta ordem, antes de gerar qualquer HTML:
+
+1. `AGENTS.md` — regras de qualidade e formato (Regra zero).
+2. `Resumo_estudos/templates/template-sumario.html` — estrutura base (sidebar,
+   seções numeradas, cards, callouts, gotchas, tabelas) + CSS do padrão visual travado.
+3. O resumo mais recente da MESMA matéria — para manter CSS, classes (`sec1..sec9`)
+   e ordem de seções idênticos.
+4. Se a aula tocar dispositivo de lei (`L14133.md`, `CLT.md`, etc. na pasta da aula):
+   **NUNCA citar artigo/inciso/parágrafo de memória** — conferir o texto exato no
+   arquivo-fonte ANTES de escrever.
+
+---
+
+## FASE C — Gerar o resumo HTML
 
 Arquivo de destino: `Resumo_estudos/<Matéria>/<Aula NN>/resumo-aula-NN-<tema>.html`
-(nota: pasta de destino com `Aula NN` capitalizado; título: `Aula NN — <Tema>`).
+(pasta com `Aula NN` capitalizado; título: `Aula NN — <Tema>`).
 
-Conteúdo:
-- **Só o que está nos PDFs** (simplificado + mapa mental como fonte principal; completo para conferir detalhes). Sem improvisação.
-- Estrutura: 9 seções numeradas. Última seção (`sec9` ou equivalente) = **"Incidência de temas (TEC)"** — se não há questões coladas, usar placeholder: "Nenhuma questão do TEC colada ainda." (usar o bloco com `tag tag-red/tag-amber` quando houver contadores).
-- Elementos: cards, callouts, mnemônicos, gotchas, tabelas — no estilo do template.
+### Fonte de conteúdo
+
+- **Só o que está nos PDFs**: simplificado + mapa mental como fonte principal;
+  completo para conferir detalhes. Sem improvisação.
+- Lei citada: sempre validar no arquivo-fonte da lei (FASE B, item 4).
+
+### Estrutura
+
+- Seções numeradas em ordem lógica de estudo ("ordem de livro"): teoria →
+  entes/formação → regimes → competências → tema central → vedações/limites →
+  incidência TEC por último. Seção inchada ou misturada deve ser dividida;
+  fusões óbvias devem ser feitas. Sidebar e numeração acompanham.
+- Última seção = **"Incidência de temas (TEC)"** — se não há questões coladas,
+  placeholder: "Nenhuma questão do TEC colada ainda."
+- Elementos: cards, callouts, pegadinhas, gotchas, tabelas — no estilo do template.
 - pt-BR, tom direto e objetivo.
 
-**PROIBIDO**: seções "Questões comentadas", "Lista de Questões", "Gabarito final" —
-o usuário resolve as questões no TEC, o resumo não replica questão.
+### Critérios de "aula boa" (gate de qualidade da geração)
 
-## Passo 5 — Verificar o HTML
+1. **Cobertura**: todo tema relevante do PDF tem bloco próprio no resumo.
+   Nenhum tópico do simplificado/mapa mental pode ficar de fora.
+2. **Títulos de card didáticos**: o título explica o porquê ou faz pergunta
+   ("Art. 478 CLT — por que não é mais aplicado?", "O que muda na prática?").
+   Nunca genérico ("Art. 478 CLT (texto original)").
+3. **Linhas com contexto**: toda linha de aprendizado traz regra + contexto
+   (porquê/quem/como/consequência) — nunca só a regra seca.
+4. **Um → por assunto**: proibido espremer dois assuntos numa mesma linha
+   separados por `;` ou `e` — cada um ganha linha `→` própria com contexto.
+5. **Verticalização de enumerações**: toda enumeração (I), II), 1), 2), a), b),
+   1ª, 2ª, ·)) em linhas verticais próprias iniciadas por `→` com `<br>`.
+   Exceção: citações legais e gabaritos.
+6. **Negrito em enumerações inline**: quando ficar em linha corrida, termos
+   principais em `<strong>`; vale para cabeças de linha (`**Níveis:**`, `**Risco:**`).
+7. **Espaçamento**: `<br><br>` entre parágrafos/assuntos dentro de um card-text.
+8. **Explicações contextuais**: bloco de lei antiga/revogada traz por que saiu
+   do radar antes de listar números.
+9. **Sem blocos de macete**: nada de `🧠 Macete` / `.mnemonic` (fundo amarelo).
+10. **Acabamento de leitura (regra do usuário, 26/09/2026)**: leitura nunca
+    pesada — (a) **negrito no termo-chave** de cada linha `→` (o texto antes do
+    travessão, ex.: `→ <strong>Unidade de comando</strong> — ordens de...`);
+    (b) **listões com 6+ itens quebram ao meio** com `<br><br>` (respiro em
+    grupos); (c) **expressões-chave de prova** em `<span class="highlight">`
+    (ex.: "the best way to do", homo economicus, "nada é absoluto, tudo é
+    relativo"). Idempotente e aplicado a toda aula nova e toda aula tocada.
+
+### Padrão visual travado (obrigatório em toda aula nova)
+
+- Cor da matéria comanda o visual (`--mat` + derivados `--mat-strong`,
+  `--mat-soft`, `--mat-line`). Paleta: AFO `#16A34A`, AP `#0D9488`, AD `#2563EB`,
+  DC `#7C3AED`, DT `#D97706`, DPT `#DC2626`, PT `#0891B2`, INF `#3B82F6`.
+- Tipografia: Space Grotesk (títulos), IBM Plex Sans (corpo), JetBrains Mono (th/tags).
+- Texto sempre alinhado à esquerda (nunca justificado).
+- Cards flat, coluna única (nunca `grid-2`/`grid-3`), faixa lateral esquerda 5px.
+- Tabelas leves: th em `--mat-soft`, mono uppercase, filete `--mat-line`.
+- Emojis só em alertas (⚠️ callouts, 🚨 pegadinhas) — nunca em títulos.
+- Respiro: padding `2rem 3rem`, radius 14px; dark mode com overrides da matéria.
+
+### PROIBIDO
+
+- Seções "Questões comentadas", "Lista de Questões", "Gabarito final".
+- Replicar questão do TEC no resumo.
+- Improvisar conteúdo fora dos PDFs.
+
+---
+
+## FASE D — Validação (gate obrigatório)
+
+1. **HTML balanceado** (zero erros obrigatório):
 
 ```powershell
-Select-String -Path "<arquivo>" -Pattern "Questões comentadas|Gabarito final" -SimpleMatch
-```
-Deve retornar 0 ocorrências. Se houver, corrigir antes de seguir.
-
-## Passo 6 — Atualizar o índice
-
-Em `Resumo_estudos/index.html`, inserir o card da aula na seção da matéria,
-logo após o card da aula anterior, mesmo padrão (borda `var(--green)`, ícone
-`📄`, descrição curta com tópicos do conteúdo real, link `Abrir resumo →`):
-
-```html
-<div class="card" style="border-color:var(--green);">
-  <div class="card-header"><div class="card-icon">📄</div><div class="card-title" style="color:var(--green);">Aula NN — <Tema></div></div>
-  <div class="card-text">…tópicos reais…</div>
-  <div class="card-links">
-    <a href="<Matéria>/<Aula NN>/resumo-aula-NN-<tema>.html">Abrir resumo →</a>
-  </div>
-</div>
+& "<python>" "C:\Users\uniao\AppData\Local\Temp\opencode\check-html.py" "<arquivo.html>"
 ```
 
-## Passo 7 — Git (obrigatório)
+2. **Proibidos ausentes** (0 ocorrências):
+
+```powershell
+Select-String -Path "<arquivo>" -Pattern "Questões comentadas","Gabarito final"
+```
+
+3. **Checklist visual** (conferir no código):
+   - [ ] `--mat` da matéria correta + derivados definidos.
+   - [ ] Cards em coluna única, sem `grid-2`/`grid-3`.
+   - [ ] Enumerações verticalizadas com `→` (grep por `; ` em enumerações).
+   - [ ] `<br><br>` entre assuntos, não `<br>` simples.
+   - [ ] Títulos de card explicam o porquê.
+4. **Dispositivos legais**: reler cada artigo citado contra o arquivo-fonte da lei.
+
+Falhou qualquer item → corrigir ANTES de seguir.
+
+---
+
+## FASE E — Pós-processamento (após gerar/regenerar resumos)
+
+Rodar os add-ons idempotentes:
+
+```powershell
+& "<python>" "C:\Programação\hermes\PDF Revisão\apply-search.py"
+& "<python>" "C:\Programação\hermes\PDF Revisão\apply-review-mode.py"
+& "<python>" "C:\Programação\hermes\PDF Revisão\apply-marks-mode.py"
+& "<python>" "C:\Programação\hermes\PDF Revisão\apply-pwa.py"
+```
+
+---
+
+## FASE F — Publicação no Surge (sempre que houver alteração)
+
+Publicar em TODA alteração (novo resumo, questão TEC colada, correção, ajuste).
+A publicação **independe do git** — a regra de acumular commits NÃO adia o deploy.
+**NUNCA** publicar a raiz `PDF Revisão` inteira — somente `Resumo_estudos`.
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"
+& "<python>" "C:\Programação\hermes\PDF Revisão\build-search-index.py"
+& "<python>" "C:\Programação\hermes\PDF Revisão\build-changelog.py"
+$env:SURGE_LOGIN="fernandobritosc@gmail.com"
+& "C:\Program Files\nodejs\npx.cmd" surge "C:\Programação\hermes\PDF Revisão\Resumo_estudos" resumos-hermes.surge.sh
+```
+
+Verificação HTTP 200 depois:
+
+```powershell
+$u="https://resumos-hermes.surge.sh/<Matéria>/<Aula NN>/resumo-aula-NN-<tema>.html"
+(Invoke-WebRequest $u -Method Head -UseBasicParsing).StatusCode
+# e também: https://resumos-hermes.surge.sh/ → 200
+```
+
+---
+
+## FASE G — Encerramento de aula
+
+Quando o usuário encerrar a aula:
+
+1. **Perguntar sempre**: a sessão foi primeira aula (🆕) ou revisão (🔁)?
+   Registrar o badge na linha da aula do `Resumo_estudos/index.html`
+   (revisão: `<span class="ma-rev">🔁 dd/mm</span>`) e atualizar o campo
+   "Última atualização" do header.
+2. **Criar o sketchnote da aula**: `Resumo_estudos/<Matéria>/<Aula XX>/sketchnote-aula-XX-<tema>.html`
+   - Filtro: só temas de alta/média incidência (TEC) + pegadinhas clássicas.
+   - Fundo de papel liso (sem grade); link bidirecional com o resumo no topo e rodapé.
+   - Layout adaptável por aula (o padrão AFO Aula 04 é base, não camisa de força).
+3. **Commit único de encerramento** (com tudo acumulado na working tree) e push:
 
 ```powershell
 git add -A
 git commit -m "Adiciona resumo Aula NN - <Tema> (<Matéria>)"
 git push origin main
 ```
-Confirmar que o push saiu (`origin/main` avançou). NUNCA commitar PDFs
-(o `.gitignore` cuida).
 
-## Passo 8 — Publicar no Surge (somente a subpasta)
+4. **Relatório final**: arquivo + seção/card de cada alteração + commit (hash) +
+   URLs com HTTP 200.
 
-Antes de publicar, **regenerar a busca full-text e a página "O que mudou"** (refletem os commits e resumos novos):
-
-```powershell
-$env:PYTHONIOENCODING="utf-8"
-& "C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe" "C:\Programação\hermes\PDF Revisão\build-search-index.py"
-& "C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe" "C:\Programação\hermes\PDF Revisão\build-changelog.py"
-```
-
-```powershell
-$env:SURGE_LOGIN="fernandobritosc@gmail.com"
-& "C:\Program Files\nodejs\npx.cmd" surge "C:\Programação\hermes\PDF Revisão\Resumo_estudos" resumos-hermes.surge.sh
-```
-**NUNCA** publicar a raiz `PDF Revisão` inteira. Depois verificar HTTP 200:
-
-```powershell
-$u="https://resumos-hermes.surge.sh/<Matéria>/<Aula NN>/resumo-aula-NN-<tema>.html"
-(Invoke-WebRequest $u -Method Head -UseBasicParsing).StatusCode
-```
-E também o índice (`https://resumos-hermes.surge.sh/` → 200).
-
-## Passo 9 — Relatório
-
-Informar ao usuário onde cada alteração foi feita: arquivo + seção/card +
-commit (hash) + confirmação do deploy (URLs com 200).
+> Durante a aula/revisão NÃO commitar — nem por etapa nem a cada bloco de questões.
+> As mudanças ficam acumuladas na working tree até o encerramento.
 
 ---
 
@@ -130,29 +249,80 @@ commit (hash) + confirmação do deploy (URLs com 200).
 
 Quando o usuário colar questão(ões) do TEC de uma aula já resumida:
 
-1. Identificar o(s) tema(s) da questão e a seção temática correta do resumo.
-2. Transformar o aprendizado em bloco de estudo (NÃO replicar a questão):
-   - `📌 Aprendizado` — regra/exceção/distinção que a questão ensina
-   - `⚖️ Base legal` — artigo(s) (ex: Lei 14.133/2021, art. 6º, XXIX)
-   - **Sem campo "Pegadinha"**: erros comuns de interpretação entram como linha
-     própria dentro do Aprendizado, iniciada por `→ ⚠️ Cuidado:` — NUNCA usar
-     "assertiva", "a banca", "enunciado", "alternativa" ou qualquer referência
-     à questão/prova
-   - **Rótulo único**: `📌 Aprendizado` aparece **uma única vez** (primeira linha do
-     bloco); cada assunto adicional em linha própria iniciada por `→` com apenas o
-     nome do assunto (ex.: `→ Estabilidade:`, `→ Prazo:`). NUNCA repetir o rótulo.
-   - **Espaçamento entre parágrafos**: separar assuntos/parágrafos com **`<br><br>`**
-     (dupla quebra) — um único `<br>` deixa o texto colado e difícil de ler.
-   - **Foco na assertiva correta (regra do usuário, 23/08/2026)**: em questões de
-     múltiplas afirmativas/alternativas, o bloco principal registra o aprendizado da
-     alternativa **GABARITADA** (o que está certo). Aprendizados das alternativas
-     erradas só entram se agregarem detalhe objetivo e novo; sem isso, omitir.
-3. Tema já coberto? Não reescrever o bloco — só adicionar **detalhe novo**
-   (regra, exceção, artigo, pegadinha) se houver.
-4. Incrementar o contador do(s) tema(s) na seção **"Incidência de temas (TEC)"**
-   do resumo (tags `tag-red` = alta incidência, `tag-amber` = média).
-5. **Publicar no Surge SEMPRE** (Passo 8 completo: `build-search-index.py`,
-   `build-changelog.py`, deploy, verificação HTTP 200) — a publicação acontece
-   em TODA questão colada/alteração e **independe de commit**: a regra de
-   acumular commits até o encerramento da aula NÃO adia o deploy.
-   Índice (Passo 6) só se necessário; commit/push (Passo 7) só no encerramento.
+## 1. Conferência da aula de destino
+
+Antes de processar, verificar em qual aula o tema pertence — matérias com aulas
+sequenciais sobre o mesmo assunto podem ter temas distribuídos entre elas.
+Consultar os arquivos-fonte (.md) e os resumos existentes para identificar a
+aula correta; não presumir que é a aula em andamento.
+
+## 2. Análise completa (nunca pular direto ao contador)
+
+1. Ler a **resolução inteira** da questão.
+2. Extrair o **ponto de aprendizado** (o que a questão ensina).
+3. **Comparar** com o que está escrito no resumo.
+4. Se tiver qualquer **detalhe novo** (mesmo pequeno), adicionar ao resumo.
+5. Só então incrementar o contador de incidência.
+
+- Tema já coberto? **Não reescrever o bloco** — só adicionar o detalhe novo.
+- **Trava de evidência**: nunca concluir que um ponto "já está coberto" sem
+  citar o trecho exato do resumo (card + linha) que o cobre. Match de grep não
+  é cobertura. Sem trecho citável → o ponto é novo e entra no resumo.
+- **Imagens da questão** (cdn.tecconcursos.com.br, prints, telas): baixar para
+  diretório temporário e abrir/ler ANTES de escrever o aprendizado.
+
+## 3. Formato do bloco
+
+```
+📌 Aprendizado    — o que a questão ensina (regra, exceção, distinção)
+⚖️ Base legal     — artigo(s) de lei (sempre conferir no arquivo-fonte da lei)
+→ ⚠️ Cuidado      — erros comuns de interpretação, como linhas do Aprendizado
+```
+
+- **Rótulo único**: `📌 Aprendizado` e `⚖️ Base legal` aparecem **uma única vez
+  por bloco** — `📌` só na primeira linha; as seguintes usam apenas o nome do
+  assunto (`→ Estabilidade:`, `→ Prazo:`).
+- **Sem campo "Pegadinha"**: erros comuns entram como linha própria `→ ⚠️` com
+  rótulo variado conforme contexto (`Atenção:`, `Não confundir:`, `Exceção:`,
+  `Detalhe:`, `Distinção:`, `Limite:`, `Regra:`, `Para fixar:`) — variar dentro
+  do card/seção, sem repetir rótulo em sequência e sem referência a
+  questão/prova ("assertiva", "a banca", "enunciado", "alternativa").
+- **Foco na assertiva correta**: o bloco registra o aprendizado da alternativa
+  **GABARITADA**. Aprendizados das erradas só entram se agregarem detalhe
+  objetivo e novo; sem isso, omitir.
+- **Sem vínculo com a origem**: nunca referenciar número, banca, órgão, cargo,
+  ano ou gabarito da questão.
+- **Espaçamento e linhas**: `→` por assunto, `<br><br>` entre parágrafos,
+  regra + contexto em toda linha.
+
+## 4. Incidência de temas (TEC)
+
+- Incrementar o contador do(s) tema(s) na seção do resumo.
+- Tags centralizadas no princípio/tema central (não subdividir por subtema).
+- **Agregada por seção**: cada tag traz o nome da seção e soma as questões dela
+  (ex.: `Seção 4 — Barreiras (Robbins + Palo Alto): 5`).
+- Formato: agrupado por faixa, decrescente, um tema por linha (`<br>` após cada tag);
+  desempate por seção (sec1 → secN). Faixas: **≥3 = `tag-red`**, **=2 = `tag-amber`**,
+  **=1 = neutra** (cor sempre normalizada pela contagem atual).
+
+## 5. Migração obrigatória
+
+Aula antiga tocada por questão/correção/ajuste → **migrar ao padrão visual
+atual na mesma alteração** (Fase C, "Padrão visual travado"). Nenhuma aula
+permanece no padrão antigo após ser editada.
+
+## 6. Publicar sempre (agora, não no encerramento)
+
+Rodar a FASE F completa (build-search-index + build-changelog + deploy + HTTP 200).
+Índice (Fase G, item 1) só se necessário; commit/push só no encerramento (Fase G, item 3).
+
+---
+
+# Migração de aulas antigas (avulsa)
+
+Quando o usuário pedir migração direta de uma aula ao padrão atual:
+
+1. FASE B (estudar padrão) → reler resumo antigo → refazer CSS/classes conforme
+   o padrão travado, **mantendo todo o conteúdo** (nunca suprimir detalhe).
+2. FASE D (validação) → FASE E (pós-processamento) → FASE F (publicar).
+3. Commit/push: só se o usuário pedir encerramento.

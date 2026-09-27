@@ -149,7 +149,8 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
   (ex.: intervenção em seção própria, fora de competências); fusões óbvias devem ser
   feitas (ex.: características + classificações). Sidebar e numeração acompanham.
 - **HTML válido**: após qualquer edição, validar tags com
-  `check-all-html.py` (Temp/opencode) — o material deve ter **zero problemas**
+  `check-html.py` (em `C:\Users\uniao\AppData\Local\Temp\opencode\`; uso:
+  `<python> check-html.py <arquivo.html>`) — o material deve ter **zero problemas**
   de balanceamento. Bugs pré-existentes de gerador legado (auto_resumo.py:
   `</div>` a mais fechando section) foram corrigidos; não reintroduzir.
 - **Sem seções de questões**: NÃO existir seção "Questões comentadas" nem "Gabarito final"
