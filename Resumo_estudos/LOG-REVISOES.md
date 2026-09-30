@@ -9,6 +9,18 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+## 2026-09-30
+
+**`Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html`** — revisão (6 questões TEC: AOCP, TRF-6, CNJ, FCC, Consulplan, DPE-AM)
+- Sec 8: novo card TEC "Contraposição, cassação e vedação à invalidação por mudança de orientação" (competência diversa; descumprimento de condições; segurança jurídica — Bandeira de Mello); sinônimo "derrubada" registrado na tabela e no card (termo do gabarito, pedido do usuário 30/09); callout de revogação enriquecido com "pareceres, votos" nos meros atos.
+- Sec 1: novo card TEC "Atos políticos × atos administrativos de controle" (sanção/veto = governo; controle = autotutela — Rafael Oliveira); tag Sec 1 → 2 🟡 (corrigida de faixa).
+- Sec 3: card "Motivo e motivação" enriquecido com motivo de direito (vinculado) × motivo de fato (discricionário) — Mazza; tag Sec 3 → 2 🟡 (nova faixa Média).
+- Incidência final: S8-anulação/cassação/contraposição → 5 🔴; S8-revogação → 5 🔴; S9-convalidação → 4 🔴.
+
+**`Direito Administrativo/Aula 06/sketchnote-aula-06-atos-administrativos.html`** — sincronizado com o resumo (derrubada ×2; pareceres nos meros atos; motivo de direito × de fato).
+
+**`Resumo_estudos/index.html`** — badge 🔁 30/09: DA Aula 06. Última atualização: 30/09/2026 00:45.
+
 ## 2026-09-24
 
 **`Direito Constitucional/Aula 05/resumo-aula-05-nacionalidade.html`** — revisão (15 questões TEC)
