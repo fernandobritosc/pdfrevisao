@@ -6,7 +6,7 @@
 <title>Resumo — DC Aula 08: Organização do Estado</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #f5f4f0;
@@ -29,7 +29,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #7c3aed;
+  --mat-strong: #6d28d9;
+  --mat-soft: #f3edfd;
+  --mat-line: #ddccf9;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +44,8 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
 
 /* SIDEBAR (aula pages) */
 .aula .sidebar {
@@ -62,11 +66,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
 .aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -86,7 +90,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-color: #43506b;
 }
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -102,9 +106,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .sidebar h3, .aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--ink);
@@ -121,8 +125,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
   gap: .35rem;
 }
 .aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
 .aula .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -139,9 +143,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   transition: all .15s;
 }
-.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -154,32 +158,33 @@ html[data-theme="dark"] .aula .sidebar-brand {
 /* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
 .aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
 }
 .aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
 .aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.16rem;
   font-weight: 700;
   color: var(--ink);
@@ -189,7 +194,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   padding-bottom: .4rem;
   border-bottom: 2px solid var(--line-strong);
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
 .subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
 .aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
 
@@ -204,7 +209,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
 
 /* CARDS */
@@ -213,23 +218,24 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
 .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
 .card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -237,7 +243,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .25rem .6rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .78rem;
   font-weight: 600;
   text-decoration: none;
@@ -252,7 +258,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .2rem .5rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   background: #d9f2e3;
@@ -263,8 +269,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -273,7 +279,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
@@ -288,34 +294,34 @@ html[data-theme="dark"] .aula .sidebar-brand {
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
 tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:hover { background: rgba(124,58,237,.05); }
 tbody tr:last-child td { border-bottom: none; }
 
 /* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
 
 /* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
@@ -332,18 +338,18 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* LEGAL BLOCK */
 .legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
   border-radius: 8px;
   padding: .7rem .9rem;
   margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .82rem;
   color: var(--text2);
   line-height: 1.55;
 }
-.legal-block strong { color: #1d3f9e; }
+.legal-block strong { color: var(--mat-strong); }
 
 /* HIGHLIGHT */
 .highlight {
@@ -378,6 +384,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #b39af5; --mat-strong: #c9b6f2; --mat-soft: #2b2145; --mat-line: #4c3a75;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -395,13 +402,42 @@ html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
 html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
 html[data-theme="dark"] .card-links a:hover { color:#17191f; }
 html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
 html[data-theme="dark"] .legal-block { background:#262a33; }
 html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
 html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
-html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
-html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:hover { background:rgba(179,154,245,.08); }
+html[data-theme="dark"] .aula .sec-num { color:#b39af5;box-shadow:none; }
 html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
-html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #4c3a75; }
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+    --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+    --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+    --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+    --ink: #1f2733; --mark: #fdf3d8;
+    --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+    --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+    --mat: #7c3aed; --mat-strong: #6d28d9; --mat-soft: #f3edfd; --mat-line: #ddccf9;
+  }
+  html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .legal-block { box-shadow: none !important; break-inside: avoid; }
+  .card-text, .sec-subtitle, td, .subtitle { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  .aula .sec-num { color: #7c3aed !important; }
+  thead, thead tr { background: #f3edfd !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f6 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+}
 </style>
 <script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
 
@@ -435,7 +471,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <a href="#sec8">8. Vedações Federativas</a>
   <a href="#sec9">9. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
-  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="../../index.html" style="color:var(--mat-strong);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-08-organizacao-do-estado.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
   <hr class="sidebar-divider">
   <div style="font-size:.65rem;color:var(--text2);">
     Fontes: simplificado + completo<br>
@@ -469,17 +506,17 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <strong>Conceito de Estado (Ferreira Filho):</strong> "O Estado é uma associação humana (povo), radicada em base espacial (território), que vive sob o comando de uma autoridade (poder) não sujeita a qualquer outra (soberana)."
   </div>
 
-  <div class="grid grid-2">
-    <div class="card" style="border-color:var(--green);">
-      <div class="card-title" style="color:var(--green);">Estado Unitário</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">Estado Unitário</div>
       <div class="card-text">
         Poder politicamente <strong>centralizado</strong>. Um único centro produtor de normas. Exemplo: Portugal.<br><br>
         → Admite <strong>descentralização administrativa</strong> (execução de serviços públicos é distribuída).<br><br>
         → <strong>Estados regionais</strong> (Itália, Espanha): descentralização administrativa + política (modelo intermediário).
       </div>
     </div>
-    <div class="card" style="border-color:var(--blue);">
-      <div class="card-title" style="color:var(--blue);">Estado Federal</div>
+    <div class="card">
+      <div class="card-title">Estado Federal</div>
       <div class="card-text">
         Poder politicamente <strong>descentralizado</strong>. Várias pessoas jurídicas com capacidade política e <strong>autonomia política</strong>. Pluralidade de ordenamentos jurídicos.<br><br>
         Exemplo: <strong>Brasil</strong> (União, Estados, DF e Municípios).
@@ -507,8 +544,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
   <div class="sec-subtitle">Autonomia política, traços essenciais e tipos de federação</div>
 
-  <div class="card" style="border-color:var(--purple);">
-    <div class="card-title" style="color:var(--purple);">Autonomia política — 4 aptidões</div>
+  <div class="card">
+    <div class="card-title">Autonomia política — 4 aptidões</div>
     <div class="card-text">
       → <strong>Auto-organização:</strong> elaboração de Constituições Estaduais (poder constituinte decorrente) e Leis Orgânicas (municípios).<br><br>
       → <strong>Autolegislação:</strong> editar suas próprias leis dentro de suas competências constitucionais.<br><br>
@@ -517,7 +554,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="grid grid-2">
+  <div class="grid">
     <div class="card">
       <div class="card-title">7 características de uma federação</div>
       <div class="card-text">
@@ -530,8 +567,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         → <strong>Participação na vontade nacional</strong> — Senado (Estados/DF legislam no centro)
       </div>
     </div>
-    <div class="card" style="border-color:var(--amber);">
-      <div class="card-title" style="color:var(--amber);">Pontos de atenção</div>
+    <div class="card">
+      <div class="card-title">Pontos de atenção</div>
       <div class="card-text">
         → <strong>Cláusula pétrea:</strong> princípio federativo não pode ser abolido por emenda constitucional.<br><br>
         → <strong>STF como tribunal federativo:</strong> julga conflitos União × Estados e entre Estados. <strong>NÃO julga conflitos envolvendo Municípios.</strong><br><br>
@@ -540,7 +577,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Dupla vacância no Executivo municipal</div>
     <div class="card-text">
       → <strong>RE 655.647 AgR:</strong> em caso de dupla vacância de Prefeito e Vice no último biênio do mandato, o <strong>Município tem autonomia política</strong> para disciplinar a matéria em sua <strong>Lei Orgânica</strong>.<br><br>
@@ -555,7 +592,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div><strong>Autonomia × Soberania:</strong> os entes federativos são autônomos (auto-organização, autolegislação, autoadministração e autogoverno), mas <strong>só a RFB é soberana</strong>. A União representa a RFB no plano internacional, mas possui apenas autonomia.</div>
   </div>
 
-  <h3 style="margin:1.2rem 0 .5rem;font-size:.95rem;font-weight:700;color:var(--blue);">Classificações</h3>
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">Classificações</h3>
 
 <div class="table-wrap">
     <table>
@@ -591,9 +628,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <strong>Art. 18, caput:</strong> "A organização político-administrativa da República Federativa do Brasil compreende a União, os Estados, o Distrito Federal e os Municípios, todos autônomos, nos termos desta Constituição."
   </div>
 
-  <div class="grid grid-2">
-    <div class="card" style="border-color:var(--blue);">
-      <div class="card-title" style="color:var(--blue);">União</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-title">União</div>
       <div class="card-text">
         → <strong>PJ de direito público interno, sem personalidade internacional</strong> — quem atua fora é a RFB, por meio dela.<br>
         → Representa a RFB no plano internacional (art. 21, I).<br>
@@ -601,8 +638,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         → <strong>Brasília</strong> é a capital federal (art. 18, § 1º), não confundir com o DF.
       </div>
     </div>
-    <div class="card" style="border-color:var(--green);">
-      <div class="card-title" style="color:var(--green);">Federação de 3º grau</div>
+    <div class="card">
+      <div class="card-title">Federação de 3º grau</div>
       <div class="card-text">
         Até a CF/88, os Municípios não eram entes federativos. Com a Carta Magna, passaram a ter autonomia política — peculiaridade brasileira. A doutrina dominante reconhece que a federação brasileira é de <strong>3º grau</strong>.
       </div>
@@ -614,11 +651,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div><strong>Art. 18, § 2º:</strong> os Territórios Federais integram a União; não são dotados de autonomia política, sendo meras descentralizações administrativas (autarquias territoriais da União). Atualmente, não existe nenhum Território Federal.</div>
   </div>
 
-  <h3 style="margin:1.2rem 0 .5rem;font-size:.95rem;font-weight:700;color:var(--blue);">Criação e alteração de entes</h3>
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">Criação e alteração de entes</h3>
 
 <div class="grid">
-    <div class="card" style="border-color:var(--blue);">
-      <div class="card-title" style="color:var(--blue);">Formação de Estados (art. 18, § 3º)</div>
+    <div class="card">
+      <div class="card-title">Formação de Estados (art. 18, § 3º)</div>
       <div class="card-text">
         → <strong>Incorporação, subdivisão ou desmembramento de Estados</strong> — redesenho do mapa federativo.<br><br>
         → <strong>Requisitos:</strong><br><br>
@@ -626,20 +663,30 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         → <strong>2) Oitiva das Assembleias Legislativas (meramente opinativa</strong> — quem decide é o Congresso).<br><br>
         → <strong>3) Lei complementar do Congresso Nacional (ato discricionário</strong> — conveniência nacional, não direito adquirido).<br><br>
         → População afetada = <strong>toda a população do(s) Estado(s)</strong> (ADIN 2.650/DF) — não só a da área desmembrada.<br><br>
+        → ⚠️ <strong>Não confundir:</strong> a vedação de secessão (separar-se da federação — cláusula pétrea) <strong>não</strong> impede o desmembramento de Estados — o art. 18, § 3º prevê expressamente incorporação, subdivisão e desmembramento.<br><br>
         → <strong>Sem estudo de viabilidade:</strong> o estudo de viabilidade é requisito só de Municípios (art. 18, §4º) — para Estados, basta plebiscito + oitiva + LC.
       </div>
     </div>
-    <div class="card" style="border-color:var(--green);">
-      <div class="card-title" style="color:var(--green);">Formação de Municípios (art. 18, § 4º)</div>
+    <div class="card">
+      <div class="card-title">Formação de Municípios (art. 18, § 4º)</div>
       <div class="card-text">
         → <strong>Criação, incorporação, fusão e desmembramento</strong> — rito mais rígido, para frear a farra de municípios (EC 15/1996).<br><br>
         <br><br>→ <strong>Requisitos:</strong><br><br>
         → 1) LC federal fixando período para ocorrer (janela temporal nacional).<br><br>
         → 2) LO federal sobre estudos de viabilidade (sustentabilidade fiscal do novo ente).<br><br>
         → 3) Divulgação dos estudos de viabilidade (transparência para a população).<br><br>
-        → 4) Plebiscito das populações envolvidas (vontade direta de quem será afetado).<br><br>
-        → 5) LO estadual da Assembleia Legislativa (cabe ao Estado organizar seus Municípios).<br><br>
-        → <strong>EC 15/1996:</strong> proíbe criação de novos Municípios. LC 230/2026: autoriza desmembramento (15 anos), mas <strong>veda criação de novo Município</strong>.
+        → 4) <strong>Plebiscito</strong> das populações envolvidas — abrange <strong>tanto a do território desmembrado quanto a do remanescente</strong>: a remanescente perde território, população e base fiscal, então é diretamente interessada (ADIN 2.650/DF).<br><br>
+        → ⚠️ <strong>Detalhe:</strong> a mera alteração de limites entre Municípios também exige plebiscito das populações envolvidas (ADI 2.921) — não há dispensa por ser ajuste pequeno.<br><br>
+        → 5) <strong>Lei ordinária estadual</strong> da Assembleia Legislativa (cabe ao Estado organizar seus Municípios) — <strong>não por decreto do governador</strong>: o ato é legislativo, editado após EVM e plebiscito.<br><br>
+        → <strong>EC 15/1996:</strong> proíbe a criação de novos Municípios — impedimento que continua valendo.<br><br>
+        → <strong>LC 230/2026</strong> (publicada em 15/04/2026): preencheu parcialmente o vácuo do art. 18, § 4º — autoriza <strong>somente o desmembramento de parte de um Município para incorporação a outro já existente</strong>: a parte destacada muda de dono, nenhum ente novo nasce.<br><br>
+        → <strong>Não se aplica</strong> a criação, fusão ou incorporação integral de Municípios — tudo isso continua vedado sem nova LC.<br><br>
+        → <strong>Janela de 15 anos:</strong> contados da publicação (até 15/04/2041) — só dentro dela pode ocorrer esse desmembramento.<br><br>
+        → <strong>Passo a passo cumulativo da LC:</strong><br><br>
+        → 1) <strong>EVM</strong> com análise econômico-financeira e fiscal prévia dos dois Municípios envolvidos.<br><br>
+        → 2) <strong>Plebiscito único:</strong> vontade aferida de forma conjunta nos dois Municípios.<br><br>
+        → 3) <strong>Lei ordinária estadual</strong> fixando os novos limites (após plebiscito + parecer favorável do EVM).<br><br>
+        → ⚠️ <strong>Para fixar:</strong> a iniciativa é da Assembleia Legislativa (providencia o EVM e convoca o plebiscito por decreto legislativo; o TRE executa, preferencialmente junto às eleições) — e os novos valores de FPM/transferências só valem após o término do exercício financeiro seguinte ao da lei estadual.
       </div>
     </div>
   </div></section>
@@ -651,7 +698,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
   <div class="sec-subtitle">Poderes e regimes de cada ente (arts. 25, 29 a 33)</div>
 
-  <h3 style="margin:1.2rem 0 .5rem;font-size:.95rem;font-weight:700;color:var(--blue);">Estados-Membros (art. 25)</h3>
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">Estados-Membros (art. 25)</h3>
 
 <div class="legal-block">
     <strong>Art. 25:</strong> "Os Estados organizam-se e regem-se pelas Constituições e leis que adotarem, observados os princípios desta Constituição."
@@ -666,7 +713,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--red); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Governador perde mandato ao assumir cargo na administração pública (OAB 2023)</div>
     <div class="card-text">
       → <strong>Art. 28, §1º, CF:</strong> Governador <strong>perderá o mandato</strong> se assumir outro cargo ou função na administração pública direta ou indireta.<br>
@@ -681,24 +728,24 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <div class="grid">
-    <div class="card" style="border-color:var(--amber);">
-      <div class="card-title" style="color:var(--amber);">Poder Legislativo</div>
+    <div class="card">
+      <div class="card-title">Poder Legislativo</div>
       <div class="card-text">
         → <strong>Unicameral</strong> (Assembleia Legislativa) — sem Senado estadual.<br>
         → Deputados estaduais: mandato de 4 anos, sistema proporcional.<br>
         → Número = <strong>triplo</strong> dos deputados federais (até 36); acima de 36, acrescentar os federais acima de 12 — a bancada estadual espelha a federal.
       </div>
     </div>
-    <div class="card" style="border-color:var(--green);">
-      <div class="card-title" style="color:var(--green);">Poder Executivo</div>
+    <div class="card">
+      <div class="card-title">Poder Executivo</div>
       <div class="card-text">
         → Governador: mandato de 4 anos, eleição no 1º domingo de outubro.<br>
         → <strong>Posse em 6 de janeiro</strong> (EC 111/2021, efeito prático a partir de 2026) — alonga a transição após a eleição.<br>
         <br><br>→ <strong>Subsídios fixados por lei da Assembleia</strong> — servem de teto no Executivo estadual.
       </div>
     </div>
-    <div class="card" style="border-color:var(--purple);">
-      <div class="card-title" style="color:var(--purple);">Poder Judiciário</div>
+    <div class="card">
+      <div class="card-title">Poder Judiciário</div>
       <div class="card-text">
         → <strong>Estados organizam sua Justiça (art. 125)</strong> — autogoverno do Judiciário estadual.<br>
         → Lei de organização judiciária de iniciativa do <strong>Tribunal de Justiça</strong> — reserva que blinda a magistratura de ingerência externa.<br>
@@ -707,7 +754,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">Regiões metropolitanas, aglomerações urbanas e microrregiões (art. 25, § 3º)</div>
     <div class="card-text">
       → Instituídas pelos Estados, mediante <strong>lei complementar estadual</strong>, por agrupamentos de <strong>Municípios limítrofes</strong>, para integrar organização, planejamento e execução de funções públicas de interesse comum.<br><br>
@@ -716,7 +763,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">Teto remuneratório estadual (art. 37, XI e § 12)</div>
     <div class="card-text">
       → Subsídios de Governador, Vice e Secretários: fixados por <strong>lei de iniciativa da Assembleia Legislativa</strong>; servem de teto no Executivo estadual, exceto para procuradores (teto de <strong>90,25%</strong> do subsídio de Ministro do STF).<br><br>
@@ -730,11 +777,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <strong>Subsídio de deputados estaduais:</strong> fixado por <strong>lei em sentido formal</strong> (art. 27, §2º); vinculação automática ao subsídio de deputados federais é <strong>inconstitucional</strong> (ADI 6437/MT) — cada ente fixa o seu, por autonomia (art. 18).
   </div>
 
-  <h3 style="margin:1.2rem 0 .5rem;font-size:.95rem;font-weight:700;color:var(--blue);">DF, Municípios e Territórios (arts. 29 a 33)</h3>
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">DF, Municípios e Territórios (arts. 29 a 33)</h3>
 
 <div class="grid">
-    <div class="card" style="border-color:var(--teal);">
-      <div class="card-title" style="color:var(--teal);">Distrito Federal (art. 32)</div>
+    <div class="card">
+      <div class="card-title">Distrito Federal (art. 32)</div>
       <div class="card-text">
         → Ente federado autônomo de <strong>natureza híbrida</strong> (acumula papéis de Estado e Município, sem se dividir internamente).<br>
         → Auto-organização por <strong>Lei Orgânica</strong> (votada em 2 turnos, 2/3 da Câmara Legislativa — rito municipal, não constituição estadual).<br>
@@ -744,8 +791,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         → Organização do Judiciário, MP, polícia civil/militar = competência da <strong>União</strong> (art. 21, XIII e XIV) — blindagem institucional da capital.
       </div>
     </div>
-    <div class="card" style="border-color:var(--amber);">
-      <div class="card-title" style="color:var(--amber);">Municípios (art. 29 e 29-A)</div>
+    <div class="card">
+      <div class="card-title">Municípios (art. 29 e 29-A)</div>
       <div class="card-text">
         <br><br>→ Autonomia é <strong>princípio constitucional sensível</strong> (art. 34, VII, "c") — violá-la autoriza intervenção.<br>
         → <strong>Não possuem Poder Judiciário</strong> — só Executivo e Legislativo próprios.<br>
@@ -773,14 +820,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </table>
   </div>
 
-  <div class="card" style="margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">Número de Vereadores (art. 29, IV)</div>
     <div class="card-text">
       → Fixado pela Lei Orgânica, observados os limites máximos da CF, escalonados pela população: <strong>9</strong> (até 15 mil habitantes) até <strong>55</strong> (acima de 8 milhões de habitantes).
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--amber); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Prefeito: julgamento e subsídios (art. 29, V e X)</div>
     <div class="card-text">
       → Julgamento do Prefeito perante o <strong>Tribunal de Justiça</strong> (art. 29, X) — não segue o modelo do Presidente da República.<br><br>
@@ -793,7 +840,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--teal); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Fiscalização municipal, trânsito e SUS</div>
     <div class="card-text">
       → Fiscalização do Município: <strong>Poder Legislativo Municipal</strong>, mediante controle externo, + sistemas de controle interno do Executivo (art. 31, caput) — o Tribunal de Contas atua como <strong>auxiliar</strong> (art. 31, §1º: TCs dos Estados/Município ou Conselhos/TCs dos Municípios, onde houver).<br><br>
@@ -804,8 +851,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--red);">
-    <div class="card-title" style="color:var(--red);">Territórios Federais (art. 33)</div>
+  <div class="card">
+    <div class="card-title">Territórios Federais (art. 33)</div>
     <div class="card-text">
       → Integram a União, <strong>não são entes federativos</strong>, não possuem autonomia política.<br>
       → São <strong>autarquias territoriais da União</strong>.<br>
@@ -850,8 +897,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue);">
-    <div class="card-title" style="color:var(--blue);">Técnicas de Repartição</div>
+  <div class="card">
+    <div class="card-title">Técnicas de Repartição</div>
     <div class="card-text">
       → <strong>Horizontal:</strong> cada ente tem competências específicas, sem interferência entre si.<br>
       → Exemplos: competências exclusivas (art. 21), privativas (art. 22), estaduais (art. 25), municipais (art. 30).<br><br>
@@ -865,21 +912,22 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <h3 style="margin:1.2rem 0 .5rem;font-size:.95rem;font-weight:700;color:var(--blue);">4 Tipos de Competência (CF/88)</h3>
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:800;color:var(--mat-strong);">4 Tipos de Competência (CF/88)</h3>
 
   <div class="grid">
-    <div class="card" style="border-color:var(--green);">
-      <div class="card-title" style="color:var(--green);">Competências Exclusivas (Art. 21)</div>
+    <div class="card">
+      <div class="card-title">Competências Exclusivas (Art. 21)</div>
       <div class="card-text">
         → Natureza <strong>administrativa</strong> (executar serviços, não legislar).<br>
         → <strong>Indelegáveis</strong> — nem por lei complementar: só a União tem o aparato e a soberania para executá-las.<br>
-        → Ex.: emitir moeda e declarar guerra (soberania); explorar energia nuclear e organizar a Defesa Permanente (segurança nacional); autorizar e fiscalizar material bélico (art. 21, VI); fiscalizar operações financeiras (art. 21, VIII).<br><br>
+         → Ex.: emitir moeda e declarar guerra (soberania); explorar energia nuclear e organizar a Defesa Permanente (segurança nacional); autorizar e fiscalizar material bélico (art. 21, VI); fiscalizar operações financeiras (art. 21, VIII).<br><br>
+         → <strong>Portos (art. 21, XII, f):</strong> explorar, diretamente ou mediante autorização, concessão ou permissão, os portos marítimos, fluviais e lacustres — competência <strong>exclusiva</strong>: executar é da União, indelegável.<br><br>
         → <strong>Planos de ordenação do território:</strong> elaborar e executar planos <strong>nacionais e regionais</strong> de ordenação do território e de desenvolvimento econômico e social (art. 21, IX) — competência <strong>exclusiva</strong> da União, porque coordena o país como um todo.<br><br>
         → ⚠️ <strong>Não confundir:</strong> não confundir com competência comum (art. 23) — planos nacionais e regionais de ordenação do território são de execução exclusiva da União, não tarefa compartilhada entre todos os entes.
       </div>
     </div>
-    <div class="card" style="border-color:var(--amber);">
-      <div class="card-title" style="color:var(--amber);">Competências Privativas (Art. 22)</div>
+    <div class="card">
+      <div class="card-title">Competências Privativas (Art. 22)</div>
       <div class="card-text">
         → Natureza <strong>legislativa</strong> (criar leis, não executar).<br>
         <br><br>→ <strong>Delegáveis</strong> aos Estados por lei complementar, mas só em <strong>questões específicas</strong> (parágrafo único) — descentralização pontual, sem abrir mão da uniformidade nacional.<br>
@@ -891,7 +939,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--amber); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Proteção de dados pessoais (EC 115/2022)</div>
     <div class="card-text">
       → A <strong>EC 115/2022</strong> incluiu a proteção de dados pessoais entre os direitos fundamentais (art. 5º, LXXIX).<br>
@@ -905,7 +953,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--amber); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Mnemônicos para competências (FCC 2025)</div>
     <div class="card-text">
       <strong>Mnemônico — Competências Privativas da União (art. 22):</strong><br>
@@ -934,16 +982,16 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <div class="grid">
-    <div class="card" style="border-color:var(--purple);">
-      <div class="card-title" style="color:var(--purple);">Competências Comuns (Art. 23)</div>
+    <div class="card">
+      <div class="card-title">Competências Comuns (Art. 23)</div>
       <div class="card-text">
         → Administrativas e <strong>compartilhadas</strong> entre União, Estados, DF e Municípios — tarefas executivas que todos fazem ao mesmo tempo (vertical cumulativa); ninguém pode se omitir alegando ser dever alheio.<br>
         → Ex.: zelar pelo patrimônio público, proteção do meio ambiente, educação para segurança no trânsito.<br><br>
         → <strong>Combate à pobreza:</strong> combater as causas da pobreza e os fatores de marginalização, promovendo a integração social dos setores desfavorecidos (art. 23, X) — erradicação como dever solidário de todos os entes.
       </div>
     </div>
-    <div class="card" style="border-color:var(--teal);">
-      <div class="card-title" style="color:var(--teal);">Competências Concorrentes (Art. 24)</div>
+    <div class="card">
+      <div class="card-title">Competências Concorrentes (Art. 24)</div>
       <div class="card-text">
         → União fixa <strong>normas gerais</strong> (piso nacional); Estados e DF suplementam com a realidade regional.<br>
         → Se a União for omissa → Estados legislam <strong>plenamente</strong> (art. 24, §3º).<br>
@@ -962,20 +1010,31 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
+  <div class="card">
+    <div class="card-title">📌 Aprendizado — Sigilo em BO e inquérito é procedimento (ADI 4337)</div>
+    <div class="card-text">
+      → <strong>Inquérito policial:</strong> sigilo no inquérito para proteger vítimas e testemunhas é <strong>procedimento em matéria processual</strong> (concorrente, art. 24, XI) — não processo penal: o Estado pode legislar sem subverter a lógica da Lei 9.807/99.<br><br>
+      → <strong>Boletim de ocorrência:</strong> tem natureza <strong>procedimental administrativa</strong> — o Estado é competente para legislar sobre esse ato.<br><br>
+      → <strong>⚖️ Base legal: CF/88, art. 24, XI (ADI 4337).</strong><br><br>
+      → ⚠️ <strong>Não confundir:</strong> a lei é constitucional por ser <strong>concorrente</strong>, não residual — e não há vício de iniciativa, pois a matéria não é de iniciativa reservada.
+    </div>
+  </div>
+
   <div class="grid">
-    <div class="card" style="border-color:var(--blue);">
-      <div class="card-title" style="color:var(--blue);">Competências Estaduais (Art. 25)</div>
+    <div class="card">
+      <div class="card-title">Competências Estaduais (Art. 25)</div>
       <div class="card-text">
         → Competência <strong>remanescente</strong> (residual): tudo que não estiver vedado será dos Estados — técnica que fecha o sistema (o que a CF não deu a ninguém é do Estado).<br>
         → Art. 25, §1º: "São reservadas aos Estados as competências que não lhes sejam vedadas por esta Constituição."<br>
         → Exemplos explícitos: <strong>gás canalizado</strong> (monopólio estadual — não pode MP regulamentar!); criação de regiões metropolitanas (interesse comum multi-municipal); organização da justiça estadual (art. 125).
       </div>
     </div>
-    <div class="card" style="border-color:var(--red);">
-      <div class="card-title" style="color:var(--red);">Competências Municipais (Art. 30)</div>
+    <div class="card">
+      <div class="card-title">Competências Municipais (Art. 30)</div>
       <div class="card-text">
-        → Legislar sobre <strong>interesse local</strong> (critério da predominância — ex.: horário comercial, segurança em bancos).<br>
-        <br><br>→ Transporte coletivo local, planejamento urbano, <strong>zoneamento</strong> (com respeito à livre concorrência) — gestão da vida urbana.<br>
+        → Legislar sobre <strong>interesse local</strong> (critério da predominância — ex.: horário comercial, segurança em bancos).<br><br>
+        → ⚠️ <strong>Limite (Súmula 419 STF):</strong> o Município regula o horário do comércio local <strong>desde que não infrinja leis estaduais ou federais válidas</strong> — interesse local não autoriza contrariar norma superior válida.<br><br>
+        → Transporte coletivo local, planejamento urbano, <strong>zoneamento</strong> (com respeito à livre concorrência) — gestão da vida urbana.<br>
         → Saúde e educação básica: o Município executa na ponta, com cooperação técnica e financeira da União e do Estado.<br>
         → Municípios <strong>não têm competência concorrente</strong>, mas podem <strong>suplementar</strong> legislação federal e estadual no que couber (art. 30, II) — detalham sem contrariar.<br>
         → <strong>Competências implícitas</strong> decorrem do art. 30, I — STF reconheceu competência implícita para legislar sobre agrotóxicos (RE 761056 AgR).
@@ -983,7 +1042,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--amber); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Serviços públicos por ente federativo (FGV 2024)</div>
     <div class="card-text">
       → <strong>União:</strong> telecomunicações (art. 21, XI), radiodifusão (art. 21, XII, "a"), transporte ferroviário e aquaviário entre portos/fronteiras (art. 21, XII, "d").<br><br>
@@ -1001,7 +1060,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — CEDC: gás e intermunicipal sim, internet não</div>
     <div class="card-text">
       → Responsabilidade por dano ao consumidor = competência <strong>concorrente</strong> (art. 24, VIII) — União edita normas gerais, Estados/DF suplementam; Estado <strong>pode</strong> editar Código Estadual de Defesa do Consumidor.<br><br>
@@ -1013,7 +1072,16 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--red); margin-top:.8rem;">
+  <div class="card">
+    <div class="card-title">📌 Aprendizado — Fatura de telefonia com mensagem de saúde (ADI 6088)</div>
+    <div class="card-text">
+      → <strong>Núcleo da norma:</strong> lei estadual obrigando as telefônicas a inserir mensagem de incentivo à doação de sangue nas faturas é <strong>proteção à saúde</strong> (concorrente, art. 24, XII) — não telecomunicações: a matéria se define pelo conteúdo, não pelo instrumento.<br><br>
+      → <strong>⚖️ Base legal: CF/88, art. 24, XII (ADI 6088).</strong><br><br>
+      → ⚠️ <strong>Cuidado:</strong> é o inverso do caso da internet no CEDC — lá o núcleo era telecom (privativa, Estado não pode); aqui o núcleo é saúde (concorrente, Estado pode): o mesmo setor rende resultados opostos conforme o conteúdo da lei.
+    </div>
+  </div>
+
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Lei municipal sobre licitações é suplementar (Tema 1001)</div>
     <div class="card-text">
       → Lei municipal que proíbe licitação/contratação com agentes eletivos, comissionados ou função de confiança, cônjuge/parente até o 3º grau e demais servidores municipais = <strong>constitucional</strong> — moralidade administrativa que complementa a legislação federal (Tema 1001).<br><br>
@@ -1025,7 +1093,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--green); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Regras orçamentárias das câmaras municipais (CESPE 2024)</div>
     <div class="card-text">
       → <strong>FUNDEB integra base do duodécimo:</strong> verbas municipais repassadas ao FUNDEB entram na base de cálculo do 1/12 devido ao Legislativo (RE 1285471).<br>
@@ -1036,7 +1104,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--teal); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Entes podem agir sem competência legislativa expressa (CESPE 2023)</div>
     <div class="card-text">
       → A regra geral é que cada ente só pode legislar dentro de sua competência.<br>
@@ -1048,7 +1116,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--red); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Autonomia municipal e competências implícitas (VUNESP 2024)</div>
     <div class="card-text">
       → <strong>Competências implícitas:</strong> decorrem do art. 30, I (legislar sobre assuntos de interesse local). STF reconheceu competência implícita para legislar sobre agrotóxicos (RE 761056 AgR).<br>
@@ -1062,7 +1130,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--purple); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Regras dos municípios (CESPE 2023)</div>
     <div class="card-text">
       → <strong>Religião:</strong> Municípios <strong>NÃO podem</strong> atribuir secretaria a representante religioso — veda dependência ou aliança com religiões (art. 19, I).<br><br>
@@ -1084,7 +1152,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     → Municípios <strong>não</strong> têm competência concorrente — apenas comuns (administrativas) e locais, mais a suplementar (art. 30, II).
   </div>
 
-  <div class="card" style="border-color:var(--green);">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Competência ambiental dos Municípios (RE 194704/MG)</div>
     <div class="card-text">
       → Meio ambiente é <strong>competência legislativa concorrente</strong> (art. 24, VI) — União fixa normas gerais, Estados/DF suplementam.<br>
@@ -1097,7 +1165,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--amber); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Quando o Estado pode legislar em matéria da União (FGV 2025)</div>
     <div class="card-text">
       → <strong>Competência concorrente (art. 24):</strong> União edita normas gerais, Estados/DF editam normas suplementares.<br><br>
@@ -1105,12 +1173,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Competência privativa (art. 22):</strong> delegável aos Estados/DF por <strong>lei complementar</strong>, mas apenas para <strong>questões específicas</strong> — parágrafo único do art. 22.<br><br>
       → ⚠️ <strong>Regra:</strong><br><br>
       <br><br>→ Na <strong>concorrente</strong>, o Estado pode legislar <strong>plenamente</strong> se a União for omissa (sem precisar de autorização).<br><br>
-      → Na <strong>privativa</strong>, o Estado só pode legislar se houver <strong>LC delegando</strong> e <strong>dentro dos limites</strong> da delegação (ADI 4375).<br><br>
+       → Na <strong>privativa</strong>, o Estado só pode legislar se houver <strong>LC delegando</strong> e <strong>dentro dos limites</strong> da delegação (ADI 4375).<br><br>
+       → ⚠️ <strong>Para fixar:</strong> omissão federal na <strong>privativa</strong> não libera nada — se a União ainda não legislou sobre o tema, o Estado continua impedido (diferente da concorrente, art. 24, § 3º).<br><br>
+       → <strong>Autorização prévia:</strong> a LC deve vir antes — não vale legislar na expectativa de futura autorização.<br><br>
       → <strong>Competência comum</strong> (art. 23) é <strong>administrativa</strong>, nunca legislativa — se a questão fala sobre lei, não é comum.
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Separação dos Poderes e nomeações do Executivo</div>
     <div class="card-text">
       → <strong>Art. 2º, CF:</strong> os Poderes da União são independentes e harmônicos entre si.<br>
@@ -1120,7 +1190,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--purple); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Desempate em concurso e princípio federativo (ADI 5358/PA)</div>
     <div class="card-text">
       → É <strong>inconstitucional</strong> critério de desempate em concurso público que favoreça candidatos pertencentes ao serviço público de um determinado ente federativo.<br>
@@ -1128,7 +1198,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--teal); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Segurança pública é competência concorrente (ADI 3921)</div>
     <div class="card-text">
       → <strong>Segurança pública</strong> é matéria de <strong>competência legislativa concorrente</strong> — não é privativa da União.<br>
@@ -1140,7 +1210,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--amber); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Exercício profissional é competência privativa da União (Consulplan 2023)</div>
     <div class="card-text">
       → <strong>Condições para o exercício de profissões</strong> = competência <strong>privativa da União</strong> (art. 22, XVI).<br>
@@ -1152,7 +1222,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--green); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Saúde é competência comum (não privativa municipal)</div>
     <div class="card-text">
       → Cuidar da saúde e assistência pública = competência <strong>comum</strong>, material/administrativa, de todos os entes (art. 23, II) — Municípios prestam com <strong>cooperação técnica e financeira</strong> da União e do Estado (art. 30, VII).<br><br>
@@ -1170,7 +1240,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
   <div class="sec-subtitle">Hipóteses, ritos e controles (arts. 34 a 36)</div>
 
-  <div class="card" style="border-color:var(--blue); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Espécies de intervenção federal (VUNESP 2024)</div>
     <div class="card-text">
       → <strong>Intervenção para assegurar autonomia municipal (art. 34, VII, "c"):</strong> dependerá de provimento do <strong>STF</strong> de representação do Procurador-Geral da República (art. 36, III).<br><br>
@@ -1193,7 +1263,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-<div class="card" style="border-color:var(--teal); margin-top:.8rem;">
+<div class="card">
     <div class="card-title">📌 Aprendizado — Intervenção estadual (art. 35)</div>
     <div class="card-text">
       → <strong>Hipóteses taxativas:</strong> o rol do art. 35 é <strong>taxativo</strong> — Constituições estaduais NÃO podem inovar (ADI 6619).<br><br>
@@ -1233,8 +1303,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--amber);">
-    <div class="card-title" style="color:var(--amber);">Bens dos Estados (art. 26)</div>
+  <div class="card">
+    <div class="card-title">Bens dos Estados (art. 26)</div>
     <div class="card-text">
       → <strong>Águas superficiais ou subterrâneas, fluentes, emergentes e em depósito (ressalvadas, neste caso, na forma da lei, as decorrentes de obras da União)</strong> — água contida num Estado só é dele.<br><br>
       → <strong>Áreas em ilhas oceânicas/costeiras no domínio estadual</strong> — o que não for da União, Município ou terceiro.<br><br>
@@ -1243,7 +1313,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--green); margin-top:.8rem;">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Depósito natural de águas subterrâneas é bem estadual</div>
     <div class="card-text">
       → Depósito <strong>natural</strong> de águas subterrâneas, ainda que integralmente situado no território de um único Município, é bem do <strong>Estado</strong>.<br><br>
@@ -1274,8 +1344,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   
 
-  <div class="card" style="border-color:var(--red);">
-    <div class="card-title" style="color:var(--red);">Vedações Federativas (art. 19)</div>
+  <div class="card">
+    <div class="card-title">Vedações Federativas (art. 19)</div>
     <div class="card-text">
       → <strong>I</strong> — Vedado estabelecer cultos religiosos ou igrejas, subvencioná-lhes, embaraçar-lhes o funcionamento ou manter relações de dependência/aliança (ressalvada colaboração de interesse público) — laicidade: Estado neutro, nem ateu nem confessional.<br><br>
       → <strong>II</strong> — Vedado recusar fé aos documentos públicos — fé pública nacional: documento de um ente vale em todos.<br><br>
@@ -1283,7 +1353,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue);">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Laicidade estatal (ADI 5258/AM)</div>
     <div class="card-text">
       → A imposição legal de manter exemplares de Bíblias em escolas e bibliotecas públicas <strong>viola a laicidade estatal</strong>, a liberdade religiosa e a <strong>isonomia</strong> entre os cidadãos (CF/88).<br><br>
@@ -1293,13 +1363,32 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--amber);">
+  <div class="card">
     <div class="card-title">📌 Aprendizado — Hierarquia na cobrança judicial e princípio federativo (ADPF 357)</div>
     <div class="card-text">
       → A definição de <strong>hierarquia</strong> na cobrança judicial de créditos da dívida pública (União → Estados/DF → Municípios) <strong>viola o princípio federativo</strong> e o art. 19, III, da CF.<br><br>
       <br><br>→ O STF entendeu que isso cria distinção entre entes federativos, o que é vedado pela Constituição.<br><br>
       → <strong>Vale para pessoas e para entes:</strong> a vedação do art. 19, III não é apenas entre pessoas físicas — vale também entre entes federativos.<br><br>
-      → <strong>Residência como critério:</strong> lei municipal que concede benefício fiscal apenas a empresas que contratem residentes há 5+ anos cria <strong>preferência indevida entre brasileiros</strong> — <strong style="color:var(--red);">inconstitucional</strong> (art. 19, III).
+      → <strong>Residência como critério:</strong> lei municipal que concede benefício fiscal apenas a empresas que contratem residentes há 5+ anos cria <strong>preferência indevida entre brasileiros</strong> — <strong>inconstitucional</strong> (art. 19, III).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Aprendizado — Cargos públicos sem distinção de naturalidade</div>
+    <div class="card-text">
+      → <strong>Acesso universal:</strong> cargos, empregos e funções públicas são acessíveis aos brasileiros que preencham os requisitos legais — e aos estrangeiros, na forma da lei: nenhuma restrição total ou parcial por naturalidade.<br><br>
+      → <strong>⚖️ Base legal: CF/88, art. 37, I</strong> — "os cargos, empregos e funções públicas são acessíveis aos brasileiros que preencham os requisitos estabelecidos em lei, assim como aos estrangeiros, na forma da lei".<br><br>
+      → ⚠️ <strong>Para fixar:</strong> é a lógica do art. 19, III (vedado criar distinções entre brasileiros) aplicada ao provimento de cargos — naturalidade não é critério válido de exclusão.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Aprendizado — Imunidade recíproca entre os entes (art. 150, VI, a)</div>
+    <div class="card-text">
+      → <strong>Imunidade recíproca:</strong> os entes federados <strong>não</strong> podem instituir impostos sobre patrimônio, renda ou serviços uns dos outros — sem exceção para serviço público essencial.<br><br>
+      → <strong>Alcance:</strong> a vedação estende-se às autarquias e fundações públicas quanto a patrimônio, renda e serviços vinculados às finalidades essenciais (art. 150, § 2º).<br><br>
+      → <strong>⚖️ Base legal: CF/88, art. 150, VI, a e § 2º.</strong><br><br>
+      → ⚠️ <strong>Distinção:</strong> a imunidade cobre só impostos — não alcança as taxas.
     </div>
   </div>
 </section>
@@ -1315,17 +1404,18 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">📊 Incidência de temas (TEC)</div>
     <div class="card-text">
       <strong>Alta incidência 🔴</strong><br>
-      <span class="tag tag-red">Seção 5 — Repartição de Competências: 23</span><br>
-      <span class="tag tag-red">Seção 4 — Autonomia municipal: 12</span><br>
+      <span class="tag tag-red">Seção 5 — Repartição de Competências: 27</span><br>
+      <span class="tag tag-red">Seção 4 — Autonomia municipal: 13</span><br>
       <span class="tag tag-red">Seção 6 — Intervenção: 12</span><br><br>
       <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Seção 3 — Formação de Estados e Municípios (art. 18): 2</span><br>
       <span class="tag tag-amber">Seção 4 — Territórios Federais: 2</span><br>
-      <span class="tag tag-amber">Seção 8 — Laicidade: 2</span><br><br>
+      <span class="tag tag-amber">Seção 8 — Laicidade: 2</span><br>
+      <span class="tag tag-amber">Seção 8 — Vedações federativas (art. 19): 2</span><br><br>
       <strong>Baixa incidência ⚪</strong><br>
-      <span class="tag">Seção 3 — Formação de Estados e Municípios (art. 18): 1</span><br>
       <span class="tag">Seção 5 — Separação dos Poderes: 1</span><br>
       <span class="tag">Seção 7 — Bens Públicos: 1</span><br>
-      <span class="tag">Seção 8 — Vedações federativas (art. 19): 1</span><br>
+      <span class="tag">Seção 8 — Imunidade recíproca (art. 150, VI): 1</span><br>
     </div>
   </div>
 </section>
@@ -1408,8 +1498,8 @@ html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .questio
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
   padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
 #rhMarkPanel.show { display: block; }
-#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
-#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
   background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
   color: var(--text); cursor: pointer; margin-right: .3rem; }
 #rhMarkPanel button:hover { border-color: var(--blue); }
