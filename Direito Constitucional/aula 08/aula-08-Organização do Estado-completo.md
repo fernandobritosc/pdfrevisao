@@ -3818,7 +3818,7 @@ A Constitui├º├úo Federal de 1988 pro├¡be que sejam criados ├│rg├�
 existem, mas s├│ aqueles que foram criados previamente ├á Constitui├º├úo de 1988: o TCM-SP e o 
 TCM-RJ. Depois da CF/88, nenhum ├│rg├úo de contas municipal foi criado, pois isso ├® proibido 
 pela Carta Magna. 
-Importante notar tamb├®m que, ap├│s a Emenda Constitucional n┬║ 139/2026, ficou expressamente 
+Importante notar tamb├®m que, ap├│s a Emenda Constitucional n┬║ 139/2026 (a PEC da Essencialidade, PEC 39/2022, promulgada em 5/5/2026), ficou expressamente 
 vedada no texto constitucional a extin├º├úo de Tribunais de Contas. Em suma: n├úo podem ser 
 criados novos Tribunais de Contas Municipais (a exemplo do TCM/SP e TCM/RJ), mas tamb├®m 
 n├úo se pode extinguir aqueles que j├í existem. 
@@ -3849,17 +3849,17 @@ www.estrategiaconcursos.com.br
 c) Tribunal de Contas do Estado (TCEs): Naqueles estados em que n├úo existirem os ├│rg├úos 
 de contas a que fizemos alus├úo anteriormente, o controle externo da Administra├º├úo 
 P├║blica municipal ser├í compet├¬ncia do TCE.  
-Antes da PEC 139/2026, houve a extin├º├úo do Tribunal de Contas dos Munic├¡pios do Cear├í 
+Antes da EC 139/2026, houve a extin├º├úo do Tribunal de Contas dos Munic├¡pios do Cear├í 
 (TCM-CE), pois o STF entendeu que os Estados teriam autonomia para decidir se o controle 
 externo das Administra├º├Áes Municipais ser├í feito por Tribunal de Contas dos Munic├¡pios (TCM) 
 ou por Tribunal de Contas Estadual (TCE), materializando-se tal decis├úo por norma constitucional 
-estadual.15 Com base nesse entendimento, o STF julgou constitucional, na ocasi├úo, a extin├º├úo do 
+estadual.15 Com base nesse entendimento, o STF julgou constitucional (ADI 5763), na ocasi├úo, a extin├º├úo do 
 TCM-CE por emenda ├á Constitui├º├úo Estadual. A Corte ainda destacou que n├úo havia 
 necessidade de participa├º├úo dos Munic├¡pios no processo legislativo referente a essa mat├®ria.  
 Art. 31, ┬º 2┬║ - O parecer pr├®vio, emitido pelo ├│rg├úo competente sobre as contas 
 que o Prefeito deve anualmente prestar, s├│ deixar├í de prevalecer por decis├úo de 
 dois ter├ºos dos membros da C├ómara Municipal. 
-Por├®m, ap├│s a PEC 139/2026, os Tribunais de Contas foram considerados ├│rg├úos permanentes e 
+Por├®m, ap├│s a EC 139/2026, os Tribunais de Contas foram considerados ├│rg├úos permanentes e 
 essenciais, conforme se verifica no art. 75 da CF/88: 
 Art. 75. Os Tribunais de Contas s├úo institui├º├Áes permanentes, essenciais ao 
 exerc├¡cio do controle externo, e as normas estabelecidas nesta Se├º├úo aplicam-se, 

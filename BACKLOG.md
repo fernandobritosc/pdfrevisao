@@ -166,3 +166,53 @@ sanar; descumprida → **extingue sem mérito** (reclamante) ou **revel**
 (reclamado). Na **recursal**, o relator dá 5 dias; descumprida → **não conhece**
 o recurso (recorrente) ou **desentranha contrarrazões** (recorrido). Destino:
 futura aula de Recursos (ou Aula 03/Nulidades — decidir na época).
+
+## Item G — Lacunas DA Aula 06 vs material-fonte (levantadas em 30/09/2026, aguardando decisão do usuário)
+
+**Origem**: comparação do `Resumo_estudos/Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html`
+com os arquivos-fonte da pasta `Direito Administrativo/Aula 06/`
+(`aula-06-Atos Administrativos-completo.md`, `-mapa mental.md`).
+
+**Resultado (30/09/2026)**: verificação item a item mostrou que os itens 1–4 e
+todos os menores **já constavam no resumo** (cards TeCoM, tabela destinatários/
+estrutura/âmbito + gotcha internos × externos, card ab-rogação × derrogação,
+cards licença STJ-RE 105.634 e LGT art. 131, extinção natural detalhada,
+cassação vinculada/sancionatória + ressalva, caducidade posterior × anulação
+anterior, desfazimento volitivo, confirmação, reforma × conversão, silêncio
+tácito minoritário) — nada precisou ser duplicado. Migração visual da DA 06
+**aplicada** (CSS + rh-addons + fontes do `template-sumario.html`; busca,
+revisão, marcação e PWA preservados). Card gênero × espécie: título já estava
+em `var(--blue)`, alinhado à borda — sem alteração necessária.
+
+**Prioridade Alta (itens 1–4)**:
+1. **Elementos acidentais do ato — TeCoM** (termo, condição, modo/encargo) — seção
+   inteira ausente; fonte: mapa mental + completo (l. 1273–1327). Destino: Sec 3.
+2. **Três critérios de classificação ausentes na Sec 6**: quanto aos destinatários
+   (gerais × individuais), à estrutura (concretos × abstratos) e ao âmbito de
+   aplicação (internos × externos); fonte: mapa mental (l. 127–129).
+3. **Espécies de revogação**: ab-rogação × derrogação + regra de que a revogação
+   atinge só os efeitos próprios, nunca os impróprios; fonte: completo
+   (l. 5451–5504). Destino: Sec 8.
+4. **Exceção do STJ à irrevogabilidade da licença**: em regra não revogável, mas o
+   STJ admite revogar licença para construir se a obra não foi iniciada
+   (RE 105.634) — o resumo hoje afirma só a regra. Destino: Sec 7/8.
+
+**Menores (decidir quais incluir)**: sub-hipóteses da extinção natural; cassação
+como ato vinculado e sancionatório; caducidade = ilegalidade posterior (na
+anulação, anterior); divergência sobre reforma/conversão (Di Pietro e Bandeira de
+Mello não as veem como convalidação); "confirmação"; licença declaratória ×
+constitutiva; autorização vinculada na LGT (art. 131, Lei 9.472/1997); corrente
+minoritária do silêncio como ato tácito.
+
+**Decisão visual pendente**: DA Aula 06 está no padrão antigo (Archivo, texto
+justificado, sem tokens `--mat`) — como outras ~54 páginas; só ~14 de 69
+migradas ao padrão de 24/09. Opções: migrar só a DA 06, ou lote DA 05+06+07+08
+(como foi feito no AP).
+
+**Detalhe cosmético pendente**: card "Atos da administração (gênero) × ato
+administrativo (espécie)" (Sec 1) com borda azul e título verde — alinhar a cor?
+
+**Ação**: quando o usuário responder quais itens incluir, aplicar no resumo
+(verificação de dispositivo legal + nunca suprimir), incrementar incidência se
+houver questão TEC vinculada, validar com `check-html.py`, regenerar busca +
+changelog, publicar no Surge com HTTP 200.

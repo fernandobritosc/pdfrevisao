@@ -6,9 +6,14 @@
 <title>Resumo — DA Aula 06: Atos Administrativos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
   --bg: #f5f4f0;
   --sidebar: #ecebe5;
   --card: #ffffff;
@@ -29,7 +34,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #2563eb;
+  --mat-strong: #1d4ed8;
+  --mat-soft: #e8effd;
+  --mat-line: #c3d5fa;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +49,8 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
 
 /* SIDEBAR (aula pages) */
 .aula .sidebar {
@@ -62,11 +71,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
 .aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -86,7 +95,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-color: #43506b;
 }
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -102,9 +111,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .sidebar h3, .aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--ink);
@@ -121,8 +130,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
   gap: .35rem;
 }
 .aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
 .aula .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -139,9 +148,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   transition: all .15s;
 }
-.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -154,32 +163,31 @@ html[data-theme="dark"] .aula .sidebar-brand {
 /* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
 .aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
 }
 .aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
 .aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.16rem;
   font-weight: 700;
   color: var(--ink);
@@ -189,7 +197,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   padding-bottom: .4rem;
   border-bottom: 2px solid var(--line-strong);
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
 .subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
 .aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
 
@@ -204,7 +212,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
 
 /* CARDS */
@@ -213,23 +221,24 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
 .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
 .card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -237,7 +246,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .25rem .6rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .78rem;
   font-weight: 600;
   text-decoration: none;
@@ -252,7 +261,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .2rem .5rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   background: #d9f2e3;
@@ -263,8 +272,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -273,7 +282,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
@@ -288,7 +297,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   margin: .85rem 0;
 }
 .mnemonic-label {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   color: var(--amber);
@@ -302,7 +311,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   letter-spacing: .01em;
   margin-top: .15rem;
   line-height: 1.7;
-  text-align: justify;
+  text-align: left;
   white-space: normal;
 }
 .mnemonic-content span {
@@ -321,7 +330,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 7px;
   background: var(--amber);
   color: #fff;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
   font-size: 1rem;
   line-height: 1;
@@ -336,34 +345,34 @@ html[data-theme="dark"] .aula .sidebar-brand {
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
 tbody tr:last-child td { border-bottom: none; }
 
 /* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
 
 /* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
@@ -424,7 +433,7 @@ tbody tr:last-child td { border-bottom: none; }
   width: 0%;
   transition: width .3s;
 }
-.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
 .progress-bar {
   position: fixed;
   top: 0;
@@ -437,18 +446,18 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* LEGAL BLOCK */
 .legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
   border-radius: 8px;
   padding: .7rem .9rem;
   margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .82rem;
   color: var(--text2);
   line-height: 1.55;
 }
-.legal-block strong { color: #1d3f9e; }
+.legal-block strong { color: var(--mat-strong); }
 
 /* QUESTIONS / OPTIONS */
 .question {
@@ -510,7 +519,7 @@ li { margin: 4px 0; }
 /* LANDING */
 .container { max-width: 600px; margin: 0 auto; text-align: center; }
 .container h1 {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: .5rem;
@@ -519,7 +528,7 @@ li { margin: 4px 0; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
 .back-link {
   display: inline-block;
   color: #1d3f9e;
@@ -571,6 +580,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #8ab0fe; --mat-strong: #a9c3ef; --mat-soft: #1d2739; --mat-line: #33507e;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -600,9 +610,9 @@ html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
 html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
-html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
 html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
-html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
 html[data-theme="dark"] .question { background:#232733; }
 html[data-theme="dark"] .option { background:#232733; }
 html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
@@ -617,13 +627,13 @@ html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
 html[data-theme="dark"] .back-link { color:#a9c3ef; }
 html[data-theme="dark"] .btn { color:#17191f; }
 html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
-html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
 /* Toolbar flutuante (tema · fonte · topo) */
 .rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
 .rh-toolbar button {
   width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
   background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
   box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
   transition: transform .15s, border-color .15s;
 }
@@ -646,7 +656,7 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
 .aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
 .aula-nav a.next { text-align: right; }
 .aula-nav .aula-nav-dir {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
   color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
 }
 .aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
@@ -748,8 +758,8 @@ html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .questio
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
   padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
 #rhMarkPanel.show { display: block; }
-#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
-#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
   background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
   color: var(--text); cursor: pointer; margin-right: .3rem; }
 #rhMarkPanel button:hover { border-color: var(--blue); }
@@ -838,7 +848,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
 <div class="card" style="border-color:var(--blue);">
-    <div class="card-title" style="color:var(--green);">Atos da administração (gênero) × ato administrativo (espécie)</div>
+    <div class="card-title" style="color:var(--blue);">Atos da administração (gênero) × ato administrativo (espécie)</div>
     <div class="card-text">
       → <strong>Atos de direito privado</strong> (doação, permuta, locação) — a Administração age como particular, sem prerrogativas públicas, por isso fora do conceito<br>
       → <strong>Atos materiais</strong> (demolição, apreensão, varrição) — mera execução material, sem declaração de vontade que produza efeitos jurídicos<br>
@@ -847,9 +857,22 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Contratos e convênios</strong> — vontade bilateral, não declaração unilateral do Estado<br>
       → <strong>Atos normativos</strong> — gerais e abstratos, sem efeitos concretos imediatos (administrativos só em sentido formal)<br>
       → <strong>Atos administrativos propriamente ditos</strong> — a espécie: declaração unilateral + efeitos imediatos + regime público + controle judicial<br><br>
-      <br><br>→ 📌 <strong>Para fixar:</strong> é o <strong>ato da administração</strong> que tem sentido mais amplo, e não o ato administrativo.
+      → 📌 <strong>Para fixar:</strong> é o <strong>ato da administração</strong> que tem sentido mais amplo, e não o ato administrativo.
     </div>
 </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title">📌 Atos políticos × atos administrativos de controle (TEC)</div>
+    <div class="card-text">
+      📌 <strong>Aprendizado:</strong> a doutrina distingue atos políticos (de governo) de atos administrativos de controle — não confundir.<br><br>
+      → <strong>Atos políticos (de governo):</strong> provenientes de autoridades do alto escalão do Executivo (Presidente, Governador, Prefeito), versam sobre relacionamento com outros Poderes (âmbito interno) ou com outros países (âmbito externo) — ex.: sanção, promulgação e publicação de leis; veto a projetos de lei; apresentação ou retirada de projeto de lei; declaração de guerra<br><br>
+      → <strong>Atos administrativos de controle:</strong> baseados no princípio da <strong>autotutela</strong> — fiscalização e revisão, no âmbito interno, da própria atividade administrativa — ex.: anulação, revogação, revisão<br><br>
+      → ⚠️ <strong>Distinção:</strong> sanção e veto são <strong>atos políticos</strong> (função de governo), <strong>não</strong> atos administrativos de controle — o controle administrativo decorre da autotutela (anulação/revogação), não da função política
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> Rafael Oliveira (Curso de Direito Administrativo, 9. ed., p. 159) — distinção entre Administração e Governo; atos de governo (políticos) vs atos administrativos
+    </div>
+  </div>
 
   <div class="card">
     <div class="card-title">Fatos administrativos</div>
@@ -865,6 +888,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title" style="color:var(--green);">Silêncio administrativo</div>
     <div class="card-text">
       O silêncio (omissão) da Administração <strong>não é ato administrativo</strong>: é <strong>fato jurídico administrativo</strong> (Bandeira de Mello e Carvalho Filho).<br><br>
+      → <strong>Corrente minoritária:</strong> quando a lei define os efeitos da omissão (concessão ou indeferimento), parte da doutrina enxerga aí um <strong>ato administrativo tácito</strong> — posição minoritária, admitida quando se enfatiza que a legislação prevê as consequências da omissão; na regra, o silêncio é <strong>fato jurídico administrativo</strong><br><br>
       → <strong>Efeitos definidos em lei:</strong> anuência tácita (ex.: parcelamento RFB após 90 dias — Lei 10.522/2000) ou negativa tácita (ex.: Habeas Data — Lei 9.507/1997)<br>
       → <strong>Efeitos não definidos em lei:</strong> o particular pode acionar o Judiciário: ato <strong>vinculado</strong> → juiz determina a concessão; ato <strong>discricionário</strong> → juiz fixa prazo para decisão motivada (mesmo que indeferindo)
     </div>
@@ -963,7 +987,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="gotcha">
     <div class="gotcha-title">🔀 Não confundir: autoexecutoriedade × exigibilidade</div>
-    Interdição de estabelecimento com risco concreto à coletividade = <strong>autoexecutoriedade</strong>. Não confundir com <strong>exigibilidade</strong> (meios indiretos) nem com <strong>coercibilidade</strong> (força para cumprir o ato). Multa administrativa tem imperatividade, mas <strong>não autoexecutoriedade</strong> — cobrança coercitiva exige execução fiscal.
+    Interdição de estabelecimento com risco concreto à coletividade = <strong>autoexecutoriedade</strong>. Não confundir com <strong>exigibilidade</strong> (meios indiretos) nem com <strong>coercibilidade</strong> (força para cumprir o ato). Multa administrativa tem imperatividade, mas <strong>não autoexecutoriedade</strong> — cobrança coercitiva exige execução fiscal. A exigibilidade está presente em <strong>todas</strong> as medidas de polícia; a executoriedade, só nas hipóteses previstas em lei ou em situações de urgência.
   </div>
 
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
@@ -1030,7 +1054,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <strong>Poder-dever</strong>, irrenunciável, intransferível, imodificável pela vontade do administrador, imprescritível e improrrogável (incompetente não se torna competente pelo exercício). É <strong>sempre vinculada</strong>.<br><br>
       → <strong>Primária</strong>: prevista em lei/CF (ex.: art. 84, CF)<br>
       → <strong>Secundária</strong>: distribuída por regulamentos, resoluções<br><br>
-      Admite <strong>delegação</strong> e <strong>avocação</strong> (Lei 9.784/1999).
+      Admite <strong>delegação</strong> e <strong>avocação</strong> (Lei 9.784/1999).<br><br>
+      → <strong>Delegação formal</strong> (Lei 9.784, art. 14): o ato de delegação <strong>e</strong> sua revogação são <strong>publicados no meio oficial</strong>; o ato é <strong>específico</strong> — matérias e poderes transferidos, limites da atuação, duração, objetivos e recurso cabível<br>
+      → <strong>Revogável a qualquer tempo</strong> pela autoridade delegante (art. 14, § 2º)
     </div>
   </div>
 
@@ -1076,7 +1102,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <strong>Motivação</strong> = demonstração escrita dos motivos. <strong>Não é elemento de formação</strong>; em regra é exigida, mas há atos sem necessidade (ex.: exoneração de cargo em comissão).<br><br>
       → Regra: motivação <strong>prévia ou concomitante</strong>; excepcionalmente <strong>posterior</strong> (motivos pré-existentes)<br>
       → <strong>Contextual</strong>: motivos enumerados no próprio ato<br>
-      → <strong>Aliunde (por referência)</strong>: remete a parecer/documento anterior (art. 50, § 2º, Lei 9.784)
+      → <strong>Aliunde (por referência)</strong>: remete a parecer/documento anterior (art. 50, § 1º, Lei 9.784)<br><br>
+      → <strong>Motivo de direito</strong> (motivo legislativo): a lei determina a única situação fática que, ocorrendo, autoriza a prática do ato — requisito vinculado, sem margem de liberdade ao agente<br>
+      → <strong>Motivo de fato</strong>: a lei descreve a situação fática de forma aberta — o agente avalia, com margem de liberdade dada pela lei, qual a situação oportuna para praticar o ato (requisito discricionário)
     </div>
   </div>
 
@@ -1103,6 +1131,27 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="gotcha">
     <div class="gotcha-title">🔀 Não confundir: objeto × motivo</div>
     Licença a servidor <strong>falecido</strong> = vício de <strong>objeto</strong> (impossível), e não de motivo — o motivo (doença na família) pode ser verdadeiro, mas o objeto é irrealizável.
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Objeto natural × objeto acidental (elementos acidentais)
+  </h3>
+
+  <div class="card">
+    <div class="card-title">Quando o objeto ganha cláusulas acessórias — sigla TeCoM</div>
+    <div class="card-text">
+      → <strong>Objeto natural:</strong> efeito jurídico que o ato produz por sua própria natureza, sem necessidade de menção expressa — está em <strong>todos</strong> os atos (ex.: na exoneração, o próprio fim do vínculo funcional)<br><br>
+      → <strong>Objeto acidental:</strong> efeito jurídico que decorre de <strong>cláusulas acessórias</strong> apostas pelo sujeito que praticou o ato, ampliando ou restringindo seus efeitos — é o mesmo que <strong>elementos acidentais ou acessórios</strong><br><br>
+      → <strong>Só nos discricionários:</strong> as cláusulas acessórias decorrem da vontade de quem pratica o ato — nos atos vinculados não se fala em objeto acidental, e nem todo ato discricionário o possui<br><br>
+      → <strong>Essenciais × acidentais:</strong> os essenciais existem obrigatoriamente em todos os atos (ComFiForMOb); os acidentais referem-se sempre ao objeto e têm cobrança rara — quando o tema aparece, vem pela sigla <strong>TeCoM</strong><br><br>
+      → <strong>Termo:</strong> evento <strong>futuro e certo</strong>, normalmente um prazo — indica o dia em que a eficácia do ato <strong>começa ou termina</strong> (ex.: autorização de uso de via pública com termo inicial em cinco dias e termo final em dez dias)<br><br>
+      → <strong>Condição:</strong> evento <strong>futuro e incerto</strong> — subordina o efeito do ato a algo que pode não acontecer; a <strong>suspensiva</strong> adia o início dos efeitos (o ato só produz efeitos se a condição ocorrer) e a <strong>resolutiva</strong> encerra os efeitos (o ato deixa de produzi-los se ela ocorrer)<br><br>
+      → <strong>Modo ou encargo:</strong> obrigação ou ônus imposto ao destinatário <strong>para usufruir do benefício</strong> do ato (ex.: doação de máquinas ao município com o dever de contratar e treinar pessoal para operá-las, sob pena de reversão dos bens)<br><br>
+      → ⚠️ <strong>Distinção:</strong> o que separa <strong>termo e condição</strong> é a certeza do evento — certo (termo) × incerto (condição); o <strong>encargo</strong> não suspende nem encerra a eficácia, apenas impõe um comportamento ao beneficiário, sob pena de perder o benefício
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> Maria Sylvia Zanella Di Pietro — elementos acidentais ou acessórios (termo, condição e modo ou encargo)
+    </div>
   </div>
 </section>
 
@@ -1265,8 +1314,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       📌 <strong>Aprendizado:</strong> a concessão de aposentadoria, reforma e pensão é <strong>ato complexo</strong> — depende da manifestação do órgão do servidor + do registro pelo Tribunal de Contas.<br><br>
       → <strong>Sem registro, sem perfeição:</strong> sem o registro, o ato <strong>ainda não está perfeito</strong> (pendente de eficácia)<br><br>
       → <strong>Sem contraditório no indeferimento:</strong> se o TCU indefere o registro inicial, não há contraditório nem ampla defesa — não há "desfazimento", pois o ato nem se aperfeiçoou<br><br>
-      → <strong>Prazo de 5 anos:</strong> o TCU tem 5 anos, contados da chegada do processo à Corte, para apreciar a legalidade — esgotado o prazo, opera-se o <strong>registro tácito</strong>; a partir do registro (expresso ou tácito), corre o prazo decadencial de 5 anos para anular<br><br>
-      <br><br>→ ⚠️ <strong>Distinção:</strong> após o registro o ato está formado — o desfazimento exige contraditório E participação conjunta do TCU e do órgão (complexo na edição e no desfazimento)
+      → <strong>Prazo de 5 anos:</strong> o TCU tem 5 anos, contados da chegada do processo à Corte, para apreciar a legalidade — esgotado o prazo, opera-se o <strong>registro tácito</strong><br><br>
+      → <strong>Depois do registro:</strong> a partir do registro (expresso ou tácito), corre o prazo decadencial de 5 anos para anular<br><br>
+      → ⚠️ <strong>Distinção:</strong> após o registro o ato está formado — o desfazimento exige contraditório E participação conjunta do TCU e do órgão (complexo na edição e no desfazimento)
     </div>
     <div class="card-text">
       ⚖️ <strong>Base legal:</strong><br>
@@ -1331,6 +1381,40 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
+    Quanto aos destinatários, à estrutura e ao âmbito de aplicação
+  </h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Espécies</th><th>Como diferenciar</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Destinatários</strong></td><td><strong>Gerais</strong> (ou normativos) · <strong>Individuais</strong> (ou especiais)</td><td>Gerais: sem destinatários determinados, hipóteses genéricas de aplicação que alcançam todos os que nelas se enquadrarem — generalidade e abstração (regulamentos, portarias, resoluções, circulares, instruções, deliberações, regimentos). Individuais: destinatários certos e determináveis, efeitos no caso concreto (nomeação, demissão, tombamento, licença, autorização)</td></tr>
+        <tr><td><strong>Estrutura</strong></td><td><strong>Concretos</strong> · <strong>Abstratos</strong></td><td>Concretos: dispõem de um único e específico caso, esgotando-se nessa única aplicação (exoneração de servidor). Abstratos: disciplinam situações reiteradas, com infindas aplicações, alcançando número indeterminado e indeterminável de destinatários (regulamentos). Os concretos equivalem aos individuais; os abstratos, aos gerais</td></tr>
+        <tr><td><strong>Âmbito de aplicação</strong></td><td><strong>Internos</strong> · <strong>Externos</strong></td><td>Internos: produzem efeitos no interior da Administração, alcançando seus órgãos e agentes (portaria que cria grupo de trabalho, ordem de serviço interna). Externos: alcançam os administrados, os contratantes e, em alguns casos, os próprios servidores, provendo sobre seus direitos, obrigações, negócios ou conduta perante a Administração</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Gerais × individuais — quatro diferenças práticas</div>
+    <div class="card-text">
+      → <strong>Impugnação judicial direta:</strong> o ato normativo não pode ser impugnado diretamente na via judicial pela pessoa lesada — só os legitimados do art. 103 da CF podem propor a inconstitucionalidade de ato normativo; o ato individual é impugnável pelo próprio lesado<br><br>
+      → <strong>Precedência hierárquica:</strong> havendo conflito, o ato normativo prevalece sobre o ato individual — o geral precede o específico<br><br>
+      → <strong>Revogabilidade:</strong> o ato normativo é sempre revogável; o ato individual sofre limitações — não se revoga o ato individual que gerou direito subjetivo ao administrado (Súmula 473 do STF)<br><br>
+      → <strong>Recurso administrativo:</strong> o ato normativo não é impugnável por recurso administrativo; o ato individual admite recursos administrativos
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> Maria Sylvia Zanella Di Pietro — características dos atos normativos comparados aos individuais; Súmula 473 do STF
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">📏 Regra: atos internos, externos e publicidade</div>
+    Os atos <strong>internos</strong>, em regra, não geram direitos adquiridos e podem ser revogados a qualquer tempo; não dependem de publicação oficial, bastando a cientificação direta aos destinatários ou a divulgação regulamentar da repartição. Se o ato interno for usado para alcançar destinatários <strong>externos</strong>, a divulgação externa passa a ser <strong>obrigatória</strong>.<br><br>
+    → <strong>Externos por repercussão:</strong> incluem-se entre os externos os atos com efeitos jurídicos externos à repartição (ainda que não atinjam diretamente o administrado) e os que <strong>oneram o patrimônio público</strong> — não podem permanecer apenas no interior da Administração, pois repercutem no interesse da coletividade
+  </div>
+
+  <h3 style="margin:.9rem 0 .4rem;font-size:.95rem;font-weight:700;color:var(--blue);">
     Quanto às prerrogativas
   </h3>
 
@@ -1380,7 +1464,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card" style="border-color:var(--purple);">
     <div class="card-title">📌 Resolução × parecer — como não trocar (TEC)</div>
     <div class="card-text">
-      📌 <strong>Aprendizado:</strong> <strong>resolução</strong> e <strong>parecer</strong> pertencem a espécies opostas — trocar um pelo outro anula a questão.<br><br>
+      📌 <strong>Aprendizado:</strong> <strong>resolução</strong> e <strong>parecer</strong> pertencem a espécies opostas — confundir as duas derruba a resolução do item.<br><br>
       → <strong>Resolução:</strong> ato <strong>normativo</strong> (não opinativo) — expedida por altas autoridades do Executivo (exceto o chefe, que edita decretos), presidentes de tribunais, órgãos legislativos ou colegiados (ex.: CONTRAN, agências reguladoras), para disciplinar matéria de competência específica<br><br>
       → <strong>Parecer:</strong> ato <strong>enunciativo e opinativo</strong> de órgão consultivo (técnico ou jurídico) — em regra não vincula a decisão, e continua opinativo ainda que a lei torne sua emissão obrigatória<br><br>
       → <strong>Resolução individual:</strong> em regra gerais, mas a resolução de colegiado que aplica sanção é individual, sem caráter normativo — e não se confunde com as resoluções do art. 59, VII, CF (atos legislativos típicos)<br><br>
@@ -1417,6 +1501,33 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha-title">🔍 Detalhe: visto e porte de arma</div>
     <strong>Visto</strong> é ato unilateral que <strong>atesta a legitimidade formal</strong> de outro ato e apenas informa que tomou ciência — <strong>não</strong> manifesta concordância com o conteúdo. Porte de arma = <strong>autorização</strong> (unilateral, discricionária, precária).
   </div>
+
+  <div class="card">
+    <div class="card-title">Licença para construir — a exceção que permite revogar</div>
+    <div class="card-text">
+      A <strong>licença</strong> é ato <strong>vinculado</strong> e reconhece <strong>direito subjetivo</strong> ao particular: atendidos os requisitos legais, ele pode exigir a concessão (inclusive por mandado de segurança). Por isso, a regra é que a licença <strong>não seja revogável</strong> — o desfazimento se dá por anulação ou cassação.<br><br>
+      → <strong>Exceção:</strong> admite-se a <strong>revogação da licença para construir</strong> quando a <strong>obra ainda não tiver sido iniciada</strong> (STJ, RE 105.634, na linha do ensinamento de Hely Lopes Meirelles e Caio Tácito)<br><br>
+      → <strong>Por que a exceção existe:</strong> sem o início da obra não há direito adquirido a preservar; iniciada a construção, a licença se consolida e só cabe anulação ou cassação<br><br>
+      → <strong>Como aplicar:</strong> falando de licença em geral, trate-a como <strong>irrevogável</strong>; se o caso for especificamente de <strong>licença para construir com obra não iniciada</strong>, admita a revogação
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> STJ, RE 105.634 — revogação de licença para construir com obra não iniciada
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Duas divergências que mudam a resposta</div>
+    <div class="card-text">
+      → <strong>Licença declaratória × constitutiva:</strong> parte da doutrina entende que a licença é ato <strong>declaratório</strong> — reconhece direito que já existia, bastando o particular atender aos requisitos legais; outra parte a considera <strong>constitutiva</strong> — antes da licença, a pessoa não pode exercer o direito, mesmo atendendo aos requisitos legais. As duas afirmações são aceitas (a aula adota a corrente declaratória)<br><br>
+      → <strong>Autorização vinculada:</strong> a autorização é, em regra, <strong>discricionária</strong> e precária — o particular pode atender a todos os requisitos e ainda assim ter o pedido negado; excepcionalmente, a <strong>autorização de serviço de telecomunicações</strong> é ato administrativo <strong>vinculado</strong>, que faculta a exploração, no regime privado, da modalidade de serviço quando preenchidas as condições objetivas e subjetivas (Lei 9.472/1997, art. 131, § 1º)<br><br>
+      → ⚠️ <strong>Cuidado:</strong> fora dessa hipótese expressa, considere a autorização como ato <strong>discricionário</strong> — a vinculação da LGT é exceção legal específica
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base legal:</strong><br>
+      → <strong>Lei 9.472/1997 (Lei Geral de Telecomunicações), art. 131, § 1º</strong> — autorização de serviço de telecomunicações é ato administrativo vinculado, que faculta a exploração, no regime privado, de modalidade de serviço, preenchidas as condições objetivas e subjetivas necessárias<br>
+      → Divergência doutrinária sobre a natureza declaratória ou constitutiva da licença
+    </div>
+  </div>
 </section>
 
 <!-- ============================================================ -->
@@ -1432,11 +1543,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Extinção natural e demais formas</div>
     <div class="card-text">
-      → <strong>Cumprimento dos efeitos</strong> (extinção natural); <strong>subjetiva</strong> (morte do beneficiário); <strong>objetiva</strong> (desaparecimento do objeto); <strong>renúncia</strong> (ex.: renúncia à aposentadoria)<br><br>
-      → <strong>Retirada</strong> (formas de desfazimento): <strong>caducidade, contraposição, cassação, anulação, revogação</strong><br><br>
+      → <strong>Cumprimento dos efeitos</strong> (extinção natural) — o ato cumpre integralmente sua finalidade; ocorre pelo <strong>esgotamento do conteúdo jurídico</strong> (ex.: servidor gozou todo o período de férias), pela <strong>execução material</strong> (ex.: ordem de demolição executada) ou pelo <strong>implemento de condição resolutiva ou termo final</strong> (ex.: benefício devido até a disponibilização da vacina)<br><br>
+      → <strong>Subjetiva</strong> — desaparecimento do sujeito beneficiário, quando o ato é <strong>intransferível a terceiros</strong> (personalíssimo, intuitu personae); ex.: falecimento do titular de autorização para porte de arma extingue a autorização, que não se transfere aos herdeiros<br><br>
+      → <strong>Objetiva</strong> — desaparecimento do objeto sobre o qual o ato recai; ex.: permissão de uso de banca de jornal em praça que é destruída para a construção de uma ponte; interdição de estabelecimento comercial que se desfaz com a desativação definitiva do estabelecimento<br><br>
+      → <strong>Renúncia</strong> — o beneficiário abre mão da vantagem que desfrutava (ex.: renúncia à aposentadoria); só se efetiva com o <strong>aceite da Administração</strong><br><br>
       → <strong>Recusa:</strong> extinção <strong>antes</strong> de o ato produzir efeitos, por manifestação do administrado — ex.: particular que recusa utilizar bem público objeto de autorização de uso<br><br>
-      → <strong>Renúncia:</strong> extinção de ato <strong>eficaz</strong> (que já iniciou seus efeitos) porque o beneficiário não deseja sua continuidade — ex.: renúncia à aposentadoria; só se efetiva com o <strong>aceite da Administração</strong>
+      → <strong>Retirada</strong> (formas de desfazimento): <strong>caducidade, contraposição, cassação, anulação, revogação</strong><br><br>
+      → <strong>Desfazimento volitivo</strong> (Carvalho Filho): nome dado à retirada, mas restrito a <strong>cassação, anulação e revogação</strong> — não inclui a caducidade (decorre do legislador, não da vontade do administrador) nem a contraposição
     </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Não existe rescisão de ato</div>
+    <strong>Rescisão é forma de extinção de contrato, não de ato administrativo</strong> — o desfazimento do ato se dá por anulação, revogação, cassação, caducidade ou contraposição; a rescisão (unilateral ou não) pertence ao mundo dos contratos.
   </div>
 
   <div class="table-wrap">
@@ -1450,6 +1569,21 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <tr><td><strong>Contraposição</strong> (derrubada)</td><td>Novo ato com efeitos opostos (ex.: exoneração × nomeação)</td><td>Ex nunc</td><td>Administração</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ab-rogação × derrogação — e por que o dever de indenizar sobrevive</div>
+    <div class="card-text">
+      → <strong>Ab-rogação:</strong> revogação <strong>total</strong> do ato (ex.: a Administração revoga todas as autorizações de uso de praças concedidas para um evento)<br><br>
+      → <strong>Derrogação:</strong> revogação <strong>parcial</strong> do ato (ex.: revoga apenas algumas das autorizações concedidas)<br><br>
+      → <strong>Efeitos próprios:</strong> efeitos desejados pela Administração ao praticar o ato, decorrentes da própria natureza do ato — são eles que a revogação desfaz<br><br>
+      → <strong>Efeitos impróprios:</strong> consequências indiretas e reflexas, em muitos casos não desejadas pela Administração (ex.: dever de indenizar danos causados durante a execução do ato)<br><br>
+      → <strong>Regra de ouro:</strong> a revogação atinge <strong>apenas os efeitos próprios</strong>, nunca os impróprios — nem mesmo a ab-rogação desfaz o dever de reparar o dano já causado<br><br>
+      → <strong>Exemplo:</strong> revogada integralmente a declaração de utilidade pública para desapropriação (ab-rogação), desfaz-se a desapropriação — efeito próprio; permanece o dever de indenizar o proprietário pelos danos causados ao imóvel — efeito impróprio, que não pode ser desfeito (revogação da revogação não desfaz esse dever)
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> tema doutrinário — espécies de revogação (ab-rogação × derrogação) e efeitos próprios × impróprios do ato administrativo
+    </div>
   </div>
 
   <div class="card">
@@ -1531,7 +1665,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="callout callout-danger">
     <div class="callout-icon">❌</div>
-    <div><strong>Não são passíveis de revogação:</strong> atos inválidos (anulam-se); atos vinculados; atos exauridos/consumados; atos sobre os quais já se exauriu a competência (ex.: recurso já encaminhado à instância superior); meros atos administrativos (certidões, atestados); atos que integram procedimento (preclusão administrativa); atos que geraram direito adquirido (art. 5º, XXXVI, CF); <strong>atos já revogados</strong> (a revogação da revogação <strong>não repristina</strong> o ato — se ocorrer, desvio de finalidade).</div>
+    <div><strong>Não são passíveis de revogação:</strong><br>
+    → atos inválidos (anulam-se)<br>
+    → atos vinculados<br>
+    → atos exauridos/consumados<br>
+    → atos sobre os quais já se exauriu a competência (ex.: recurso já encaminhado à instância superior)<br>
+    → meros atos administrativos (certidões, atestados, pareceres, votos)<br>
+    → atos que integram procedimento (preclusão administrativa)<br>
+    → atos que geraram direito adquirido (art. 5º, XXXVI, CF)<br>
+    → <strong>atos já revogados</strong> (a revogação da revogação <strong>não repristina</strong> o ato — se ocorrer, desvio de finalidade)</div>
   </div>
 
   <div class="gotcha">
@@ -1544,10 +1686,53 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       📌 <strong>Aprendizado:</strong> a revogação é a extinção do ato <strong>válido e discricionário</strong> pela própria Administração, por razões de <strong>conveniência e oportunidade</strong>; só quem editou o ato (ou autoridade com competência para revê-lo de ofício ou por recurso) pode revogar — ao <strong>Judiciário é vedado</strong> apreciar mérito e revogar ato da Administração; opera efeitos <strong>ex nunc</strong>, conservando os efeitos já produzidos; <strong>não recai</strong> sobre meros atos administrativos (certidões, atestados, votos — efeitos decorrentes estabelecidos em lei) nem sobre <strong>ato já revogado</strong>.<br><br>
       → <strong>Revogação da revogação:</strong> NÃO há repristinação automática do ato revogado — se a Administração revogar ato já revogado, o ato conterá vício de <strong>desvio de finalidade</strong> (ou não havia interesse público na primeira revogação, ou não há na nova decretação)<br><br>
-      → ⚠️ <strong>Limite:</strong> "revogação por motivos de legalidade" é <strong>ANULAÇÃO</strong>; o Judiciário <strong>não</strong> revoga ato da Administração (vedado em função jurisdicional); a revogação tem efeitos <strong>ex nunc</strong>; revogação da revogação <strong>não repristina</strong> (gera desvio de finalidade)
+      → ⚠️ <strong>Limite:</strong> "revogação por motivos de legalidade" é <strong>ANULAÇÃO</strong> — a revogação só se justifica por conveniência e oportunidade<br><br>
+      → <strong>Judiciário:</strong> é vedado revogar ato da Administração em função jurisdicional (só anula)<br><br>
+      → <strong>Efeitos:</strong> a revogação tem efeitos <strong>ex nunc</strong><br><br>
+      → <strong>Revogação da revogação:</strong> <strong>não repristina</strong> (gera desvio de finalidade)
     </div>
     <div class="card-text">
       ⚖️ <strong>Base:</strong> tema doutrinário — Ricardo Alexandre &amp; João de Deus (DA Esquematizado); Diógenes Gasparini; sem dispositivo legal específico (a revogação decorre do poder de autotutela e do mérito administrativo)
+    </div>
+  </div>
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title">📌 Contraposição (derrubada) (TEC)</div>
+    <div class="card-text">
+      📌 <strong>Aprendizado:</strong> retirada porque foi emitido ato com fundamento em <strong>competência diversa</strong> que gerou o ato anterior, mas cujos efeitos são <strong>contrapostos</strong> aos daqueles — ex.: exoneração (efeito contrário à nomeação).
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> Maria Sylvia Zanella Di Pietro (Direito Administrativo, 27. ed., p. 247)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title">📌 Cassação — conceito e características (TEC)</div>
+    <div class="card-text">
+      📌 <strong>Aprendizado:</strong> retirada porque o destinatário <strong>descumpriu condições</strong> que deveriam permanecer atendidas a fim de poder continuar desfrutando da situação jurídica — ex.: cassação de licença para funcionamento de hotel por ter se convertido em casa de tolerância.<br><br>
+      → <strong>Ato vinculado:</strong> só cabe nas <strong>hipóteses definidas em lei</strong> — não há margem de escolha sobre cassar ou não quando a condição é descumprida<br><br>
+      → <strong>Sancionatória:</strong> tem como fundamento as <strong>faltas cometidas pelo beneficiário</strong>, funcionando como sanção por descumprir condição necessária para usufruir do benefício (ex.: cassação da carteira de motorista após exceder o limite de pontos e ser flagrado dirigindo; cassação de licença profissional por infringir norma legal; cassação de licença para construir por descumprir normas de segurança)<br><br>
+      → <strong>Sem infração:</strong> nem sempre há falta em sentido estrito — a <strong>perda das condições</strong> para usufruir do ato também autoriza a cassação (ex.: cassação do direito de dirigir de quem perdeu a visão)
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> Maria Sylvia Zanella Di Pietro (Direito Administrativo, 27. ed., p. 247-248)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title">📌 Caducidade — posterior × anterior (TEC)</div>
+    <div class="card-text">
+      📌 <strong>Aprendizado:</strong> a retirada se funda em <strong>legislação superveniente</strong> que impede a permanência de situação antes consentida — é uma <strong>"ilegalidade posterior"</strong>, enquanto na anulação a ilegalidade é <strong>anterior</strong> à prática do ato (ex.: lei nova que proíbe o uso privativo de bem público antes permitido).<br><br>
+      → <strong>Também nos contratos:</strong> na <strong>concessão</strong>, a inexecução acarreta declaração de caducidade (Lei 8.987, art. 38); no <strong>contrato comum</strong>, o termo é extinção (Lei 14.133, art. 137) — ver Aula 07, Sec 7
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--purple);">
+    <div class="card-title">📌 Vedação à invalidação por mudança de orientação (TEC)</div>
+    <div class="card-text">
+      📌 <strong>Aprendizado:</strong> a <strong>mudança de orientação</strong> da Administração Pública <strong>não pode ser fundamento para invalidação</strong> de atos — em razão do princípio da <strong>segurança jurídica</strong> (estabilidade e certeza nas relações entre Administração e administrados).
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> Celso Antônio Bandeira de Mello (Curso de Direito Administrativo, 27. ed., p. 127)
     </div>
   </div>
 </section>
@@ -1634,10 +1819,28 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Ratificação:</strong> a convalidação clássica — sana os vícios extrínsecos de forma e competência, pela mesma autoridade que editou o ato ou por superior hierárquico<br><br>
       → <strong>Reforma:</strong> novo ato suprime a parte inválida e mantém a válida — ex.: concedidas férias + licença indevida, retira-se a licença e ratificam-se as férias<br><br>
       → <strong>Conversão:</strong> retirada a parte inválida, substitui-se por nova parte válida, com aproveitamento do que se mantém<br><br>
+      → <strong>Reforma × conversão na doutrina:</strong> Carvalho Filho trata reforma e conversão como <strong>espécies de convalidação</strong> (nas duas, a convalidação recai sobre o <strong>objeto</strong> do ato: parte do objeto é retirada na reforma e substituída na conversão); Di Pietro e Bandeira de Mello entendem que <strong>não são convalidação</strong> — para eles a conversão é a <strong>substituição de um ato por outro</strong>, com efeitos retroativos, e a reforma afeta <strong>ato válido</strong>, produzindo efeitos apenas para o futuro<br><br>
       → ⚠️ <strong>Limite:</strong> a ratificação não alcança motivo, objeto nem finalidade (só vícios extrínsecos)
     </div>
     <div class="card-text">
       ⚖️ <strong>Base:</strong> tema doutrinário — espécies de convalidação (ratificação, reforma, conversão)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Confirmação — quando a Administração renuncia a anular</div>
+    <div class="card-text">
+      → <strong>Conceito:</strong> a Administração <strong>não anula</strong> o ato ilegal e <strong>também não corrige</strong> o vício — o ato permanece no mundo jurídico e continua produzindo efeitos normalmente, mas a Administração resolve não providenciar a anulação, renunciando ao seu poder de desfazer o ato ilegal por razões de interesse público<br><br>
+      → <strong>Não é convalidação:</strong> na convalidação há manifestação <strong>expressa</strong> que corrige o vício, e o vício deixa de existir; na confirmação o vício <strong>continua existindo</strong> — não há correção, e sim manutenção do ato viciado<br><br>
+      → <strong>Limite:</strong> só é admitida se <strong>não houver prejuízo a terceiros</strong> — os prejudicados podem impugnar a medida na via administrativa ou na judicial<br><br>
+      → <strong>Quando ocorre:</strong> a Administração identifica a ilegalidade, mas entende que a manutenção do ato causa <strong>menos prejuízos</strong> que o seu desfazimento<br><br>
+      → <strong>Quando a lei já estabilizou:</strong> não podendo mais desfazer o ato em virtude da <strong>prescrição</strong>, não há exatamente renúncia, mas <strong>impossibilidade jurídica</strong> — e também não será possível convalidá-lo<br><br>
+      → <strong>Fundamentos:</strong> segurança jurídica e boa-fé (ex.: loteamento com vício de licenciamento ocupado há anos por famílias de baixa renda — desfazer o ato prejudica mais do que mantê-lo)<br><br>
+      → <strong>Sentido diverso do termo:</strong> para Celso Antônio Bandeira de Mello, confirmação é a convalidação realizada por <strong>autoridade diversa</strong> da que emitiu o ato originário (ex.: vício de competência ou de forma sanado por superior hierárquico) — nesse caso, o termo funciona como sinônimo de <strong>ratificação</strong><br><br>
+      → <strong>Efeito da decadência:</strong> há entendimento de que a decadência gera a <strong>confirmação</strong> do ato, e não a sua convalidação
+    </div>
+    <div class="card-text">
+      ⚖️ <strong>Base:</strong> Maria Sylvia Zanella Di Pietro — confirmação como renúncia ao poder de anular e efeito da decadência; Celso Antônio Bandeira de Mello — confirmação como convalidação por autoridade diversa
     </div>
   </div>
 
@@ -1669,7 +1872,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>PATI:</strong> imperatividade e autoexecutoriedade <strong>só em alguns</strong> atos<br>
       → <strong>Presunção de veracidade → inversão do ônus da prova</strong><br>
       → <strong>Exceção (PAD):</strong> a inversão não é absoluta — em processo disciplinar, a Administração tem o dever de provar a infração<br>
-      → <strong>Autoexecutoriedade ≠ ausência de controle judicial</strong> (prévio ou posterior)<br>
+      → <strong>Autoexecutoriedade ≠ ausência de controle judicial</strong> (prévio ou posterior)
       <br><br>→ <strong>Multa:</strong> tem imperatividade, mas não autoexecutoriedade — cobrança coercitiva exige execução fiscal<br>
       → <strong>Exigibilidade</strong> (meios indiretos — o próprio administrado executa)<br>
       → <strong>Executoriedade</strong> (meios diretos/força — a Administração executa)<br>
@@ -1688,7 +1891,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Mérito:</strong> Judiciário não invade o mérito (só controla legalidade)<br>
       → <strong>Decadência:</strong> 5 anos para anular atos com efeitos favoráveis (art. 54 L9784)<br>
       → <strong>Decadência:</strong> sem prazo para má-fé, efeitos desfavoráveis e inconstitucionalidade flagrante<br>
-      → <strong>Convalidação (FoCo):</strong> forma não essencial + competência não exclusiva<br>
+      → <strong>Convalidação (FoCo):</strong> forma não essencial + competência não exclusiva
       <br><br>→ <strong>Convalidação:</strong> efeitos ex tunc (retroage à origem)<br>
       → <strong>NORECE:</strong> não se delega atos normativos, decisão de recursos e competência exclusiva<br>
       → <strong>NORECE:</strong> avocação só com hierarquia e temporariamente<br>
@@ -1704,7 +1907,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → Silêncio administrativo <strong>não é ato administrativo</strong> — é fato jurídico administrativo<br>
       → Ato de colegiado é <strong>simples</strong>, não complexo<br>
       → Ato <strong>perfeito ≠ eficaz ≠ válido</strong><br>
-      → Certidão não é revogável (mero ato administrativo)<br>
+      → Certidão não é revogável (mero ato administrativo)
       <br><br>→ Vício de <strong>objeto</strong> (impossível) em licença a servidor falecido, não de motivo<br>
       → Ordinatórios derivam do poder <strong>hierárquico</strong>, não do regulamentar<br>
       → Visto atesta <strong>legitimidade formal</strong>, sem concordância com o conteúdo
@@ -1731,16 +1934,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">📊 Contador de temas</div>
     <div class="card-text">
       <strong>Alta incidência 🔴</strong><br>
-      <span class="tag tag-red">Seção 8 — Extinção dos atos (anulação, cassação e contraposição; revogação — limites e efeitos; decadência — atos flagrantemente inconstitucionais): 8</span><br>
-      <span class="tag tag-red">Seção 7 — Espécies (normativos; negociais — licença × autorização): 5</span><br>
-      <span class="tag tag-red">Seção 2 — Atributos (PATI): 4</span><br>
-      <span class="tag tag-red">Seção 6 — Classificação e eficácia (ato complexo; publicidade; prerrogativas): 3</span><br>
-      <span class="tag tag-red">Seção 9 — Convalidação — limites e espécies (efeitos ex tunc; saneamento obstado): 3</span><br><br>
+      <span class="tag tag-red">Seção 2 — Atributos (PATI): 6</span><br>
+      <span class="tag tag-red">Seção 7 — Espécies (normativos; negociais; enunciativos × ordinatórios): 7</span><br>
+      <span class="tag tag-red">Seção 8 — Revogação — limites e efeitos (direitos adquiridos; ex nunc): 6</span><br>
+      <span class="tag tag-red">Seção 8 — Anulação, cassação e contraposição (formas de extinção): 6</span><br>
+      <span class="tag tag-red">Seção 9 — Convalidação — limites e espécies (efeitos ex tunc; saneamento obstado): 4</span><br>
+      <span class="tag tag-red">Seção 3 — Elementos e competência (motivo; delegação — art. 14): 3</span><br>
+      <span class="tag tag-red">Seção 6 — Classificação e eficácia (ato complexo; publicidade; prerrogativas): 3</span><br><br>
       <strong>Baixa incidência ⚪</strong><br>
       <span class="tag">Seção 1 — Conceito — critérios subjetivo × objetivo: 1</span><br>
       <span class="tag">Seção 3 — Elementos — motivo e motivação (motivos determinantes): 1</span><br>
       <span class="tag">Seção 4 — Vícios — abuso de poder (gênero e espécies): 1</span><br>
       <span class="tag">Seção 5 — Mérito — discricionariedade e controle judicial (motivos determinantes): 1</span><br>
+      <span class="tag">Seção 8 — Extinção natural (cumprimento; recusa; renúncia): 1</span><br>
     </div>
   </div>
 </section>
@@ -1990,3 +2196,4 @@ mark.sr-first {
 </script>
 </body>
 </html>
+
