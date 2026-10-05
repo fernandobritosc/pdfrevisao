@@ -6,9 +6,14 @@
 <title>Resumo — DA Aula 07: Licitações Públicas · Lei 14.133/2021</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
   --bg: #f5f4f0;
   --sidebar: #ecebe5;
   --card: #ffffff;
@@ -29,7 +34,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #2563eb;
+  --mat-strong: #1d4ed8;
+  --mat-soft: #e8effd;
+  --mat-line: #c3d5fa;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +49,8 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
 
 /* SIDEBAR (aula pages) */
 .aula .sidebar {
@@ -62,11 +71,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
 .aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -86,7 +95,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-color: #43506b;
 }
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -102,9 +111,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .sidebar h3, .aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--ink);
@@ -121,8 +130,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
   gap: .35rem;
 }
 .aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
 .aula .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -139,9 +148,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   transition: all .15s;
 }
-.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -154,32 +163,31 @@ html[data-theme="dark"] .aula .sidebar-brand {
 /* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
 .aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
 }
 .aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
 .aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.16rem;
   font-weight: 700;
   color: var(--ink);
@@ -189,7 +197,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   padding-bottom: .4rem;
   border-bottom: 2px solid var(--line-strong);
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
 .subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
 .aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
 
@@ -204,7 +212,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
 
 /* CARDS */
@@ -213,23 +221,24 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
 .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
 .card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -237,7 +246,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .25rem .6rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .78rem;
   font-weight: 600;
   text-decoration: none;
@@ -252,7 +261,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .2rem .5rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   background: #d9f2e3;
@@ -263,8 +272,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -273,7 +282,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
@@ -288,7 +297,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   margin: .85rem 0;
 }
 .mnemonic-label {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   color: var(--amber);
@@ -302,7 +311,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   letter-spacing: .01em;
   margin-top: .15rem;
   line-height: 1.7;
-  text-align: justify;
+  text-align: left;
   white-space: normal;
 }
 .mnemonic-content span {
@@ -321,7 +330,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 7px;
   background: var(--amber);
   color: #fff;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
   font-size: 1rem;
   line-height: 1;
@@ -336,34 +345,34 @@ html[data-theme="dark"] .aula .sidebar-brand {
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
 tbody tr:last-child td { border-bottom: none; }
 
 /* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
 
 /* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
@@ -424,7 +433,7 @@ tbody tr:last-child td { border-bottom: none; }
   width: 0%;
   transition: width .3s;
 }
-.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
 .progress-bar {
   position: fixed;
   top: 0;
@@ -437,18 +446,18 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* LEGAL BLOCK */
 .legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
   border-radius: 8px;
   padding: .7rem .9rem;
   margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .82rem;
   color: var(--text2);
   line-height: 1.55;
 }
-.legal-block strong { color: #1d3f9e; }
+.legal-block strong { color: var(--mat-strong); }
 
 /* QUESTIONS / OPTIONS */
 .question {
@@ -510,7 +519,7 @@ li { margin: 4px 0; }
 /* LANDING */
 .container { max-width: 600px; margin: 0 auto; text-align: center; }
 .container h1 {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: .5rem;
@@ -519,7 +528,7 @@ li { margin: 4px 0; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
 .back-link {
   display: inline-block;
   color: #1d3f9e;
@@ -569,6 +578,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #8ab0fe; --mat-strong: #a9c3ef; --mat-soft: #1d2739; --mat-line: #33507e;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -598,9 +608,9 @@ html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
 html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
-html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
 html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
-html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
 html[data-theme="dark"] .question { background:#232733; }
 html[data-theme="dark"] .option { background:#232733; }
 html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
@@ -615,13 +625,13 @@ html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
 html[data-theme="dark"] .back-link { color:#a9c3ef; }
 html[data-theme="dark"] .btn { color:#17191f; }
 html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
-html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
 /* Toolbar flutuante (tema · fonte · topo) */
 .rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
 .rh-toolbar button {
   width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
   background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
   box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
   transition: transform .15s, border-color .15s;
 }
@@ -644,7 +654,7 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
 .aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
 .aula-nav a.next { text-align: right; }
 .aula-nav .aula-nav-dir {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
   color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
 }
 .aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
@@ -746,8 +756,8 @@ html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .questio
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
   padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
 #rhMarkPanel.show { display: block; }
-#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
-#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
   background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
   color: var(--text); cursor: pointer; margin-right: .3rem; }
 #rhMarkPanel button:hover { border-color: var(--blue); }
@@ -786,6 +796,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <a href="#sec9">9. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
   <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-07-licitacoes-publicas.html" style="color:var(--green);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
   <hr class="sidebar-divider">
   <div style="font-size:.65rem;color:var(--text2);">
     Fontes: resumo + simplificado + completo<br>
@@ -829,7 +840,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <div class="card">
-    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Qual lei para quem</div></div>
+    <div class="card-title">Qual lei para quem</div>
     <div class="card-text">
       → 14.133 = entes públicos (direta, autárquica, fundacional).<br><br>
       → 13.303 = estatais.<br><br>
@@ -867,6 +878,22 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → Todos os entes: União, Estados, DF, Municípios<br>
       → Legislativo e Judiciário, <strong>quando em função administrativa</strong><br>
       → Fundos especiais e entidades controladas direta/indiretamente
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 O que a Lei abrange: rol do art. 2º (não é só obra e serviço)</div>
+    <div class="card-text">
+      → a Lei <strong>aplica-se expressamente</strong> a (art. 2º, I a VII):<br>
+      → <strong>I)</strong> alienação e concessão de direito real de uso de bens<br>
+      → <strong>II)</strong> compra, <strong>inclusive por encomenda</strong><br>
+      → <strong>III)</strong> <strong>locação</strong><br>
+      → <strong>IV)</strong> concessão e permissão de uso de bens públicos<br>
+      → <strong>V)</strong> prestação de serviços, inclusive os <strong>técnico-profissionais especializados</strong><br>
+      → <strong>VI)</strong> obras e serviços de arquitetura e engenharia<br>
+      → <strong>VII)</strong> contratações de tecnologia da informação e de comunicação<br><br>
+      → ⚠️ <strong>Não confundir:</strong> a <strong>locação está no rol</strong> (III) — o negócio se submete à Lei de Licitações (com a regra própria do art. 51) <strong>ainda que o instrumento seja de direito privado</strong>; o que muda é a possibilidade de <strong>contratação direta</strong>, não a incidência da Lei.<br><br>
+      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, art. 2º, I a VII
     </div>
   </div>
 
@@ -918,7 +945,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </h3>
 
   <div class="card">
-    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Frase para lembrar os princípios</div></div>
+    <div class="card-title">Frase para lembrar os princípios</div>
     <div class="card-text">
       JoVeM, SEMPRE LICITE Com Planejamento Pro PaÍS Desenvolver Sustentavelmente
     </div>
@@ -1183,14 +1210,17 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">📌 Margem de preferência (art. 26)</div>
     <div class="card-text">
-      → a margem de preferência é uma <strong>flexibilização do princípio da isonomia</strong> (fundada na economicidade) que pode ser estabelecida no processo de licitação para:<br>
-      → (I) <strong>bens manufaturados e serviços nacionais</strong> que atendam a <strong>normas técnicas brasileiras</strong><br>
+      → <strong>Margem de preferência:</strong> flexibilização do princípio da isonomia (fundada na economicidade) que pode ser estabelecida no processo de licitação para:<br>
+      → (I) <strong>bens manufaturados e serviços nacionais</strong> que atendam a <strong>normas técnicas brasileiras</strong> — margem definida em <strong>decisão fundamentada do Poder Executivo federal</strong> (§ 1º, I)<br>
       → (II) <strong>bens reciclados, recicláveis ou biodegradáveis</strong>, conforme regulamento<br>
+      → <strong>Teto de 20%:</strong> para bens manufaturados nacionais e serviços nacionais resultantes de <strong>desenvolvimento e inovação tecnológica no País</strong>, definidos conforme regulamento do Poder Executivo federal (§ 2º)<br>
+      → <strong>Teto de 10%:</strong> sobre o preço dos bens e serviços que <strong>não se enquadrem</strong> nos incisos I ou II do caput (§ 1º, II)<br>
+      → <strong>Extensão ao Mercosul:</strong> a margem pode alcançar bens manufaturados e serviços originários de Estados Partes do Mercosul, <strong>desde que haja reciprocidade</strong> com o País prevista em acordo internacional aprovado pelo Congresso Nacional e ratificado pelo Presidente da República (§ 1º, III)<br>
       → <strong>Não se aplica</strong> se a capacidade de produção no País for <strong>inferior à quantidade a ser adquirida</strong> ou aos quantitativos do parcelamento do objeto (§ 5º) — não basta prever no edital compra complementar por outro fornecedor
     </div>
     <div class="card-text">
       → ⚠️ <strong>Limite:</strong> a previsão editalícia de compra do complemento por outro fornecedor (insuficiência de capacidade produtiva nacional) não torna lícita a preferência — a vedação é expressa<br><br>
-      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, art. 26, caput, I e II, e § 5º, I e II
+      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, art. 26, caput, I e II, e §§ 1º, 2º e 5º
     </div>
     
   </div>
@@ -1550,7 +1580,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="gotcha">
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
-    <strong>Quem assume os riscos é o contratado, não o contratante.</strong> Na empreitada por preço global os valores e prazos são previamente fixados; eventuais imprecisões de quantitativos oneram o particular. O TCU exige que a escolha desse regime seja justificada e demonstre a vantagem da transferência maior de riscos para o particular, inclusive no impacto sobre o BDI.
+    → <strong>Quem assume os riscos é o contratado, não o contratante:</strong> na empreitada por preço global os valores e prazos são previamente fixados, e o particular se obriga a cumprir o projeto básico e o contrato pelo preço certo e total — eventuais imprecisões de quantitativos oneram a ele, não à Administração.<br><br>
+    → <strong>Escolha justificada no processo licitatório:</strong> o TCU exige que a opção por esse regime seja justificada e que se demonstre a vantagem da transferência maior de riscos para o particular, inclusive o maior potencial de elevação dos preços ofertados.<br><br>
+    → <strong>Como demonstrar:</strong> a vantagem precisa ser comprovada em termos técnicos, econômicos ou outro objetivamente motivado — não basta afirmar que o regime é vantajoso para a Administração.<br><br>
+    → <strong>Impacto no orçamento da obra:</strong> devem ser demonstrados os efeitos dos riscos transferidos na composição do orçamento, em especial na taxa de BDI (<strong>Benefícios e Despesas Indiretas</strong>) — é nesse item que o risco assumido pelo particular aparece precificado.<br><br>
+    → ⚠️ <strong>Limite:</strong> a exigência ganha força justamente quando o objeto tem <strong>imprecisão intrínseca</strong> de quantitativos — nesse caso, usar a empreitada por preço global é possível, mas a justificativa e a demonstração da vantagem deixam de ser formais e passam a ser indispensáveis.
   </div>
 
   <div class="card">
@@ -1606,6 +1640,17 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <div class="card">
+    <div class="card-title">📌 Locação de imóveis pela Administração (art. 51)</div>
+    <div class="card-text">
+      → <strong>Regra:</strong> a <strong>locação de imóveis</strong> deverá ser precedida de <strong>licitação</strong> e de <strong>avaliação prévia</strong> — do <strong>bem</strong>, do seu <strong>estado de conservação</strong>, dos <strong>custos de adaptações</strong> e do <strong>prazo de amortização dos investimentos</strong> necessários.<br><br>
+      → <strong>Exceção ressalvada pela própria lei:</strong> a hipótese do <strong>art. 74, V</strong> (imóvel cujas características de instalações e de localização tornem necessária a escolha) — aí a licitação é <strong>inexigível</strong>.<br><br>
+      → ⚠️ <strong>Atenção:</strong> a avaliação prévia exige os <strong>quatro elementos</strong> (bem, conservação, custos de adaptações e prazo de amortização dos investimentos) — não basta estimar o valor do aluguel.<br><br>
+      → ⚠️ <strong>Distinção:</strong> a hipótese do art. 74, V é <strong>inexigibilidade</strong> (competição inviável), não dispensa por valor ou por lei — e a locação imobiliária está fora do <strong>pregão</strong>.<br><br>
+      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, art. 51, ressalvado o art. 74, V
+    </div>
+  </div>
+
+  <div class="card">
     <div class="card-title">📌 Asseguração de obrigações trabalhistas (art. 121, § 3º)</div>
     <div class="card-text">
       → nas contratações de <strong>serviços contínuos com dedicação exclusiva de mão de obra</strong>, a Administração, mediante <strong>disposição em edital ou contrato</strong>, poderá adotar medidas para assegurar o cumprimento de <strong>obrigações trabalhistas</strong> pelo contratado — entre elas o <strong>depósito de valores em conta vinculada</strong> (conta-depósito vinculada).
@@ -1615,11 +1660,23 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>I)</strong> exigir <strong>caução, fiança bancária ou seguro-garantia</strong> com cobertura para verbas rescisórias inadimplidas;<br>
       → <strong>II)</strong> condicionar o <strong>pagamento à comprovação de quitação</strong> das obrigações trabalhistas vencidas;<br>
       → <strong>III)</strong> <strong>depositar valores em conta vinculada</strong>;<br>
-      <br><br>→ <strong>IV)</strong> em caso de inadimplemento, <strong>efetuar diretamente o pagamento</strong> das verbas trabalhistas, deduzindo do pagamento devido ao contratado;<br>
+      → <strong>IV)</strong> em caso de inadimplemento, <strong>efetuar diretamente o pagamento</strong> das verbas trabalhistas, deduzindo do pagamento devido ao contratado;<br>
       → <strong>V)</strong> pagar verbas (férias, 13º, ausências legais, rescisórias) <strong>somente na ocorrência do fato gerador</strong>.<br><br>
-      → ⚠️ <strong>Detalhe:</strong> o depósito em <strong>conta vinculada É próprio</strong> como instrumento de asseguração de obrigações trabalhistas — previsto expressamente no art. 121, § 3º, III
+      → ⚠️ <strong>Detalhe:</strong> o depósito em <strong>conta vinculada É próprio</strong> como instrumento de asseguração de obrigações trabalhistas — previsto expressamente no art. 121, § 3º, III.<br><br>
+      → ⚠️ <strong>Para fixar:</strong> os valores depositados na <strong>conta vinculada</strong> do inciso III são <strong>absolutamente impenhoráveis</strong> (art. 121, § 4º) — o dinheiro fica fora do alcance de penhoras movidas contra o contratado, preservado para a finalidade de quitar as verbas trabalhistas.
     </div>
     
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Quem responde pelos encargos: contratado × Administração (art. 121, caput, §§ 1º e 2º)</div>
+    <div class="card-text">
+      → <strong>Regra geral (caput):</strong> somente o <strong>contratado</strong> responde pelos encargos <strong>trabalhistas, previdenciários, fiscais e comerciais</strong> decorrentes da execução do contrato — a Administração não é devedora desses encargos.<br><br>
+      → <strong>Inadimplência do contratado (§ 1º):</strong> não transfere à Administração a responsabilidade pelo pagamento e <strong>não pode onerar o objeto do contrato</strong> nem restringir a <strong>regularização e o uso das obras e edificações</strong>, inclusive perante o <strong>registro de imóveis</strong> — <strong>ressalvada</strong> a hipótese do § 2º.<br><br>
+      → <strong>Exceção (§ 2º) — só em dedicação exclusiva de mão de obra:</strong> exclusivamente nas contratações de <strong>serviços contínuos com regime de dedicação exclusiva de mão de obra</strong>, a Administração responde <strong>solidariamente pelos encargos previdenciários</strong> e <strong>subsidiariamente pelos encargos trabalhistas</strong>, se comprovada <strong>falha na fiscalização</strong> do cumprimento das obrigações do contratado.<br><br>
+      → ⚠️ <strong>Distinção:</strong> <strong>solidária</strong> é a responsabilidade pelos <strong>previdenciários</strong> (a Administração pode ser cobrada junto com o contratado) e <strong>subsidiária</strong>, pelos <strong>trabalhistas</strong> (só depois de esgotada a cobrança contra o contratado) — inverter os dois é o erro clássico.<br><br>
+      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, art. 121, caput, §§ 1º e 2º
+    </div>
   </div>
 
   
@@ -1651,7 +1708,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 
   <div class="gotcha">
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
-    <strong>Art. 72, I: atenção à lista "dupla".</strong> O inciso I exige <strong>documento de formalização de demanda</strong> e, se for o caso, <strong>estudo técnico preliminar</strong>, <strong>análise de riscos</strong>, termo de referência, projeto básico ou projeto executivo. <strong>Matriz de repartição de riscos NÃO consta do art. 72</strong> — pertence aos regimes de contratação integrada e semi-integrada (art. 22 e 46).
+    <strong>Art. 72, I: atenção à lista "dupla".</strong> O inciso I exige <strong>documento de formalização de demanda</strong> e, se for o caso, <strong>estudo técnico preliminar</strong>, <strong>análise de riscos</strong>, termo de referência, projeto básico ou projeto executivo.<br><br>
+    → <strong>Atenção:</strong> o <strong>estudo técnico preliminar</strong> e a <strong>análise de riscos</strong> estão no <strong>mesmo inciso</strong> e sob a mesma condição ("se for o caso") — a lei pede <strong>os dois</strong>, sem hierarquia nem exclusão entre eles; nenhum dos dois substitui o outro.<br><br>
+    → <strong>Matriz de repartição de riscos NÃO consta do art. 72</strong> — pertence aos regimes de contratação integrada e semi-integrada (art. 22 e 46).<br><br>
+    → <strong>Não confundir:</strong> o inciso fala em <strong>termo de referência, projeto básico <em>ou</em> projeto executivo</strong> — peças <strong>alternativas</strong> entre si; "projeto integrado" não é documento do processo (a <strong>contratação integrada</strong> é <em>regime de execução</em>, art. 6º, XXXII).<br><br>
+    → <strong>Limite:</strong> a <strong>impossibilidade de licitar</strong> é o <em>fundamento</em> da inexigibilidade (art. 74, caput — inviabilidade de competição), demonstrado no processo, mas <strong>não integra o rol de documentos do art. 72</strong>.
   </div>
 
   <div class="card">
@@ -1675,6 +1736,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   </div>
 
   <div class="card">
+    <div class="card-title">📌 Inexigibilidade por imóvel de escolha necessária — compra ou locação (art. 74, V e § 5º)</div>
+    <div class="card-text">
+      → é <strong>inexigível</strong> a licitação para <strong>aquisição ou locação de imóvel</strong> cujas <strong>características de instalações e de localização tornem necessária a sua escolha</strong> (art. 74, V) — a competição é inviável porque o imóvel é singular para a necessidade da Administração.<br><br>
+      → <strong>Requisitos do § 5º (todos cumulativos):</strong><br>
+      → <strong>I)</strong> <strong>avaliação prévia</strong> do bem, do seu estado de conservação, dos <strong>custos de adaptações</strong> (quando imprescindíveis às necessidades de utilização) e do <strong>prazo de amortização dos investimentos</strong><br>
+      → <strong>II)</strong> <strong>certificação da inexistência de imóveis públicos vagos e disponíveis</strong> que atendam ao objeto<br>
+      → <strong>III)</strong> <strong>justificativas</strong> que demonstrem a <strong>singularidade</strong> do imóvel a ser comprado ou locado e que evidenciem <strong>vantagem</strong> para a Administração<br><br>
+      → ⚠️ <strong>Distinção:</strong> é <strong>inexigibilidade</strong> (art. 74), não dispensa de licitação — e é a hipótese ressalvada pela regra da <strong>locação de imóveis (art. 51)</strong>, que de resto exige licitação e avaliação prévia.<br><br>
+      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, art. 74, V, e § 5º, I a III; art. 51
+    </div>
+  </div>
+
+  <div class="card">
     <div class="card-title">Dispensa em razão do valor (art. 75, I e II)</div>
     <div class="card-text">
       → <strong>Obras e serviços de engenharia ou manutenção de veículos:</strong> valor inferior a <strong>R$ 100.000,00</strong> (atualizado para <strong>R$ 130.984,20</strong> pelo Decreto 12.807/2025).<br><br>
@@ -1695,6 +1769,18 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Bens móveis (art. 76, II):</strong> dependem de <strong>leilão</strong>, <strong>dispensada</strong> a licitação em caso de: doação <strong>exclusivamente para fins e uso de interesse social</strong> (a); permuta <strong>exclusivamente entre órgãos ou entidades da Administração</strong> (b); venda de ações em bolsa (c); venda de títulos (d); venda de bens produzidos ou comercializados pelas entidades em virtude de suas finalidades (e); venda de materiais e equipamentos <strong>sem utilização previsível</strong> a outros órgãos ou entidades (f)<br>
       → <strong>§ 1º</strong> imóveis adquiridos por <strong>procedimentos judiciais ou dação em pagamento</strong>: dispensada a <strong>autorização legislativa</strong>, exigida apenas a <strong>avaliação prévia + leilão</strong><br>
       → <strong>§ 2º</strong> imóveis doados (alínea “b”, I): cessadas as razões da doação, <strong>revertidos ao doador</strong>, <strong>vedada a alienação pelo beneficiário</strong><br>
+      → <strong>§ 3º Concessão de título de propriedade ou de direito real de uso de imóvel — dispensa de licitação:</strong> a Administração poderá conceder quando o uso se destinar a:<br>
+      → <strong>I)</strong> <strong>outro órgão ou entidade da Administração Pública</strong>, <strong>qualquer que seja a localização</strong> do imóvel — a dispensa não depende de o imóvel estar no território do ente<br>
+      → <strong>II)</strong> <strong>pessoa natural</strong> que, nos termos de lei, regulamento ou ato normativo do órgão competente, haja implementado os requisitos mínimos de <strong>cultura</strong>, de <strong>ocupação mansa e pacífica</strong> e de <strong>exploração direta</strong> sobre <strong>área rural</strong>, observado o limite do art. 6º, § 1º, da Lei 11.952/2009<br>
+      → <strong>§ 4º Condicionamentos da concessão a pessoa natural (§ 3º, II):</strong> a hipótese é <strong>dispensada de autorização legislativa</strong> e se submete a sete condicionamentos —<br>
+      → <strong>I)</strong> aplicação exclusiva às áreas em que a <strong>detenção por particular seja comprovadamente anterior a 1º de dezembro de 2004</strong><br>
+      → <strong>II)</strong> submissão aos demais requisitos e impedimentos do <strong>regime legal e administrativo de destinação e de regularização fundiária de terras públicas</strong><br>
+      → <strong>III)</strong> <strong>vedação</strong> de concessão para exploração <strong>não contemplada</strong> na lei agrária, nas leis de destinação de terras públicas ou nas normas de <strong>zoneamento ecológico-econômico</strong><br>
+      → <strong>IV)</strong> <strong>extinção automática</strong> da concessão, <strong>dispensada notificação</strong>, em caso de declaração de <strong>utilidade pública, necessidade pública ou interesse social</strong><br>
+      → <strong>V)</strong> aplicação exclusiva a imóvel situado em <strong>zona rural</strong> e não sujeito a vedação, impedimento ou inconveniente à exploração mediante <strong>atividade agropecuária</strong><br>
+      → <strong>VI)</strong> limitação às áreas do art. 6º, § 1º, da Lei 11.952/2009 — <strong>vedada a dispensa de licitação para áreas superiores</strong><br>
+      → <strong>VII)</strong> <strong>acúmulo</strong> com o quantitativo de área decorrente da alínea “i” do inciso I do caput <strong>até o limite do inciso VI</strong><br>
+      → ⚠️ <strong>Distinção:</strong> a concessão dos §§ 3º e 4º <strong>não é doação nem venda</strong> — é hipótese própria de <strong>dispensa de licitação</strong>, ao lado das alíneas do inciso I; e no caso de <strong>pessoa natural</strong> a lei ainda <strong>afasta a autorização legislativa</strong>, compensando com os sete condicionamentos do § 4º<br>
       → <strong>§ 5º Investidura (I):</strong> alienação ao <strong>proprietário de imóvel lindeiro</strong> de área remanescente ou resultante de obra pública inaproveitável isoladamente, por preço entre a <strong>avaliação</strong> e <strong>50% do limite de dispensa</strong> de bens e serviços<br>
       → <strong>§ 6º Doação com encargo:</strong> será <strong>licitada</strong>, constando obrigatoriamente encargos, prazo de cumprimento e <strong>cláusula de reversão</strong>, sob pena de <strong>nulidade</strong>; dispensada a licitação por interesse público justificado<br>
       → <strong>Art. 77 — preferência:</strong> na <strong>venda de bens imóveis</strong>, direito de preferência ao licitante que, submetendo-se a todas as regras do edital, <strong>comprove a ocupação do imóvel</strong> objeto da licitação
@@ -1704,7 +1790,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → Doação de imóvel é só para outro órgão da Administração; doação de móvel é só para fins de interesse social<br>
       <br><br>→ <strong>Permuta de móveis é vedada com particulares</strong> — só entre órgãos/entidades da Administração<br>
       → Alienação a terceiros de imóvel com título derivado de dação em pagamento dispensa autorização legislativa (§ 1º)<br><br>
-      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, arts. 76 (caput, I e II, §§ 1º, 2º, 5º, 6º) e 77
+      → ⚠️ <strong>Não confundir (art. 76, II, “c”):</strong> na venda de ações a negociação <strong>em bolsa é FACULTATIVA</strong> — a lei diz que as ações “<strong>poderão</strong> ser negociadas em bolsa, observada a legislação específica”; exigir a bolsa como caminho necessário é o erro clássico, e <strong>norma local não pode tornar obrigatório</strong> o que a lei federal deixou facultativo (a União edita as <strong>normas gerais</strong> de licitação e contratação — art. 22, XXVII, da CF).<br><br>
+      → <strong>§ 7º Doação com encargo dada em garantia:</strong> se o donatário precisar oferecer o imóvel em <strong>garantia de financiamento</strong>, a cláusula de reversão e as demais obrigações serão garantidas por <strong>hipoteca em segundo grau em favor do doador</strong> — o financiamento fica viável sem afastar a reversão.<br><br>
+      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, arts. 76 (caput, I e II, §§ 1º a 7º) e 77; Lei 11.952/2009, art. 6º, § 1º
     </div>
     
   </div>
@@ -1804,7 +1892,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="gotcha-title">🚨 Pegadinha da banca</div>
     <strong>Adjudicação ≠ contrato.</strong> A adjudicação gera expectativa de direito, não direito subjetivo. A Administração pode deixar de contratar por anulação, revogação ou motivos supervenientes. <strong>Recusa injustificada do adjudicatário (art. 90, § 5º)</strong> só gera quebra total do compromisso e perda da garantia se a recusa for injustificada.
     <br>
-    → <strong>Convocatória e remanescentes (art. 90, §§ 1º-2º):</strong> não assinado o contrato no prazo, a Administração poderá <strong>convocar os licitantes remanescentes, na ordem de classificação, para celebrar o contrato nas condições propostas pelo licitante vencedor</strong> — é <strong>faculdade</strong> (poderá), não obrigação<br>
+    → <strong>Recusa injustificada — efeitos (§ 5º):</strong> recusar <strong>assinar o contrato</strong> ou <strong>aceitar/retirar o instrumento equivalente</strong> no prazo estabelecido pela Administração caracteriza o <strong>descumprimento total da obrigação assumida</strong> e sujeita o adjudicatário às <strong>penalidades legalmente estabelecidas</strong> e à <strong>imediata perda da garantia de proposta</strong> em favor do órgão ou entidade licitante<br>
+    → <strong>Limite do § 5º (§ 6º):</strong> a regra <strong>não se aplica aos licitantes remanescentes</strong> convocados na forma do <strong>§ 4º, I</strong> — quem é chamado depois não sofre a mesma consequência<br>
+    → <strong>Prazo de convocação (§ 1º):</strong> pode ser <strong>prorrogado uma única vez, por igual período</strong>, mediante <strong>solicitação da parte durante o transcurso</strong> do prazo, <strong>devidamente justificada</strong> e <strong>aceita pela Administração</strong><br>
+    → <strong>Convocatória e remanescentes (§ 2º):</strong> não assinado o contrato no prazo, a Administração poderá <strong>convocar os licitantes remanescentes, na ordem de classificação, para celebrar o contrato nas condições propostas pelo licitante vencedor</strong> — é <strong>faculdade</strong> (poderá), não obrigação<br>
+    → <strong>Se nenhum licitante aceitar (§ 4º):</strong> observados o <strong>valor estimado</strong> e sua eventual atualização nos termos do edital, a Administração poderá <strong>(I)</strong> convocar os remanescentes para <strong>negociação</strong>, na ordem de classificação, visando <strong>preço melhor</strong> — ainda que <strong>acima do preço do adjudicatário</strong> — ou <strong>(II)</strong> <strong>adjudicar e celebrar</strong> nas condições ofertadas pelos remanescentes, atendida a ordem classificatória, <strong>frustrada a negociação</strong> de melhor condição<br>
+    → <strong>Remanescente por rescisão (§ 7º):</strong> a Administração poderá convocar os demais licitantes classificados para a contratação de remanescente de <strong>obra, serviço ou fornecimento</strong> em consequência de <strong>rescisão contratual</strong>, observados os mesmos critérios dos §§ 2º e 4º<br>
+    → <strong>Aproveitamento do saldo (§ 8º, incluído pela Lei 14.770/2023):</strong> na contratação de remanescente por rescisão, é autorizado o <strong>aproveitamento, em favor da nova contratada</strong>, de eventual <strong>saldo a liquidar</strong> inscrito em <strong>despesas empenhadas ou em restos a pagar não processados</strong> — o empenho não se perde com a troca de contratado<br>
+    → <strong>Saldo como disponibilidade para nova licitação (§ 9º):</strong> se <strong>frustradas</strong> as providências dos §§ 2º e 4º (convocação dos remanescentes), o saldo do § 8º poderá ser computado como <strong>efetiva disponibilidade para nova licitação</strong>, desde que <strong>identificada a vantajosidade</strong> para a Administração Pública e <strong>mantido o objeto programado</strong><br>
     → <strong>Prazo de validade da proposta:</strong> decorrido o prazo de validade indicado no edital <strong>sem convocação para a contratação</strong>, ficam os licitantes <strong>liberados dos compromissos assumidos</strong> (art. 90, § 3º)
   </div>
 
@@ -1812,9 +1907,23 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">📌 Formalização — regência, forma e verificações (arts. 89 e 91)</div>
     <div class="card-text">
       → <strong>Regência (art. 89):</strong> cláusulas + preceitos de direito público; direito privado só <strong>supletivo</strong> — todo contrato identifica partes, finalidade, ato autorizador, processo e sujeição à Lei.<br><br>
+      → <strong>Cláusulas do contrato (§ 2º):</strong> o contrato deve estabelecer com <strong>clareza e precisão</strong> as condições de execução, em cláusulas que definam os <strong>direitos, as obrigações e as responsabilidades das partes</strong>, em conformidade com os termos do <strong>edital e da proposta vencedora</strong> — na contratação direta, com os termos do ato autorizador e da respectiva proposta.<br><br>
+      → ⚠️ <strong>Distinção:</strong> as obrigações do <strong>contratante</strong> (Administração) nascem nas <strong>cláusulas do contrato</strong> (§ 2º) — o edital traz os termos que o contrato deve observar, mas <strong>não é o instrumento que define</strong> os direitos e as obrigações das partes.<br><br>
       → <strong>Forma (art. 91):</strong> escrita, no processo, em sítio oficial — sigilo só se imprescindível à segurança; imóveis exigem <strong>escritura pública</strong>; vale forma eletrônica.<br><br>
       → <strong>Verificações prévias (§ 4º):</strong> antes de formalizar/prorrogar — regularidade fiscal + CEIS + CNEP + certidões (inidoneidade, impedimento, trabalhista).<br><br>
       → ⚠️ <strong>Não confundir:</strong> PNCP = <strong>eficácia</strong>, não validade.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Contrato da Administração × contrato administrativo — a locação não muda de natureza</div>
+    <div class="card-text">
+      → <strong>Contrato administrativo:</strong> a Administração contrata <strong>no exercício de suas prerrogativas</strong> — o instrumento nasce no regime público, com cláusulas exorbitantes e sujeição ao controle típico (ex.: obra pública, fornecimento).<br><br>
+      → <strong>Contrato da Administração:</strong> a Administração contrata <strong>em pé de igualdade</strong> com o particular — o instrumento é de <strong>direito privado</strong>, regido predominantemente pelo direito privado (ex.: <strong>locação em que a Administração é locatária</strong>, compra e venda), <strong>sem</strong> as prerrogativas típicas do direito público.<br><br>
+      → ⚠️ <strong>Não confundir:</strong> ser parte a Administração <strong>não converte</strong> o instrumento de direito privado em contrato administrativo — a locação continua sendo contrato da Administração (Lei 8.245/1991 no que lhe for próprio).<br><br>
+      → ⚠️ <strong>Mas não escapa da Lei de Licitações:</strong> a contratação continua submetida à Lei 14.133/2021 — arts. 2º, III (locação no rol), 51 (licitação + avaliação prévia) e 74, V (inexigibilidade pelo imóvel singular).<br><br>
+      → <strong>Princípios que seguem incidindo</strong>, em variável medida, mesmo no contrato de direito privado: <strong>indisponibilidade do interesse público</strong>, <strong>publicidade</strong> e <strong>probidade</strong>.<br><br>
+      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, art. 2º, III, e art. 51 · Lei 8.245/1991 (locação)
     </div>
   </div>
 
@@ -1824,9 +1933,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Cláusulas necessárias (art. 92):</strong> 19 itens — objeto, vinculação, preço/reajuste com data-base, prazos, matriz de risco, garantias, multas com base, habilitação mantida, reserva de cargos, gestão e extinção.<br><br>
       → <strong>Regime de execução (art. 92, IV):</strong> o regime de execução ou a forma de fornecimento é cláusula necessária em <strong>todo</strong> contrato — inclusive de obra.<br><br>
       → <strong>Reajuste obrigatório (art. 92, § 3º):</strong> <strong>independentemente do prazo de duração</strong>, o contrato deve ter cláusula de reajustamento com data-base vinculada ao orçamento estimado — pode haver mais de um índice setorial, conforme o mercado dos insumos.<br><br>
+      → <strong>Reajuste obrigatório já no edital (art. 25, § 7º):</strong> a exigência nasce antes do contrato — é <strong>obrigatória a previsão no edital</strong> de <strong>índice de reajustamento de preço</strong>, com <strong>data-base vinculada à data do orçamento estimado</strong> e possibilidade de mais de um <strong>índice específico ou setorial</strong>, conforme o mercado dos insumos; vale <strong>independentemente do prazo de duração</strong> do contrato.<br><br>
       → <strong>Contínuos — reajuste × repactuação (art. 92, § 4º):</strong> interregno mínimo de <strong>1 ano</strong> — <strong>reajuste em sentido estrito</strong> (índices) quando <strong>não</strong> há dedicação exclusiva/predominância de mão de obra; <strong>repactuação</strong> (demonstração analítica dos custos) quando <strong>há</strong>.<br><br>
-      → ⚠️ <strong>Cuidado:</strong> data-base = orçamento <strong>estimado pela Administração</strong> (não a proposta do vencedor); integrada <strong>não</strong> afasta o reajuste; reajuste se formaliza por <strong>apostila</strong> (art. 136, I), não por aditivo.<br><br>
-      <br><br>→ <strong>Foro (§ 1º):</strong> sede da Administração — salvo internacional com organismo, estrangeira autorizada e unidade no exterior.<br><br>
+      → ⚠️ <strong>Cuidado:</strong> data-base = orçamento <strong>estimado pela Administração</strong> — não a proposta do vencedor nem a data de <strong>assinatura do contrato</strong>; integrada <strong>não</strong> afasta o reajuste; reajuste se formaliza por <strong>apostila</strong> (art. 136, I), não por aditivo.<br><br>
+      → <strong>Foro (§ 1º):</strong> sede da Administração — salvo internacional com organismo, estrangeira autorizada e unidade no exterior.<br><br>
       → <strong>Projetos (art. 93):</strong> autor cede os patrimoniais (software inclui dados/tecnologia); dispensa em P&D (Lei 10.973/2004).<br><br>
       → <strong>Medição (§ 5º):</strong> obras/engenharia = mensal, se compatível com o regime.<br><br>
       → <strong>PNCP (art. 94):</strong> divulgação = condição de eficácia — <strong>20 dias úteis</strong> (licitação) ou <strong>10</strong> (direta).<br><br>
@@ -1907,10 +2017,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Prazo indeterminado (art. 109):</strong> só se a Administração for <strong>usuária de monopólio</strong>, com créditos orçamentários comprovados a cada exercício.<br><br>
       → <strong>Com investimento (art. 110, II):</strong> até <strong>35 anos</strong> — gera receita ou economia, com benfeitorias revertidas ao patrimônio ao término.<br><br>
       → <strong>TI estruturante (art. 114):</strong> operação continuada até <strong>15 anos</strong>.<br><br>
-      <br><br>→ <strong>Emergência (art. 75, VIII):</strong> no máximo <strong>1 ano</strong>, sem prorrogar nem recontratar a mesma empresa pelo mesmo inciso (ADI 6890 — nova licitação ou outro fundamento continuam possíveis).<br><br>
-      → ⚠️ <strong>Limite:</strong><br>
-      → Escopo predefinido prorroga <strong>automaticamente</strong> (art. 111).<br>
-      → <strong>Não há vedação geral de 10 anos</strong> — exceções de 15 e 35 anos.
+      → <strong>Emergência (art. 75, VIII):</strong> no máximo <strong>1 ano</strong>, sem prorrogar nem recontratar a mesma empresa pelo mesmo inciso (ADI 6890 — nova licitação ou outro fundamento continuam possíveis).<br><br>
+      → ⚠️ <strong>Não confundir:</strong> escopo predefinido prorroga <strong>automaticamente</strong> (art. 111) — a prorrogação decorre da própria lei quando o objeto não for concluído no período firmado.<br><br>
+      → ⚠️ <strong>Para fixar:</strong> <strong>não há vedação geral de 10 anos</strong> de vigência — os tetos variam por hipótese, com exceções de <strong>15 e 35 anos</strong>.
     </div>
   </div>
 
@@ -1918,8 +2027,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">📌 Vigência — regras gerais e demais prazos</div>
     <div class="card-text">
       → <strong>Duração (art. 105):</strong> a do edital, com créditos orçamentários (na contratação e por exercício) e PPA se passar de 1 exercício.<br><br>
+      → <strong>§ único (art. 105):</strong> <strong>não</strong> são objeto de <strong>cancelamento automático</strong> os <strong>restos a pagar</strong> vinculados a contratos de <strong>duração plurianual</strong> — só depois de encerrada a vigência destes — nem os vinculados a contratos <strong>rescindidos</strong> (§§ 8º e 9º do art. 90), na forma da Lei 14.770/2023.<br><br>
       → <strong>Até 5 anos (art. 106):</strong> contínuos — maior vantagem plurianual + créditos por exercício + extinção sem ônus sem créditos/vantagem (só no aniversário, nunca antes de 2 meses); vale para aluguel de equipamentos e software (§ 2º).<br><br>
-      → <strong>Até 10 anos (art. 108):</strong> alta complexidade/defesa (art. 75, IV, "f"/"g"), inovação (V), segurança nacional (VI), SUS estratégico (XII), insumos de fundação (XVI); e sem investimento com receita/economia (art. 110, I).<br><br>
+      → <strong>Até 10 anos (art. 108):</strong> hipóteses do art. 75 — alínea <strong>"f"</strong> bens ou serviços <strong>nacionais</strong> que envolvam, <strong>cumulativamente</strong>, <strong>alta complexidade tecnológica e defesa nacional</strong>; alínea <strong>"g"</strong> <strong>materiais de uso das Forças Armadas</strong> (exceto uso pessoal e administrativo), quando houver necessidade de <strong>padronização</strong>; inciso <strong>V</strong> inovação e pesquisa científica e tecnológica no ambiente produtivo; inciso <strong>VI</strong> comprometimento da <strong>segurança nacional</strong>; inciso <strong>XII</strong> transferência de tecnologia de produtos estratégicos para o <strong>SUS</strong>; inciso <strong>XVI</strong> <strong>insumos estratégicos para a saúde</strong> produzidos por fundação de apoio criada antes da lei, com preço compatível com o mercado.<br><br>
+      → <strong>Também até 10 anos (art. 110, I):</strong> contratação que gere <strong>receita</strong> ou contrato de eficiência que gere <strong>economia</strong>, <strong>sem investimento</strong> do contratado — com investimento, o teto sobe a 35 anos (art. 110, II).<br><br>
       → <strong>Fornecimento + serviço (art. 113):</strong> soma dos prazos, operação/manutenção limitada a 5 anos do recebimento, prorrogável pelo art. 107.<br><br>
       → <strong>Leis especiais (art. 112):</strong> prazos da Lei não revogam prazos de lei especial.
     </div>
@@ -2080,9 +2191,27 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → (III) <strong>circunstâncias agravantes ou atenuantes</strong>;<br>
       → (IV) <strong>danos</strong> causados à Administração;<br>
       → (V) <strong>implantação ou aperfeiçoamento de programa de integridade</strong>, conforme normas e orientações dos órgãos de controle.<br><br>
-      <br><br>→ Dosimetria considera <strong>natureza/gravidade, agravantes/atenuantes e programa de integridade</strong> — mas não apenas esses três: a lista completa (<strong>5 itens</strong>) inclui <strong>peculiaridades do caso concreto</strong> e os <strong>danos causados à Administração</strong>
+      → Dosimetria considera <strong>natureza/gravidade, agravantes/atenuantes e programa de integridade</strong> — mas não apenas esses três: a lista completa (<strong>5 itens</strong>) inclui <strong>peculiaridades do caso concreto</strong> e os <strong>danos causados à Administração</strong>.
     </div>
     
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 Sanções administrativas (art. 156, §§ 2º a 9º) — âmbito, prazos e prescrição</div>
+    <div class="card-text">
+      → <strong>Advertência (§ 2º):</strong> é a sanção mais leve e a única com hipótese fechada — aplica-se <strong>exclusivamente</strong> pela infração do art. 155, I (<strong>dar causa à inexecução parcial</strong> do contrato), e apenas <strong>quando não se justificar a imposição de penalidade mais grave</strong>.<br>
+      → <strong>Impedimento de licitar e contratar (§ 4º):</strong> cabe nas infrações dos incisos <strong>II a VII</strong> do art. 155 (inexecução parcial com grave dano, inexecução total, falhas na fase de certame — documentação, manutenção da proposta, não celebração do contrato — e retardamento injustificado da execução), sempre que <strong>não se justificar penalidade mais grave</strong>.<br>
+      → <strong>Alcance do impedimento:</strong> o sancionado fica impedido de licitar ou contratar no âmbito da Administração Pública <strong>direta e indireta do ente federativo que aplicou</strong> a sanção — efeito <strong>local</strong> —, por prazo <strong>máximo de 3 anos</strong>.<br>
+      → <strong>Declaração de inidoneidade (§ 5º):</strong> cabe nas infrações dos incisos <strong>VIII a XII</strong> (declaração ou documentação falsa, fraude à licitação ou na execução, comportamento inidôneo, atos ilícitos para frustrar os objetivos da licitação e ato lesivo do art. 5º da Lei 12.846/2013) e também nas infrações dos incisos <strong>II a VII</strong> quando <strong>justificarem penalidade mais grave</strong> que o impedimento.<br>
+      → <strong>Alcance da inidoneidade:</strong> impede licitar ou contratar no âmbito da Administração Pública direta e indireta de <strong>todos os entes federativos</strong> — efeito <strong>nacional</strong> —, por prazo <strong>mínimo de 3 e máximo de 6 anos</strong>.<br>
+      → ⚠️ <strong>Distinção:</strong> o que separa as duas sanções não é só o prazo — o <strong>impedimento</strong> é sanção <strong>local</strong> (só o ente que puniu, até 3 anos) e a <strong>inidoneidade</strong> é sanção <strong>nacional</strong> (todos os entes, de 3 a 6 anos); trocar o alcance de uma pela outra anula a questão.<br>
+      → <strong>Cumulação (§ 7º):</strong> advertência, impedimento e inidoneidade <strong>podem ser aplicados cumulativamente com a multa</strong> — a multa não é alternativa às demais sanções.<br>
+      → <strong>Multa × créditos do contratado (§ 8º):</strong> se a multa somada às indenizações cabíveis superar o valor eventualmente devido pela Administração ao contratado, além de <strong>perder</strong> esse valor, a diferença é <strong>descontada da garantia</strong> prestada ou <strong>cobrada judicialmente</strong> — não há teto que apague a dívida.<br>
+      → <strong>Reparação integral (§ 9º):</strong> a aplicação de qualquer sanção <strong>não exclui, em hipótese alguma</strong>, a obrigação de reparar integralmente o dano causado à Administração — punição e ressarcimento correm em paralelo.<br>
+      → <strong>Defesa e processo (arts. 157-158):</strong> a <strong>multa</strong> é precedida de defesa do interessado no prazo de <strong>15 dias úteis</strong> da intimação; as sanções de <strong>impedimento e inidoneidade</strong> exigem <strong>processo de responsabilização</strong>, conduzido por comissão de <strong>2 ou mais servidores estáveis</strong> (ou empregados públicos de quadro permanente), com intimação para defesa escrita no mesmo prazo de 15 dias úteis.<br>
+      → <strong>Prescrição (art. 158, § 4º):</strong> a pretensão punitiva prescreve em <strong>5 anos contados da ciência da infração</strong> pela Administração; o prazo <strong>interrompe-se</strong> com a instauração do processo de responsabilização e <strong>suspende-se</strong> por acordo de <strong>leniência</strong> (Lei 12.846/2013) ou por <strong>decisão judicial</strong> que inviabilize a conclusão da apuração.<br><br>
+      ⚖️ <strong>Base legal:</strong> Lei 14.133/2021, arts. 155 e 156 (§§ 2º, 4º, 5º, 7º, 8º e 9º), 157 e 158.
+    </div>
   </div>
 
   <div class="card">
@@ -2121,7 +2250,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>b)</strong> <strong>julgamento das propostas</strong><br>
       → <strong>c)</strong> ato de <strong>habilitação ou inabilitação</strong> de licitante<br>
       → <strong>d)</strong> <strong>anulação ou revogação</strong> da licitação<br>
-      <br><br>→ <strong>e)</strong> <strong>extinção do contrato</strong>, quando determinada por ato unilateral e escrito da Administração
+      → <strong>e)</strong> <strong>extinção do contrato</strong>, quando determinada por ato unilateral e escrito da Administração
     </div>
     <div class="card-text">
       → <strong>Julgamento e habilitação (art. 165, § 1º):</strong> a <strong>intenção de recorrer deverá ser manifestada imediatamente</strong>, sob pena de <strong>preclusão</strong>; o prazo para razões recursais inicia na intimação ou lavratura da ata; a <strong>apreciação dar-se-á em fase única</strong>
@@ -2211,35 +2340,41 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       <strong>Alta incidência 🔴</strong><br>
       <span class="tag tag-red">Seção 5 — Matriz de alocação de riscos (arts. 22 e 103): 5</span><br>
+      <span class="tag tag-red">Seção 7 — Contrato — cláusulas necessárias, foro, reajuste e medição (art. 92 e art. 25, § 7º): 5</span><br>
       <span class="tag tag-red">Seção 4 — Critérios de julgamento (arts. 34, 35 e 39): 4</span><br>
       <span class="tag tag-red">Seção 5 — Regimes de execução indireta e princípios dos serviços (arts. 46 e 47): 4</span><br>
+      <span class="tag tag-red">Seção 5 — Serviços com dedicação exclusiva de mão de obra: 4</span><br>
       <span class="tag tag-red">Seção 7 — Garantias contratuais (arts. 96-102 e 137, § 4º): 4</span><br>
       <span class="tag tag-red">Seção 3 — Indicação de marcas no fornecimento de bens (art. 41): 3</span><br>
-      <span class="tag tag-red">Seção 5 — Serviços com dedicação exclusiva de mão de obra: 3</span><br>
       <span class="tag tag-red">Seção 7 — Ordem cronológica de pagamento (art. 141): 3</span><br>
-      <span class="tag tag-red">Seção 7 — Contrato — cláusulas necessárias, foro e medição (art. 92): 4</span><br><br>
+      <span class="tag tag-red">Seção 7 — Recusa do adjudicatário, convocação e remanescentes (art. 90): 3</span><br><br>
       <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Seção 3 — Margem de preferência (art. 26): 2</span><br>
       <span class="tag tag-amber">Seção 3 — Revogação e anulação do certame (art. 71): 2</span><br>
       <span class="tag tag-amber">Seção 3 — Planejamento de compras (art. 40, caput): 2</span><br>
       <span class="tag tag-amber">Seção 4 — Diálogo competitivo: 2</span><br>
       <span class="tag tag-amber">Seção 4 — Leilão: 2</span><br>
       <span class="tag tag-amber">Seção 4 — Linhas de defesa das contratações (art. 169): 2</span><br>
       <span class="tag tag-amber">Seção 4 — Pregão e serviços comuns de engenharia: 2</span><br>
+      <span class="tag tag-amber">Seção 5 — Empreitada por preço global: 2</span><br>
+      <span class="tag tag-amber">Seção 6 — Alienação de bens (arts. 76-77): 2</span><br>
+      <span class="tag tag-amber">Seção 6 — Contratação direta — documentos (art. 72): 2</span><br>
       <span class="tag tag-amber">Seção 6 — Credenciamento — inexigibilidade (art. 74, IV): 2</span><br>
       <span class="tag tag-amber">Seção 7 — Cláusulas exorbitantes — prerrogativas da Administração (art. 104): 2</span><br>
       <span class="tag tag-amber">Seção 7 — Alteração contratual (arts. 124-126): 2</span><br>
       <span class="tag tag-amber">Seção 7 — Publicação no PNCP — condição de eficácia (art. 94): 2</span><br>
       <span class="tag tag-amber">Seção 7 — Instrumento de contrato facultativo e contrato verbal (art. 95): 2</span><br>
       <span class="tag tag-amber">Seção 7 — Meios alternativos de resolução de controvérsias (arts. 151-154): 2</span><br>
+      <span class="tag tag-amber">Seção 7 — Dosimetria das sanções (art. 156, § 1º): 2</span><br>
       <span class="tag tag-amber">Seção 7 — Programa de integridade em grande vulto (art. 25, § 4º): 2</span><br>
-      <span class="tag tag-amber">Seção 7 — Recusa injustificada do adjudicatário em assinar o contrato (art. 90, § 5º): 2</span><br>
-      <span class="tag tag-amber">Seção 7 — Subcontratação — vedação por vínculo (art. 122, § 3º): 2</span><br><br>
+      <span class="tag tag-amber">Seção 7 — Recursos e pedido de reconsideração (arts. 165-168): 2</span><br>
+      <span class="tag tag-amber">Seção 7 — Subcontratação — vedação por vínculo (art. 122, § 3º): 2</span><br>
+      <span class="tag tag-amber">Seção 7 — Vigência dos contratos (arts. 107-114): 2</span><br><br>
       <strong>Baixa incidência ⚪</strong><br>
       <span class="tag">Seção 1 — Transição entre leis — vedação à aplicação combinada (art. 191): 1</span><br>
       <span class="tag">Seção 2 — Âmbito de aplicação — exclusões (art. 3º): 1</span><br>
       <span class="tag">Seção 2 — Recursos de organismos internacionais: 1</span><br>
       <span class="tag">Seção 3 — Habilitação econômico-financeira (art. 69): 1</span><br>
-      <span class="tag">Seção 3 — Margem de preferência (art. 26): 1</span><br>
       <span class="tag">Seção 3 — Processo de padronização (art. 43): 1</span><br>
       <span class="tag">Seção 3 — Prazos mínimos de propostas (art. 55): 1</span><br>
       <span class="tag">Seção 3 — Qualidade comum dos bens de consumo — vedação de luxo (art. 20): 1</span><br>
@@ -2250,28 +2385,25 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <span class="tag">Seção 3 — Termo de referência (art. 40, § 1º): 1</span><br>
       <span class="tag">Seção 3 — Vedação de parentesco do contratado (art. 48, parágrafo único): 1</span><br>
       <span class="tag">Seção 4 — Controle do TC e impugnação ao edital: 1</span><br>
-      <span class="tag">Seção 5 — Empreitada por preço global: 1</span><br>
       <span class="tag">Seção 5 — Contratação de mais de uma empresa para mesmo serviço (art. 49): 1</span><br>
-      <span class="tag">Seção 6 — Alienação de bens (arts. 76-77): 1</span><br>
-      <span class="tag">Seção 6 — Contratação direta — documentos (art. 72): 1</span><br>
+      <span class="tag">Seção 5 — Locação de imóveis (art. 51): 1</span><br>
+      <span class="tag">Seção 6 — Inexigibilidade por imóvel de escolha necessária (art. 74, V): 1</span><br>
       <span class="tag">Seção 6 — Intervenção no domínio econômico (art. 75, X): 1</span><br>
       <span class="tag">Seção 6 — Inexigibilidade por fornecedor exclusivo (art. 74, I): 1</span><br>
       <span class="tag">Seção 7 — Apostila (art. 136): 1</span><br>
       <span class="tag">Seção 7 — Nulidade do contrato — interesse público (arts. 147-149): 1</span><br>
       <span class="tag">Seção 7 — Pagamentos — conta vinculada, incontroversa, remuneração variável e antecipação (arts. 142-145): 1</span><br>
-      <span class="tag">Seção 7 — Dosimetria das sanções (art. 156, § 1º): 1</span><br>
       <span class="tag">Seção 7 — Extinção do contrato (art. 137) × caducidade da concessão: 1</span><br>
       <span class="tag">Seção 7 — Formalização de contratos (arts. 89-94): 1</span><br>
       <span class="tag">Seção 7 — PNCP — gestão e conteúdo (art. 174): 1</span><br>
       <span class="tag">Seção 7 — Formalização do termo aditivo (art. 132): 1</span><br>
       <span class="tag">Seção 7 — Formalização do contrato e verificações prévias (art. 91): 1</span><br>
+      <span class="tag">Seção 7 — Obrigações das partes nas cláusulas do contrato (art. 89, § 2º): 1</span><br>
       <span class="tag">Seção 7 — Mão de obra de grupos sociais (art. 25, § 9º): 1</span><br>
       <span class="tag">Seção 7 — Preposto na execução (art. 118): 1</span><br>
       <span class="tag">Seção 7 — Reabilitação (art. 163): 1</span><br>
       <span class="tag">Seção 7 — Recebimento do objeto (art. 140): 1</span><br>
-      <span class="tag">Seção 7 — Recursos e pedido de reconsideração (arts. 165-168): 1</span><br>
       <span class="tag">Seção 7 — Validade da proposta — liberação dos licitantes (art. 90, § 3º): 1</span><br>
-      <span class="tag">Seção 7 — Vigência dos contratos (arts. 107-114): 1</span><br>
     </div>
   </div>
 </section>
