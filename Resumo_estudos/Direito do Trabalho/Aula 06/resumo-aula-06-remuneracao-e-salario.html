@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Direito do Trabalho Aula 06: Remuneração e Salário</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     DT = #d97706 (âmbar). Derivados: strong, soft, line. */
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #d97706;
+  --mat-strong: #b45309;
+  --mat-soft: #fdf0dc;
+  --mat-line: #f2d9ad;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* DOTS / FLOW */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* FOOTER */
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+}
+@media (max-width: 768px) {
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #f0a92e; --mat-strong: #e6c36d; --mat-soft: #33290f; --mat-line: #6e5a1e;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#f0a92e;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(240,169,46,.08); }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#e6c36d; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#e6c36d; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #6e5a1e; }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--amber); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--amber); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  --mat: #d97706; --mat-strong: #b45309; --mat-soft: #fdf0dc; --mat-line: #f2d9ad;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#b45309; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .legal-block { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .legal-block { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .legal-block.rev-open { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .legal-block { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--amber); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito do Trabalho — Aula 06</div>
+  <div class="sidebar-sub">Remuneração e Salário · vConsolidado</div>
+  <div class="sr-box">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Salário e remuneração — conceitos</a>
+  <a href="#sec2">2. Parcelas salariais</a>
+  <a href="#sec3">3. Parcelas não salariais</a>
+  <a href="#sec4">4. Parâmetros e pagamento do salário</a>
+  <a href="#sec5">5. Sistema de garantias salariais</a>
+  <a href="#sec6">6. Equiparação salarial</a>
+  <a href="#sec7">7. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-06-remuneracao-e-salario.html" style="color:var(--mat-strong);font-size:.78rem;font-weight:700;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: simplificado + mapa mental + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — SALÁRIO E REMUNERAÇÃO: CONCEITOS                     -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Salário e remuneração — conceitos</div>
+  </div>
+  <div class="sec-subtitle">Terminologias: <span class="tag tag-gray">BAIXÍSSIMA</span> · A onerosidade é o elemento fático-jurídico que conecta o trabalho prestado à contraprestação paga</div>
+
+  <div class="card">
+    <div class="card-title">A fórmula que a banca cobra: salário × remuneração</div>
+    <div class="card-text">
+      → <strong>Salário</strong> = conjunto das parcelas que o empregado recebe <strong>diretamente do empregador</strong> (contraprestação pelo trabalho prestado)<br><br>
+      → <strong>Remuneração</strong> = salário <strong>+ gorjetas</strong> (pagas por <strong>terceiros/clientes</strong>)<br><br>
+      → <span class="highlight">REMUNERAÇÃO = SALÁRIO + GORJETAS</span> — entendimento predominante; a CLT não definiu expressamente nenhum dos dois conceitos<br><br>
+      → <strong>Teoria da contraprestação</strong> — fundamento do conceito de salário no Brasil: é salário o pago <strong>em razão do trabalho</strong> prestado, nos termos da CLT (arts. 457 e 458) e da construção doutrinária e jurisprudencial<br><br>
+      → ⚠️ <strong>Distinção:</strong> o conceito <strong>não</strong> se fundamenta na teoria geral de sistemas, que consideraria salário todas as verbas pagas em decorrência da relação empregatícia<br><br>
+      → ⚠️ <strong>Para fixar:</strong> ex.: R$ 2.500 pagos pelo empregador + R$ 1.000 vindos de clientes — salário de R$ 2.500, remuneração de R$ 3.500; a gorjeta entra na remuneração sem virar salário
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <strong>CLT, art. 457, caput:</strong> compreendem-se na <strong>remuneração</strong> do empregado, para todos os efeitos legais, além do salário devido e pago diretamente pelo empregador, como contraprestação do serviço, <strong>as gorjetas que receber</strong>.
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que integra o salário — rol do art. 457, § 1º</div>
+    <div class="card-text">
+      → <strong>Importância fixa estipulada</strong><br>
+      → <strong>Gratificações legais</strong><br>
+      → <strong>Comissões pagas pelo empregador</strong><br><br>
+      → <strong>Rol meramente exemplificativo</strong> (doutrina de Maurício Godinho Delgado): não é taxativo, por isso outras parcelas (adicionais, por exemplo) também têm natureza salarial mesmo sem constar da lista<br><br>
+      → Inclui também as <strong>parcelas in natura</strong> (art. 458): alimentação, habitação, vestuário ou outras prestações fornecidas <strong>habitualmente</strong> — <strong>em caso algum</strong> é permitido pagar com bebidas alcoólicas ou drogas nocivas
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Gorjetas: onde entram e onde NÃO entram na base de cálculo</div>
+    <div class="card-text">
+      → <strong>Entram</strong> (a lei falar em remuneração): <strong>FGTS</strong> — reflexos em diversas verbas; e a própria lei prevê inclusão na base de <strong>férias</strong> e <strong>13º salário</strong><br><br>
+      → <strong>Não entram</strong> (parcelas baseadas no salário — gorjeta não se confunde com salário): <strong>aviso-prévio</strong>, <strong>adicional noturno</strong>, <strong>horas extras</strong> e <strong>repouso semanal remunerado</strong> (Súmula 354 do TST, que vale para gorjeta cobrada na nota <strong>ou</strong> dada espontaneamente pelo cliente)<br><br>
+      → <strong>Detalhe do FGTS</strong> (Súmula 63 do TST): a contribuição incide sobre a remuneração mensal devida, <strong>inclusive horas extras e adicionais eventuais</strong> — ou seja, sobre parcelas de natureza salarial <strong>mesmo sem habitualidade</strong>; por isso gorjetas, apesar de não salariais, também têm FGTS
+    </div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Denominações impróprias — têm "salário" no nome, mas não são salário
+  </h4>
+
+  <div class="card">
+    <div class="card-title">Por que "impróprias"? Natureza previdenciária, não trabalhista</div>
+    <div class="card-text">
+      → <strong>Salário-família</strong> (CF, art. 7º, XII): benefício pago <strong>pela Previdência Social</strong> ao segurado de baixa renda em razão do dependente — regulado hoje pela Lei 8.213/91, art. 65 e seguintes<br><br>
+      → <strong>Salário-maternidade</strong> (CF, art. 7º, XVIII): pago <strong>pela Previdência Social</strong> à segurada em licença-maternidade (120 dias, entre 28 dias antes do parto e a data do parto) — Lei 8.213/91, art. 71 e seguintes<br><br>
+      → <strong>Salário de contribuição</strong> (Lei 8.212/91, art. 28): base de custeio da Previdência — totalidade dos rendimentos, <strong>inclusive gorjetas</strong><br><br>
+      → <strong>Salário de benefício</strong> (Lei 8.213/91, art. 28): base de cálculo do valor dos benefícios previdenciários<br><br>
+      → <strong>Distinção:</strong> nenhuma delas se confunde com o salário do Direito do Trabalho — a banca usa o nome para induzir o erro
+    </div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Denominações próprias — se relacionam com o conceito trabalhista
+  </h4>
+
+  <div class="card">
+    <div class="card-title">As sete denominações próprias e o que diferencia cada uma</div>
+    <div class="card-text">
+      → <strong>Salário mínimo legal</strong>: menor valor pagável no país — fixado <strong>em lei, nacionalmente unificado</strong>, com reajustes periódicos que preservem o poder aquisitivo e <strong>vedada sua vinculação para qualquer fim</strong> (CF, art. 7º, IV)<br><br>
+      → <strong>Salário profissional</strong>: menor valor pagável a empregado de <strong>profissão regulamentada</strong> — ex.: engenheiros, Lei 4.950-A/66<br><br>
+      → <strong>Salário normativo (piso salarial)</strong>: menor valor da categoria — a rigor fixado por <strong>sentença normativa</strong>; na prática, também por <strong>negociação coletiva</strong> (CCT/ACT), com os conceitos se confundindo<br><br>
+      → <strong>Piso salarial regional</strong>: mínimo da categoria <strong>no âmbito de um estado</strong> que o tenha definido em lei<br><br>
+      → <strong>Profissional absoluto × relativo</strong> — subdivisão doutrinária: <strong>absoluto</strong> é o fixado diretamente em lei (ex.: médicos, engenheiros — Lei 4.950-A/66); <strong>relativo</strong> é o fixado por entidade com outorga legal (ex.: estivadores, por Lei Delegada do Presidente)<br><br>
+      → ⚠️ <strong>Não confundir:</strong> o valor mínimo da categoria fixado em <strong>negociação coletiva (ACT/CCT)</strong> é o salário <strong>normativo (piso salarial)</strong>, não o profissional
+      → <strong>Salário base (básico)</strong>: valor <strong>fixo</strong> pactuado entre as partes, sem outras rubricas — jurisprudência o trata como o <strong>núcleo da remuneração</strong>, referência para o cálculo de vantagens (adicionais, horas extras); a Súmula 191 do TST usa o termo: periculosidade incide apenas sobre o salário básico<br><br>
+      → <strong>Salário condição</strong>: parcela que depende de <strong>condição específica</strong> — cessada a condição, cessa a verba (ex.: adicionais); Súmulas 80 e 248 do TST: eliminada/reclassificada a insalubridade, cessa o adicional sem ofensa a direito adquirido nem à irredutibilidade<br><br>
+      → <strong>Salário complessivo</strong>: cumulação de várias parcelas num montante único — <span class="highlight">rejeitado pela ordem justrabalhista</span> (Súmula 91 do TST: nula a cláusula que engloba vários direitos), pois impede verificar o valor correto de cada verba<br><br>
+      → <strong>Quitação na rescisão (CLT, art. 477, § 2º)</strong>: o instrumento de rescisão ou recibo de quitação, qualquer que seja a causa da dissolução do contrato, deve ter <strong>especificada a natureza de cada parcela paga</strong> e <strong>discriminado seu valor</strong> — a quitação só é válida relativamente às parcelas expressamente consignadas; vedado, portanto, pagar verbas rescisórias sob uma única rubrica englobada
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Impróprias (previdenciárias)</th><th>Próprias (trabalhistas)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Salário-família</td><td>Salário mínimo legal</td></tr>
+        <tr><td>Salário-maternidade</td><td>Salário profissional</td></tr>
+        <tr><td>Salário de contribuição</td><td>Salário normativo / piso salarial</td></tr>
+        <tr><td>Salário de benefício</td><td>Salário base · Salário condição</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Contracheque sem linha destacada de RSR não é salário complessivo: depende da Lei 605/1949 (art. 7º, § 2º).
+    → <strong>Mensalista ou quinzenalista</strong>: dias de repouso já se consideram remunerados — o valor do "salário" já contempla o RSR, <strong>não precisa discriminar</strong>;<br><br>
+    → <strong>Diarista regido pela CLT</strong>: o RSR <strong>não está incluído</strong> — deve ser pago separado e discriminado;<br><br>
+    → <strong>Diarista sem vínculo empregatício</strong> (trabalho sem relação de emprego): não recebe RSR.
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Características (caracteres) do salário
+  </h4>
+
+  <div class="card">
+    <div class="card-title">Os oito caracteres que a doutrina confere ao salário</div>
+    <div class="card-text">
+      → <strong>Caráter alimentar</strong> — fonte de subsistência do trabalhador e da família; por isso recebe proteções que o tornam <strong>impenhorável e irredutível</strong><br><br>
+      → <strong>Caráter forfetário</strong> — definido de forma <strong>prévia</strong>, não depende do resultado da atividade empresarial: mesmo com prejuízo, o salário é pago (o <strong>risco do negócio é do empregador</strong>)<br><br>
+      → <strong>Natureza composta</strong> — salário base + outras parcelas (adicionais, gratificações legais) formam um <strong>complexo salarial</strong><br><br>
+      → <strong>Indisponibilidade</strong> — não se admite renúncia ou transação de verbas salariais <strong>prejudiciais ao obreiro</strong><br><br>
+      → <strong>Periodicidade</strong> — é de <strong>trato sucessivo</strong>: pago na periodicidade acordada (mensal, quinzenal etc.)<br><br>
+      → <strong>Pós-numeração</strong> — em regra pago <strong>depois</strong> de prestados os serviços do período (até o 5º dia útil do mês subsequente); exceções: <strong>abonos</strong> (adiantamentos) e <strong>utilidades</strong>, recebidas antes do fim do período<br><br>
+      → <strong>Tendência à determinação heterônoma</strong> — fixa-se pela vontade das partes, mas sob o <strong>concurso interventivo de vontade externa</strong> (regra jurídica: ex. salário mínimo)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — PARCELAS SALARIAIS                                   -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Parcelas salariais</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-red">ALTA</span> — adicionais, gratificações, 13º, comissões e salário in natura (art. 458, § 2º é decoreba obrigatória)</div>
+
+  <div class="card">
+    <div class="card-title">Efeito expansionista circular — por que a natureza da parcela importa</div>
+    <div class="card-text">
+      Parcela considerada salarial <strong>repercute em outras verbas</strong> do contrato: base de cálculo de férias, 13º, FGTS, aviso-prévio etc.<br><br>
+      → Conceito de <span class="highlight">efeito expansionista circular</span> (Maurício Godinho Delgado): aptidão de produzir repercussões sobre outras parcelas de cunho trabalhista e até de outra natureza, como a <strong>previdenciária</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Salário básico — não é obrigatório que exista</div>
+    <div class="card-text">
+      → Valor <strong>fixo</strong>, geralmente pago <strong>mensalmente</strong> (periodicidade máxima de um mês)<br><br>
+      → <strong>Não há exigência</strong> de salário base fixo: admite-se empregado remunerado <strong>somente por comissões</strong> (comissionista puro)<br><br>
+      → Mesmo sem parte fixa, o comissionista garante <strong>no mínimo o salário mínimo</strong> (CF, art. 7º, VII; CLT, art. 78, parágrafo único: integrado por parte fixa e variável, ser-lhe-á sempre garantido o mínimo, <strong>vedado desconto no mês subsequente a título de compensação</strong>)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Adicionais — regras gerais que valem para todos</div>
+    <div class="card-text">
+      → Devidos pelo exercício do labor em <strong>condições específicas mais desgastantes</strong> (horário, agentes insalubres etc.)<br><br>
+      → São <span class="highlight">salário condição</span>: devidos <strong>enquanto durar a condição</strong> — cessada (noturno vira diurno, ruído controlado), cessa o adicional sem ofensa à irredutibilidade<br><br>
+      → Para integrar o salário, devem ser pagos com <strong>habitualidade</strong> (vale para as demais parcelas salariais)<br><br>
+      → Não estão no rol do art. 457, § 1º, mas têm natureza salarial (Godinho)<br><br>
+      → <strong>Súmula 139 do TST</strong> — enquanto percebido, o adicional de insalubridade <strong>integra a remuneração para todos os efeitos legais</strong>, confirmando a natureza salarial dos adicionais pagos com habitualidade<br><br>
+      → ⚠️ <strong>Não confundir:</strong> adicionais <strong>não</strong> têm natureza indenizatória — compensam condições gravosas do trabalho, mas integram o salário e repercutem em férias, 13º, FGTS e demais verbas
+    </div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Adicional de insalubridade
+  </h4>
+
+  <div class="legal-block">
+    <strong>CLT, art. 192:</strong> trabalho em condições insalubres, <strong>acima dos limites de tolerância</strong> estabelecidos pelo Ministério do Trabalho, assegura adicional de <strong>40%</strong>, <strong>20%</strong> e <strong>10%</strong> do <strong>salário-mínimo</strong>, segundo os graus <strong>máximo, médio e mínimo</strong>.<br><br>
+    <strong>CLT, art. 190:</strong> cabe ao Ministério do Trabalho aprovar o quadro das atividades e operações insalubres e os critérios de caracterização (a <strong>NR 15</strong> regulamenta essas atividades e operações, identificando-as por anexos).<br><br>
+    <strong>CLT, art. 195:</strong> caracterização e classificação da insalubridade/periculosidade por <strong>perícia</strong> a cargo de <strong>Médico do Trabalho ou Engenheiro do Trabalho</strong> registrados no Ministério do Trabalho.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Grau</th><th>Percentual</th><th>Base</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Máximo</td><td><strong>40%</strong></td><td rowspan="3">Salário-mínimo (texto do art. 192)</td></tr>
+        <tr><td>Médio</td><td><strong>20%</strong></td></tr>
+        <tr><td>Mínimo</td><td><strong>10%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Base de cálculo da insalubridade — o cenário confuso que vira questão</div>
+    <div class="card-text">
+      → A CLT fixou o <strong>salário mínimo</strong> como base (art. 192)<br><br>
+      → Mas a <strong>Súmula Vinculante 4 do STF</strong> impede usar o salário mínimo como base de cálculo de outras rubricas<br><br>
+      → Por isso a <strong>Súmula 228 do TST</strong> (que previa o salário básico como base) está com <strong>eficácia suspensa</strong><br><br>
+      → Resultado prático: sem definição consolidada, o adicional <strong>tem sido pago com base no salário mínimo</strong> em muitos casos
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Trabalho a céu aberto: radiação solar × calor (OJ 173)</div>
+    <div class="card-text">
+      → <strong>Ausente previsão legal</strong>: indevido o adicional por sujeição à <strong>radiação solar</strong> (Anexo 7 da NR 15 trata de radiações <strong>não ionizantes</strong> — micro-ondas, ultravioletas e laser — e o item I da OJ fez questão de acrescentar "por sujeição à radiação solar")<br><br>
+      → <strong>Devido</strong>, porém, o adicional quando a exposição for ao <strong>calor acima dos limites de tolerância</strong>, inclusive em ambiente externo com carga solar (Anexo 3 da NR 15, que traz o cálculo de exposição ao calor com ou sem carga solar)<br><br>
+      → <strong>Eliminada a condição insalubre</strong> (agente eliminado, neutralizado ou controlado, inclusive com aparelhos protetores aprovados pelo órgão competente), cessa o adicional — sem ofensa à irredutibilidade (art. 194; Súmulas 80 e 248 do TST)
+    </div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Adicional de periculosidade
+  </h4>
+
+  <div class="legal-block">
+    <strong>CLT, art. 193, caput:</strong> atividades ou operações <strong>perigosas</strong> — risco acentuado por <strong>exposição permanente</strong> do trabalhador a:<br>
+    → <strong>I</strong> — inflamáveis, explosivos ou energia elétrica<br>
+    → <strong>II</strong> — roubos ou outras espécies de violência física nas atividades profissionais de <strong>segurança pessoal ou patrimonial</strong> (Lei 12.740/2012)<br>
+    → <strong>III</strong> — colisões, atropelamentos ou outras espécies de acidentes ou violências nas atividades dos <strong>agentes das autoridades de trânsito</strong> (Lei 12.740/2012)<br><br>
+    <strong>§ 1º:</strong> adicional de <strong>30%</strong> sobre o salário <strong>sem os acréscimos</strong> resultantes de gratificações, prêmios ou participações nos lucros da empresa.<br><br>
+    <strong>§ 2º:</strong> exposição a periculosidade <strong>e</strong> insalubridade → o empregado <strong>opta pelo mais vantajoso</strong> (não acumula).<br><br>
+    <strong>§ 4º:</strong> também são perigosas as atividades de <strong>trabalhador em motocicleta</strong> (Lei 12.997/2014).<br><br>
+    <strong>§ 5º:</strong> o inciso I <strong>não se aplica</strong> às quantidades de inflamáveis nos <strong>tanques de combustível originais de fábrica e suplementares</strong> (consumo próprio de veículos de carga, transporte coletivo, máquinas e equipamentos, e refrigeração de carga).
+  </div>
+
+  <div class="card">
+    <div class="card-title">Base de cálculo e eletricitários — a divisão de 2012</div>
+    <div class="card-text">
+      → <strong>Súmula 191, I, do TST</strong>: periculosidade incide <strong>apenas sobre o salário básico</strong>, não sobre este acrescido de outros adicionais<br><br>
+      → <strong>Eletricitários contratados antes da Lei 12.740/2012</strong> (Lei 7.369/1985): adicional incide sobre <strong>todas as parcelas de natureza salarial</strong> — e norma coletiva que estipule incidência só sobre o básico <strong>não é válida</strong><br><br>
+      → <strong>Eletricitários contratados após a Lei 12.740/2012</strong>: incide apenas sobre o <strong>salário básico</strong>, como os demais (mudança de dezembro/2016: cancelamento da OJ 279 e nova redação da Súmula 191)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exposição eventual × permanente × intermitente (Súmulas 364 e 361)</div>
+    <div class="card-text">
+      → <strong>Devido</strong>: exposição <strong>permanente</strong> ou <strong>intermitente</strong> às condições de risco<br><br>
+      → <strong>Indevido</strong>: contato <strong>eventual</strong> — o fortuito, ou o habitual por tempo <strong>extremamente reduzido</strong><br><br>
+      → <strong>Intermitente dá direito INTEGRAL</strong> (Súmula 361, eletricitários): a Lei 7.369/1985 não estabeleceu proporcionalidade
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Periculosidade e sua relação com horas extras e sobreaviso (Súmula 132)</div>
+    <div class="card-text">
+      → Pago em <strong>caráter permanente</strong>, integra o cálculo de <strong>indenização e de horas extras</strong><br><br>
+      → Durante o <strong>sobreaviso</strong>, o empregado está em sua residência, <strong>fora das condições de risco</strong>: incabível a integração do adicional sobre essas horas
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Complementos:</strong> OJ 345 da SDI-1 — adicional devido também em atividades com exposição a <strong>radiação ionizante ou substância radioativa</strong> (apesar de críticas doutrinárias). Lei 12.740/2012, § 3º — do adicional do <strong>vigilante</strong> são <strong>descontados ou compensados</strong> outros da mesma natureza já concedidos por acordo coletivo.</div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Adicional de transferência
+  </h4>
+
+  <div class="legal-block">
+    <strong>CLT, art. 469, § 3º:</strong> em caso de <strong>necessidade de serviço</strong>, o empregador pode transferir o empregado para localidade diversa da do contrato (superadas as restrições do art. 469, caput), com <strong>pagamento suplementar nunca inferior a 25%</strong> dos salários que o empregado percebia naquela localidade, <strong>enquanto durar a situação</strong>.
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Adicional de horas extraordinárias
+  </h4>
+
+  <div class="legal-block">
+    <strong>CF/88, art. 7º, XVI:</strong> remuneração do serviço extraordinário <strong>superior, no mínimo, em 50%</strong> à do normal.<br><br>
+    <strong>CLT, art. 59, § 1º:</strong> a remuneração da hora extra será, pelo menos, <strong>50% superior</strong> à da hora normal.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Como se compõe a hora extra — e quando ela NÃO é devida</div>
+    <div class="card-text">
+      → <strong>Súmula 264 do TST</strong>: remuneração do serviço suplementar = <strong>valor da hora normal</strong> (integrado por parcelas de natureza salarial) <strong>+ adicional</strong> previsto em lei, contrato, acordo, convenção coletiva ou sentença normativa<br><br>
+      → <strong>Na prática</strong>: compõem o valor da hora normal todas as parcelas salariais recebidas com habitualidade — <strong>comissões incluídas</strong> — e não a remuneração inteira (gorjetas, pagas por terceiros, ficam fora)<br><br>
+      → <strong>Não é devido o adicional</strong> quando há <strong>compensação de jornada</strong> legalmente admitida (acordo escrito de prorrogação intrassemanal ou banco de horas por negociação coletiva)<br><br>
+      → <strong>Súmula 376 do TST</strong>: a limitação de 2 horas extras diárias <strong>não exime</strong> o empregador de pagar todas as horas trabalhadas — e o valor das extras habituais integra os haveres trabalhistas independentemente da limitação do art. 59
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Horas extras habituais repercutem em toda a remuneração</div>
+    <div class="card-text">
+      → Computam-se no cálculo do <strong>repouso semanal remunerado</strong> (Súmula 172)<br><br>
+      → Integram o cálculo da <strong>gratificação natalina</strong> — 13º (Súmula 45)<br><br>
+      → Integram <strong>gratificações semestrais</strong> e <strong>FGTS</strong><br><br>
+      → A majoração do RSR decorrente dessa integração <strong>repercute nas demais parcelas</strong> cuja base é o salário (férias, 13º, aviso-prévio, FGTS)<br><br>
+      → Cômputo: número de horas prestadas × salário-hora <strong>da época do pagamento</strong> das verbas
+    </div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Adicional noturno
+  </h4>
+
+  <div class="card">
+    <div class="card-title">Percentuais e a regra constitucional sem número</div>
+    <div class="card-text">
+      → <strong>CF, art. 7º, IX</strong>: remuneração do trabalho noturno <strong>superior à do diurno</strong> — a Constituição NÃO fixou percentual<br><br>
+      → <strong>Urbano (CLT)</strong>: adicional de <strong>20%</strong> mínimo<br><br>
+      → <strong>Rural</strong> (Lei 5.889/73): adicional de <strong>25%</strong> mínimo
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Noturno é salário condição — e integra o salário pago com habitualidade</div>
+    <div class="card-text">
+      → <strong>Súmula 265 do TST</strong>: transferência para o período diurno implica <strong>perda do direito</strong> ao adicional<br><br>
+      → <strong>Súmula 60, I, do TST</strong> + OJ 97 da SDI-1: adicional noturno pago com habitualidade <strong>integra o salário para todos os efeitos</strong><br><br>
+      → <strong>Súmula 60, II</strong> (exegese do art. 73, § 5º): cumprida integralmente a jornada noturna e prorrogada esta, o adicional é devido <strong>também sobre as horas prorrogadas</strong> (mesmo que a prorrogação alcance o período diurno)<br><br>
+      → <strong>OJ 259 da SDI-1</strong>: trabalho perigoso no período noturno computa <strong>ambos os adicionais</strong> — o de periculosidade <strong>compõe a base de cálculo</strong> do noturno
+    </div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Gratificações legais e o 13º salário
+  </h4>
+
+  <div class="card">
+    <div class="card-title">Gratificações: o fato ensejador não é gravoso ao empregado</div>
+    <div class="card-text">
+      → Parcelas contraprestativas pagas em decorrência de <strong>evento ou circunstância tida como relevante</strong> (Godinho) — ao contrário dos adicionais, o fato ensejador não é gravoso às condições de trabalho<br><br>
+      → <strong>Gratificações convencionais (ajustadas)</strong>: a relevância é definida pelo próprio empregador<br><br>
+      → <strong>Gratificações normativas (legais)</strong>: a relevância vem de norma jurídica — integram o salário (art. 457, § 1º)<br><br>
+      → Exemplos: natalina, por tempo de serviço, quebra de caixa, de função, semestral<br><br>
+      → Pós-reforma: o legislador garantiu natureza salarial apenas das <strong>legais</strong>; sobre as ajustadas há <strong>duas correntes</strong> (salariais se habituais — Godinho × não salariais pelo silêncio do legislador)<br><br>
+      → <strong>Gratificação de função</strong>: tem natureza <strong>salarial</strong> — considerada gratificação legal (art. 457, § 1º), com fundamento na CLT, art. 62, II (gerentes e cargos de gestão): o salário do cargo de confiança, compreendendo a gratificação de função, não pode ficar abaixo do salário efetivo <strong>acrescido de 40%</strong> (art. 62, parágrafo único)<br><br>
+      → <strong>Gratificação por tempo de serviço</strong>: pós-reforma, vem sendo tratada como <strong>gratificação ajustada</strong> (não salarial) — prevalece a regra do art. 457, § 1º (só as legais), desconsiderando a <strong>Súmula 203 do TST</strong> (pré-reforma: integra o salário para todos os efeitos legais)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">13º salário — da liberalidade do empregador ao direito constitucional</div>
+    <div class="card-text">
+      → Nasceu como gratificação por <strong>liberalidade</strong> (ou previsão em norma coletiva); ganhou previsão legal e hoje é <strong>compulsório</strong> (CF, art. 7º, VIII) — por isso não se estuda junto das gratificações em geral<br><br>
+      → <strong>Lei 4.090/62, art. 1º</strong>: paga em <strong>dezembro</strong> a todo empregado, independentemente da remuneração a que fizer jus<br><br>
+      → <strong>Cálculo</strong>: 1/12 da remuneração devida em dezembro <strong>por mês de serviço</strong> no ano correspondente — fração de <strong>15 dias ou mais = mês integral</strong><br><br>
+      → Adicional de horas extras <strong>habitualmente prestadas</strong> integra o cálculo do 13º (Súmula 45)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">13º nas extinções do contrato — quem recebe o quê</div>
+    <div class="card-text">
+      → <strong>Proporcional</strong> (Lei 4.090/62, art. 1º, § 3º): na extinção de <strong>contratos a prazo</strong> (incluídos os de safra), ainda que findem antes de dezembro; e na <strong>aposentadoria</strong> do trabalhador, ainda que antes de dezembro<br><br>
+      → <strong>Rescisão sem justa causa</strong> (Lei 4.090/62, art. 3º): recebe a gratificação calculada sobre a remuneração do mês da rescisão<br><br>
+      → <strong>Culpa recíproca</strong> (Súmula 14 do TST): direito a <strong>50%</strong> do aviso-prévio, do 13º e das férias proporcionais<br><br>
+      → <strong>Pedido de demissão</strong> (Súmula 157 do TST): o 13º <strong>é devido</strong> na resilição de iniciativa do empregado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prazos de pagamento do 13º (Lei 4.749/65)</div>
+    <div class="card-text">
+      → <strong>1ª parcela (adiantamento)</strong>: entre <strong>fevereiro e novembro</strong>, de uma só vez, <strong>metade do salário do mês anterior</strong><br><br>
+      → O empregador <strong>não é obrigado</strong> a pagar o adiantamento no mesmo mês a todos os empregados<br><br>
+      → <strong>Adiantamento junto com as férias</strong>: sempre que o empregado requerer <strong>no mês de janeiro</strong><br><br>
+      → <strong>2ª parcela</strong>: até <strong>20 de dezembro</strong>, compensado o adiantamento recebido
+    </div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Comissões
+  </h4>
+
+  <div class="card">
+    <div class="card-title">Comissões — exigibilidade e vendas parceladas</div>
+    <div class="card-text">
+      → Parcela salarial, geralmente <strong>percentual sobre o valor das vendas</strong>; comissionista puro recebe só a parcela variável<br><br>
+      → <strong>CLT, art. 466, caput</strong>: pagamento de comissões e percentagens só é exigível <strong>depois de ultimada a transação</strong><br><br>
+      → <strong>Art. 466, § 1º</strong>: nas transações por <strong>prestações sucessivas</strong> (vendas parceladas), exigível o pagamento <strong>proporcionalmente à respectiva liquidação</strong><br><br>
+      → <strong>Comissionista garante o salário mínimo</strong> (CF, art. 7º, VII; art. 78, parágrafo único)<br><br>
+      → <strong>Devido o RSR</strong> ao empregado comissionista<br><br>
+      → A Lei 3.207/57 traz critérios próprios para vendedores, viajantes e pracistas
+    </div>
+  </div>
+
+  <h4 style="margin:1.2rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;">
+    Salário in natura (salário-utilidade)
+  </h4>
+
+  <div class="card">
+    <div class="card-title">Os requisitos para o bem ou serviço valer como salário</div>
+    <div class="card-text">
+      → <span class="highlight">Pelo trabalho × para o trabalho</span>: se a utilidade é dada <strong>pelo</strong> trabalho (contraprestação, onerosidade), tende a ser salarial; se <strong>para</strong> o trabalho (instrumento necessário à execução), não é contraprestação — teste a usar com cuidado<br><br>
+      → <strong>Habitualidade</strong>: fornecimento eventual <strong>não configura</strong> salário in natura<br><br>
+      → <strong>Caráter contraprestativo</strong>: intuito retributivo pelos serviços prestados<br><br>
+      → <strong>Benefício ao trabalhador</strong>: bebidas alcoólicas e cigarro (nocivos à saúde) <strong>nunca</strong> são salário-utilidade, ainda que fornecidos habitualmente<br><br>
+      → <strong>CLT, art. 458, § 1º</strong>: os valores atribuídos às prestações in natura devem ser <strong>justos e razoáveis</strong>, sem exceder os percentuais das parcelas do salário-mínimo<br><br>
+      → <strong>Teto das utilidades</strong> — como ao menos <strong>30% do salário deve ser pago em dinheiro</strong> (CLT, art. 82, parágrafo único), as prestações in natura ficam limitadas a <strong>70% do salário</strong><br><br>
+      → <strong>Vedação quanto à forma</strong> — é vedado pagar o salário em mercadoria ou qualquer item que <strong>dificulte o uso do valor</strong> pelo trabalhador, ainda que fornecido habitualmente
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Art. 458, § 2º — o rol que a banca exige de cor</div>
+    <div class="card-text">
+      Utilidades que <strong>NÃO são salário</strong> (mesmo fornecidas habitualmente):
+      → <strong>I</strong> — vestuários, equipamentos e outros acessórios fornecidos e utilizados <strong>no local de trabalho</strong>, para a prestação do serviço<br><br>
+      → <strong>II</strong> — <strong>educação</strong>, em estabelecimento próprio ou de terceiros (matrícula, mensalidade, anuidade, livros e material didático)<br><br>
+      → <strong>III</strong> — <strong>transporte</strong> destinado ao deslocamento para o trabalho e retorno (vale-transporte — Lei 7.418/85, art. 2º: não tem natureza salarial, não se incorpora à remuneração para quaisquer efeitos, não é base de contribuição previdenciária nem de FGTS e <strong>não se configura como rendimento tributável</strong> do trabalhador)<br><br>
+      → <strong>IV</strong> — <strong>assistência médica, hospitalar e odontológica</strong>, direta ou por seguro-saúde (art. 458, § 5º: também não integram o salário os reembolsos de medicamentos, óculos, aparelhos ortopédicos, próteses e órteses)<br><br>
+      → <strong>V</strong> — <strong>seguros de vida e de acidentes pessoais</strong><br><br>
+      → <strong>VI</strong> — <strong>previdência privada</strong><br><br>
+      → <strong>VII</strong> — inciso <strong>vetado</strong> na origem<br><br>
+      → <strong>VIII</strong> — <strong>vale-cultura</strong> (Lei 12.761/2012)<br><br>
+      → <strong>Súmula 367 do TST</strong>: habitação, energia elétrica e veículo fornecidos <strong>quando indispensáveis à realização do trabalho</strong> não têm natureza salarial (no veículo, mesmo usado também em atividades particulares)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os limites legais do salário-utilidade — urbano × rural</div>
+    <div class="card-text">
+      → <strong>Urbano (CLT, art. 458, § 3º)</strong>: habitação e alimentação fornecidas como salário-utilidade devem atender aos fins a que se destinam e não podem exceder, respectivamente, <strong>25% (habitação)</strong> e <strong>20% (alimentação)</strong> do <strong>salário-contratual</strong> — números que a banca costuma inverter<br><br>
+      → <strong>Rural (Lei 5.889/73, art. 9º)</strong>: salvo autorização legal ou decisão judiciária, só podem ser descontadas do empregado rural as parcelas calculadas sobre o <strong>salário mínimo</strong> — até <strong>20% pela ocupação da morada</strong> e até <strong>25% pelo fornecimento de alimentação sadia e farta</strong>, atendidos os preços vigentes na região
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th></th><th>Urbano (CLT, art. 458, § 3º)</th><th>Rural (Lei 5.889/73, art. 9º)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Limite da habitação</strong></td><td>25%</td><td>20%</td></tr>
+        <tr><td><strong>Limite da alimentação</strong></td><td>20%</td><td>25%</td></tr>
+        <tr><td><strong>Base de cálculo</strong></td><td>Salário-contratual</td><td>Salário mínimo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Súmula 258 do TST — quando os percentuais legais se aplicam</div>
+    <div class="card-text">
+      → Os percentuais fixados em lei relativos ao salário in natura <strong>apenas se referem às hipóteses em que o empregado percebe salário mínimo</strong><br><br>
+      → Nas demais hipóteses (salário acima do mínimo), <strong>apura-se o real valor da utilidade</strong> — os percentuais legais não servem de teto para quem ganha mais
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Domésticos — descontos por utilidades vedados (LC 150/2015)</div>
+    <div class="card-text">
+      → <strong>LC 150/2015, art. 18, caput</strong>: vedado ao empregador doméstico descontar do salário os valores de <strong>alimentação, vestuário, higiene ou moradia</strong> fornecidos, bem como as despesas de <strong>transporte, hospedagem e alimentação</strong> em caso de acompanhamento em viagem<br><br>
+      → <strong>Art. 18, § 3º</strong>: essas despesas <strong>não têm natureza salarial</strong> nem se incorporam à remuneração para quaisquer efeitos — reforço do caráter não salarial das utilidades<br><br>
+      → <strong>Exceção (art. 18, § 2º)</strong>: é possível descontar a despesa com moradia quando ela se referir a <strong>local diverso da residência em que ocorre a prestação de serviço</strong>, desde que essa possibilidade tenha sido <strong>expressamente acordada</strong> entre as partes
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O rol do art. 458, § 2º vale mesmo com habitualidade: a utilidade continua sendo entregue, mas <strong>sem efeito salarial</strong> — não integra o salário para nenhum efeito, nem repercute em férias, 13º ou FGTS. Já o pagamento em <strong>dinheiro mínimo de 30%</strong> quando há salário in natura decorre do art. 82, parágrafo único (salário mínimo pago em dinheiro não será inferior a 30% do mínimo fixado).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — PARCELAS NÃO SALARIAIS                               -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Parcelas não salariais</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-red">ALTA</span> — geralmente ressarcimentos/reembolsos de despesas, sem contraprestação pelo serviço</div>
+
+  <div class="card">
+    <div class="card-title">O que afasta a natureza salarial?</div>
+    <div class="card-text">
+      → Parcela <strong>não paga com habitualidade</strong> (verba eventual)<br><br>
+      → Ou parcela paga com habitualidade, mas cuja <strong>própria natureza jurídica</strong> impede o enquadramento salarial (não decorre de contraprestação pelos serviços)<br><br>
+      → Consequência prática: <strong>não repercute</strong> em férias, 13º, FGTS, aviso-prévio e demais verbas — o oposto do efeito expansionista circular
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ajuda de custo e diárias para viagem — o § 2º do art. 457</div>
+    <div class="card-text">
+      → <strong>Ajuda de custo</strong>: indenização das despesas que o empregado incorreu <strong>para a execução do contrato</strong> — pode até ser paga de forma habitual (o § 2º diz "ainda que habituais") e continua não salarial<br><br>
+      → <strong>Diárias para viagem</strong>: indenização das despesas em <strong>viagens a serviço</strong><br><br>
+      → <strong>Reforma trabalhista extinguiu o limite de 50%</strong>: antes, só as diárias que não excediam 50% do salário deixavam de integrá-lo; hoje <strong>não há mais limitador</strong> — todas são não salariais<br><br>
+      → O § 2º fecha o rol: ajuda de custo, auxílio-alimentação (vedado em dinheiro), diárias para viagem, <strong>prêmios e abonos</strong> não integram a remuneração, não se incorporam ao contrato e <strong>não constituem base de incidência de qualquer encargo trabalhista e previdenciário</strong>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Antes da Reforma (art. 457, § 2º)</th><th>Depois da Reforma</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ajudas de custo e diárias para viagem <strong>que não excedam 50% do salário</strong> ficavam fora dos salários — acima disso, integravam</td>
+          <td>Ajuda de custo, auxílio-alimentação (vedado em dinheiro), diárias para viagem, prêmios e abonos: <strong>sempre</strong> fora da remuneração, ainda que habituais, sem limite de 50%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">PLR — o negociado prevalece</div>
+    <div class="card-text">
+      → <strong>CF, art. 7º, XI</strong>: participação nos lucros ou resultados <span class="highlight">desvinculada da remuneração</span>, e excepcionalmente participação na gestão<br><br>
+      → <strong>Lei 10.101/00, art. 3º</strong>: não substitui nem complementa a remuneração, não é base de incidência de encargo trabalhista e <strong>não se aplica o princípio da habitualidade</strong><br><br>
+      → <strong>Súmula 451 do TST</strong>: contrato <strong>extinto</strong> → direito à PLR <strong>de forma proporcional</strong><br><br>
+      → Tema em que o <strong>negociado prevalece sobre o legislado</strong> (CLT, art. 611-A, XV)<br><br>
+      → <strong>Stock options</strong> (opção de compra de ações em condições vantajosas): doutrina majoritária considera <strong>não salarial</strong> — verba ocasional, desprovida de habitualidade
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Gorjetas e gueltas — pagas por terceiros, mas integrando a remuneração</div>
+    <div class="card-text">
+      → <strong>Gorjeta</strong> (CLT, art. 457, § 3º): <strong>espontânea</strong> (dada pelo cliente ao empregado) ou <strong>compulsória</strong> (cobrada pela empresa ao cliente, como adicional nas contas, a qualquer título, destinada a distribuição aos empregados)<br><br>
+      → <strong>Direta/propria × indireta/imprópria</strong> — a <strong>espontânea</strong> (dada pelo cliente) chama-se direta ou própria; a <strong>compulsória</strong> (cobrada na comanda) chama-se indireta ou imprópria — ambas integram a remuneração sem serem salário
+      → <span class="highlight">Negociado prevalece sobre o legislado</span> em matéria de gorjetas (CLT, art. 611-A, IX)<br><br>
+      → <strong>Gueltas</strong>: também pagas por terceiros, oferecidas aos empregados <strong>para que vendam produtos de determinado fornecedor</strong> — derivam do contrato de trabalho (as vendas ocorrem na função) e, como as gorjetas, integram a remuneração sem serem salário<br><br>
+      → <strong>Histórico regulatório</strong>: a Lei 13.419/2017 (Lei da Gorjeta) regulou distribuição e retenção; a reforma "acidentalmente" interferiu nela; a MP 905 tentou retomar as regras e foi revogada pela MP 955/2020
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Abono, prêmio e vale-cultura — os efeitos da Reforma</div>
+    <div class="card-text">
+      → <strong>Abono</strong>: era antecipação salarial (adiantamento); a Reforma <strong>retirou a natureza salarial</strong> e hoje <strong>não há consenso</strong> sobre sua definição — o art. 457, § 2º o lista entre as verbas não integrantes<br><br>
+      → <strong>Prêmio (bônus)</strong> (CLT, art. 457, § 4º): liberalidades em forma de <strong>bens, serviços ou valor em dinheiro</strong>, a empregado ou grupo, em razão de <strong>desempenho superior ao ordinariamente esperado</strong> — não integra o salário <strong>ainda que pago com habitualidade</strong> (antes da Reforma, com habitualidade era salarial — Súmula 209 do STF)<br><br>
+      → <strong>Prêmio não se confunde</strong>: com a PLR (a causa não é o lucro da empresa, mas condição preestabelecida cumprida pelo empregado) nem com a gratificação (cujas causas dependem de fatos externos à vontade do empregado, enquanto o prêmio liga-se ao esforço/rendimento — Amauri Mascaro)<br><br>
+      → <strong>Vale-cultura</strong> (Lei 12.761/2012): valor em meio magnético ou impresso para fruição de produtos e serviços culturais — utilidade do art. 458, § 2º, VIII
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>ACT/CCT podem retirar natureza salarial</strong> de parcelas remuneratórias ligadas à <strong>produtividade ou desempenho individual</strong> do empregado (CLT, art. 611-A, IX) — mais um ponto do negociado sobre o legislado.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Intervalos não concedidos e auxílio-alimentação — mudanças pós-Reforma</div>
+    <div class="card-text">
+      → <strong>Intervalo intrajornada não concedido</strong> (CLT, art. 71, § 4º): pagamento <strong>apenas do período suprimido</strong>, com acréscimo de 50% sobre a remuneração da hora normal — natureza <strong>indenizatória</strong>, portanto <strong>não repercute</strong> em outras verbas (antes da Reforma, a Súmula 437, III do TST tratava a parcela como salarial)<br><br>
+      → <strong>Auxílio-alimentação</strong> (CLT, art. 457, § 2º): a Reforma retirou o caráter salarial quando <strong>não pago em dinheiro</strong> — e <strong>não é mais necessária a adesão ao PAT</strong> (Lei 6.321/76) para isso<br><br>
+      → <strong>Se pago em dinheiro</strong>: o auxílio-alimentação <strong>tem natureza salarial</strong> (a vedação do § 2º alcança o pagamento não monetário)<br><br>
+      → <strong>Ticket/vale como sinal</strong> — auxílio-alimentação em <strong>ticket ou vale</strong> é forma não monetária — <strong>não integra</strong> o salário; o ticket indica forma não monetária, fora da vedação do pagamento em dinheiro
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Verbas de representação — tentativa de "esterilização salarial"</div>
+    <div class="card-text">
+      → Valores pagos a empregados para custear <strong>roupas, veículos e trajes</strong> usados em eventos em que representam a empresa — usual no contracheque de <strong>cargos de confiança elevados</strong><br><br>
+      → Godinho: não assume natureza indenizatória — atende <strong>necessidades pessoais e familiares</strong> do alto empregado, e "modernamente não mais se acolhe" a esterilização salarial dessa remuneração habitual (nem no Direito do Trabalho/Previdenciário, nem no Tributário)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--green);">
+    <div class="card-title" style="color:var(--green);">Quadro-consulta — INTEGRAM o salário/remuneração</div>
+    <div class="card-text">
+      → <strong>Remuneração</strong> (art. 457, caput e § 1º): ✓ <strong>salário</strong> devido e pago diretamente pelo empregador<br>
+      → ✓ <strong>Gorjetas</strong> — espontâneas do cliente ou cobradas pela empresa como adicional na conta, destinadas aos empregados (art. 457, § 3º); Súmula 354: ficam FORA da base de aviso-prévio, adicional noturno, hora extra e RSR<br>
+      → ✓ <strong>Gratificações legais</strong><br>
+      → ✓ <strong>Comissões</strong> pagas pelo empregador<br><br>
+      → <strong>Salário-utilidade</strong> (art. 458, caput) — utilidade fornecida <strong>habitualmente</strong> e benéfica ao trabalhador:<br>
+      → ✓ <strong>Alimentação</strong><br>
+      → ✓ <strong>Habitação</strong><br>
+      → ✓ <strong>Vestuário</strong><br>
+      → ✓ <strong>Outras prestações in natura</strong><br><br>
+      → <strong>Limites do in natura</strong> (art. 458, § 3º):<br>
+      → <strong>Urbano:</strong> 25% habitação / 20% alimentação — sobre o <strong>salário-contratual</strong><br>
+      → <strong>Rural:</strong> 20% habitação / 25% alimentação — sobre o <strong>salário mínimo</strong> (Lei 5.889/73, art. 9º)<br>
+      → <strong>Súmula 258:</strong> os percentuais só valem quando o empregado percebe <strong>salário mínimo</strong> — acima disso, apura-se o real valor da utilidade
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Quadro-consulta — NÃO integram o salário</div>
+    <div class="card-text">
+      → <strong>Art. 457, § 2º</strong> — importâncias pagas ainda que habituais: não se incorporam ao contrato e não constituem base de incidência de encargo trabalhista e previdenciário<br>
+      → × <strong>Ajuda de custo</strong><br>
+      → × <strong>Auxílio-alimentação</strong> — vedado pagamento em dinheiro (pago em dinheiro, É salarial)<br>
+      → × <strong>Diárias para viagem</strong><br>
+      → × <strong>Prêmios</strong> — bens, serviços ou dinheiro por desempenho superior ao esperado<br>
+      → × <strong>Abonos</strong><br><br>
+      → <strong>Art. 458, § 2º</strong> — utilidades que não são salário, mesmo fornecidas habitualmente<br>
+      → × <strong>Vestuário/uniforme e EPI</strong> — fornecidos e utilizados no local de trabalho (fora do local, vestuário integra como in natura)<br>
+      → × <strong>Educação</strong> — matrícula, mensalidade, anuidade, livros e material didático<br>
+      → × <strong>Transporte</strong> para o trabalho e retorno (vale-transporte) — também não é rendimento tributável (Lei 7.418/85, art. 2º)<br>
+      → × <strong>Assistência médica, hospitalar e odontológica</strong>, direta ou por seguro-saúde (e reembolsos de medicamentos, óculos, próteses — art. 458, § 5º)<br>
+      → × <strong>Seguros</strong> de vida e de acidentes pessoais<br>
+      → × <strong>Previdência privada</strong><br>
+      → × <strong>Vale-cultura</strong> (Lei 12.761/2012)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — PARÂMETROS E PAGAMENTO DO SALÁRIO                    -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Parâmetros e pagamento do salário</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-amber">MÉDIA</span> — formas de remuneração, prazos, recibo e o pagamento no trabalho intermitente</div>
+
+  <div class="card">
+    <div class="card-title">Três formas de calcular o salário</div>
+    <div class="card-text">
+      → <strong>Por unidade de tempo</strong>: parâmetro é o tempo trabalhado ou <strong>à disposição</strong> (inclui intervalos remunerados) — não considera a produção efetiva; é o mais comum<br><br>
+      → <strong>Por produção (unidade de obra)</strong>: quantidade produzida × <strong>tarifa</strong> por unidade — traz o problema dos <strong>excessos de jornada</strong>, pois o empregado busca o maior salário possível<br><br>
+      → <strong>Por tarefa</strong>: <strong>combinação</strong> dos critérios anteriores — havendo controle de horário, aplicam-se as regras de limitação de jornada e descansos
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Divisor salarial — por que 220 (e quando é 200 ou 180)</div>
+    <div class="card-text">
+      → <strong>Salário-dia</strong> — mensalista: salário mensal dividido por <strong>30</strong> (mês-padrão de 30 dias — base do art. 64 da CLT e da fórmula do divisor); se os dias de trabalho no mês forem menos de 30, usa-se esse número (art. 64, parágrafo único)<br><br>
+      → <strong>Salário-hora (regra)</strong> — jornada de 44h semanais: divisor <strong>220</strong>, pela fórmula (módulo semanal ÷ dias úteis) × 30 — ex.: (44 ÷ 6) × 30 = 220<br><br>
+      → <strong>Jornada de 40h semanais</strong> — divisor <strong>200</strong> (Súmula 431 do TST): (40 ÷ 6) × 30<br><br>
+      → <strong>Bancários (Súmula 124)</strong> — jornada de 6h: divisor <strong>180</strong>; jornada de 8h: divisor <strong>220</strong>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <strong>CLT, art. 465:</strong> o pagamento dos salários será efetuado <strong>em dia útil e no local do trabalho</strong>, dentro do horário do serviço ou imediatamente após o encerramento deste, <strong>salvo quando efetuado por depósito em conta bancária</strong>.<br><br>
+    <strong>CLT, art. 464:</strong> pagamento <strong>contra recibo</strong> assinado pelo empregado; analfabeto, mediante <strong>impressão digital</strong> ou, não sendo possível, <strong>a seu rogo</strong>. Parágrafo único: <strong>comprovante de depósito em conta bancária</strong> (aberta com consentimento do empregado, em estabelecimento de crédito próximo ao local de trabalho) <strong>terá força de recibo</strong>.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prazos: módulo mensal, 5º dia útil e as exceções</div>
+    <div class="card-text">
+      → <strong>CLT, art. 459, caput</strong>: o pagamento não deve ser estipulado por período <strong>superior a 1 mês</strong> — pode ser semanal, quinzenal ou no máximo mensal<br><br>
+      → <strong>Exceções ao módulo mensal</strong>: comissões, percentagens e gratificações (ex.: gratificação semestral); comissões são exigíveis conforme a <strong>liquidação</strong> da transação (art. 466)<br><br>
+      → <strong>Art. 459, § 1º</strong>: pagamento mensal → no máximo até o <strong>5º dia útil do mês subsequente ao vencido</strong> (vale mesmo com depósito em conta: o valor deve estar disponível nesse prazo)<br><br>
+      → <strong>Atraso</strong>: além das penalizações administrativas e judiciais, salário com <strong>correção monetária</strong> (Súmula 381 do TST)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Trabalho intermitente — pagamento imediato, sem os 5 dias úteis</div>
+    <div class="card-text">
+      → <strong>CLT, art. 452-A, § 6º</strong>: ao final de <strong>cada período de prestação de serviço</strong>, pagamento <strong>imediato</strong> de:<br>
+      → <strong>I</strong> — remuneração<br>
+      → <strong>II</strong> — férias proporcionais com acréscimo de um terço<br>
+      → <strong>III</strong> — décimo terceiro salário proporcional<br>
+      → <strong>IV</strong> — repouso semanal remunerado<br>
+      → <strong>V</strong> — adicionais legais<br><br>
+      → <strong>Art. 452-A, caput</strong>: contrato <strong>por escrito</strong>, com valor da hora <strong>não inferior ao salário mínimo-hora</strong> nem ao valor devido aos demais empregados do estabelecimento que exerçam a mesma função (em contrato intermitente ou não)<br><br>
+      → <strong>Art. 452-A, § 7º</strong>: o recibo deve <strong>discriminar cada parcela</strong> — justamente para não configurar o salário complessivo proibido pela Súmula 91 do TST
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    O prazo do 5º dia útil (art. 459, § 1º) <strong>não serve</strong> para o trabalho intermitente: nele o pagamento das parcelas do § 6º do art. 452-A é <strong>imediato</strong>, ao final de cada período de serviço.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — SISTEMA DE GARANTIAS SALARIAIS                       -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Sistema de garantias salariais</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-amber">MÉDIA</span> — irredutibilidade, salário condição, descontos e meios de pagamento</div>
+
+  <div class="card">
+    <div class="card-title">A lógica protetiva que fundamenta tudo</div>
+    <div class="card-text">
+      → <strong>CLT, art. 9º</strong>: nulos de pleno direito os atos praticados com o objetivo de <strong>desvirtuar, impedir ou fraudar</strong> a aplicação dos preceitos da Consolidação<br><br>
+      → <strong>CLT, art. 468</strong>: alterações contratuais só por <strong>mútuo consentimento</strong> e sem prejuízos, diretos ou indiretos, ao empregado — sob pena de nulidade da cláusula infringente<br><br>
+      → Objetivo: atenuar o <strong>desequilíbrio</strong> entre detentor do capital e trabalhador
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Proteção do valor nominal — irredutibilidade e suas exceções</div>
+    <div class="card-text">
+      → <strong>CF, art. 7º, VI</strong>: irredutibilidade do salário, <span class="highlight">salvo o disposto em convenção ou acordo coletivo</span><br><br>
+      → <strong>Valor nominal × valor real</strong>: nominal é o valor determinado sem considerar a inflação; real é o poder de compra (afetado pela inflação) — a proteção da irredutibilidade recai sobre o <strong>valor nominal</strong><br><br>
+      → <strong>CLT, art. 611-A, § 3º</strong>: pactuada cláusula que reduza salário ou jornada, o instrumento coletivo deve prever <strong>proteção contra dispensa imotivada</strong> durante sua vigência (contrapartida da redução excepcional)<br><br>
+      → <strong>Norma coletiva pode dispor sobre salário</strong> — convenções e acordos coletivos <strong>podem estipular condições salariais</strong> (pisos, critérios de reajuste, gratificações) e até reduzir salário ou jornada, com a contrapartida legal (CLT, art. 611-A) — não há vedação a que o negociado afete diretamente a estipulação do salário
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Salário condição e redução salarial indireta</div>
+    <div class="card-text">
+      → <strong>Salário condição</strong>: a proteção do valor nominal <strong>não abrange</strong> as parcelas condicionadas — suprimida a condição (ex.: empregador instala isolamento acústico e o ruído cai dentro dos limites de tolerância), cessa o adicional <strong>sem colidir com a irredutibilidade</strong>; o mesmo vale para adicional noturno, horas extras, periculosidade etc.<br><br>
+      → <strong>Redução salarial indireta</strong>: atinge quem recebe <strong>por peça ou tarefa</strong> — o empregador reduz de forma permanente o serviço de modo a afetar sensivelmente a importância dos salários (ex.: costureira que fazia 500 peças/mês passa a receber encomenda de 100)<br><br>
+      → <strong>Consequência</strong>: habilita a <strong>rescisão indireta</strong> (CLT, art. 483, alínea g)<br><br>
+      → Godinho: a irredutibilidade combate as duas modalidades — redução <strong>direta</strong> (diminuição nominal) e <strong>indireta</strong> (redução da jornada ou do serviço com consequente redução salarial)
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <strong>CLT, art. 462, caput:</strong> vedado ao empregador efetuar <strong>qualquer desconto</strong> nos salários, salvo quando resultar de <strong>adiantamentos</strong>, de <strong>dispositivos de lei</strong> ou de <strong>contrato coletivo</strong>.<br><br>
+    <strong>§ 1º:</strong> dano causado pelo empregado → desconto lícito <strong>se essa possibilidade tiver sido acordada ou na ocorrência de dolo</strong>.<br><br>
+    <strong>§ 2º:</strong> empresa com armazém ou serviços in natura não pode <strong>coagir ou induzir</strong> o empregado a utilizá-los.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Descontos: dolo × culpa e a autorização por escrito</div>
+    <div class="card-text">
+      → <strong>Empregado agiu com dolo</strong> (intenção): desconto <strong>sempre lícito</strong><br><br>
+      → <strong>Empregado agiu com culpa</strong>: desconto só se <strong>previamente acordado</strong> (contrato, por exemplo)<br><br>
+      → <strong>Descontos por dispositivo de lei</strong>: imposto de renda, contribuição previdenciária e pensão alimentícia decorrem de lei e independem de acordo; a <strong>contribuição sindical</strong> exige autorização do empregado<br><br>
+      → Doutrina: se o prejuízo compreende o <strong>risco do empreendimento</strong> ou envolve o próprio empregador (empregado exausto por horas extras, equipamento já desgastado e não substituído), <strong>não caberia</strong> o desconto<br><br>
+      → <strong>Súmula 342 do TST</strong>: descontos com <strong>autorização prévia e por escrito</strong> para planos de assistência odontológica, médico-hospitalar, seguro, previdência privada ou entidade cooperativa, cultural ou recreativo-associativa, <strong>em benefício do empregado e de seus dependentes</strong>, não afrontam o art. 462 — salvo coação ou outro defeito que vicie o ato<br><br>
+      → <strong>OJ 160 da SDI-1</strong>: autorização concedida <strong>na admissão</strong> não presume vício de consentimento — exige-se <strong>demonstração concreta</strong> do vício de vontade<br><br>
+      → <strong>OJ 251 da SDI-1</strong>: lícito o desconto pela devolução de <strong>cheques sem fundos</strong> recebidos por <strong>frentista</strong> que não observou as recomendações previstas em instrumento coletivo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Compensação no TRCT — por que o teto é "um mês de remuneração"?</div>
+    <div class="card-text">
+      → <strong>CLT, art. 477, § 5º</strong>: qualquer compensação no pagamento das verbas rescisórias não pode exceder o equivalente a <strong>um mês de remuneração</strong> do empregado<br><br>
+      → <strong>Remuneração em sentido amplo</strong>: o teto não é o salário — somam-se as parcelas pagas pelo empregador que integram a remuneração (ex.: salário + gratificação); compensar "no máximo o salário" deixa de fora parte do que a lei permite<br><br>
+      → <strong>Ultrapassado o limite</strong>: o empregador não desconta o excedente no TRCT — deve ajuizar <strong>ação própria</strong> para ressarcimento<br><br>
+      → <strong>Bens cedidos para o trabalho</strong> (ex.: notebook em comodato): são <strong>patrimônio do empregador</strong> e devem ser <strong>devolvidos na extinção do contrato</strong> — a recusa em devolver autoriza a compensação (dentro do teto) ou a ação de ressarcimento
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Meios de pagamento: moeda corrente e o truck system</div>
+    <div class="card-text">
+      → <strong>CLT, art. 463, caput</strong>: salário pago em <strong>moeda corrente do País</strong>; <strong>parágrafo único</strong>: pagamento com inobservância do artigo considera-se <strong>como não feito</strong><br><br>
+      → Depósito bancário é admitido por interpretação sistemática (equivale a moeda corrente)<br><br>
+      → <strong>Não admitido</strong>: notas promissórias, cartas de crédito, cupons etc.<br><br>
+      → <span class="highlight">Truck system</span> vedado: empregador vincula o salário às dívidas contraídas no <strong>armazém dele</strong> — daí o § 2º do art. 462 proibir coação ou induzimento ao uso do armazém/serviços<br><br>
+      → Parte do salário <strong>pode</strong> ser paga em prestações in natura, observado o <strong>mínimo de 30% em dinheiro</strong> (CLT, art. 82, parágrafo único)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — EQUIPARAÇÃO SALARIAL                                 -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Equiparação salarial</div>
+  </div>
+  <div class="sec-subtitle">Incidência em prova: <span class="tag tag-red">ALTA</span> — art. 461 da CLT, significativamente alterado pela Reforma Trabalhista e pela Lei 14.611/2023</div>
+
+  <div class="card">
+    <div class="card-title">Conceito e os personagens do art. 461</div>
+    <div class="card-text">
+      → <strong>Equiparação salarial</strong> (Godinho): figura jurídica que assegura ao trabalhador <strong>idêntico salário</strong> ao do colega perante o qual tenha exercido, simultaneamente, função idêntica, na mesma localidade, para o mesmo empregador<br><br>
+      → <strong>Paradigma (espelho)</strong>: o colega comparado<br><br>
+      → <strong>Equiparando</strong>: o trabalhador interessado na equalização — ambos também chamados de <strong>paragonados/comparados</strong><br><br>
+      → <strong>CF, art. 7º, XXX</strong>: proibição de diferença de salários, de exercício de funções e de critério de admissão por motivo de <strong>sexo, idade, cor ou estado civil</strong>
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <strong>CLT, art. 461, caput:</strong> sendo <strong>idêntica a função</strong>, a todo trabalho de igual valor, prestado <strong>ao mesmo empregador</strong>, <strong>no mesmo estabelecimento empresarial</strong>, corresponderá <strong>igual salário</strong>, sem distinção de sexo, etnia, nacionalidade ou idade.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Requisito</th><th>Ponto de atenção</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Função idêntica</strong></td><td>Não importa a denominação dos cargos (Súmula 6, III); não existe "tarefa idêntica"</td></tr>
+        <tr><td><strong>Mesmo empregador</strong></td><td>Exigência permanente do caput</td></tr>
+        <tr><td><strong>Mesmo estabelecimento</strong></td><td>Acrescido pela Reforma — cada loja é um estabelecimento</td></tr>
+        <tr><td><strong>Igual produtividade</strong></td><td>Aspecto quantitativo do trabalho</td></tr>
+        <tr><td><strong>Mesma perfeição técnica</strong></td><td>Aspecto qualitativo — desnível de formação pode diferenciar</td></tr>
+        <tr><td><strong>Tempo na função ≤ 2 anos</strong></td><td>Diferença entre equiparando e paradigma</td></tr>
+        <tr><td><strong>Tempo no emprego ≤ 4 anos</strong></td><td>Novo pela Reforma — antiguidade no contrato com o mesmo empregador</td></tr>
+        <tr><td><strong>Contemporaneidade</strong></td><td>Expressa no § 5º — funções exercidas de modo concomitante</td></tr>
+        <tr><td><strong>Sem quadro de carreira / plano de cargos e salários</strong></td><td>§ 2º — dispensada homologação ou registro em órgão público</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Identidade de função — o requisito mais cobrado</div>
+    <div class="card-text">
+      → <strong>Súmula 6, III, do TST</strong>: só é possível a equiparação se empregado e paradigma exercerem a <strong>mesma função, desempenhando as mesmas tarefas</strong>, <strong>não importando se os cargos têm ou não a mesma denominação</strong><br><br>
+      → A lei fala em <strong>"função idêntica"</strong> — não há previsão de "tarefa idêntica" ou "emprego idêntico": empregados de funções diferentes podem executar tarefas semelhantes e isso, por si só, <strong>não viabiliza</strong> a equiparação
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mesmo estabelecimento — a mudança que matou a "mesma localidade"</div>
+    <div class="card-text">
+      → <strong>Antes da Reforma</strong>: exigia-se que equiparando e paradigma laborassem na <strong>mesma localidade</strong><br><br>
+      → <strong>Depois da Reforma</strong>: o caput passou a exigir o <strong>mesmo estabelecimento empresarial</strong> — com isso, o requisito de localidade <strong>foi excluído</strong> do art. 461<br><br>
+      → Exemplo: rede com 10 lojas na mesma cidade — o empregado da loja A <strong>não</strong> pode usar como paradigma o da loja B, pois cada loja é um estabelecimento
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Produtividade e perfeição técnica — quantitativo e qualitativo</div>
+    <div class="card-text">
+      → <strong>Produtividade</strong> = aspecto <strong>quantitativo</strong>; <strong>perfeição técnica</strong> = aspecto <strong>qualitativo</strong> do trabalho<br><br>
+      → Um elemento de diferenciação possível: <strong>desnível de formação técnico-profissional</strong> — maior qualificação do paradigma (cursos e estágios relevantes, experiência anterior significativa, titulação mais elevada) pode favorecer a tese de diferenciação, pois agrega reconhecimento e notoriedade ao produto/serviço (Godinho)
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Os dois limites de tempo: 2 anos na função e 4 anos no emprego</div>
+    <div class="card-text">
+      → <strong>Tempo na função ≤ 2 anos</strong> (art. 461, § 1º): antes da Reforma já era aplicado, com a expressão "tempo de serviço" interpretada doutrinariamente como <strong>tempo de função</strong><br><br>
+      → <strong>Tempo no emprego ≤ 4 anos</strong>: exigência <strong>nova da Reforma</strong> — antiguidade no próprio contrato perante o mesmo empregador (Godinho: os dois tempos passam a ser <strong>fatos impeditivos</strong> à equiparação)<br><br>
+      → <strong>Exemplo (bloqueia)</strong>: paradigma está na empresa há 5 anos, mas na função há apenas 1; equiparando foi contratado há 6 meses e já assumiu a mesma função → diferença no <strong>emprego</strong> (4 anos e 6 meses) supera o limite, mesmo com função dentro dos 2 anos<br><br>
+      → <strong>Exemplo (permite)</strong>: paradigma iniciou há 5 anos e mudou de função há 2; equiparando assumiu a mesma função há 6 meses → respeitados os demais requisitos, a equiparação é possível
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contemporaneidade — função exercida em tempos diferentes não se compara</div>
+    <div class="card-text">
+      → <strong>Art. 461, § 5º</strong>: equiparação só entre empregados <strong>contemporâneos no cargo ou na função</strong>, vedada a indicação de <strong>paradigmas remotos</strong>, ainda que o paradigma contemporâneo tenha obtido a vantagem <strong>em ação judicial própria</strong><br><br>
+      → Empregado e paradigma devem estar <strong>exercendo ou terem exercido</strong> as funções de modo <strong>concomitante</strong> — contratado hoje, não se equipara a quem já deixou a função antes da contratação<br><br>
+      → Godinho: coincidência inferior a <strong>30 dias</strong> não tem aptidão para configurar a simultaneidade; permitir comparação entre épocas distintas seria "grotesco absurdo jurídico"
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Quadro de carreira × plano de cargos e salários — o fim da homologação</div>
+    <div class="card-text">
+      → <strong>Art. 461, § 2º</strong>: os dispositivos do artigo não prevalecem quando o empregador tiver pessoal organizado em <strong>quadro de carreira</strong> ou adotar, por <strong>norma interna da empresa ou negociação coletiva</strong>, <strong>plano de cargos e salários</strong> — <strong>dispensada qualquer forma de homologação ou registro em órgão público</strong><br><br>
+      → <strong>Antes da Reforma</strong>: falava-se apenas em quadro de carreira, <strong>homologado pelo Ministério do Trabalho</strong>, com promoções alternadas por <strong>antiguidade e merecimento</strong><br><br>
+      → <strong>Depois</strong>: sem homologação e sem alternância — promoções por qualquer dos critérios<br><br>
+      → Fundamento: o quadro/plano já estabelece <strong>critérios objetivos de promoção</strong> que afastam a comparação<br><br>
+      → <strong>Plano de cargos</strong> é tema do negociado sobre o legislado (CLT, art. 611-A, V)
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Ônus da prova</strong> (Súmula 6, VIII, do TST): é do <strong>empregador</strong> comprovar o fato impeditivo, modificativo ou extintivo da equiparação salarial.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Readaptação funcional — o readaptado nunca é paradigma</div>
+    <div class="card-text">
+      → <strong>Art. 461, § 4º</strong>: o trabalhador readaptado em nova função por motivo de <strong>deficiência física ou mental atestada pelo órgão competente da Previdência Social</strong> não servirá de paradigma para fins de equiparação salarial<br><br>
+      → Em virtude da irredutibilidade, o readaptado <strong>mantém o patamar salarial anterior</strong> — mas pode exercer função de padrão remuneratório <strong>inferior</strong>: se fosse paradigma, contaminaria a função toda
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);">
+    <div class="card-title" style="color:var(--red);">Equiparação em cadeia — extinta pela Reforma</div>
+    <div class="card-text">
+      → Era a situação em que C pleiteava equiparação indicando B como paradigma, após B ter obtido equiparação com A — B seria o <strong>paradigma imediato</strong> e A o <strong>paradigma remoto</strong><br><br>
+      → <strong>Art. 461, § 5º vedou</strong> a indicação de paradigmas remotos: o pleito de C deve se basear apenas em paradigma <strong>contemporâneo</strong> (e a vantagem judicial obtida pelo paradigma imediato não muda nada)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Cessão de empregados e a equiparação entre empregados públicos</div>
+    <div class="card-text">
+      → <strong>Cessão</strong> (Súmula 6, V): não exclui a equiparação salarial, embora exercida a função em órgão governamental estranho à cedente, <strong>se esta responde pelos salários do paradigma e do reclamante</strong> (ex.: técnico de empresa pública cedido a sociedade de economia mista continua equiparável aos técnicos da cedente)<br><br>
+      → <strong>Administração direta, autarquias e fundações</strong> (OJ 297 da SDI-1): <strong>vedada</strong> a equiparação — o art. 37, XIII, da CF proíbe vinculação ou equiparação de espécies remuneratórias no serviço público, sendo juridicamente impossível aplicar o art. 461 entre servidores, mesmo contratados pela CLT<br><br>
+      → <strong>EP e SEM</strong> (Súmula 455 do TST): a equiparação <strong>é cabível</strong> — ao admitir empregados sob a CLT, a SEM equipara-se a empregador privado (CF, art. 173, § 1º, II)<br><br>
+      → <strong>Terminologia</strong>: na OJ 297, "servidor público" não foi usado na acepção de direito administrativo (regime estatutário); o que importa: cabe entre empregados públicos de EP/SEM, não cabe nos entes de regime público
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prescrição parcial — a lesão se renova mês a mês</div>
+    <div class="card-text">
+      → <strong>Súmula 6, IX, do TST</strong>: na ação de equiparação salarial, a prescrição é <strong>parcial</strong> e só alcança as diferenças salariais vencidas no período de <strong>5 anos</strong> que precedeu o ajuizamento<br><br>
+      → Ocorre <strong>mês a mês</strong> (Súmula 452 do TST: pedido de diferenças por inobservância de critérios de promoção em plano de cargos e salários — lesão sucessiva, prescrição parcial)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Substituição de empregados — salário substituição (Súmula 159)</div>
+    <div class="card-text">
+      → <strong>Substituição não eventual</strong> (inclusive nas férias do titular): o substituto fará jus ao <strong>salário contratual do substituído</strong> enquanto perdurar a condição (ex.: chefe em licença de 3 meses)<br><br>
+      → <strong>Substituição meramente eventual</strong>: nada é devido (ex.: representar o chefe por um dia por falta de saúde dele)<br><br>
+      → <strong>Cargo vago em definitivo</strong> (substituição permanente): o novo ocupante <strong>não tem direito</strong> a salário igual ao do antecessor
+    </div>
+  </div>
+
+  <div class="legal-block">
+    <strong>CLT, art. 461, §§ 6º e 7º (Lei 14.611/2023) — discriminação por motivo de sexo, raça, etnia, origem ou idade:</strong><br>
+    → <strong>§ 6º</strong>: o pagamento das diferenças salariais devidas ao empregado discriminado <strong>não afasta seu direito de ação de indenização por danos morais</strong>, consideradas as especificidades do caso concreto<br>
+    → <strong>§ 7º</strong>: no caso de infração, a multa do art. 510 da CLT corresponde a <strong>10 vezes o valor do novo salário</strong> devido pelo empregador ao empregado discriminado, <strong>elevada ao dobro no caso de reincidência</strong>, sem prejuízo das demais cominações legais
+  </div>
+
+  <div class="card" style="border-color:var(--amber);">
+    <div class="card-title" style="color:var(--amber);">Transparência salarial — relatórios semestrais (Lei 14.611/2023, art. 5º)</div>
+    <div class="card-text">
+      → <strong>Quem publica</strong> — pessoas jurídicas de direito privado com <strong>100 ou mais empregados</strong>: relatórios semestrais de transparência salarial e de critérios remuneratórios, com proteção de dados pessoais (LGPD)<br><br>
+      → <strong>Descumprimento</strong> — multa administrativa de até <strong>3% da folha de salários</strong>, limitada a <strong>100 salários mínimos</strong>, sem prejuízo das sanções por discriminação salarial entre mulheres e homens<br><br>
+      → ⚠️ <strong>Detalhe:</strong> o marco é <strong>100 ou mais</strong> empregados — “mais de 100” exclui quem tem exatamente 100 e induz ao erro
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Antes da Lei 14.611/2023, a multa era de <strong>50% do limite máximo dos benefícios do INSS</strong>, paga em favor do empregado, e cabia só nos casos de discriminação por <strong>sexo ou etnia</strong>. A lei majorou para <strong>10× o novo salário</strong> (dobro na reincidência) e ampliou as hipóteses para <strong>raça, origem e idade</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — INCIDÊNCIA DE TEMAS (TEC)                            -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
+
+  <div class="card">
+    <div class="card-text">
+      <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Seção 1 — Salário base como núcleo da remuneração: 2</span><br>
+      <span class="tag tag-amber">Seção 1 — Gorjetas e FGTS (Súmula 63 do TST): 2</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 1 — Salário complessivo (Súmula 91 do TST): 1</span><br>
+      <span class="tag">Seção 1 — Rol do art. 457, § 1º (fixa, gratificações legais, comissões): 1</span><br>
+      <span class="tag">Seção 1 — Salário profissional × normativo/piso: 1</span><br>
+      <span class="tag">Seção 2 — Natureza salarial das gratificações (art. 457): 1</span><br>
+      <span class="tag">Seção 2 — Vale-transporte (Lei 7.418/85): 1</span><br>
+      <span class="tag">Seção 2 — Salário in natura (art. 458, pelo x para o trabalho): 1</span><br>
+      <span class="tag">Seção 4 — Divisor salarial (dia 30 / hora 220, art. 64): 1</span><br>
+      <span class="tag">Seção 5 — Compensação no TRCT (art. 477, § 5º): 1</span><br>
+      <span class="tag">Seção 6 — Transparência salarial e discriminação (Lei 14.611/2023): 1</span>
+    </div>
+  </div>
+
+  <div style="height:.65rem"></div>
+
+  <div class="card">
+    <div class="card-title">Atividades de estudo</div>
+    <div class="card-text">
+      <strong>Nível: Iniciante</strong> (estudante que não domina o assunto)<br><br>
+      → <strong>Atividade 1:</strong> Resolver as questões comentadas (p. 55–79) e a lista de questões (p. 80–91) do PDF da Aula 06<br>
+      → <strong>Tempo ideal:</strong> 120 minutos<br>
+      → <strong>Total:</strong> 37 páginas de questões
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2005/resumo-aula-05-jornada-de-trabalho-e-descansos.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 05 · Jornada de Trabalho e Descansos</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.legal-block') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.legal-block';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, q) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        return norm(n.nodeValue).indexOf(q) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0, idx;
+      while ((idx = low.indexOf(q, i)) >= 0) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mk);
+        i = idx + q.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function run() {
+    var q = norm(input.value.trim());
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    if (q) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        if (norm(b.textContent).indexOf(q) >= 0) { found++; highlight(b, q); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      if (found) {
+        var first = null;
+        for (var k = 0; k < blocks.length; k++) {
+          if (!blocks[k].classList.contains('sr-hide')) {
+            first = blocks[k].querySelector('mark.sr-hit');
+            if (first) break;
+          }
+        }
+        if (first) {
+          first.classList.add('sr-first');
+          first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+    }
+  }
+  input.addEventListener('input', run);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(); }
+  });
+  clear.addEventListener('click', function () { input.value = ''; run(); input.focus(); });
+  run();
+})();
+</script>
+</body>
+</html>
