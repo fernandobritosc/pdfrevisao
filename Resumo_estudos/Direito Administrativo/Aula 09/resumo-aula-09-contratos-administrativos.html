@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Direito Administrativo Aula 09: Contratos Administrativos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #2563eb;
+  --mat-strong: #1d4ed8;
+  --mat-soft: #e8effd;
+  --mat-line: #c3d5fa;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: left;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #8ab0fe; --mat-strong: #a9c3ef; --mat-soft: #1d2739; --mat-line: #33507e;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 09</div>
+  <div class="sidebar-sub">Contratos Administrativos · Lei 14.133/2021</div>
+  <div class="sr-box">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Noções introdutórias e espécies</a>
+  <a href="#sec2">2. Características e formalização</a>
+  <a href="#sec3">3. Cláusulas exorbitantes e garantias</a>
+  <a href="#sec4">4. Duração dos contratos</a>
+  <a href="#sec5">5. Responsabilidades e encargos</a>
+  <a href="#sec6">6. Extinção dos contratos</a>
+  <a href="#sec7">7. Nulidades</a>
+  <a href="#sec8">8. Alteração, equilíbrio e imprevisão</a>
+  <a href="#sec9">9. Meios alternativos, sanções e controle</a>
+  <a href="#sec10">10. Impugnações, recursos e PNCP</a>
+  <a href="#sec11">11. Pontos que mais caem em prova</a>
+  <a href="#sec12">12. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-09-contratos-administrativos.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: simplificado + mapa mental + completo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — NOÇÕES INTRODUTÓRIAS E ESPÉCIES                     -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Noções introdutórias e espécies</div>
+  </div>
+  <div class="sec-subtitle">Arts. 3º, 89, 22 XXVII e 173 §1º III — o que é contrato da Administração</div>
+
+  <div class="card">
+    <div class="card-title">Contrato da Administração — por que o gênero importa?</div>
+    <div class="card-text">
+      → <strong>Conceito</strong> — acordo de vontades com objeto determinado e ajuste de obrigações em que a Administração é parte para atender necessidade própria ou da população<br>
+      → <strong>Gênero</strong> — <span class="highlight">contrato da administração</span> é o gênero: todo contrato em que a Administração figure como parte<br><br>
+      → <strong>Contratos administrativos</strong> — regime predominantemente de <strong>direito público</strong>, com <strong>verticalidade</strong> (supremacia da Administração sobre o particular)<br>
+      → <strong>Contratos privados da Administração</strong> — também chamados <strong>semipúblicos ou atípicos</strong>; regime predominantemente de <strong>direito privado</strong>, com <strong>horizontalidade</strong> (igualdade entre as partes); exemplos da doutrina: <strong>compra e venda</strong>, <strong>doação</strong>, <strong>locação</strong>, <strong>permuta</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Como diferenciar na prova se a lei não separa?</div>
+    <div class="card-text">
+      → <strong>Resposta-padrão</strong> — a presença das <strong>cláusulas exorbitantes</strong> identifica os contratos administrativos<br>
+      → <strong>Ressalva</strong> — a distinção <strong>não é absoluta</strong>: a lei não diferencia expressamente, e o art. 104 não diz aplicar-se "somente" a certos contratos<br><br>
+      → <strong>Exemplo</strong> — a compra, citada como privada, admite <strong>alteração unilateral</strong> (art. 104, I)<br>
+      → <strong>Síntese</strong> — os administrativos possuem exorbitantes <strong>por natureza</strong>; os privados <strong>podem possuir</strong> em casos específicos
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conceito doutrinário mais cobrado</div>
+    <div class="card-text">
+      → <strong>Carvalho Filho</strong> — ajuste firmado entre a Administração e o particular, regulado basicamente pelo <strong>direito público</strong>, tendo por objeto atividade que traduza <strong>interesse público</strong><br><br>
+      → <strong>Art. 89</strong> — regulam-se pelas suas <strong>cláusulas e pelos preceitos de direito público</strong>; aplicam-se <strong>supletivamente</strong> os princípios da <strong>teoria geral dos contratos</strong> e as disposições de <strong>direito privado</strong><br>
+      → ⚠️ <strong>Detalhe:</strong> dizer que são regulados <strong>primariamente</strong> pelo direito privado e pela teoria geral é <strong>errado</strong> — o primário é cláusula + direito público; o privado é supletivo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quem legisla e quem se submete a cada lei?</div>
+    <div class="card-text">
+      → <strong>CF art. 22, XXVII</strong> — compete <strong>privativamente à União</strong> legislar sobre normas gerais de licitação e contratação para a Administração <strong>direta, autárquica e fundacional</strong> de todos os entes<br>
+      → <strong>CF art. 173, § 1º, III</strong> — o estatuto das <strong>estatais</strong> disporá sobre licitação e contratação, observados os princípios da Administração<br><br>
+      → <strong>Dois regimes</strong> — <strong>Lei 14.133/2021</strong> para direta, autárquica e fundacional; <strong>Lei 13.303/2016</strong> para empresas públicas e sociedades de economia mista<br>
+      → <strong>Art. 3º — não se subordinam</strong> — <strong>operações de crédito</strong> interno/externo e gestão da dívida (inclusive agente financeiro e garantia); contratações sujeitas a normas de <strong>legislação própria</strong><br><br>
+      → <strong>Aplicação subsidiária</strong> — Leis 8.987/1995 (concessões), 11.079/2004 (PPP) e 12.232/2010 (publicidade): a Lei 14.133/2021 aplica-se de forma <strong>subsidiária e supletiva</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-warning">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Valores atualizados por decreto:</strong> a lei traz os valores originais, mas o art. 182 manda atualizar anualmente por decreto. Ex.: contrato verbal até <strong>R$ 10 mil</strong> na letra da lei = <strong>R$ 13.098,41</strong> pelo Decreto 12.807/2025; dispensa de <strong>R$ 100 mil / R$ 50 mil</strong> = <strong>R$ 130.984,20 / R$ 65.492,11</strong>; grande vulto de <strong>R$ 200 milhões</strong> = <strong>R$ 261.968.421,04</strong>. Na prova, siga a literalidade indicada no enunciado.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CARACTERÍSTICAS E FORMALIZAÇÃO                      -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Características e formalização</div>
+  </div>
+  <div class="sec-subtitle">Arts. 89 a 95 da Lei 14.133/2021 — forma, instrumento, verbal e convocação</div>
+
+  <div class="card">
+    <div class="card-title">Traços presentes em todo contrato da Administração</div>
+    <div class="card-text">
+      → <strong>Administração como parte</strong> — com <strong>finalidade pública</strong> vinculada ao interesse coletivo<br>
+      → <strong>Formalismo</strong> — obediência à <strong>forma prescrita</strong>; em regra contratos <strong>formais</strong>, para controle da edição e da legalidade<br>
+      → <strong>Procedimento legal</strong> — seguem rito próprio, em regra com <strong>prévia licitação</strong><br><br>
+      → <strong>Mutabilidade</strong> — podem ser alterados conforme o <strong>interesse público</strong> (detalhes na sec 8)<br>
+      → <strong>Contrato de adesão</strong> — a Administração fixa <strong>unilateralmente</strong> todas as cláusulas; ao contratado resta <strong>aderir ou não aderir</strong>; ainda assim é <strong>bilateral</strong>, pois há opção de contratar<br>
+      → <strong>Intuitu personae</strong> — firmados em razão da <strong>pessoa específica</strong>; devem ser executados por ela (art. 115: execução fiel pelas partes)<br>
+      → <strong>Exorbitância</strong> — presença das <strong>cláusulas exorbitantes</strong> (sec 3)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Subcontratação — quando o contratado pode repassar?</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — admite-se a subcontratação de <strong>parcela</strong> da obra, serviço ou fornecimento, desde que com <strong>autorização da Administração</strong>, e <strong>sem afastar a responsabilidade</strong> da contratada (art. 122, caput)<br><br>
+      → <strong>Exceção total</strong> — nos contratos que exigirem <strong>seguro-garantia com retomada</strong>, a seguradora pode ser exigida a concluir o objeto e pode <strong>subcontratar total ou parcialmente</strong> (art. 102, III)<br>
+      → <strong>Vedação 1</strong> — não admite quando a escolha do profissional foi decisiva para a <strong>inexigibilidade de serviço técnico</strong> (art. 74, § 4º)<br>
+      → <strong>Vedação 2</strong> — não admite pessoa com <strong>vínculo ou parentesco até 3º grau</strong> com dirigente do contratante ou agente da licitação, fiscalização ou gestão (art. 122, § 3º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Forma escrita, escritura pública e meio eletrônico</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — contratos e aditamentos terão <strong>forma escrita</strong>, serão juntados ao <strong>processo de origem</strong> e <strong>divulgados e mantidos</strong> em sítio oficial (art. 91, caput)<br>
+      → <strong>Direitos reais sobre imóveis</strong> — formalizados por <strong>escritura pública</strong> lavrada em notas de tabelião, com teor divulgado em sítio oficial (art. 91, § 2º); a aquisição da propriedade segue o registro como no regime privado<br>
+      → <strong>Forma eletrônica</strong> — admitida para contratos e aditivos, atendidas as exigências de regulamento (art. 91, § 3º)<br><br>
+      → <strong>Sigilo</strong> — admitido quando <strong>imprescindível à segurança</strong> da sociedade e do Estado, nos termos da Lei de Acesso à Informação (art. 91, § 1º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Instrumento de contrato — quando pode ser trocado pelo simples?</div>
+    <div class="card-text">
+      → <strong>Distinção</strong> — <strong>contrato</strong> é o acordo; <strong>instrumento</strong> é o papel com as cláusulas assinadas; no regime administrativo a <strong>formalidade é a regra</strong><br>
+      → <strong>Substitutos</strong> — carta-contrato, <strong>nota de empenho</strong>, autorização de compra ou ordem de execução de serviço (escrita simplificada que preserva o controle)<br><br>
+      → <strong>Hipótese A</strong> — <strong>dispensa em razão do valor</strong> (art. 75, I e II: regra abaixo de R$ 100 mil para obras/engenharia/manutenção de veículos e abaixo de R$ 50 mil para compras e demais serviços; <strong>dobro</strong> para consórcios e agências executivas)<br>
+      → <strong>Hipótese B</strong> — <strong>compras com entrega imediata e integral</strong>, sem obrigações futuras (inclusive assistência técnica), <strong>independentemente do valor</strong><br>
+      → <strong>Entrega imediata</strong> — prazo de até <strong>30 dias</strong> da ordem de fornecimento (art. 6º, X)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contrato verbal — por que a regra é a nulidade?</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — contrato verbal é <strong>nulo e de nenhum efeito</strong> (art. 95, § 2º)<br>
+      → <strong>Exceção</strong> — <strong>pequenas compras ou serviços de pronto pagamento</strong> até <strong>R$ 10 mil</strong> (R$ 13.098,41 atualizados)<br><br>
+      → <strong>Pronto pagamento</strong> — não segue o rito empenho-liquidação-pagamento; opera por <strong>adiantamento</strong> (cartão corporativo ou numerário excepcional), com posterior <strong>prestação de contas</strong> comprovando a liquidação
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que o contrato precisa dizer (arts. 89 e 92)?</div>
+    <div class="card-text">
+      → <strong>Identificação</strong> — nomes das partes e representantes, <strong>finalidade</strong>, ato que autorizou a lavratura, número do processo da licitação ou da direta e <strong>sujeição às normas e cláusulas</strong> (art. 89, § 1º)<br>
+      → <strong>Clareza</strong> — condições de execução definidas com <strong>clareza e precisão</strong>: direitos, obrigações e responsabilidades (art. 89, § 2º)<br>
+      → <strong>Casamento</strong> — vinculação ao <strong>edital + proposta vencedora</strong> (ou ao ato da direta + proposta)<br><br>
+      → <strong>Cláusulas necessárias (art. 92)</strong> — objeto e elementos característicos; regime de execução ou forma de fornecimento; preço, pagamento, data-base e reajuste; prazos de etapas, entrega e recebimento; crédito orçamentário; matriz de risco quando for o caso; garantias quando exigidas; direitos, penalidades e extinção<br>
+      → ⚠️ <strong>Leitura:</strong> o "são necessárias em todo contrato" comporta contexto — nem toda alínea se aplica a todo contrato (ex.: matriz de risco e câmbio só <strong>quando for o caso</strong>)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Convocação do vencedor — o que acontece se ele não assina?</div>
+    <div class="card-text">
+      → <strong>Convocação</strong> — a Administração convoca o vencedor para assinar ou aceitar/retirar o equivalente, no <strong>prazo do edital</strong>, sob pena de <strong>decair do direito</strong> e sofrer sanções (art. 90, caput)<br>
+      → <strong>Prorrogação</strong> — uma única vez, por <strong>igual período</strong>, mediante pedido no curso do prazo, justificado e aceito (art. 90, § 1º)<br>
+      → <strong>Infração</strong> — não celebrar ou não entregar a documentação na validade da proposta é infração (art. 155, VI); a <strong>recusa injustificada</strong> equivale a descumprimento total, com penalidades e <strong>perda da garantia da proposta</strong> (art. 90, § 5º)<br><br>
+      → <strong>Remanescentes</strong> — facultado convocar na <strong>ordem de classificação</strong> em 3 etapas: (1) seguir a <strong>proposta do vencedor</strong>; (2) se ninguém aceitar, <strong>negociar condições intermediárias</strong>; (3) sem acordo, cumprir as <strong>próprias propostas</strong> (art. 90, § 2º)<br>
+      → <strong>Validade vencida</strong> — decorrido o prazo do edital sem convocação, ficam <strong>liberados</strong> (art. 90, § 3º); se convocados após, podem recusar <strong>sem sanção</strong><br>
+      → <strong>Obra extinta</strong> — em caso de extinção, facultado convocar remanescentes para <strong>concluir o restante</strong>, pelos mesmos critérios e etapas, sobre os valores remanescentes (art. 90, § 7º)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Dizer que os contratos devem <strong>sempre</strong> ter forma escrita para divulgação é errado: admite-se o <strong>verbal para pequenas compras de pronto pagamento</strong> até R$ 10 mil (art. 95, § 2º). E dizer que a convocação de remanescentes após extinção seria "dispensa vedada" é errado: é <strong>faculdade de convocar</strong>, não dispensa (art. 90, § 7º).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — CLÁUSULAS EXORBITANTES E GARANTIAS                  -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Cláusulas exorbitantes e garantias</div>
+  </div>
+  <div class="sec-subtitle">Art. 104 e espalhadas — verticalidade fundada na supremacia do interesse público</div>
+
+  <div class="card">
+    <div class="card-title">Por que "exorbitam" o direito comum?</div>
+    <div class="card-text">
+      → <strong>Fundamento</strong> — colocam a Administração em <strong>verticalidade</strong>, com supremacia do <strong>interesse público</strong>; entre particulares gerariam desigualdade inadmissível<br>
+      → <strong>Implícitas ou explícitas</strong> — a doutrina admitia as duas formas; o legislador incorporou basicamente todas: algumas no <strong>art. 104</strong>, outras espalhadas pela lei<br><br>
+      → <strong>Rol do art. 104</strong> — <strong>modificar</strong> unilateralmente; <strong>extinguir</strong> unilateralmente; <strong>fiscalizar</strong> a execução; <strong>aplicar sanções</strong>; <strong>ocupar provisoriamente</strong> bens, pessoal e serviços vinculados; <strong>exigir garantia</strong> (arts. 96 a 103); <strong>restringir a exceção do contrato não cumprido</strong> (art. 137, IV); <strong>exigir medidas de compensação</strong> (art. 26, § 6º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Alteração e extinção unilaterais — onde mora o limite?</div>
+    <div class="card-text">
+      → <strong>Alteração unilateral</strong> — para melhor adequação às <strong>finalidades de interesse público</strong>, respeitados os direitos do contratado; independe de concordância<br>
+      → <strong>Qualitativa</strong> — modifica <strong>projeto ou especificações</strong> para melhor adequação técnica (art. 124, I, "a")<br>
+      → <strong>Quantitativa</strong> — readequa <strong>quantidades</strong> para mais ou para menos, dentro dos limites (art. 124, I, "b" + art. 125)<br><br>
+      → <strong>Extinção unilateral</strong> — quando <strong>não há culpa da Administração</strong> (art. 138, I): descumprimento, caso fortuito/força maior, razões de interesse público (detalhes na sec 6)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fiscalização (art. 117) — quem fiscaliza e com que ajuda?</div>
+    <div class="card-text">
+      → <strong>Fiscais designados</strong> — a execução é acompanhada por <strong>1 ou mais fiscais</strong> (ou substitutos), representantes especialmente designados conforme o art. 7º<br>
+      → <strong>Requisitos do art. 7º</strong> — preferencialmente <strong>concursados</strong>; atribuições e formação <strong>compatíveis</strong>; sem <strong>parentesco ou vínculo</strong> com licitantes ou contratantes habituais<br>
+      → <strong>Terceiros</strong> — permitida a contratação de terceiros para <strong>assistir e subsidiar com informações</strong>; eles <strong>não substituem</strong> o fiscal, só apoiam
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ocupação provisória — quando a Administração assume tudo?</div>
+    <div class="card-text">
+      → <strong>Hipóteses (art. 104, V)</strong> — <strong>risco à prestação de serviços essenciais</strong>; necessidade de <strong>acautelar apuração</strong> de faltas contratuais, inclusive após a extinção<br>
+      → <strong>Exemplo</strong> — serviços de imagem (tomografia, raio-X): ocupar instalações e pessoal para manter a <strong>continuidade</strong>, ou enquanto apura infrações<br><br>
+      → <strong>Alcance</strong> — bens <strong>móveis e imóveis</strong>, instalações e equipamentos; <strong>pessoal</strong> qualificado; <strong>serviços</strong> vinculados à manutenção
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exceção do contrato não cumprido — por que o contratado espera 2 meses?</div>
+    <div class="card-text">
+      → <strong>Entre privados</strong> — a <span class="highlight">exceptio non adimpleti contractus</span> permite suspender <strong>imediatamente</strong> se a outra parte inadimplir<br>
+      → <strong>Nos administrativos</strong> — há <strong>restrição, não vedação</strong>: o contratado só tem direito à extinção ou suspensão quando o <strong>atraso superar 2 meses</strong> contados da nota fiscal (art. 137, § 2º, IV); deve suportar o atraso até lá<br>
+      → <strong>Fundamento</strong> — <strong>continuidade do serviço público</strong>: a inadimplência não pode prejudicar a população<br><br>
+      → <strong>Sem direito</strong> — em <strong>calamidade, grave perturbação da ordem ou guerra</strong>, ou quando o contratado <strong>praticou, participou ou contribuiu</strong> para o fato; aí pode apenas <strong>suspender as próprias obrigações</strong> até normalizar
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Compensação do art. 26, § 6º — o que pode ser exigido do vencedor?</div>
+    <div class="card-text">
+      → <strong>Conteúdo</strong> — editais de bens, serviços e obras podem exigir, com <strong>prévia justificativa</strong>, que o contratado promova medidas de <strong>compensação comercial, industrial ou tecnológica</strong>, ou acesso a <strong>financiamento vantajoso</strong>, em favor do órgão ou de indicados em processo isonômico<br>
+      → <strong>Exemplo</strong> — grande compra de armamentos com exigência de <strong>transferência de tecnologia</strong> ou abertura de mercados ao produto nacional
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Garantia contratual — quem decide exigir e quem escolhe como?</div>
+    <div class="card-text">
+      → <strong>Exigência discricionária</strong> — a critério da <strong>autoridade competente</strong>, em cada caso, mediante <strong>previsão no edital</strong>, nas contratações de obras, serviços e fornecimentos (art. 96)<br>
+      → <strong>Escolha da modalidade</strong> — em regra é faculdade do <strong>contratado</strong>: a Administração decide <strong>se</strong> exige; o contratado escolhe <strong>como</strong><br>
+      → <strong>Função dupla</strong> — forçar o cumprimento (risco de perder o valor) e <strong>cobrir prejuízos</strong>, multas e encargos trabalhistas<br><br>
+      → <strong>Modalidades (art. 96, § 1º)</strong> — <strong>caução</strong> em dinheiro ou títulos da dívida pública escriturais; <strong>seguro-garantia</strong>; <strong>fiança bancária</strong> de instituição autorizada pelo BC; <strong>título de capitalização</strong> com pagamento único e resgate total<br>
+      → <strong>Percentuais</strong> — até <strong>5%</strong> do valor inicial como regra; até <strong>10%</strong> com justificativa de complexidade técnica e riscos; se a Administração entregar bens ao depositário, o <strong>valor dos bens acresce</strong> à garantia
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Seguro-garantia com retomada — quando o teto vira 30%?</div>
+    <div class="card-text">
+      → <strong>Conceito (art. 6º, LIV)</strong> — garante o <strong>fiel cumprimento</strong>, inclusive multas, prejuízos e indenizações do inadimplemento<br>
+      → <strong>Obras e engenharia</strong> — o edital pode exigir que a modalidade <strong>seja</strong> o seguro-garantia e impor à seguradora a obrigação de <strong>assumir e concluir</strong> o objeto (<span class="highlight">step in right</span>); aqui o contratado <strong>não escolhe</strong><br>
+      → <strong>Grande vulto</strong> — acima de <strong>R$ 200 milhões</strong> (R$ 261.968.421,04 atualizados): pode exigir seguro-garantia com retomada em percentual de até <strong>30%</strong><br><br>
+      → <strong>Esquema</strong> — regra: contratado escolhe, até 5% ou 10%; engenharia geral: pode impor seguro-garantia no mesmo percentual; engenharia de grande vulto: impõe seguro-garantia até 30%<br>
+      → <strong>Inadimplemento</strong> — a seguradora <strong>executa e conclui ou paga</strong> a integralidade da apólice; pode <strong>subcontratar total ou parcialmente</strong><br>
+      → ⚠️ <strong>Não confundir:</strong> garantia da proposta (pré-habilitação, art. 58, até <strong>1%</strong> do estimado) ≠ garantia contratual
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — DURAÇÃO DOS CONTRATOS                               -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Duração dos contratos</div>
+  </div>
+  <div class="sec-subtitle">Arts. 105 a 114 — prazos máximos e a única hipótese de prazo indeterminado</div>
+
+  <div class="card">
+    <div class="card-title">Ponto de partida (art. 105) — o que observar todo exercício?</div>
+    <div class="card-text">
+      → <strong>Previsão no edital</strong> — a duração constará do edital (na direta, do termo que autorizar)<br>
+      → <strong>Créditos orçamentários</strong> — observados na contratação <strong>e a cada exercício</strong> (a LOA autoriza a despesa que o contrato gera)<br>
+      → <strong>PPA</strong> — se ultrapassar o exercício, precisa de previsão no <strong>Plano Plurianual</strong><br><br>
+      → <strong>Leis especiais</strong> — prazos de leis especiais aplicam-se <strong>subsidiariamente</strong> e não são excluídos nem revogados (art. 112)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Contrato</th><th>Prazo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Serviços e fornecimentos contínuos</strong></td><td>Celebração até <strong>5 anos</strong>; prorrogação sucessiva até <strong>10 anos</strong> no total</td></tr>
+        <tr><td><strong>Aluguel de equipamentos e informática</strong></td><td>Até <strong>5 anos</strong></td></tr>
+        <tr><td><strong>Dispensa tecnológica / defesa / P&amp;D / segurança / SUS</strong> (art. 108)</td><td>Até <strong>10 anos</strong></td></tr>
+        <tr><td><strong>Receita ou eficiência sem investimento</strong></td><td>Até <strong>10 anos</strong></td></tr>
+        <tr><td><strong>Receita ou eficiência com investimento</strong></td><td>Até <strong>35 anos</strong></td></tr>
+        <tr><td><strong>Usuária de monopólio</strong> (art. 109)</td><td>Pode ser <strong>indeterminado</strong></td></tr>
+        <tr><td><strong>Por escopo</strong> (art. 111)</td><td><strong>Prorrogado automaticamente</strong> até concluir</td></tr>
+        <tr><td><strong>Fornecimento + operação/manutenção</strong> (art. 113)</td><td>Soma do fornecimento + serviço de até <strong>5 anos</strong> (prorrogável a <strong>10</strong>)</td></tr>
+        <tr><td><strong>TI estruturante</strong> (art. 114)</td><td>Até <strong>15 anos</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contínuos — como prorrogar sem ônus?</div>
+    <div class="card-text">
+      → <strong>Inicial até 5, total até 10</strong> — a prorrogação depende de <strong>previsão no edital</strong> e de atesto de que condições e preços continuam <strong>vantajosos</strong><br>
+      → <strong>Negociação ou extinção</strong> — permite negociar melhores condições; sem acordo, <strong>extingue sem ônus</strong> para qualquer das partes
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Receita e eficiência (art. 110) — o que conta como investimento?</div>
+    <div class="card-text">
+      → <strong>Receita</strong> — a Administração <strong>recebe</strong> (ex.: concessão de uso de bem público remunerada como aluguel)<br>
+      → <strong>Eficiência (art. 6º, LIII)</strong> — serviços (podendo incluir obras e bens) para gerar <strong>economia</strong> ao contratante pela redução de despesas; o contratado é remunerado por <strong>percentual da economia gerada</strong><br><br>
+      → <strong>Investimento</strong> — benfeitorias <strong>permanentes</strong>, feitas <strong>exclusivamente às expensas do contratado</strong> e <strong>revertidas</strong> ao patrimônio da Administração ao término<br>
+      → <strong>Chave</strong> — se o contratado custeia obra com reversão: até <strong>35 anos</strong>; se a obra é custeada pela Administração, sem reversão ou sem investimento: até <strong>10 anos</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Por escopo (art. 111) — por que não há prazo máximo fixo?</div>
+    <div class="card-text">
+      → <strong>Lógica</strong> — interessa a <strong>conclusão</strong> de conduta específica (ex.: construir a escola); diferente do contínuo, cuja necessidade se <strong>renova</strong> (limpeza, manutenção)<br>
+      → <strong>Prorrogação automática</strong> — não concluído no período, a vigência se prorroga <strong>automaticamente</strong>, sem manifestação<br>
+      → <strong>Culpa do contratado</strong> — constitui-se em <strong>mora</strong> (sanções cabíveis), e a Administração pode <strong>extinguir</strong> e adotar medidas de continuidade
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Casos especiais que a banca adora</div>
+    <div class="card-text">
+      → <strong>Usuária de monopólio (art. 109)</strong> — como <strong>poder concedente</strong> ela delega (Lei 8.987); como <strong>usuária</strong> é igual ao particular (ex.: energia da nova unidade); sendo usuária de serviço em <strong>monopólio</strong>, pode fixar prazo <strong>indeterminado</strong>, comprovando créditos a cada exercício<br>
+      → <strong>Fornecimento associado (art. 113)</strong> — além de entregar bem ou obra, o contratado assume <strong>operação, manutenção ou ambas</strong> por tempo determinado (ex.: tomógrafo + 5 anos de manutenção); vigência = <strong>soma</strong> das etapas<br>
+      → <strong>TI estruturante (art. 114)</strong> — operação continuada de sistemas <strong>fundamentais e comuns a 2+ órgãos</strong> com coordenação central (Siafi, Sipec): até <strong>15 anos</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Dizer que o prazo indeterminado é <strong>vedado em qualquer caso</strong> é errado (art. 109 permite à usuária de monopólio). Dizer que os prazos da Lei 14.133 <strong>revogam</strong> os de leis especiais é errado: aplicam-se <strong>subsidiariamente</strong> e não os excluem (art. 112).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — RESPONSABILIDADES E ENCARGOS                        -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Responsabilidades e encargos</div>
+  </div>
+  <div class="sec-subtitle">Arts. 115, 119 a 121 e 140 §6º — quem responde pelo quê na execução</div>
+
+  <div class="card">
+    <div class="card-title">Execução fiel e dever de corrigir defeitos (art. 119)</div>
+    <div class="card-text">
+      → <strong>Execução fiel</strong> — o contrato deve ser executado <strong>fielmente pelas partes</strong> (art. 115); falhas devem ser corrigidas pelo responsável<br>
+      → <strong>Dever do contratado</strong> — reparar, corrigir, remover, reconstruir ou substituir, <strong>às suas expensas</strong>, no todo ou em parte, o objeto com <strong>vícios, defeitos ou incorreções</strong> da execução ou dos materiais empregados
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Garantia mínima de obras — por que 5 anos são objetivos?</div>
+    <div class="card-text">
+      → <strong>Prazo mínimo</strong> — nas obras, <strong>5 anos de garantia</strong> do contratado perante a Administração (art. 140, § 6º)<br>
+      → <strong>Responsabilidade objetiva</strong> — responde pela <strong>solidez e segurança</strong> dos materiais e serviços e pela <strong>funcionalidade</strong> da construção, reforma, recuperação ou ampliação<br>
+      → <strong>Recebimento definitivo não afasta</strong> — mesmo após o recebimento, o dever de reparar, corrigir, reconstruir ou substituir permanece
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Danos a terceiros — a fiscalização salva o contratado?</div>
+    <div class="card-text">
+      → <strong>Regra (art. 120)</strong> — o contratado responde pelos <strong>danos causados diretamente</strong> à Administração ou a terceiros na execução<br>
+      → <strong>Fiscalização não exclui nem reduz</strong> essa responsabilidade: o acompanhamento pelo contratante não transfere o risco
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Encargos — por que o "somente" faz diferença?</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — <strong>somente o contratado</strong> responde pelos encargos <strong>trabalhistas, previdenciários, fiscais e comerciais</strong> da execução (arts. 120 e 121)<br>
+      → <strong>Inadimplência</strong> — quanto a trabalhistas, fiscais e comerciais: <strong>não transfere</strong> à Administração, <strong>não onera o objeto</strong> e <strong>não restringe</strong> regularização e uso das obras, nem perante o registro de imóveis<br><br>
+      → <strong>Exceção única</strong> — <strong>exclusivamente</strong> em serviços contínuos com <strong>dedicação exclusiva de mão de obra</strong> (art. 121, § 2º), com <strong>falha na fiscalização</strong> comprovada: a Administração responde <strong>solidariamente</strong> pelos <strong>previdenciários</strong> e <strong>subsidiariamente</strong> pelos <strong>trabalhistas</strong><br>
+      → ⚠️ <strong>Distinção:</strong> solidária = responde <strong>junto</strong>; subsidiária = responde <strong>se o contratado não tiver recursos</strong> (o empregado cobra primeiro do empregador)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — EXTINÇÃO DOS CONTRATOS                              -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Extinção dos contratos</div>
+  </div>
+  <div class="sec-subtitle">Arts. 137 a 139 — hipóteses, formas e consequências</div>
+
+  <div class="card">
+    <div class="card-title">Duas lógicas de extinção — com ou sem culpa da Administração?</div>
+    <div class="card-text">
+      → <strong>Sem culpa da Administração</strong> — art. 137, caput, I a IX (regra); exige <strong>motivação + contraditório e ampla defesa</strong><br>
+      → <strong>Com culpa ("fatos da Administração")</strong> — art. 137, § 2º: direito do contratado à extinção, inclusive <strong>judicial</strong><br>
+      → ⚠️ <strong>Ressalva:</strong> a divisão não é absoluta, sobretudo nos incisos <strong>VI e VII</strong> (licença ambiental, desapropriação), que podem caber a qualquer das partes
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Hipóteses do art. 137, caput — o que extingue sem culpa?</div>
+    <div class="card-text">
+      → <strong>Descumprimento</strong> — não cumprimento ou cumprimento irregular de normas do edital, cláusulas, especificações, projetos ou prazos; desatendimento de determinações da fiscalização ou autoridade superior; alteração social que restrinja a capacidade de concluir<br>
+      → <strong>Pessoa</strong> — falência, insolvência, dissolução ou <strong>falecimento</strong> do contratado (contratos são personalíssimos)<br>
+      → <strong>Força maior</strong> — caso fortuito ou força maior <strong>comprovados e impeditivos</strong>; se só onerar sem inviabilizar, cabe <strong>revisão</strong> (art. 124, II, "d")<br><br>
+      → <strong>Licença e áreas</strong> — atraso ou impossibilidade de <strong>licença ambiental</strong> (ou alteração substancial do anteprojeto); atraso ou impossibilidade de <strong>desapropriação, desocupação ou servidão</strong><br>
+      → <strong>Interesse público</strong> — razões justificadas pela <strong>autoridade máxima</strong> (ex.: passa a prestar o serviço diretamente)<br>
+      → <strong>Cotas legais</strong> — descumprimento da <strong>reserva de cargos</strong> para PCD, reabilitado ou aprendiz
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Direito do contratado (art. 137, § 2º) — quais são os gatilhos?</div>
+    <div class="card-text">
+      → <strong>Supressão além do limite</strong> — corte de quantitativos que supere o <strong>limite de 25%</strong> das supressões<br>
+      → <strong>Suspensão contínua</strong> — paralisação por <strong>ordem escrita</strong> da Administração por prazo <strong>superior a 3 meses</strong><br>
+      → <strong>Suspensões repetidas</strong> — total de <strong>90 dias úteis</strong>, com indenização de desmobilizações/mobilizações imprevistas<br>
+      → <strong>Atraso de pagamento</strong> — superior a <strong>2 meses</strong> da nota fiscal (a restrição à <span class="highlight">exceptio non adimpleti contractus</span>; na lei antiga eram 90 dias)<br>
+      → <strong>Área não liberada</strong> — não liberação de área, local, objeto ou fontes de materiais nos prazos, inclusive por desapropriação, desocupação ou licenciamento
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quando a suspensão e o atraso NÃO geram extinção?</div>
+    <div class="card-text">
+      → <strong>Excludentes (art. 137, § 3º, I)</strong> — <strong>calamidade, grave perturbação da ordem ou guerra</strong>; ato ou fato que o contratado <strong>praticou, participou ou contribuiu</strong><br>
+      → <strong>Efeito</strong> — nesses casos o contratado pode apenas <strong>suspender as próprias obrigações</strong> até a normalização
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Formas de extinção (art. 138) — quem decide como termina?</div>
+    <div class="card-text">
+      → <strong>Unilateral e escrita</strong> — ato da Administração, <strong>exceto</strong> quando o descumprimento decorrer da <strong>própria conduta</strong> dela (cláusula exorbitante)<br>
+      → <strong>Consensual</strong> — com <strong>interesse da Administração</strong>: acordo, conciliação, mediação ou comitê de resolução de disputas<br>
+      → <strong>Arbitral ou judicial</strong> — por <strong>decisão arbitral</strong> (cláusula ou compromisso) ou <strong>decisão judicial</strong><br><br>
+      → <strong>Formalidade</strong> — a unilateral e a consensual exigem <strong>autorização escrita e fundamentada</strong> da autoridade competente, reduzida a termo no processo (art. 138, parágrafo único)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Consequências — o que o contratado recebe em cada cenário?</div>
+    <div class="card-text">
+      → <strong>Culpa exclusiva da Administração (art. 138, § 2º)</strong> — ressarcimento de <strong>prejuízos comprovados</strong>; <strong>devolução da garantia</strong>; <strong>pagamentos</strong> pela execução até a data (vedação ao enriquecimento sem causa); custo da <strong>desmobilização</strong><br><br>
+      → <strong>Unilateral sem descumprimento da Administração (art. 139)</strong> — sem prejuízo de sanções: <strong>assunção imediata</strong> do objeto no estado e local; <strong>ocupação</strong> de local, instalações, equipamentos, material e pessoal; <strong>execução da garantia</strong> (prejuízos, verbas trabalhistas/fundiárias/previdenciárias, multas, retomada pela seguradora); <strong>retenção de créditos</strong> até o limite dos prejuízos e multas
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — NULIDADES                                          -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Nulidades</div>
+  </div>
+  <div class="sec-subtitle">Arts. 147 a 149 — saneamento primeiro, nulidade só se for interesse público</div>
+
+  <div class="card">
+    <div class="card-title">Por que a nulidade é a última opção?</div>
+    <div class="card-text">
+      → <strong>Prioridade ao saneamento</strong> — só se declara nulidade ou suspensão se <strong>não for possível sanear E</strong> se for medida de <strong>interesse público</strong> (art. 147)<br>
+      → <strong>Critérios do art. 147</strong> — impactos econômico-financeiros do atraso; riscos sociais, ambientais e à segurança; motivação social e ambiental; deterioração de parcelas executadas; preservação de instalações; desmobilização e retorno; medidas de saneamento adotadas; custo total e estágio físico-financeiro; empregos afetados; custo de nova licitação; custo de oportunidade do capital<br><br>
+      → <strong>Sem interesse público</strong> — opta-se pela <strong>continuidade + indenização</strong> por perdas e danos, sem prejuízo de apurar responsabilidade e punir (art. 147, parágrafo único)<br>
+      → <strong>Fundamento</strong> — interesse público, segurança jurídica e eficiência mitigam a legalidade: anular pode ser <strong>pior</strong> que manter
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Efeitos da nulidade (art. 148) — quando ela só vale dali para frente?</div>
+    <div class="card-text">
+      → <strong>Regra ex tunc</strong> — opera <strong>retroativamente</strong>, impedindo efeitos futuros e desconstituindo os produzidos; exige análise prévia do interesse público<br>
+      → <strong>Impossível retornar</strong> — resolve-se por <strong>indenização</strong> por perdas e danos (ex.: andares já construídos sem culpa do contratado)<br>
+      → <strong>Modulação</strong> — a autoridade pode postergar a eficácia para viabilizar <strong>nova contratação</strong>: até <strong>6 meses, prorrogáveis uma vez</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Indenização e responsabilização (art. 149) — quem deu causa paga?</div>
+    <div class="card-text">
+      → <strong>Dever de indenizar</strong> — a nulidade <strong>não exonera</strong>: paga-se o <strong>executado até a declaração</strong> e outros <strong>prejuízos comprovados</strong><br>
+      → <strong>Exceção</strong> — não se aplica quando o próprio contratado <strong>deu causa</strong> (má-fé, conluio, suborno): aí <strong>nem o executado</strong> recebe<br>
+      → <strong>Responsabilização</strong> — promove-se a apuração de <strong>quem deu causa</strong> à nulidade
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — ALTERAÇÃO, EQUILÍBRIO E IMPREVISÃO                   -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Alteração, equilíbrio e imprevisão</div>
+  </div>
+  <div class="sec-subtitle">Arts. 104 §1º, 124 a 126, 134 e 136 — mutabilidade sem quebrar a equação</div>
+
+  <div class="card">
+    <div class="card-title">Alteração unilateral × consensual — qual precisa de acordo?</div>
+    <div class="card-text">
+      → <strong>Unilateral (art. 124, I)</strong> — cláusula exorbitante, com justificativa: <strong>qualitativa</strong> (projeto/especificações para melhor adequação técnica) e <strong>quantitativa</strong> (acréscimo ou diminuição dentro dos limites)<br>
+      → <strong>Consensual (art. 124, II)</strong> — por <strong>acordo</strong> (não é exorbitante): substituição da garantia; regime de execução ou fornecimento; forma de pagamento por superveniência (mantido o valor, vedada antecipação sem contraprestação); <strong>reequilíbrio</strong> por força maior, caso fortuito, fato do príncipe ou imprevisíveis (letra "d")<br><br>
+      → <strong>Limites (art. 125)</strong> — o contratado é obrigado a aceitar nas mesmas condições: acréscimos ou supressões até <strong>25%</strong>; acréscimos em <strong>reforma</strong> de edifício ou equipamento até <strong>50%</strong> (supressão em reforma: 25%)<br>
+      → <strong>Limites materiais (art. 126)</strong> — não pode <strong>transfigurar o objeto</strong> (licitar escola e virar aeroporto = fraude à licitação); alcança só cláusulas <strong>regulamentares</strong> (execução), nunca as <strong>econômico-financeiras sem concordância</strong> (art. 104, § 1º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Equilíbrio econômico-financeiro — reajuste ou revisão?</div>
+    <div class="card-text">
+      → <strong>Conceito</strong> — relação entre <strong>encargos do contratado</strong> e <strong>remuneração da Administração</strong> na assinatura; mantém-se com cumprimento + matriz de riscos<br>
+      → <strong>Reajuste (previsível)</strong> — <strong>reajustamento</strong> por <strong>índice de correção</strong> previsto (inflação) e <strong>repactuação</strong> para serviços contínuos com dedicação exclusiva ou predominância de mão de obra (variação de custos, com datas da proposta e da convenção); <strong>não é alteração</strong>: por <strong>apostila</strong> (art. 136, I)<br>
+      → <strong>Revisão (imprevisível)</strong> — sem índice prévio: alteração unilateral que afeta a equação (<span class="highlight">álea administrativa</span>) ou eventos extraordinários; é <strong>alteração efetiva</strong>: por <strong>aditamento</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Teoria da imprevisão — quais são as 4 categorias?</div>
+    <div class="card-text">
+      → <strong>Base</strong> — fatos <strong>supervenientes, extracontratuais e extraordinários</strong> (imprevisíveis ou de consequências incalculáveis) que oneram, retardam ou impossibilitam; <span class="highlight">rebus sic stantibus</span> tempera o <span class="highlight">pacta sunt servanda</span>; efeito: <strong>revisão ou extinção sem culpa</strong><br>
+      → <strong>Caso fortuito e força maior</strong> — mesmos efeitos na lei; art. 137, V (extinção impeditiva) e art. 124, II, "d" (reequilíbrio); exige <strong>imprevisível, inevitável e impossibilidade</strong>; quem contribuiu para o prejuízo <strong>não invoca</strong><br><br>
+      → <strong>Fato do príncipe</strong> — determinação estatal <strong>geral</strong> com efeito <strong>reflexo</strong> (ex.: alta de tributo); art. 124, II, "d" + art. 134 (preços alterados <strong>para mais ou para menos</strong> após a proposta, com repercussão comprovada)<br>
+      → <strong>Fato da Administração</strong> — ação ou omissão <strong>direta e específica</strong> como contratante (não libera área, atrasa pagamento, suspende obra); gatilhos no art. 137, § 2º<br>
+      → <strong>Interferências imprevistas</strong> — condições <strong>preexistentes e desconhecidas</strong> reveladas na execução (solo rochoso onde se esperava areia): oneram sem impedir → <strong>adequação de preços e prazos</strong><br><br>
+      → ⚠️ <strong>Limite:</strong> dificuldade prevista na proposta (obra em hospital funcionando, trabalho noturno conhecido) <strong>não</strong> gera reequilíbrio — falta fato novo extraordinário<br>
+      → <strong>Engenharia obstada (art. 124, § 2º)</strong> — atraso em desapropriação, desocupação, servidão ou licenciamento, por circunstâncias <strong>alheias ao contratado</strong>, também autoriza reequilíbrio
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — MEIOS ALTERNATIVOS, SANÇÕES E CONTROLE              -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Meios alternativos, sanções e controle</div>
+  </div>
+  <div class="sec-subtitle">Arts. 151 a 156, 162, 163 e 169 — resolver sem juízo e punir com proporção</div>
+
+  <div class="card">
+    <div class="card-title">Meios alternativos (arts. 151 a 154) — quem decide em cada um?</div>
+    <div class="card-text">
+      → <strong>Rol exemplificativo</strong> — conciliação, mediação, <strong>comitê de resolução de disputas</strong> (<span class="highlight">dispute boards</span>) e arbitragem (art. 151)<br>
+      → <strong>Conciliação</strong> — conciliador participa <strong>mais efetivamente</strong>, apresenta propostas; <strong>mediação</strong> — mediador só <strong>conduz o diálogo</strong>, sem propor<br>
+      → <strong>Comitê</strong> — corpo independente que <strong>acompanha permanentemente</strong> a execução, com decisão técnica e rápida<br>
+      → <strong>Arbitragem</strong> — árbitro <strong>decide</strong> com efeito vinculante ("jurisdição privada"); sempre <strong>de direito</strong> (vedada por equidade) e com <strong>publicidade</strong> (art. 152)<br><br>
+      → <strong>Objeto</strong> — controvérsias de <strong>direitos patrimoniais disponíveis</strong>: reequilíbrio, inadimplemento, indenizações (art. 151, parágrafo único)<br>
+      → <strong>Uso</strong> — servem à <strong>continuidade</strong> ou à <strong>extinção</strong> (consensual por acordo/conciliação/mediação/comitê; determinada por arbitragem ou juízo — art. 138, II e III); podem ser <strong>aditados</strong> depois, sem constar desde a celebração (art. 153); árbitros e comitês por critérios <strong>isonômicos, técnicos e transparentes</strong> (art. 154)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Infrações (art. 155) — qual é a escala da gravidade?</div>
+    <div class="card-text">
+      → <strong>Inexecução</strong> — parcial simples; parcial com <strong>grave dano</strong> à Administração, serviços ou coletividade; total<br>
+      → <strong>Certame e proposta</strong> — deixar de entregar documentação; <strong>não manter a proposta</strong> (salvo superveniente justificado); não celebrar ou não entregar documentação <strong>na validade</strong>; retardar execução sem motivo<br><br>
+      → <strong>Fraude e corrupção</strong> — declaração ou documentação <strong>falsa</strong>; fraudar licitação ou execução; <strong>modo inidôneo</strong> ou fraude de qualquer natureza; frustrar objetivos da licitação; ato lesivo da <strong>Lei Anticorrupção</strong> (Lei 12.846/2013, art. 5º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sanções (art. 156) — quem leva advertência, multa ou inidoneidade?</div>
+    <div class="card-text">
+      → <strong>Advertência</strong> — <strong>exclusivamente</strong> para inexecução <strong>parcial</strong> (inciso I) quando não justificar pena mais grave<br>
+      → <strong>Multa</strong> — <strong>mora</strong> por atraso injustificado (art. 162, na forma do edital) e <strong>compensatória</strong> por infrações: <strong>0,5% a 30%</strong> do valor do contrato, na forma do edital/contrato; a mora exagerada pode <strong>converter-se</strong> em compensatória; só a <strong>multa cumula</strong> com as demais<br><br>
+      → <strong>Impedimento</strong> — incisos <strong>II a VII</strong> quando não justificar pena mais grave; alcance na <strong>direta e indireta do ente que aplicou</strong>; máximo de <strong>3 anos</strong><br>
+      → <strong>Inidoneidade</strong> — incisos <strong>VIII a XII</strong> (e II a VII quando justificar pena mais grave); alcance em <strong>todos os entes</strong>; de <strong>3 a 6 anos</strong>; competência <strong>exclusiva</strong> com análise jurídica prévia: no Executivo, <strong>ministro/secretário</strong>; em autarquia/fundação, a <strong>autoridade máxima</strong>; nos demais Poderes e MP/Defensoria, autoridade <strong>equivalente</strong><br>
+      → <strong>Reparação integral (art. 156, § 9º)</strong> — sanção <strong>nunca exclui</strong> o dever de reparar o dano por completo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Reabilitação (art. 163) — o que é preciso para voltar a licitar?</div>
+    <div class="card-text">
+      → <strong>Perante quem aplicou</strong> — requisitos <strong>cumulativos</strong>: reparação <strong>integral</strong> do dano; pagamento da <strong>multa</strong>; transcurso de <strong>1 ano</strong> (impedimento) ou <strong>3 anos</strong> (inidoneidade); cumprimento das <strong>condições do ato punitivo</strong>; <strong>análise jurídica prévia</strong><br>
+      → <strong>Programa de integridade</strong> — exigido quando a infração for <strong>declaração falsa</strong> ou <strong>ato lesivo anticorrupção</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Controle em 3 linhas (art. 169) — quem é cada linha de defesa?</div>
+    <div class="card-text">
+      → <strong>1ª linha</strong> — servidores, empregados, <strong>agentes de licitação</strong> e autoridades da governança do órgão<br>
+      → <strong>2ª linha</strong> — assessoramento <strong>jurídico</strong> e <strong>controle interno</strong> do próprio órgão<br>
+      → <strong>3ª linha</strong> — órgão <strong>central de controle interno</strong> e <strong>tribunal de contas</strong> (o Judiciário como jurisdição não integra)<br><br>
+      → <strong>Impropriedade formal</strong> — saneamento + prevenção (controles e capacitação)<br>
+      → <strong>Irregularidade com dano</strong> — apurar com <strong>segregação de funções</strong> e individualização + remeter cópias ao <strong>MP</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A <strong>extinção do contrato não é sanção</strong> (art. 139) — pode acompanhar sanções, mas tem natureza própria. E recurso contra sanção tem prazo de <strong>15 dias úteis com efeito suspensivo</strong> (arts. 166 a 168) — não confundir com os <strong>3 dias úteis</strong> dos recursos em geral (art. 165).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — IMPUGNAÇÕES, RECURSOS E PNCP                       -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Impugnações, recursos e PNCP</div>
+  </div>
+  <div class="sec-subtitle">Arts. 91, 94, 164 a 168, 174 e 175 — atacar o edital, recorrer e publicar</div>
+
+  <div class="card">
+    <div class="card-title">Impugnação e esclarecimento (art. 164) — quem pode e em que prazo?</div>
+    <div class="card-text">
+      → <strong>Legitimado</strong> — <strong>qualquer pessoa</strong> (não precisa ser licitante): impugna por <strong>irregularidade</strong> na lei ou pede <strong>esclarecimento</strong> de seus termos<br>
+      → <strong>Protocolo</strong> — até <strong>3 dias úteis antes</strong> da abertura da sessão de propostas<br>
+      → <strong>Resposta</strong> — divulgada em <strong>sítio oficial</strong> em até <strong>3 dias úteis</strong>, limitada ao <strong>último dia útil anterior</strong> à abertura
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Recursos em geral (art. 165) — por que 3 dias e fase única?</div>
+    <div class="card-text">
+      → <strong>Recurso (3 dias úteis)</strong> — pré-qualificação e registro (deferir/indeferir, alterar, cancelar); <strong>julgamento</strong>; habilitação/inabilitação; <strong>anulação ou revogação</strong>; <strong>extinção unilateral e escrita</strong><br>
+      → <strong>Pedido de reconsideração (3 dias úteis)</strong> — ato do qual <strong>não caiba recurso hierárquico</strong><br><br>
+      → <strong>Julgamento/habilitação (§ 1º)</strong> — a <strong>intenção de recorrer</strong> manifesta-se <strong>imediatamente</strong>, sob pena de <strong>preclusão</strong>; apreciação em <strong>fase única</strong> (com ou sem inversão)<br>
+      → <strong>Tramitação</strong> — dirigido a quem editou o ato; sem reconsideração em <strong>3 dias úteis</strong>, sobe à superior, que decide em até <strong>10 dias úteis</strong>; <strong>contrarrazões</strong> no mesmo prazo, da intimação ou divulgação; vista assegurada; acolhimento invalida só o ato <strong>insuscetível de aproveitamento</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Recursos contra sanções (arts. 166 a 168) — por que 15 dias com suspensivo?</div>
+    <div class="card-text">
+      → <strong>Recurso (15 dias úteis)</strong> — contra <strong>advertência, multa e impedimento</strong> (art. 166); sem reconsideração em <strong>5 dias úteis</strong>, a superior decide em até <strong>20 dias úteis</strong><br>
+      → <strong>Reconsideração (15 dias úteis)</strong> — <strong>único cabível</strong> contra a <strong>inidoneidade</strong> (art. 167), decidido em até <strong>20 dias úteis</strong> por quem aplicou (competência exclusiva)<br>
+      → <strong>Efeito suspensivo (art. 168)</strong> — recurso e reconsideração <strong>suspendem</strong> a decisão até a decisão final — inclusive a inidoneidade; a autoridade é auxiliada pelo <strong>assessoramento jurídico</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Divulgação e eficácia (arts. 91 e 94) — quando o contrato produz efeitos?</div>
+    <div class="card-text">
+      → <strong>Divulgação no PNCP</strong> — condição <strong>indispensável à eficácia</strong> (não à validade): sem publicar, válido mas <strong>sem produzir efeitos</strong><br>
+      → <strong>Prazos da assinatura</strong> — <strong>20 dias úteis</strong> na licitação; <strong>10 dias úteis</strong> na contratação direta<br>
+      → <strong>Urgência</strong> — eficácia <strong>desde a assinatura</strong>, com publicação nos mesmos prazos <strong>sob pena de nulidade</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">PNCP (arts. 174 e 175) — o que é obrigatório e o que é facultativo?</div>
+    <div class="card-text">
+      → <strong>Conceito</strong> — sítio oficial para <strong>divulgação centralizada e obrigatória</strong> dos atos exigidos + <strong>realização facultativa</strong> das contratações por todos os Poderes e entes<br>
+      → <strong>Informações (§ 2º)</strong> — planos anuais; catálogos de padronização; editais, credenciamentos, pré-qualificações, avisos de direta e anexos; atas de registro; <strong>contratos e aditivos</strong>; notas fiscais eletrônicas quando for o caso<br>
+      → <strong>Funcionalidades (§ 3º)</strong> — registro cadastral unificado; painel de preços, banco de saúde e base de notas fiscais; planejamento e gerenciamento (com <strong>cadastro de atesto</strong>); sessões públicas eletrônicas; acesso a <strong>Ceis e Cnep</strong>; gestão compartilhada com a sociedade (mensagens, acompanhamento de obras, comunicação e relatório final); compras expressas (Sicx)<br><br>
+      → <strong>Outros portais (art. 175)</strong> — entes podem ter sítio próprio <strong>complementar</strong>, sem prejuízo do PNCP, com <strong>integração</strong> mantida<br>
+      → <strong>Gestão e formato</strong> — Comitê Gestor <strong>3+2+2</strong> (União, Estados/DF, Municípios), presidido por indicado do PR; <strong>dados abertos</strong> com extração automatizada, observada a LAI; municípios até <strong>20 mil habitantes</strong>: <strong>6 anos</strong> de transição (diário oficial + cópia física sem custo além da reprodução)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — PONTOS QUE MAIS CAEM EM PROVA                      -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">Números que decidem a questão</div>
+    <div class="card-text">
+      → <strong>Alteração:</strong> <strong>25%</strong> acréscimos e supressões; <strong>50%</strong> só acréscimo em reforma<br>
+      → <strong>Garantia:</strong> até <strong>5%</strong>, até <strong>10%</strong> com complexidade, até <strong>30%</strong> em grande vulto com retomada; proposta: <strong>1%</strong><br>
+      → <strong>Duração:</strong> contínuos <strong>5+5</strong>; receita/eficiência <strong>10 ou 35</strong>; TI <strong>15</strong>; escopo <strong>automático</strong>; monopólio <strong>indeterminado</strong><br>
+      → <strong>Gatilhos de extinção:</strong> suspensão <strong>3 meses</strong>; repetidas <strong>90 dias úteis</strong>; atraso <strong>2 meses</strong>; nulidade modulada <strong>6+6 meses</strong><br><br>
+      → <strong>Sanções:</strong> multa <strong>0,5% a 30%</strong>; impedimento até <strong>3 anos</strong>; inidoneidade <strong>3 a 6</strong>; reabilitação <strong>1 ou 3 anos</strong><br>
+      → <strong>Prazos processuais:</strong> impugnação e recurso geral <strong>3 dias úteis</strong>; sanções <strong>15 dias úteis</strong>; eficácia <strong>20/10 dias úteis</strong>; intenção imediata sob <strong>preclusão</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Distinções que a banca inverte</div>
+    <div class="card-text">
+      → <strong>Reajuste × revisão:</strong> previsível por <strong>apostila</strong> × imprevisível por <strong>aditamento</strong><br>
+      → <strong>Príncipe × Administração:</strong> ato <strong>geral e reflexo</strong> × ato <strong>direto e específico</strong><br>
+      → <strong>Impedimento × inidoneidade:</strong> ente que aplicou × <strong>todos os entes</strong>; sem autoridade definida × <strong>ministro/secretário/máxima</strong><br>
+      → <strong>Extinção ≠ sanção:</strong> art. 139 não pune — apenas <strong>encerra e assegura</strong> a continuidade<br><br>
+      → <strong>Eficácia ≠ validade:</strong> PNCP condiciona a <strong>eficácia</strong>, não a validade; urgência tem eficácia <strong>desde a assinatura</strong><br>
+      → <strong>Conciliação × mediação × arbitragem:</strong> propõe × facilita × <strong>decide</strong> (sempre de direito e pública)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> foque nos arts. 90 a 92, 94 a 96, 102, 104 a 106, 109 a 111, 121, 124 a 126, 134, 137 a 139, 147 a 149, 155, 156, 163 a 168 e 174 da Lei 14.133/2021. Decore os percentuais, os gatilhos de extinção e os prazos de recurso — são os pontos de maior incidência desta aula.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 12 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec12">
+  <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão de cima para baixo — temas com mais questões primeiro</div>
+
+  <div class="card">
+    <div class="card-title">Contador de temas</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada ainda.
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2008/resumo-aula-08-lei-14133-2021-parte-2.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 08 · Lei 14.133/2021 — Parte 2</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, q) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        return norm(n.nodeValue).indexOf(q) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0, idx;
+      while ((idx = low.indexOf(q, i)) >= 0) {
+        if (idx > i) frag.appendChild(document.createTextNode(text.slice(i, idx)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mk);
+        i = idx + q.length;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function run() {
+    var q = norm(input.value.trim());
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    if (q) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        if (norm(b.textContent).indexOf(q) >= 0) { found++; highlight(b, q); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      if (found) {
+        var first = null;
+        for (var k = 0; k < blocks.length; k++) {
+          if (!blocks[k].classList.contains('sr-hide')) {
+            first = blocks[k].querySelector('mark.sr-hit');
+            if (first) break;
+          }
+        }
+        if (first) {
+          first.classList.add('sr-first');
+          first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+    }
+  }
+  input.addEventListener('input', run);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(); }
+  });
+  clear.addEventListener('click', function () { input.value = ''; run(); input.focus(); });
+  run();
+})();
+</script>
+</body>
+</html>
