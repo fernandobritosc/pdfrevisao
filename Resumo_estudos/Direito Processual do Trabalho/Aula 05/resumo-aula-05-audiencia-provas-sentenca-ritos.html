@@ -6,9 +6,14 @@
 <title>Resumo — DPT Aula 05: Audiência, Provas, Sentença e Ritos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
   --bg: #f5f4f0;
   --sidebar: #ecebe5;
   --card: #ffffff;
@@ -29,7 +34,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #0891B2;
+  --mat-strong: #0E7490;
+  --mat-soft: #E3F4F8;
+  --mat-line: #AEDBE4;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +49,10 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
 .aula .sidebar {
   position: fixed;
   top: 0;
@@ -60,11 +71,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
 .aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -75,8 +86,16 @@ a { color: var(--blue); }
   text-transform: uppercase;
   letter-spacing: .05em;
 }
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -92,9 +111,9 @@ a { color: var(--blue); }
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
-.aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--ink);
@@ -104,32 +123,85 @@ a { color: var(--blue); }
   margin: 18px 0 8px;
 }
 .aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
 .aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
 }
 .aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
 .header {
   background: var(--card);
   color: var(--ink);
@@ -140,34 +212,68 @@ a { color: var(--blue); }
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
-  margin-bottom: 1rem;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -176,11 +282,61 @@ a { color: var(--blue); }
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
 .callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: left;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
 .table-wrap {
   overflow-x: auto;
   margin: .8rem 0;
@@ -189,61 +345,229 @@ a { color: var(--blue); }
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
 tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
   background: #e8e6df;
   color: #455064;
 }
-.legal-block {
-  background: #f0eee7;
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
   border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
   border-radius: 8px;
   padding: .7rem .9rem;
   margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .82rem;
   color: var(--text2);
   line-height: 1.55;
 }
-.legal-block strong { color: #1d3f9e; }
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
 .footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
 .footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
   .aula .main { margin-left: 0; }
   .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
 }
 @media (max-width: 768px) {
   .header { padding: 1.5rem 1rem; }
   .header h1 { font-size: 1.4rem; }
   .aula section, .aula .section { padding: 1.25rem; }
 }
-</style>
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
 
 <style id="rh-addons">
 html[data-theme="dark"] {
@@ -253,6 +577,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #7DD3E8; --mat-strong: #A5E3F0; --mat-soft: #14313A; --mat-line: #1F5566;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -296,6 +621,9 @@ html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
 }
 @page { margin: 1.2cm; }
 @media print {
+  html[data-theme="dark"] {
+  --mat: #7DD3E8; --mat-strong: #A5E3F0; --mat-soft: #14313A; --mat-line: #1F5566;
+  }
   body { background: #fff !important; color: #1f2733 !important; }
   .sidebar, .rh-toolbar, .progress-bar, .aula-nav { display: none !important; }
   .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
@@ -338,6 +666,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <a href="#sec7">7. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
   <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-05-audiencia-provas-sentenca-ritos.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
   <hr class="sidebar-divider">
   <div style="font-size:.65rem;color:var(--text2);">
     Fontes: simplificado + completo<br>
@@ -376,6 +705,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       → <strong>Pública</strong> (art. 93, IX, CF) — a portas fechadas só por <strong>interesse público</strong> ou defesa da <strong>intimidade</strong> (ex.: reclamante com doença grave pedindo reintegração).<br><br>
       → <strong>Dias úteis, na sede do juízo, entre 8h e 18h</strong>, sem ultrapassar <strong>5 horas seguidas</strong> — o limite é <strong>por audiência</strong>, não pelo dia (exceções: matéria urgente; outro local por edital com 24h; extraordinárias).<br><br>
+      → <strong>Art. 770 × art. 813 (pegadinha de horário):</strong> os <strong>atos processuais em geral</strong> correm das <strong>6h às 20h</strong> (art. 770), mas a <strong>audiência</strong> segue a regra <strong>específica</strong> das <strong>8h às 18h</strong> (art. 813) — o horário ampliado <strong>não</strong> vale para a audiência.<br><br>
+      → <strong>Atraso do juiz por estar em outra audiência:</strong> a <strong>IN 39/16 do TST</strong> afasta o <strong>art. 362, III, do CPC</strong> — não há adiamento por atraso injustificado superior a 30 minutos; as partes <strong>aguardam</strong> o término do outro ato.<br><br>
       → <strong>Tolerância do juiz (art. 815):</strong> atraso de até <strong>15 minutos</strong> — as partes aguardam e o fato vai ao livro de registro (§ 1º, Lei 14.657/2023).<br><br>
       → <strong>Atraso acima de 30 minutos sem justificativa (§ 2º):</strong> partes e advogados <strong>podem retirar-se</strong>, consignando nomes — a audiência é <strong>remarcada para a data mais próxima</strong>, sem penalidade (§ 3º).<br><br>
       → <strong>Una e contínua (art. 849):</strong> uma só audiência para todos os ritos (ordinário, sumário e sumaríssimo) — diferente do CPC (conciliação + instrução separadas). Só se fraciona por <strong>força maior</strong> (ex.: falta de testemunha, perícia), marcando-se a continuação para a primeira desimpedida, <strong>sem nova notificação</strong>.
@@ -392,10 +723,24 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       → <strong>Pregão:</strong> chamada nominal das partes para entrarem em sala.<br><br>
       → <strong>1ª conciliação</strong> (em tese obrigatória — art. 139, V, CPC): o juiz tenta o acordo; homologado, <strong>extingue com mérito</strong> (art. 487, III, "b", CPC). O juiz pode <strong>recusar homologação</strong> se o acordo for maléfico ao empregado (<strong>Súmula 418, TST</strong> — faculdade).<br><br>
-      → <strong>Acordo homologado = irrecorrível</strong> (art. 831, CLT) — só a <strong>União</strong> recorre (contribuições previdenciárias, art. 832); faz <strong>coisa julgada na homologação</strong>.<br><br>
+      → <strong>Audiência una também na conciliação:</strong> a <strong>IN 39/16 do TST</strong> afasta o <strong>art. 334 do CPC</strong> (audiência prévia de conciliação e mediação) — as tentativas de acordo acontecem na própria audiência una: na abertura (<strong>art. 846</strong>) e após as razões finais (<strong>art. 850</strong>).<br><br>
+      → <strong>Acordo homologado = irrecorrível</strong> (art. 831, <strong>parágrafo único</strong>, CLT) — exceção: a <strong>Previdência Social</strong> (União), quanto às contribuições que lhe forem devidas; faz <strong>coisa julgada na homologação</strong>.<br><br>
       <br><br>→ <strong>Defesa:</strong> oral, em <strong>20 minutos</strong> (contestação + exceções + reconvenção) — ou <strong>por escrito</strong> (reforma, art. 847, parágrafo único). Se houver defesa indireta (fatos extintivos/impeditivos/modificativos), o autor se manifesta oralmente (reduzido a termo).<br><br>
       → <strong>Instrução:</strong> depoimentos pessoais + testemunhas (comparecem <strong>independentemente de intimação</strong> — art. 825); o juiz já pode deferir perícia definindo objeto, perito, prazo e quesitos (celeridade).<br><br>
       → <strong>Razões finais:</strong> em regra orais, <strong>10 minutos</strong> por parte (art. 850) — seguidas da <strong>2ª tentativa de conciliação</strong> (maior chance de acordo) e então a <strong>sentença</strong> (pode ser oral; no ordinário o relatório não é dispensado).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Acordo extrajudicial — por que o juiz pode negar e nem precisa marcar audiência?</div>
+    <div class="card-text">
+      → 📌 <strong>Aprendizado:</strong> a homologação de <strong>acordo extrajudicial</strong> (petição conjunta, advogados distintos) segue rito próprio — o juiz <strong>analisa e sentencia em 15 dias da distribuição</strong>, marcando audiência <strong>só se entender necessário</strong>.<br><br>
+      → ⚖️ <strong>Base legal:</strong> CLT, arts. 855-D, 855-E (caput e parágrafo único) e 895, I; Súmula 418 do TST.<br><br>
+      → <strong>Audiência opcional:</strong> designar audiência é <strong>faculdade</strong> — "se entender necessário" (art. 855-D) —, nunca obrigação.<br><br>
+      → <strong>Homologação facultativa:</strong> homologar é <strong>faculdade do juiz</strong> (Súmula 418) — não há direito líquido e certo, logo <strong>não cabe mandado de segurança</strong> contra a recusa; o juiz nega quando o ajuste é <strong>maléfico ao empregado</strong> (proteção).<br><br>
+      → <strong>Negativa recorrível:</strong> da sentença que <strong>nega a homologação</strong> cabe <strong>recurso ordinário</strong> (art. 895, I — decisões definitivas ou terminativas das Varas e Juízos, em 8 dias).<br><br>
+      → <strong>Prescrição suspensa:</strong> a petição de homologação <strong>suspende</strong> o prazo quanto aos <strong>direitos nela especificados</strong> (art. 855-E) — e o prazo <strong>volta a fluir no dia útil seguinte</strong> ao trânsito em julgado da decisão que negar a homologação (parágrafo único).<br><br>
+      → ⚠️ <strong>Distinção:</strong> <strong>suspende, não interrompe</strong> — e só alcança os direitos especificados, nunca a pretensão inteira.
     </div>
   </div>
 
@@ -404,7 +749,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       → Partes comparecem <strong>pessoalmente</strong>; pessoa jurídica por <strong>gerente ou preposto</strong>.<br><br>
       → Ações plúrimas e de cumprimento: reclamantes podem ir por <strong>comissão ou sindicato</strong>.<br><br>
-      → <strong>Preposto não precisa ser empregado</strong> (art. 843, § 3º, reforma) — queda da exigência da <strong>Súmula 377 (cancelada em 2025)</strong>.<br><br>
+      → <strong>Preposto não precisa ser empregado</strong> (art. 843, § 3º, reforma) — queda da exigência da <strong>Súmula 377 (cancelada em 2022)</strong>.<br><br>
       → O preposto <strong>depõe e deve saber os fatos</strong> — desconhecimento gera <strong>confissão</strong> (fatos tidos por verdadeiros). Pela <strong>Tese Vinculante 135</strong>, presumido o fato, dispensa-se outra prova (inclusive testemunhal) sem cerceamento de defesa.
     </div>
   </div>
@@ -495,7 +840,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Licitude</strong> (art. 5º, LVI + art. 369, CPC): ilícitas são inadmissíveis.<br><br>
       <br><br>→ <strong>Verdade real e juiz ativo:</strong> poderes instrutórios (art. 370, CPC) — determina prova de ofício; deferir/indeferir é interlocutória <strong>irrecorrível em regra</strong> (art. 893, § 1º + Súmula 214), sempre fundamentada.<br><br>
       → <strong>Necessidade:</strong> só fatos controvertidos — fora: confessados, notórios, incontroversos, presumidos (art. 374, CPC). Direito em regra não se prova (<em>iura novit curia</em> — só federal); estadual/municipal/estrangeiro/consuetudinário o juiz <strong>pode exigir prova</strong> (art. 376: existência, teor, vigência — ex.: ACT, CCT, tratados, regulamentos).<br><br>
-      → <strong>Imediatidade:</strong> orais direto ao juiz (IN 39/15 afasta o art. 459, CPC — no JT <strong>não</strong> se inquire testemunha direto pelas partes).<br><br>
+      → <strong>Imediatidade:</strong> orais direto ao juiz (IN 39/16 afasta o art. 459, CPC — no JT <strong>não</strong> se inquire testemunha direto pelas partes).<br><br>
       → <strong>Oralidade:</strong> instrução em audiência, atos orais — celeridade e efetividade.
     </div>
   </div>
@@ -504,6 +849,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">Objeto — o que precisa ser provado</div>
     <div class="card-text">
       → Regra: <strong>fatos narrados</strong> (ex.: vínculo = subordinação, onerosidade, habitualidade, pessoalidade — art. 3º CLT).<br><br>
+      → <strong>Pagamento espontâneo de periculosidade:</strong> se a empresa paga qualquer percentual do adicional por mera <strong>liberalidade</strong> (ainda que proporcional ou abaixo do máximo), o trabalho em condição perigosa vira <strong>fato incontroverso</strong> — a <strong>perícia do art. 195 fica dispensada</strong> (<strong>Súmula 453 do TST</strong>, reafirmada na <strong>Tese Vinculante 266</strong>).<br><br>
       → <strong>Dispensados (art. 374, CPC):</strong> notórios, confessados, incontroversos e presumidos.
     </div>
   </div>
@@ -526,7 +872,18 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Inversão (doutrina/jurisprudência):</strong> pela hipossuficiência (inspirada no CDC, art. 6º, VIII) — requerida na inicial ou <strong>de ofício</strong>; momento adequado: a <strong>audiência</strong> (defesa já apresentada).<br><br>
       → <strong>Dinâmica (§ 1º):</strong> impossibilidade/dificuldade excessiva de uma parte <strong>ou</strong> maior facilidade da outra → juiz atribui de modo diverso, por <strong>decisão fundamentada</strong>, dando chance de desincumbência (aptidão para a prova — quem pode provar, prova; ex.: quadro de carreira pela empresa).<br><br>
       → <strong>Requisitos de validade:</strong> decisão <strong>antes da instrução</strong> (§ 2º — a pedido, adia a audiência e admite qualquer meio); <strong>não</strong> pode tornar impossível/excessivamente difícil (§ 3º); sem "decisão surpresa" em audiência — <strong>nula</strong> por violar a ampla defesa.<br><br>
+      → <strong>Limite da IN 39/16:</strong> aplica-se a dinâmica dos <strong>§§ 1º e 2º do art. 373 do CPC</strong>, mas <strong>não</strong> os <strong>§§ 3º e 4º</strong> — no Processo do Trabalho as partes <strong>não podem convencionar</strong> a redistribuição do ônus da prova.<br><br>
       → ⚠️ <strong>Cuidado:</strong> a regra continua sendo a estática — a dinâmica é <strong>exceção</strong> fundamentada caso a caso.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Presunções a favor do empregado (Súmulas 212 e 443)</div>
+    <div class="card-text">
+      → <strong>Continuidade (Súmula 212 + Tese 278):</strong> negados a prestação de serviços e o despedimento, o ônus de provar o <strong>término do contrato</strong> é do <strong>empregador</strong> — o normal é a dispensa, e não o pedido de demissão.<br><br>
+      → <strong>Dispensa de doente grave (Súmula 443 + Tese 254):</strong> presume-se <strong>discriminatória</strong> a despedida de portador de HIV ou de doença grave que suscite estigma ou preconceito — presunção <strong>relativa</strong>, cabendo ao empregador provar que não houve discriminação.<br><br>
+      → <strong>Efeito da discriminação:</strong> reconhecida a dispensa discriminatória, o ato é <strong>nulo</strong> e o empregado tem direito à <strong>reintegração</strong> (não a simples indenização).<br><br>
+      → ⚠️ <strong>Não confundir:</strong> a presunção recai sobre a <strong>causa</strong> da dispensa — o empregado ainda prova que foi dispensado; o que se inverte é o ônus quanto ao <strong>motivo</strong>.
     </div>
   </div>
 </section>
@@ -557,7 +914,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">Documental — forma, momento e casos famosos</div>
     <div class="card-text">
       → <strong>Forma:</strong> original ou cópia autenticada — e cópia simples <strong>declarada autêntica pelo advogado</strong> sob responsabilidade pessoal (art. 830); impugnada, junta originais/autenticadas (parágrafo único).<br><br>
-      → <strong>Momento:</strong> inicial e defesa (eventualidade — arts. 787/845 CLT, 320/434 CPC). <strong>Exceção:</strong> documentos <strong>novos</strong> (fatos posteriores — art. 435, CPC, com justificativa) e na <strong>fase recursal</strong> (Súmula 8: justo impedimento ou fato posterior à sentença).<br><br>
+      → <strong>Momento:</strong> petição inicial ou defesa (art. 434, CPC) — eventualidade (arts. 787/845 CLT). <strong>Exceção:</strong> documentos <strong>novos</strong> (fatos posteriores — art. 435, CPC, com justificativa) e na <strong>fase recursal</strong> (Súmula 8: justo impedimento ou fato posterior à sentença).<br><br>
+      → <strong>Documento novo juntado (art. 437, CPC):</strong> requerida a juntada, o juiz <strong>ouve a outra parte</strong>, que tem <strong>15 dias</strong> para se manifestar — prazo que pode ser <strong>dilatado</strong> conforme a quantidade e a complexidade da documentação (§ 2º).<br><br>
+      → <strong>Autenticação dispensada:</strong> fotocópia não autenticada vale para <strong>pessoa jurídica de direito público</strong> (<strong>OJ 134, SDI-1</strong>) e os <strong>documentos comuns às partes</strong> (conhecimento mútuo) têm valor probante mesmo sem autenticação (<strong>OJ 36, SDI-1</strong>).<br><br>
       → <strong>CTPS (art. 29):</strong> anotação com salário menor gera presunção só <strong>relativa</strong> (<em>juris tantum</em>) — provado o real, retifica + diferenças (primazia da realidade).<br><br>
       <br><br>→ <strong>Vale-transporte (Súmula 460 + Tese 232):</strong> ônus do <strong>empregador</strong> provar que o empregado não faz jus ou não quer o benefício.<br><br>
       → <strong>FGTS (Súmula 461 + Tese 273):</strong> ônus do <strong>empregador</strong> sobre a regularidade (pagamento = fato extintivo, art. 373, II, CPC).<br><br>
@@ -571,9 +930,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Quando:</strong> fato técnico fora do alcance do juiz (exame = pessoas/coisas; vistoria = imóveis; avaliação = valor). <strong>Indispensável:</strong> insalubridade/periculosidade (art. 195, § 2º). <strong>Aconselhável:</strong> acidente (incapacidade), equiparação (atribuições). Mesmo a obrigatória cede a <strong>documentos</strong> que provem sem dúvida.<br><br>
       → <strong>Emprestada (art. 372, CPC + Tese 140):</strong> vale de outro processo com <strong>identidade fática + contraditório nos dois</strong> — sem precisar de concordância; indeferir nova perícia aí <strong>não</strong> é nulidade.<br><br>
       → <strong>Insalubridade sem perícia (OJ 278 + Tese 231):</strong> perícia é obrigatória, mas <strong>impossível</strong> (ex.: empresa fechou) = outros meios de prova.<br><br>
-      → <strong>Procedimento:</strong> defere na audiência, designa perito, fixa objeto/prazo/quesitos; recusa e substituição (arts. 157-158, CPC); complementação e esclarecimentos; <strong>2ª perícia</strong> possível (art. 370, CPC).<br><br>
+      → <strong>Quem elabora (OJ 165, SDI-1):</strong> o art. 195 não distingue <strong>médico de engenheiro</strong> — vale o laudo de qualquer profissional habilitado.<br><br>
+      → <strong>Procedimento:</strong> defere na audiência, designa perito, fixa objeto/prazo/quesitos; recusa e substituição (arts. 157-158, CPC); complementação e esclarecimentos; <strong>2ª perícia possível</strong> (art. 480, CPC) — e o juiz <strong>não está preso ao laudo</strong>: aprecia as conclusões com liberdade e indica na sentença os motivos (art. 479, CPC).<br><br>
       <br><br>→ <strong>Honorários prévios = ilegais</strong> (art. 790-B, § 3º + OJ 98 — cabe <strong>MS ao TRT</strong>). <strong>Assistente técnico</strong> é faculdade paga pela parte (Súmula 341 — elabora parecer, não manda na perícia).<br><br>
-      → <strong>Quem paga (art. 790-B + ADI 5766):</strong> o <strong>sucumbente no objeto da perícia</strong> (não necessariamente o perdedor da causa); se gratuito, paga a <strong>União</strong> (Súmula 457 + Tese 188). Limite do CSJT + parcelamento (§§ 1º-2º).<br><br>
+      → <strong>Quem paga (art. 790-B, caput):</strong> o <strong>sucumbente na pretensão objeto da perícia</strong> — não necessariamente o perdedor da causa. Sendo o reclamante beneficiário da justiça gratuita, quem responde pelo encargo é a <strong>União</strong> (<strong>§ 4º</strong> + Súmula 457 + Tese 188).<br><br>
+      → <strong>O que a ADI 5766 tirou do texto (2021):</strong> foram declaradas inconstitucionais as expressões "<strong>ainda que beneficiária da justiça gratuita</strong>" (caput) e a restrição do <strong>§ 4º</strong> ("não tenha obtido em juízo créditos capazes de suportar a despesa") — logo, <strong>até o beneficiário da gratuidade</strong> responde pelos honorários, e a União só entra quando ele não tiver créditos; no mesmo julgamento, o <strong>art. 844, § 2º</strong> (custas do arquivamento) foi declarado <strong>constitucional</strong>.<br><br>
+      → <strong>Limite e parcelamento (§§ 1º e 2º):</strong> ao fixar os honorários, o juízo observa o <strong>limite máximo do CSJT</strong> (§ 1º) e <strong>pode deferir o parcelamento</strong> (§ 2º) — o que não se admite é exigir <strong>adiantamento</strong> (§ 3º).<br><br>
+      → <strong>Correção monetária (OJ 198, SDI-1):</strong> a atualização dos honorários periciais segue o <strong>art. 1º da Lei 6.899/1981</strong> (débitos resultantes de decisões judiciais) e <strong>não</strong> os índices dos débitos trabalhistas — a verba é <strong>despesa processual</strong>, sem caráter alimentar.<br><br>
       → <strong>Técnica simplificada (art. 464, §§ 2º-4º, CPC):</strong> oitiva de especialista pelo juiz.
     </div>
   </div>
@@ -587,6 +950,16 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Quem confessa:</strong> capazes, prepostos e advogados com poderes específicos — <strong>nunca</strong> confissão extrajudicial contra o empregado (presume coação). O substituto do 843, § 2º só evita o arquivamento, <strong>não confessa</strong>.
     </div>
   </div>
+
+  <div class="card">
+    <div class="card-title">Inspeção judicial — a prova do juiz (arts. 481 e 482, CPC)</div>
+    <div class="card-text">
+      → <strong>Conceito (art. 481):</strong> o juiz, <strong>de ofício ou a requerimento</strong> e em <strong>qualquer fase</strong> do processo, pode inspecionar <strong>pessoas ou coisas</strong> para se esclarecer sobre fato que interesse à decisão da causa.<br><br>
+      → <strong>Como ocorre (art. 482):</strong> na inspeção o juiz pode ser <strong>assistido por um ou mais peritos</strong> — ainda assim, o ato é de <strong>percepção direta</strong> do juiz (ele vê, mede e constata pessoalmente).<br><br>
+      → <strong>Diferença da pericial:</strong> a inspeção <strong>não exige conhecimento técnico</strong> nem laudo de terceiro; a perícia pressupõe <strong>fato técnico</strong> fora do alcance do juiz (ex.: agente insalubre, incapacidade).<br><br>
+      → ⚠️ <strong>Detalhe:</strong> como não está prevista na CLT, a inspeção entra pelo <strong>direito processual comum como fonte subsidiária</strong> — cabe quando o juiz precisa conferir no local as condições alegadas (ex.: posto de trabalho, máquina, ambiente).
+    </div>
+  </div>
 </section>
 
 <!-- ============================================================ -->
@@ -597,7 +970,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="sec-num">5</div>
     <div class="sec-title">Sentença, custas e coisa julgada</div>
   </div>
-  <div class="sec-subtitle">Classificação e requisitos (832 CLT / 489 CPC) · congruência · custas 2% · formal × material</div>
+  <div class="sec-subtitle">Classificação e requisitos (832 CLT / 489 CPC) · congruência e julgamento parcial · efeitos anexos · custas, emolumentos e preparo · formal × material</div>
 
   <div class="card">
     <div class="card-title">Conceito e classificação (art. 203, CPC)</div>
@@ -613,7 +986,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       → <strong>CLT (832):</strong> nomes das partes (limites subjetivos da coisa julgada) + resumo do pedido e da defesa + apreciação das provas (livre convencimento) + fundamentos + conclusão (procedência, parcial ou improcedência — 487; ou extinção sem mérito — 485).<br><br>
       → <strong>CPC (489):</strong> relatório + fundamentação + dispositivo — mesma ideia, outros nomes.<br><br>
-      → <strong>Custas na sentença (art. 789, § 1º):</strong> sempre mencionar o valor — pagas no prazo do recurso (<strong>preparo</strong>, com o depósito recursal).<br><br>
+      → <strong>Relatório dispensado no sumaríssimo:</strong> o requisito é obrigatório no ordinário e no sumário, mas o <strong>art. 852-I</strong> dispensa o relatório na sentença do <strong>sumaríssimo</strong> — basta a menção aos fatos relevantes.<br><br>
+      → <strong>Prazo e condições (§ 1º):</strong> concluindo pela <strong>procedência</strong>, a decisão determina o <strong>prazo e as condições</strong> do cumprimento — a sentença trabalhista já sai exequível.<br><br>
+      → <strong>Custas na sentença (art. 832, § 2º):</strong> sempre mencionar o valor — pagas no prazo do recurso (art. 789, § 1º: <strong>preparo</strong>, com o depósito recursal).<br><br>
+      → <strong>Natureza das parcelas + limite previdenciário (§ 3º):</strong> as decisões <strong>cognitivas ou homologatórias</strong> indicam sempre a <strong>natureza jurídica das parcelas</strong> (condenação ou acordo homologado) e o <strong>limite de responsabilidade de cada parte</strong> pelo recolhimento da contribuição previdenciária, se for o caso.<br><br>
       → <strong>Verbas salariais × indenizatórias (Lei 11.457/2007):</strong> toda sentença (mérito ou acordo) <strong>especifica a natureza</strong> (INSS/IR); com indenizatória, <strong>intima a União</strong> (pode recorrer); acordo pós-trânsito <strong>não prejudica</strong> a União — contribuição <strong>proporcional</strong> ao acordo (OJ 376).
     </div>
   </div>
@@ -632,19 +1008,145 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → Juiz decide <strong>nos limites do pedido e da quantidade</strong>: dano material pedido ≠ moral deferido; R$ 10 mil pedidos ≠ mais; todos os pedidos têm que ser julgados (sem omissão).<br><br>
       → <strong>Menos pode:</strong> deferir quantia <strong>inferior</strong> não viola.<br><br>
       → <strong>Vícios:</strong> <strong>extra petita</strong> (deu o não pedido) · <strong>ultra petita</strong> (deu além da quantidade) · <strong>citra/infra petita</strong> (omitiu pedido).<br><br>
-      → <strong>Súmula 396 (proteção):</strong> deferir <strong>salários</strong> quando o pedido era <strong>reintegração</strong> não é extra petita (art. 496, CLT).
+      → <strong>Acolher só parte não é vício:</strong> examinar <strong>todos</strong> os pedidos e deferir <strong>alguns</strong> é julgamento parcial legítimo — o vício é <strong>deixar de apreciar</strong> pedido, não acolher menos do que se pediu.<br><br>
+      → <strong>Exceção — pedidos implícitos (extrapetição):</strong> em hipóteses legais o juiz decide <strong>além do pedido literal</strong> sem ser extra petita — ex.: <strong>juros de mora e correção monetária</strong> ainda que omissos na inicial ou na condenação (Súmula 211) e <strong>salários</strong> no lugar da reintegração do estável (art. 496 da CLT + Súmula 396).<br><br>
+      → <strong>Súmula 396 (proteção):</strong> deferir <strong>salários</strong> quando o pedido era <strong>reintegração</strong> não é extra petita (art. 496, CLT).<br><br>
+      → <strong>Súmula 211 (juros e correção):</strong> os <strong>juros de mora</strong> e a <strong>correção monetária</strong> incluem-se na liquidação <strong>ainda que omisso o pedido inicial</strong> ou a condenação — não é julgamento extra petita.<br><br>
+      → <strong>Súmula 445 (frutos × má-fé):</strong> a indenização por <strong>frutos percebidos pela posse de má-fé</strong> (art. 1.216 do CC — regra de <strong>direitos reais</strong>, restituição de coisa certa) é <strong>incompatível com o Direito do Trabalho</strong> — não é devida pelo inadimplemento de verbas trabalhistas, <strong>mesmo havendo pedido</strong> do autor.
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title">Custas processuais (arts. 789, 790 e 790-A)</div>
+    <div class="card-title">Julgamento parcial de mérito — dá para recorrer na hora?</div>
     <div class="card-text">
-      → <strong>2%</strong> — mínimo <strong>R$ 10,64</strong>, máximo <strong>4× o teto do RGPS</strong> (reforma criou o teto). Base: <strong>valor da causa</strong> (improcedência/extinção) · <strong>condenação ou acordo</strong> · <strong>valor fixado pelo juiz</strong> (causa indeterminada). Paga o <strong>vencido</strong>, ao final — mas para recorrer paga <strong>no prazo do recurso</strong> (deserção).<br><br>
+      → <strong>Quando cabe (art. 356, I e II, CPC):</strong> o juiz decide <strong>parcialmente o mérito</strong> quando um ou mais pedidos (ou parcela deles) se mostrar <strong>incontroverso</strong> ou estiver <strong>em condições de imediato julgamento</strong>.<br><br>
+      → <strong>Aplicável no Processo do Trabalho (IN 39/16, art. 5º):</strong> o TST aplica as normas do <strong>art. 356, §§ 1º a 4º</strong> do CPC, "cabendo <strong>recurso ordinário de imediato</strong> da sentença" — justamente o <strong>§ 5º</strong> (que prevê agravo de instrumento) <strong>não</strong> se aplica na Justiça do Trabalho.<br><br>
+      → <strong>Interlocutória recorrível de imediato:</strong> é exceção expressa à <strong>irrecorribilidade das decisões interlocutórias</strong> (art. 893, § 1º, da CLT + Súmula 214).<br><br>
+      → <strong>Obrigação reconhecida (§§ 1º a 4º):</strong> a decisão pode reconhecer obrigação <strong>líquida ou ilíquida</strong> (§ 1º) e a parte pode <strong>liquidar ou executar desde logo, independentemente de caução</strong>, mesmo havendo recurso (§ 2º) — com o trânsito em julgado, a execução é definitiva (§ 3º); a liquidação e o cumprimento podem correr em <strong>autos suplementares</strong>, a requerimento da parte ou a critério do juiz (§ 4º).<br><br>
+      → ⚠️ <strong>Efeito prático:</strong> antecipa os pedidos já "maduros" sem esperar o julgamento dos demais — ganho de celeridade que exige <strong>cuidado com a congruência</strong> (não se julga o que não foi pedido) e com o <strong>contraditório</strong> prévio.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Depois de publicada, a sentença ainda pode mudar?</div>
+    <div class="card-text">
+      → <strong>Regra (art. 494, CPC):</strong> publicada a sentença, o juiz <strong>só pode alterá-la</strong> para corrigir, de ofício ou a requerimento, <strong>inexatidões materiais ou erros de cálculo</strong> (I) e <strong>por meio de embargos de declaração</strong> (II).<br><br>
+      → <strong>Embargos com efeito modificativo (art. 897-A, CLT):</strong> no Processo do Trabalho, os embargos de declaração são cabíveis em <strong>5 dias</strong> e admitem <strong>efeito modificativo</strong> nos casos de <strong>omissão</strong> e <strong>contradição</strong> no julgado e de <strong>manifesto equívoco</strong> no exame dos pressupostos extrínsecos do recurso.<br><br>
+      → <strong>Retratação na terminativa (art. 485, § 7º, CPC):</strong> interposta a apelação em qualquer das hipóteses de extinção <strong>sem mérito</strong>, o juiz tem <strong>5 dias para se retratar</strong> — ou mantém a decisão e o recurso segue. Terminativa proposta de novo: <strong>art. 486</strong>, com correção do vício.<br><br>
+      → ⚠️ <strong>Não confundir:</strong> a <strong>retratação</strong> (juiz volta atrás <strong>antes</strong> de o tribunal julgar) é diferente do <strong>julgamento</strong> do recurso (juiz mantém e o tribunal decide) — e as duas não se confundem com a <strong>coisa julgada material</strong>, que só a rescisória desfaz.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Efeitos anexos da sentença (1) — a hipoteca judiciária (art. 495, CPC)</div>
+    <div class="card-text">
+      → <strong>O que é (caput):</strong> a decisão que condena a pagamento de prestação <strong>em dinheiro</strong> — e a que <strong>converte</strong> prestação de fazer, não fazer ou de dar coisa em <strong>pecuniária</strong> — vale como <strong>título constitutivo de hipoteca judiciária</strong>: garante o crédito sobre <strong>bens imóveis</strong> do devedor <strong>sem</strong> penhora prévia.<br><br>
+      → <strong>Nasce antes da certeza do crédito (§ 1º):</strong> a garantia se constitui ainda que a condenação seja <strong>genérica</strong> (I), que o credor possa promover o <strong>cumprimento provisório</strong> ou esteja <strong>pendente arresto</strong> sobre bem do devedor (II) e <strong>mesmo que a decisão seja impugnada por recurso com efeito suspensivo</strong> (III).<br><br>
+      → <strong>Como se constitui (§ 2º):</strong> apresentando <strong>cópia da sentença no cartório de registro de imóveis</strong> — <strong>independentemente de ordem judicial</strong>, de declaração expressa do juiz ou de demonstração de urgência. Não existe ato do juízo "decretando" a hipoteca.<br><br>
+      → <strong>Depois de registrada (§ 3º):</strong> em até <strong>15 dias</strong> da realização, a parte <strong>informa ao juízo</strong>, que determina a <strong>intimação da outra parte</strong> para tomar ciência do ato.<br><br>
+      → <strong>O que garante (§ 4º):</strong> <strong>direito de preferência</strong> no pagamento em relação a outros credores, observada a <strong>prioridade no registro</strong> — e o registro produz também o <strong>direito de sequela</strong> (perseguir o bem em mãos de terceiro).<br><br>
+      → <strong>Se a sentença for reformada (§ 5º):</strong> sobrevindo <strong>reforma ou invalidação</strong> da decisão que impôs o pagamento, a parte responde <strong>independentemente de culpa</strong> pelos danos que a outra sofreu em razão da garantia — indenização liquidada e executada <strong>nos próprios autos</strong>.<br><br>
+      → <strong>Alcance:</strong> bens <strong>imóveis</strong> — e também <strong>navios e aeronaves</strong>, bens de registro especial equiparados a imóveis para fins de hipoteca.<br><br>
+      → ⚠️ <strong>Não confundir:</strong> a hipoteca judiciária é <strong>efeito anexo</strong> da própria condenação — não decorre de penhora, de decisão específica nem de pedido da parte.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Efeitos anexos da sentença (2) — protesto e BNDT (art. 883-A, CLT)</div>
+    <div class="card-text">
+      → <strong>A regra trabalhista (art. 883-A, incluído pela reforma):</strong> a decisão judicial <strong>transitada em julgado</strong> só pode ser levada a <strong>protesto</strong>, gerar <strong>inscrição do nome do executado em órgãos de proteção ao crédito</strong> ou no <strong>Banco Nacional de Devedores Trabalhistas (BNDT)</strong> depois de transcorridos <strong>45 dias da citação do executado</strong> e <strong>desde que não haja garantia do juízo</strong>.<br><br>
+      → <strong>Título exigido:</strong> só <strong>decisão transitada em julgado</strong> — não cabe protesto de decisão ainda sujeita a recurso.<br><br>
+      → <strong>Como se efetiva (art. 517, §§ 1º e 2º, CPC):</strong> o <strong>exequente</strong> apresenta <strong>certidão de teor da decisão</strong>, fornecida em <strong>3 dias</strong>, indicando nome e qualificação do exequente e do executado, número do processo, valor da dívida e data do decurso do prazo para pagamento voluntário.<br><br>
+      → <strong>Ação rescisória (§ 3º):</strong> o executado que propôs a rescisória pode requerer, <strong>a suas expensas e sob sua responsabilidade</strong>, a <strong>anotação da propositura à margem do título protestado</strong>.<br><br>
+      → <strong>Cancelamento (§ 4º):</strong> a requerimento do executado, o protesto é cancelado por determinação do juiz, mediante ofício ao cartório em <strong>3 dias</strong> do protocolo, comprovada a <strong>satisfação integral</strong> da obrigação.<br><br>
+      → ⚠️ <strong>Prazos que se confundem:</strong> o CPC fala em protesto após o prazo do <strong>art. 523</strong> (pagamento voluntário); no Processo do Trabalho vale o marco próprio do <strong>art. 883-A</strong> — <strong>45 dias da citação, sem garantia do juízo</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Custas de 2% (art. 789) — bases, momento, isenção e preparo</div>
+    <div class="card-text">
+      → <strong>2%</strong> — mínimo <strong>R$ 10,64</strong>, máximo <strong>4× o teto do RGPS</strong> (reforma criou o teto). Bases (incisos I a IV): <strong>acordo ou condenação</strong> (I) · <strong>valor da causa</strong> na extinção sem mérito e na improcedência (II) · <strong>valor da causa</strong> na procedência de ação declaratória e de ação constitutiva (III) · <strong>valor fixado pelo juiz</strong> quando indeterminado (IV). Paga o <strong>vencido, após o trânsito em julgado</strong> (§ 1º) — mas para recorrer paga e <strong>comprova o recolhimento dentro do prazo recursal</strong> (preparo; deserção).<br><br>
       → <strong>Insuficiência (OJ 140):</strong> só há deserção se, intimado por <strong>5 dias</strong> (art. 1007, § 2º, CPC), não <strong>complementar</strong> custas ou depósito — e <strong>só complementação</strong>: zerado = deserto direto.<br><br>
       → <strong>Acordo:</strong> 2% sobre o valor, <strong>metade cada</strong> — mas o § 3º deixa as partes <strong>combinarem diferente</strong> (empresa assume tudo, até o trabalhador).<br><br>
-      <br><br>→ <strong>Isentos (art. 790-A):</strong> memorizar o rol + parágrafo único — <strong>NÃO</strong> são isentos: conselhos profissionais (OAB, CREA), <strong>empresas públicas e SEM</strong> (Súmula 170; pessoa jurídica de direito privado). Exceção construída: conselhos como <strong>autarquias especiais</strong> têm isenção (TST + STF, ADI 1717, DL 779). Só <strong>fundação pública</strong> de direito público passa (não EP, doméstica ou EPP).<br><br>
+      → <strong>Base de cálculo no acordo (inciso I):</strong> havendo <strong>acordo ou condenação</strong>, os 2% incidem sobre o <strong>respectivo valor</strong> — isto é, sobre o que foi <strong>ajustado ou condenado</strong> — e <strong>não</strong> sobre o valor dado à causa na petição inicial.<br><br>
+      → <strong>Quando a base é o valor da causa (incisos II e III):</strong> apenas na <strong>extinção sem resolução do mérito</strong>, na <strong>improcedência total</strong> e na <strong>procedência de ação declaratória ou constitutiva</strong>; sendo o valor <strong>indeterminado</strong>, sobre o que o <strong>juiz fixar</strong> (inciso IV).<br><br>
+      → <strong>Quota-parte do beneficiário da justiça gratuita:</strong> no acordo em partes iguais, o litigante <strong>beneficiário da gratuidade fica isento da sua metade</strong> (art. 790, §§ 3º e 4º + art. 790-A, I) — a outra parte responde apenas pela <strong>própria quota-parte</strong>, nunca pelo valor integral.<br><br>
+      → <strong>Isentos (art. 790-A):</strong> memorizar o rol + parágrafo único — <strong>NÃO</strong> são isentos: conselhos profissionais (OAB, CREA), <strong>empresas públicas e SEM</strong> (Súmula 170; pessoa jurídica de direito privado). Exceção construída: conselhos como <strong>autarquias especiais</strong> têm isenção (TST + STF, ADI 1717, DL 779). Só <strong>fundação pública</strong> de direito público passa (não EP, doméstica ou EPP).<br><br>
       → <strong>Justiça gratuita (art. 790, §§ 3º-4º):</strong> até <strong>40% do teto do RGPS</strong> (de ofício ou a pedido) ou <strong>insuficiência comprovada</strong>.<br><br>
-      → <strong>Súmula 36:</strong> plúrimas = custas sobre o <strong>valor global</strong>. <strong>Súmula 86:</strong> massa falida sem deserção (não vale p/ liquidação extrajudicial).
+      → <strong>Súmula 36 (ações plúrimas):</strong> as custas incidem sobre o <strong>valor global</strong> dos pedidos — <strong>não</strong> se individualizam pelo crédito de cada litisconsorte.<br><br>
+      → <strong>Súmula 86 (falência × preparo):</strong> <strong>não há deserção</strong> do recurso da <strong>massa falida</strong> por falta de custas ou de depósito — na falência o devedor perde a <strong>livre disponibilidade dos bens</strong> (execução concursal) e exigir preparo esvaziaria ainda mais a massa; o privilégio <strong>não</strong> alcança a <strong>empresa em liquidação extrajudicial</strong>, que segue obrigada ao preparo.<br><br>
+      → <strong>Depósito recursal — quem não paga (art. 899, § 10):</strong> a reforma isentou os <strong>beneficiários da justiça gratuita</strong>, as <strong>entidades filantrópicas</strong> e as <strong>empresas em recuperação judicial</strong> — <strong>recuperação judicial não é liquidação extrajudicial</strong>: a primeira tenta preservar a empresa (e é isenta); a segunda liquida o patrimônio e continua devendo o preparo (Súmula 86).<br><br>
+      → <strong>Condenação ilíquida (§ 2º):</strong> não sendo líquida a condenação, o <strong>juízo arbitra o valor</strong> e fixa o montante das custas processuais.<br><br>
+      → <strong>Dissídio coletivo (§ 4º):</strong> as partes vencidas respondem <strong>solidariamente</strong> pelas custas, calculadas sobre o valor <strong>arbitrado na decisão</strong> ou pelo <strong>Presidente do Tribunal</strong> — no coletivo não há rateio: há solidariedade.<br><br>
+      → <strong>Forma de pagamento e sindicato (art. 790):</strong> o pagamento de custas e emolumentos segue as <strong>instruções expedidas pelo TST</strong>; se o empregado <strong>não tem justiça gratuita nem isenção</strong>, o <strong>sindicato que interveio</strong> no processo responde <strong>solidariamente</strong> (§ 1º) e, não pagas as custas, executa-se a importância (§ 2º).<br><br>
+      → <strong>Isenção — o que o rol não diz (art. 790-A, II e parágrafo único):</strong> também é isento o <strong>MPT</strong>; a isenção <strong>não alcança as entidades fiscalizadoras do exercício profissional</strong> e <strong>não exime</strong> os entes do inciso I de <strong>reembolsar as despesas judiciais</strong> realizadas pela parte vencedora.<br><br>
+      → <strong>Súmula 25 (inversão da sucumbência):</strong> I — a parte vencedora em 1º grau que for vencida em 2º está obrigada, <strong>independentemente de intimação</strong>, a pagar as custas fixadas na sentença originária, das quais o então vencido estava isento; II — se as custas <strong>já foram recolhidas</strong> e não houve acréscimo ou atualização do valor, <strong>descabe novo pagamento</strong> ao recorrer — ao final, se sucumbente, a parte apenas <strong>reembolsa</strong> a quantia.<br><br>
+      → <strong>Súmula 25, IV — o vencido isento reembolsa:</strong> o <strong>reembolso das custas à parte vencedora</strong> é devido <strong>mesmo quando a parte vencida é isenta</strong> do pagamento; o <strong>art. 790-A, parágrafo único</strong> limita esse dever aos <strong>entes do inciso I</strong> (União, Estados, DF, Municípios, autarquias e fundações públicas — ressalvadas as que exploram atividade econômica e as entidades fiscalizadoras de profissão), de modo que <strong>MPT e beneficiário da justiça gratuita não reembolsam</strong>: a isenção deles é plena (art. 790-A, <em>caput</em> e II).<br><br>
+      → <strong>Armadilha — negócio jurídico processual:</strong> o TST <strong>não aplica</strong> ao Processo do Trabalho o art. 190 do CPC (negociação processual) — <strong>IN 39/16, art. 2º, II</strong> —, de modo que as partes não podem negociar regras do processo; o que vale é a <strong>cláusula do acordo sobre as custas</strong> (§ 3º).<br><br>
+      → <strong>Armadilha — mandado de segurança:</strong> <strong>não cabe MS</strong> contra o ato do juiz que, <strong>de ofício</strong>, arbitrou <strong>novo valor à causa</strong> (majorando as custas) — o juízo <strong>pode</strong> corrigir de ofício o valor da causa (art. 292, § 3º, do CPC, aplicado pela <strong>IN 39/16, art. 3º, V</strong>) e o remédio é o <strong>recurso</strong> (recurso ordinário e, se tido deserto, agravo de instrumento).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Custas na execução (art. 789-A) — a tabela cobrada literalmente</div>
+    <div class="card-text">
+      → <strong>Regra do caput:</strong> no processo de execução são devidas custas, <strong>sempre de responsabilidade do executado e pagas ao final</strong> — não há adiantamento nem rateio com o exequente.<br><br>
+      → <strong>Consequência prática — agravo de petição:</strong> como as custas da execução são <strong>pagas ao final</strong>, o <strong>recolhimento não é pressuposto de admissibilidade</strong> do agravo de petição — na execução <strong>não há deserção por falta de preparo</strong> (art. 789-A, <em>caput</em>): a exigência de preparo só existe onde as custas são pagas <strong>antes</strong>, como no recurso ordinário.<br><br>
+      → <strong>Arrematação, adjudicação e remição (I):</strong> <strong>5%</strong> sobre o respectivo valor, até o máximo de <strong>R$ 1.915,38</strong>.<br><br>
+      → <strong>Atos dos oficiais de justiça (II):</strong> por <strong>diligência certificada</strong> — <strong>R$ 11,06</strong> em zona <strong>urbana</strong> e <strong>R$ 22,13</strong> em zona <strong>rural</strong>.<br><br>
+      → <strong>Agravo de instrumento (III), agravo de petição (IV) e embargos à execução, de terceiro e à arrematação (V):</strong> <strong>R$ 44,26</strong> cada — os embargos <strong>não</strong> são isentos de custas.<br><br>
+      → <strong>Recurso de revista (VI) e impugnação à sentença de liquidação (VII):</strong> <strong>R$ 55,35</strong> cada.<br><br>
+      → <strong>Armazenagem em depósito judicial (VIII):</strong> <strong>0,1% por dia</strong> do valor da avaliação.<br><br>
+      → <strong>Cálculos de liquidação pelo contador do juízo (IX):</strong> <strong>0,5%</strong> sobre o valor liquidado, até o limite de <strong>R$ 638,46</strong>.<br><br>
+      → ⚠️ <strong>Distinção essencial:</strong> no <strong>conhecimento</strong> as custas são <strong>2% sobre o valor</strong> (art. 789); na <strong>execução</strong> valem os <strong>valores fixos da tabela do art. 789-A</strong> — trocar os dois regimes é o erro clássico — e o percentual do inciso I é <strong>5%</strong>, nunca <strong>3%</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Arrematação, adjudicação e remição — o que cada uma significa na prática?</div>
+    <div class="card-text">
+      → <strong>Arrematação (leilão judicial):</strong> a Justiça <strong>penhora o bem</strong> do devedor e o <strong>vende em leilão</strong> para pagar a dívida; o valor pago pelo comprador é que serve de base — ex.: a empresa não pagou a dívida, a Justiça penhora um carro dela e manda a leilão; alguém compra por <strong>R$ 30.000</strong> → é arrematação, e sobre esses R$ 30.000 incidem as <strong>custas de 5%</strong>.<br><br>
+      → <strong>Adjudicação (o credor fica com o bem):</strong> em vez do dinheiro, o <strong>próprio credor</strong> (o trabalhador) recebe o bem penhorado — ocorre tipicamente quando <strong>ninguém comparece ao leilão</strong>; ex.: não apareceu comprador para o imóvel e o trabalhador aceita ficar com ele como pagamento → é adjudicação, com custas de <strong>5% sobre o valor do bem adjudicado</strong>.<br><br>
+      → <strong>Remição (o devedor paga de última hora):</strong> o devedor <strong>quita a dívida antes da venda do bem ou da adjudicação</strong> e assim evita perder o bem — ex.: antes do leilão do carro, a empresa paga à vista o valor devido → é remição; <strong>as custas de 5% são devidas do mesmo jeito</strong>, porque o processo de execução já estava em curso.<br><br>
+      → <strong>Por que as três entram no mesmo inciso (art. 789-A, I):</strong> o texto fala em <strong>autos de arrematação, de adjudicação e de remição</strong> — em qualquer das três o <strong>processo de execução terminou pela entrega ou pelo pagamento do valor</strong>, e os 5% são calculados sobre o <strong>respectivo valor do ato</strong> (e não sobre o valor original da dívida), sempre com o <strong>teto de R$ 1.915,38</strong> por ato.<br><br>
+      → ⚠️ <strong>Não confundir:</strong> <strong>arrematação</strong> = um <strong>terceiro compra</strong> no leilão; <strong>adjudicação</strong> = o <strong>credor fica com o bem</strong>; <strong>remição</strong> = o <strong>devedor paga antes</strong> da venda/adjudicação — nas três há custas de 5%, o que muda é <strong>quem fica com o bem</strong>.
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Situação</th><th>Exemplo de valor</th><th>Custas (5%)</th><th>Resultado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Arrematação</strong></td><td>R$ 50.000</td><td>R$ 2.500</td><td><strong>R$ 1.915,38</strong> (teto aplicado)</td></tr>
+          <tr><td><strong>Adjudicação</strong></td><td>R$ 20.000</td><td>R$ 1.000</td><td><strong>R$ 1.000</strong> (abaixo do teto)</td></tr>
+          <tr><td><strong>Remição</strong></td><td>R$ 40.000</td><td>R$ 2.000</td><td><strong>R$ 1.915,38</strong> (teto aplicado)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Emolumentos (art. 789-B) — quem requer, paga</div>
+    <div class="card-text">
+      → <strong>Regra do caput:</strong> os emolumentos são <strong>suportados pelo requerente</strong>, nos valores da tabela do artigo — não integram os 2% das custas nem seguem a sucumbência.<br><br>
+      → <strong>Autenticação de traslado de peças</strong> (cópia reprográfica apresentada pelas partes): <strong>R$ 0,55</strong> por folha (I).<br><br>
+      → <strong>Fotocópia de peças:</strong> <strong>R$ 0,28</strong> por folha (II).<br><br>
+      → <strong>Autenticação de peças:</strong> <strong>R$ 0,55</strong> por folha (III).<br><br>
+      → <strong>Cartas de sentença, de adjudicação, de remição e de arrematação:</strong> <strong>R$ 0,55</strong> por folha (IV).<br><br>
+      → <strong>Certidões:</strong> <strong>R$ 5,53</strong> por folha (V) — o valor mais alto da tabela.<br><br>
+      → ⚠️ <strong>Para fixar:</strong> emolumento anda com o <strong>pedido da parte</strong> (quem requer, paga); custa anda com a <strong>sucumbência</strong> (quem perde, paga).
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Termo</th><th>O que é</th><th>Quem cobra</th><th>Quando aparece</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Custas judiciais</strong></td><td>despesas com o <strong>funcionamento da Justiça</strong> — movimentar o processo, a execução e os recursos</td><td>Justiça do Trabalho</td><td>petição inicial, recursos, execução, embargos etc.</td></tr>
+          <tr><td><strong>Emolumentos judiciais</strong></td><td>taxas cobradas por <strong>atos administrativos praticados pelo cartório</strong> judicial</td><td>cartórios ou setor judiciário</td><td>certidões, traslados, cópias, registros, publicação de editais, registro de penhora etc.</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -655,7 +1157,18 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Só o dispositivo</strong> faz coisa julgada — motivos e verdade dos fatos, <strong>não</strong> (art. 504).<br><br>
       → <strong>Limites objetivos:</strong> os <strong>pedidos</strong> julgados (inclusive reconvenção). <strong>Subjetivos:</strong> só quem participou/pôde participar (<strong>inter partes</strong>) — coletivo foge à regra (art. 103, CDC).<br><br>
       → <strong>Formal:</strong> toda sentença (terminativa ou definitiva) — efeitos <strong>inter processuais</strong> (trava o mesmo processo; regra: pode repropor — exceção art. 486).<br><br>
-      → <strong>Material (art. 502):</strong> só definitiva — efeitos <strong>extraprocessuais</strong> (trava tudo, para sempre). Só ela admite <strong>rescisória</strong> (art. 966 — vícios + sentença do 487).
+      → <strong>Material (art. 502):</strong> só definitiva — efeitos <strong>extraprocessuais</strong> (trava tudo, para sempre). Só ela admite <strong>rescisória</strong> (art. 966 — vícios + sentença do 487).<br><br>
+      → <strong>Rescisória — prazo (art. 975, CPC + Súmula 100 do TST):</strong> o direito à rescisão se extingue em <strong>2 anos</strong>, contados do trânsito em julgado da última decisão (a Súmula 100 cuida da contagem, do dia seguinte ao trânsito, seja a decisão de mérito ou não) — passado o prazo, a coisa julgada material se torna <strong>"soberana"</strong> e não pode mais ser desconstituída.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">A sentença alcança quem não participou do processo?</div>
+    <div class="card-text">
+      → <strong>Regra — inter partes (art. 506, CPC):</strong> a sentença faz coisa julgada <strong>às partes entre as quais é dada</strong>, <strong>não prejudicando terceiros</strong> — por isso a execução, em regra, não alcança quem não participou do processo.<br><br>
+      → <strong>Tomador de serviços (Súmula 331, IV, TST):</strong> a responsabilidade <strong>subsidiária</strong> do tomador exige que ele tenha <strong>participado da relação processual</strong> e que <strong>conste do título executivo judicial</strong> — não basta ter sido sócio ou integrante de grupo na execução.<br><br>
+      → <strong>Grupo econômico na execução (Tema 1.232, STF — repercussão geral):</strong> discute-se se a execução trabalhista pode ser direcionada a empresa do <strong>mesmo grupo econômico que não participou da fase de conhecimento</strong> — <strong>mérito ainda pendente</strong>, com suspensão nacional dos processos: trate como <strong>tese em construção</strong>, não como entendimento firmado.<br><br>
+      → ⚠️ <strong>Para fixar:</strong> no Processo do Trabalho a execução alcança, em regra, <strong>quem constou do título</strong> — o sócio (via desconsideração da personalidade jurídica) e o tomador responsável subsidiário; estender a execução a outra empresa do grupo <strong>sem</strong> participação na fase de conhecimento é exatamente o que o STF vai decidir.
     </div>
   </div>
 </section>
@@ -676,7 +1189,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → Até <strong>2 salários mínimos</strong> (Súmula 356; Tese 235: recepção pela CF — alçada em SM é lícita). Raríssimo na prática.<br><br>
       → <strong>Sem resumo de depoimentos (só conclusão de fato)</strong> — ata simplificada.<br><br>
       → <strong>Sem recurso</strong>, salvo matéria <strong>constitucional</strong> — na prática: <strong>RE</strong> (majoritária — Súmula 640, STF: cabe RE de decisão de alçada/juizado). RO é tese minoritária (art. 895).<br><br>
-      → Valor impugnável em razões finais; revisão ao presidente do TRT em <strong>48h sem suspensivo</strong> (instruída com inicial + ata).
+      → Valor impugnável em razões finais; revisão ao presidente do TRT em <strong>48h sem suspensivo</strong> (instruída com inicial + ata).<br><br>
+      → <strong>Como se fixa a alçada (Súmula 71):</strong> pelo <strong>valor dado à causa na data do ajuizamento</strong>, desde que <strong>não impugnado</strong> — e é <strong>inalterável</strong> no curso do processo.<br><br>
+      → <strong>Onde a alçada não se aplica (Súmula 365):</strong> <strong>ação rescisória</strong> e <strong>mandado de segurança</strong> não se sujeitam à alçada.<br><br>
+      → <strong>Processos em curso (OJ 260, SDI-1):</strong> o rito <strong>sumaríssimo é inaplicável aos processos iniciados antes</strong> da vigência da Lei 9.957/00 (I); se o despacho denegatório invocar o <strong>art. 896, § 6º</strong> nesses processos, o Tribunal <strong>supera o obstáculo</strong> e aprecia o recurso pelos fundamentos invocados — divergência jurisprudencial ou violação de dispositivo infraconstitucional (II).
     </div>
   </div>
 
@@ -684,7 +1200,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">Sumaríssimo — competência (art. 852-A)</div>
     <div class="card-text">
       → Até <strong>40 SM</strong> na data do ajuizamento — <strong>obrigatório</strong> ("ficam submetidas"), sem escolha (dano moral não muda nada — só o valor conta).<br><br>
-      → <strong>Excluídos:</strong> AP <strong>direta, autárquica e fundacional</strong> (direito público) — mas <strong>EP e SEM podem</strong> (direito privado). Plúrimas: <strong>soma</strong> ≤ 40. Coletivo: rito próprio, nunca sumaríssimo.<br><br>
+      → <strong>Excluídos:</strong> AP <strong>direta, autárquica e fundacional</strong> (direito público) — mas <strong>EP e SEM podem</strong> (direito privado). Plúrimas: <strong>soma</strong> ≤ 40. Coletivo: rito próprio, nunca sumaríssimo — e também ficam fora o <strong>inquérito de falta grave</strong>, a <strong>ação rescisória</strong>, o <strong>mandado de segurança</strong> e as <strong>ações coletivas</strong> (procedimentos especiais próprios).<br><br>
       → <strong>Sumário não foi revogado</strong> (majoritária — sem revogação expressa; convivem).
     </div>
   </div>
@@ -695,7 +1211,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>Pedido certo e determinado com valor</strong> (I) + <strong>endereço correto</strong>, sem <strong>edital</strong> (II) — descumprir = <strong>arquiva + custas, sem emenda</strong> (§ 1º).<br><br>
       → Audiência em até <strong>15 dias</strong> do ajuizamento (III, pauta especial se preciso).<br><br>
       → <strong>Una e sem fracionar</strong> (art. 852-C — incidentes decididos na hora); conciliação <strong>o tempo todo</strong>, sem momentos obrigatórios (art. 852-E).<br><br>
-      → Documentos: manifestação <strong>imediata</strong>, sem suspender (art. 852-H, § 1º).
+      → Documentos: manifestação <strong>imediata</strong>, sem suspender (art. 852-H, § 1º).<br><br>
+      → <strong>Incidentes e exceções (art. 852-G):</strong> tudo que possa interferir no prosseguimento da audiência e do processo é decidido <strong>de plano</strong>, na hora pelo juiz — as demais questões ficam para a sentença.<br><br>
+      → <strong>Poderes instrutórios (art. 852-D):</strong> o juiz dirige o processo com <strong>liberdade para determinar as provas</strong>, considerando o ônus de cada litigante, podendo <strong>limitar ou excluir</strong> as excessivas, impertinentes ou protelatórias.<br><br>
+      → <strong>Mudança de endereço (art. 852-B, § 2º):</strong> as partes e os advogados <strong>devem comunicar</strong> ao juízo as mudanças de endereço ocorridas no curso do processo — sem a comunicação, reputam-se <strong>válidas e eficazes</strong> as intimações enviadas ao <strong>endereço anteriormente indicado</strong>.<br><br>
+      → <strong>Todas as provas na audiência (art. 852-H, caput):</strong> as provas são produzidas na <strong>audiência de instrução e julgamento</strong>, <strong>ainda que não requeridas previamente</strong> — é a concentração do rito.<br><br>
+      → <strong>Prosseguimento (art. 852-H, § 7º):</strong> interrompida a audiência, o <strong>prosseguimento e a solução</strong> do processo se dão em até <strong>30 dias</strong>, salvo motivo relevante justificado nos autos pelo juiz da causa.<br><br>
+      → <strong>Notificação (art. 841, § 1º):</strong> a via é a <strong>postal, com franquia</strong>; o <strong>edital</strong> só cabe se o reclamado criar embaraços ao recebimento ou não for encontrado — e no <strong>sumaríssimo</strong> o art. 852-B, II exige o <strong>endereço correto</strong> (não se faz citação por edital).
     </div>
   </div>
 
@@ -704,15 +1226,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       → <strong>Testemunhas: 2</strong> por parte, sem intimação (§ 2º) — intimação só da <strong>convidada comprovada</strong> que faltou, com <strong>coercitiva</strong> se descumprir (§ 3º).<br><br>
       → <strong>Perícia:</strong> não é vedada — só se <strong>indispensável ou imposta por lei</strong> (objeto, perito e prazo de saída; impugnação em <strong>5 dias</strong> — §§ 4º e 6º).<br><br>
-      → <strong>Sentença (art. 852-I):</strong> sem <strong>relatório</strong> (só fatos relevantes) · justa e equânime (fins sociais) · <strong>líquida</strong> (sem liquidação — por isso o pedido certo) · intimação <strong>na audiência</strong> (§ 3º).
+      → <strong>Sentença (art. 852-I):</strong> menciona os <strong>elementos de convicção</strong> do juízo, com <strong>resumo dos fatos relevantes</strong> ocorridos em audiência — <strong>dispensado o relatório</strong> · justa e equânime (fins sociais) · <strong>líquida</strong> (sem liquidação — por isso o pedido certo) · intimação <strong>na audiência</strong> (§ 3º).<br><br>
+      → <strong>Ata resumida (art. 852-F):</strong> registram-se <strong>resumidamente</strong> os atos essenciais, as afirmações fundamentais das partes e as informações úteis trazidas pela prova testemunhal — o registro é resumido, nunca detalhado.
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Recursos (arts. 895 e 896, § 9º + Súmula 442)</div>
     <div class="card-text">
-      → <strong>RO:</strong> distribuição imediata, relator libera em <strong>10 dias</strong>, sem revisor, MPT com parecer <strong>oral</strong>, acórdão = <strong>certidão</strong> (vale pelos próprios fundamentos se confirmado).<br><br>
-      → <strong>Revista:</strong> só por <strong>súmula TST, vinculante ou CF direta</strong> — <strong>nunca por OJ</strong> (Súmula 442).
+      → <strong>RO no sumaríssimo (art. 895, § 1º):</strong> recebido no Tribunal, o recurso é <strong>imediatamente distribuído</strong> (II); o relator libera o processo em <strong>até 10 dias</strong>, a Secretaria o coloca <strong>imediatamente em pauta</strong> e o julgamento é <strong>sem revisor</strong> (II); o <strong>MPT</strong> dá <strong>parecer oral</strong> se entender necessário, com registro na certidão (III); o <strong>acórdão é a própria certidão de julgamento</strong> — com indicação suficiente do processo, da parte dispositiva e das razões de decidir do voto prevalente (IV) — e, se a sentença for <strong>confirmada pelos próprios fundamentos</strong>, a certidão serve de acórdão (IV).<br><br>
+      → <strong>Turma especializada (art. 895, § 2º):</strong> os TRTs, divididos em Turmas, <strong>podem designar Turma</strong> para julgar os recursos ordinários interpostos nas demandas do <strong>sumaríssimo</strong>.<br><br>
+      → <strong>Revista:</strong> só por <strong>súmula do TST, súmula vinculante do STF ou violação direta da CF</strong> — <strong>nunca por OJ</strong> (art. 896, § 9º + Súmula 442).<br><br>
+      → <strong>Embargos no sumaríssimo (Súmula 458 + art. 894, II):</strong> apesar da restrição do art. 896, § 6º, <strong>admitem-se embargos</strong> ao TST (<strong>8 dias</strong>) quando demonstrada <strong>divergência entre Turmas</strong> do TST fundada em interpretações diversas sobre a aplicação do <strong>mesmo dispositivo constitucional</strong> ou de <strong>matéria sumulada</strong>.<br><br>
+      → <strong>IN 39/16 × notas taquigráficas (art. 944 do CPC):</strong> <strong>não se aplica</strong> na Justiça do Trabalho a regra de que, não publicado o acórdão em <strong>30 dias</strong> da sessão de julgamento, as <strong>notas taquigráficas</strong> o substituem para todos os fins, independentemente de revisão (<strong>IN 39/16, art. 2º, X</strong>) — o acórdão depende de publicação.
     </div>
   </div>
 </section>
@@ -728,10 +1254,15 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">Conteúdo de estudo extraído das questões do TEC — sem replicar a questão</div>
 
   <div class="card">
-    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-title">Incidência de temas (TEC)</div>
     <div class="card-text">
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 5 — Sentença, custas e coisa julgada: 8</span><br>
+      <span class="tag tag-red">Seção 6 — Ritos sumário e sumaríssimo: 6</span><br><br>
+      <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Seção 1 — Audiência — características e fases: 2</span><br><br>
       <strong>Baixa incidência ⚪</strong><br>
-      <span class="tag">Seção 6 — Ritos sumário e sumaríssimo: 1</span><br>
+      <span class="tag">Seção 4 — Provas em espécie: 1</span><br>
     </div>
   </div>
 </section>
