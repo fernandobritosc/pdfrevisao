@@ -365,6 +365,9 @@ bidirecional com o resumo completo no topo e no rodapé).
   (questão TEC colada, correção, novo conteúdo) — o sketchnote acompanha o resumo.
 - **Fundo liso (regra do usuário, 21/09/2026)**: sketchnotes nesse estilo usam fundo de papel **liso, sem grade
   quadriculada** — a grade briga com as bordas e polui a leitura.
+- **Linhas com contexto (regra do usuário, 07/10/2026)**: vale para o sketchnote o mesmo padrão do resumo — toda
+  linha traz **regra + contexto** (porquê/quem/como/consequência), nunca o trecho seco sem explicação; cada assunto
+  em linha própria. Trecho sem contexto não fixa o conteúdo e deve ser expandido com fundamento na fonte.
 
 ## Rastreabilidade de revisão (revisão espaçada)
 
