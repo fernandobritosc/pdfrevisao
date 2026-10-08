@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — AP Aula 07: Comunicação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#0d9488; --matsoft:#e6f4f2; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#ccfbf1 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:720px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"\279C";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.evo{display:flex;align-items:stretch;gap:.2rem;margin:.6rem 0;flex-wrap:wrap}
+.evo .step{flex:1;min-width:104px;border:2px dashed var(--ink);border-radius:10px;padding:.45rem .45rem;text-align:center;background:#fff;font-size:.74rem;color:var(--ink2)}
+.evo .step b{display:block;font-size:.78rem;color:var(--ink)}
+.evo .step.star{border-style:solid;background:var(--matsoft);box-shadow:3px 3px 0 var(--mat)}
+.evo .arrow{align-self:center;font-weight:800;font-size:1rem}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem}
+@media(max-width:520px){.duo{grid-template-columns:1fr}}
+.duo div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .6rem;background:#fff;font-size:.78rem;color:var(--ink2)}
+.duo div b{color:var(--ink);display:block;font-size:.79rem;margin-bottom:.15rem}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}.evo .arrow{font-size:.85rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">AP · Aula 07 · Comunicação</div>
+<h1><span class="hl">Comunicação</span> numa página 📣</h1>
+<p class="sub">Processo e 6 etapas · barreiras · canais ricos × pobres · tipos e métodos · fluxos · redes.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-07-comunicacao.html">resumo da Aula 07</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">📣</div><div><b>COMUNICAÇÃO = transmitir + COMPREENDER</b><br><span>Robbins: "transferência e <strong>compreensão</strong> de significado" — transmitir sem ser compreendido <strong>não comunica</strong> · ligada à função <strong>Direção</strong></span></div></div>
+</div>
+<div class="tri"><span class="pill">🔄 Processo</span><span class="pill">🧱 Barreiras</span><span class="pill">📡 Canais</span><span class="pill">🗣️ Tipos</span><span class="pill">↔️ Fluxos</span><span class="pill">🕸️ Redes</span></div>
+<main>
+<section class="note" aria-label="Processo de comunicacao">
+<h2><span class="n">1</span> 🔄 Processo <span class="tag t-red">5 TEC 🔴</span></h2>
+<ul>
+<li><strong>Trio garantido:</strong> <strong>remetente/emissor/fonte</strong> (inicia e codifica) · <strong>canal</strong> (veículo) · <strong>destinatário</strong> (destino final) — caem em toda questão; mensagem, ruído e feedback variam</li>
+<li><strong>Completa × aglutinada:</strong> remetente + transmissor = <strong>emissor</strong> · receptor + destinatário = <strong>receptor</strong> — até Chiavenato muda entre obras, decore a equivalência</li>
+<li><strong>"Receptor" ambíguo:</strong> pode ser o <strong>aparelho decodificador</strong> ou o <strong>destinatário</strong> — leia o contexto da questão</li>
+<li><strong>Escuta ativa:</strong> ouvir com <strong>atenção</strong> e analisar com sensatez <strong>antes de opinar</strong> — decodificar bem é metade da comunicação</li>
+</ul>
+<div class="evo">
+<div class="step"><b>1 ideia</b>emissor forma o pensamento</div><div class="arrow">→</div>
+<div class="step"><b>2 codifica</b>vira símbolo/palavra</div><div class="arrow">→</div>
+<div class="step"><b>3 transmite</b>envia pelo canal</div><div class="arrow">→</div>
+<div class="step"><b>4 recebe</b>chegada, sem interpretar</div><div class="arrow">→</div>
+<div class="step"><b>5 decodifica</b>interpreta (mora o erro)</div><div class="arrow">→</div>
+<div class="step star"><b>6 usa ★</b>aplica a mensagem</div>
+</div>
+</section>
+<section class="note" aria-label="Barreiras">
+<h2><span class="n">2</span> 🧱 Barreiras <span class="tag t-red">6 TEC 🔴</span></h2>
+<ul>
+<li><strong>Filtragem:</strong> <strong>emissor maquia</strong> p/ parecer favorável e evitar problema (nota 6,0 = "maior da sala") — distorce na <strong>origem</strong></li>
+<li><strong>Percepção seletiva:</strong> <strong>receptor filtra</strong> pelo próprio repertório (necessidades, valores, preconceitos) — distorce no <strong>destino</strong></li>
+<li><strong>Sobrecarga:</strong> volume além da <strong>capacidade finita</strong> — perde-se informação no meio do volume (14 apostilas em 12h; 500 mensagens após férias com a importante perdida)</li>
+<li><strong>Outras de Robbins:</strong> emoções (estado contamina a leitura) · linguagem/semântica (idade, cultura, educação) · medo de comunicar · diferenças de gênero · politicamente correto · silêncio</li>
+<li><strong>Chiavenato (3):</strong> pessoais (de dentro: valores, emoções) · físicas (do ambiente: canal, distância) · semânticas (dos símbolos: gírias, idiomas)</li>
+<li><strong>Macêdo (por polo):</strong> no emissor (timidez, canal/momento errados) · no receptor (pressa, desconfiança, conclusões precipitadas) · em ambos (relação ruim azeda tudo) · no ambiente</li>
+</ul>
+<div class="gotcha">🚨 <b>Diagnóstico pelo sintoma:</b> perde no <b>volume</b> = sobrecarga · <b>maquia</b> na origem = filtragem · <b>filtra</b> no destino = percepção seletiva.</div>
+</section>
+<section class="note" aria-label="Canais ricos e pobres">
+<h2><span class="n">3</span> 📡 Ricos × pobres <span class="tag t-red">3 TEC 🔴</span></h2>
+<ul>
+<li><strong>Ricos:</strong> <strong>múltiplos sinais</strong> juntos (palavra + tom + gesto) — melhor compreensão, feedback na hora, menos ambiguidade; custam <strong>tempo</strong> e alcançam <strong>pouca gente</strong> — p/ importante, complexo e ambíguo</li>
+<li><strong>Pobres:</strong> <strong>poucos sinais</strong> (só texto) — rápidos, massivos e <strong>registráveis</strong> (arquiva, audita, reenvia) — p/ rotineiro e simples</li>
+<li><strong>Escala:</strong> cara a cara > videoconferência > telefone (capta <strong>entonação</strong>) > e-mail > memorando (FGV: memorando entre os mais pobres)</li>
+</ul>
+<div class="gotcha">🚨 Rotina p/ 30 pessoas (vendas do dia) = <b>e-mail (pobre)</b> · mudança estratégica com resistência = <b>cara a cara</b>.</div>
+</section>
+<section class="note" aria-label="Tipos e metodos">
+<h2><span class="n">4</span> 🗣️ Tipos e métodos <span class="tag t-red">3 TEC 🔴</span></h2>
+<div class="duo">
+<div><b>Verbal/Oral 🗣️</b>Fala (liderar e motivar) · rápida, pessoal, feedback instantâneo — <b>tom de voz carrega sentido</b> junto às palavras · porém distorce a cada repasse ("telefone sem fio")</div>
+<div><b>Escrita ✍️</b>E-mail, carta, relatório · confiável, arquivável, planejável (reescreve até ficar OK) · porém lenta e sem feedback instantâneo</div>
+</div>
+<ul>
+<li><strong>Não-verbal:</strong> corpo e ações falam sem palavras — gestos, expressões, posturas; ação do chefe "autoriza" (WhatsApp no expediente); 5 linguagens: aparência, toque, distância, sons, movimentos</li>
+<li><strong>Formal × informal:</strong> formal segue <strong>hierarquia</strong> e canais oficiais (e-mail corporativo) · informal flui em <strong>qualquer direção</strong> por canais espontâneos (corredor, almoço)</li>
+<li><strong>Boatos:</strong> nascem de situação <strong>importante + ambígua</strong> (incerteza e ansiedade), em geral nos <strong>níveis baixos</strong> — gestor monitora e minimiza, nunca ignora</li>
+</ul>
+</section>
+<section class="note" aria-label="Fluxos de direcao">
+<h2><span class="n">5</span> ↔️ Fluxos <span class="tag t-red">3 TEC 🔴</span></h2>
+<ul>
+<li><strong>Descendente</strong> (cima → baixo): ordens descendo a hierarquia — tarefas, instruções de trabalho, e-mail com novas políticas; via da <strong>autoridade</strong></li>
+<li><strong>Ascendente</strong> (baixo → cima): a base alimentando o topo — sugestões de melhoria, andamento, problemas; via do <strong>retorno</strong> (sem ela o chefe decide no escuro)</li>
+<li><strong>Horizontal/Lateral</strong> (mesmo nível): pares resolvendo entre si — departamentos coordenando projeto; via da <strong>agilidade</strong>, mas pode <strong>violar canais formais</strong> (passar por cima do chefe)</li>
+<li><strong>Transversal</strong> (todas): níveis e áreas juntos — via da <strong>inovação</strong>, equipes multidisciplinares</li>
+</ul>
+<div class="gotcha">🚨 É no fluxo <b>horizontal</b> que nascem os <b>boatos</b> — fora da cadeia de comando; antiboato foca aqui.</div>
+</section>
+<section class="note" aria-label="Redes de comunicacao">
+<h2><span class="n">6</span> 🕸️ Redes <span class="tag t-red">3 TEC 🔴</span></h2>
+<ul>
+<li><strong>Centralizadas</strong> (no gestor): equipe fala pelo gestor, que decide — <strong>rápidas no simples</strong></li>
+<li><strong>Descentralizadas</strong> (livres): trocam entre si até o consenso — lentas no simples, <strong>rápidas no complexo</strong></li>
+<li><strong>Cadeia:</strong> rígida na hierarquia, cada um só com antes/depois — precisão alta, velocidade moderada · <strong>centralizada</strong></li>
+<li><strong>Roda:</strong> tudo pelo líder central — precisão e velocidade altas, satisfação baixa · <strong>centralizada</strong></li>
+<li><strong>Todos os canais:</strong> todos com todos — precisão moderada, velocidade alta, satisfação alta · <strong>descentralizada</strong></li>
+</ul>
+<div class="gotcha">🚨 Precisão máxima = <b>cadeia e roda</b> · velocidade máxima = <b>roda e todos</b> · satisfação máxima = <b>todos os canais</b>.</div>
+</section>
+<section class="note wide" aria-label="Para levar">
+<h2><span class="n">★</span> 🎯 Para levar para a prova</h2>
+<p><span class="tag t-green"><strong>eficiente</strong> = meios · <strong>eficaz</strong> = objetivo</span> <span class="tag t-blue"><strong>6 etapas</strong> terminam no <strong>uso</strong></span> <span class="tag t-yellow"><strong>500 e-mails</strong> = sobrecarga</span> <span class="tag t-red"><strong>sugestão</strong> sobe · <strong>instrução</strong> desce · <strong>departamentos</strong> = lateral</span><br><br>
+→ <strong>Transmitir ≠ comunicar</strong> (sem compreensão, sem comunicação) · <strong>uso ≠ feedback</strong> (usar é aplicar; feedback é retornar) · <strong>transmitir ≠ codificar ≠ decodificar</strong><br>
+→ <strong>Erros clássicos:</strong> "tom de voz é indiferente" · "receptor é sempre o destinatário" · "boato é só fofoca" · "rotina pede cara a cara"</p>
+</section>
+</main>
+<footer>
+<div class="biz">✏️ Sketchnote — AP Aula 07 · <span>0</span><span>7</span></div>
+<a class="back" href="resumo-aula-07-comunicacao.html">← voltar ao resumo completo</a>
+</footer>
+</div>
+</body>
+</html>
