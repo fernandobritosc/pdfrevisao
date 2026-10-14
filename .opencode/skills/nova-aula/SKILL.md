@@ -229,7 +229,19 @@ Quando o usuário encerrar a aula:
    - Filtro: só temas de alta/média incidência (TEC) + pegadinhas clássicas.
    - Fundo de papel liso (sem grade); link bidirecional com o resumo no topo e rodapé.
    - Layout adaptável por aula (o padrão AFO Aula 04 é base, não camisa de força).
-3. **Commit único de encerramento** (com tudo acumulado na working tree) e push:
+3. **Criar o modo prática (🎯) da aula** (regra do usuário, 09/10/2026):
+   - Escrever `Resumo_estudos/<Matéria>/<Aula XX>/quiz.json` com 4-8 questões de
+     recall sobre as pegadinhas e temas de alta incidência da aula — toda alegação
+     legal conferida no `.md` da aula antes (regra crítica); opções de mesmo
+     tamanho (sem dica por formato), posição da correta variada, `why` explicando
+     cada opção (certa e errada).
+   - Rodar `apply-practice-mode.py` (idempotente: reinjeta se o quiz.json mudar).
+   - Formato do JSON: `{"aula": ..., "tema": ..., "questoes": [{"q": ..., "opts": [{"t": ..., "ok": true?, "why": ...}]}]}`.
+4. **Registrar learning-records** (workspace `estudos-teach/`): durante a sessão,
+   quando o usuário demonstrar domínio (pega contradição, acerta pegadinha,
+   explica o porquê), gravar `estudos-teach/learning-records/NNNN-<slug>.md`
+   (evidência + implicação para o ZPD) e promover termos ao `GLOSSARY.md`.
+5. **Commit único de encerramento** (com tudo acumulado na working tree) e push:
 
 ```powershell
 git add -A
@@ -237,7 +249,7 @@ git commit -m "Adiciona resumo Aula NN - <Tema> (<Matéria>)"
 git push origin main
 ```
 
-4. **Relatório final**: arquivo + seção/card de cada alteração + commit (hash) +
+6. **Relatório final**: arquivo + seção/card de cada alteração + commit (hash) +
    URLs com HTTP 200.
 
 > Durante a aula/revisão NÃO commitar — nem por etapa nem a cada bloco de questões.

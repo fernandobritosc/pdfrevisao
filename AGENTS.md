@@ -109,11 +109,26 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
      `.card-text + .card-text`, validação check-html.py).
    - `.opencode/skills/canvas-design/SKILL.md` → arte estática (capa/banner do index
      em PNG/PDF) — uso opcional, não afeta o layout dos resumos.
+   - `.opencode/skills/{teach,grilling,writing-for-agents}/` + `.opencode/command/{teach,grill-me,handoff}.md` →
+     pacote de produtividade (fonte: github.com/mattpocock/skills, pasta productivity).
+     `/teach` roda o sistema de ensino persistente no workspace `estudos-teach/`
+     (raiz do repo: MISSION.md, lessons/, reference/, learning-records/, assets/,
+     RESOURCES.md, NOTES.md, GLOSSARY.md) — material sempre em pt-BR; `grilling`
+     é a entrevista implacável para planos/decisões (também via `/grill-me`);
+     `writing-for-agents` orienta a edição deste AGENTS.md e das skills do projeto;
+     `/handoff` compacta a sessão para continuação em outro agente/máquina.
    - **Scripts de build (raiz do repo, rodar com o Python da skill)**:
      - `build-search-index.py` → gera `Resumo_estudos/search-index.json` (busca full-text do index).
      - `build-changelog.py` → gera `Resumo_estudos/mudancas.html` (página "O que mudou", via git log) — rodar **antes de todo deploy** (Passo 8 da skill).
      - `apply-review-mode.py` / `apply-marks-mode.py` / `apply-pwa.py` → injetam os add-ons nos resumos (modo revisão 🧠, marcação 🏷, PWA offline); idempotentes, rodar após regenerar resumos pelo template.
     - `apply-search.py` → injeta o campo de busca por palavra no sidebar de **todos** os `resumo-aula-*.html` (filtro de cards/gotchas/callouts + destaque âmbar das ocorrências + primeira ocorrência em vermelho com rolagem automática + contador "X de Y blocos"); idempotente, ignora acentos/maiúsculas; rodar após regenerar resumos pelo template (regra do usuário, 25/09/2026 — aprovado em teste na DC Aula 04 e expandido aos 61 resumos).
+    - `apply-practice-mode.py` → injeta o **modo prática 🎯** nos resumos (quiz de recall
+      com feedback imediato, painel lateral, placar e botão "Refazer") a partir do
+      `quiz.json` da pasta da aula; idempotente por marcadores (`<!--rh:practice:...-->` —
+      reinjetado se o quiz.json mudar); também repara o botão 🧠 do modo revisão
+      quando ausente. Regra (usuário, 09/10/2026): toda aula encerrada ganha
+      `quiz.json` (4-8 questões de pegadinhas/alta incidência, conferidas na fonte)
+      + injeção; a camada de prática mora DENTRO do resumo (não em workspace à parte).
 3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
    configurar algum no futuro, registrar aqui (nome, `type`, `command`).
 4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.
@@ -132,12 +147,21 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
   **Complementares**, **Clareza**). Vale também para cabeças de linha `→` (ex.:
   **Níveis:**, **Risco:**).
 - **Verificação de dispositivo legal (regra crítica)**: **NUNCA** citar artigo,
-  inciso, parágrafo ou alínea de lei de memória — sempre conferir o texto exato
-  no arquivo-fonte da lei da pasta da aula (`L14133.md` para a Lei 14.133/2021,
-  `CLT.md` para a CLT etc.) ANTES de escrever no resumo. Número de inciso errado
-  (ex.: art. 6º, XXII vs XLII) anula a questão em prova — o usuário estuda pelo
-  material e falha assim prejudica a preparação. Corrigir imediatamente se o
-  usuário apontar divergência com o texto legal.
+  inciso, parágrafo ou alínea de lei de memória. Se a resolução da questão traz
+  o texto/citação legal, **ela é a fonte** — escrever **somente o que o texto
+  traz** (regra do usuário, 13/10/2026). Se o texto não traz o dispositivo e
+  ele não pode ser citado sem fonte, **não acrescentar** (ou perguntar se o
+  usuário quer pesquisa). **Pesquisa legal (web ou grep no cache local)
+  somente sob solicitação do usuário.** Número de inciso errado (ex.: art. 6º,
+  XXII vs XLII) anula a questão em prova — corrigir imediatamente se o usuário
+  apontar divergência com o texto legal.
+- **Cache de fontes legais (regra do usuário, 13/10/2026)**: quando o usuário
+  **solicitar pesquisa legal**, usar o cache local antes da web (instantâneo) —
+  `CF.md` em `Direito Constitucional/Aula 08/`, `L4320.md` (mesma pasta),
+  `L14133.md` em `Direito Administrativo/Aula 07/`, `CLT.md` etc. Se a lei não
+  estiver em cache, baixar o texto oficial (Planalto) e salvar como arquivo
+  local na pasta da aula (mesmo padrão do `L14133.md`) para as próximas
+  consultas (página da CF no Planalto = 1,8 MB por fetch).
 - **Espaçamento entre parágrafos**: manter o CSS `.card-text + .card-text { margin-top: .65rem; }`
   em todos os resumos (já aplicado globalmente).
 - **Cards empilhados (regra do usuário, 07/09/2026)**: nos resumos, cards ficam em
@@ -360,9 +384,10 @@ bidirecional com o resumo completo no topo e no rodapé).
 - **Layout adaptável (regra do usuário, 21/09/2026)**: o layout do sketchnote **pode mudar a cada aula** conforme a
   característica que combine com o assunto (linha evolutiva, confronto de tipos, mapa de funções etc.) — o padrão
   da Aula 04 de AFO é base, não camisa de força.
-- **Criação e atualização (regra do usuário, 21/09/2026)**: **toda vez que o usuário encerrar uma aula, criar o
-  sketchnote dela** junto no encerramento; e **atualizar o sketchnote sempre que a aula sofrer alteração**
-  (questão TEC colada, correção, novo conteúdo) — o sketchnote acompanha o resumo.
+- **Criação e atualização (regra do usuário, 21/09/2026; alterada em 13/10/2026)**: **criar ou atualizar o
+  sketchnote SOMENTE no encerramento da aula** (junto do quiz.json) — durante a sessão
+  (questões TEC coladas, correções, novo conteúdo), o sketchnote **NÃO é editado**; ele fecha
+  com o resumo no encerramento, quando resumo e sketchnote voltam a ficar sincronizados.
 - **Fundo liso (regra do usuário, 21/09/2026)**: sketchnotes nesse estilo usam fundo de papel **liso, sem grade
   quadriculada** — a grade briga com as bordas e polui a leitura.
 - **Linhas com contexto (regra do usuário, 07/10/2026)**: vale para o sketchnote o mesmo padrão do resumo — toda
