@@ -86,6 +86,14 @@ TEC coladas em conteúdo de estudo e incrementar a incidência.
      (resumo existe + aula estudada no index/card TCE-GO, ou revisão com badge
      🔁) e ❌ o resto (sem material, sem resumo ou revisão/questões sem
      evidência); o usuário corrige os números se preciso.
+8. **Replicação de aula entre editais (regra do usuário, 14/10/2026)**: quando
+   uma aula estudada cobre tema que também consta em **qualquer trilha
+   existente**, replicar no encerramento em **todos os arquivos de cada trilha**
+   — tabela do `.md` **e** cards do painel `.html` — trocando ❌→✅ com link
+   para a aula, ajustando contadores/barras de progresso e anotando os itens
+   concluídos nas agendas (T-XX). Antes de considerar replicado, **grep pelo
+   tema em todos os arquivos de trilha** — atualizar só o `.md` não basta
+   (furo da DA Aula 15).
 
 ## Ambiente opencode (reproduzir em máquina nova)
 
