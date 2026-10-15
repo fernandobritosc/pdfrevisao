@@ -178,7 +178,7 @@
 | ✅ | PPA, LDO e LOA (art. 165 CF) | AFO Aula 00 | — |
 | ✅ | Ciclo orçamentário e créditos adicionais | AFO Aulas 02-03 | — |
 | ✅ | Receita e despesa públicas | AFO Aulas 05-06 | — |
-| ❌ | Fiscalização contábil, financeira e orçamentária (CF arts. 70-75) | — | — |
+| ✅ | Fiscalização contábil, financeira e orçamentária (CF arts. 70-75) | DC Aula 20 | — |
 | ❌ | LRF — Lei Complementar 101/2000 | — | — |
 
 ### D. Técnica legislativa e Câmara Municipal 🔥
