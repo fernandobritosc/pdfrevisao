@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — AFO Aula 11 · LRF Parte I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#16a34a; --matsoft:#dcfce7; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#dcfce7 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:760px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3} .pill:nth-child(6){transform:rotate(1deg)}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"\279C";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.num{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.55rem 0}
+@media(max-width:520px){.num{grid-template-columns:1fr}}
+.num div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .55rem;text-align:center;background:#fff;font-size:.74rem;color:var(--ink2)}
+.num div b{display:block;font-size:1.05rem;font-family:'Space Grotesk';color:var(--ink)}
+.num .hi{background:#dcfce7;border-color:var(--mat)}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">AFO · Aula 11 · LRF Parte I</div>
+<h1><span class="hl">LRF: Base + Planejamento</span> numa página ✍️</h1>
+<p class="sub">Pilares · abrangência · RCL · PPA/LDO/LOA · anexos · reserva · BACEN · execução.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-11-lrf-parte-1.html">resumo da Aula 11</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">💰</div><div><b>LRF = ação PLANEJADA e TRANSPARENTE (§ 1º)</b><br><span>Prevenir riscos + corrigir desvios com <strong>metas</strong> e <strong>limites</strong> — vale para <strong>todos os entes e Poderes</strong>, sem lei local (efeito nacional)</span></div></div>
+</div>
+<div class="tri"><span class="pill">🎯 § 1º + pilares</span><span class="pill">🧮 RCL</span><span class="pill">📅 PPA·LDO·LOA</span><span class="pill">📊 AMF × Riscos</span><span class="pill">🏦 BACEN</span><span class="pill">✂️ Limitação</span></div>
+<main>
+<section class="note" aria-label="Base">
+<h2><span class="n">1</span> Base: quem obedece 🎯</h2>
+<ul>
+<li><strong>Pilares:</strong> planejamento · transparência · controle · responsabilização (LIMPE é do art. 37, não da LRF)</li>
+<li><strong>Quem:</strong> União, Estados, DF, Municípios + 3 Poderes + MP + TCs + direta, fundos, autarquias, fundações e <strong>dependentes</strong></li>
+<li><strong>Dependente × controlada:</strong> recebe verba p/ pessoal/custeio/capital = dependente (segue LRF); só capital de aumento acionário = <strong>não</strong> é; autossustentável (Petrobras) = só investimentos</li>
+<li><strong>Ente (art. 2º, I):</strong> União, cada Estado, DF e cada Município</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "só o Executivo obedece" — <b>falso</b>: todos os Poderes + MP. "Precisa lei local" — <b>falso</b>: efeito nacional direto.</div>
+</section>
+
+<section class="note" aria-label="RCL">
+<h2><span class="n">2</span> RCL — a base dos limites 🧮</h2>
+<ul>
+<li><strong>Soma:</strong> só receitas <strong>CORRENTES</strong> (capital fica fora); transferências recebidas <strong>somam</strong></li>
+<li><strong>Apuração:</strong> mês + <strong>11 anteriores</strong>, <strong>arrecadado</strong> (não lançado), sem duplicidade</li>
+<li><strong>Comum a todos:</strong> contribuição dos <strong>servidores</strong> + compensação entre regimes</li>
+<li><strong>Exclusivas:</strong> União (transferências feitas + seguridade + PIS/PASEP) · Estados (parcelas a Municípios) · DF/AP/RR</li>
+<li><strong>Kandir/FUNDEB:</strong> recebidos <strong>somam</strong>, pagos <strong>deduzem</strong></li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "transferências recebidas não integram" — <b>falso</b>: somam; o que sai são as <b>feitas</b> por determinação.</div>
+</section>
+
+<section class="note" aria-label="PPA LDO LOA">
+<h2><span class="n">3</span> PPA · LDO · LOA 📅</h2>
+<div class="num">
+<div class="hi"><b>31/08→22/12</b>PPA e LOA</div>
+<div><b>15/04→17/07</b>LDO (trava sessão)</div>
+<div><b>+2 / +3</b>AMF trienal; memória 3 ant.</div>
+</div>
+<ul>
+<li><strong>PPA:</strong> 4 anos (2º ano → 1º do seguinte); investimento plurianual só com PPA (crime de responsabilidade)</li>
+<li><strong>LDO:</strong> elo PPA↔LOA; LRF soma equilíbrio, <strong>limitação de empenho</strong>, custos, transferências</li>
+<li><strong>AMF:</strong> metas exercício <strong>+2</strong> (União: +3, MFMP, ±0,25% PIB); <strong>Riscos:</strong> contingentes + plano B (obrigatório, na LDO)</li>
+<li><strong>LOA:</strong> fiscal + seguridade + investimentos; reserva (LDO encomenda, LOA entrega); dívida toda dentro, refinanciamento separado</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "limitação de empenho no <b>PPA</b>" — <b>falso</b>: critérios na <b>LDO</b>. "Riscos facultativo" — <b>falso</b>.</div>
+</section>
+
+<section class="note" aria-label="Execucao">
+<h2><span class="n">4</span> Execução: travas e prazos ✂️</h2>
+<ul>
+<li><strong>Programação:</strong> 30 dias após LOA, cronograma <strong>mensal</strong> (4.320: trimestral imediato)</li>
+<li><strong>Limitação:</strong> bimestre ruim → Poderes/MP limitam em <strong>30 dias</strong> pela LDO; Executivo <strong>não</strong> limita pelos omissos (§ 3º caiu)</li>
+<li><strong>Não se limita:</strong> obrigações constitucionais/legais, dívida, LDO, C&T com fundo</li>
+<li><strong>Audiência:</strong> mai/set/fev (metas + dívida); <strong>BACEN:</strong> trimestral mostra custo, semestral transfere (10º dia útil), 90 dias avalia no Congresso</li>
+<li><strong>Vinculado:</strong> permanece vinculado mesmo em outro exercício</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "verificação <b>mensal</b>, 60 dias" — <b>falso</b>: <b>bimestre</b>, 30 dias. "Vinculado reverte" — <b>falso</b>.</div>
+</section>
+</main>
+<footer>
+<div class="biz">⚡ LC 101/2000 · <span>§ 1º</span> · RCL · AMF+2</div>
+<a class="back" href="resumo-aula-11-lrf-parte-1.html">← Resumo completo da Aula 11</a>
+</footer>
+</div>
+</body>
+</html>

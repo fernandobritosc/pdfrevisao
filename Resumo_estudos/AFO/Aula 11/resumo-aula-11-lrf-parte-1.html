@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO 06: Despesas Públicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #16a34a;
+  --mat-strong: #15803d;
+  --mat-soft: #e8f6ec;
+  --mat-line: #bbf7d0;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--mat);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 11</div>
+  <div class="sidebar-sub">LRF Parte I · LC 101/2000</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. LRF — contexto, amparo e princípios</a>
+  <a href="#sec2">2. Objetivos e abrangência (art. 1º)</a>
+  <a href="#sec3">3. Estatal dependente × controlada (art. 2º)</a>
+  <a href="#sec4">4. Receita Corrente Líquida — RCL (art. 2º)</a>
+  <a href="#sec5">5. PPA — Plano Plurianual</a>
+  <a href="#sec6">6. LDO na CF e na LRF (art. 4º)</a>
+  <a href="#sec7">7. Anexos da LDO — Metas e Riscos Fiscais</a>
+  <a href="#sec8">8. LOA — estrutura e vedações (art. 5º)</a>
+  <a href="#sec9">9. BACEN na LRF (arts. 5º e 7º)</a>
+  <a href="#sec10">10. Execução — programação e limitação (arts. 8º-10)</a>
+  <a href="#sec11">11. Pontos que mais caem em prova</a>
+  <a href="#sec12">12. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-11-lrf-parte-1.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: simplificado + mapa mental + resumo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<div class="main">
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — LRF: CONTEXTO, AMPARO E PRINCÍPIOS                  -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">LRF — contexto, amparo e princípios</div>
+  </div>
+  <div class="sec-subtitle">LC 101/2000 — por que ela existe e onde se ancora na CF</div>
+
+  <div class="card">
+    <div class="card-title">Por que a LRF foi criada?</div>
+    <div class="card-text">
+      → <strong>Contexto</strong> — do início dos anos 1980 a meados dos 1990, <strong>instabilidade econômica</strong> (descontrole inflacionário, juros oscilantes), planos econômicos sem efeito e <strong>finanças públicas desequilibradas</strong>, somados à transição para governos civis e à CF/1988 (mais direitos reivindicados = <strong>mais despesas</strong>)<br>
+      → <strong>Resposta</strong> — <strong>LC 101, de 4/5/2000</strong>: regras claras e estruturadas para <span class="highlight">evitar novos desequilíbrios</span> e induzir melhores práticas em <strong>todos os entes</strong><br>
+      → <strong>Lógica fiscal</strong> — os entes <strong>não gastam mais do que arrecadam</strong>; o endividamento só é admitido com <strong>regras rígidas e transparentes</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Amparo constitucional — de onde a LRF tira força?</div>
+    <div class="card-text">
+      → <strong>Art. 163, I — finanças públicas</strong> — a base direta da LRF: lei complementar sobre finanças públicas<br>
+      → <strong>Art. 163, II-VII</strong> — dívida pública, garantias, títulos, fiscalização financeira, câmbio e crédito oficial<br>
+      → <strong>Art. 163, VIII — sustentabilidade da dívida</strong> — indicadores, compatibilidade fiscal, convergência, ajustes e alienação de ativos<br>
+      → <strong>Maioria absoluta</strong> — por ser lei complementar, a LRF foi aprovada por <strong>maioria absoluta</strong><br>
+      → <strong>Art. 30 da EC 19/1998</strong> — deu <strong>180 dias</strong> ao Executivo para apresentar o projeto da LC do art. 163 (a própria LRF)<br>
+      → <strong>Art. 169 da CF</strong> — despesa com pessoal limitada por LC → LRF, art. <strong>19</strong> (percentuais da RCL)<br>
+      → <strong>Art. 250 da CF</strong> — fundo da previdência (RGPS) → LRF, art. <strong>68</strong> (Fundo do RGPS)<br>
+      → <strong>Art. 165, § 9º da CF</strong> — a LRF aborda <strong>em parte</strong> os incisos I e II (organização de PPA/LDO/LOA; gestão financeira e fundos)<br><br>
+      → ⚠️ <strong>Não confundir:</strong> a LRF <strong>não preencheu as lacunas da Lei 4.320/1964 nem a revogou</strong> — a 4.320 continua regendo o ciclo orçamentário (sem tratar de responsabilidade fiscal); a LRF <strong>não é</strong> a aguardada LC do art. 165, § 9º (Nova Lei de Finanças Públicas)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Pilares da LRF — os 4 que a banca cobra</div>
+    <div class="card-text">
+      → <strong>Planejamento</strong> — ação planejada e transparente<br>
+      → <strong>Transparência</strong> — ampla divulgação, inclusive em <strong>meio eletrônico</strong>, de planejamento, orçamento, contas, relatórios e anexos<br>
+      → <strong>Controle</strong> — mecanismos de acompanhamento e correção<br>
+      → <strong>Responsabilização</strong> — sanções pelo descumprimento<br><br>
+      → ⚠️ <strong>Atenção:</strong> "legalidade, impessoalidade, moralidade e publicidade" são princípios da <strong>Administração</strong> (art. 37), <strong>não</strong> os pilares da LRF — e o foco da LRF é a <strong>responsabilidade na gestão fiscal</strong>, não o combate à corrupção em si
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">LCs que alteraram a LRF — quadro de referência</div>
+    <div class="card-text">
+      → <strong>131/2009</strong> — transparência (meios eletrônicos)<br>
+      → <strong>156/2016 · 159/2017 · 164/2018 · 173/2020</strong> — ajustes fiscais e federativos<br>
+      → <strong>177/2021</strong> — blindou despesas de <strong>inovação e C&T</strong> custeadas por fundo (art. 9º, § 2º)<br>
+      → <strong>178/2021 · 200/2023</strong> — novo arcabouço fiscal (anexo União, quadro do primário, audiência com dívida)<br>
+      → <strong>212/2025 · 214/2025</strong> — atualizações recentes (RCL com Fundo do art. 159-A; efeitos desde <strong>1º/1/2026</strong>)<br>
+      → <strong>224/2025</strong> — estimativas de incentivos/benefícios na LOA (art. 5º, IV-V e § 8º)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — OBJETIVOS E ABRANGÊNCIA (ART. 1º)                   -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Objetivos e abrangência (art. 1º)</div>
+  </div>
+  <div class="sec-subtitle">O § 1º que define responsabilidade fiscal e o § 2º que diz quem obedece</div>
+
+  <div class="card">
+    <div class="card-title">O que é responsabilidade na gestão fiscal? (art. 1º, § 1º)</div>
+    <div class="card-text">
+      → <strong>Pressuposto</strong> — <span class="highlight">ação planejada e transparente</span>, em que se <strong>previnem riscos</strong> e <strong>corrigem desvios</strong> capazes de afetar o <strong>equilíbrio das contas públicas</strong><br>
+      → <strong>Como</strong> — mediante o <strong>cumprimento de metas de resultados entre receitas e despesas</strong> e a obediência a <strong>limites e condições</strong> para:<br>
+      → <strong>renúncia de receita</strong><br>
+      → <strong>geração de despesas com pessoal, da seguridade social e outras</strong><br>
+      → <strong>dívidas consolidada e mobiliária</strong><br>
+      → <strong>operações de crédito</strong>, inclusive por antecipação de receita<br>
+      → <strong>concessão de garantia</strong><br>
+      → <strong>inscrição em Restos a Pagar</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quem obedece à LRF? (art. 1º, §§ 2º e 3º)</div>
+    <div class="card-text">
+      → <strong>Obriga União, Estados, DF e Municípios</strong> — incluídos <strong>Executivo, Legislativo (abrangidos os Tribunais de Contas), Judiciário e Ministério Público</strong><br>
+      → <strong>Mais a máquina</strong> — <strong>administração direta, fundos, autarquias, fundações e empresas estatais dependentes</strong><br>
+      → <strong>Ente da Federação (art. 2º, I)</strong> — a <strong>União, cada Estado, o DF e cada Município</strong><br>
+      → <strong>"Estados" inclui o DF</strong> (§ 3º)<br>
+      → <strong>"Tribunais de Contas"</strong> — TCU, TCE e, quando houver, <strong>TC dos Municípios e TC do Município</strong><br><br>
+      → ⚠️ <strong>Efeito nacional sem lei local:</strong> a LRF é federal com <strong>efeitos gerais/nacionais</strong> — nenhum ente precisa editar lei própria para aplicá-la, nem pode editar lei que a sobreponha
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "A LRF obriga só o Poder Executivo" — <strong>errado</strong>: alcança os <strong>três Poderes + MP</strong>, incluindo os <strong>Tribunais de Contas</strong> dentro do Legislativo. E "cada ente precisa regulamentar a LRF" — <strong>falso</strong>: aplicabilidade direta e nacional.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ESTATAL DEPENDENTE × CONTROLADA (ART. 2º)           -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Estatal dependente × controlada (art. 2º)</div>
+  </div>
+  <div class="sec-subtitle">O par que decide quem segue a LRF e em qual orçamento entra</div>
+
+  <div class="card">
+    <div class="card-title">Empresa controlada (art. 2º, II) — o gênero</div>
+    <div class="card-text">
+      → <strong>Conceito</strong> — sociedade cuja <span class="highlight">maioria do capital social com direito a voto</span> pertence, <strong>direta ou indiretamente</strong>, a ente da Federação<br>
+      → <strong>Toda dependente é controlada</strong> — mas <strong>nem toda controlada é dependente</strong>: ser controlada é requisito <strong>necessário, mas não suficiente</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estatal dependente (art. 2º, III) — quando segue a LRF?</div>
+    <div class="card-text">
+      → <strong>Conceito</strong> — empresa <strong>controlada</strong> que recebe do ente controlador recursos para pagamento de <strong>pessoal, custeio em geral ou capital</strong> — neste último caso, <strong>excluídos</strong> os recursos de <strong>aumento de participação acionária</strong><br>
+      → <strong>Consequência</strong> — integra o <strong>Orçamento Fiscal e da Seguridade Social</strong> e <strong>segue a LRF</strong> (ex.: Embrapa, EBC, HCPA — existem para suprir falha de mercado relevante)<br><br>
+      → ⚠️ <strong>Exceção do capital:</strong> se recebe <strong>apenas</strong> recursos de aumento de participação acionária para despesa de capital → <strong>não é dependente</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estatal NÃO dependente — autossustentável, fora da LRF</div>
+    <div class="card-text">
+      → <strong>Conceito</strong> — controlada que <strong>se sustenta sozinha</strong> (gera os próprios recursos com venda de produtos/serviços): <strong>não segue a LRF</strong> — precisa de dinamismo para concorrer (ex.: <strong>Petrobras</strong>)<br>
+      → <strong>Onde entra no orçamento</strong> — só os <strong>investimentos</strong>, no <strong>Orçamento de Investimentos</strong> (art. 165, § 5º, II): o Estado influencia onde investe e a população toma conhecimento<br>
+      → <strong>Custeio fora da LOA</strong> — pessoal e manutenção pagos com receita própria <strong>não estão na LOA</strong> (não usam arrecadação de tributos): integram o <strong>Plano de Dispêndios Globais (PDG)</strong>, coordenado pela <strong>SEST</strong>, aprovado por <strong>decreto</strong> como anexo da mensagem do PLOA
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Estatal dependente pode existir sem ser controlada" — <strong>errado</strong>: ser controlada é <strong>pré-requisito</strong>. E "aumento de participação acionária torna a empresa dependente" — <strong>falso</strong>: é justamente a <strong>exceção</strong> que afasta a dependência no capital.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — RECEITA CORRENTE LÍQUIDA — RCL (ART. 2º)            -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Receita Corrente Líquida — RCL (art. 2º)</div>
+  </div>
+  <div class="sec-subtitle">A base de cálculo de quase todos os limites da LRF</div>
+
+  <div class="card">
+    <div class="card-title">Para que serve a RCL?</div>
+    <div class="card-text">
+      → <strong>Referência da despesa pública</strong> — base dos limites de <strong>pessoal, dívida pública, operações de crédito e garantias</strong><br>
+      → <strong>Lógica</strong> — separa as receitas <strong>disponíveis</strong> ao ente das que ele <strong>não gerencia</strong>: percentuais sobre receita bruta indisponível distorceriam os limites<br>
+      → <strong>Onde aparece</strong> — a apuração, a evolução e a previsão até o fim do exercício constam de demonstrativo do <strong>RREO</strong> (art. 53, I)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Composição e apuração — soma, deduz, 12 meses</div>
+    <div class="card-text">
+      → <strong>Soma</strong> — receitas <strong>tributárias, de contribuições, patrimoniais, industriais, agropecuárias, de serviços, transferências correntes e outras correntes</strong> (transferências recebidas <strong>integram</strong> — não saem da RCL)<br>
+      → <strong>Só correntes</strong> — receitas de <strong>capital NÃO entram</strong>: operações de crédito, alienação de bens, amortização de empréstimos e transferências de capital ficam <strong>fora</strong> da RCL<br>
+      → <strong>Apuração</strong> — soma das receitas <strong>arrecadadas</strong> no mês de referência e nos <strong>11 anteriores</strong>, <strong>excluídas as duplicidades</strong> (art. 2º, § 3º): vale o <strong>arrecadado</strong>, não o lançado — ex.: aluguel lançado em dez/2017 e arrecadado em jan/2018 entra em <strong>2018</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Qual dedução vale para TODOS os entes?</div>
+    <div class="card-text">
+      → <strong>Contribuição dos servidores</strong> — para o custeio do <strong>próprio sistema de previdência e assistência social</strong>: deduz na <span class="highlight">União, nos Estados, no DF e nos Municípios</span><br>
+      → <strong>Compensação financeira entre regimes</strong> — receitas da compensação do art. 201, § 9º (contagem recíproca RGPS/RPPS): também em <strong>todos</strong><br><br>
+      → ⚠️ <strong>Chave de prova:</strong> perguntou "dedução <strong>comum</strong>" → é a dos <strong>servidores</strong> (as demais são exclusivas de cada ente, no card seguinte)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Deduções exclusivas de cada ente (art. 2º, IV)</div>
+    <div class="card-text">
+      → <strong>Só na União</strong> — valores transferidos a Estados, DF e Municípios por determinação <strong>constitucional ou legal</strong> (inclusive Fundo do <strong>art. 159-A</strong> — LC 214/2025, efeitos desde <strong>1º/1/2026</strong>)<br>
+      → <strong>Só na União</strong> — contribuições da <strong>seguridade</strong> (art. 195, I, "a" e II) e <strong>PIS/PASEP</strong> (art. 239)<br>
+      → <strong>Só nos Estados</strong> — parcelas entregues aos <strong>Municípios</strong> por determinação constitucional<br>
+      → <strong>DF, Amapá e Roraima</strong> — recursos da União para organizar/manter <strong>Judiciário, MPDFT, Defensoria dos Territórios, polícias e bombeiros do DF</strong>, assistência financeira ao DF por fundo próprio e despesas com servidores dos <strong>ex-territórios</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Lei Kandir e FUNDEB entram ou saem?</div>
+    <div class="card-text">
+      → <strong>Entram (somam e deduzem)</strong> — computam-se no cálculo da RCL os valores <strong>pagos e recebidos</strong> da <strong>LC 87/1996 (Lei Kandir)</strong> e do <strong>FUNDEB</strong> (art. 60 do ADCT)<br>
+      → <strong>Lei Kandir</strong> — compensação por perdas da desoneração do ICMS sobre primários e semimanufaturados exportados: valores <strong>recebidos somam</strong>, valores <strong>pagos deduzem</strong><br>
+      → <strong>FUNDEB</strong> — redistribui recursos para a educação básica entre Estado e Municípios: valores <strong>recebidos somam</strong>, valores <strong>pagos (destinados) deduzem</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Transferências recebidas não integram a RCL" — <strong>errado</strong>: transferências correntes <strong>somam</strong>; o que sai são as <strong>transferências feitas</strong> por determinação constitucional/legal. E RCL usa receita <strong>arrecadada</strong>, nunca a apenas lançada.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — PPA — PLANO PLURIANUAL                              -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">PPA — Plano Plurianual</div>
+  </div>
+  <div class="sec-subtitle">Art. 165, § 1º — o planejamento de 4 anos</div>
+
+  <div class="card">
+    <div class="card-title">O que o PPA estabelece? (art. 165, § 1º)</div>
+    <div class="card-text">
+      → <strong>Conteúdo</strong> — de forma <strong>regionalizada</strong>, <strong>diretrizes, objetivos e metas</strong> da administração federal para <strong>despesas de capital e outras delas decorrentes</strong> e para <strong>programas de duração continuada</strong><br>
+      → <strong>Horizonte</strong> — visão macro das intenções do gestor por <strong>4 anos</strong>; pode ser <strong>revisado</strong> na vigência (inclusão, exclusão ou alteração de programas)<br>
+      → <strong>Trava de investimento</strong> — nenhum investimento com execução superior a <strong>um exercício</strong> inicia sem <strong>prévia inclusão no PPA</strong> ou lei que autorize, sob pena de <strong>crime de responsabilidade</strong> (art. 167, § 1º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prazos do PPA no ADCT — 4 meses e 22 de dezembro</div>
+    <div class="card-text">
+      → <strong>Vigência</strong> — <strong>4 anos</strong>: do <strong>2º exercício do mandato</strong> ao <strong>1º exercício do mandato seguinte</strong> (não coincide com o mandato — atravessa governos)<br>
+      → <strong>Envio</strong> — Executivo → Legislativo até <strong>4 meses antes</strong> do fim do 1º exercício: <strong>31 de agosto</strong><br>
+      → <strong>Devolução</strong> — Legislativo → Executivo até o fim do <strong>2º período da sessão legislativa</strong>: <strong>22 de dezembro</strong> do exercício do envio<br>
+      → <strong>Provisoriedade</strong> — valem enquanto não vier a LC do art. 165, § 9º, I (art. 35, § 2º do ADCT)<br><br>
+      → ⚠️ <strong>Art. 3º da LRF vetado</strong> — era o único sobre o PPA; mesmo assim o PPA aparece na LRF (ex.: art. 5º, § 5º — investimento plurianual só com previsão no PPA)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Iniciativa e aprovação — quem faz o quê? (arts. 165 e 166)</div>
+    <div class="card-text">
+      → <strong>Iniciativa</strong> — PPA, LDO e LOA são leis de iniciativa do <strong>Poder Executivo</strong> (art. 165, caput) — e cada ente (União, Estados, DF, Municípios) tem os <strong>seus próprios</strong><br>
+      → <strong>Aprovação federal</strong> — projetos de PPA, LDO, LOA e créditos adicionais apreciados pelas <strong>duas Casas do Congresso</strong>, na forma do <strong>regimento comum</strong> (art. 166, caput); nos demais entes, pelo respectivo <strong>Legislativo</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — LDO NA CF E NA LRF (ART. 4º)                        -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">LDO na CF e na LRF (art. 4º)</div>
+  </div>
+  <div class="sec-subtitle">O elo entre o PPA e a LOA — funções constitucionais + funções LRF</div>
+
+  <div class="card">
+    <div class="card-title">LDO na Constituição (art. 165, § 2º) — para que ela existe?</div>
+    <div class="card-text">
+      → <strong>Papel</strong> — elo entre o planejamento <strong>estratégico (PPA)</strong> e o <strong>operacional (LOA)</strong>: aproximou planos que antes não conversavam<br>
+      → <strong>Conteúdo constitucional</strong> — <strong>metas e prioridades</strong> da administração federal<br>
+      → <strong>Política fiscal</strong> — diretrizes e metas, em consonância com <strong>trajetória sustentável da dívida</strong><br>
+      → <strong>Guia da LOA</strong> — orienta a <strong>elaboração da lei orçamentária anual</strong><br>
+      → <strong>Tributos e fomento</strong> — dispõe sobre <strong>alterações na legislação tributária</strong> e define a política das <strong>agências oficiais de fomento</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prazos da LDO no ADCT — 15 de abril e 17 de julho</div>
+    <div class="card-text">
+      → <strong>Envio</strong> — Executivo → Legislativo <strong>8 meses e meio</strong> antes do fim do exercício: <strong>15 de abril</strong><br>
+      → <strong>Devolução</strong> — até o fim do <strong>1º período da sessão legislativa</strong>: <strong>17 de julho</strong><br>
+      → <strong>Trava da sessão</strong> — a sessão legislativa <strong>não se interrompe sem a aprovação da LDO</strong> (art. 57, § 2º)<br>
+      → <strong>Provisoriedade</strong> — valem enquanto não vier a LC do art. 165, § 9º (art. 35, § 2º, II do ADCT)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Funções que a LRF acrescentou à LDO (art. 4º, I)</div>
+    <div class="card-text">
+      → <strong>Equilíbrio entre receitas e despesas</strong><br>
+      → <strong>Critérios e forma de limitação de empenho</strong> — nas hipóteses do art. 4º, I, "b", do art. 9º e do art. 31, § 1º, II (é por isso que o <strong>limite se rege pela LDO, não pelo PPA</strong>)<br>
+      → <strong>Controle de custos e avaliação de resultados</strong> dos programas financiados pelos orçamentos<br>
+      → <strong>Condições e exigências para transferências</strong> a entidades públicas e privadas
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "No PPA são fixados os critérios para limitação de empenho" — <strong>errado</strong> (CESPE/TJ-ES 2023): os critérios vêm da <strong>LDO</strong> (art. 9º da LRF). PPA = diretrizes/objetivos/metas de 4 anos; LDO = regras do jogo anual.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — ANEXOS DA LDO: METAS E RISCOS FISCAIS               -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Anexos da LDO — Metas e Riscos Fiscais</div>
+  </div>
+  <div class="sec-subtitle">Art. 4º, §§ 1º a 6º — o coração fiscal da LRF</div>
+
+  <div class="card">
+    <div class="card-title">Anexo de Metas Fiscais — metas para quantos anos? (§ 1º)</div>
+    <div class="card-text">
+      → <strong>Conteúdo-base</strong> — metas <strong>anuais</strong>, em valores <strong>correntes e constantes</strong>, de <strong>receitas, despesas, resultados nominal e primário e montante da dívida</strong>: para o <strong>exercício de referência + os 2 seguintes</strong> (na prática, metas <strong>trienais</strong>)<br>
+      → <strong>Resultado primário</strong> — receitas menos despesas <strong>primárias</strong> (não financeiras: sem principal/juros da dívida nem receitas financeiras)<br>
+      → <strong>Resultado nominal</strong> — <strong>todas</strong> as receitas menos despesas (com dívida, financeiros, inflação e câmbio)<br><br>
+      → ⚠️ <strong>Atenção:</strong> "metas apenas para o exercício seguinte" é <strong>errado</strong> — são <strong>3 exercícios</strong> (atual + 2)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que mais o Anexo de Metas contém? (§ 2º, I a VI)</div>
+    <div class="card-text">
+      → <strong>Avaliação do ano anterior</strong> — cumprimento das metas relativas ao ano anterior<br>
+      → <strong>Demonstrativo com memória de cálculo</strong> — justifica os resultados, compara com os <strong>3 exercícios anteriores</strong> e mostra consistência com a política econômica nacional<br>
+      → <strong>Evolução do patrimônio líquido</strong> — últimos <strong>3 exercícios</strong>, com origem e aplicação dos recursos de <strong>alienação de ativos</strong><br>
+      → <strong>Situação financeira e atuarial</strong> — RGPS, RPPS e FAT + demais fundos/programas de natureza atuarial<br>
+      → <strong>Renúncia + DOCC</strong> — estimativa e compensação da <strong>renúncia de receita</strong> e margem de expansão das <strong>despesas obrigatórias de caráter continuado</strong><br>
+      → <strong>Quadro do primário (inc. VI — LC 200/2023)</strong> — agregados de receitas/despesas e resultados: programado no <strong>exercício em curso</strong>, realizados nos <strong>2 anteriores</strong> e estimativas para o exercício da LDO e subsequentes
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Anexo de Riscos Fiscais (§ 3º) — não confundir com o de Metas</div>
+    <div class="card-text">
+      → <strong>Conteúdo</strong> — avalia <strong>passivos contingentes e outros riscos</strong> capazes de afetar as contas públicas, informando as <strong>providências</strong> caso se concretizem (riscos <strong>orçamentários e da dívida</strong>)<br>
+      → <strong>Diferença essencial</strong> — Metas = <strong>compromissos projetados</strong>; Riscos = <strong>ameaças mapeadas</strong> + plano B<br>
+      → <strong>Obrigatoriedade</strong> — <strong>ambos integram a LDO</strong>: o de Riscos <strong>não é facultativo</strong><br><br>
+      → ⚠️ <strong>Atenção:</strong> "o orçamento anual contém o anexo de riscos fiscais" é <strong>errado</strong> — ele é da <strong>LDO</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mensagem do PLDO da União (§ 4º) e o extra do arcabouço (§§ 5º-6º)</div>
+    <div class="card-text">
+      → <strong>Anexo específico da mensagem (§ 4º)</strong> — objetivos das políticas <strong>monetária, creditícia e cambial</strong> + parâmetros, projeções e <strong>metas de inflação</strong> para o exercício seguinte<br>
+      → <strong>§ 5º (LC 200/2023 — só União)</strong> — o AMF traz também:<br>
+      → <strong>Metas +3</strong> — anuais para o exercício e os <strong>3 seguintes</strong> (sustentabilidade da dívida)<br>
+      → <strong>Marco fiscal de médio prazo (MFMP)</strong> — primárias × financeiras, obrigatórias × discricionárias<br>
+      → <strong>Convergência em 10 anos</strong> — efeito sobre a <strong>DBGG/PIB</strong>, com tolerância de <strong>±0,25 p.p. do PIB</strong><br>
+      → <strong>Limites dos Poderes</strong> — compatíveis com a LC do art. 163, VIII<br>
+      → <strong>Impacto de avaliações</strong> — fiscal das políticas públicas (art. 37, § 16)<br>
+      → <strong>§ 6º</strong> — Estados, DF e Municípios <strong>podem adotar</strong> total ou parcialmente esses dispositivos, no que couber (facultativo fora da União)<br><br>
+      → ⚠️ <strong>Vedação:</strong> a LDO <strong>não pode excluir</strong> quaisquer despesas primárias da apuração da meta de resultado primário (orçamentos <strong>fiscal e da seguridade</strong>)<br><br>
+      → ⚠️ <strong>Não confundir:</strong> o § 5º é <strong>conteúdo extra do AMF da União</strong> — não confundir com o § 5º do art. 9º (BACEN) nem com o § 5º do art. 5º (investimento no PPA)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Três trocas clássicas: AMF com metas "só do ano seguinte" (<strong>falso</strong> — atual + 2); anexo de riscos "facultativo" (<strong>falso</strong> — integra a LDO); anexo de riscos "na LOA" (<strong>falso</strong> — é da <strong>LDO</strong>).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — LOA: ESTRUTURA E VEDAÇÕES (ART. 5º)                 -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">LOA — estrutura e vedações (art. 5º)</div>
+  </div>
+  <div class="sec-subtitle">O orçamento propriamente dito — 3 orçamentos, compatibilidade e travas</div>
+
+  <div class="card">
+    <div class="card-title">O que a LOA é — e os 3 orçamentos (art. 165, § 5º)</div>
+    <div class="card-text">
+      → <strong>Conceito</strong> — prevê a <strong>arrecadação de receitas</strong> e fixa as <strong>despesas de um ano</strong>: o <span class="highlight">orçamento por excelência</span><br>
+      → <strong>Exclusividade (art. 165, § 8º)</strong> — só matéria de receita/despesa, salvo <strong>créditos suplementares e operações de crédito</strong> (inclusive ARO)<br>
+      → <strong>Fiscal</strong> — Poderes da União, fundos, órgãos e entidades da direta e indireta, inclusive fundações mantidas<br>
+      → <strong>Seguridade social</strong> — entidades e órgãos vinculados + fundos e fundações mantidas<br>
+      → <strong>Investimentos das estatais</strong> — empresas em que a União detenha, direta ou indiretamente, a <strong>maioria do capital votante</strong> (só as <strong>não dependentes</strong> — as dependentes estão no Fiscal/Seguridade)<br>
+      → <strong>Demonstrativo regionalizado</strong> — o PLOA acompanha o efeito sobre receitas e despesas de <strong>isenções, anistias, remissões, subsídios e benefícios</strong> (financeiros, tributários e creditícios) — art. 165, § 6º
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prazos da LOA no ADCT — 31 de agosto e 22 de dezembro</div>
+    <div class="card-text">
+      → <strong>Envio</strong> — Executivo → Legislativo <strong>4 meses antes</strong> do fim do exercício: <strong>31 de agosto</strong><br>
+      → <strong>Devolução</strong> — até o <strong>encerramento da sessão legislativa</strong>: <strong>22 de dezembro</strong> do exercício da elaboração<br>
+      → <strong>Provisoriedade</strong> — valem enquanto não vier a LC do art. 165, § 9º (art. 35, § 2º, III do ADCT)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que o art. 5º da LRF exige na LOA?</div>
+    <div class="card-text">
+      → <strong>Compatibilidade (inc. I)</strong> — PLOA elaborado de forma <strong>compatível com PPA, LDO e LRF</strong>, com anexo demonstrando a compatibilidade da programação com os <strong>objetivos e metas do AMF</strong><br>
+      → <strong>Demonstrativo regionalizado (inc. II)</strong> — efeito de isenções/anistias/remissões/subsídios/benefícios + <strong>compensação</strong> de renúncias e de aumento de <strong>DOCC</strong><br>
+      → <strong>Reserva de contingência (inc. III)</strong> — montante com base na <strong>RCL</strong> e forma de uso definidos na <strong>LDO</strong>; destino: <strong>passivos contingentes e outros riscos/eventos imprevistos</strong> (além de créditos adicionais)<br>
+      → <strong>Estimativas (incs. IV-V e § 8º — LC 224/2025)</strong> — global de <strong>incentivos/benefícios tributários, financeiros e creditícios</strong> (PF e PJ) + anexo de <strong>despesas financeiras e primárias obrigatórias/discricionárias</strong> (exercício + 2 seguintes), em anexos específicos<br><br>
+      → ⚠️ <strong>Bolo da reserva:</strong> na <strong>LDO</strong> está a encomenda (montante + forma de uso); na <strong>LOA</strong> está o bolo (a reserva constituída)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Dívida pública na LOA (§§ 1º a 3º) — tudo dentro, refinanciamento separado</div>
+    <div class="card-text">
+      → <strong>Tudo na LOA (§ 1º)</strong> — <strong>todas</strong> as despesas da dívida (mobiliária ou contratual) e as receitas que as atendem<br>
+      → <strong>Refinanciamento separado (§ 2º)</strong> — a <strong>substituição de títulos velhos por novos</strong> (vencimento posterior) consta <strong>separadamente</strong> na LOA e nos créditos adicionais — vale para o refinanciamento, não só para dívida nova<br>
+      → <strong>Teto da atualização (§ 3º)</strong> — a atualização monetária do principal da dívida mobiliária refinanciada <strong>não supera</strong> a variação do <strong>índice de preços previsto na LDO</strong> (ou legislação específica)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Vedações da LOA (§§ 4º e 5º) — crédito sem rumo e investimento sem PPA</div>
+    <div class="card-text">
+      → <strong>§ 4º</strong> — vedado crédito com <strong>finalidade imprecisa ou dotação ilimitada</strong> (sem teto): princípio da <strong>especificação/discriminação/especialização</strong><br>
+      → <strong>§ 5º</strong> — sem dotação para <strong>investimento plurianual fora do PPA</strong> (ou sem lei autorizativa): espelha o art. 167, § 1º (crime de responsabilidade)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — BACEN NA LRF (ARTS. 5º E 7º)                        -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">BACEN na LRF (arts. 5º e 7º)</div>
+  </div>
+  <div class="sec-subtitle">Despesas, resultado e os 3 prazos do Banco Central</div>
+
+  <div class="card">
+    <div class="card-title">Despesas do BACEN na LOA (art. 5º, § 6º)</div>
+    <div class="card-text">
+      → <strong>Incluem-se na LOA</strong> — despesas com <strong>pessoal e encargos</strong>, <strong>custeio administrativo</strong> (inclusive benefícios/assistência a servidores) e <strong>investimentos</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Resultado do BACEN — lucro é receita, prejuízo é obrigação (art. 7º)</div>
+    <div class="card-text">
+      → <strong>Resultado positivo</strong> — apurado após constituição/reversão de reservas: <strong>receita do Tesouro</strong>, transferida até o <strong>10º dia útil</strong> após a aprovação dos <strong>balanços semestrais</strong><br>
+      → <strong>Resultado negativo</strong> — <strong>obrigação do Tesouro para com o BACEN</strong>, consignada em <strong>dotação específica</strong> no orçamento<br>
+      → <strong>Lógica</strong> — o Tesouro é <strong>beneficiário do lucro</strong> e <strong>devedor do prejuízo</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 3 prazos do BACEN — trimestral, semestral, 90 dias</div>
+    <div class="card-text">
+      → <strong>Trimestral</strong> — impacto e custo fiscal das operações <strong>demonstrados a cada trimestre</strong> (LDO da União)<br>
+      → <strong>Notas explicativas</strong> — remuneração das disponibilidades do Tesouro, reservas cambiais e rentabilidade da carteira (destaque aos títulos da União)<br>
+      → <strong>Semestral</strong> — resultado transferido ao Tesouro até o <strong>10º dia útil</strong> após aprovação dos balanços semestrais<br>
+      → <strong>90 dias após cada semestre</strong> — o BACEN apresenta às <strong>comissões temáticas do Congresso</strong> a avaliação das políticas <strong>monetária, creditícia e cambial</strong> (impacto e custo fiscal + resultados dos balanços)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — EXECUÇÃO: PROGRAMAÇÃO E LIMITAÇÃO (ARTS. 8º-10)    -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Execução — programação e limitação (arts. 8º-10)</div>
+  </div>
+  <div class="sec-subtitle">Cronograma de desembolso, contingenciamento e a audiência quadrimestral</div>
+
+  <div class="card">
+    <div class="card-title">Programação financeira em 30 dias (art. 8º)</div>
+    <div class="card-text">
+      → <strong>Prazo</strong> — até <strong>30 dias após a publicação dos orçamentos</strong>, o Executivo estabelece a <strong>programação financeira</strong> e o <strong>cronograma mensal de desembolso</strong> (nos termos da LDO)<br>
+      → <strong>Contraste com a 4.320</strong> — pela Lei 4.320 (art. 47), o quadro de cotas é <strong>trimestral</strong> e aprovado <strong>imediatamente após a promulgação</strong>; pela LRF, o cronograma é <strong>mensal</strong> e em <strong>30 dias</strong><br>
+      → <strong>Vinculação preservada (parágrafo único)</strong> — recurso vinculado a finalidade específica <strong>permanece vinculado mesmo em outro exercício</strong>: usa-se <strong>exclusivamente</strong> no objeto da vinculação (não reverte ao Tesouro para uso livre)<br>
+      → <strong>Calamidade (art. 65, § 1º, II)</strong> — reconhecida pelo Congresso por decreto legislativo: dispensa o parágrafo único <strong>enquanto durar</strong>, desde que os recursos combatam a calamidade
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Limitação de empenho — o contingenciamento (art. 9º, caput)</div>
+    <div class="card-text">
+      → <strong>Gatilho</strong> — verificado, ao final de um <strong>bimestre</strong>, que a receita <strong>poderá não comportar</strong> as metas de resultado <strong>primário ou nominal</strong> do AMF<br>
+      → <strong>Quem e como</strong> — <strong>Poderes e MP</strong>, por <strong>ato próprio</strong> e nos montantes necessários, nos <strong>30 dias subsequentes</strong>, segundo os <strong>critérios da LDO</strong><br>
+      → <strong>Conceito</strong> — <span class="highlight">bloqueio de despesas da LOA</span> para equilibrar execução e arrecadação: sem receita confirmada, a despesa programada <strong>deixa de ser executada na proporção</strong> (evita socorro no mercado com encargos altos)<br>
+      → <strong>Também reconduz dívida</strong> — o ente que estoura o limite da <strong>dívida consolidada</strong> limita empenho para obter o primário da recondução (art. 31, § 1º, II)<br><br>
+      → ⚠️ <strong>Três trocas clássicas:</strong><br>
+      → verificação ao final de <strong>"cada mês"</strong> — falso, é <strong>bimestre</strong><br>
+      → prazo de <strong>"60 dias"</strong> — falso, são <strong>30 dias</strong><br>
+      → critérios "do <strong>PPA</strong>" — falso, são da <strong>LDO</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que NÃO se limita? (art. 9º, § 2º)</div>
+    <div class="card-text">
+      → <strong>Obrigações constitucionais e legais</strong> — inclusive o <strong>serviço da dívida</strong><br>
+      → <strong>Ressalvadas pela LDO</strong><br>
+      → <strong>Inovação e C&T (LC 177/2021)</strong> — despesas custeadas por <strong>fundo criado para tal finalidade</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Recomposição, vedação ao Executivo e calamidade (art. 9º, §§ 1º e 3º; art. 65)</div>
+    <div class="card-text">
+      → <strong>Recomposição (§ 1º)</strong> — restabelecida a receita (ainda que parcial), as dotações voltam de forma <strong>proporcional às reduções</strong><br>
+      → <strong>§ 3º inconstitucional (STF)</strong> — o Executivo <strong>não pode</strong> limitar pelos demais Poderes/MP omissos: cada um limita <strong>por ato próprio</strong><br>
+      → <strong>Calamidade (art. 65, II)</strong> — reconhecida pelo Congresso (União) ou Assembleias (Estados/Municípios): <strong>dispensam-se</strong> o atingimento dos resultados fiscais e a <strong>limitação do art. 9º</strong> enquanto durar
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Audiência quadrimestral e precatórios (art. 9º, §§ 4º-5º; art. 10)</div>
+    <div class="card-text">
+      → <strong>Maio, setembro e fevereiro (§ 4º — LC 200/2023)</strong> — até o fim desses meses, o Fazenda demonstra e avalia as <strong>metas fiscais do quadrimestre + a trajetória da dívida</strong>, em <strong>audiência pública</strong> na comissão mista (art. 166, § 1º) ou equivalente (nos Estados/Municípios, pelas comissões equivalentes)<br>
+      → <strong>BACEN em 90 dias (§ 5º)</strong> — já visto na Seção 9: avaliação das políticas monetária/creditícia/cambial às comissões temáticas<br>
+      → <strong>Precatórios (art. 10)</strong> — a execução identifica os <strong>beneficiários de sentenças judiciais</strong> por sistema de contabilidade, para observar a <strong>ordem cronológica do art. 100</strong> (bens públicos são impenhoráveis — fila em vez de penhora)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Recurso vinculado não usado até 31/12 reverte ao Tesouro para uso livre" — <strong>errado</strong> (art. 8º, parágrafo único): permanece <strong>vinculado</strong>. E "o Executivo limita pelos Poderes omissos" — <strong>inconstitucional</strong> (§ 3º do art. 9º caiu no STF).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — PONTOS QUE MAIS CAEM EM PROVA                      -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">Números que decidem a questão</div>
+    <div class="card-text">
+      → <strong>Prazos ADCT:</strong> PPA <strong>31/08 → 22/12</strong> · LDO <strong>15/04 → 17/07</strong> (trava a sessão) · LOA <strong>31/08 → 22/12</strong><br>
+      → <strong>Execução:</strong> programação em <strong>30 dias</strong> · verificação <strong>bimestral</strong> · limitação em <strong>30 dias</strong> · audiência <strong>mai/set/fev</strong> · BACEN em <strong>90 dias</strong><br>
+      → <strong>Metas e RCL:</strong> AMF = exercício <strong>+ 2</strong> · memória compara <strong>3 anteriores</strong> · RCL = mês + <strong>11 anteriores</strong> · BACEN transfere até o <strong>10º dia útil</strong><br>
+      → <strong>Aprovação:</strong> LRF como LC = <strong>maioria absoluta</strong> · projeto em <strong>180 dias</strong> (EC 19) · tolerância <strong>±0,25 p.p. do PIB</strong> · convergência em <strong>10 anos</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Distinções que a banca inverte</div>
+    <div class="card-text">
+      → <strong>Pilares LRF × art. 37:</strong> planejamento/transparência/controle/responsabilização × LIMPE<br>
+      → <strong>Dependente × controlada:</strong> segue a LRF + Fiscal/Seguridade × só investimentos (ou PDG/decreto no custeio)<br>
+      → <strong>RCL:</strong> transferências recebidas <strong>somam</strong> × feitas por determinação <strong>deduzem</strong><br>
+      → <strong>RCL:</strong> vale o <strong>arrecadado</strong>, não o lançado<br>
+      → <strong>PPA × LDO × LOA:</strong> 4 anos/DOM × regras anuais/empenho × 1 ano/exclusividade<br>
+      → <strong>Metas × Riscos:</strong> compromissos projetados × ameaças + plano B (ambos na LDO)<br>
+      → <strong>Reserva:</strong> LDO encomenda (montante+uso) × LOA entrega (constituída)<br>
+      → <strong>BACEN:</strong> lucro → receita do Tesouro × prejuízo → obrigação do Tesouro<br>
+      → <strong>4.320 × LRF:</strong> cotas trimestrais/imediatas × cronograma mensal/30 dias
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> foque na LRF arts. 1º (§§ 1º-3º), 2º (II-IV + § 3º), 4º (§§ 1º-6º), 5º (I-V + §§ 1º-8º), 7º, 8º (caput + parágrafo único), 9º (caput + §§ 1º-2º e 4º-5º) e 10; e na CF arts. 163, 165 (§§ 1º, 2º, 5º, 6º, 8º, 9º), 166, 167 (§ 1º), 169, 250 e ADCT art. 35, § 2º (I, II e III). LCs que mudam resposta: <strong>177/2021</strong> (C&T), <strong>200/2023</strong> (arcabouço), <strong>214/2025</strong> (RCL/159-A) e <strong>224/2025</strong> (estimativas na LOA).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 12 — INCIDÊNCIA DE TEMAS (TEC)                          -->
+<!-- ============================================================ -->
+<section id="sec12">
+  <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão de cima para baixo — temas com mais questões primeiro</div>
+
+  <div class="card">
+    <div class="card-title">Contador de temas</div>
+    <div class="card-text">
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 2 — Objetivos e abrangência (arts. 1º-2º): 4</span><br>
+      <span class="tag tag-red">Seção 4 — Receita Corrente Líquida — RCL (art. 2º): 4</span><br>
+      <span class="tag tag-red">Seção 7 — Anexos da LDO — Metas e Riscos Fiscais: 4</span><br>
+      <span class="tag tag-red">Seção 8 — LOA — estrutura e vedações (art. 5º): 3</span><br><br>
+      <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Seção 3 — Estatal dependente × controlada (art. 2º): 2</span><br>
+      <span class="tag tag-amber">Seção 6 — LDO na CF e na LRF (art. 4º): 2</span><br>
+      <span class="tag tag-amber">Seção 9 — BACEN na LRF (arts. 5º e 7º): 1</span><br>
+      <span class="tag tag-amber">Seção 10 — Execução — programação e limitação (arts. 8º-10): 1</span><br>
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2006/resumo-aula-06-despesas-publicas.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 06 · Despesas Públicas</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": 11, "tema": "LRF Parte I — Introdução, Disposições Preliminares e Planejamento", "questoes": [{"q": "A responsabilidade na gestão fiscal pressupõe:", "opts": [{"t": "Exclusivamente o equilíbrio nominal das contas públicas.", "why": "O § 1º fala em ação planejada e transparente com metas e limites — bem mais amplo que só o nominal."}, {"t": "Ação planejada e transparente, com prevenção de riscos, correção de desvios, metas entre receitas e despesas e obediência a limites e condições.", "ok": true, "why": "Literalidade do art. 1º, § 1º."}, {"t": "Redução obrigatória da carga tributária em anos eleitorais.", "why": "A LRF não prevê isso em nenhum dispositivo."}, {"t": "Desvinculação entre planejamento e execução.", "why": "O oposto: planejamento é pilar da LRF."}]}, {"q": "Sobre a RCL, é correto:", "opts": [{"t": "Transferências recebidas de outros entes não a integram.", "why": "Transferências correntes SOMAM; o que deduz são as transferências FEITAS por determinação."}, {"t": "É apurada com receitas lançadas no mês e nos 11 anteriores.", "why": "Vale o ARRECADADO, não o lançado — e excluídas as duplicidades."}, {"t": "A contribuição dos servidores ao próprio regime previdenciário é dedução comum a União, Estados, DF e Municípios.", "ok": true, "why": "Art. 2º, IV, c — a dedução comum cobrada em prova."}, {"t": "Receitas de capital (operações de crédito, alienações) a integram.", "why": "RCL é só CORRENTES; capital fica fora."}]}, {"q": "Sobre o Anexo de Metas Fiscais, assinale a correta:", "opts": [{"t": "Traz avaliação das metas dos três anos anteriores.", "why": "Avalia o ANO anterior; compara com os TRÊS anteriores no demonstrativo com memória."}, {"t": "Integra o projeto da LOA.", "why": "Integra o PLDO (art. 4º, § 1º)."}, {"t": "Estabelece metas anuais (correntes e constantes) de receitas, despesas, resultados nominal e primário e dívida, para o exercício + 2 seguintes.", "ok": true, "why": "Art. 4º, § 1º — metas trienais na prática."}, {"t": "A avaliação atuarial abrange apenas o RGPS.", "why": "Abrange RGPS, RPPS e FAT, mais demais fundos/programas atuariais."}]}, {"q": "Empresa controlada que recebe verba do controlador para pagar pessoal é:", "opts": [{"t": "Estatal independente, fora da LRF.", "why": "Recebendo verba para pessoal, é DEPENDENTE: segue a LRF e integra Fiscal/Seguridade."}, {"t": "Estatal dependente, pois toda dependente é controlada e recebe recursos para pessoal, custeio ou capital.", "ok": true, "why": "Art. 2º, III — com a exceção do aumento de participação acionária no capital."}, {"t": "Não se enquadra na LRF por ser sociedade de economia mista.", "why": "O tipo societário não importa; importa receber recursos (ex.: Embrapa, EBC)."}, {"t": "Controlada, logo automaticamente dependente.", "why": "Ser controlada é necessário mas NÃO suficiente para ser dependente."}]}, {"q": "Sobre a reserva de contingência, é correto:", "opts": [{"t": "Seu montante e uso são definidos na LOA.", "why": "Montante (base RCL) e forma de uso vêm da LDO; a LOA só a constitui (encomenda × bolo)."}, {"t": "Destina-se a passivos contingentes e outros riscos/eventos imprevistos, com montante baseado na RCL definido na LDO.", "ok": true, "why": "Art. 5º, III."}, {"t": "Atende a passivos contingentes e eventos PREVISTOS.", "why": "A lei diz IMPREVISTOS — troca clássica."}, {"t": "É constituída com base no PIB do exercício.", "why": "A base é a RCL, não o PIB."}]}, {"q": "Sobre o BACEN na LRF, assinale a correta:", "opts": [{"t": "O resultado positivo é obrigação do Tesouro e o negativo é receita.", "why": "Invertido: positivo = receita do Tesouro; negativo = obrigação do Tesouro."}, {"t": "O impacto fiscal das operações é demonstrado semestralmente.", "why": "Trimestralmente (art. 7º, § 2º)."}, {"t": "O resultado positivo, após reservas, é receita do Tesouro transferida até o 10º dia útil após os balanços semestrais; em 90 dias após cada semestre o BACEN avalia as políticas monetária/creditícia/cambial no Congresso.", "ok": true, "why": "Art. 7º, caput/§ 1º e art. 9º, § 5º."}, {"t": "As despesas do BACEN ficam fora da LOA.", "why": "Integram a LOA: pessoal, custeio e investimentos (art. 5º, § 6º)."}]}, {"q": "Sobre a limitação de empenho (art. 9º), é correto:", "opts": [{"t": "Verificada ao final de cada mês, limita-se em 60 dias.", "why": "Verificação BIMESTRAL, limitação nos 30 dias subsequentes."}, {"t": "Segue os critérios do PPA.", "why": "Segundo os critérios da LDO."}, {"t": "Verificado ao fim do bimestre o risco às metas do AMF, Poderes e MP limitam por ato próprio em 30 dias pelos critérios da LDO; o Executivo não pode limitar pelos omissos (§ 3º inconstitucional).", "ok": true, "why": "Art. 9º, caput + STF no § 3º."}, {"t": "Obrigações constitucionais e o serviço da dívida são os primeiros limitados.", "why": "São os que NÃO se limitam (art. 9º, § 2º)."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>

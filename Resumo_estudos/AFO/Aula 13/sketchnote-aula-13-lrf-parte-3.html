@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — AFO Aula 13 · LRF Parte III</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#16a34a; --matsoft:#dcfce7; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#dcfce7 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:760px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3} .pill:nth-child(6){transform:rotate(1deg)}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"\279C";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.num{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.55rem 0}
+@media(max-width:520px){.num{grid-template-columns:1fr}}
+.num div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .55rem;text-align:center;background:#fff;font-size:.74rem;color:var(--ink2)}
+.num div b{display:block;font-size:1.05rem;font-family:'Space Grotesk';color:var(--ink)}
+.num .hi{background:#dcfce7;border-color:var(--mat)}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">AFO · Aula 13 · LRF Parte III</div>
+<h1><span class="hl">Receita, controle e patrimônio</span> numa página ✍️</h1>
+<p class="sub">Transparência · RREO/RGF · receita e renúncia · patrimônio · TVs · setor privado.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-13-lrf-parte-3.html">resumo da Aula 13</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">🔍</div><div><b>TRANSPARÊNCIA = controle social</b><br><span>Instrumentos públicos + <strong>RREO bimestral</strong> + <strong>RGF quadrimestral</strong> — e receita só com <strong>compensação</strong></span></div></div>
+</div>
+<div class="tri"><span class="pill">👁️ Transparência</span><span class="pill">📊 RREO × RGF</span><span class="pill">💵 Receita</span><span class="pill">🏛️ Patrimônio</span><span class="pill">🤝 TVs</span><span class="pill">🏦 Setor privado</span></div>
+<main>
+<section class="note" aria-label="Transparencia relatorios">
+<h2><span class="n">1</span> Transparência + relatórios 👁️</h2>
+<ul>
+<li><strong>Instrumentos (art. 48):</strong> planos, orçamentos, LDO, contas + parecer, <strong>RREO, RGF</strong> e simplificadas — tudo <strong>eletrônico</strong></li>
+<li><strong>Meios:</strong> audiências + <strong>tempo real</strong> + SIAFC + Portal (benefícios); contas do Executivo o <strong>ano todo</strong></li>
+<li><strong>RREO:</strong> <strong>bimestral</strong> do Executivo, 30 dias; último bimestre: ouro + atuária + patrimonial</li>
+<li><strong>RGF:</strong> <strong>quadrimestral</strong>, um por Poder, 30 dias; dívida/garantias/crédito só no do <strong>Executivo</strong></li>
+<li><strong>56 e 57:</strong> <strong>inconstitucionais</strong> (só o TC julga; CMO opina sobre o TC)</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "RREO <b>semestral</b> p/ pequeno" — <b>meia-verdade</b>: bimestral p/ todos; semestral só os <b>demonstrativos</b>.</div>
+</section>
+
+<section class="note" aria-label="Receita">
+<h2><span class="n">2</span> Receita: prever, ouro e renúncia 💵</h2>
+<ul>
+<li><strong>Tríade (art. 11):</strong> instituir + prever + arrecadar; sem imposto = <strong>sem TV</strong></li>
+<li><strong>Previsão:</strong> 3 anos + 2 anos; Executivo entrega em <strong>30 dias</strong>; Legislativo só reestima com <strong>erro/omissão</strong></li>
+<li><strong>Regra de ouro:</strong> crédito ≤ <strong>capital</strong> (suplementar/especial + maioria absoluta escapa); STF: só o <strong>excesso</strong> viola</li>
+<li><strong>Renúncia (art. 14):</strong> estimativa + LDO + (LOA sem afetar metas <strong>OU</strong> compensar com <strong>receita</strong>); corte de despesa <strong>não</strong> compensa</li>
+<li><strong>14-A:</strong> benefício a PJ com prazo ≤5 anos, metas e avaliação</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "renúncia <b>não tributária</b>" — <b>falso</b>: art. 14 é <b>tributária</b>. "Isenção <b>geral</b>" — <b>não</b> é renúncia.</div>
+</section>
+
+<section class="note" aria-label="Patrimonio TV">
+<h2><span class="n">3</span> Patrimônio + TVs 🏛️</h2>
+<ul>
+<li><strong>Caixa:</strong> União no <strong>BACEN</strong>, demais em oficiais; previdência em <strong>conta separada</strong></li>
+<li><strong>Alienação (art. 44):</strong> capital <strong>não</strong> paga corrente (só previdência por lei)</li>
+<li><strong>TV (art. 25):</strong> cooperação fora determinação/SUS; dotação + 167-X + <strong>beneficiário comprova</strong> + contrapartida; saúde/educação/assistência <strong>blindadas</strong></li>
+<li><strong>Desapropriação:</strong> nula sem <strong>dinheiro ou depósito</strong>; novos projetos só após os em andamento</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "<b>SUS</b> é TV" — <b>falso</b>. "Quem comprova é quem <b>transfere</b>" — <b>falso</b>: é o <b>beneficiário</b>.</div>
+</section>
+
+<section class="note" aria-label="Setor privado">
+<h2><span class="n">4</span> Setor privado + fiscalização 🏦</h2>
+<ul>
+<li><strong>Art. 26:</strong> cobrir PF/PJ só com <strong>lei específica + LDO + LOA</strong></li>
+<li><strong>SFN (art. 28):</strong> socorrer banco só com <strong>lei específica</strong>; BACEN pode <strong>redesconto &lt;360 dias</strong>; insolvência é das <strong>instituições</strong></li>
+<li><strong>Fiscalização (art. 59):</strong> Legislativo + TCs + controle interno; <strong>4 alertas</strong> + denúncia por <strong>qualquer um</strong></li>
+<li><strong>Consolidação:</strong> E/M até <strong>30/04</strong> → União até <strong>30/06</strong>; sem cumprir: sem TV/crédito</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "orçamento <b>prevê</b> socorro, dispensa lei" — <b>falso</b>: lei específica <b>sempre</b>.</div>
+</section>
+</main>
+<footer>
+<div class="biz">⚡ arts. 11-14 · 25-28 · <span>RREO×RGF</span> · 30/04→30/06</div>
+<a class="back" href="resumo-aula-13-lrf-parte-3.html">← Resumo completo da Aula 13</a>
+</footer>
+</div>
+</body>
+</html>

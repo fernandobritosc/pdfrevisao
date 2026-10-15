@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO 06: Despesas Públicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #16a34a;
+  --mat-strong: #15803d;
+  --mat-soft: #e8f6ec;
+  --mat-line: #bbf7d0;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--mat);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 13</div>
+  <div class="sidebar-sub">LRF Parte III · LC 101/2000</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Transparência da gestão (arts. 48-49)</a>
+  <a href="#sec2">2. Escrituração e consolidação (arts. 50-51)</a>
+  <a href="#sec3">3. RREO — bimestral do Executivo (arts. 52-53)</a>
+  <a href="#sec4">4. RGF — quadrimestral dos Poderes (arts. 54-55)</a>
+  <a href="#sec5">5. Conselho de Gestão Fiscal (art. 67)</a>
+  <a href="#sec6">6. Prestação de contas (arts. 56-58)</a>
+  <a href="#sec7">7. Fiscalização da gestão (art. 59)</a>
+  <a href="#sec8">8. Receita pública (arts. 11-14)</a>
+  <a href="#sec9">9. Gestão patrimonial (arts. 43-47)</a>
+  <a href="#sec10">10. Transferências voluntárias (art. 25)</a>
+  <a href="#sec11">11. Recursos ao setor privado (arts. 26-28)</a>
+  <a href="#sec12">12. Pontos que mais caem em prova</a>
+  <a href="#sec13">13. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-13-lrf-parte-3.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: simplificado + mapa mental + resumo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<div class="main">
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — TRANSPARÊNCIA (ARTS. 48-49)                         -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Transparência da gestão (arts. 48-49)</div>
+  </div>
+  <div class="sec-subtitle">Instrumentos, meios e sanções — o controle social em ação</div>
+
+  <div class="card">
+    <div class="card-title">Instrumentos de transparência (art. 48, caput)</div>
+    <div class="card-text">
+      → <strong>Lista</strong> — <strong>planos, orçamentos e LDO</strong>; <strong>prestações de contas + parecer prévio</strong>; <strong>RREO + RGF</strong>; e as <strong>versões simplificadas</strong> desses documentos<br>
+      → <strong>Divulgação</strong> — <span class="highlight">ampla, inclusive em meios eletrônicos</span> de acesso público<br>
+      → <strong>Objetivo maior</strong> — viabilizar o <strong>controle social</strong>: a sociedade acompanha e verifica a execução, avaliando objetivos, processos e resultados
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Como a transparência se assegura? (§ 1º, I-IV)</div>
+    <div class="card-text">
+      → <strong>Participação popular (inc. I — LC 131/2009)</strong> — incentivo + <strong>audiências públicas</strong> na elaboração/discussão de planos, LDO e orçamentos<br>
+      → <strong>Tempo real (inc. II — LC 131/2009)</strong> — liberação à sociedade, <strong>em tempo real</strong>, de informações pormenorizadas da execução orçamentária e financeira em meios eletrônicos: despesa (atos das gestoras no momento da realização: processo, bem/serviço, beneficiário, licitação) e receita (lançamento + recebimento, inclusive extraordinárias)<br>
+      → <strong>Sistema integrado (inc. III — LC 131/2009)</strong> — SIAFC com <strong>padrão mínimo da União</strong><br>
+      → <strong>Portal de Transparência (inc. IV — LC 224/2025)</strong> — dados <strong>abertos e padronizados</strong> sobre benefícios tributários, financeiros e creditícios concedidos<br><br>
+      → ⚠️ <strong>Sanção (inc. II e III):</strong> descumpridos os prazos → o ente <strong>não recebe transferências voluntárias</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Informações contábeis e registro de dívidas (§§ 2º-6º — LC 156/2016)</div>
+    <div class="card-text">
+      → <strong>Envio padronizado (§ 2º)</strong> — União, Estados, DF e Municípios disponibilizam dados contábeis/orçamentários/fiscais na periodicidade, formato e sistema do <strong>órgão central de contabilidade da União</strong>, divulgados em meio eletrônico amplo (§ 5º: cumprido o envio, cumpre-se o dever de divulgação)<br>
+      → <strong>Registro de dívidas (§ 3º)</strong> — Estados, DF e Municípios enviam ao <strong>Ministério da Fazenda</strong> os dados do <strong>registro eletrônico centralizado e atualizado</strong> das dívidas interna e externa (art. 32, § 4º)<br>
+      → <strong>Descumprimento (§ 4º)</strong> — enseja as penalidades do <strong>art. 51, § 2º</strong> (sem TV, sem operação de crédito salvo dívida mobiliária)<br>
+      → <strong>Sistemas únicos (§ 6º)</strong> — todos os Poderes/órgãos do art. 20 (autarquias, fundações, estatais dependentes, fundos) usam sistemas únicos de execução geridos pelo <strong>Executivo</strong>, resguardada a autonomia
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contas do Executivo — o ano todo (art. 49)</div>
+    <div class="card-text">
+      → <strong>Regra LRF</strong> — contas do Chefe do Executivo disponíveis <strong>durante todo o exercício</strong>, no Legislativo e no órgão técnico, para cidadãos e sociedade<br>
+      → <strong>Contraste municipal (CF, art. 31, § 3º)</strong> — contas do Município: <strong>60 dias por ano</strong> ao contribuinte — a LRF <strong>ampliou</strong> para o exercício todo<br>
+      → <strong>Contas da União</strong> — demonstrativos do <strong>Tesouro + agências oficiais de fomento</strong> (inclui BNDES): empréstimos com recursos do fiscal/seguridade + avaliação do impacto fiscal das agências
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — ESCRITURAÇÃO E CONSOLIDAÇÃO (ARTS. 50-51)           -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Escrituração e consolidação (arts. 50-51)</div>
+  </div>
+  <div class="sec-subtitle">Competência × caixa, caixa separado e o 30/04 → 30/06</div>
+
+  <div class="card">
+    <div class="card-title">Regras de escrituração (art. 50, caput)</div>
+    <div class="card-text">
+      → <strong>Caixa individualizado</strong> — disponibilidade de caixa em <strong>registro próprio</strong>: recursos vinculados a órgão, fundo ou despesa obrigatória <strong>identificados separadamente</strong><br>
+      → <strong>Competência + caixa complementar</strong> — despesa e assunção de compromisso pelo <strong>regime de competência</strong>; fluxos financeiros pelo <strong>caixa, em caráter complementar</strong><br>
+      → <strong>Demonstrações isoladas + conjuntas</strong> — cada órgão/fundo/entidade (direta, autárquica, fundacional, <strong>inclusive estatal dependente</strong>); nas conjuntas, <strong>excluem-se as intragovernamentais</strong><br>
+      → <strong>Previdência separada</strong> — receitas e despesas previdenciárias em <strong>demonstrativos específicos</strong><br>
+      → <strong>Dívida evidenciada</strong> — operações de crédito, RAP e assunções escrituradas com <strong>montante e variação da dívida</strong> (natureza + tipo de credor)<br>
+      → <strong>Alienação destacada</strong> — variações patrimoniais mostram <strong>origem e destino</strong> dos recursos de alienação de ativos
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Custos e consolidação nacional (art. 50, § 3º; art. 51)</div>
+    <div class="card-text">
+      → <strong>Sistema de custos</strong> — a Administração mantém sistema que avalia e acompanha a gestão <strong>orçamentária, financeira e patrimonial</strong><br>
+      → <strong>Normas gerais</strong> — do <strong>órgão central de contabilidade da União</strong>, enquanto não há o conselho de gestão fiscal<br>
+      → <strong>Consolidação (art. 51)</strong> — Executivo da União consolida (nacional + por esfera) as contas do exercício anterior até <strong>30 de junho</strong>, com divulgação eletrônica; Estados e Municípios enviam as suas até <strong>30 de abril</strong> (LC 178/2021)<br>
+      → <strong>Descumprimento (§ 2º)</strong> — sem TV e sem operação de crédito (exceto <strong>dívida mobiliária</strong>) até regularizar<br><br>
+      → ⚠️ <strong>Não confundir:</strong> despesa e fluxos seguem <strong>competência</strong> (caixa é <strong>complementar</strong>) — "ambos pelo caixa" é errado
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — RREO (ARTS. 52-53)                                  -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">RREO — bimestral do Executivo (arts. 52-53)</div>
+  </div>
+  <div class="sec-subtitle">30 dias após o bimestre, todos os Poderes, balanço + demonstrativos</div>
+
+  <div class="card">
+    <div class="card-title">Quem, quando e o quê?</div>
+    <div class="card-text">
+      → <strong>Quem publica</strong> — o <strong>Poder Executivo</strong> de cada ente (CF: até <strong>30 dias após cada bimestre</strong>)<br>
+      → <strong>Abrangência</strong> — <strong>todos os Poderes + MP</strong><br>
+      → <strong>Balanço orçamentário</strong> — receitas por fonte e categoria (realizadas, a realizar, previsão atualizada); despesas por grupo de natureza (dotação, liquidada, saldo)<br>
+      → <strong>Demonstrativos</strong> — receitas (categoria/fonte: inicial, atualizada, bimestre, exercício, a realizar) e despesas (categoria/grupo: inicial, dotação, empenhada e liquidada no bimestre e no exercício) + <strong>função e subfunção</strong><br>
+      → <strong>Refinanciamento destacado</strong> — valores da dívida mobiliária em destaque<br>
+      → <strong>Descumprimento</strong> — sem TV e sem operação de crédito (exceto dívida mobiliária) até regularizar
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Anexos do RREO — os 5 + os 3 do último bimestre</div>
+    <div class="card-text">
+      → <strong>Sempre</strong> — <strong>RCL</strong> e evolução (+ previsão até o fim do exercício); <strong>previdenciárias</strong>; <strong>nominal e primário</strong>; <strong>juros</strong>; <strong>Restos a Pagar</strong> (por Poder/órgão: inscritos, pagos, a pagar)<br>
+      → <strong>Último bimestre</strong> — soma-se: <strong>regra de ouro</strong>; <strong>projeções atuariais</strong> (RGPS + RPPS); <strong>variação patrimonial</strong> (alienação + aplicação)<br>
+      → <strong>Justificativas quando for o caso</strong> — <strong>limitação de empenho</strong> + <strong>frustração de receitas</strong> (combate à sonegação/evasão + fiscalização/cobrança)<br>
+      → <strong>Municípios &lt;50 mil hab.</strong> — <strong>podem</strong> divulgar os demonstrativos <strong>semestralmente</strong> (o RREO em si continua bimestral — prazo da CF)<br>
+      → <strong>Padronização</strong> — modelos atualizáveis pelo <strong>conselho de gestão fiscal</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Município pequeno publica RREO <strong>semestralmente</strong>" — <strong>meia-verdade</strong>: o RREO é <strong>bimestral para todos</strong> (CF); o que pode ser semestral são só os <strong>demonstrativos</strong> (art. 53). E "despesa e fluxos pelo <strong>caixa</strong>" — <strong>errado</strong>: competência (+ caixa complementar).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — RGF (ARTS. 54-55)                                   -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">RGF — quadrimestral dos Poderes (arts. 54-55)</div>
+  </div>
+  <div class="sec-subtitle">Um por Poder, assinado pelo titular, publicado em 30 dias</div>
+
+  <div class="card">
+    <div class="card-title">Quem emite e quem assina? (art. 54)</div>
+    <div class="card-text">
+      → <strong>Emissão</strong> — ao fim de <strong>cada quadrimestre</strong>, pelos <strong>titulares dos Poderes e órgãos</strong> (um RGF por Poder em cada ente)<br>
+      → <strong>Assinaturas</strong> — Chefe do Executivo; Mesa do Legislativo; Presidência + Conselho de Administração (Judiciário); Chefe do MP + <strong>administração financeira e controle interno</strong> (além de outras de cada Poder)<br>
+      → <strong>Publicação</strong> — até <strong>30 dias</strong> após o quadrimestre, amplo acesso (inclusive eletrônico); descumprimento = sem TV e sem operação de crédito (exceto dívida mobiliária)<br>
+      → <strong>Municípios &lt;50 mil hab.</strong> — <strong>podem</strong> divulgar <strong>semestralmente</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conteúdo — comparativo + corretivas + extras do último</div>
+    <div class="card-text">
+      → <strong>Comparativo com limites</strong> — <strong>pessoal</strong> (distinguindo inativos/pensionistas); <strong>dívidas consolidada e mobiliária</strong>; <strong>garantias</strong>; <strong>operações de crédito (inclusive ARO)</strong> — estes 3 últimos, <strong>só no RGF do Executivo</strong><br>
+      → <strong>Corretivas</strong> — se estourou limite, indica as <strong>medidas adotadas ou a adotar</strong><br>
+      → <strong>Último quadrimestre</strong> — soma-se: <strong>disponibilidades de caixa em 31/12</strong>; <strong>inscrição em RAP</strong> (liquidadas; empenhadas não liquidadas; até o limite do caixa; não inscritas por falta de caixa com empenhos cancelados); <strong>cumprimento do ARO</strong> (art. 38, II e IV, "b")<br>
+      → <strong>Legislativo, Judiciário e MP</strong> — o RGF deles traz <strong>apenas o comparativo de pessoal</strong> (com inativos/pensionistas)<br>
+      → <strong>Padronização</strong> — modelos do conselho de gestão fiscal
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "RGF é <strong>anual</strong>" ou "só do <strong>Executivo</strong>" — <strong>errado</strong>: é <strong>quadrimestral</strong> e <strong>um por Poder</strong>. E "dívida/garantias/op. crédito em <strong>todo</strong> RGF" — <strong>falso</strong>: só no do <strong>Executivo</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — CONSELHO DE GESTÃO FISCAL (ART. 67)                 -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Conselho de Gestão Fiscal (art. 67)</div>
+  </div>
+  <div class="sec-subtitle">Acompanhamento permanente — ainda por instalar</div>
+
+  <div class="card">
+    <div class="card-title">Para que existe e quem compõe?</div>
+    <div class="card-text">
+      → <strong>Missão</strong> — acompanhamento e avaliação <strong>permanentes</strong> da política e operacionalidade da gestão fiscal<br>
+      → <strong>Composição/funcionamento</strong> — definidos por <strong>lei ordinária</strong>: representantes de <strong>todos os Poderes e esferas</strong>, do <strong>MP</strong> e de <strong>entidades técnicas da sociedade</strong><br>
+      → <strong>Funções</strong> — harmonizar os entes; disseminar boas práticas (gasto, receita, endividamento, transparência); padronizar contas/relatórios (inclusive <strong>modelos simples para pequenos municípios</strong>); divulgar análises; <strong>premiar</strong> titulares com gestão meritória<br>
+      → <strong>Provisório</strong> — enquanto não instalado, as normas gerais de consolidação saem do <strong>órgão central de contabilidade da União (STN)</strong><br><br>
+      → ⚠️ <strong>Não confundir:</strong> o conselho edita <strong>normas de padronização metodológica</strong> — quem <strong>fiscaliza</strong> o cumprimento (art. 59) é Legislativo + TCs + controle interno, não o conselho
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PRESTAÇÃO DE CONTAS (ARTS. 56-58)                    -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Prestação de contas (arts. 56-58)</div>
+  </div>
+  <div class="sec-subtitle">56 e 57 caíram no STF — o que sobrou valendo</div>
+
+  <div class="card">
+    <div class="card-title">Art. 56, caput e art. 57 — INCONSTITUCIONAIS (Info 983)</div>
+    <div class="card-text">
+      → <strong>Art. 56</strong> — queria juntar às contas do Executivo as dos Presidentes de Legislativo/Judiciário e do Chefe do MP, com <strong>parecer prévio separado</strong>: o STF viu <strong>desvirtuamento</strong> dos arts. 71, I e II (apreciar × julgar) — contas de outros Poderes só se <strong>julgam no TC</strong>, nunca com parecer para o Legislativo julgar<br>
+      → <strong>Art. 57 (todo)</strong> — prazo de <strong>60 dias</strong> para parecer (180 para pequenos municípios) + vedação de recesso com contas pendentes: caiu pelo mesmo motivo — "contas de Poder" invadia a competência de <strong>julgamento</strong> do art. 71, II
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que permanece valendo?</div>
+    <div class="card-text">
+      → <strong>Judiciário (§ 1º)</strong> — contas apresentadas pelos Presidentes do <strong>STF e Tribunais Superiores</strong> (União) e dos <strong>TJs</strong> (Estados), consolidando os demais<br>
+      → <strong>Arrecadação em evidência</strong> — a prestação mostra o desempenho da arrecadação × previsão + providências (fiscalização, sonegação, recuperação de créditos, incremento de receitas)<br>
+      → <strong>Divulgação ampla</strong> — resultados das contas (julgadas ou tomadas) <strong>amplamente divulgados</strong><br>
+      → <strong>Contas do próprio TC</strong> — parecer da <strong>CMO</strong> (ou equivalente estadual/municipal): a Corte não opina sobre si mesma
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — FISCALIZAÇÃO DA GESTÃO (ART. 59)                     -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Fiscalização da gestão (art. 59)</div>
+  </div>
+  <div class="sec-subtitle">Quem fiscaliza, com que ênfase e os 4 alertas dos TCs</div>
+
+  <div class="card">
+    <div class="card-title">Quem fiscaliza e com que foco?</div>
+    <div class="card-text">
+      → <strong>Fiscalizadores</strong> — <strong>Legislativo</strong> (direto ou com TCs) + <strong>controle interno de cada Poder e do MP</strong>, pelas normas de padronização do conselho<br>
+      → <strong>Ênfases</strong> — <strong>metas da LDO</strong>; limites de <strong>op. crédito e RAP</strong>; retorno do <strong>pessoal</strong>; recondução das <strong>dívidas</strong>; destino da <strong>alienação de ativos</strong>; teto do <strong>legislativo municipal</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 4 alertas dos Tribunais de Contas + verificação</div>
+    <div class="card-text">
+      → <strong>Receita × metas</strong> — risco de não cumprir o <strong>primário/nominal do AMF</strong><br>
+      → <strong>Acima de 90%</strong> — pessoal, dívidas, op. crédito e garantias (limites de alerta)<br>
+      → <strong>Inativos acima do limite</strong> legal<br>
+      → <strong>Programas em risco</strong> — custos/resultados comprometidos ou indícios de irregularidade<br>
+      → <strong>Verificação</strong> — aos TCs cabe ainda conferir os <strong>cálculos do pessoal</strong> de cada Poder/órgão<br>
+      → <strong>Denúncia (§ 1º)</strong> — <strong>qualquer cidadão, partido, associação ou sindicato</strong> pode denunciar o descumprimento da LRF ao <strong>TC + MP</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">TCU × BACEN/Tesouro — o acompanhamento especial</div>
+    <div class="card-text">
+      → <strong>BACEN só compra títulos da União</strong> para <strong>refinanciar dívida mobiliária vencendo na carteira</strong>, à <strong>taxa média do leilão do dia</strong><br>
+      → <strong>Tesouro não compra da carteira do BACEN</strong> (nem com reversão), salvo para <strong>reduzir a dívida mobiliária</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — RECEITA PÚBLICA (ARTS. 11-14)                       -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Receita pública (arts. 11-14)</div>
+  </div>
+  <div class="sec-subtitle">Arrecadar tudo, prever com método, regra de ouro e renúncia com compensação</div>
+
+  <div class="card">
+    <div class="card-title">Requisito essencial — instituir, prever e arrecadar (art. 11)</div>
+    <div class="card-text">
+      → <strong>Tríade</strong> — <strong>instituição, previsão e efetiva arrecadação</strong> de <strong>todos os tributos</strong> da competência do ente<br>
+      → <strong>Sanção (só impostos)</strong> — sem cumprir no que tange a <strong>impostos</strong>: <strong>sem transferências voluntárias</strong> (exceto educação, saúde e assistência social)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Previsão com método (art. 12) — 3 anos + 2 anos</div>
+    <div class="card-text">
+      → <strong>Parâmetros</strong> — normas técnicas/legais + efeitos de <strong>alterações na legislação</strong> (alíquotas, desonerações, créditos), <strong>índice de preços</strong>, <strong>crescimento econômico</strong> ou outro fator relevante<br>
+      → <strong>Demonstrativo</strong> — evolução nos <strong>últimos 3 anos</strong> + projeção para os <strong>2 seguintes</strong> + metodologia e premissas<br>
+      → <strong>Fórmula de projeção</strong> — base histórica × efeito preço × efeito quantidade × efeito legislação<br>
+      → <strong>Executivo entrega os estudos (§ 3º)</strong> — <strong>30 dias antes</strong> do prazo das propostas, disponibiliza estudos/estimativas (inclusive RCL) + memórias aos demais Poderes e ao MP — <strong>porque</strong> cada Poder/MP elabora sua <strong>proposta parcial</strong> e o Executivo <strong>consolida e envia</strong> o PLOA ao Legislativo<br>
+      → <strong>Reestimativa do Legislativo (§ 1º)</strong> — <strong>só com erro ou omissão técnica ou legal</strong> comprovados (trava contra emendas sem base)<br>
+      → <strong>Metas bimestrais (§ 4º)</strong> — receitas desdobradas em <strong>metas bimestrais de arrecadação</strong> (combate à evasão/sonegação, dívida ativa ajuizada, créditos a cobrar): parâmetro do <strong>art. 9º</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regra de ouro (art. 167, III + art. 12, § 2º) — op. crédito ≤ despesa de capital</div>
+    <div class="card-text">
+      → <strong>Regra constitucional</strong> — vedadas <strong>operações de crédito que excedam as despesas de capital</strong>, salvo autorizadas por <strong>créditos suplementares/especiais com finalidade precisa</strong>, aprovados por <strong>maioria absoluta</strong>: dificulta emprestar para pagar <strong>pessoal, juros e custeio</strong><br>
+      → <strong>STF (ADI 5683)</strong> — a vedação atinge só o <strong>excesso</strong>: contratar dentro do limite para custeio corrente é <strong>permitido</strong>; e só a <strong>contratação</strong> viola, não a mera autorização<br>
+      → <strong>§ 2º da LRF sem exceções</strong> — "op. crédito previstas ≤ despesa de capital do PLOA": o STF deu <strong>interpretação conforme</strong> para ler junto as <strong>exceções constitucionais</strong> (ADI suspensiva)<br>
+      → <strong>Apuração (§ 3º)</strong> — no exercício: total de <strong>op. crédito ingressadas</strong> × <strong>despesa de capital executada</strong>; <strong>excluem-se</strong> empréstimos-incentivo fiscal a contribuinte (inc. I) e, se por financeira controlada, <strong>deduz-se</strong> o valor (inc. II)<br>
+      → <strong>ARO fora (§ 3º)</strong> — antecipação de receita <strong>não computa</strong> se liquidada com juros/encargos até <strong>10 de dezembro</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Renúncia de receita (art. 14) — conceito + 2 caminhos</div>
+    <div class="card-text">
+      → <strong>Conceito (§ 1º)</strong> — anistia, remissão, subsídio, crédito presumido, isenção <strong>não geral</strong>, alteração de alíquota/base com <strong>redução discriminada</strong> + outros de <strong>tratamento diferenciado</strong>: a isenção <strong>geral</strong> não é renúncia<br>
+      → <strong>Exigências</strong> — <strong>estimativa de impacto</strong> (exercício + 2) + <strong>LDO</strong> + <strong>pelo menos uma</strong> condição:<br>
+      → <strong>Via 1</strong> — renúncia <strong>já considerada na estimativa</strong> da LOA e <strong>sem afetar as metas</strong> do AMF<br>
+      → <strong>Via 2 (compensação)</strong> — medidas de <strong>aumento de receita</strong> (alíquota, base, tributo novo): o benefício <strong>só vigora após implementadas</strong>; e <strong>corte de despesa NÃO compensa</strong> (só receita — a LRF é taxativa)<br>
+      → <strong>Fora do art. 14 (§ 2º)</strong> — II, IE, IPI, IOF + cancelamento de débito <strong>menor que o custo de cobrar</strong><br>
+      → <strong>Calamidade (art. 65)</strong> — afastam-se condições/vedações se o incentivo <strong>combater a calamidade</strong><br>
+      → <strong>Lei específica (CF, art. 150, § 6º)</strong> — subsídio/isenção/redução/crédito/anistia/remissão de impostos, taxas e contribuições só por <strong>lei específica</strong> do ente (vedados ato do Executivo e lei geral)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Art. 14-A (LC 224/2025) — governança dos benefícios a PJ</div>
+    <div class="card-text">
+      → <strong>Quando</strong> — proposição de incentivo/benefício tributário com renúncia cujo beneficiário seja <strong>pessoa jurídica</strong>: acompanha <strong>quantitativo de beneficiários</strong> + <strong>prazo ≤5 anos</strong> + <strong>metas objetivas</strong> (econômicas, sociais, ambientais) + impacto nas <strong>desigualdades regionais</strong> + <strong>transparência e avaliação</strong><br>
+      → <strong>Prazo longo (§ 1º)</strong> — acima de 5 anos só para <strong>investimento de longo prazo</strong> (regulamento + estimativa dos investimentos), com <strong>avaliação a cada 5 anos</strong> (§ 3º)<br>
+      → <strong>Sem prorrogação (§ 2º)</strong> — sem <strong>metas atingidas ou avaliação feita</strong>: não prorroga<br>
+      → <strong>Avaliação (§ 4º)</strong> — por órgão do Executivo <strong>multidisciplinar e especializado</strong><br>
+      → <strong>Alcance (§ 5º)</strong> — vale também para <strong>diferimento de tributos</strong> (exceto parcelado em ≤60 meses ou emergencial/calamidade para toda a região); <strong>não vale</strong> para II, IE, IPI e IOF do art. 153<br>
+      → <strong>Relação com o art. 14</strong> — <strong>complementa, não substitui</strong>: estimativa/compensação (14) + prazo/metas/avaliação (14-A)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Renúncia vale para benefício de natureza <strong>não tributária</strong>" — <strong>errado</strong> (art. 14 é <strong>tributária</strong>). E "reduzir despesa <strong>compensa</strong> renúncia" — <strong>falso</strong>: só <strong>aumento de receita</strong> (rol taxativo).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — GESTÃO PATRIMONIAL (ARTS. 43-47)                    -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Gestão patrimonial (arts. 43-47)</div>
+  </div>
+  <div class="sec-subtitle">Caixa, alienação, desapropriação, conservação e controladas</div>
+
+  <div class="card">
+    <div class="card-title">Disponibilidades de caixa (art. 43) — onde dorme o dinheiro?</div>
+    <div class="card-text">
+      → <strong>Conta Única (art. 164 da CF)</strong> — disponibilidades da <strong>União no BACEN</strong>; Estados, DF, Municípios, órgãos/entidades e controladas em <strong>instituições financeiras oficiais</strong> (salvo lei)<br>
+      → <strong>Previdência em conta separada</strong> — disponibilidades do RGPS/RPPS (arts. 249-250) em <strong>conta apartada</strong>, aplicadas a mercado com prudência; <strong>vedado</strong> aplicar em: <strong>títulos estaduais/municipais, ações e papéis de controladas do ente</strong> e <strong>empréstimos a segurados e ao Poder Público</strong> (inclusive controladas) — federais podem
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Alienação de ativos (art. 44) — capital não paga corrente</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — <span class="highlight">vedada receita de capital de alienação para despesa corrente</span>, salvo por lei aos <strong>regimes de previdência</strong> (geral e próprio)<br>
+      → <strong>Exemplo</strong> — vender imóveis ociosos para pagar <strong>pessoal/custeio</strong>: <strong>vedado</strong>; para <strong>investimentos</strong>: permitido (despesa de capital)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Desapropriação urbana (art. 46) e conservação (art. 45)</div>
+    <div class="card-text">
+      → <strong>Nulidade (art. 46)</strong> — <strong>nulo de pleno direito</strong> o ato de desapropriação urbana sem <strong>prévia e justa indenização em dinheiro</strong> (art. 182, § 3º) ou <strong>depósito judicial</strong>: títulos de curto prazo <strong>não pagam</strong> desapropriação<br>
+      → <strong>Conservação (art. 45)</strong> — LOA e adicionais só trazem <strong>novos projetos</strong> após atendidos os <strong>em andamento</strong> + <strong>conservação do patrimônio</strong> (nos termos da LDO); o Executivo envia ao Legislativo <strong>relatório</strong> até a data do PLDO, com <strong>ampla divulgação</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Controladas com contrato de gestão (art. 47) — autonomia sem sair do orçamento</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — controlada com <strong>contrato de gestão</strong> (objetivos e metas, na forma da lei): <strong>autonomia gerencial, orçamentária e financeira</strong> — <strong>sem sair</strong> do orçamento de investimento (art. 165, § 5º, II)<br>
+      → <strong>Transparência trimestral</strong> — balanços com <strong>nota explicativa</strong>: fornecimento ao controlador (preços × mercado); recursos recebidos (valor, fonte, destino); operações <strong>fora do mercado</strong> (preços/taxas/prazos diferentes)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — TRANSFERÊNCIAS VOLUNTÁRIAS (ART. 25)               -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Transferências voluntárias (art. 25)</div>
+  </div>
+  <div class="sec-subtitle">Cooperação entre entes — conceito, exigências e a blindagem da saúde/educação</div>
+
+  <div class="card">
+    <div class="card-title">Conceito — o que é e o que NÃO é TV?</div>
+    <div class="card-text">
+      → <strong>É TV</strong> — entrega de recursos (correntes ou capital) a outro ente, a título de <strong>cooperação, auxílio ou assistência</strong><br>
+      → <strong>Não é TV</strong> — o que decorre de <strong>determinação constitucional ou legal</strong> + recursos do <strong>SUS</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exigências — transferidor × beneficiário (§ 1º)</div>
+    <div class="card-text">
+      → <strong>Transferidor</strong> — <strong>dotação específica</strong> (LOA/adicionais) + respeitar o art. 167, <strong>X</strong> (sem TV para <strong>pagar pessoal</strong> de Estados/DF/Municípios)<br>
+      → <strong>Beneficiário comprova</strong> — estar <strong>em dia</strong> (tributos, empréstimos, prestação de contas); limites de <strong>educação e saúde</strong>; limites de <strong>dívidas, op. crédito (inclusive ARO), RAP e pessoal</strong><br>
+      → <strong>Contrapartida</strong> — previsão orçamentária (LOA/adicionais)<br><br>
+      → ⚠️ <strong>Quem comprova é o BENEFICIÁRIO</strong> — não quem transfere (a banca inverte)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Uso vinculado e a blindagem social (§ 3º)</div>
+    <div class="card-text">
+      → <strong>Finalidade pactuada</strong> — <strong>vedado</strong> usar em finalidade diversa<br>
+      → <strong>Sanções com exceção (§ 3º)</strong> — na suspensão de TVs da LRF, <strong>excetuam-se educação, saúde e assistência social</strong><br>
+      → <strong>Calamidade (art. 65)</strong> — dispensam-se <strong>limites, condições e restrições</strong> (e sua verificação) para <strong>receber</strong> TV enquanto durar
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Recursos do <strong>SUS</strong> são transferência voluntária" — <strong>errado</strong> (art. 25, caput, os exclui). E "quem transfere comprova os limites" — <strong>falso</strong>: quem comprova é o <strong>beneficiário</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — RECURSOS AO SETOR PRIVADO (ARTS. 26-28)            -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Recursos ao setor privado (arts. 26-28)</div>
+  </div>
+  <div class="sec-subtitle">Lei específica + LDO + LOA — e o socorro a bancos</div>
+
+  <div class="card">
+    <div class="card-title">Regra geral (art. 26) — 3 condições cumulativas</div>
+    <div class="card-text">
+      → <strong>Objeto</strong> — cobrir <strong>necessidades de PF</strong> ou <strong>déficits de PJ</strong>, direta ou indiretamente (inclui empréstimos, financiamentos, refinanciamentos + prorrogações/composições, subvenções, participação em capital)<br>
+      → <strong>Lei específica</strong> + <strong>condições da LDO</strong> + <strong>previsão na LOA/adicionais</strong><br>
+      → <strong>Alcance</strong> — toda a <strong>indireta</strong> (fundações, estatais), <strong>exceto</strong> no exercício precípuo: <strong>instituições financeiras e BACEN</strong><br>
+      → <strong>Crédito a não controlada (art. 27)</strong> — encargos <strong>não inferiores</strong> à lei ou ao <strong>custo de captação</strong>; prorrogações/composições e empréstimos fora da regra exigem <strong>lei específica</strong> (subsídio na LOA)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Socorro ao SFN (art. 28) — vedado, salvo lei; BACEN pode redescontar</div>
+    <div class="card-text">
+      → <strong>Vedação</strong> — <span class="highlight">salvo lei específica</span>, nada de recursos públicos (nem de op. crédito) para <strong>socorrer instituições do SFN</strong> (empréstimos de recuperação, mudança de controle): o Executivo <strong>não socorre banco sem o Congresso</strong><br>
+      → <strong>Exceção do BACEN</strong> — pode conceder <strong>redesconto e empréstimos &lt;360 dias</strong> às financeiras<br>
+      → <strong>Insolvência (§ 1º)</strong> — prevenção a cargo de <strong>fundos/mecanismos das próprias instituições do SFN</strong>, na forma da lei (não do ente)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Socorrer banco <strong>previsto no orçamento</strong> dispensa lei específica" — <strong>errado</strong>: a lei específica é <strong>exigida de todo modo</strong>. E "prevenção de insolvência é do <strong>ente</strong>" — <strong>falso</strong>: é das <strong>instituições do SFN</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 12 — PONTOS QUE MAIS CAEM EM PROVA                      -->
+<!-- ============================================================ -->
+<section id="sec12">
+  <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">Números que decidem a questão</div>
+    <div class="card-text">
+      → <strong>Transparência/prazos:</strong> RREO <strong>30 dias pós-bimestre</strong> · RGF <strong>30 dias pós-quadrimestre</strong> · consolidação <strong>30/04 → 30/06</strong> · &lt;50 mil hab.: demonstrativos <strong>semestrais</strong><br>
+      → <strong>Receita:</strong> evolução <strong>3 anos</strong> + projeção <strong>2 anos</strong> · estudos <strong>30 dias antes</strong> · metas <strong>bimestrais</strong> · regra de ouro: op. crédito ≤ <strong>capital</strong> (ARO fora se até <strong>10/dez</strong>)<br>
+      → <strong>Renúncia:</strong> impacto exercício <strong>+ 2</strong> · 14-A: prazo <strong>≤5 anos</strong> · diferimento <strong>≤60 meses</strong><br>
+      → <strong>TV e SFN:</strong> SUS <strong>não é TV</strong> · redesconto BACEN <strong>&lt;360 dias</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Distinções que a banca inverte</div>
+    <div class="card-text">
+      → <strong>RREO × RGF:</strong> bimestral/Executivo × quadrimestral/um por Poder<br>
+      → <strong>56/57:</strong> inconstitucionais (só julga no TC) × vale: Judiciário, arrecadação, CMO<br>
+      → <strong>Competência × caixa:</strong> despesa/fluxos por competência (caixa complementar)<br>
+      → <strong>Renúncia:</strong> tributária (não "não tributária") × compensação só com <strong>receita</strong><br>
+      → <strong>TV:</strong> beneficiário comprova (não o transferidor) · saúde/educação/assistência <strong>blindadas</strong><br>
+      → <strong>SFN:</strong> socorro só com <strong>lei específica</strong> · insolvência é das <strong>instituições</strong><br>
+      → <strong>Caixa previdenciário:</strong> conta <strong>separada</strong> · federais <strong>podem</strong>, estaduais/municipais <strong>não</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> foque na LRF arts. 11, 12 (§§ 1º-4º), 14 (e 14-A), 25, 26-28, 44, 46, 48-51, 52-55, 56-57 (inconstitucionais), 59 e 67; e na CF arts. 31 (§ 3º), 150 (§ 6º), 164, 167 (III, X) e 182 (§ 3º). Pares-guia: <strong>RREO-bimestre × RGF-quadrimestre</strong>, <strong>30/04 × 30/06</strong>, <strong>60 dias × ano todo</strong>, <strong>tributária × receita</strong>.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 13 — INCIDÊNCIA DE TEMAS (TEC)                          -->
+<!-- ============================================================ -->
+<section id="sec13">
+  <div class="sec-header">
+    <div class="sec-num">13</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão de cima para baixo — temas com mais questões primeiro</div>
+
+  <div class="card">
+    <div class="card-title">Contador de temas</div>
+    <div class="card-text">
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 8 — Receita pública (arts. 11-14): 4</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 1 — Transparência da gestão (arts. 48-49): 1</span><br>
+      <span class="tag">Seção 11 — Recursos ao setor privado (arts. 26-28): 1</span><br>
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2012/resumo-aula-12-lrf-parte-2.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 12 · LRF Parte II</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": 13, "tema": "LRF Parte III — Transparência, Receita e Patrimônio", "questoes": [{"q": "A renúncia de receita (art. 14) exige:", "opts": [{"t": "Apenas previsão na LDO, sem estimativa.", "why": "Exige estimativa de impacto (exercício + 2) + LDO + uma das duas condições."}, {"t": "Estimativa (exercício + 2) + LDO + (renúncia já na LOA sem afetar metas OU compensação por aumento de receita); o benefício compensado só vigora após implementadas as medidas; corte de despesa NÃO compensa.", "ok": true, "why": "Art. 14, caput e incisos."}, {"t": "Qualquer isenção, geral ou não, é renúncia.", "why": "Isenção em caráter GERAL não é renúncia (§ 1º)."}, {"t": "Alterar alíquota de IPI dispensa as exigências por ser imposto extrafiscal.", "why": "II, IE, IPI e IOF estão FORA do art. 14 (§ 2º) — mas por exceção expressa, não por serem extrafiscais em geral."}]}, {"q": "RREO × RGF — assinale a correta:", "opts": [{"t": "Ambos são bimestrais e do Executivo.", "why": "RREO: bimestral, Executivo. RGF: QUADRIMESTRAL, um por Poder."}, {"t": "RREO: bimestral do Executivo (todos os Poderes); RGF: quadrimestral por Poder, publicado em 30 dias; dívida/garantias/crédito só no RGF do Executivo.", "ok": true, "why": "Arts. 52-55."}, {"t": "Município pequeno publica RREO semestralmente.", "why": "O RREO é bimestral para todos; o semestral vale só para os DEMONSTRATIVOS (<50 mil hab.)."}, {"t": "O RGF do Legislativo traz dívida e garantias.", "why": "Legislativo/Judiciário/MP: só o comparativo de PESSOAL."}]}, {"q": "São instrumentos de transparência (art. 48):", "opts": [{"t": "Planejamento estratégico interno e atas de registro de preços.", "why": "Não são instrumentos da LRF."}, {"t": "Memorando sigiloso de apuração preliminar.", "why": "Transparência exige publicidade, inclusive eletrônica."}, {"t": "Planos, orçamentos, LDO, contas + parecer prévio, RREO, RGF e versões simplificadas, com ampla divulgação inclusive eletrônica.", "ok": true, "why": "Art. 48, caput."}, {"t": "Apenas o RGF, por ser quadrimestral.", "why": "O rol é amplo e inclui RREO, contas, planos e versões simplificadas."}]}, {"q": "A destinação de recursos ao setor privado (art. 26) exige:", "opts": [{"t": "Decreto + LDO + LOA.", "why": "O ato é LEI ESPECÍFICA, não decreto."}, {"t": "Lei específica + PPA + LOA.", "why": "As condições são as da LDO, não do PPA."}, {"t": "Lei específica + condições da LDO + previsão na LOA/adicionais.", "ok": true, "why": "Art. 26, caput — as 3 cumulativas."}, {"t": "Ato administrativo do Executivo + LDO + LOA.", "why": "Ato administrativo não supre a lei específica."}]}, {"q": "A regra de ouro (art. 167, III) veda:", "opts": [{"t": "Qualquer operação de crédito para despesa corrente.", "why": "STF (ADI 5683): dentro do limite, pode custear corrente; veda-se só o EXCESSO sobre o capital."}, {"t": "Operações de crédito acima das despesas de capital, salvo por suplementares/especiais com finalidade precisa aprovados por maioria absoluta.", "ok": true, "why": "Art. 167, III."}, {"t": "A mera autorização legislativa acima do limite.", "why": "Só a CONTRATAÇÃO viola, não a autorização (STF)."}, {"t": "ARO liquidada até 10/12 de compor a regra.", "why": "ARO liquidada até 10/12 NÃO se computa (art. 32, § 3º LRF)."}]}, {"q": "Sobre transferências voluntárias (art. 25), é correto:", "opts": [{"t": "Recursos do SUS são TV.", "why": "Excluídos expressamente do conceito."}, {"t": "Quem comprova os limites é o transferidor.", "why": "Quem comprova é o BENEFICIÁRIO."}, {"t": "TV é entrega a outro ente por cooperação/auxílio, fora determinação/SUS; exige dotação, art. 167 X, comprovação do beneficiário e contrapartida; saúde/educação/assistência escapam das suspensões.", "ok": true, "why": "Art. 25, caput e §§ 1º-3º."}, {"t": "Pode ser usada em finalidade diversa se houver saldo.", "why": "Vedado o desvio de finalidade pactuada."}]}, {"q": "Sobre prestação de contas na LRF, assinale a correta:", "opts": [{"t": "O art. 56 (contas conjuntas com parecer separado) é válido.", "why": "INCONSTITUCIONAL (Info 983): contas de outros Poderes só se julgam no TC."}, {"t": "O art. 57 (60 dias + sem recesso) continua vigente.", "why": "INCONSTITUCIONAL por inteiro, pelo mesmo motivo."}, {"t": "Caíram o art. 56 e o 57 (STF, Info 983); valem: Judiciário apresenta via STF/TJs, arrecadação evidenciada, divulgação ampla e contas do TC com parecer da CMO.", "ok": true, "why": "Arts. 56-58 pós-STF."}, {"t": "O TC emite parecer sobre as próprias contas.", "why": "Quem opina é a CMO (ou equivalente), nunca o próprio TC."}]}, {"q": "Caixa previdenciário e alienação (arts. 43-44):", "opts": [{"t": "Disponibilidades do RPPS podem ir para títulos estaduais.", "why": "Vedado: títulos estaduais/municipais, ações de controladas e empréstimos."}, {"t": "Receita de alienação pode pagar pessoal se houver superávit.", "why": "Capital não paga corrente — só por lei aos regimes de previdência (art. 44)."}, {"t": "RPPS em conta separada a mercado com prudência (federais podem, estaduais/municipais não); alienação não financia corrente, salvo por lei à previdência.", "ok": true, "why": "Arts. 43 e 44."}, {"t": "Desapropriação urbana pode ser paga com títulos de curto prazo.", "why": "Nula sem prévia e justa indenização em dinheiro ou depósito judicial (art. 46)."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>

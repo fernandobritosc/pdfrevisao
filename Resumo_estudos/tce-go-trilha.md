@@ -157,14 +157,14 @@
 | ✅ | Receita pública | Aula 05 | Tarefa 10 |
 | ✅ | Dívida ativa | Aula 05 | Tarefa 10 |
 | ✅ | Despesas públicas | Aula 06 | — |
-| ❌ | PPA, LDO e LOA (detalhamento CF) | — | Tarefa 6 |
-| ❌ | Restos a pagar | — | — |
-| ❌ | Despesas com pessoal e limites | — | — |
+| 🔄 | PPA, LDO e LOA (detalhamento CF) | AFO Aula 11 (parcial 🔄) | Tarefa 6; base CF+LRF pronta, ver se basta |
+| 🔄 | Restos a pagar | AFO Aula 14 (parcial 🔄) | só fim de mandato (arts. 41-A/42); falta parte geral |
+| ✅ | Despesas com pessoal e limites | AFO Aula 12 | — |
 | ❌ | Dívida e endividamento público | — | — |
-| ❌ | Lei de Responsabilidade Fiscal | — | — |
+| ✅ | Lei de Responsabilidade Fiscal | AFO Aulas 11-14 | Partes I-IV completas |
 | ❌ | MCASP Parte I | — | — |
 
-**Aulas TJ que cobrem TCE:** 00-06 (orçamento, princípios, ciclo, receita, despesa)  
+**Aulas TJ que cobrem TCE:** 00-06 e 11-14 (orçamento, princípios, ciclo, receita, despesa + LRF completa)  
 **Faltam para TCE:** PPA/LDO/LOA (aprofundar), restos a pagar, pessoal, LRF, MCASP
 
 ---
@@ -296,7 +296,7 @@
 | Licitações | ✅ 2 aulas (DA 07-08) | 🔨 Falta: planejamento, modalidades, dispensa, SRP, execução, sanções, PNCP | +2-3 aulas |
 | Direito Constitucional | ✅ 8 aulas | 🔨 Falta: TCs, funções essenciais | +1 aula |
 | Controle Externo | ✅ Base (DC Aula 20) | 🔄 Parcial: falta auditoria (INTOSAI/NBASP, tipos, planejamento, técnicas, achados) | +2 aulas |
-| AFO | ✅ 7 aulas | 🔨 Falta: PPA/LDO/LOA aprofundar, restos a pagar, pessoal, LRF, MCASP | +1-2 aulas |
+| AFO | ✅ 11 aulas | 🔨 Falta: RAP (geral), MCASP | +1 aula |
 | Contabilidade | ❌ Nenhum | ❌ Nenhum (exclusiva TCE, 4 tarefas trilha) | +3-4 aulas |
 | ADM Pública | ✅ 8 aulas | 🔨 Falta: qualidade, BSC, projetos, governança, indicadores | +1-2 aulas |
 | ADM Geral | 🔨 2 aulas parcial | 🔨 Falta: processo decisório, ORT, eficiência, centralização, sistêmica | +1-2 aulas |
@@ -341,7 +341,7 @@
    - Português: +2-3 aulas (crase, regência, concordância, pontuação, redação oficial)
    - Matemática/RL: +2-3 aulas
    - Licitações: +2-3 aulas (modalidades, dispensa, SRP, execução, sanções)
-   - AFO: +1-2 aulas (PPA/LDO/LOA, restos a pagar, pessoal, LRF, MCASP)
+   - AFO: +1 aula (RAP geral, MCASP)
 
 3. **Revisar** matérias TJ que já temos (aproveitar para TCE)
 

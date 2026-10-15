@@ -179,7 +179,7 @@
 | ✅ | Ciclo orçamentário e créditos adicionais | AFO Aulas 02-03 | — |
 | ✅ | Receita e despesa públicas | AFO Aulas 05-06 | — |
 | ✅ | Fiscalização contábil, financeira e orçamentária (CF arts. 70-75) | DC Aula 20 | — |
-| ❌ | LRF — Lei Complementar 101/2000 | — | — |
+| ✅ | LRF — Lei Complementar 101/2000 | AFO Aulas 11-14 | Partes I-IV completas |
 
 ### D. Técnica legislativa e Câmara Municipal 🔥
 

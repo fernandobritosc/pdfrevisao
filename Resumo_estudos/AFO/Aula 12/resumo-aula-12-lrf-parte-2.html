@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO 06: Despesas Públicas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #16a34a;
+  --mat-strong: #15803d;
+  --mat-soft: #e8f6ec;
+  --mat-line: #bbf7d0;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--mat);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 12</div>
+  <div class="sidebar-sub">LRF Parte II · LC 101/2000</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Geração de despesa (arts. 15-16)</a>
+  <a href="#sec2">2. DOCC — Obrigatória Continuada (art. 17)</a>
+  <a href="#sec3">3. Despesa com pessoal — conceito (art. 18)</a>
+  <a href="#sec4">4. Limites globais por ente (art. 19)</a>
+  <a href="#sec5">5. Repartição por Poder (art. 20)</a>
+  <a href="#sec6">6. Art. 169 da CF — limites e providências</a>
+  <a href="#sec7">7. Atos nulos de pleno direito (art. 21)</a>
+  <a href="#sec8">8. Verificação, alerta e prudencial (art. 22)</a>
+  <a href="#sec9">9. Limite ultrapassado (art. 23)</a>
+  <a href="#sec10">10. Seguridade social (art. 24)</a>
+  <a href="#sec11">11. Pontos que mais caem em prova</a>
+  <a href="#sec12">12. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-12-lrf-parte-2.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: simplificado + mapa mental + resumo<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<div class="main">
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — GERAÇÃO DE DESPESA (ARTS. 15-16)                    -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Geração de despesa (arts. 15-16)</div>
+  </div>
+  <div class="sec-subtitle">Criar, expandir ou aperfeiçoar ação com aumento de despesa — as 2 condições</div>
+
+  <div class="card">
+    <div class="card-title">Art. 15 — sem 16 e 17, é irregular</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — a geração de despesa ou assunção de obrigação que <strong>não atenda aos arts. 16 e 17</strong> é considerada <span class="highlight">não autorizada, irregular e lesiva</span> ao patrimônio público<br>
+      → <strong>Alcance</strong> — criação, expansão ou aperfeiçoamento de <strong>ação governamental</strong> que acarrete <strong>aumento da despesa</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As 2 condições do art. 16 — estimativa + declaração</div>
+    <div class="card-text">
+      → <strong>Estimativa de impacto</strong> — orçamentário-financeiro no exercício de entrada em vigor e nos <strong>2 subsequentes</strong><br>
+      → <strong>Declaração do ordenador</strong> — o aumento tem <strong>adequação orçamentária e financeira com a LOA</strong> e <strong>compatibilidade com PPA e LDO</strong><br>      → <strong>Estimativa com método (§ 2º)</strong> — acompanha <strong>premissas e metodologia de cálculo</strong><br><br>
+      → ⚠️ <strong>Não confundir:</strong> "declaração quanto à adequação <strong>financeira</strong>" sozinha é incompleta — o inciso exige adequação <strong>orçamentária E financeira</strong> com a LOA + compatibilidade com <strong>PPA e LDO</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Adequada × compatível — os conceitos do § 1º</div>
+    <div class="card-text">
+      → <strong>Adequada com a LOA</strong> — dotação <strong>específica e suficiente</strong>, ou abrangida por <strong>crédito genérico</strong>: somadas as despesas da mesma espécie (realizadas + a realizar) no programa de trabalho, <strong>não ultrapassam os limites</strong> do exercício<br>
+      → <strong>Compatível com PPA e LDO</strong> — conforma-se com <strong>diretrizes, objetivos, prioridades e metas</strong> e não infringe suas disposições
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Irrelevantes e condição prévia (§§ 3º-4º)</div>
+    <div class="card-text">
+      → <strong>Despesas irrelevantes</strong> — <strong>dispensadas</strong> das exigências do art. 16, nos termos da <strong>LDO</strong> (§ 3º)<br>
+      → <strong>Condição prévia (§ 4º)</strong> — as normas do art. 16 condicionam <strong>empenho e licitação</strong> de serviços, bens e obras + <strong>desapropriação de imóveis urbanos</strong> (art. 182, § 3º da CF — prévia e justa indenização em dinheiro)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — DOCC (ART. 17)                                      -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">DOCC — Obrigatória Continuada (art. 17)</div>
+  </div>
+  <div class="sec-subtitle">Despesa corrente por mais de 2 exercícios — conceito, compensação e exceções</div>
+
+  <div class="card">
+    <div class="card-title">Conceito — corrente + lei + mais de 2 exercícios</div>
+    <div class="card-text">
+      → <strong>Definição</strong> — <strong>despesa corrente</strong> derivada de <strong>lei, MP ou ato administrativo normativo</strong> que fixe obrigação legal de execução por período <strong>superior a 2 exercícios</strong> (ex.: aumento de remuneração de servidores)<br><br>
+      → ⚠️ <strong>Armadilha clássica:</strong> obra/escola por <strong>12 meses</strong> ou despesa de <strong>capital</strong> → <strong>não é DOCC</strong> (precisa ser corrente + &gt;2 exercícios)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exigências para criar ou aumentar DOCC (§§ 1º-2º e 4º-5º)</div>
+    <div class="card-text">
+      → <strong>Estimativa de impacto</strong> — orçamentário-financeiro no exercício de entrada + <strong>2 subsequentes</strong><br>
+      → <strong>Origem dos recursos</strong> — demonstrar de onde vem o custeio<br>
+      → <strong>Não afeta metas</strong> — comprovar que não prejudica as <strong>metas fiscais do AMF</strong>, com <strong>premissas e metodologia</strong> do proponente (sem dispensar o exame de compatibilidade com PPA/LDO)<br>
+      → <strong>Compensação</strong> — efeitos financeiros compensados por <strong>aumento permanente de receita ou redução permanente de despesa</strong><br>
+      → <strong>Antes de executar (§ 5º)</strong> — a DOCC <strong>não se executa antes</strong> de implementadas as medidas, que integram o instrumento criador/aumentador
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Aumento permanente de receita (§ 3º) e prorrogação (§ 7º)</div>
+    <div class="card-text">
+      → <strong>Conceito</strong> — o proveniente de <strong>elevação de alíquotas, ampliação da base de cálculo, majoração ou criação de tributo ou contribuição</strong><br>
+      → <strong>Prorrogação = aumento</strong> — despesa criada por <strong>prazo determinado</strong> que se prorroga considera-se <strong>aumento de despesa</strong> (§ 7º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exceções à DOCC — dívida, revisão anual e calamidade</div>
+    <div class="card-text">
+      → <strong>Fora das regras (§ 6º)</strong> — despesas com <strong>serviço da dívida</strong> e <strong>reajustamento de remuneração</strong> do art. 37, X (revisão geral anual, mesma data, sem distinção de índices): a revisão só repõe o poder de compra — reajuste <strong>acima da inflação</strong> (ganho real) segue as regras<br>
+      → <strong>Calamidade (art. 65, § 1º, III)</strong> — reconhecida pelo Congresso por decreto legislativo: afastam-se as condições/vedações dos <strong>arts. 16 e 17</strong> enquanto durar, se a despesa <strong>combater a calamidade</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "DOCC pode ser despesa de <strong>capital</strong>" — <strong>falso</strong>: só <strong>corrente</strong>. E "12 meses de obrigação legal" — <strong>não é DOCC</strong>: exige período <strong>superior a 2 exercícios</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — DESPESA COM PESSOAL: CONCEITO (ART. 18)             -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Despesa com pessoal — conceito (art. 18)</div>
+  </div>
+  <div class="sec-subtitle">Quem entra, quem sai e como se apura</div>
+
+  <div class="card">
+    <div class="card-title">O somatório — ativos, inativos e pensionistas</div>
+    <div class="card-text">
+      → <strong>Quem</strong> — gastos com <strong>ativos, inativos e pensionistas</strong>: mandatos eletivos, cargos, funções, empregos — <strong>civis, militares e membros de Poder</strong><br>
+      → <strong>O quê</strong> — <strong>quaisquer espécies remuneratórias</strong> (vencimentos, vantagens fixas/variáveis, subsídios, proventos, adicionais, gratificações, horas extras, vantagens pessoais) + <strong>encargos sociais e contribuições</strong> do ente à previdência<br>
+      → <strong>Sempre corrente</strong> — despesas com pessoal são <strong>sempre despesas correntes</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quem NÃO entra — indenizatórias e o exemplo do professor</div>
+    <div class="card-text">
+      → <strong>Verbas indenizatórias</strong> — <strong>não são espécies remuneratórias</strong>: auxílio-alimentação, pré-escolar, auxílio-transporte, ajuda de custo de remoção militar etc. ficam <strong>fora</strong> do cálculo<br>
+      → <strong>Terceirização (art. 18, § 1º)</strong> — contratos de mão de obra em <strong>substituição de servidores/empregados</strong> contam como <strong>"Outras Despesas de Pessoal"</strong>: professor temporário na vaga de efetivo <strong>entra</strong>; segurança terceirizada da escola (atividade acessória) <strong>não entra</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Apuração — mês + 11, competência, bruto (art. 18, §§ 2º-3º)</div>
+    <div class="card-text">
+      → <strong>Janela</strong> — soma do <strong>mês de referência + 11 anteriores</strong>, em <strong>regime de competência</strong> (fato gerador), <strong>independentemente de empenho</strong> (LC 178/2021): 13º devido no exercício entra nele, mesmo pago em janeiro seguinte<br>
+      → <strong>Remuneração bruta</strong> — sem dedução ou retenção, ressalvada a redução ao <strong>teto do art. 37, XI</strong> (§ 3º)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Só ativos entram no conceito" — <strong>errado</strong>: entram <strong>ativos, inativos e pensionistas</strong>. E "apuração pelo regime de <strong>caixa</strong>" — <strong>falso</strong>: é <strong>competência</strong>, independente de empenho.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — LIMITES GLOBAIS POR ENTE (ART. 19)                  -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Limites globais por ente (art. 19)</div>
+  </div>
+  <div class="sec-subtitle">50-60-60 da RCL e o que não se computa</div>
+
+  <div class="card">
+    <div class="card-title">Os 3 percentuais — por ente e por período</div>
+    <div class="card-text">
+      → <strong>União: 50%</strong> · <strong>Estados: 60%</strong> · <strong>Municípios: 60%</strong> da <strong>RCL</strong> — em <strong>cada período de apuração</strong> e em <strong>cada ente</strong> (art. 169 da CF: LC fixa os limites)<br><br>
+      → ⚠️ <strong>Atenção:</strong> "50% para <strong>todos</strong> os entes" é <strong>errado</strong> — 50% é só a União
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que NÃO se computa nos limites? (art. 19, § 1º)</div>
+    <div class="card-text">
+      → <strong>Indenização por demissão</strong> de servidores/empregados<br>
+      → <strong>Incentivos à demissão voluntária</strong><br>
+      → <strong>Convocação extraordinária do Congresso</strong> (EC 50/2006 vedou a parcela indenizatória)<br>
+      → <strong>Decisão judicial</strong> — mas só a de <strong>competência de período anterior</strong> ao da apuração sai; a do período <strong>entra</strong> no limite do Poder/órgão<br>
+      → <strong>DF, Amapá e Roraima</strong> — pessoal custeado com recursos da União (art. 21, XIII-XIV + art. 31 da EC 19): quadro em extinção, pago pela União<br>
+      → <strong>Inativos/pensionistas</strong> — parcela custeada por: <strong>contribuições dos segurados</strong>, <strong>compensação financeira</strong> (art. 201, § 9º — contagem recíproca RGPS/RPPS) e <strong>transferências de equilíbrio atuarial</strong> (RPPS)<br><br>
+      → ⚠️ <strong>Vedação (art. 19, § 3º — LC 178/2021):</strong> na verificação, é <strong>vedada a dedução</strong> da parcela custeada com aportes para cobrir o <strong>déficit financeiro</strong> da previdência
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — REPARTIÇÃO POR PODER (ART. 20)                      -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Repartição por Poder (art. 20)</div>
+  </div>
+  <div class="sec-subtitle">A tabela que mais cai — e suas 4 regras de apoio</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Esfera (teto)</th><th>Legislativo (+TC)</th><th>Judiciário</th><th>Executivo</th><th>MP</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>União (50%)</strong></td><td><strong>2,5%</strong> (+TCU)</td><td><strong>6%</strong></td><td><strong>40,9%</strong> (3% DF/ex-territórios)</td><td><strong>0,6%</strong> (MPU)</td></tr>
+        <tr><td><strong>Estados (60%)</strong></td><td><strong>3%</strong> (+TCE)</td><td><strong>6%</strong></td><td><strong>49%</strong></td><td><strong>2%</strong> (MPE)</td></tr>
+        <tr><td><strong>Municípios (60%)</strong></td><td><strong>6%</strong> (+TCM se houver)</td><td>—</td><td><strong>54%</strong></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Detalhes que decidem a questão</div>
+    <div class="card-text">
+      → <strong>3% do Executivo federal carimbados</strong> — despesas de pessoal do art. 21, XIII-XIV + art. 31 da EC 19, repartidos pela <strong>média dos 3 exercícios anteriores</strong> à LRF<br>
+      → <strong>TC dos Municípios (±0,4%)</strong> — onde houver TCM: Legislativo <strong>3,4%</strong> e Executivo <strong>48,6%</strong><br>
+      → <strong>TC do Município × TC dos Municípios</strong> — o primeiro (SP e RJ, pré-1988) julga <strong>só o próprio município</strong>; o segundo (BA, PA, GO) julga os <strong>municípios do Estado</strong>; sem TCM, valem os <strong>TCEs</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Rateio, duodécimos, segregação e blindagem do Executivo</div>
+    <div class="card-text">
+      → <strong>Rateio entre ramos (§ 1º)</strong> — Legislativo e Judiciário repartem o limite entre seus ramos pela <strong>média 1997-1999</strong> (3 exercícios antes da LRF)<br>
+      → <strong>Duodécimos (§ 5º)</strong> — recursos (inclusive suplementares/especiais) de Legislativo, Judiciário, MP e Defensoria entregues até o <strong>dia 20 de cada mês</strong>, em duodécimos, pelo percentual do art. 20 aplicado à despesa de pessoal<br>
+      → <strong>Segregação de inativos (§ 7º — LC 178/2021)</strong> — cada Poder/órgão apura <strong>separadamente</strong> a integralidade dos <strong>seus</strong> inativos/pensionistas, mesmo que outro Poder pague<br>
+      → <strong>Blindagem do Executivo (STF, ACO 1218)</strong> — estouro de Legislativo, Judiciário ou MP estadual (autônomos) <strong>não inscreve o Executivo</strong> nos cadastros restritivos da União
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Legislativo municipal tem <strong>3%</strong>" — <strong>errado</strong>: no Município é <strong>6%</strong> (3% é nos <strong>Estados</strong>). E "Município tem Judiciário e MP próprios" — <strong>falso</strong>: a tabela municipal só tem Legislativo + Executivo.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — ART. 169 DA CF: LIMITES E PROVIDÊNCIAS              -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Art. 169 da CF — limites e providências</div>
+  </div>
+  <div class="sec-subtitle">A base constitucional dos limites de pessoal</div>
+
+  <div class="card">
+    <div class="card-title">Caput + § 2º — LC fixa, repasse suspende</div>
+    <div class="card-text">
+      → <strong>Caput</strong> — despesa com pessoal (ativos, inativos, pensionistas) de todos os entes <strong>não excede os limites de LC</strong> (a LRF)<br>
+      → <strong>§ 2º</strong> — vencido o prazo de adaptação da LC: <strong>suspensos imediatamente</strong> todos os repasses federais/estaduais aos entes que descumprirem
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">§ 1º — as 2 condições para aumentar pessoal</div>
+    <div class="card-text">
+      → <strong>Vale para tudo</strong> — vantagem, aumento, criação de cargos/empregos/funções, alteração de carreiras, admissão/contratação <strong>a qualquer título</strong>, na direta e indireta (inclusive fundações mantidas): só com<br>
+      → <strong>Dotação prévia suficiente (inc. I)</strong> — na <strong>LOA</strong>, para as despesas existentes + os acréscimos, <strong>antes</strong> de praticar o aumento<br>
+      → <strong>Autorização na LDO (inc. II)</strong> — específica; <strong>exceto</strong> para <strong>empresas públicas e SEM</strong><br><br>
+      → ⚠️ <strong>Atenção:</strong> a exceção das estatais vale <strong>só para o inciso II</strong> (LDO) — a dotação prévia (inc. I) exige-se de todos
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">§§ 3º e 4º — o roteiro de corte (20%, não estáveis, estáveis)</div>
+    <div class="card-text">
+      → <strong>1º</strong> — redução de <strong>pelo menos 20%</strong> das despesas com <strong>cargos em comissão e funções de confiança</strong><br>
+      → <strong>2º</strong> — exoneração dos <strong>não estáveis</strong><br>
+      → <strong>3º</strong> — exoneração de <strong>estável</strong>, se insuficiente: exige <strong>ato normativo motivado</strong> de cada Poder especificando atividade/órgão, com <strong>indenização de 1 mês por ano</strong>; o cargo fica <strong>extinto</strong>, vedada criação de cargo assemelhado por <strong>4 anos</strong> (lei federal dá as normas gerais)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Outras travas constitucionais do pessoal</div>
+    <div class="card-text">
+      → <strong>Irredutibilidade (art. 37, XV)</strong> — subsídios e vencimentos são <strong>irredutíveis</strong> em regra (redução consensual <strong>não</strong> é ressalva)<br>
+      → <strong>Art. 167, X</strong> — União/Estados (e suas financeiras) <strong>não transferem voluntariamente nem emprestam</strong> (nem por ARO) para pagar <strong>pessoal ativo, inativo e pensionista</strong> de Estados, DF e Municípios
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — ATOS NULOS DE PLENO DIREITO (ART. 21)               -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Atos nulos de pleno direito (art. 21)</div>
+  </div>
+  <div class="sec-subtitle">LC 173/2020 — nulidades permanentes, não só da Covid</div>
+
+  <div class="card">
+    <div class="card-title">Inciso I — sem 16, sem 17, sem 37-XIII, sem 169-§1º, sem teto de inativo</div>
+    <div class="card-text">
+      → <strong>Nulo</strong> o ato que aumenta pessoal sem: exigências dos <strong>arts. 16 e 17</strong> + vedação do art. 37, <strong>XIII</strong> (vinculação/equiparação remuneratória) + exigências do art. 169, <strong>§ 1º</strong> + <strong>limite de inativos</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Incisos II e III — 180 dias e parcelas pós-mandato</div>
+    <div class="card-text">
+      → <strong>180 dias (inc. II)</strong> — nulo o aumento nos <strong>180 dias anteriores ao fim do mandato</strong> do titular do Poder/órgão: vale para <strong>qualquer mandato</strong>, inclusive o de <strong>2 anos</strong> de presidente de Câmara/Assembleia<br>
+      → <strong>Parcelas futuras (inc. III)</strong> — nulo o aumento com parcelas <strong>além do mandato</strong>: escalonamento (ex.: 10% + 5% + 5%) só vale se <strong>todas as parcelas caírem dentro do mesmo mandato</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Inciso IV — quem não pode aprovar plano de carreiras/nomear</div>
+    <div class="card-text">
+      → <strong>Agentes</strong> — Chefes de Executivo, Mesas do Legislativo, Presidentes de Tribunais e Chefes de MP (União e Estados): <strong>não aprovam/editam/sancionam</strong> plano de alteração/reajuste/reestruturação nem <strong>nomeiam aprovados</strong> quando houver aumento nos <strong>180 dias antes do fim do mandato do Executivo</strong> ou <strong>parcelas pós-mandato do Executivo</strong><br>
+      → <strong>Responsabilidade conjunta</strong> — os demais Poderes respondem junto pelos gastos que <strong>sobrecarregam o mandato do Executivo</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Alcance — reeleição, só eletivos, nomeação (§§ 1º-2º)</div>
+    <div class="card-text">
+      → <strong>Reeleição/recondução (§ 1º)</strong> — as vedações dos incisos II-IV valem <strong>inclusive</strong> no período de recondução/reeleição<br>
+      → <strong>Só eletivos (§ 1º)</strong> — aplicam-se <strong>somente</strong> a titulares de <strong>cargo eletivo</strong> (art. 20)<br>
+      → <strong>Nomeação (§ 2º)</strong> — são atos de nomeação/provimento os do art. 169, § 1º <strong>ou</strong> os que criem/aumentem <strong>DOCC</strong> de qualquer modo
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Concurso em <strong>setembro do último ano</strong> com nomeação ainda em 2022 é válido" — <strong>errado</strong> (FGV/TRT-13 2022): aumento nos <strong>180 dias</strong> antes do fim do mandato é <strong>nulo de pleno direito</strong>. E "vale só para mandato de 4 anos" — <strong>falso</strong>: alcança mandato de <strong>2 anos</strong> do Legislativo.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — VERIFICAÇÃO, ALERTA E PRUDENCIAL (ART. 22)          -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Verificação, alerta e prudencial (art. 22)</div>
+  </div>
+  <div class="sec-subtitle">Quadrimestre, 90% sem sanção, 95% com 5 vedações</div>
+
+  <div class="card">
+    <div class="card-title">Verificação quadrimestral + RGF (caput)</div>
+    <div class="card-text">
+      → <strong>Ao final de cada quadrimestre</strong> — verifica-se o cumprimento dos limites dos arts. 19 e 20<br>
+      → <strong>RGF quadrimestral (art. 55, I, "a")</strong> — o Relatório de Gestão Fiscal traz o comparativo da despesa de pessoal, <strong>distinguindo inativos e pensionistas</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Alerta 90% — TC avisa, nada veda (art. 59, § 1º, II)</div>
+    <div class="card-text">
+      → <strong>Quem verifica</strong> — os <strong>Tribunais de Contas</strong> conferem os cálculos de cada Poder/órgão<br>
+      → <strong>Efeito</strong> — passou de <strong>90%</strong>: só <strong>alerta</strong>, <span class="highlight">sem restrições nem vedações</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prudencial 95% — as 5 vedações (parágrafo único)</div>
+    <div class="card-text">
+      → <strong>Vantagem/aumento/reajuste</strong> — vedados a qualquer título, salvo <strong>sentença judicial, determinação legal/contratual</strong>, ressalvada a <strong>revisão geral anual</strong> (mesma data, sem distinção de índices)<br>
+      → <strong>Criação de cargo, emprego ou função</strong><br>
+      → <strong>Alteração de carreira</strong> com aumento de despesa<br>
+      → <strong>Provimento/admissão/contratação</strong> — salvo <strong>reposição por aposentadoria ou falecimento</strong> em <strong>educação, saúde e segurança</strong><br>
+      → <strong>Hora extra</strong> — salvo situações da <strong>LDO</strong> e <strong>convocação extraordinária</strong> do Congresso (EC 50/2006 vedou a indenizatória)<br><br>
+      → ⚠️ <strong>Atenção:</strong> no prudencial <strong>pode</strong> a revisão geral anual e <strong>pode</strong> repor aposentado/falecido de educação/saúde/segurança — mas <strong>não pode</strong> prover cargo vago com aprovado em concurso
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "No prudencial, <strong>nada</strong> pode ser concedido" — <strong>errado</strong> (CESPE/TJ-ES 2023): a <strong>revisão geral anual</strong> continua permitida. E "alerta de 90% já veda contratações" — <strong>falso</strong>: alerta <strong>não veda nada</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — LIMITE ULTRAPASSADO (ART. 23)                       -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Limite ultrapassado (art. 23)</div>
+  </div>
+  <div class="sec-subtitle">2 quadrimestres, 1/3 no primeiro — e as 3 sanções</div>
+
+  <div class="card">
+    <div class="card-title">Recondução — 2 quadrimestres, 1/3 no primeiro</div>
+    <div class="card-text">
+      → <strong>Prazo</strong> — o excedente sai nos <strong>2 quadrimestres seguintes</strong>, sendo <strong>pelo menos 1/3 no primeiro</strong> — sem prejuízo das vedações do prudencial<br>
+      → <strong>Como</strong> — entre outras, as providências do art. 169, §§ 3º-4º (20% comissionados → não estáveis → estáveis)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sem redução no prazo — as 3 sanções (§ 3º)</div>
+    <div class="card-text">
+      → <strong>Sem transferências voluntárias</strong> — exceto <strong>saúde, educação e assistência social</strong> (art. 25, § 3º)<br>
+      → <strong>Sem garantia</strong> de outro ente, direta ou indireta<br>
+      → <strong>Sem operações de crédito</strong> — exceto para <strong>pagar dívida mobiliária</strong> ou <strong>reduzir despesa com pessoal</strong><br><br>
+      → ⚠️ <strong>Contra quem:</strong> a restrição pega o <strong>Poder ou órgão</strong> (LC 178/2021) — não o ente todo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">4 regimes especiais de prazo — imediato, suspenso, dobrado, afastado</div>
+    <div class="card-text">
+      → <strong>Aplicação imediata (§ 4º)</strong> — estourou no <strong>1º quadrimestre do último ano de mandato</strong>? As restrições valem <strong>na hora</strong><br>
+      → <strong>Suspensão (art. 65, I)</strong> — calamidade reconhecida (Congresso/Assembleias): <strong>congelam-se prazos e disposições</strong> do artigo enquanto durar<br>
+      → <strong>Duplicação (art. 66)</strong> — PIB com crescimento real <strong>baixo ou negativo por 4+ trimestres</strong> (baixo = variação acumulada <strong>&lt;1%</strong> nos 4 últimos trimestres): prazos <strong>dobram</strong> (4 quadrimestres), mantidas as medidas do prudencial<br>
+      → <strong>Não se aplica (§§ 5º-6º)</strong> — ao <strong>Município</strong> com queda real de receita <strong>&gt;10%</strong> vs. mesmo quadrimestre do ano anterior, por <strong>isenções da União no FPM</strong> ou queda de <strong>royalties/participações</strong> — desde que a despesa do quadrimestre <strong>não passe do limite</strong> (RCL do quadrimestre anterior atualizada)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Município com 56% no Executivo (limite 54%): <strong>não pode obter garantia</strong> e elimina o excesso em <strong>2 quadrimestres (1/3 no 1º)</strong> — não é o prudencial, é o <strong>ultrapassado</strong> (CESPE/ABIN 2018).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — SEGURIDADE SOCIAL (ART. 24)                        -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Seguridade social (art. 24)</div>
+  </div>
+  <div class="sec-subtitle">Fonte de custeio total + exigências do art. 17 — com 3 dispensas</div>
+
+  <div class="card">
+    <div class="card-title">Regra — nada sem custeio total</div>
+    <div class="card-text">
+      → <strong>Nenhum benefício/serviço</strong> de <strong>saúde, previdência e assistência social</strong> (inclusive de servidores/militares ativos, inativos e pensionistas) pode ser <strong>criado, majorado ou estendido</strong> sem <span class="highlight">indicação da fonte de custeio total</span><br>
+      → <strong>Mais o art. 17</strong> — atendidas ainda as exigências da <strong>DOCC</strong> (estimativa, origem, metas, compensação)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Dispensa de compensação (§ 1º) — os 3 casos</div>
+    <div class="card-text">
+      → <strong>Habilitação</strong> — concessão de benefício a quem <strong>satisfaz as condições legais</strong><br>
+      → <strong>Expansão quantitativa</strong> — mais atendimento/serviços prestados<br>
+      → <strong>Reajuste pelo valor real</strong> — preservar o poder de compra do benefício/serviço (ex.: reposição inflacionária dispensa compensar)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — PONTOS QUE MAIS CAEM EM PROVA                      -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">Números que decidem a questão</div>
+    <div class="card-text">
+      → <strong>Limites:</strong> União <strong>50%</strong> · Estados e Municípios <strong>60%</strong> · repartição U: <strong>2,5/6/40,9/0,6</strong> · E: <strong>3/6/49/2</strong> · M: <strong>6/54</strong> (TCM: <strong>3,4/48,6</strong>)<br>
+      → <strong>Gatilhos:</strong> alerta <strong>90%</strong> (só avisa) · prudencial <strong>95%</strong> (5 vedações) · excesso: <strong>2 quadrimestres, 1/3 no 1º</strong><br>
+      → <strong>DOCC e geração:</strong> impacto no exercício <strong>+ 2</strong> · DOCC &gt; <strong>2 exercícios</strong> · aumento permanente = alíquota/base/tributo<br>
+      → <strong>Nulidades:</strong> <strong>180 dias</strong> pré-mandato · parcelas pós-mandato · extinção veda recría por <strong>4 anos</strong> · indenização <strong>1 mês/ano</strong><br>
+      → <strong>Apuração:</strong> mês + <strong>11 anteriores</strong> · competência · verificação <strong>quadrimestral</strong> · duodécimos até dia <strong>20</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Distinções que a banca inverte</div>
+    <div class="card-text">
+      → <strong>Art. 16 × art. 17:</strong> qualquer aumento (estimativa + declaração) × DOCC (soma origem + metas + compensação)<br>
+      → <strong>Dependente × controlada:</strong> segue LRF + Fiscal/Seguridade × só investimentos (custeio no PDG/decreto)<br>
+      → <strong>Alerta × prudencial × ultrapassado:</strong> 90% avisa × 95% veda 5 × 100% reconduz + sanciona 3<br>
+      → <strong>Art. 169, § 1º:</strong> dotação prévia (todos) × LDO específica (exceto EP/SEM)<br>
+      → <strong>Judicial:</strong> período anterior sai × período atual entra (no limite do Poder)<br>
+      → <strong>Restrição:</strong> pega o <strong>Poder/órgão</strong>, não o ente (LC 178/2021)<br>
+      → <strong>180 dias:</strong> vale para mandato de <strong>2 anos</strong> também, e na <strong>reeleição</strong>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> foque na LRF arts. 15 a 24 (15, 16, 17, 18, 19, 20, 21, 22, 23, 24) e na CF arts. 37 (X, XIII, XV), 169, 167 (X) e 182 (§ 3º). Números-guia: <strong>50-60-60</strong>, <strong>90-95-100</strong>, <strong>180 dias</strong>, <strong>2+2</strong> (DOCC e impacto), <strong>1/3 em 2 quadrimestres</strong>. Casos-limite: TCM 3,4/48,6 · EP/SEM sem LDO · C&T com fundo · FPM/royalties −10%.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 12 — INCIDÊNCIA DE TEMAS (TEC)                          -->
+<!-- ============================================================ -->
+<section id="sec12">
+  <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão de cima para baixo — temas com mais questões primeiro</div>
+
+  <div class="card">
+    <div class="card-title">Contador de temas</div>
+    <div class="card-text">
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 1 — Geração de despesa (arts. 15-16): 1</span><br>
+      <span class="tag">Seção 2 — DOCC — Obrigatória Continuada (art. 17): 1</span><br>
+      <span class="tag">Seção 3 — Despesa com pessoal — conceito (art. 18): 1</span><br>
+      <span class="tag">Seção 7 — Atos nulos de pleno direito (art. 21): 1</span><br>
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2011/resumo-aula-11-lrf-parte-1.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 11 · LRF Parte I</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": 12, "tema": "LRF Parte II — Despesa Pública e Pessoal", "questoes": [{"q": "A criação de ação governamental com aumento de despesa (art. 16) exige:", "opts": [{"t": "Apenas a declaração do ordenador, dispensada a estimativa se houver dotação.", "why": "São cumulativas: estimativa de impacto (exercício + 2) + declaração (adequação LOA + compatibilidade PPA/LDO)."}, {"t": "Estimativa de impacto no exercício + 2 subsequentes, declaração de adequação/compatibilidade, e a estimativa acompanha premissas e metodologia (§ 2º).", "ok": true, "why": "Art. 16, caput e § 2º."}, {"t": "Somente autorização na LDO, sem estimativa.", "why": "A estimativa é condição prévia, inclusive para empenho e licitação (§ 4º)."}, {"t": "Nada, se a despesa for relevante nos termos da LOA.", "why": "A dispensa é para as IRRELEVANTES, nos termos da LDO (§ 3º)."}]}, {"q": "É despesa obrigatória de caráter continuado (DOCC):", "opts": [{"t": "Despesa de capital por 12 meses fixada em lei.", "why": "DOCC é CORRENTE por período SUPERIOR A 2 exercícios."}, {"t": "Despesa corrente de lei/MP/ato normativo com execução obrigatória por mais de 2 exercícios, exigindo estimativa, origem, metas e compensação por receita permanente ou corte permanente.", "ok": true, "why": "Art. 17, caput e §§ 1º-2º."}, {"t": "Qualquer despesa com serviço da dívida.", "why": "Serviço da dívida está EXCLUÍDO das regras (§ 6º)."}, {"t": "Reajuste da remuneração pela revisão geral anual acima da inflação.", "why": "A revisão geral anual (art. 37, X) está fora; só o ganho REAL acima da inflação segue as regras."}]}, {"q": "Sobre o conceito de despesa com pessoal (art. 18), é correto:", "opts": [{"t": "Abrange só os servidores ativos.", "why": "Ativos, INATIVOS e PENSIONISTAS, civis/militares/membros de Poder."}, {"t": "Verbas indenizatórias (auxílio-alimentação, transporte) integram o cálculo.", "why": "Indenizatórias NÃO são remuneratórias: ficam fora."}, {"t": "Terceirização em substituição de servidor conta como Outras Despesas de Pessoal; a apuração soma mês + 11 anteriores em regime de competência, sobre a remuneração bruta.", "ok": true, "why": "Art. 18, §§ 1º-3º (LC 178/2021)."}, {"t": "Apura-se pelo regime de caixa conforme o empenho.", "why": "Regime de COMPETÊNCIA, independentemente de empenho."}]}, {"q": "Ultrapassado o limite prudencial (95%), é vedado, EXCETO:", "opts": [{"t": "Criação de cargo, emprego ou função.", "why": "Vedada (art. 22, parágrafo único, II)."}, {"t": "Revisão geral anual na mesma data e sem distinção de índices.", "ok": true, "why": "Ressalvada no inciso I — pode mesmo no prudencial."}, {"t": "Provimento de aprovado em concurso para cargo vago.", "why": "Vedado; só se permite REPOSIÇÃO por aposentadoria/falecimento em educação, saúde e segurança."}, {"t": "Contratação de hora extra em qualquer caso.", "why": "Só nas situações da LDO ou convocação extraordinária do Congresso."}]}, {"q": "Sobre os limites de pessoal (arts. 19-20), assinale a correta:", "opts": [{"t": "50% da RCL para todos os entes.", "why": "50% só a União; Estados e Municípios 60%."}, {"t": "No Município, 3% para o Legislativo e o resto para o Executivo.", "why": "No Município: 6% Legislativo, 54% Executivo (3% é nos ESTADOS)."}, {"t": "União 50%, Estados 60%, Municípios 60%; no Município, 6% Legislativo e 54% Executivo; onde há TCM, 3,4% e 48,6% nos Estados.", "ok": true, "why": "Arts. 19-20 + regra do ±0,4% do TCM."}, {"t": "A restrição por excesso atinge o ente como um todo.", "why": "Atinge o PODER ou ÓRGÃO (LC 178/2021), não o ente."}]}, {"q": "É nulo de pleno direito (art. 21):", "opts": [{"t": "Aumento de pessoal em setembro do último ano de mandato do titular.", "why": "Isso DESCREVE a nulidade, não a afasta: 180 dias antes do fim = nulo."}, {"t": "Ato que aumenta despesa com pessoal nos 180 dias anteriores ao fim do mandato, inclusive de 2 anos do Legislativo, e o que prevê parcelas pós-mandato.", "ok": true, "why": "Art. 21, II-III + § 1º (só eletivos, vale na reeleição)."}, {"t": "Nomeação de aprovado fora dos 180 dias com parcelas dentro do mandato.", "why": "Sem os gatilhos temporais, não há nulidade por esse fundamento."}, {"t": "Aumento concedido no 1º ano de mandato sem estimativa.", "why": "A falta da estimativa (art. 16) gera nulidade pelo inciso I — mas a questão pede o caso temporal."}]}, {"q": "Excedido o limite de pessoal, a recondução exige:", "opts": [{"t": "Eliminar o excesso em 3 quadrimestres, 25% no primeiro.", "why": "Esse é o regime da DÍVIDA (art. 31); pessoal: 2 quadrimestres, 1/3 no primeiro."}, {"t": "Eliminar em 2 quadrimestres (1/3 no 1º), com 20% de comissionadas, exoneração de não estáveis e, se preciso, de estáveis com indenização; sem reduzir, sem TV/garantia/op. crédito.", "ok": true, "why": "Art. 23 + art. 169, §§ 3º-4º."}, {"t": "Exonerar primeiro os estáveis, preservando comissionados.", "why": "Ordem inversa: 20% comissionadas, depois não estáveis, por fim estáveis."}, {"t": "Aguardar o próximo quadrimestre sem medidas.", "why": "Sem redução no prazo, incidem as sanções do § 3º imediatamente."}]}, {"q": "Limites de Gastos com Pessoal — informe o correto:", "opts": [{"t": "Alerta (90%) já veda nomeações.", "why": "Alerta só AVISA (TCs); nada veda."}, {"t": "No prudencial pode-se criar cargo desde que sem aumento.", "why": "Criação de cargo é vedada no prudencial, com ou sem aumento imediato."}, {"t": "Ultrapassado: reconduz em 2 quadrimestres e, sem êxito, perde TV/garantia/crédito; com PIB baixo (<1% em 4 trimestres) os prazos dobram; município com queda >10% por FPM/royalties tem regime próprio.", "ok": true, "why": "Art. 23 + art. 66 + §§ 5º-6º."}, {"t": "Município com queda de 5% na receita está dispensado dos prazos.", "why": "A dispensa exige queda real SUPERIOR A 10% (FPM por isenções ou royalties)."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>

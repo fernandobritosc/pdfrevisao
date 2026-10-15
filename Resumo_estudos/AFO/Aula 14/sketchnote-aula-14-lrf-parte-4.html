@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — AFO Aula 14 · LRF Parte IV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#16a34a; --matsoft:#dcfce7; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#dcfce7 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:760px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3} .pill:nth-child(6){transform:rotate(1deg)}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"\279C";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.num{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.55rem 0}
+@media(max-width:520px){.num{grid-template-columns:1fr}}
+.num div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .55rem;text-align:center;background:#fff;font-size:.74rem;color:var(--ink2)}
+.num div b{display:block;font-size:1.05rem;font-family:'Space Grotesk';color:var(--ink)}
+.num .hi{background:#dcfce7;border-color:var(--mat)}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">AFO · Aula 14 · LRF Parte IV</div>
+<h1><span class="hl">Dívida: travar e reconduzir</span> numa página ✍️</h1>
+<p class="sub">Conceitos · limites · recondução · crédito/ARO · vedações · garantia · RAP · finais.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-14-lrf-parte-4.html">resumo da Aula 14</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">🏦</div><div><b>DÍVIDA: Senado fixa, quadrimestre verifica</b><br><span>Estourou? <strong>Reconduz em 3 (25% no 1º)</strong> — e crédito tem <strong>trava tripla</strong>: autorização + limites + vedações</span></div></div>
+</div>
+<div class="tri"><span class="pill">📚 Conceitos</span><span class="pill">📊 200·120</span><span class="pill">↩️ Recondução</span><span class="pill">💳 ARO</span><span class="pill">🚫 Vedações</span><span class="pill">📦 RAP</span></div>
+<main>
+<section class="note" aria-label="Conceitos limites">
+<h2><span class="n">1</span> Conceitos + limites 📚</h2>
+<div class="num">
+<div class="hi"><b>200%</b>E/DF consolidada</div>
+<div><b>120%</b>Municipal</div>
+<div><b>16%·22%</b>crédito·garantia E/M</div>
+</div>
+<ul>
+<li><strong>Consolidada:</strong> tudo &gt;12 meses sem duplicidade (+ &lt;12 com receita no orçamento + precatórios); <strong>mobiliária</strong> = títulos; <strong>ARO</strong> = flutuante</li>
+<li><strong>CN</strong> fixa mobiliária federal; <strong>Senado</strong> fixa o resto (proposta do Presidente)</li>
+<li><strong>Recondução:</strong> <strong>3 quadrimestres, 25% no 1º</strong>; sem op. crédito + primário; vencido: sem TV; Fazenda publica <strong>mensal</strong></li>
+<li><strong>Exceções:</strong> imediato (1º quadr. último ano) · calamidade congela · PIB baixo dobra · Senado amplia +4</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "<b>números</b> na LRF" — <b>falso</b>: vêm do <b>Senado</b>. "União tem teto de consolidada" — <b>falso</b>.</div>
+</section>
+
+<section class="note" aria-label="Credito ARO">
+<h2><span class="n">2</span> Crédito, ARO e vedações 💳</h2>
+<ul>
+<li><strong>Contratar:</strong> Fazenda verifica; pleito com parecer (custo-benefício) + autorização + orçamento + ouro + Senado (+ externa)</li>
+<li><strong>Irregular:</strong> <strong>nula</strong>, devolve principal <strong>sem juros</strong> (+ reserva); valem as travas do art. 23 § 3º</li>
+<li><strong>ARO:</strong> caixa do exercício, <strong>dia 10 → 10/dez</strong>, só juros prefixados/TBF, sem anterior aberta nem <strong>último ano</strong>; flutuante, <strong>não é receita</strong> (4.320 art. 3º)</li>
+<li><strong>Vedado:</strong> BACEN emitir · IF × controlador (<strong>pedalada</strong>) · entes × entes (nem novação); E/M <strong>pode</strong> comprar título da União</li>
+<li><strong>Art. 37:</strong> antecipar tributo, receita de estatal, assumir com fornecedor = <strong>op. crédito vedada</strong></li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "ARO na <b>fundada</b>" — <b>falso</b>: flutuante. Pedalada = arts. <b>36 + 38 + 32</b>.</div>
+</section>
+
+<section class="note" aria-label="Garantia BACEN">
+<h2><span class="n">3</span> Garantia + BACEN 🛡️</h2>
+<ul>
+<li><strong>Contragarantia:</strong> <strong>igual ou superior</strong> + adimplência; próprio ente <strong>dispensado</strong>; pode vincular <strong>tributos + constitucionais</strong> com retenção</li>
+<li><strong>Indireta:</strong> <strong>vedada mesmo com fundos</strong>; honrou → condiciona constitucionais e <strong>trava novos créditos</strong></li>
+<li><strong>BACEN:</strong> sem emitir, sem comprar na colocação (só refinanciar vencendo, leilão do dia), sem permutar, sem garantir; <strong>Tesouro</strong> não compra da carteira (salvo reduzir mobiliária)</li>
+</ul>
+</section>
+
+<section class="note" aria-label="RAP finais">
+<h2><span class="n">4</span> RAP + finais 📦</h2>
+<ul>
+<li><strong>Art. 42:</strong> 2 últimos quadrimestres <strong>com caixa pode</strong>, sem caixa <strong>vedado</strong>; 41-A (2027): sem caixa = <strong>sem incentivo</strong></li>
+<li><strong>&lt;50 mil:</strong> RGF/demonstrativos <strong>semestrais</strong>, AMF no 5º exercício — <strong>sem perdão</strong> nos retornos</li>
+<li><strong>Calamidade:</strong> congela 23/31/70 + dispensa TVs e 35/37/42 — <strong>transparência mantida</strong></li>
+<li><strong>Punições:</strong> CP, 1.079, DL 201, <strong>8.429</strong>; denúncia por <strong>qualquer um</strong> ao TC + MP</li>
+</ul>
+</section>
+</main>
+<footer>
+<div class="biz">⚡ arts. 29-42 · <span>200·120</span> · 25% em 3</div>
+<a class="back" href="resumo-aula-14-lrf-parte-4.html">← Resumo completo da Aula 14</a>
+</footer>
+</div>
+</body>
+</html>
