@@ -216,3 +216,22 @@ administrativo (espécie)" (Sec 1) com borda azul e título verde — alinhar a 
 (verificação de dispositivo legal + nunca suprimir), incrementar incidência se
 houver questão TEC vinculada, validar com `check-html.py`, regenerar busca +
 changelog, publicar no Surge com HTTP 200.
+
+## Item H — Aprendizados TEC guardados (sem aula de destino, 14/10/2026)
+
+**Origem**: questão VUNESP 2026 (Assistente CM Nova Odessa/Legislativo) sobre a
+**Lei Anticorrupção (Lei 12.846/2011)** — tema sem aula processada no repositório
+(Direito Administrativo tem lacuna nas Aulas 10–14; a Aula 15 de Improbidade cita
+a LAC apenas no non bis in idem, Seção 6). Usuário escolheu **aguardar a aula da
+LAC**. Ao processá-la, transformar em blocos 📌/⚖️ e incrementar a incidência da
+seção correspondente.
+
+**H — Multa à PJ na esfera administrativa (art. 6º, I da LAC)**: multa de
+**0,1% a 20% do faturamento bruto** do último exercício **anterior ao da
+instauração do processo administrativo, excluídos os tributos** — e **nunca
+inferior à vantagem auferida**, quando possível sua estimação. Contexto: PJ que
+prometeu propina a agente público em troca de benefício (ato lesivo à
+administração pública). Cruzamento com a LIA: o mesmo ato lesivo pode ser
+sancionado pelas duas leis, respeitado o **non bis in idem** — na punição da PJ,
+prevalece a LAC (art. 12, § 7º da LIA), já registrado na Seção 6 do resumo da
+Aula 15.

@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Direito Administrativo Aula 15: Improbidade Administrativa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #2563eb;
+  --mat-strong: #1d4ed8;
+  --mat-soft: #e8effd;
+  --mat-line: #c3d5fa;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: left;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #8ab0fe; --mat-strong: #a9c3ef; --mat-soft: #1d2739; --mat-line: #33507e;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 15</div>
+  <div class="sidebar-sub">Improbidade Administrativa · Lei 8.429/1992</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Noções introdutórias e a reforma da LIA</a>
+  <a href="#sec2">2. Dolo específico e fim da modalidade culposa</a>
+  <a href="#sec3">3. Espécies de atos de improbidade (arts. 9º, 10 e 11)</a>
+  <a href="#sec4">4. Sujeitos da improbidade</a>
+  <a href="#sec5">5. Sanções (art. 12) e perda da função pública</a>
+  <a href="#sec6">6. Independência das instâncias e non bis in idem</a>
+  <a href="#sec7">7. Procedimento administrativo — representação e apuração</a>
+  <a href="#sec8">8. Ação de improbidade — legitimidade, rito e acordo</a>
+  <a href="#sec9">9. Sentença, unificação de sanções e prescrição</a>
+  <a href="#sec10">10. Pontos que mais caem em prova</a>
+  <a href="#sec11">11. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: completo + marcação do aprovado<br>
+    Estratégia Concursos
+  </div>
+</aside>
+
+<div class="main">
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — NOÇÕES INTRODUTÓRIAS E A REFORMA DA LIA             -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Noções introdutórias e a reforma da LIA</div>
+  </div>
+  <div class="sec-subtitle">Lei 8.429/1992 · Lei 14.230/2021 — onde a sanção é aplicada e o que mudou</div>
+
+  <div class="card">
+    <div class="card-title">Improbidade é sanção judicial — onde e como se aplica?</div>
+    <div class="card-text">
+      → <strong>Base</strong> — Lei 8.429/1992 (LIA, reformada pela Lei 14.230/2021); as sanções são aplicadas pelo <strong>Poder Judiciário</strong>, em ação própria, e não pela Administração em processo administrativo<br>
+      → <strong>Independência das instâncias (art. 12, caput)</strong> — a punição por improbidade independe das <strong>sanções penais</strong> comuns e de responsabilidade e das <strong>civis e administrativas</strong> previstas na legislação específica<br>
+      → <strong>Duplo regime sancionatório</strong> — o agente pode responder simultaneamente por <strong>crime de responsabilidade</strong> e por improbidade, tese já consagrada pelo STF (Pet 3240)<br><br>
+      → <strong>Ressarcimento</strong> — devido sempre que houver <strong>dano patrimonial efetivo</strong> e não afasta as penalidades; tecnicamente é <strong>obrigação civil de reparação</strong>, não sanção em sentido estrito
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Base constitucional (art. 37, § 4º) — a literalidade que a banca cobra</div>
+    <div class="card-text">
+      → <strong>Texto constitucional</strong> — os atos de improbidade importarão a <strong>suspensão dos direitos políticos</strong>, a <strong>perda da função pública</strong>, a <strong>indisponibilidade dos bens</strong> e o <strong>ressarcimento ao erário</strong>, <span class="highlight">na forma e gradação previstas em lei</span>, <strong>sem prejuízo da ação penal cabível</strong><br><br>
+      → ⚠️ <strong>Palavras que a banca troca:</strong> <strong>suspensão</strong> dos direitos políticos (não "perda")<br>
+      → <strong>indisponibilidade</strong> dos bens (não "alienação" nem "oneração")<br>
+      → <strong>perda</strong> da função pública (não "inabilitação para o exercício")<br>
+      → <strong>sem prejuízo</strong> da ação penal (nunca "com prejuízo")<br>
+      → "<strong>na forma e gradação</strong> previstas em lei" (não "maneira e intensidade")<br><br>
+      → <strong>CF × LIA</strong> — a Constituição fala em <strong>indisponibilidade</strong> dos bens; a LIA (art. 12) comina a <strong>perda dos bens ou valores acrescidos ilicitamente</strong> — institutos distintos que a banca costuma embaralhar
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que a Lei 14.230/2021 mudou na LIA?</div>
+    <div class="card-text">
+      → <strong>Dolo específico obrigatório</strong> — acabaram a modalidade <strong>culposa</strong> e o dolo genérico<br>
+      → <strong>Art. 11 taxativo</strong> — o rol de violação aos princípios passou de exemplificativo a <strong>taxativo</strong><br>
+      → <strong>Lesão ao erário real</strong> — exige dano <strong>efetivo e comprovado</strong> (fim do dano presumido, <span class="highlight">in re ipsa</span>)<br><br>
+      → <strong>Novas condutas</strong> — <strong>nepotismo</strong> (art. 11, XI) e <strong>promoção pessoal</strong> (art. 11, XII)<br>
+      → <strong>Vedação ao enriquecimento sem causa</strong> — a Administração não pode se locupletar com o ilícito (art. 10, § 1º)<br>
+      → <strong>Unificação de sanções</strong> — art. 18-A, com teto de <strong>20 anos</strong><br><br>
+      → ⚠️ <strong>Inconstitucionais (ADIs 7156 e 7236):</strong> o trecho "<strong>e dos benefícios diretos</strong>" do art. 17-C, § 2º — não é preciso ter obtido benefício para responder<br>
+      → a <strong>contagem retroativa</strong> da suspensão dos direitos políticos (art. 12, § 10)<br>
+      → a restrição da <strong>proibição de contratar</strong> ao ente federativo da infração — vale para todos os entes<br>
+      → os <strong>§§ 10-C, 10-D e 10-F, I</strong> do art. 17 — impediam o juiz de alterar a capitulação
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Retroatividade da reforma (Tema 1.199 — ARE 843.989):</strong><br>
+      → <strong>Com trânsito em julgado</strong> — ato culposo condenado: o novo regime <strong>não retroage</strong><br>
+      → <strong>Sem trânsito em julgado</strong> — o regime <strong>retroage</strong>: cabe ao juízo analisar eventual <strong>dolo</strong><br>
+      → <strong>Regime prescricional</strong> — <span class="highlight">irretroativo</span>: conta a partir da publicação da lei (26/10/2021)<br><br>
+      → <strong>Processos em curso</strong> — a exigência de <strong>dolo</strong> vale também para eles (REsp 2.107.601)<br>
+      → <strong>Processos em curso (lesão ao erário)</strong> — o <strong>efetivo prejuízo</strong> é exigido igualmente (REsp 1.929.685)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Divergência interpretativa de lei não é improbidade (art. 1º, § 8º)</div>
+    <div class="card-text">
+      → <strong>Regra legal</strong> — não configura improbidade a ação ou omissão decorrente de <span class="highlight">divergência interpretativa da lei, baseada em jurisprudência</span>, ainda que não pacificada, mesmo que depois deixe de prevalecer nos órgãos de controle ou nos tribunais<br>
+      → <strong>Exemplo típico</strong> — o agente segue entendimento do STJ sobre uma restrição licitatória; depois o STF o revoga: a mudança de interpretação <strong>não pode</strong> fundamentar a improbidade<br><br>
+      → <strong>Limites (ADIs 7156 e 7236 — interpretação conforme)</strong> — o dispositivo vale desde que não fique configurado <strong>dolo ou erro grosseiro</strong> na interpretação, e a "jurisprudência" citada deve ser de <strong>tribunais superiores ou acórdão colegiado de 2º grau</strong><br>
+      → <strong>Histórico</strong> — a eficácia do § 8º chegou a ser <strong>suspensa por liminar</strong> na ADI 7236 (2022) por ser excessivamente amplo e gerar insegurança jurídica; no julgamento de mérito, prevaleceu a <strong>interpretação conforme</strong> acima<br><br>
+      → ⚠️ <strong>Não confundir:</strong> não existe improbidade "por erro grosseiro" — a conduta em si continua exigindo <strong>dolo</strong>; o erro grosseiro se refere à qualidade da interpretação que amparou o agente
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Dizer que toda ilegalidade ou desatenção formal do gestor é improbidade é <strong>errado</strong>: a LIA exige <strong>dolo específico</strong> e <strong>lesividade relevante</strong> ao bem jurídico tutelado — a própria lei adota a lógica da insignificância, afastando efeitos nocivos diminutos ou irrelevantes.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — DOLO ESPECÍFICO E FIM DA MODALIDADE CULPOSA         -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Dolo específico e fim da modalidade culposa</div>
+  </div>
+  <div class="sec-subtitle">Art. 1º, §§ 1º a 3º e § 8º — o elemento subjetivo como condição de tipicidade</div>
+
+  <div class="card">
+    <div class="card-title">Como a lei define o dolo?</div>
+    <div class="card-text">
+      → <strong>Art. 1º, § 2º</strong> — <span class="highlight">"Considera-se dolo a vontade livre e consciente de alcançar o resultado ilícito"</span> tipificado nos arts. 9º, 10 e 11 da LIA<br>
+      → <strong>Dolo específico</strong> — não basta a voluntariedade da conduta (dolo genérico): o agente precisa <strong>querer o resultado ilícito</strong> definido na lei<br><br>
+      → <strong>Art. 1º, § 3º</strong> — o <span class="highlight">mero exercício da função ou desempenho de competências públicas</span>, sem comprovação de ato doloso com fim ilícito, <strong>afasta a responsabilidade</strong> por improbidade<br>
+      → <strong>Art. 1º, § 4º</strong> — aplicam-se ao sistema da improbidade os <strong>princípios constitucionais do direito administrativo sancionador</strong>, em sua maioria comuns ao Direito Penal (Direito Público Sancionador): <strong>legalidade e tipicidade</strong>, <strong>irretroatividade</strong>, <strong>pessoalidade</strong> e <strong>individualização</strong> da pena, <strong>devido processo legal</strong>, <strong>contraditório e ampla defesa</strong>, <strong>razoabilidade e proporcionalidade</strong><br>
+      → <strong>Efeito prático</strong> — por isso os elementos dos arts. 9º, 10 e 11 <strong>não podem ser presumidos</strong> (art. 17-C, I)<br><br>
+      → <strong>Consequência</strong> — sem prova do dolo <strong>não há improbidade</strong>; mera inobservância de formalidades, erro ou culpa não tipificam o ato
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Por que a modalidade culposa acabou?</div>
+    <div class="card-text">
+      → <strong>RE 610.523 e RE 656.558 (Tema 309, j. 28/10/2024)</strong> — o STF declarou <strong>inconstitucional</strong> a previsão da modalidade culposa de improbidade (arts. 5º e 10 na redação originária), porque a tipificação exige a <strong>presença do dolo</strong><br>
+      → <strong>Efeito prático</strong> — condenações fundadas em culpa: com <strong>trânsito em julgado</strong>, mantêm-se; sem trânsito, o juízo deve <strong>analisar eventual dolo</strong> (Tema 1.199)<br><br>
+      → <strong>Processos em curso</strong> — a exigência de dolo aplica-se também aos processos pendentes (REsp 2.107.601), e o <strong>efetivo prejuízo</strong> exigido pela lesão ao erário vale igualmente para eles (REsp 1.929.685)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "A reforma revogou a modalidade culposa, então toda condenação culposa anterior caiu" — <strong>falso</strong>: a norma benéfica é <strong>irretroativa</strong> quanto à <strong>coisa julgada</strong> e à execução das penas e seus incidentes (Tema 1.199). Ela só alcança condenações culposas <strong>sem trânsito em julgado</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — ESPÉCIES DE ATOS DE IMPROBIDADE (ARTS. 9º, 10 E 11) -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Espécies de atos de improbidade (arts. 9º, 10 e 11)</div>
+  </div>
+  <div class="sec-subtitle">Três espécies, duas lógicas de rol — a inversão taxativo × exemplificativo é clássica de prova</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Espécie</th><th>Base</th><th>Elemento subjetivo / requisito</th><th>Rol de condutas</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Enriquecimento ilícito</strong></td><td>art. 9º</td><td>dolo — vantagem patrimonial indevida ligada ao exercício do cargo/mandato/função</td><td><strong>exemplificativo</strong> ("e notadamente")</td></tr>
+        <tr><td><strong>Lesão ao erário</strong></td><td>art. 10</td><td>dolo + dano <strong>efetivo e comprovado</strong></td><td><strong>exemplificativo</strong> ("e notadamente")</td></tr>
+        <tr><td><strong>Atenta contra os princípios</strong></td><td>art. 11</td><td>dolo + fim de obter proveito ou benefício indevido (§ 1º)</td><td><strong>taxativo</strong> ("caracterizada por uma das seguintes condutas")</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Enriquecimento ilícito (art. 9º) — vantagem indevida pelo cargo</div>
+    <div class="card-text">
+      → <strong>Conduta</strong> — <span class="highlight">auferir qualquer tipo de vantagem patrimonial indevida</span> em razão do exercício de <strong>cargo, mandato, função, emprego ou atividade</strong> nas entidades do art. 1º<br>
+      → <strong>Rol exemplificativo</strong> — a expressão "<strong>e notadamente</strong>" do caput foi mantida pela reforma, logo a conduta pode ser enquadrada mesmo fora da lista<br>
+      → <strong>Art. 9º, VI (declaração falsa)</strong> — receber vantagem econômica de qualquer natureza, <span class="highlight">direta ou indireta</span>, para fazer <strong>declaração falsa</strong> sobre dado técnico que envolva obras públicas ou qualquer outro serviço, ou sobre <strong>quantidade, peso, medida, qualidade ou característica</strong> de mercadorias ou bens fornecidos à Administração — ex.: agente do setor de compras que, mediante vantagem indireta, atesta qualidade técnica superior à real de produto contratado<br>
+      → <strong>Art. 9º, I (presente de quem tem interesse)</strong> — receber, <strong>para si ou para outrem</strong>, dinheiro, bem móvel ou imóvel ou qualquer vantagem econômica, a título de <strong>comissão, percentagem, gratificação ou presente</strong>, de quem tenha <span class="highlight">interesse, direto ou indireto, que possa ser atingido ou amparado</span> por ação ou omissão decorrente das atribuições do agente — ex.: secretário de obras que aceita "ajuda de custo" de empresário que licita com o município e, em troca, agiliza projetos e deixa de fiscalizar irregularidades<br><br>
+      → ⚠️ <strong>Atenção:</strong> a vantagem não precisa chegar <strong>diretamente</strong> ao agente — recebida por via indireta (por interposta pessoa, benefício em cadeia), o enriquecimento ilícito igualmente tipifica
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Lesão ao erário (art. 10) — o dano virou exigência expressa</div>
+    <div class="card-text">
+      → <strong>Conduta</strong> — ação ou omissão <strong>dolosa</strong> que enseje, <span class="highlight">efetiva e comprovadamente</span>, perda patrimonial, desvio, apropriação, malbaratamento ou dilapidação dos bens ou haveres<br>
+      → <strong>Fim do dano in re ipsa</strong> — dispensa indevida de licitação só tipifica improbidade se acarretar <strong>perda patrimonial efetiva</strong> (art. 10, VIII); inobservância de formalidade sem perda efetiva não configura o ato<br><br>
+      → <strong>Art. 10, § 1º</strong> — vedado o <strong>enriquecimento sem causa</strong> das entidades: no ressarcimento, descontam-se os <strong>serviços efetivamente prestados</strong><br>
+      → <strong>Art. 10, § 2º</strong> — a <strong>mera perda patrimonial decorrente da atividade econômica</strong> (riscos ordinários do negócio ou eventos extraordinários, ex.: pandemia) não acarreta improbidade, salvo <strong>ato doloso praticado com essa finalidade</strong> (ex.: concessão de financiamento sem as regras aplicáveis para favorecer amigo)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Atenta contra os princípios (art. 11) — o rol fechou</div>
+    <div class="card-text">
+      → <strong>Caput</strong> — ação ou omissão <strong>dolosa</strong> que viole os deveres de <strong>honestidade, imparcialidade e legalidade</strong>, <span class="highlight">caracterizada por uma das seguintes condutas</span><br>
+      → <strong>Revogados</strong> — incisos <strong>I, II, IX e X</strong><br>
+      → <strong>Novos</strong> — <strong>XI (nepotismo)</strong>, na linha da Súmula Vinculante 13, e <strong>XII (promoção pessoal)</strong><br>
+      → <strong>Alcance do XI</strong> — nomear cônjuge, companheiro ou parente em linha reta, colateral ou por afinidade, até o <strong>terceiro grau</strong>, da <strong>autoridade nomeante</strong> ou de <strong>servidor da mesma pessoa jurídica</strong> investido em cargo de direção, chefia ou assessoramento, para <strong>cargo em comissão, de confiança ou função gratificada</strong>, em qualquer dos Poderes e entes, compreendido o ajuste mediante <strong>designações recíprocas</strong><br><br>
+      → <strong>§ 1º</strong> — nos termos da <strong>Convenção da ONU contra a Corrupção</strong> (Decreto 5.687/2006), exige o <strong>fim de obter proveito ou benefício indevido</strong> para si ou para outra pessoa ou entidade; regra aplicável a <strong>quaisquer atos de improbidade</strong>, inclusive os de leis especiais (art. 11, § 2º)<br>
+      → <strong>§ 3º</strong> — o enquadramento pressupõe <strong>indicação das normas constitucionais, legais ou infralegais violadas</strong> — demonstração objetiva da ilegalidade<br>
+      → <strong>§ 4º</strong> — os atos deste artigo exigem <span class="highlight">lesividade relevante ao bem jurídico tutelado</span> e <strong>independem</strong> do reconhecimento de <strong>danos ao erário</strong> e de <strong>enriquecimento ilícito</strong> — a improbidade por violação de princípios existe mesmo sem dano nem vantagem obtida<br>
+      → <strong>§ 5º</strong> — não se configura improbidade a <span class="highlight">mera nomeação ou indicação política</span> por parte dos <strong>detentores de mandatos eletivos</strong>: é necessária a aferição de <strong>dolo com finalidade ilícita</strong> por parte do agente — a capacidade técnica do nomeado não é excludente absoluta<br><br>
+      → <strong>Limite político (SV 13 — RE 579.951/RN; Tema 1000 pendente)</strong> — a vedação <strong>não alcança cargos de natureza política</strong> (ministros de estado, secretários estaduais/distritais/municipais): cargos de governo não se submetem de imediato aos princípios do art. 37 da CF, salvo <strong>falta de razoabilidade</strong> na nomeação — ex.: governador poderia nomear a esposa secretária estadual sem nepotismo; mesmo assim, haverá improbidade se a nomeação partir de <strong>dolo com finalidade ilícita</strong> (art. 11, § 5º)<br><br>
+      → ⚠️ <strong>Continuidade típico-normativa:</strong> antes da reforma o nepotismo era enquadrado no <strong>caput</strong> do art. 11 — hoje o enquadramento correto é o <strong>inciso próprio</strong> (XI ou XII)<br>
+      → <strong>Nepotismo cruzado</strong> — nomeações recíprocas para esconder o vínculo também tipificam<br>
+      → <strong>Alcance administrativo</strong> — a vedação alcança os cargos de natureza administrativa
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A banca inverte os rols: dizer que o art. 11 continua <strong>exemplificativo</strong> ou que os arts. 9º e 10 viraram <strong>taxativos</strong> é errado — só o art. 11 fechou ("caracterizada por uma das seguintes condutas"); nos arts. 9º e 10 o "e notadamente" permanece. E lembrar que a reforma excluiu do caput do art. 11 o dever de "lealdade às instituições".
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — SUJEITOS DA IMPROBIDADE                             -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Sujeitos da improbidade</div>
+  </div>
+  <div class="sec-subtitle">Arts. 1º a 3º e 17-C — quem sofre o ilícito, quem o pratica e como se responde</div>
+
+  <div class="card">
+    <div class="card-title">Sujeito passivo — quem sofre o ilícito (art. 1º)</div>
+    <div class="card-text">
+      → <strong>Administração direta e indireta</strong> — de <strong>todos os Poderes</strong> (Executivo, Legislativo e Judiciário) e de <strong>todos os entes</strong> da Federação; a LIA tutela o patrimônio <strong>público e social</strong>, não só os bens públicos<br><br>
+      → <strong>Entidade privada financiada (art. 1º, § 6º)</strong> — a que receba <strong>subvenção, benefício ou incentivo, fiscal ou creditício</strong>, de <strong>entes públicos ou governamentais</strong>: os atos contra o seu patrimônio também são sancionáveis<br>
+      → <strong>Entidade custeada (art. 1º, § 7º)</strong> — <span class="highlight">independentemente de integrar a administração indireta</span>, sujeita-se à lei a entidade privada para cuja <strong>criação ou custeio o erário haja concorrido</strong> ou concorra no patrimônio ou receita atual<br>
+      → <strong>Ressarcimento limitado</strong> — na entidade custeada, fica restrito à <strong>repercussão do ilícito</strong> sobre os cofres públicos, sem ressarcimento integral<br><br>
+      → ⚠️ <strong>Não confundir:</strong> não é preciso que a entidade privada <strong>integre a administração indireta</strong> para ser alcançada pela LIA — basta receber subvenção/benefício/incentivo ou ter a criação/custeio custeado pelo erário
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sujeito ativo — agente público, particular e terceiro (arts. 2º e 3º)</div>
+    <div class="card-text">
+      → <strong>Agente público em sentido amplo (art. 2º)</strong> — o <strong>agente político</strong>, o <strong>servidor público</strong> e <span class="highlight">todo aquele que exerce, ainda que transitoriamente ou sem remuneração</span>, por <strong>eleição, nomeação, designação, contratação</strong> ou qualquer outra forma de investidura ou vínculo, <strong>mandato, cargo, emprego ou função</strong> nas entidades do art. 1º<br>
+      → ⚠️ <strong>Literalidade que a banca troca:</strong> "ainda que transitoriamente <strong>ou</strong> sem remuneração" (não "com ou sem")<br>
+      → a tríade é "<strong>mandato, cargo, emprego ou função</strong>" (não "e")<br>
+      → a <strong>designação</strong> integra a lista de formas de investidura<br><br>
+      → <strong>Exceção</strong> — o <strong>Presidente da República</strong> não responde por improbidade: responde por <strong>crime de responsabilidade</strong> (Pet 3240)<br><br>
+      → <strong>Particular parceiro (art. 2º, parágrafo único)</strong> — no que se refere a <strong>recursos de origem pública</strong>, sujeita-se às sanções a PF ou PJ que celebrar com a Administração <strong>convênio, contrato de repasse, contrato de gestão, termo de parceria, termo de cooperação</strong> ou ajuste administrativo equivalente<br>
+      → <strong>Terceiro (art. 3º)</strong> — qualquer PF ou PJ que <strong>induza ou concorra dolosamente</strong> para a prática do ilícito; a reforma <strong>retirou a expressão "se beneficia"</strong> — a vantagem sem concurso doloso não tipifica<br><br>
+      → <strong>Responde a pessoa jurídica</strong> — a PJ responde pelo que ela própria fez (<strong>induzir ou concorrer dolosamente</strong> para o ato), <strong>independentemente</strong> da responsabilização dos seus diretores<br>
+      → <strong>Diretores e sócios (art. 3º, § 1º)</strong> — sócios, cotistas, diretores e colaboradores <strong>não respondem em regra</strong> pelo ato imputado à PJ; respondem <strong>nos limites da sua participação</strong> quando comprovada — o requisito "<strong>benefícios diretos</strong>" do § 1º foi declarado <strong>inconstitucional</strong> (ADIs 7156 e 7236): basta a participação
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Solidariedade, benefícios e herdeiros (art. 17-C)</div>
+    <div class="card-text">
+      → <strong>Vedação à solidariedade (art. 17-C, § 2º)</strong> — no litisconsórcio passivo, cada réu responde <strong>no limite da sua participação</strong>; o trecho "<strong>e dos benefícios diretos</strong>" foi declarado <strong>inconstitucional</strong> (ADIs 7156 e 7236) — não é preciso ter obtido benefício para ser condenado<br>
+      → <strong>Matiz do STF</strong> — a solidariedade é vedada <strong>para fins de sanção</strong> (personalíssima), mas é possível <strong>na responsabilidade patrimonial</strong> (cobrança do ressarcimento)<br>
+      → <strong>Exceção da unidade de vontades (STJ, AgInt no AREsp 1.485.464, Info 848)</strong> — a vedação do § 2º vale quando os desígnios dos agentes são <strong>individualizáveis</strong>; se todos participaram em <span class="highlight">unidade de vontades</span> (participação de igual intensidade, sem como quantificar o dano isolado de cada um), cabe <strong>condenação solidária</strong> ao ressarcimento integral, na forma do <strong>art. 942 do CC</strong><br>
+      → <strong>Indisponibilidade de bens</strong> — a vedação não alcança a constrição cautelar: há solidariedade entre corréus na indisponibilidade, com o somatório limitado ao quantum da medida (Tema 1213)<br><br>
+      → <strong>Herdeiros e sucessores (art. 8º)</strong> — sujeitos <span class="highlight">apenas à obrigação de reparar</span> o dano ao erário ou o enriquecimento ilícito, <strong>até o limite do valor da herança ou do patrimônio transferido</strong> — herdam a dívida civil, não as demais sanções pessoais (perda da função, suspensão de direitos)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sucessão empresarial — fusão, incorporação, cisão (art. 8º-A)</div>
+    <div class="card-text">
+      → <strong>Caput</strong> — a responsabilidade sucessória aplica-se na hipótese de <strong>alteração contratual, transformação, incorporação, fusão ou cisão societária</strong>: a sucessora responde pelos atos da antecessora, em regra, <strong>até o limite do patrimônio transferido</strong> (ex.: empresa condenada é incorporada pela holding, que assume a reparação)<br><br>
+      → <strong>Parágrafo único</strong> — nas hipóteses de <strong>fusão e de incorporação</strong>, a responsabilidade da sucessora fica <span class="highlight">restrita à obrigação de reparação integral do dano</span>, <strong>sem as demais sanções pessoais</strong> (perda da função, suspensão de direitos), pelos atos e fatos ocorridos <strong>antes da data</strong> da operação<br>
+      → <strong>Exceção</strong> — <strong>simulação ou evidente intuito de fraude</strong> devidamente comprovados afastam a proteção (ex.: fusão com empresa de porte muito menor com o propósito de escapar das sanções)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Só quem se beneficiou responde" — <strong>falso</strong>: o "se beneficia" saiu do art. 3º na reforma; basta <strong>induzir ou concorrer dolosamente</strong>. E "qualquer pessoa pode ser sujeito ativo" — também não: o terceiro só responde se <strong>concorrer dolosamente</strong> para o ato praticado pelo agente público.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — SANÇÕES (ART. 12) E PERDA DA FUNÇÃO PÚBLICA         -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Sanções (art. 12) e perda da função pública</div>
+  </div>
+  <div class="sec-subtitle">Cominações por espécie, dosimetria, trânsito em julgado e cautelares</div>
+
+  <div class="card">
+    <div class="card-title">Regras gerais das cominações (arts. 12 e 21)</div>
+    <div class="card-text">
+      → <strong>Isolada ou cumulativa</strong> — as sanções aplicam-se conforme a <strong>gravidade do fato</strong>; cabe ao juiz a <strong>dosimetria</strong>, constitucionalidade confirmada nas ADIs 7156 e 7236<br>
+      → <strong>Independência do dano</strong> — a aplicação independe da efetiva ocorrência de dano, <strong>salvo</strong> quanto ao ressarcimento e às condutas de <strong>lesão ao erário</strong> (art. 21)<br>
+      → <strong>Ressarcimento não isenta</strong> — as cominações aplicam-se <span class="highlight">independentemente do ressarcimento integral do dano</span>, se efetivo, e das sanções penais comuns e de responsabilidade, civis e administrativas específicas — devolver o prejuízo não afasta a perda da função nem as demais penas<br><br>
+      → <strong>Contas</strong> — independe da <strong>aprovação ou rejeição das contas</strong> por controle interno ou Tribunal de Contas; atos e provas dos órgãos de controle serão considerados pelo juiz, sem prejuízo da análise do dolo (art. 21, §§ 1º e 2º)<br><br>
+      → <strong>Execução</strong> — todas as sanções só produzem efeitos com o <strong>trânsito em julgado</strong> da sentença condenatória (art. 12, § 9º)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Sanção</th><th>EI (art. 12, I)</th><th>LE (art. 12, II)</th><th>AP (art. 12, III)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Perda dos bens ou valores acrescidos</strong></td><td><strong>sempre</strong></td><td><strong>se concorrer</strong> esta circunstância</td><td>—</td></tr>
+        <tr><td><strong>Perda da função pública</strong></td><td>sim</td><td>sim</td><td>—</td></tr>
+        <tr><td><strong>Suspensão dos direitos políticos</strong></td><td>até <strong>14 anos</strong></td><td>até <strong>12 anos</strong></td><td>—</td></tr>
+        <tr><td><strong>Multa civil</strong></td><td>equivale ao <strong>acréscimo</strong> patrimonial</td><td>equivale ao <strong>dano</strong></td><td>até <strong>24× a remuneração</strong></td></tr>
+        <tr><td><strong>Proibição de contratar / receber benefícios</strong></td><td>até <strong>14 anos</strong></td><td>até <strong>12 anos</strong></td><td>até <strong>4 anos</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Números que decidem a questão</div>
+    <div class="card-text">
+      → <strong>EI: 14</strong> — suspensão de direitos e proibição de contratar<br>
+      → <strong>LE: 12</strong> — mesmas sanções, prazos menores<br>
+      → <strong>AP: 24</strong> — use o "2 4" para fixar: apenas <strong>2 sanções</strong>, multa de até <strong>24 vezes</strong> a remuneração e proibição de <strong>4 anos</strong><br><br>
+      → <strong>Multa espelhada</strong> — no EI a multa equivale ao <strong>acréscimo patrimonial indevido</strong>; no LE, ao <strong>dano</strong> causado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Perda da função pública — alcance e distinção da demissão (§ 1º)</div>
+    <div class="card-text">
+      → <strong>Texto original do § 1º (antes do STF)</strong> — a perda da função atingiria <strong>apenas o vínculo de mesma qualidade e natureza</strong> que o agente detinha com o poder público na época da infração, e a extensão aos demais vínculos seria cabível <strong>exclusivamente no enriquecimento ilícito</strong>, em caráter excepcional, consideradas as circunstâncias e a gravidade — na lesão ao erário, a sanção ficaria sempre limitada ao mesmo tipo de vínculo (regra que geraria absurdos: político que troca de mandato "perderia" o cargo que já não ocupava e preservaria o atual)<br>
+      → <strong>Alcance (ADIs 7156 e 7236)</strong> — o STF <strong>inverteu a disposição original</strong> e ampliou o alcance também para a lesão ao erário: a sanção é um <strong>poder-dever de estender a todos os vínculos</strong> do agente com a Administração (o "podendo" da lei lê-se como <strong>devendo</strong>), admitida limitação por <strong>decisão motivada</strong> em casos excepcionais (ex.: vereador condenado que exerce com excelência cargo efetivo de médico/professor — o juiz pode preservar o cargo efetivo)<br>
+      → <strong>Cassação de aposentadoria</strong> — aplicável ao servidor já aposentado como consequência da perda da função, mesmo sem previsão expressa na LIA, sem configurar confisco ou enriquecimento do Estado (STJ, MS 26.106)<br><br>
+      → <strong>Perda da função ≠ demissão</strong> — aquela é <strong>sanção judicial</strong> da LIA, só efetivada com o <strong>trânsito em julgado</strong>; esta é <strong>penalidade administrativa</strong> aplicada em PAD, com presunção de legitimidade, produzindo efeitos mesmo pendente recurso<br>
+      → <strong>Súmula 651 do STJ</strong> — a autoridade administrativa pode demitir por improbidade <strong>independentemente</strong> de prévia condenação judicial à perda da função
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Unificação, parcelamento e afastamento preventivo</div>
+    <div class="card-text">
+      → <strong>Proibição de contratar</strong> — a restrição ao ente federativo da infração é <strong>inconstitucional</strong>: a proibição vale <strong>para todos os entes</strong><br>
+      → <strong>Contagem da suspensão (art. 12, § 10)</strong> — descontar do prazo o tempo entre o ato e a condenação de 1ª instância foi declarado <strong>inconstitucional</strong><br><br>
+      → <strong>Unificação (art. 18-A)</strong> — a requerimento do réu, na execução: <strong>continuidade</strong> de ilícito → maior sanção <strong>acrescida de 1/3</strong> ou a soma (o que for mais benéfico); <strong>novos atos</strong> → soma das sanções; teto de <strong>20 anos</strong> para suspensão de direitos e proibição de contratar<br>
+      → <strong>Parcelamento (art. 18, § 4º)</strong> — o juiz pode autorizar pagamento do débito em até <strong>48 parcelas mensais corrigidas</strong> se o réu demonstrar <strong>incapacidade financeira</strong> de saldá-lo de imediato<br><br>
+      → <strong>Afastamento preventivo (art. 20, § 1º)</strong> — <strong>medida cautelar</strong> (não sanção), determinada <strong>somente pelo Judiciário</strong>, <strong>sem prejuízo da remuneração</strong>, por até <strong>90 dias, prorrogáveis uma única vez</strong> por igual prazo mediante decisão motivada
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Afastado preventivamente, o agente perde a remuneração" — <strong>falso</strong>: a cautelar é sem prejuízo da remuneração, e por isso não confunde com a sanção de perda da função (esta só se efetiva com trânsito em julgado). E "o afastamento pode ser decretado pela autoridade administrativa" — era antes da reforma; hoje <strong>só o Judiciário</strong> pode.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — INDEPENDÊNCIA DAS INSTÂNCIAS E NON BIS IN IDEM      -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Independência das instâncias e non bis in idem</div>
+  </div>
+  <div class="sec-subtitle">Arts. 12 e 21 — quando uma instância vincula a outra</div>
+
+  <div class="card">
+    <div class="card-title">Regra geral e o encontro com a Lei Anticorrupção</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — as sanções penais, civis e administrativas são <strong>independentes</strong> entre si (art. 12, caput), com exceções expressas na própria LIA<br>
+      → <strong>Pessoa jurídica (art. 12, § 7º; art. 3º, § 2º)</strong> — respeitado o <strong>non bis in idem</strong>: sendo o ato punível pela LIA e pela <strong>Lei Anticorrupção</strong> (LAC), a PJ é sancionada com base na <strong>LAC</strong>; a vedação aparece no art. 12, § 7º e também no art. 3º, § 2º — a banca cita ora um, ora outro<br><br>
+      → <strong>Ação única</strong> — usar as duas leis <strong>na petição inicial</strong> não viola o non bis in idem: a vedação vale <strong>na condenação</strong>, não na propositura — o juiz aplicará apenas uma delas contra a PJ
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Absolvição penal que impede a ação de improbidade (art. 21)</div>
+    <div class="card-text">
+      → <strong>Regra da reforma (art. 21, § 4º)</strong> — a absolvição criminal por decisão <strong>colegiada</strong> impedia o trâmite da ação de improbidade; o STF viu aqui violação da independência das instâncias e das instâncias internas do MP<br><br>
+      → <strong>Interpretação conforme (ADIs 7156 e 7236)</strong> — a impedição exige <strong>trânsito em julgado</strong> da decisão penal, somente nas hipóteses:<br>
+      → <strong>Art. 65 do CPP</strong> — estado de necessidade, legítima defesa, estrito cumprimento de dever legal ou exercício regular de direito<br>
+      → <strong>Art. 386, I, do CPP</strong> — inexistência do fato<br>
+      → <strong>Art. 386, IV, do CPP</strong> — o réu não concorreu para a infração (negativa de autoria)<br><br>
+      → <strong>Outros efeitos (art. 21, § 3º)</strong> — a sentença civil ou penal que conclui pela <strong>inexistência da conduta ou negativa da autoria</strong> produz efeitos na ação de improbidade<br>
+      → <strong>Denúncia rejeitada / arquivamento precluso</strong> — também impedem o trâmite, ressalvadas as hipóteses em que a investigação identifique <strong>outras provas</strong> (art. 18 do CPP)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Compensações e partidos políticos</div>
+    <div class="card-text">
+      → <strong>Dedução do ressarcimento (art. 12, § 6º)</strong> — a reparação na ação de improbidade <strong>deduz</strong> o que o responsável já recolheu nas instâncias criminal, civil e administrativa pelos mesmos fatos — não se cobra "o que já foi devolvido"<br>
+      → <strong>Compensação de sanções (art. 21, § 5º)</strong> — as sanções aplicadas em outras esferas serão <strong>compensadas</strong> com as da LIA<br><br>
+      → <strong>Recursos de partidos (art. 23-C)</strong> — o dispositivo remetia os ilícitos com recursos partidários à Lei 9.096/1995; o STF fixou interpretação conforme: ele <strong>não afasta a LIA</strong> — as duas leis se aplicam, respeitada a independência das instâncias
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Absolvido em 2º grau na esfera penal, a ação de improbidade não pode prosseguir" — só se a absolvição tiver <strong>trânsito em julgado</strong> e se fundar nas hipóteses do art. 65 ou do art. 386, I e IV do CPP; a decisão colegiada isolada <strong>não basta</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — PROCEDIMENTO ADMINISTRATIVO                         -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Procedimento administrativo — representação e apuração</div>
+  </div>
+  <div class="sec-subtitle">Arts. 13 a 15 e 22 — a fase que antecede a ação, análoga ao inquérito</div>
+
+  <div class="card">
+    <div class="card-title">Representação — quem pode e como (art. 14)</div>
+    <div class="card-text">
+      → <strong>Qualquer pessoa</strong> — alcance mais amplo que "qualquer cidadão"; é inversão clássica de prova<br><br>
+      → <strong>Requisitos</strong> — por <strong>escrita ou reduzida a termo e assinada</strong>, com:<br>
+      → <strong>Qualificação</strong> do representante<br>
+      → <strong>Informações</strong> sobre o <strong>fato e sua autoria</strong><br>
+      → <strong>Indicação das provas</strong> de que tenha conhecimento<br>
+      → <strong>Rejeição</strong> — sem as formalidades, rejeitada em <strong>despacho fundamentado</strong>; a rejeição <strong>não impede</strong> formular representação ao <strong>Ministério Público</strong> (art. 22)<br><br>
+      → <strong>Denúncia anônima</strong> — não pode instaurar o procedimento <strong>exclusivamente</strong> por si, mas STF e STJ admitem <strong>procedimentos preliminares reservados</strong> para comprovar as informações (fundamentos da Súmula 611 do STJ, do poder-dever de autotutela)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Apuração dos fatos — dever vinculado</div>
+    <div class="card-text">
+      → <strong>Decisão vinculada</strong> — atendidos os requisitos, a autoridade determina a <strong>imediata apuração</strong>, seguindo a legislação do <strong>processo administrativo disciplinar</strong> aplicável (ex.: Lei 8.112/1990 para servidores federais)<br><br>
+      → <strong>Comunicação (art. 15)</strong> — a comissão dá conhecimento ao <strong>MP e ao Tribunal ou Conselho de Contas</strong>, que podem, a requerimento, designar representante para acompanhar<br>
+      → <strong>Dever de representar (art. 7º)</strong> — havendo indícios de improbidade, a autoridade que conhecer dos fatos <strong>representa ao MP competente</strong> para as providências
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Declaração de bens (art. 13)</div>
+    <div class="card-text">
+      → <strong>Apresentação</strong> — posse e exercício condicionados à apresentação da <strong>declaração de imposto de renda</strong>, arquivada no serviço de pessoal (a reforma trocou a declaração de bens autônoma pela de IR)<br>
+      → <strong>Atualização</strong> — <strong>anualmente</strong> e na data em que o agente deixar o mandato, cargo, emprego ou função<br>
+      → <strong>Sanção</strong> — <strong>demissão</strong>, sem prejuízo de outras sanções cabíveis, para quem se recusar a prestar dentro do prazo ou prestar declaração <strong>falsa</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Denúncia anônima não gera efeito algum" — <strong>errado</strong>: não serve de base exclusiva para instaurar o procedimento, mas fundamenta <strong>apuração preliminar</strong>. E "somente o cidadão pode representar" — <strong>errado</strong>: a lei diz <strong>qualquer pessoa</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — AÇÃO DE IMPROBIDADE                                 -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Ação de improbidade — legitimidade, rito e acordo</div>
+  </div>
+  <div class="sec-subtitle">Art. 17 e 17-B a 17-D — quem propõe, onde tramita e como termina</div>
+
+  <div class="card">
+    <div class="card-title">Legitimidade ativa — o texto da lei e o STF</div>
+    <div class="card-text">
+      → <strong>Texto da lei (art. 17, caput)</strong> — ação proposta pelo <strong>Ministério Público</strong>, seguindo o <strong>procedimento comum</strong> do CPC, salvo regras especiais da LIA<br>
+      → <strong>Posição do STF (ADIs 7042 e 7043)</strong> — legitimidade <span class="highlight">concorrente e disjuntiva</span> do <strong>MP e da pessoa jurídica interessada</strong> (a que sofreu o ato) para propor a ação e firmar acordos de não persecução civil<br><br>
+      → <strong>Na prova</strong> — em questões literais pode-se cobrar o texto (só o MP); em questões contextualizadas ou pedindo a posição do STF, priorize a <strong>concorrência</strong><br><br>
+      → <strong>Não legitimados</strong> — a <strong>Defensoria Pública</strong> não pode propor a ação (STJ, 2025); o art. 17, § 20, foi parcialmente inconstitucional — não há <strong>obrigatoriedade de defesa judicial</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Foro, prevenção e particularidades processuais</div>
+    <div class="card-text">
+      → <strong>Foro (art. 17, § 4º-A)</strong> — local onde ocorrer o <strong>dano</strong> ou da <strong>pessoa jurídica prejudicada</strong>; não há <strong>foro por prerrogativa de função</strong><br>
+      → <strong>Prevenção (art. 17, § 5º)</strong> — a propositura previne a competência para as ações com a <strong>mesma causa de pedir ou o mesmo objeto</strong><br><br>
+      → <strong>Não se aplicam (art. 17, § 19):</strong> a <strong>presunção de veracidade</strong> em caso de <strong>revelia</strong><br>
+      → <strong>Ônus da prova ao réu</strong> — vedada a inversão dos arts. 373, §§ 1º e 2º, do CPC<br>
+      → <strong>Múltiplas ações pelo mesmo fato</strong> — os conflitos de atribuições são dirimidos pelo <strong>CNMP</strong><br>
+      → <strong>Reexame necessário</strong> — sem remessa necessária (duplo grau) na improbidade<br><br>
+      → <strong>Interrogatório (art. 17, § 18)</strong> — o réu tem direito de ser ouvido; recusa ou silêncio <strong>não implicam confissão</strong><br><br>
+      → <strong>Sem adiantamento de despesas (art. 23-B)</strong> — nas <strong>ações e nos acordos</strong> regidos pela LIA, não há adiantamento de <strong>custas, preparo, emolumentos, honorários periciais</strong> ou quaisquer outras despesas<br>
+      → <strong>Honorários na improcedência (art. 23-B, § 2º)</strong> — condenação em honorários sucumbenciais somente <span class="highlight">se comprovada má-fé</span> — sem má-fé demonstrada, não há sucumbência
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O juiz pode alterar a capitulação? Pode (ADIs 7156 e 7236)</div>
+    <div class="card-text">
+      → <strong>O que caiu</strong> — os §§ 10-C, 10-D e 10-F, I do art. 17, que limitavam o MP a <strong>um único dispositivo</strong> e vedavam ao juiz alterar a tipificação ou condenar por fato diverso da inicial, foram declarados <strong>inconstitucionais</strong><br>
+      → <strong>Por quê</strong> — o réu se defende <strong>dos fatos</strong>, não do artigo indicado; o impedimento geraria novas ações sobre os mesmos fatos, contra a eficiência<br>
+      → <strong>Garantia restante (art. 17, § 10-F, II)</strong> — é <strong>nula</strong> a decisão de mérito que condenar sem a produção das provas tempestivamente <strong>especificadas pelo réu</strong><br><br>
+      → <strong>Desconsideração de PJ (art. 17, § 15)</strong> — cabe quando a personalidade jurídica for usada para <strong>facilitar, encobrir ou dissimular</strong> a prática do ilícito ou para provocar <strong>confusão patrimonial</strong>; observam-se os arts. 133 a 137 do CPC
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Acordo de não persecução civil (art. 17-B)</div>
+    <div class="card-text">
+      → <strong>Quem firma</strong> — MP <strong>ou pessoa jurídica interessada</strong>, com o investigado ou demandado e seu defensor<br>
+      → <strong>Requisitos cumulativos</strong> — <strong>oitiva do ente federativo lesado</strong><br>
+      → aprovação pelo órgão do MP competente <strong>em até 60 dias</strong> (se anterior ao ajuizamento)<br>
+      → <strong>homologação judicial</strong>, antes ou depois do ajuizamento<br><br>
+      → <strong>Momentos possíveis</strong> — na <strong>investigação</strong>, no curso da <strong>ação</strong> ou na <strong>execução da sentença</strong> condenatória<br>
+      → <strong>Suspensão (art. 17, § 10-A)</strong> — o acordo suspende o prazo de <strong>contestação</strong> por até <strong>90 dias</strong><br><br>
+      → <strong>Descumprimento</strong> — o infrator fica impedido de celebrar <strong>novo acordo por 5 anos</strong>, contado do conhecimento do descumprimento pelo MP
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Conversão em ação civil pública (art. 17, § 16)</div>
+    <div class="card-text">
+      → <strong>Quando</strong> — a qualquer momento, identificadas <strong>ilegalidades ou irregularidades a sanar</strong> sem que estejam presentes todos os requisitos para a imposição das sanções<br>
+      → <strong>Como</strong> — decisão <strong>motivada</strong>, cabendo <strong>agravo de instrumento</strong> (art. 17, § 17); a conversão deve ocorrer no <strong>1º grau, antes da sentença</strong> (STJ, REsp 2.139.458)<br><br>
+      → <strong>Natureza (art. 17-D)</strong> — a ação de improbidade é <strong>repressiva, de caráter sancionatório</strong> (não preventiva), não é ação civil: é vedado usá-la para <strong>controle de legalidade de políticas públicas</strong> ou para a proteção do <strong>patrimônio público e social, do meio ambiente</strong> e de outros <strong>interesses difusos, coletivos e individuais homogêneos</strong> (para isso, ACP da Lei 7.347/1985)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Sentença de improcedência sobe de ofício ao Tribunal (remessa necessária)" — <strong>não</strong> se aplica à ação de improbidade (art. 17, § 19, IV, c/c art. 17-C, § 3º); o apelo cabe por recurso, não de ofício. E a vedação à remessa não alcança processos em curso com sentença anterior à reforma (Tema 1284).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — SENTENÇA, UNIFICAÇÃO E PRESCRIÇÃO                   -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Sentença, unificação de sanções e prescrição</div>
+  </div>
+  <div class="sec-subtitle">Arts. 17-C, 18 e 23 — condenação, prazos e ressarcimento imprescritível</div>
+
+  <div class="card">
+    <div class="card-title">Regras da sentença condenatória (art. 17-C e art. 18)</div>
+    <div class="card-text">
+      → <strong>Elementos não presumidos</strong> — a sentença deve indicar com precisão os fundamentos que demonstram os elementos dos arts. 9º, 10 e 11, que <strong>não podem ser presumidos</strong><br>
+      → <strong>Dosimetria</strong> — considerar proporcionalidade e razoabilidade, natureza e gravidade, extensão do dano, proveito obtido, agravantes e atenuantes, atuação para minorar prejuízos e antecedentes do agente<br>
+      → <strong>Terceiro</strong> — responderá apenas pelas condutas <strong>para as quais concorreu</strong> ou das quais obteve vantagem patrimonial indevida<br><br>
+      → <strong>Condenação (art. 18)</strong> — ressarcimento dos danos e perda/reversão dos bens ilicitamente adquiridos em favor da <strong>pessoa jurídica prejudicada</strong>, descontados os <strong>serviços efetivamente prestados</strong> (vedação ao enriquecimento sem causa da Administração)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prescrição da pretensão sancionadora (art. 23)</div>
+    <div class="card-text">
+      → <strong>Prazo único</strong> — <strong>8 anos</strong> da ocorrência do fato ou, nas <strong>infrações permanentes</strong>, do dia em que cessou a permanência<br>
+      → <strong>Suspensão (§ 1º)</strong> — instauração de <strong>inquérito civil ou processo administrativo</strong>: no máximo <strong>180 dias corridos</strong>, recomeçando após a conclusão ou o esgotamento do prazo<br>
+      → <strong>Inquérito civil (§ 2º)</strong> — concluído em <strong>365 dias</strong>, prorrogável <strong>uma única vez</strong> por igual período mediante ato fundamentado revisado pela instância competente do MP<br>
+      → <strong>Após o inquérito (§ 3º)</strong> — encerrado o prazo, a ação é proposta em <strong>30 dias</strong>, se não for caso de arquivamento<br><br>
+      → <strong>Interrupção (art. 23, § 4º):</strong><br>
+      → <strong>Ajuizamento</strong> da ação de improbidade<br>
+      → <strong>Publicação da sentença condenatória</strong><br><br>
+      → <strong>TJ ou TRF</strong> — decisão/acórdão que <strong>confirma</strong> sentença condenatória ou <strong>reforma</strong> sentença de improcedência<br>
+      → <strong>STJ</strong> — decisão/acórdão que <strong>confirma</strong> acórdão condenatório ou <strong>reforma</strong> acórdão de improcedência<br>
+      → <strong>STF</strong> — idem — <span class="highlight">decisões favoráveis ao réu não interrompem</span><br>
+      → <strong>Intercorrente</strong> — interrompida, o prazo recomeça <strong>por inteiro (8 anos)</strong>: a "metade" do art. 23, § 5º foi declarada <strong>inconstitucional</strong><br>
+      → <strong>Teto global (STF)</strong> — <strong>20 anos</strong> de duração total do processo<br><br>
+      → <strong>Extensão</strong> — suspensão e interrupção valem para <strong>todos os concorrentes</strong> (§ 6º) e, nos atos conexos do mesmo processo, estendem-se aos demais (§ 7º)<br>
+      → <strong>Irretroatividade</strong> — o novo regime prescricional conta a partir da publicação da L14230 (26/10/2021), sem "prescrição retroativa" (Tema 1.199)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ação de improbidade prescreve; o ressarcimento doloso não</div>
+    <div class="card-text">
+      → <strong>Ação de improbidade</strong> — destinada a aplicar as sanções do art. 12, é sempre <strong>prescritível</strong>, pelas regras do art. 23<br>
+      → <strong>Ação de ressarcimento</strong> — o dano decorrente de <span class="highlight">ato doloso</span> de improbidade é <strong>imprescritível</strong> (STF, RE 852.475); como só existe improbidade dolosa, todo ressarcimento fundado nela é imprescritível<br>
+      → <strong>Ressarcimento por decisão de tribunal de contas</strong> — é <strong>prescritível</strong> (Tema 899)<br><br>
+      → <strong>Terceiro</strong> — o mesmo regime prescricional do agente público (Súmula 634 do STJ, hoje desnecessária pelo prazo único de 8 anos)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "O ressarcimento fundado em decisão de tribunal de contas também é imprescritível" — <strong>errado</strong>: a imprescritibilidade do RE 852.475 vale para o ressarcimento por <strong>ato doloso de improbidade</strong>; o fundado em decisão de TC é <strong>prescritível</strong> (Tema 899). E confundir suspensão (o prazo <strong>congela</strong>) com interrupção (o prazo <strong>zera</strong>).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — PONTOS QUE MAIS CAEM EM PROVA                      -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">Números que decidem a questão</div>
+    <div class="card-text">
+      → <strong>Prescrição:</strong> ação <strong>8 anos</strong>; suspensão <strong>180 dias</strong>; inquérito <strong>365 + 1×</strong>; ação após inquérito <strong>30 dias</strong>; intercorrente <strong>8</strong>, teto <strong>20 anos</strong><br>
+      → <strong>Sanções:</strong> EI <strong>14</strong> · LE <strong>12</strong> · AP <strong>24</strong> (2 sanções, 24× a remuneração, 4 anos)<br>
+      → <strong>Afastamento preventivo:</strong> <strong>90 + 90</strong> dias, sem prejuízo da remuneração<br>
+      → <strong>Processuais:</strong> contestação <strong>30 dias</strong>; acordo suspende contestação <strong>90 dias</strong>; aprovação do acordo <strong>60 dias</strong>; novo acordo após descumprimento <strong>5 anos</strong><br>
+      → <strong>Execução:</strong> parcelamento em até <strong>48</strong> parcelas; unificação com teto de <strong>20 anos</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Distinções que a banca inverte</div>
+    <div class="card-text">
+      → <strong>Rol taxativo × exemplificativo:</strong> art. 11 <strong>taxativo</strong> × arts. 9º e 10 <strong>exemplificativos</strong> ("e notadamente")<br>
+      → <strong>Perda da função × demissão:</strong> sanção judicial com <strong>trânsito em julgado</strong> × penalidade <strong>administrativa</strong> em PAD (Súmula 651)<br>
+      → <strong>Afastamento × perda da função:</strong> <strong>cautelar</strong> (Judiciário, com remuneração) × <strong>sanção</strong> (só com trânsito)<br><br>
+      → <strong>Improbidade × ressarcimento:</strong> ação sancionatória <strong>prescritível</strong> × ressarcimento doloso <strong>imprescritível</strong> (TC: prescritível)<br>
+      → <strong>Sanção × responsabilidade patrimonial:</strong> solidariedade <strong>vedada</strong> × solidariedade <strong>possível</strong><br>
+      → <strong>LIA × LAC (PJ):</strong> ação conjunta <strong>possível</strong> × condenação dupla <strong>vedada</strong> (non bis in idem)<br>
+      → <strong>Legitimidade:</strong> texto da lei = <strong>MP</strong> × STF = <strong>MP + PJ interessada</strong> (concorrente)
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> foque nos arts. 1º (§§ 2º e 8º), 9º a 12, 14, 17 (§§ 4º-A, 5º, 10-A, 15, 16, 18 e 19), 17-B a 17-D, 18-A, 20 (§ 1º), 21 e 23 da LIA. As decisões que concentram a cobrança atual são as ADIs 7042/7043 (legitimidade concorrente) e as ADIs 7156/7236 (dolo, rol taxativo do art. 11, benefícios diretos e capitulação pelo juiz) — e o Tema 1.199 resolve quase toda questão de retroatividade.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — INCIDÊNCIA DE TEMAS (TEC)                          -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão de cima para baixo — temas com mais questões primeiro</div>
+
+  <div class="card">
+    <div class="card-title">Contador de temas</div>
+    <div class="card-text">
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 4 — Sujeitos da improbidade (arts. 1º a 3º): 8</span><br>
+      <span class="tag tag-red">Seção 3 — Espécies de atos de improbidade (arts. 9º a 11): 5</span><br>
+      <span class="tag tag-red">Seção 2 — Dolo específico e fim da modalidade culposa: 3</span><br><br>
+      <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Seção 5 — Sanções (art. 12) e perda da função pública: 2</span><br>
+      <span class="tag tag-amber">Seção 8 — Ação de improbidade (legitimidade, rito e acordo): 2</span><br>
+      <span class="tag tag-amber">Seção 9 — Sentença, unificação de sanções e prescrição: 2</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 1 — Noções introdutórias e a reforma da LIA: 1</span><br>
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2009/resumo-aula-09-contratos-administrativos.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 09 · Contratos Administrativos</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": 15, "tema": "Improbidade Administrativa (Lei 8.429/1992 — reforma da Lei 14.230/2021)", "questoes": [{"q": "Servidor foi condenado por improbidade CULPOSA antes da Lei 14.230/2021, com trânsito em julgado. Com a reforma, essa condenação cai?", "opts": [{"t": "Cai, pois a reforma aboliu a modalidade culposa de improbidade administrativa.", "why": "A reforma aboliu a culposa para casos novos, mas a norma benéfica não retroage contra a coisa julgada (Tema 1.199)."}, {"t": "Cai, bastando que o servidor ajuíze ação anulatória no prazo de 2 anos.", "why": "Não há esse mecanismo na lei; a irretroatividade protege o trânsito em julgado."}, {"t": "Não cai: a norma benéfica é irretroativa quanto à coisa julgada; sem trânsito, o juízo deve analisar eventual dolo.", "ok": true, "why": "Tema 1.199/STF: condenação culposa com trânsito permanece; sem trânsito, o juízo analisa o dolo (RE 610.523 e RE 656.558, Tema 309, aboliram a culposa)."}, {"t": "Não cai, pois a modalidade culposa continua vigendo para servidores estatutários.", "why": "A modalidade culposa foi inteiramente abolida (Tema 309), para qualquer agente."}]}, {"q": "Sobre os rols de condutas da LIA após a reforma, é correto:", "opts": [{"t": "Os arts. 9º e 10 permanecem exemplificativos ('e notadamente'); só o art. 11 se tornou taxativo.", "ok": true, "why": "O 'e notadamente' foi mantido nos arts. 9º e 10; o art. 11 passou a 'caracterizada por uma das seguintes condutas'."}, {"t": "Todos os três rols se tornaram taxativos para reforçar a legalidade estrita.", "why": "Os arts. 9º e 10 continuam exemplificativos — a banca inverte isso."}, {"t": "O art. 11 continua exemplificativo; os arts. 9º e 10 é que viraram taxativos.", "why": "Inversão clássica: só o art. 11 fechou o rol."}, {"t": "O art. 11 era taxativo antes da reforma e voltou a ser exemplificativo.", "why": "Era o contrário: antes da reforma o art. 11 era exemplificativo e a reforma o tornou taxativo."}]}, {"q": "São sujeitos ativos da improbidade, pelo art. 2º da LIA:", "opts": [{"t": "Somente o servidor público estatutário e o agente político eletivo.", "why": "O conceito é muito mais amplo — alcança qualquer investidura."}, {"t": "Servidores estatutários e empregados públicos, mas nunca quem atua sem remuneração.", "why": "A lei alcança inclusive quem exerce mandato, cargo, emprego ou função SEM remuneração."}, {"t": "O agente político, o servidor e o particular que se beneficie do ato, mesmo sem concorrência dolosa.", "why": "O 'se beneficia' saiu do art. 3º na reforma; o terceiro só responde com concurso doloso."}, {"t": "O agente político, o servidor e todo aquele que exerce, ainda que transitoriamente ou sem remuneração, mandato, cargo, emprego ou função.", "ok": true, "why": "Literalidade do art. 2º pós-reforma — o agente político foi incluído expressamente pela Lei 14.230/2021."}]}, {"q": "Particular recebeu vantagem decorrente de ato de improbidade praticado por agente público, sem induzir nem concorrer dolosamente. Ele responde?", "opts": [{"t": "Sim, solidariamente pela reparação, por ter se beneficiado.", "why": "A reforma retirou o 'se beneficia' do art. 3º — benefício sem concurso doloso não tipifica."}, {"t": "Não: o terceiro só responde se induzir ou concorrer dolosamente para a prática do ilícito.", "ok": true, "why": "Art. 3º na redação da Lei 14.230/2021 — o requisito é o concurso doloso."}, {"t": "Responde apenas à obrigação de ressarcir, até o limite do benefício recebido.", "why": "Não há essa previsão; sem concurso doloso não há responsabilidade."}, {"t": "Não, pois particulares jamais são alcançados pela LIA.", "why": "Particular PODE responder (art. 3º) — mas só com induzimento ou concurso doloso."}]}, {"q": "Quanto às cominações do art. 12 da LIA, é correto:", "opts": [{"t": "Na lesão ao erário, a multa civil equivale ao valor do acréscimo patrimonial.", "why": "Multa espelhada: no EI a multa espelha o acréscimo; na LE, o dano."}, {"t": "No atentado aos princípios, cabe perda da função pública e suspensão de direitos por até 4 anos.", "why": "No AP (art. 12, III) só há multa de até 24× a remuneração e proibição de contratar por até 4 anos — sem perda da função nem suspensão de direitos."}, {"t": "No enriquecimento ilícito, suspensão de direitos por até 14 anos; na lesão ao erário, até 12; no atentado aos princípios, multa de até 24 vezes a remuneração e proibição de contratar por até 4 anos.", "ok": true, "why": "Dosimetria do art. 12, I-III — EI 14, LE 12, AP 24×/4 anos."}, {"t": "As sanções só podem ser aplicadas cumulativamente, nunca isoladas.", "why": "O art. 12 permite aplicação isolada ou cumulativa, de acordo com a gravidade do fato."}]}, {"q": "Sobre o afastamento preventivo do agente público (art. 20, § 1º):", "opts": [{"t": "É sanção aplicada pela autoridade administrativa, com perda da remuneração.", "why": "É cautelar (não sanção), determinada só pelo Judiciário e SEM prejuízo da remuneração."}, {"t": "É medida cautelar, determinada somente pelo Judiciário, por até 90 dias prorrogáveis uma única vez, sem prejuízo da remuneração.", "ok": true, "why": "Literalidade do art. 20, § 1º — cautelar, Judiciário, 90+90 dias, com remuneração."}, {"t": "É determinado pelo Tribunal de Contas, por prazo indeterminado até a condenação.", "why": "Não compete ao TC e o prazo é certo (90+90 dias)."}, {"t": "É sanção que se efetiva independentemente do trânsito em julgado da condenação.", "why": "Quem independe de trânsito é a DEMISSÃO administrativa (Súmula 651 STJ); o afastamento nem é sanção."}]}, {"q": "Sobre a prescrição na LIA após a reforma, é correto:", "opts": [{"t": "A ação prescreve em 8 anos, e a instauração de inquérito civil suspende o prazo por até 365 dias.", "why": "A suspensão (art. 23, § 1º) é de até 180 dias; 365 é o prazo para CONCLUIR o inquérito civil."}, {"t": "O ressarcimento do dano ao erário prescreve junto com a ação, em 8 anos, quando fundado em ato doloso.", "why": "O ressarcimento fundado em ato doloso é IMPRESCRITÍVEL (RE 852.475); o fundado em decisão de tribunal de contas é que prescreve (Tema 899)."}, {"t": "Interrompida a prescrição, o prazo recomeça pela metade (4 anos), conforme o art. 23, § 5º.", "why": "A regra da metade foi declarada inconstitucional — o prazo recomeça por inteiro (8 anos)."}, {"t": "A ação prescreve em 8 anos; interrompida, recomeça por inteiro, com teto de 20 anos de duração total do processo; o ressarcimento fundado em ato doloso é imprescritível.", "ok": true, "why": "Art. 23 (caput e §§) + jurisprudência: metade do § 5º inconstitucional, teto de 20 anos e RE 852.475 (imprescritibilidade do ressarcimento doloso)."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>
