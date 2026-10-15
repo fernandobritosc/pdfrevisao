@@ -215,8 +215,8 @@
 | Status | Assunto | Resumo | Nota |
 |--------|---------|--------|------|
 | 🔄 | Controle interno e externo; Tribunal de Contas | LI Aula 00 (parcial 🔄) | aprofundar TC municipal |
-| ❌ | Lei de Acesso à Informação (Lei 12.527/2011) | — | — |
-| ❌ | Transparência pública e prestação de contas | — | — |
+| ✅ | Lei de Acesso à Informação (Lei 12.527/2011) | DA Aula 10 | — |
+| 🔄 | Transparência pública e prestação de contas | DA Aula 10 (parcial 🔄) | transparência ativa (LAI) pronta; falta prestação de contas ampla |
 | ❌ | Ética no serviço público; Código de Ética; conflito de interesses | — | — |
 | ❌ | LGPD (Lei 13.709/2018) | — | — |
 | ❌ | Responsabilidade do agente público | — | LI 00 cobre responsabilidade civil |
