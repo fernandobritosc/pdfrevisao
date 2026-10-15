@@ -132,17 +132,17 @@
 ### 7. Noções de Controle Externo
 | Status | Assunto | Resumo | Trilha Estratégia |
 |--------|---------|--------|-------------------|
-| ❌ | Controle interno x controle externo | — | — |
-| ❌ | Competências e natureza jurídica dos TCs | — | — |
+| 🔄 | Controle interno x controle externo | DC Aula 20 (parcial 🔄) | base constitucional (arts. 70/74); falta auditoria |
+| 🔄 | Competências e natureza jurídica dos TCs | DC Aula 20 (parcial 🔄) | arts. 70-73, 75 + EC 139; falta aprofundar |
 | ❌ | Instrumentos de fiscalização | — | — |
 | ❌ | Tipos de auditoria | — | — |
 | ❌ | Normas INTOSAI e NBASP | — | — |
 | ❌ | Planejamento de auditoria | — | — |
 | ❌ | Técnicas e procedimentos | — | — |
 | ❌ | Achados de auditoria | — | — |
-| ❌ | Prestação e tomada de contas | — | — |
+| 🔄 | Prestação e tomada de contas | DC Aula 20 (parcial 🔄) | contas governo × gestão; falta parte processual |
 
-**Status:** ❌ MATÉRIA EXCLUSIVA TCE — precisa criar 2-3 aulas
+**Status:** 🔄 Base constitucional pronta (DC Aula 20); faltam as 2-3 aulas de auditoria (INTOSAI/NBASP, tipos, planejamento, técnicas, achados)
 
 ---
 
@@ -295,7 +295,7 @@
 | Direito Administrativo | ✅ 10 aulas | 🔨 Falta: processo adm GO, responsabilidade civil | +1-2 aulas |
 | Licitações | ✅ 2 aulas (DA 07-08) | 🔨 Falta: planejamento, modalidades, dispensa, SRP, execução, sanções, PNCP | +2-3 aulas |
 | Direito Constitucional | ✅ 8 aulas | 🔨 Falta: TCs, funções essenciais | +1 aula |
-| Controle Externo | ❌ Nenhum | ❌ Nenhum (exclusiva TCE) | +2-3 aulas |
+| Controle Externo | ✅ Base (DC Aula 20) | 🔄 Parcial: falta auditoria (INTOSAI/NBASP, tipos, planejamento, técnicas, achados) | +2 aulas |
 | AFO | ✅ 7 aulas | 🔨 Falta: PPA/LDO/LOA aprofundar, restos a pagar, pessoal, LRF, MCASP | +1-2 aulas |
 | Contabilidade | ❌ Nenhum | ❌ Nenhum (exclusiva TCE, 4 tarefas trilha) | +3-4 aulas |
 | ADM Pública | ✅ 8 aulas | 🔨 Falta: qualidade, BSC, projetos, governança, indicadores | +1-2 aulas |

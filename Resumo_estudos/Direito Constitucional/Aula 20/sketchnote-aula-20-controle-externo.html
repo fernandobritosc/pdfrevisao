@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — DC Aula 20 · Controle Externo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#7c3aed; --matsoft:#ede9fe; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#ede9fe 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:760px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3} .pill:nth-child(6){transform:rotate(1deg)}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"\279C";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.num{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.55rem 0}
+@media(max-width:520px){.num{grid-template-columns:1fr}}
+.num div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .55rem;text-align:center;background:#fff;font-size:.74rem;color:var(--ink2)}
+.num div b{display:block;font-size:1.05rem;font-family:'Space Grotesk';color:var(--ink)}
+.num .hi{background:#ede9fe;border-color:var(--mat)}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">DC · Aula 20 · Controle Externo</div>
+<h1><span class="hl">Controle Externo e Tribunais de Contas</span> numa página ✍️</h1>
+<p class="sub">Arts. 70 a 75 · art. 74 (controle interno) · art. 130 (MP junto aos TCs) · Súmula 653, SV-3 e 347 · Temas 445, 666, 897 e 899.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-20-controle-externo.html">resumo da Aula 20</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">🏛️</div><div><b>CONTROLE EXTERNO = Congresso titular + TCU auxiliar técnico</b><br><span>Fiscalização <strong>COFOP</strong> (contábil, financeira, orçamentária, operacional, patrimonial) quanto à <strong>legalidade, legitimidade e economicidade</strong> — simetria do modelo federal para TCs estaduais e municipais (art. 75)</span></div></div>
+</div>
+<div class="tri"><span class="pill">🎯 Art. 70 + GAGAU</span><span class="pill">📊 Contas governo × gestão</span><span class="pill">⚙️ Competências TCU</span><span class="pill">👥 9 ministros · 7 conselheiros</span><span class="pill">⚖️ EC 139/2026</span><span class="pill">⏱️ Temas 666/897/899</span></div>
+<main>
+<section class="note" aria-label="Art 70">
+<h2><span class="n">1</span> Art. 70 — quem fiscaliza o quê 🎯</h2>
+<ul>
+<li><strong>Titular</strong> — o <strong>Congresso Nacional</strong> (controle político-parlamentar); o TCU é <strong>órgão técnico de auxílio</strong>, não titular</li>
+<li><strong>Objeto</strong> — fiscalização <strong>contábil, financeira, orçamentária, operacional e patrimonial</strong> da União e da administração direta e indireta</li>
+<li><strong>Critérios</strong> — <strong>legalidade, legitimidade, economicidade</strong> + subvenções e <strong>renúncia de receitas</strong></li>
+<li><strong>Mérito</strong> — o controle adentra economicidade/legitimidade, mas <strong>não interfere na conveniência e oportunidade</strong> do gestor (senão substituiria a atividade governamental)</li>
+<li><strong>GAGAU</strong> — presta contas quem <strong>Gerencie, Arrecade, Guarde, Administre ou Utilize</strong> recursos públicos — qualquer PF ou PJ, mesmo fora da administração</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "o controle não entra no mérito do ato" — <b>falso</b>: economicidade e legitimidade <b>são mérito</b>; conveniência e oportunidade é que ficam de fora.</div>
+</section>
+
+<section class="note" aria-label="Contas">
+<h2><span class="n">2</span> Contas de governo × de gestão 📊</h2>
+<ul>
+<li><strong>Contas do Presidente (governo)</strong> — envio ao Congresso/TCU em <strong>60 dias</strong> da abertura da sessão legislativa (art. 84, XXIV); TCU emite <strong>parecer prévio em 60 dias</strong> (art. 71, I); o <strong>Congresso julga</strong> — pode acolher ou não o parecer (art. 49, IX)</li>
+<li><strong>Omissão</strong> — sem apresentação no prazo, a <strong>Câmara procede à tomada de contas</strong> (art. 51, II)</li>
+<li><strong>Contas de gestão</strong> — atos de gestão dos administradores: <strong>julgadas pelo TCU</strong> (art. 71, II)</li>
+</ul>
+<div class="gotcha"><b>Nunca troque:</b> Congresso julga <b>só</b> as contas do Presidente; TCU <b>não julga</b> as do Presidente — apenas <b>aprecia</b>.</div>
+</section>
+
+<section class="note" aria-label="Competencias TCU">
+<h2><span class="n">3</span> Art. 71 — competências-chave ⚙️</h2>
+<ul>
+<li><strong>Registro (inc. III)</strong> — atos de admissão (exceto <strong>cargo em comissão</strong>) e aposentadorias/reformas/pensões: atos <strong>complexos</strong>; o TCU <strong>registra ou nega</strong> — não altera valores; sem boa-fé, determina devolução</li>
+<li><strong>Não aprecia</strong> — melhorias posteriores que <strong>não alterem o fundamento legal</strong> (reajustes de lei)</li>
+<li><strong>Sustação</strong> — <strong>ato</strong>: TCU susta e comunica às Casas; <strong>contrato</strong>: susta o <strong>Congresso Nacional</strong> — sem efetivação em <strong>90 dias</strong>, o TCU decide</li>
+<li><strong>Título executivo extrajudicial (§ 3º)</strong> — apenas decisões que imputam <strong>débito ou multa</strong>; cobrança pela <strong>AGU</strong>, sem dívida ativa</li>
+<li><strong>Inc. VI</strong> — fiscaliza só <strong>transferências voluntárias</strong> (convênios); EC 29, FPE e FPM são receitas originárias dos entes</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "todas as decisões do TCU são título executivo" — <b>falso</b>: só as que imputam <b>débito ou multa</b>.</div>
+</section>
+
+<section class="note" aria-label="Composicao">
+<h2><span class="n">4</span> Composição — 9 e 7 👥</h2>
+<div class="num">
+<div class="hi"><b>9</b>TCU — ministros (sede no DF)</div>
+<div><b>7</b>TCE — conselheiros (vinculante)</div>
+<div><b>4+3</b>Assembleia + governador (Súm. 653)</div>
+</div>
+<ul>
+<li><strong>TCU (art. 73)</strong> — <strong>1/3 pelo Presidente com Senado</strong> (2 alternadamente auditores/MPC + 1 livre) e <strong>2/3 pelo Congresso</strong> (sem sabatina); garantias de <strong>Ministro do STJ</strong></li>
+<li><strong>Requisitos</strong> — 35 a 70 anos · idoneidade · notórios conhecimentos jurídicos/contábeis/econômicos/financeiros ou adm. pública · <strong>10+ anos</strong> de atividade</li>
+<li><strong>Vagas do governador (TCE)</strong> — <strong>1 livre</strong>, <strong>1 auditor</strong>, <strong>1 MP de Contas</strong> — podem se submeter à Assembleia</li>
+</ul>
+<div class="gotcha"><b>Cuidado:</b> só os 3 escolhidos pelo <b>Presidente</b> passam pelo Senado; os 6 do Congresso <b>não</b> (nem precisam ser parlamentares).</div>
+</section>
+
+<section class="note" aria-label="EC 139">
+<h2><span class="n">5</span> EC 139/2026 — a "Essencialidade" ⚖️</h2>
+<ul>
+<li><strong>TCs são instituições permanentes e essenciais</strong> ao controle externo (art. 75, caput)</li>
+<li><span class="tag t-red">Vedada extinção, criação e instalação</span> — proteger existentes, sem criar novos (estabilização do sistema)</li>
+<li><strong>Permanência não congela</strong> — reorganização interna, modernização e racionalização legítima cabem; <strong>esvaziar competências/autonomia é inconstitucional</strong></li>
+<li><strong>Simetria</strong> — modelo do TCU aplica-se "no que couber" (ADI 916; ADI 6.983); <strong>7 conselheiros</strong> é número vinculante (ADI 3.688/1.957)</li>
+<li><strong>TCs não são Judiciário</strong> e não se <strong>subordinam</strong> ao Legislativo — decisões administrativas, revistas pelo Judiciário quanto à legalidade</li>
+<li><strong>Municipal</strong> — art. 31, § 4º: vedada criação desde 1988; parecer do prefeito cai só por <strong>2/3 da Câmara</strong>; "TC <strong>dos</strong> Municípios" é órgão <strong>estadual</strong></li>
+<li><strong>Tema 642 (RE 1.003.433)</strong> — multa por <strong>dano</strong> ao erário municipal: executa o <strong>Município</strong>; multa <strong>simples</strong>: executa o <strong>Estado</strong> que mantém o TCE</li>
+</ul>
+</section>
+
+<section class="note" aria-label="MP e prescricao">
+<h2><span class="n">6</span> MP junto aos TCs + prescrição ⏱️</h2>
+<ul>
+<li><strong>Art. 130</strong> — MP junto aos TCs: mesmos direitos, vedações e investidura do MP; <strong>não integra</strong> o MPU nem os MPs estaduais — regras nas leis orgânicas dos TCs (ADI 3.192/3.307)</li>
+<li><strong>Foro</strong> — membros dos TCs e do MPCU: <strong>STJ</strong> (art. 105, I, "a"; art. 84 da L 8.443/92); MP estadual junto a TCs: <strong>TJ</strong></li>
+<li><strong>Sanções do TC (multa/inidoneidade)</strong> — prescrevem em <strong>5 anos</strong> (Lei 9.873/99)</li>
+<li><strong>Tema 666</strong> — reparação por <strong>ilícito civil</strong>: prescritível</li>
+<li><strong>Tema 897</strong> — só é <strong>imprescritível</strong> o ressarcimento por <strong>improbidade dolosa</strong> da LIA</li>
+<li><strong>Tema 899</strong> — ressarcimento fundado em <strong>decisão de TC é prescritível</strong> (execução pela LEF; ADI 5509: termo inicial na prestação de contas ou ciência do fato)</li>
+</ul>
+<div class="gotcha"><b>Pegadinha:</b> "ressarcimento de decisão de TC é imprescritível" — <b>falso</b> (Tema 899): prescritível; a imprescritibilidade é só da <b>improbidade dolosa</b>.</div>
+</section>
+</main>
+<footer>
+<div class="biz">⚡ arts. 70-75 CF · simetria · <span>Súmula 653</span> · SV-3 · 347</div>
+<a class="back" href="resumo-aula-20-controle-externo.html">← Resumo completo da Aula 20</a>
+</footer>
+</div>
+</body>
+</html>

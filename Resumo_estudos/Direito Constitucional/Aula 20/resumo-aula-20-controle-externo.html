@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Direito Constitucional Aula 20: Controle Externo e Tribunais de Contas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #7c3aed;
+  --mat-strong: #6d28d9;
+  --mat-soft: #ede9fe;
+  --mat-line: #ddd6fe;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: left;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #a78bfa; --mat-strong: #c4b5fd; --mat-soft: #241b38; --mat-line: #4c3a75;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Constitucional — Aula 20</div>
+  <div class="sidebar-sub">Controle Externo · arts. 70-75 CF/88</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Controle externo — titular e objeto</a>
+  <a href="#sec2">2. Contas de governo × contas de gestão</a>
+  <a href="#sec3">3. Sistema de Controle Interno (art. 74)</a>
+  <a href="#sec4">4. Competências do TCU (art. 71)</a>
+  <a href="#sec5">5. Composição do TCU (art. 73)</a>
+  <a href="#sec6">6. Simetria e TCEs (art. 75 + EC 139)</a>
+  <a href="#sec7">7. Órgãos de contas municipais (art. 31)</a>
+  <a href="#sec8">8. MP junto aos Tribunais de Contas</a>
+  <a href="#sec9">9. Jurisprudência que decide a prova</a>
+  <a href="#sec10">10. Prescrição no controle externo</a>
+  <a href="#sec11">11. Pontos que mais caem em prova</a>
+  <a href="#sec12">12. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-20-controle-externo.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: 3 PDFs completos (arts. 70-75)<br>
+    TEC Concursos
+  </div>
+</aside>
+
+<div class="main">
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONTROLE EXTERNO: TITULAR E OBJETO (ART. 70)        -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Controle externo — titular e objeto (art. 70)</div>
+  </div>
+  <div class="sec-subtitle">COFOP, critérios de fiscalização, quem exerce e quem presta contas</div>
+
+  <div class="card">
+    <div class="card-title">Quem fiscaliza o quê? (art. 70)</div>
+    <div class="card-text">
+      → <strong>Titular do controle externo federal</strong> — o <strong>Congresso Nacional</strong>, que exerce o controle <span class="highlight">político-parlamentar</span>; o TCU é <strong>órgão técnico de auxílio</strong> do Legislativo, não titular<br>
+      → <strong>Objeto (COFOP)</strong> — fiscalização <strong>contábil, financeira, orçamentária, operacional e patrimonial</strong> da União e das entidades da administração <strong>direta e indireta</strong><br>
+      → <strong>Critérios examinados</strong> — <strong>legalidade, legitimidade e economicidade</strong>, além da <strong>aplicação de subvenções</strong> e da <strong>renúncia de receitas</strong><br>
+      → <strong>Quem exerce</strong> — o Congresso Nacional, <strong>mediante controle externo</strong>, e o <strong>sistema de controle interno de cada Poder</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O controle entra no mérito do ato do gestor?</div>
+    <div class="card-text">
+      → <strong>Sim — nos aspectos de economicidade e legitimidade</strong>: ao analisá-los, o controle adentra o <strong>mérito do ato administrativo</strong> (ex.: serviço de custo demasiado com benefícios questionáveis, obra dispensável frente a necessidades urgentes)<br>
+      → <strong>Limite</strong> — o controle <strong>não interfere na conveniência e oportunidade</strong> do gestor diante de opções plenamente legítimas ou de conhecimento especializado, sob pena de <span class="highlight">substituir-se à atividade governamental</span><br>
+      → ⚠️ <strong>Não confundir:</strong> "verifica requisitos da despesa mas não entra no mérito do ato" é <strong>errado</strong> — a verificação de economicidade/legitimidade É mérito
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quem presta contas ao TCU? (GAGAU)</div>
+    <div class="card-text">
+      → <strong>Qualquer pessoa física ou jurídica</strong>, pública ou privada, que <strong>Gerencie, Arrecade, Guarde, Administre ou Utilize</strong> dinheiros, bens e valores públicos — ou pelos quais a União responda — ou que, <strong>em nome desta, assuma obrigações de natureza pecuniária</strong><br>
+      → <strong>Alcance</strong> — nem precisa ser servidor ou agente público: quem <strong>recebeu recursos federais</strong> para utilização, guarda ou gerência <strong>presta contas</strong> da aplicação<br><br>
+      → ⚠️ <strong>Atenção:</strong> o Congresso é titular do controle, mas <strong>não julga contas de administradores</strong> — essa competência é do <strong>TCU</strong> (art. 71, II)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "O controle não adentra o mérito do ato praticado" — <strong>errado</strong>: economicidade e legitimidade são mérito; o que fica de fora é a <strong>conveniência e oportunidade</strong> (mérito administrativo puro). A ESAF cobra essa inversão.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CONTAS DE GOVERNO × CONTAS DE GESTÃO                -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Contas de governo × contas de gestão</div>
+  </div>
+  <div class="sec-subtitle">Arts. 49, IX, 51, II, 84, XXIV e 71, I-II — dois fluxos, dois julgadores</div>
+
+  <div class="card">
+    <div class="card-title">Contas do Presidente — o fluxo de 60 dias</div>
+    <div class="card-text">
+      → <strong>Envio</strong> — o Presidente presta as contas do exercício anterior ao Congresso e ao TCU em <strong>60 dias após a abertura da sessão legislativa</strong> (2 de fevereiro) — art. 84, XXIV<br>
+      → <strong>Parecer prévio</strong> — o TCU elabora em <strong>60 dias do recebimento</strong> e envia ao Congresso — art. 71, I<br>
+      → <strong>Julgamento</strong> — o Congresso Nacional julga as contas, <strong>podendo acolher ou não o parecer</strong> do TCU — art. 49, IX<br>
+      → <strong>Omissão</strong> — não apresentadas no prazo, a <strong>Câmara dos Deputados procede à tomada de contas</strong> — art. 51, II
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contas de governo × contas de gestão — quem julga o quê?</div>
+    <div class="card-text">
+      → <strong>Contas de governo (Presidente)</strong> — caráter <strong>macro</strong>, aspectos macroeconômicos e da gestão como um todo: <span class="highlight">julgamento político</span> pelo <strong>Congresso Nacional</strong>, com parecer opinativo do TCU<br>
+      → <strong>Contas de gestão (administradores)</strong> — atos de gestão dos órgãos e entidades: <span class="highlight">julgadas diretamente pelo TCU</span> (art. 71, II), incluídos os que derem causa a <strong>perda, extravio ou irregularidade com prejuízo ao erário</strong><br><br>
+      → ⚠️ <strong>Atenção:</strong> o Congresso julga <strong>somente</strong> as contas do Presidente — nunca as dos administradores; e o TCU <strong>não julga</strong> as contas do Presidente — apenas <strong>aprecia</strong> (parecer prévio)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — SISTEMA DE CONTROLE INTERNO (ART. 74)               -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Sistema de Controle Interno (art. 74)</div>
+  </div>
+  <div class="sec-subtitle">Finalidades, ciência ao TCU e denúncia — a literalidade que a banca cobra</div>
+
+  <div class="card">
+    <div class="card-title">Quem mantém e para quê? (caput, incisos I-IV)</div>
+    <div class="card-text">
+      → <strong>Quem mantém</strong> — os Poderes <strong>Legislativo, Executivo e Judiciário</strong>, de forma <strong>integrada</strong><br>
+      → <strong>Inciso I</strong> — avaliar o cumprimento das metas do <strong>Plano Plurianual</strong>, a execução dos <strong>programas de governo</strong> e dos <strong>orçamentos da União</strong><br>
+      → <strong>Inciso II</strong> — <strong>comprovar a legalidade</strong> e avaliar resultados, quanto à <strong>eficácia e eficiência</strong>, da gestão orçamentária, financeira e patrimonial, e da aplicação de recursos públicos por <strong>entidades de direito privado</strong><br>
+      → <strong>Inciso III</strong> — exercer o controle das <strong>operações de crédito, avais e garantias</strong>, bem como dos <strong>direitos e haveres da União</strong><br>
+      → <strong>Inciso IV</strong> — <strong>apoiar o controle externo</strong> no exercício de sua missão institucional
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ciência ao TCU (§ 1º) e denúncia (§ 2º)</div>
+    <div class="card-text">
+      → <strong>§ 1º</strong> — os responsáveis pelo controle interno, ao tomarem conhecimento de <strong>qualquer irregularidade ou ilegalidade</strong>, dão ciência ao <strong>TCU</strong>, sob pena de <span class="highlight">responsabilidade solidária</span> — não subsidiária, como a banca troca<br>
+      → <strong>§ 2º</strong> — podem denunciar irregularidades perante o TCU: <strong>qualquer cidadão, partido político, associação ou sindicato</strong>, na forma da lei — rol <strong>taxativo</strong>, segundo o STF
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Constitui finalidade do <strong>controle externo</strong> avaliar as metas do PPA e a execução dos programas de governo" — <strong>errado</strong>: essa é finalidade do controle <strong>INTERNO</strong> (art. 74, I). Os incisos I a III também são exercidos pelo controle externo, mas as bancas cobram a <strong>literalidade</strong> do art. 74 (ESAF/CGU 2008).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — COMPETÊNCIAS DO TCU (ART. 71)                       -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Competências do TCU (art. 71)</div>
+  </div>
+  <div class="sec-subtitle">Incisos I a XI e §§ 1º a 4º — o rol que a banca decora</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Inc.</th><th>Competência</th><th>Detalhe que cai em prova</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>I</strong></td><td>apreciar as contas do Presidente, mediante <strong>parecer prévio</strong></td><td>parecer em <strong>60 dias</strong> do recebimento</td></tr>
+        <tr><td><strong>II</strong></td><td><strong>julgar</strong> as contas dos administradores e responsáveis por dinheiros, bens e valores públicos, e de quem der causa a <strong>perda, extravio ou irregularidade com prejuízo ao erário</strong></td><td>inclui fundações e sociedades mantidas pelo Poder Público</td></tr>
+        <tr><td><strong>III</strong></td><td>apreciar, <strong>para fins de registro</strong>, a legalidade dos atos de <strong>admissão de pessoal</strong> e de <strong>aposentadorias, reformas e pensões</strong></td><td>exceto <strong>cargos em comissão</strong>; ressalvadas <strong>melhorias posteriores</strong> que não alterem o fundamento legal</td></tr>
+        <tr><td><strong>IV</strong></td><td>realizar <strong>inspeções e auditorias</strong> (COFOP)</td><td>por iniciativa própria, da Câmara, do Senado, de <strong>Comissão técnica ou de inquérito</strong></td></tr>
+        <tr><td><strong>V</strong></td><td>fiscalizar as <strong>contas nacionais de empresas supranacionais</strong></td><td>apenas a <strong>contabilidade nacional</strong>, nos termos do tratado constitutivo</td></tr>
+        <tr><td><strong>VI</strong></td><td>fiscalizar recursos repassados pela União a Estado, DF ou Município mediante <strong>convênio, acordo, ajuste</strong> ou congêneres</td><td>só <strong>transferências voluntárias</strong> — não as obrigatórias</td></tr>
+        <tr><td><strong>VII</strong></td><td>prestar <strong>informações</strong> ao Congresso, suas Casas e Comissões</td><td>sobre fiscalização COFOP e resultados de auditorias/inspeções</td></tr>
+        <tr><td><strong>VIII</strong></td><td><strong>aplicar sanções</strong> previstas em lei</td><td>inclui <strong>multa proporcional ao dano</strong> causado ao erário</td></tr>
+        <tr><td><strong>IX</strong></td><td><strong>assinar prazo</strong> para o órgão/entidade cumprir a lei</td><td>se verificada ilegalidade — vale para <strong>atos ou contratos</strong></td></tr>
+        <tr><td><strong>X</strong></td><td><strong>sustar</strong> a execução do ato impugnado, se não atendido</td><td>comunicando a decisão à Câmara e ao Senado</td></tr>
+        <tr><td><strong>XI</strong></td><td><strong>representar</strong> ao Poder competente</td><td>sobre irregularidades ou abusos apurados</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Registro de atos (inc. III) — o TCU julga ou registra?</div>
+    <div class="card-text">
+      → <strong>Atos administrativos complexos</strong> — dependem da manifestação de <strong>dois órgãos</strong> (concedente + TCU) e só se aperfeiçoam com o <strong>registro</strong> (entendimento atual do STF)<br>
+      → <strong>Não aprecia</strong> — nomeações para <strong>cargo em comissão</strong> (livre nomeação e exoneração); aprecia apenas a admissão de pessoa <strong>efetiva</strong> na direta e indireta (exceto empresas públicas e sociedades de economia mista)<br>
+      → <strong>Não aprecia</strong> — <strong>melhorias posteriores</strong> de aposentadoria/reforma/pensão que <strong>não alterem o fundamento legal</strong> do ato concessório (ex.: reajustes previstos em lei)<br>
+      → <strong>Não altera valores</strong> — o TCU apenas <strong>registra ou nega registro</strong> (MS 21.466); sem evidência de <strong>boa-fé</strong>, pode determinar a <strong>devolução de valores</strong> ao erário
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sustação: ato × contrato (§§ 1º e 2º)</div>
+    <div class="card-text">
+      → <strong>Ato impugnado</strong> — o TCU <strong>susta diretamente</strong> a execução, comunicando a decisão à Câmara e ao Senado (inc. X)<br>
+      → <strong>Contrato</strong> — a sustação é adotada <strong>diretamente pelo Congresso Nacional</strong>, que solicita de imediato as medidas cabíveis ao <strong>Poder Executivo</strong> (§ 1º) — e o mesmo vale para os atos de administração dos Poderes Legislativo e Judiciário<br>
+      → <strong>Prazo de 90 dias</strong> — se o Congresso Nacional ou o Poder Executivo <strong>não efetivar as medidas</strong>, o <strong>TCU decide</strong> a respeito (§ 2º)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Título executivo extrajudicial (§ 3º) e relatórios (§ 4º)</div>
+    <div class="card-text">
+      → <strong>§ 3º</strong> — têm eficácia de <strong>título executivo extrajudicial</strong> <span class="highlight">apenas as decisões que imputam débito ou multa</span> — liquidez e certeza, <strong>sem inscrição em dívida ativa</strong><br>
+      → <strong>Quem cobra</strong> — não é o TCU: a cobrança judicial cabe à <strong>Advocacia-Geral da União</strong><br>
+      → <strong>§ 4º</strong> — o TCU encaminha ao Congresso Nacional relatório de atividades <strong>trimestral e anualmente</strong><br><br>
+      → ⚠️ <strong>Atenção:</strong> "todas as decisões do TCU são título executivo" é <strong>errado</strong> — só as que imputam <strong>débito ou multa</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Empresas supranacionais (inc. V) e transferências voluntárias (inc. VI)</div>
+    <div class="card-text">
+      → <strong>Inciso V</strong> — fiscaliza a <strong>contabilidade nacional</strong> das empresas supranacionais de cujo capital a União participe <span class="highlight">de forma direta ou indireta</span>, nos termos do tratado constitutivo (ex.: Itaipu Binacional, BBI, CPA Brasil-Japão, Alcântara Cyclone Space)<br>
+      → <strong>Itaipu</strong> — sem previsão no tratado constitutivo para fiscalização das contas: o STF concedeu liminar para o TCU <span class="highlight">se abster de processar, julgar e executar</span> medidas contra a Itaipu (ACO-MC 1.905), afastando o Acórdão 2.918/2009 do TCU<br>
+      → <strong>Inciso VI</strong> — fiscaliza a aplicação de recursos repassados mediante <strong>convênio, acordo, ajuste</strong> ou congêneres: apenas as <strong>transferências voluntárias</strong><br>
+      → <strong>Transferências obrigatórias</strong> — EC 29 (Saúde), FPE, FPM, Fundo Constitucional do Nordeste: são <strong>receitas originárias</strong> dos entes — a aplicação <strong>não</strong> é fiscalizada pelo TCU
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — COMPOSIÇÃO DO TCU (ART. 73)                         -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Composição do TCU (art. 73)</div>
+  </div>
+  <div class="sec-subtitle">9 ministros, requisitos, forma de escolha e garantias</div>
+
+  <div class="card">
+    <div class="card-title">Estrutura (caput)</div>
+    <div class="card-text">
+      → <strong>9 Ministros</strong> — sede no <strong>Distrito Federal</strong>, <strong>quadro próprio de pessoal</strong> e jurisdição em <strong>todo o território nacional</strong><br>
+      → <strong>Art. 96, no que couber</strong> — exercem as atribuições previstas para os tribunais (autonomia e autogoverno)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Requisitos para ser Ministro (§ 1º)</div>
+    <div class="card-text">
+      → <strong>Idade</strong> — mais de <strong>35 e menos de 70 anos</strong><br>
+      → <strong>Idoneidade moral</strong> e reputação <strong>ilibada</strong><br>
+      → <strong>Notórios conhecimentos</strong> — jurídicos, contábeis, econômicos e financeiros <strong>ou de administração pública</strong><br>
+      → <strong>Experiência</strong> — mais de <strong>10 anos</strong> de função ou efetiva atividade profissional que exija esses conhecimentos
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Forma de escolha (§ 2º) — 1/3 + 2/3</div>
+    <div class="card-text">
+      → <strong>1/3 (3 ministros) pelo Presidente da República</strong>, com <strong>aprovação do Senado Federal</strong>: <strong>2 alternadamente</strong> dentre <strong>auditores</strong> e <strong>membros do MP junto ao TCU</strong> (lista tríplice do Tribunal, critérios de antiguidade e merecimento) + <strong>1 de livre escolha</strong><br>
+      → <strong>2/3 (6 ministros) pelo Congresso Nacional</strong> — <strong>sem sabatina senatorial</strong> e sem precisar ser parlamentar (ex.: Min. Bruno Dantas, 2014, advogado e ex-Consultor do Senado)<br>
+      → <strong>Aprovação senatorial (art. 52, III, "b")</strong> — privativa do <strong>Senado Federal</strong>, por <span class="highlight">voto secreto, após arguição pública</span>, somente para os ministros <strong>indicados pelo Presidente</strong> — os do Congresso escapam da sabatina<br><br>
+      → ⚠️ <strong>Atenção:</strong> só os <strong>3 escolhidos pelo Presidente</strong> passam pelo Senado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Garantias (§ 3º) e os auditores substitutos</div>
+    <div class="card-text">
+      → <strong>Mesmas garantias, prerrogativas, impedimentos, vencimentos e vantagens dos Ministros do STJ</strong>; quanto à aposentadoria e pensão, aplica-se o art. <strong>40</strong> (regime especial)<br>
+      → <strong>Prerrogativas resultantes</strong> — são <strong>vitalícios</strong>, inamovíveis e os subsídios cobertos pela <strong>irredutibilidade</strong><br>
+      → <strong>Auditores em substituição a Ministros</strong> — mesmas <strong>garantias e impedimentos</strong> do titular; nas demais atribuições, as garantias de <strong>juiz de Tribunal Regional Federal</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — SIMETRIA E TCES (ART. 75 + EC 139/2026)             -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Simetria e TCEs (art. 75 + EC 139/2026)</div>
+  </div>
+  <div class="sec-subtitle">Permanência, essencialidade, 7 conselheiros e a "PEC da Essencialidade"</div>
+
+  <div class="card">
+    <div class="card-title">O que mudou com a EC 139/2026?</div>
+    <div class="card-text">
+      → <strong>Novo caput do art. 75</strong> — os Tribunais de Contas são <span class="highlight">instituições permanentes, essenciais ao exercício do controle externo</span>, e as normas da Seção aplicam-se, <strong>no que couber</strong>, aos TCs dos Estados e do DF e aos Tribunais e Conselhos de Contas dos Municípios, <span class="highlight">vedada sua extinção, criação ou instalação</span><br>
+      → <strong>Os 3 verbos</strong> — <strong>extinguir</strong> (eliminar existente), <strong>criar</strong> (instituir juridicamente novo) e <strong>instalar</strong> (colocar em funcionamento órgão previsto mas não implantado) — a junção evita contornar a proteção<br>
+      → <strong>Origem</strong> — PEC 2/2017 → PEC 39/2022, a <strong>"PEC da Essencialidade"</strong>: proteger o controle externo contra extinções, supressão de estruturas e cortes que comprometam a fiscalização<br>
+      → <strong>Parágrafo único (inalterado)</strong> — as Constituições estaduais dispõem sobre os TCs, integrados por <strong>sete conselheiros</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Permanência e essencialidade — o que protegem de verdade?</div>
+    <div class="card-text">
+      → <strong>Permanência</strong> — os TCs não são estruturas temporárias: Estados e Municípios <strong>não podem extingui-los</strong> (nem transferir as atribuições a secretaria ou a outro órgão)<br>
+      → <strong>O que continua possível</strong> — reorganização administrativa interna, modernização de procedimentos, informatização de auditorias, redistribuição de competências e <strong>racionalização legítima de despesas</strong><br>
+      → <strong>O que é inconstitucional</strong> — reorganização que <strong>esvazie competências essenciais</strong>, comprometa a autonomia ou inviabilize o funcionamento<br>
+      → <strong>Essencialidade</strong> — exige <strong>condições mínimas de funcionamento</strong> (recursos humanos, materiais e financeiros); <strong>não é imunidade orçamentária</strong>: ajustes legítimos de contenção são possíveis — a inconstitucionalidade surge quando a medida <strong>inviabiliza o controle externo</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">7 conselheiros — número vinculante (parágrafo único)</div>
+    <div class="card-text">
+      → <strong>Sete conselheiros</strong> — determinação constitucional <strong>obrigatória</strong>, não recomendação: o Estado <strong>não reduz para 5</strong> (economia) <strong>não amplia para 9</strong> (espelhar o TCU) e <strong>não substitui o colegiado por autoridade individual</strong><br>
+      → <strong>Fonte</strong> — poder constituinte decorrente não cria composição diferenciada (ADI 3.688; ADI 1.957)<br><br>
+      → ⚠️ <strong>Atenção:</strong> TCU tem <strong>9 ministros</strong>; TCs estaduais têm <strong>7 conselheiros</strong> — adaptação numérica legítima do modelo federal
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Súmula 653 do STF — como os 7 são escolhidos?</div>
+    <div class="card-text">
+      → <strong>4 pela Assembleia Legislativa</strong> + <strong>3 pelo governador</strong><br>
+      → <strong>As 3 vagas do governador</strong> — <strong>1 de livre escolha</strong>, <strong>1 integrante da carreira de auditor</strong> (conselheiro substituto) e <strong>1 membro do Ministério Público de Contas</strong><br>
+      → <strong>As indicações do governador</strong> podem ser <strong>submetidas à aprovação da Assembleia</strong> — simetria com o art. 73, § 2º (TCU)<br><br>
+      → ⚠️ <strong>Inconstitucional:</strong> atribuir <strong>todas</strong> as escolhas ao governador ou <strong>todas</strong> à Assembleia
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Contas do chefe do Executivo × demais administradores — simetria</div>
+    <div class="card-text">
+      → <strong>Chefe do Executivo (governador/prefeito)</strong> — o TC emite <strong>parecer prévio</strong>; o <strong>julgamento é político</strong>: Assembleia Legislativa (Estado) ou Câmara Municipal (Município)<br>
+      → <strong>Município (art. 31, § 2º)</strong> — o parecer prévio sobre as contas do prefeito <span class="highlight">só deixa de prevalecer por decisão de dois terços</span> dos membros da Câmara<br>
+      → <strong>Demais administradores</strong> (secretários, diretores de autarquia, ordenadores) — <strong>julgamento próprio do Tribunal de Contas</strong><br>
+      → <strong>Jurisprudência</strong> — ADI 3.077: inconstitucional norma estadual que <strong>dispensa o parecer prévio</strong> sobre contas de chefe do Executivo municipal; RE 1.248.956: Câmara julga com eficácia impositiva do parecer; ADI 6.983: simetria aplica-se direta nas contas dos chefes do Executivo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Auxílio sem subordinação — e sem função jurisdicional</div>
+    <div class="card-text">
+      → <strong>"Auxílio" ≠ subordinação</strong> — as competências dos TCs <strong>decorrem diretamente da Constituição</strong>, não de delegação: o Legislativo <strong>não determina o conteúdo das decisões</strong> nem impede fiscalizações constitucionais<br>
+      → <strong>Natureza</strong> — os TCs <strong>não integram o Poder Judiciário</strong> (apesar do nome): são instituições constitucionais de controle externo com decisões de <strong>natureza administrativa</strong><br>
+      → <strong>Controle judicial</strong> — as decisões podem ser revistas pelo Judiciário em caso de <strong>ilegalidade, violação do devido processo legal ou lesão a direitos</strong> — sem diminuir a autoridade constitucional do Tribunal<br>
+      → ⚠️ <strong>"Jurisdição" do art. 73 caput</strong> — refere-se ao <strong>alcance territorial</strong> (todo o território nacional), não a função judicial: os TCs <strong>não estão no rol do art. 92</strong>, não fazem <strong>coisa julgada</strong> nem vinculam o Judiciário (STJ, REsp 1.032.732)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    Duas inversões clássicas: "o TC é órgão do <strong>Judiciário</strong>" (falso — controle externo, decisões administrativas) e "o 'auxílio' cria <strong>subordinação</strong> ao Legislativo" (falso — competências constitucionais diretas).
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tema 642 — quem executa a multa aplicada pelo TCE?</div>
+    <div class="card-text">
+      → <strong>Multa por DANO ao erário municipal</strong> — o <strong>Município prejudicado</strong> executa o crédito decorrente de multa aplicada por TCE a agente público municipal em razão de <strong>danos</strong> causados ao erário municipal (ressarcimento de débito)<br>
+      → <strong>Multa SIMPLES por infração administrativa</strong> — compete ao <strong>Estado-membro</strong>: a multa por inobservância de <strong>normas de Direito Financeiro</strong> ou descumprimento dos <strong>deveres de colaboração</strong> dos fiscalizados pertence ao ente que mantém o Tribunal (STF, RE 1.003.433, Info 1029)<br><br>
+      → <strong>Quem não executa</strong> — o <strong>próprio Tribunal de Contas</strong> (órgão técnico sem personalidade jurídica própria) e o <strong>Ministério Público</strong> (Federal ou Estadual): a execução é de <strong>dívida ativa não tributária</strong>, pelas Procuradorias do ente legitimado<br><br>
+      → ⚠️ <strong>Chave de prova:</strong> "dano ao erário" → executa o ente <strong>prejudicado</strong>; "multa simples" → executa o ente que <strong>mantém o Tribunal</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — ÓRGÃOS DE CONTAS MUNICIPAIS (ART. 31)               -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Órgãos de contas municipais (art. 31)</div>
+  </div>
+  <div class="sec-subtitle">TC do Município × TC dos Municípios e a vedação de 1988</div>
+
+  <div class="card">
+    <div class="card-title">Tribunal de Contas DO Município × DOS Municípios</div>
+    <div class="card-text">
+      → <strong>Tribunal de Contas do Município</strong> — integra a estrutura de <strong>um Município específico</strong> e fiscaliza exclusivamente as contas dessa entidade (ex.: TCM/SP e TCM/RJ — fiscalizam as respectivas administrações municipais)<br>
+      → <strong>Tribunal de Contas dos Municípios</strong> — instituição <strong>estadual</strong> que fiscaliza as contas de <strong>vários ou todos os Municípios do Estado</strong>: apesar do nome, pertence à estrutura <strong>estadual</strong>, não aos Municípios fiscalizados
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O regime do art. 31 — e o que a EC 139/2026 reforçou</div>
+    <div class="card-text">
+      → <strong>§ 1º</strong> — o controle externo municipal é exercido pela Câmara com o auxílio dos <strong>TCs dos Estados ou do Município</strong> ou dos <strong>Tribunais/Conselhos de Contas dos Municípios, onde houver</strong><br>
+      → <strong>Quem tem TCM estadual</strong> — <strong>BA, GO e PA</strong> possuem Tribunais de Contas dos Municípios: órgãos <strong>estaduais</strong> de auxílio às Câmaras<br>
+      → <strong>§ 2º</strong> — o parecer prévio sobre as contas do prefeito <strong>só deixa de prevalecer por 2/3</strong> da Câmara<br>
+      → <strong>Tema 157 (RE 729.744)</strong> — o parecer é <span class="highlight">meramente opinativo</span>: o <strong>julgamento é exclusivo da Câmara</strong>, <strong>sem julgamento ficto por decurso de prazo</strong><br>
+      → <strong>§ 3º</strong> — as contas dos Municípios ficam <strong>60 dias anualmente à disposição de qualquer contribuinte</strong>, que pode questionar-lhes a legitimidade<br>
+      → <strong>Ampliação pela LRF (LC 101/2000, art. 49)</strong> — as contas do Chefe do Executivo ficam disponíveis <strong>durante todo o exercício</strong>, no Legislativo e no órgão técnico, para consulta dos cidadãos<br>
+      → <strong>§ 4º</strong> — <span class="highlight">vedada a criação de Tribunais, Conselhos ou órgãos de Contas Municipais</span> — desde 1988; os existentes na promulgação da CF foram preservados<br>
+      → <strong>Exceções preservadas (ADI 346 e ADI 4.776)</strong> — <strong>TCM/SP</strong> (Lei municipal 7.213/1968) e <strong>TCM/RJ</strong> (Lei municipal 183/1980), criados antes de 1988: órgão independente e autônomo da esfera municipal<br>
+      → <strong>EC 139/2026</strong> — reforçou a vedação de criação (também no § 1º) e estendeu a proibição à <strong>extinção e instalação</strong> (art. 75): <span class="highlight">estabilização do sistema</span> — preservar os existentes, sem criar novos
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "Município pode criar seu próprio Tribunal de Contas" — <strong>errado</strong> (art. 31, § 4º, desde 1988). E cuidado com o nome: "TC <strong>dos</strong> Municípios" é órgão <strong>estadual</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — MP JUNTO AOS TRIBUNAIS DE CONTAS (ART. 130)         -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">MP junto aos Tribunais de Contas (art. 130) e foro</div>
+  </div>
+  <div class="sec-subtitle">Regência própria, omissão inconstitucional da Assembleia e prerrogativa de foro</div>
+
+  <div class="card">
+    <div class="card-title">Art. 130 — um MP especializado e autônomo</div>
+    <div class="card-text">
+      → <strong>O que se aplica</strong> — aos membros do MP junto aos Tribunais de Contas (União, Estados e Municípios) aplicam-se as disposições sobre <strong>direitos, vedações e forma de investidura</strong> do MP em geral<br>
+      → <strong>O que não integra</strong> — <strong>não é parte do Ministério Público da União</strong> nem dos MPs estaduais: é instituição de <strong>extração constitucional</strong> ligada ao próprio Tribunal (ADI 789; ADI 3.192; ADI 3.307)<br>
+      → <strong>Regras de regência</strong> — organização estabelecida nas <strong>leis orgânicas dos respectivos Tribunais de Contas</strong><br><br>
+      → ⚠️ <strong>Não confundir:</strong> o MP junto ao TCU não compõe o MPU (art. 128, I) — apesar das garantias constitucionais comuns
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Omissão da Assembleia Legislativa = inconstitucionalidade</div>
+    <div class="card-text">
+      → <strong>Dever de legislar</strong> — a inércia da Assembleia na criação de <strong>cargos e carreiras dos auditores e do MP especial</strong> que atuem junto ao TC estadual configura <span class="highlight">omissão inconstitucional</span> (ADI 3.276; ADI 374)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prerrogativa de foro — quem vai ao STJ, quem vai ao TJ</div>
+    <div class="card-text">
+      → <strong>Membros dos TCs dos Estados, DF e dos Municípios</strong> — processados e julgados <strong>originariamente pelo STJ</strong> nos crimes comuns (art. 105, I, "a") — e nos de responsabilidade<br>
+      → <strong>MP junto ao TCU</strong> — julgado pelo <strong>STJ</strong> (art. 84 da Lei 8.443/1992: regime disciplinar dos membros do MPU)<br>
+      → <strong>MP junto aos TCs estaduais e municipais</strong> — julgados pelo <strong>Tribunal de Justiça</strong> respectivo: a prerrogativa do art. 105, I, "a" alcança só os membros do <strong>MPU que oficiem perante tribunais</strong><br><br>
+      → ⚠️ <strong>Atenção:</strong> membros dos TCs têm ainda garantia de <strong>vitaliciedade</strong> — perdem o cargo somente por <strong>decisão judicial transitada em julgado</strong>; a Assembleia não pode decretar a perda ex proprio auctoritate (ADI 4.190 MC-REF)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — JURISPRUDÊNCIA QUE DECIDE A PROVA                   -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Jurisprudência que decide a prova</div>
+  </div>
+  <div class="sec-subtitle">STF/TCU — cautela, sigilo, registro, OAB e Súmula 347</div>
+
+  <div class="card">
+    <div class="card-title">Poder geral de cautela do TCU</div>
+    <div class="card-text">
+      → <strong>O que pode</strong> — fiscalizar licitações, determinar <strong>suspensão cautelar</strong>, examinar editais publicados e adotar medidas para <strong>prevenir lesão ao erário</strong> e garantir a efetividade de suas decisões (MS 24.510; MS 33.092 — indisponibilidade de bens na investigação de dano à Petrobrás)<br>
+      → <strong>Forma de agir</strong> — o TCU <strong>não anula nem susta contratos diretamente</strong>: determina à Administração que <strong>anule ou adeque</strong> o contrato (art. 71, IX)<br>
+      → <strong>Inaudita altera pars</strong> — possível, de forma excepcional, por deliberação fundamentada, em situações de lesividade imediata<br>
+      → <strong>Divergência aberta</strong> — MS 35.506-MC (Min. Marco Aurélio, 2020): só o Judiciário poderia decretar indisponibilidade/desconsideração; julgamento <strong>suspenso</strong> — acompanhar
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sociedades de economia mista e empresas públicas — fiscalizadas</div>
+    <div class="card-text">
+      → <strong>Sujeitas à fiscalização do TCU</strong> (MS 25.092 — Plenário), <strong>independentemente de terem sido criadas por lei</strong>: são SEM as sociedades sob controle público, anônimas ou não (MS 26.117)<br>
+      → <strong>Acesso a dados de auditoria interna de SEM</strong> — dados <strong>operacionais</strong>, sem identificação pessoal: <strong>sigilo bancário não obsta</strong> o fornecimento (MS 23.168-AgR)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quebra de sigilo bancário — com ou sem recursos públicos?</div>
+    <div class="card-text">
+      → <strong>Com recursos públicos envolvidos</strong> — operações financeiras com verba pública <strong>não estão protegidas pelo sigilo</strong> da LC 105/2001: é prerrogativa constitucional do TCU o acesso (MS 33.340)<br>
+      → <strong>Sem essa especificação</strong> — quebra de sigilo <strong>em geral</strong>: a banca entende que o TCU <strong>não tem</strong> competência (VUNESP/CM Mogi das Cruzes 2017)<br><br>
+      → ⚠️ <strong>Regra de prova:</strong> a questão especifica <strong>"recursos públicos"</strong> → pode quebrar; sem a especificação → não
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Registro de aposentadorias — SV-3, 5 anos e revisão</div>
+    <div class="card-text">
+      → <strong>Súmula Vinculante 3</strong> — contraditório e ampla defesa nos processos do TCU quando a decisão puder <strong>anular ou revogar ato benéfico</strong>, <strong>excetuada a apreciação da legalidade da concessão inicial</strong> de aposentadoria, reforma e pensão<br>
+      → <strong>Tema 445 (RE 636.553)</strong> — o TCU tem <strong>prazo decadencial de 5 anos</strong>, contado da <strong>chegada do processo</strong> à Corte, para julgar o registro da concessão inicial; <strong>passado o prazo → ato tacitamente registrado</strong>; para <strong>negar</strong> depois de 5 anos, deve chamar o interessado ao contraditório<br>
+      → <strong>Revisão do ato registrado (art. 54 da Lei 9.784/1999)</strong> — após o registro (tácito ou não), abre-se <strong>novo prazo decadencial de 5 anos</strong> para revisão, com contraditório (ED-RE 636.553; Acórdão 122/2021-TCU-Plenário)<br>
+      → <strong>Negativa de registro × situação consolidada</strong> — havendo <strong>boa-fé</strong> e confiança do interessado, prevalece a <strong>segurança jurídica</strong>: a aposentadoria concedida se mantém<br><br>
+      → ⚠️ <strong>MS ao STF</strong> — melhoria posterior que altere o fundamento legal, ou revisão/cassação de atos já apreciados: cabe MS ao STF (art. 102, I, "d") por afronta ao contraditório (MS 24.268)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">OAB — a tensão aberta entre STF e TCU</div>
+    <div class="card-text">
+      → <strong>Posição do STF (ADI 3.026)</strong> — a OAB é entidade <span class="highlight">sui generis</span>, serviço público independente: <strong>não integra a administração indireta</strong> e não se sujeita ao controle da Administração<br>
+      → <strong>Posição do TCU (Acórdão 2.573/2018-Plenário)</strong> — a OAB <strong>se submete à jurisdição do TCU</strong> e deve prestar contas (rel. Min. Bruno Dantas)<br>
+      → <strong>Ponto intermediário</strong> — RE 595.332 (repercussão geral): ações da OAB são da <strong>Justiça Federal</strong> (natureza de autarquia para fins processuais)<br>
+      → <strong>Acompanhar</strong> — ADI 5.367 (Min. Cármen Lúcia) estende a questão aos demais conselhos de fiscalização profissional
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Súmula 347 — vigente, mas em crise</div>
+    <div class="card-text">
+      → <strong>Teor</strong> — "O Tribunal de Contas, no exercício de suas atribuições, <strong>pode apreciar a constitucionalidade das leis e dos atos do poder público</strong>"<br>
+      → <strong>Como funciona</strong> — controle <strong>difuso e incidental</strong>: a questão constitucional surge como incidente no processo sob análise; o TC <strong>deixa de aplicar a lei no caso concreto</strong> — não pode converter o processo em ação direta de inconstitucionalidade (privativa do STF/TJs)<br>
+      → <strong>A crise</strong> — liminares do Min. Alexandre de Moraes (MS 35.490, 35.494 e 35.500, 8/2/2018): o TCU, <strong>órgão sem função jurisdicional</strong>, não exerceria controle difuso — atentaria contra os <strong>freios e contrapesos</strong> (art. 60, § 4º, III); a Súmula foi editada em <strong>1963</strong>, sob outra ordem constitucional e antes do controle abstrato (EC 16/1965)<br>
+      → <strong>Estado atual</strong> — a Súmula <strong>permanece vigente</strong>; as bancas cobram a <strong>posição tradicional</strong>, mas podem mencionar a controvérsia
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mais entendimentos rápidos que caem</div>
+    <div class="card-text">
+      → <strong>Vitaliciedade dos conselheiros</strong> — perda do cargo só por <strong>decisão judicial transitada em julgado</strong>; a Assembleia não de decreta (ADI 4.190 MC-REF)<br>
+      → <strong>Iniciativa reservada (autonomia/autogoverno)</strong> — os TCs propõem ao Legislativo a alteração de sua organização, estruturação interna, quadro e criação de cargos (arts. 73, 75 e 96, II, "d" — ADI 4.418; ADI 789)<br>
+      → <strong>Assembleia não julga as contas do próprio Legislativo</strong> — inconstitucional norma estadual que retirava do TC o julgamento das contas dos administradores públicos (usurpa o art. 71, II)<br>
+      → <strong>Recursos de royalties/participação (art. 20, § 1º)</strong> — são <strong>receitas originárias</strong> dos Estados, DF e Municípios (MS 24.312): fiscalizados pelo <strong>TC do ente beneficiário</strong>, não pelo TCU<br>
+      → <strong>TCU em juízo</strong> — pode praticar atos processuais (sustentação oral, figurar no polo passivo de MS com caráter impositivo)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    A banca pergunta se o TCU "aprecia constitucionalidade" — com a <strong>Súmula 347</strong>, sim (difusa/incidental). Já "determinar quebra de sigilo bancário <strong>sem falar em recursos públicos</strong>" — a resposta é <strong>não</strong>. E "executar as próprias decisões" — <strong>não</strong>: quem cobra é a <strong>AGU</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — PRESCRIÇÃO NO CONTROLE EXTERNO                     -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Prescrição no controle externo</div>
+  </div>
+  <div class="sec-subtitle">Lei 9.873/1999 e Temas 666, 897 e 899 do STF</div>
+
+  <div class="card">
+    <div class="card-title">Sanções aplicadas pelo TCU — 5 anos (Lei 9.873/1999)</div>
+    <div class="card-text">
+      → <strong>Regra</strong> — a pretensão punitiva no processo de controle externo (multa, declaração de inidoneidade) regula-se pela <strong>Lei 9.873/1999</strong>, prazo prescricional de <strong>5 anos</strong> (MS 32.201; MS 35.512-AgR; MS 36.067-ED-AgR)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tema 666 — reparação por ilícito CIVIL</div>
+    <div class="card-text">
+      → <strong>Tese (RE 669.069)</strong> — <span class="highlight">"é prescritível a ação de reparação de danos à Fazenda Pública decorrente de ilícito civil"</span> (ex.: acidente de trânsito)<br>
+      → <strong>Não se incluem</strong> — ilícitos de natureza <strong>penal</strong>, os decorrentes de <strong>improbidade</strong> e os derivados de <strong>decisões de tribunais de contas</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tema 897 × Tema 899 — a dupla que confunde</div>
+    <div class="card-text">
+      → <strong>Tema 897 (RE 852.475)</strong> — somente são <strong>imprescritíveis</strong> as ações de ressarcimento fundadas em <strong>ato de improbidade doloso</strong> tipificado na LIA; todo o resto segue o Tema 666 (prescritível)<br>
+      → <strong>Tema 899 (RE 636.886)</strong> — <span class="highlight">é prescritível a pretensão de ressarcimento ao erário fundada em decisão de Tribunal de Contas</span>, seja a conduta dolosa ou culposa; execução na forma da <strong>Lei 6.830/1980 (LEF)</strong><br>
+      → <strong>Embargos da AGU rejeitados</strong> — eficácia prospectiva, rito e alcance não foram tratados: ficou para a <strong>ADI 5509</strong><br>
+      → <strong>ADI 5509/CE (voto Min. Fachin, 2021)</strong> — prazo de <strong>5 anos</strong> (art. 1º da Lei 9.873/1999), contado do <strong>vencimento do prazo para prestar contas</strong> ou, não sendo processo de contas, da <strong>ciência do fato danoso pelo TC</strong>; a prescrição atinge <strong>também a fase de constituição do título executivo</strong><br><br>
+      → <strong>Fundamento constitucional</strong> — interpretação conforme do <strong>art. 37, § 5º</strong>: a ressalva das ações de ressarcimento alcança só a improbidade dolosa (mudança que impacta os processos de contas — antes, MS 26.210 tratava como imprescritível)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca</div>
+    "O ressarcimento fundado em decisão de tribunal de contas é imprescritível" — <strong>errado</strong> (Tema 899: prescritível). A imprescritibilidade vale <strong>somente</strong> para o ressarcimento por <strong>improbidade dolosa</strong> (Tema 897).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — PONTOS QUE MAIS CAEM EM PROVA                      -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">Números que decidem a questão</div>
+    <div class="card-text">
+      → <strong>Composição:</strong> TCU <strong>9 ministros</strong> · TCs estaduais <strong>7 conselheiros</strong> (<strong>4</strong> Assembleia + <strong>3</strong> governador: 1 livre, 1 auditor, 1 MPC)<br>
+      → <strong>Escolha do TCU:</strong> <strong>1/3</strong> Presidente (com Senado) + <strong>2/3</strong> Congresso<br>
+      → <strong>Contas do Presidente:</strong> envio <strong>60 dias</strong> após abertura da sessão + parecer do TCU em <strong>60 dias</strong> + omissão → Câmara procede à tomada de contas<br>
+      → <strong>Sustação de contrato:</strong> CN adota + <strong>90 dias</strong> sem efetivação → TCU decide<br><br>
+      → <strong>Municipal:</strong> parecer sobre contas do prefeito cai só por <strong>2/3 da Câmara</strong> · contas à disposição do contribuinte por <strong>60 dias</strong><br>
+      → <strong>Prazos de 5 anos:</strong> registro de aposentadoria (Tema 445) · revisão (art. 54 da L 9.784/99) · prescrição de sanções e do ressarcimento por decisão de TC (L 9.873/99)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Distinções que a banca inverte</div>
+    <div class="card-text">
+      → <strong>Contas de governo × de gestão:</strong> macro, julgadas pelo <strong>Congresso</strong> (parecer opinativo) × atos de gestão, <strong>julgadas pelo TCU</strong><br>
+      → <strong>Parecer prévio × julgamento:</strong> chefe do Executivo (parecer + julgamento político) × demais administradores (TC julga)<br>
+      → <strong>TC do Município × TC dos Municípios:</strong> estrutura <strong>municipal</strong> (1 cidade) × estrutura <strong>estadual</strong> (vários municípios)<br>
+      → <strong>Sustação:</strong> <strong>ato</strong> → TCU susta × <strong>contrato</strong> → Congresso Nacional susta (90 dias → TCU)<br><br>
+      → <strong>Sigilo bancário:</strong> com <strong>recursos públicos</strong> → TCU pode × sem especificação → não<br>
+      → <strong>Responsabilidade do controle interno (art. 74, § 1º):</strong> <strong>solidária</strong> (não subsidiária)<br>
+      → <strong>Imprescritibilidade:</strong> improbidade <strong>dolosa</strong> (Tema 897) × decisão de TC (Tema 899 — prescritível)<br>
+      → <strong>TC × Judiciário:</strong> decisões <strong>administrativas</strong>, revistas pelo Judiciário apenas quanto à legalidade
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">✅</div>
+    <div><strong>Dica final:</strong> foque nos arts. 70 a 75 (Seção da fiscalização), 31 (§§ 1º, 2º e 4º), 130, 105, I, "a", 49, IX, 51, II e 84, XXIV. Nas súmulas: <strong>653</strong> (4+3), <strong>SV-3</strong> (contraditório), <strong>347</strong> (constitucionalidade difusa). Nos temas: <strong>445</strong> (5 anos do registro), <strong>666</strong> (ilícito civil), <strong>897</strong> (doloso LIA) e <strong>899</strong> (decisão de TC). ADIs que resolvem questão: <strong>3.026</strong> (OAB), <strong>916/6.983</strong> (simetria), <strong>3.077</strong> (parecer prévio), <strong>4.190</strong> (vitaliciedade) e <strong>4.418/789</strong> (iniciativa reservada).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 12 — INCIDÊNCIA DE TEMAS (TEC)                          -->
+<!-- ============================================================ -->
+<section id="sec12">
+  <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão de cima para baixo — temas com mais questões primeiro</div>
+
+  <div class="card">
+    <div class="card-title">Contador de temas</div>
+    <div class="card-text">
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 3 — Sistema de Controle Interno (art. 74): 4</span><br><br>
+      <strong>Média incidência 🟡</strong><br>
+      <span class="tag tag-amber">Seção 4 — Competências do TCU (art. 71): 2</span><br>
+      <span class="tag tag-amber">Seção 5 — Composição do TCU (art. 73): 2</span><br>
+      <span class="tag tag-amber">Seção 6 — Simetria e TCEs (art. 75 + EC 139/2026): 2</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 1 — Controle externo (titular e objeto, art. 70): 1</span><br>
+      <span class="tag">Seção 7 — Órgãos de contas municipais (art. 31): 1</span><br>
+
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2008/resumo-aula-08-organizacao-do-estado.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 08 · Organização do Estado</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2009/resumo-aula-09-contratos-administrativos.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 09 · Contratos Administrativos</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+    <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": 20, "tema": "Controle Externo e Tribunais de Contas (arts. 70-75 CF/88)", "questoes": [{"q": "Sobre o controle externo na esfera federal, é correto afirmar:", "opts": [{"t": "O TCU é o titular do controle externo, cabendo ao Congresso apenas apreciar seu parecer.", "why": "Invertido: o titular é o Congresso Nacional (controle político-parlamentar); o TCU é órgão técnico de auxílio."}, {"t": "O Congresso julga as contas dos administradores públicos, e o TCU julga as do Presidente.", "why": "Invertido: o Congresso julga SÓ as contas do Presidente; o TCU julga as dos administradores (art. 71, II)."}, {"t": "O controle externo é exercido pelo Congresso Nacional com o auxílio do TCU, e abrange a fiscalização contábil, financeira, orçamentária, operacional e patrimonial quanto a legalidade, legitimidade e economicidade.", "ok": true, "why": "Literalidade do art. 70 (COFOP + critérios)."}, {"t": "O controle externo nunca adentra o mérito do ato administrativo, limitando-se aos requisitos formais da despesa.", "why": "Falso: ao analisar economicidade e legitimidade o controle ADENTRA o mérito; só não interfere na conveniência e oportunidade."}]}, {"q": "Sobre as contas do Presidente da República, assinale a correta:", "opts": [{"t": "O Presidente envia as contas ao Congresso e ao TCU em 90 dias após a abertura da sessão legislativa.", "why": "O prazo de envio é de 60 dias (art. 84, XXIV); 90 dias é o prazo do art. 71, § 2º (sustação de contrato)."}, {"t": "O TCU julga as contas do Presidente, e o Congresso apenas homologa o parecer.", "why": "O TCU só APRECIA (parecer prévio); quem JULGA é o Congresso (art. 49, IX), podendo acolher ou não o parecer."}, {"t": "Não apresentadas no prazo, a Câmara dos Deputados procede à tomada de contas do Presidente.", "ok": true, "why": "Art. 51, II — literalidade."}, {"t": "O parecer prévio do TCU vincula o julgamento do Congresso Nacional.", "why": "O parecer é opinativo: o Congresso pode acolhê-lo ou não."}]}, {"q": "Pelo art. 74 da CF, sobre o controle interno:", "opts": [{"t": "É mantido apenas pelo Poder Executivo, de forma centralizada na CGU.", "why": "É mantido pelos três Poderes (Legislativo, Executivo e Judiciário), de forma integrada."}, {"t": "Os responsáveis que tomarem ciência de irregularidade comunicam à CGU, sob pena de responsabilidade subsidiária.", "why": "Duas trocas: comunicam ao TCU (§ 1º), sob pena de responsabilidade SOLIDÁRIA."}, {"t": "Podem denunciar ao TCU qualquer cidadão, partido político, associação ou sindicato — rol taxativo do § 2º.", "ok": true, "why": "Literalidade do art. 74, § 2º (reconhecido como taxativo pelo STF)."}, {"t": "Avaliar as metas do PPA é finalidade exclusiva do controle externo.", "why": "É finalidade do controle INTERNO (art. 74, I) — pegadinha clássica ESAF/CGU 2008."}]}, {"q": "Sobre as competências do TCU (art. 71), é correto:", "opts": [{"t": "O TCU julga os atos de admissão de pessoal e as concessões de aposentadoria, podendo alterar seus valores.", "why": "O TCU apenas APRECIA a legalidade para fins de registro (atos complexos); não altera valores — registra ou nega (MS 21.466)."}, {"t": "A sustação de contrato é adotada diretamente pelo TCU, que comunica ao Congresso.", "why": "Contrato: quem susta é o CONGRESSO (§ 1º); o TCU decide se em 90 dias nada for efetivado (§ 2º)."}, {"t": "Têm eficácia de título executivo extrajudicial apenas as decisões que imputam débito ou multa, cobradas pela AGU sem inscrição em dívida ativa.", "ok": true, "why": "Art. 71, § 3º + cobrança pela Advocacia-Geral da União."}, {"t": "O TCU fiscaliza a aplicação de todas as transferências da União, inclusive FPE, FPM e EC 29.", "why": "Só as transferências VOLUNTÁRIAS (convênios); FPE/FPM/EC 29 são receitas originárias dos entes."}]}, {"q": "Sobre a composição do TCU (art. 73), assinale a correta:", "opts": [{"t": "São 9 ministros: 1/3 escolhidos pelo Presidente com aprovação do Senado (2 alternadamente dentre auditores e membros do MPC + 1 livre) e 2/3 pelo Congresso.", "ok": true, "why": "Literalidade do art. 73, § 2º (Súmula dos números: 3+6)."}, {"t": "Os 6 ministros escolhidos pelo Congresso passam por sabatina no Senado Federal.", "why": "Só os 3 indicados pelo Presidente passam pelo Senado (art. 52, III, b — voto secreto após arguição)."}, {"t": "Os ministros têm as garantias dos membros do Ministério Público da União.", "why": "Têm as garantias dos Ministros do STJ (§ 3º), com aposentadoria pelo art. 40."}, {"t": "Auditores em substituição a ministros têm as garantias de juiz de primeira instância.", "why": "Em substituição: mesmas garantias do titular; nas demais atribuições: juiz de TRF (§ 4º)."}]}, {"q": "Sobre os Tribunais de Contas estaduais (art. 75, EC 139/2026) e Súmula 653:", "opts": [{"t": "Os TCEs são integrados por 9 conselheiros, espelhando o TCU.", "why": "São 7 conselheiros (parágrafo único) — número vinculante (ADI 3.688/1.957)."}, {"t": "Os 7 conselheiros são todos de livre escolha do governador, com aprovação da Assembleia.", "why": "4 pela Assembleia + 3 pelo governador (1 livre, 1 auditor, 1 MP de Contas) — Súmula 653."}, {"t": "Os TCs são instituições permanentes e essenciais ao controle externo, vedada sua extinção, criação ou instalação; os estaduais têm 7 conselheiros (4 AL + 3 governador).", "ok": true, "why": "Art. 75 pós-EC 139/2026 (PEC da Essencialidade) + Súmula 653."}, {"t": "Os Estados podem extinguir TCEs existentes desde que transfiram as atribuições a secretaria do Executivo.", "why": "A permanência veda exatamente isso: nem extinção nem esvaziamento disfarçado de reorganização."}]}, {"q": "Sobre prescrição no controle externo, é correto:", "opts": [{"t": "É imprescritível o ressarcimento fundado em decisão de Tribunal de Contas.", "why": "Prescritível (Tema 899, RE 636.886) — a imprescritibilidade é só da improbidade dolosa (Tema 897)."}, {"t": "A ação de reparação por ilícito civil contra a Fazenda é imprescritível.", "why": "Prescritível (Tema 666, RE 669.069) — ex.: acidente de trânsito."}, {"t": "As sanções do TCU prescrevem em 5 anos (Lei 9.873/1999); o ressarcimento por decisão de TC é prescritível (Tema 899), e só o fundado em improbidade dolosa é imprescritível (Tema 897).", "ok": true, "why": "MS 32.201 + Temas 899 e 897 — a dupla que a banca inverte."}, {"t": "O prazo prescricional das sanções aplicadas pelo TCU é de 8 anos, como na LIA.", "why": "8 anos é o prazo da ação de improbidade (art. 23 LIA); no controle externo são 5 anos (Lei 9.873/99)."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>
