@@ -84,10 +84,10 @@
 | ✅ | Lei 14.133/2021 Parte 2 | Aula 08 | — |
 | ❌ | Processo administrativo (Lei estadual 13.800/2001) | — | — |
 | ❌ | Responsabilidade civil do Estado | — | — |
-| ❌ | Lei de Improbidade (8.429/92, alt. 14.230/2021) | — | — |
+| ✅ | Lei de Improbidade (8.429/92, alt. 14.230/2021) | Aula 15 | — |
 
-**Aulas TJ que cobrem TCE:** 00-08 (princípios, organização, poderes, atos, licitações)  
-**Faltam para TCE:** Processo administrativo GO, improbidade, responsabilidade civil
+**Aulas TJ que cobrem TCE:** 00-08 e 15 (princípios, organização, poderes, atos, licitações, improbidade)  
+**Faltam para TCE:** Processo administrativo GO, responsabilidade civil
 
 ---
 
@@ -292,7 +292,7 @@
 | Português | ✅ 6 aulas | 🔨 Precisa: crase, redação oficial, figuras, regência, concordância, pontuação | +2-3 aulas |
 | Matemática/RL | ❌ Nenhum | ❌ Nenhum | +2-3 aulas |
 | Legislação Institucional | ❌ Nenhum | ❌ Nenhum (exclusiva TCE) | +2-3 aulas |
-| Direito Administrativo | ✅ 9 aulas | 🔨 Falta: processo adm GO, improbidade, responsabilidade civil | +1-2 aulas |
+| Direito Administrativo | ✅ 10 aulas | 🔨 Falta: processo adm GO, responsabilidade civil | +1-2 aulas |
 | Licitações | ✅ 2 aulas (DA 07-08) | 🔨 Falta: planejamento, modalidades, dispensa, SRP, execução, sanções, PNCP | +2-3 aulas |
 | Direito Constitucional | ✅ 8 aulas | 🔨 Falta: TCs, funções essenciais | +1 aula |
 | Controle Externo | ❌ Nenhum | ❌ Nenhum (exclusiva TCE) | +2-3 aulas |

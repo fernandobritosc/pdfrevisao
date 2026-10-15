@@ -94,7 +94,7 @@
 | ❌ | CF/88: princípios fundamentais (arts. 1º-4º) | — | temas iniciais da CF |
 | ❌ | Serviços públicos | — | — |
 | ❌ | Servidores públicos: regimes, cargo/emprego/função | — | LI 00 cobre acesso/concurso |
-| ❌ | Improbidade administrativa (Lei 8.429/1992) | — | — |
+| ✅ | Improbidade administrativa (Lei 8.429/1992) | DA Aula 15 | — |
 | ❌ | Processo administrativo | — | — |
 
 ---
@@ -167,7 +167,7 @@
 | ✅ | Licitações e contratos administrativos — Lei 14.133/2021 | DA Aulas 07-09 | — |
 | 🔄 | Responsabilidade civil do Estado | LI Aula 00 (parcial 🔄) | aprofundar em aula própria |
 | ❌ | Serviços públicos | — | — |
-| ❌ | Improbidade administrativa (Lei 8.429/1992 — atualizações 14.230/2021) | — | — |
+| ✅ | Improbidade administrativa (Lei 8.429/1992 — atualizações 14.230/2021) | DA Aula 15 | — |
 | ❌ | Controle da Administração Pública | — | LI 00 cobre autotutela |
 
 ### C. Orçamento público e LRF
@@ -248,7 +248,7 @@
 | T03 | INF — revisar aulas 00-06 (base espelhada) | ✅ |
 | T04 | INF — aulas novas: algoritmos, SO, Office/Workspace, segurança | ❌ |
 | T05 | DA — revisar aulas 00-09 (base espelhada) | ✅ |
-| T06 | DA — aulas novas: serviços públicos, improbidade, processo administrativo, responsabilidade civil | ❌ |
+| T06 | DA — aulas novas: serviços públicos, processo administrativo, responsabilidade civil — improbidade ✅ (DA Aula 15) | ❌ |
 | T07 | DC — revisar aulas 00, 02-08 (base espelhada) | ✅ |
 | T08 | DC — aulas novas: arts. 1º-4º, controle de constitucionalidade | ❌ |
 | T09 | RML — revisar aulas 00-02 (base espelhada) | ✅ |
