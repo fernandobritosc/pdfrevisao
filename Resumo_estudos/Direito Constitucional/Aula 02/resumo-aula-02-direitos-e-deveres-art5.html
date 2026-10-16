@@ -3,12 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resumo — DC Aula 02: Direitos e Deveres (art. 5º CF/88)</title>
+<title>Resumo — Direito Constitucional Aula 2: Direitos e Deveres (art. 5º)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
   --bg: #f5f4f0;
   --sidebar: #ecebe5;
   --card: #ffffff;
@@ -29,7 +34,11 @@
   --dim: #6b7484;
   --ink: #1f2733;
   --mark: #fdf3d8;
-  --radius: 12px;
+  --mat: #7c3aed;
+  --mat-strong: #6d28d9;
+  --mat-soft: #ede9fe;
+  --mat-line: #ddd6fe;
+  --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -40,8 +49,8 @@ body {
   line-height: 1.72;
   min-height: 100vh;
 }
-a { color: var(--blue); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
 
 /* SIDEBAR (aula pages) */
 .aula .sidebar {
@@ -62,11 +71,11 @@ a { color: var(--blue); }
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, var(--blue), var(--green), var(--purple), var(--amber), var(--teal));
+  height: 4px;
+  background: var(--mat);
 }
 .aula .sidebar-title, .aula .sidebar-brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .8rem;
   font-weight: 800;
   color: var(--ink);
@@ -86,7 +95,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-color: #43506b;
 }
 .aula .sidebar-sub {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   color: var(--text2);
   margin: .8rem 0 1rem;
@@ -102,9 +111,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   margin-bottom: 1px;
 }
-.aula .sidebar a:hover { background: #e2dfd4; color: var(--text); }
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .sidebar h3, .aula .sidebar-heading {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: .7rem;
   font-weight: 700;
   color: var(--ink);
@@ -121,8 +130,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
   gap: .35rem;
 }
 .aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
-.aula .sidebar-nav a:hover { background: #dbe3ef; color: var(--text); }
-.aula .sidebar-nav a.active { background: var(--ink); color: #fff; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
 .aula .sidebar-footer {
   margin-top: auto;
   padding-top: 1rem;
@@ -139,9 +148,9 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 6px;
   transition: all .15s;
 }
-.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
 .aula .brand {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -154,32 +163,31 @@ html[data-theme="dark"] .aula .sidebar-brand {
 /* MAIN */
 .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 .aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
-.aula section, .aula .section { padding: 1.5rem 2.5rem; border-bottom: 1px solid var(--line); }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
 .aula section:last-child { border-bottom: none; }
-.aula .sec-header { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
 .aula .sec-num {
-  width: 36px;
-  height: 36px;
-  color: #fff;
-  background: var(--ink);
-  border-radius: 9px;
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
-  font-size: .95rem;
-  box-shadow: 0 3px 8px rgba(31,39,51,.22);
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
 }
 .aula .sec-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
 }
-.aula .sec-subtitle { font-size: .88rem; color: var(--text2); margin-bottom: .65rem; line-height: 1.45; text-align: justify; }
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
 .aula .section-title {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.16rem;
   font-weight: 700;
   color: var(--ink);
@@ -189,7 +197,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   padding-bottom: .4rem;
   border-bottom: 2px solid var(--line-strong);
 }
-.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: justify; }
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
 .subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
 .aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
 
@@ -204,7 +212,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: var(--radius);
   margin-bottom: 1.5rem;
 }
-.header h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
 .header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
 
 /* CARDS */
@@ -213,23 +221,24 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .card {
   background: var(--card);
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: 0 1px 2px rgba(31,39,51,.05);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
   position: relative;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .2s;
   color: inherit;
   text-decoration: none;
 }
 .aula .card { overflow: hidden; }
-.card:hover { border-color: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(31,39,51,.1); }
-.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); opacity: .55; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
 .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
 .card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
 .card-icon { font-size: 1.2rem; }
-.card-title { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: .96rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
-.card-text { font-size: .88rem; color: var(--text2); line-height: 1.6; text-align: justify; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
 .card-text + .card-text { margin-top: .65rem; }
 .card-text strong { color: var(--text); }
 .card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -237,7 +246,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .25rem .6rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .78rem;
   font-weight: 600;
   text-decoration: none;
@@ -252,7 +261,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   display: inline-block;
   padding: .2rem .5rem;
   border-radius: 6px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   background: #d9f2e3;
@@ -263,8 +272,8 @@ html[data-theme="dark"] .aula .sidebar-brand {
 .callout {
   display: flex;
   gap: .6rem;
-  padding: .7rem 1rem;
-  border-radius: 10px;
+  padding: .75rem 1rem;
+  border-radius: 12px;
   font-size: .88rem;
   line-height: 1.6;
   margin: .8rem 0;
@@ -273,7 +282,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
 }
 .callout strong { color: var(--amber); }
 .callout-icon { font-size: 1.1rem; flex-shrink: 0; }
-.callout > div:not(.callout-icon) { text-align: justify; }
+.callout > div:not(.callout-icon) { text-align: left; }
 .callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
 .callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
 .callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
@@ -288,7 +297,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   margin: .85rem 0;
 }
 .mnemonic-label {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .7rem;
   font-weight: 600;
   color: var(--amber);
@@ -302,7 +311,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   letter-spacing: .01em;
   margin-top: .15rem;
   line-height: 1.7;
-  text-align: justify;
+  text-align: left;
   white-space: normal;
 }
 .mnemonic-content span {
@@ -321,7 +330,7 @@ html[data-theme="dark"] .aula .sidebar-brand {
   border-radius: 7px;
   background: var(--amber);
   color: #fff;
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
   font-size: 1rem;
   line-height: 1;
@@ -336,34 +345,34 @@ html[data-theme="dark"] .aula .sidebar-brand {
   background: var(--card);
 }
 table { width: 100%; border-collapse: collapse; font-size: .88rem; }
-thead, thead tr { background: var(--sidebar); }
-th { padding: .6rem .8rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--line-strong); color: var(--text); }
-td { padding: .55rem .8rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
 td strong { color: var(--text); }
-tr:nth-child(even) { background: #faf9f5; }
-tr:hover { background: rgba(37,99,235,.06); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
 tbody tr:last-child td { border-bottom: none; }
 
 /* GOTCHA */
 .gotcha {
-  background: #fae5e5;
-  border: 1px solid #efb4b4;
-  border-left: 4px solid var(--red);
-  border-radius: 10px;
-  padding: .65rem .9rem;
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
   margin: .75rem 0;
-  font-size: .88rem;
+  font-size: .9rem;
   color: var(--text);
-  text-align: justify;
+  text-align: left;
 }
-.gotcha-title { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
 
 /* TAGS */
 .tag {
   display: inline-block;
   padding: .2rem .55rem;
   border-radius: 5px;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .76rem;
   font-weight: 600;
   margin: 0 .2rem;
@@ -424,7 +433,7 @@ tbody tr:last-child td { border-bottom: none; }
   width: 0%;
   transition: width .3s;
 }
-.progress-label { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
 .progress-bar {
   position: fixed;
   top: 0;
@@ -437,18 +446,18 @@ tbody tr:last-child td { border-bottom: none; }
 
 /* LEGAL BLOCK */
 .legal-block {
-  background: #f0eee7;
-  border: 1px solid var(--line-strong);
-  border-left: 4px solid var(--blue);
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
   border-radius: 8px;
   padding: .7rem .9rem;
   margin: .6rem 0;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
   font-size: .82rem;
   color: var(--text2);
   line-height: 1.55;
 }
-.legal-block strong { color: #1d3f9e; }
+.legal-block strong { color: var(--mat-strong); }
 
 /* QUESTIONS / OPTIONS */
 .question {
@@ -510,7 +519,7 @@ li { margin: 4px 0; }
 /* LANDING */
 .container { max-width: 600px; margin: 0 auto; text-align: center; }
 .container h1 {
-  font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: .5rem;
@@ -519,7 +528,7 @@ li { margin: 4px 0; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
 .back-link {
   display: inline-block;
   color: #1d3f9e;
@@ -561,7 +570,6 @@ h1 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 2rem;
 }</style>
 
 
-
 <style id="rh-addons">
 /* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
 html[data-theme="dark"] {
@@ -571,6 +579,7 @@ html[data-theme="dark"] {
   --ink: #e8ebf2; --mark: #3a3117;
   --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
   --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #a78bfa; --mat-strong: #c4b5fd; --mat-soft: #241b38; --mat-line: #4c3a75;
 }
 html[data-theme="dark"] .callout { background:#262a33; }
 html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
@@ -600,9 +609,9 @@ html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
 html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
 html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
-html[data-theme="dark"] .aula .sec-num { color:#17191f;box-shadow:0 3px 8px rgba(0,0,0,.5); }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
 html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
-html[data-theme="dark"] tr:hover { background:rgba(110,168,254,.12); }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
 html[data-theme="dark"] .question { background:#232733; }
 html[data-theme="dark"] .option { background:#232733; }
 html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
@@ -617,13 +626,13 @@ html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
 html[data-theme="dark"] .back-link { color:#a9c3ef; }
 html[data-theme="dark"] .btn { color:#17191f; }
 html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
-html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
 /* Toolbar flutuante (tema · fonte · topo) */
 .rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
 .rh-toolbar button {
   width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
   background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
   box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
   transition: transform .15s, border-color .15s;
 }
@@ -646,7 +655,7 @@ html[data-theme="dark"] .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,.5); }
 .aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
 .aula-nav a.next { text-align: right; }
 .aula-nav .aula-nav-dir {
-  font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .68rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
   color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
 }
 .aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
@@ -748,8 +757,8 @@ html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .questio
   background: var(--card); border: 1px solid var(--border); border-radius: 10px;
   padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
 #rhMarkPanel.show { display: block; }
-#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
-#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
   background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
   color: var(--text); cursor: pointer; margin-right: .3rem; }
 #rhMarkPanel button:hover { border-color: var(--blue); }
@@ -767,8 +776,6 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 </script>
 </head>
 <body class="aula">
-
-<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-title">Direito Constitucional — Aula 02</div>
   <div class="sidebar-sub">Direitos e Deveres (art. 5º CF) · vConsolidado</div>
@@ -786,14 +793,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <a href="#sec7">7. Incidência de temas (TEC)</a>
   <hr class="sidebar-divider">
   <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-02-direitos-e-deveres-art5.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
   <hr class="sidebar-divider">
   <div style="font-size:.65rem;color:var(--text2);">
     Fontes: resumo + simplificado + completo<br>
     Estratégia Concursos
   </div>
 </aside>
-
-<!-- MAIN -->
 <div class="main">
 
 <!-- ============================================================ -->
@@ -809,55 +815,66 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Caput do art. 5º — matrizes dos direitos fundamentais</div>
     <div class="card-text">
-      "Todos são iguais perante a lei, sem distinção de qualquer natureza, garantindo-se aos <strong>brasileiros e aos estrangeiros residentes no País</strong> a inviolabilidade do direito à <strong>vida, à liberdade, à igualdade, à segurança e à propriedade</strong>..."<br><br>
-      • As <strong>matrizes</strong> dos direitos fundamentais na CF/88 são: vida, liberdade, igualdade, segurança e propriedade (FGV/ENAM)<br>
-      • Os direitos e garantias individuais do art. 5º são <strong>direitos fundamentais</strong><br>
-      • Direitos fundamentais constituem uma <strong>reserva mínima de justiça</strong> que as democracias devem assegurar a todos os cidadãos
+      "Todos são iguais perante a lei, sem distinção de qualquer natureza, garantindo-se aos <strong>brasileiros e aos estrangeiros residentes no País</strong> a inviolabilidade do direito à <strong>vida, à liberdade, à igualdade, à segurança e à propriedade</strong>..."<br><br><br>
+      → As <strong>matrizes</strong> dos direitos fundamentais na CF/88 são: vida, liberdade, igualdade, segurança e propriedade (FGV/ENAM)<br><br>
+      → Os direitos e garantias individuais do art. 5º são <strong>direitos fundamentais</strong><br><br>
+      → Direitos fundamentais constituem uma <strong>reserva mínima de justiça</strong> que as democracias devem assegurar a todos os cidadãos
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--green);">
-    <div class="card-title" style="color:var(--green);">Titulares: estrangeiros e brasileiros</div>
+  <div class="card">
+    <div class="card-title">Titulares: estrangeiros e brasileiros</div>
     <div class="card-text">
-      • Os direitos e garantias individuais do art. 5º aplicam-se a <strong>brasileiros e estrangeiros</strong> (FGV/MPE-MS)<br>
-      • Para o STF, <strong>basta estar no território nacional</strong> para ser titular de direitos fundamentais — não importa se estrangeiro ou residente ou não<br>
-      • O direito de propriedade é garantido a brasileiros e a <strong>estrangeiros residentes</strong> no Brasil
+      → Os direitos e garantias individuais do art. 5º aplicam-se a <strong>brasileiros e estrangeiros</strong> (FGV/MPE-MS)<br><br>
+      → Para o STF, <strong>basta estar no território nacional</strong> para ser titular de direitos fundamentais — não importa se estrangeiro ou residente ou não<br><br>
+      → O direito de propriedade é garantido a brasileiros e a <strong>estrangeiros residentes</strong> no Brasil
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Dimensões (gerações) dos direitos fundamentais</div>
     <div class="card-text">
-      • <strong>1ª dimensão</strong> — séc. XVIII, Estado Liberal: <strong>liberdades negativas</strong> (restringir a ação do Estado); ex.: liberdade e propriedade. Função predominantemente <strong>defensiva</strong>, mas não apenas: a ação popular, por exemplo, tem status ativo (participação)<br>
-      • <strong>2ª dimensão</strong> — direitos sociais, culturais e econômicos (nem sempre de aplicabilidade imediata)<br>
-      • <strong>3ª dimensão</strong> — direitos <strong>difusos</strong>: ex.: meio ambiente e defesa dos consumidores
+      → <strong>1ª dimensão</strong> — séc. XVIII, Estado Liberal: <strong>liberdades negativas</strong> (restringir a ação do Estado); ex.: liberdade e propriedade. Função predominantemente <strong>defensiva</strong>, mas não apenas: a ação popular, por exemplo, tem status ativo (participação)<br><br>
+      → <strong>2ª dimensão</strong> — direitos sociais, culturais e econômicos (nem sempre de aplicabilidade imediata)<br><br>
+      → <strong>3ª dimensão</strong> — direitos <strong>difusos</strong>: ex.: meio ambiente e defesa dos consumidores
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Dupla dimensão e cláusula de abertura</div>
     <div class="card-text">
-      • <strong>Dimensão subjetiva</strong>: os direitos fundamentais são exigíveis do Estado<br>
-      • <strong>Dimensão objetiva</strong>: são princípios estruturantes do Estado, com eficácia irradiante para todo o ordenamento<br>
-      • <strong>Cláusula de abertura material</strong> (§ 2º do art. 5º): o rol não é exaustivo — direitos consagrados fora do Título II também integram o catálogo
+      → <strong>Dimensão subjetiva</strong>: os direitos fundamentais são exigíveis do Estado<br><br>
+      → <strong>Dimensão objetiva</strong>: são princípios estruturantes do Estado, com <span class="highlight">eficácia irradiante</span> para todo o ordenamento<br><br>
+      → <strong>Cláusula de abertura material</strong> (§ 2º do art. 5º): o rol não é exaustivo — é <strong>exemplificativo, não taxativo</strong> — direitos consagrados fora do Título II também integram o catálogo
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue);">
-    <div class="card-title" style="color:var(--blue-light);">Aplicabilidade imediata (§ 1º)</div>
+  <div class="card">
+    <div class="card-title">Inalienáveis, irrenunciáveis e cumuláveis — o trio que derruba</div>
     <div class="card-text">
-      • As normas definidoras de direitos e garantias fundamentais têm <strong>aplicação imediata</strong><br>
-      • Os direitos de <strong>1ª dimensão</strong> são, em regra, de aplicabilidade imediata; os direitos sociais, culturais e econômicos (2ª dimensão) nem sempre o são, pois dependem de providências ulteriores<br>
-      • A eficácia dos direitos fundamentais <strong>não é definida pela legislação infraconstitucional</strong> — esta não pode estendê-los ou restringi-los livremente
+      → <strong>Inalienabilidade</strong> — são <strong>intransferíveis, inegociáveis e indisponíveis</strong>: "alienáveis" <strong>jamais</strong> é característica de direitos fundamentais<br><br>
+      → <strong>Irrenunciabilidade</strong> — o titular pode <strong>não exercer</strong>, mas <strong>não pode renunciar</strong><br><br>
+      → <strong>Cumulabilidade</strong> — podem ser <strong>exercidos acumuladamente</strong> pelo mesmo titular
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Aplicabilidade imediata (§ 1º)</div>
+    <div class="card-text">
+      → As normas definidoras de direitos e garantias fundamentais têm <strong>aplicação imediata</strong><br><br>
+      → Os direitos de <strong>1ª dimensão</strong> são, em regra, de aplicabilidade imediata; os direitos sociais, culturais e econômicos (2ª dimensão) nem sempre o são, pois dependem de providências ulteriores<br><br>
+      → A eficácia dos direitos fundamentais <strong>não é definida pela legislação infraconstitucional</strong> — esta não pode estendê-los ou restringi-los livremente
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Ponderação e restrições a direitos fundamentais</div>
     <div class="card-text">
-      • Em <strong>colisão de direitos fundamentais</strong>, a solução não se dá por subsunção, mas pela técnica da <strong>ponderação</strong><br>
-      • Lei que restringe direito individual para proteger o interesse coletivo pode ser <strong>compatível</strong> com a CF desde que <strong>adequada e necessária</strong>, e que os benefícios auferidos sejam mais relevantes que as restrições impostas (proporcionalidade)<br>
-      • <strong>Direito ao esquecimento é incompatível</strong> com a Constituição; eventuais excessos no exercício da liberdade de expressão e de informação são analisados caso a caso (STF, Tema 786, RE 1.010.606, Rel. Min. Dias Toffoli, j. 11/2/2021)
+      → Em <strong>colisão de direitos fundamentais</strong>, a solução não se dá por subsunção, mas pela técnica da <strong>ponderação</strong><br><br>
+      → <strong>Relatividade (limitabilidade)</strong> — <strong>nenhum direito fundamental é absoluto</strong>: em colisão, relativiza-se um em favor do que melhor se adequa ao caso, por <strong>ponderação/harmonização</strong> — sem anular por completo o conteúdo do preterido<br><br>
+      → Lei que restringe direito individual para proteger o interesse coletivo pode ser <strong>compatível</strong> com a CF desde que <strong>adequada e necessária</strong>, e que os benefícios auferidos sejam mais relevantes que as restrições impostas (proporcionalidade)<br><br>
+      → <strong>Reserva legal simples × qualificada</strong> — simples: exige lei formal <strong>sem definir conteúdo ou finalidade</strong> (ampla liberdade ao legislador; ex.: assistência religiosa, art. 5º, VII); qualificada: <strong>já define conteúdo e finalidade</strong> do ato<br><br>
+      → <strong>Direito ao esquecimento é incompatível</strong> com a Constituição; eventuais excessos no exercício da liberdade de expressão e de informação são analisados caso a caso (STF, Tema 786, RE 1.010.606, Rel. Min. Dias Toffoli, j. 11/2/2021)
     </div>
   </div>
 </section>
@@ -875,21 +892,21 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Direito à vida</div>
     <div class="card-text">
-      • Inviolável, garantido a brasileiros e estrangeiros residentes (caput)<br>
-      • <strong>Legítima defesa da honra</strong>: tese <strong>inconstitucional</strong>, por contrariar a dignidade da pessoa humana (art. 1º, III), a proteção à vida e a igualdade de gênero (ADPF 779) — interpretação conforme exclui a tese do art. 23, II e art. 25 do CP e do art. 65 do CPP; a defesa, a acusação, a autoridade policial e o juízo estão <strong>proibidos de utilizá-la</strong> (direta ou indiretamente), sob pena de nulidade do ato e do julgamento<br>
-      • <strong>Exame de DNA compulsório</strong> é incabível — submissão forçada ao fornecimento de sangue fere a dignidade da pessoa humana (HC 71.373 e HC 76.060)
+      → Inviolável, garantido a brasileiros e estrangeiros residentes (caput)<br><br>
+      → <strong>Legítima defesa da honra</strong>: tese <strong>inconstitucional</strong>, por contrariar a dignidade da pessoa humana (art. 1º, III), a proteção à vida e a igualdade de gênero (ADPF 779) — interpretação conforme exclui a tese do art. 23, II e art. 25 do CP e do art. 65 do CPP; a defesa, a acusação, a autoridade policial e o juízo estão <strong>proibidos de utilizá-la</strong> (direta ou indiretamente), sob pena de nulidade do ato e do julgamento<br><br>
+      → <strong>Exame de DNA compulsório</strong> é incabível — submissão forçada ao fornecimento de sangue fere a dignidade da pessoa humana (HC 71.373 e HC 76.060)
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--green);">
-    <div class="card-title" style="color:var(--green);">Direito à igualdade (formal × material)</div>
+  <div class="card">
+    <div class="card-title">Direito à igualdade (formal × material)</div>
     <div class="card-text">
-      • Nas cotas raciais em universidades e na Lei Maria da Penha (ADC 19), o STF acolheu uma concepção <strong>material</strong> de igualdade<br>
-      • <strong>Ações afirmativas</strong>: constroem a igualdade <strong>material</strong> (não a formal); não exigem necessariamente continuidade indefinida (admitem delimitação temporal) e estão sujeitas à <strong>reserva do possível</strong> (FGV/CGM BH)<br>
-      • Reserva de vagas aos <strong>negros em concursos públicos</strong>: constitucional<br>
-      • <strong>Limite máximo de vagas por sexo</strong> em concurso (Polícia Militar): <strong>inconstitucional</strong>, por ofensa à isonomia<br>
-      • Proibição de doação de sangue baseada em <strong>grupo</strong> (homens que tiveram relações com homens): <strong>inconstitucional</strong> — o critério deve ser a <strong>conduta de risco</strong>, não o pertencimento a grupo<br>
-      • Do princípio da igualdade originam-se a <strong>vedação ao racismo</strong> (art. 5º, XLII) e a <strong>isonomia tributária</strong> (art. 150, II)
+      → Nas cotas raciais em universidades e na Lei Maria da Penha (ADC 19), o STF acolheu uma concepção <strong>material</strong> de igualdade<br><br>
+      → <strong>Ações afirmativas</strong>: constroem a igualdade <strong>material</strong> (não a formal); não exigem necessariamente continuidade indefinida (admitem delimitação temporal) e estão sujeitas à <strong>reserva do possível</strong> (FGV/CGM BH)<br><br>
+      → Reserva de vagas aos <strong>negros em concursos públicos</strong>: constitucional<br><br>
+      → <strong>Limite máximo de vagas por sexo</strong> em concurso (Polícia Militar): <strong>inconstitucional</strong>, por ofensa à isonomia<br><br>
+      → Proibição de doação de sangue baseada em <strong>grupo</strong> (homens que tiveram relações com homens): <strong>inconstitucional</strong> — o critério deve ser a <strong>conduta de risco</strong>, não o pertencimento a grupo<br><br>
+      → Do princípio da igualdade originam-se a <strong>vedação ao racismo</strong> (art. 5º, XLII) e a <strong>isonomia tributária</strong> (art. 150, II)
     </div>
   </div>
 
@@ -901,41 +918,42 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Liberdade de expressão, pensamento e informação</div>
     <div class="card-text">
-      • <strong>II</strong> — legalidade: ninguém é obrigado a fazer ou deixar de fazer alguma coisa senão em virtude de lei<br>
-      • <strong>IV</strong> — livre manifestação do pensamento, <strong>vedado o anonimato</strong><br>
-      • <strong>V</strong> — direito de resposta proporcional ao agravo, além da indenização por dano material, moral ou à imagem<br>
-      • <strong>IX</strong> — livre expressão da atividade intelectual, artística, científica e de comunicação, <strong>independentemente de censura ou licença</strong> (art. 220, § 2º: vedada toda censura de natureza política, ideológica e artística)<br>
-      • <strong>XIV</strong> — acesso à informação, resguardado o <strong>sigilo da fonte</strong> quando necessário ao exercício profissional
+      → <strong>II</strong> — legalidade: ninguém é obrigado a fazer ou deixar de fazer alguma coisa senão em virtude de lei<br><br>
+      → <strong>IV</strong> — livre manifestação do pensamento, <strong>vedado o anonimato</strong><br><br>
+      → <strong>V</strong> — direito de resposta proporcional ao agravo, além da indenização por dano material, moral ou à imagem<br><br>
+      → <strong>X</strong> — são <strong>invioláveis a intimidade, a vida privada, a honra e a imagem</strong>, com indenização por dano <strong>material ou moral</strong> — cabe ainda que o fato fique só no <strong>ilícito civil</strong> (sem crime) e vale para <strong>qualquer pessoa</strong>, não só famosos<br><br>
+      → <strong>IX</strong> — livre expressão da atividade intelectual, artística, científica e de comunicação, <strong>independentemente de censura ou licença</strong> (art. 220, § 2º: vedada toda censura de natureza política, ideológica e artística)<br><br>
+      → <strong>XIV</strong> — acesso à informação, resguardado o <strong>sigilo da fonte</strong> quando necessário ao exercício profissional — direito <strong>relativo</strong> (não absoluto): cede em <strong>ponderação</strong> no caso concreto
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Liberdade religiosa, de consciência e escusa de consciência (VI, VII, VIII)</div>
     <div class="card-text">
-      • <strong>VI/VII</strong> — inviolável a liberdade de consciência e de crença; livre exercício dos cultos religiosos; proteção (na forma da lei) aos <strong>locais de culto e às liturgias</strong><br>
-      • O <strong>caráter laico do Estado não impede</strong> a assistência religiosa; em unidade hospitalar, o recebimento da assistência é <strong>direito subjetivo do paciente</strong> praticante que a almeje, sem depender de regulamento ou anuência dos demais (FGV/CAGE RS)<br>
-      • Restrições a cultos presenciais coletivos na <strong>pandemia de Covid-19</strong>: <strong>constitucionais</strong> (ADPF 811/SP)<br>
-      • Imposição legal de manutenção de <strong>Bíblias em escolas e bibliotecas públicas</strong>: <strong>inconstitucional</strong> — viola a laicidade estatal e a isonomia (ADI 5258/AM)<br>
-      • <strong>VIII</strong> — ninguém será privado de direitos por motivo de <strong>convicção religiosa ou política</strong>, salvo se as invocar para eximir-se de obrigação legal a todos imposta e recusar-se a cumprir <strong>prestação alternativa fixada em lei</strong> (ou judicialmente) — quem cumpre a prestação alternativa está em harmonia com a juridicidade (FGV/PC-MG)
+      → <strong>VI/VII</strong> — inviolável a liberdade de consciência e de crença; livre exercício dos cultos religiosos; proteção (na forma da lei) aos <strong>locais de culto e às liturgias</strong><br><br>
+      → O <strong>caráter laico do Estado não impede</strong> a assistência religiosa; em unidade hospitalar, o recebimento da assistência é <strong>direito subjetivo do paciente</strong> praticante que a almeje, sem depender de regulamento ou anuência dos demais (FGV/CAGE RS)<br><br>
+      → Restrições a cultos presenciais coletivos na <strong>pandemia de Covid-19</strong>: <strong>constitucionais</strong> (ADPF 811/SP)<br><br>
+      → Imposição legal de manutenção de <strong>Bíblias em escolas e bibliotecas públicas</strong>: <strong>inconstitucional</strong> — viola a laicidade estatal e a isonomia (ADI 5258/AM)<br><br>
+      → <strong>VIII</strong> — ninguém será privado de direitos por motivo de <strong>convicção religiosa ou política</strong>, salvo se as invocar para eximir-se de obrigação legal a todos imposta e recusar-se a cumprir <strong>prestação alternativa fixada em lei</strong> (ou judicialmente) — quem cumpre a prestação alternativa está em harmonia com a juridicidade (FGV/PC-MG)
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Direito de reunião (XVI)</div>
     <div class="card-text">
-      Todos podem reunir-se pacificamente, <strong>sem armas</strong>, em locais abertos ao público, <strong>independentemente de autorização</strong>, desde que <strong>não frustrem outra reunião anteriormente convocada para o mesmo local</strong>, sendo apenas exigido <strong>prévio aviso à autoridade competente</strong>.<br><br>
-      • Aviso prévio (Tema 855, STF): satisfeito com a <strong>veiculação de informação</strong> que permita ao poder público zelar pelo caráter pacífico ou para não frustrar outra reunião — <strong>não é necessária comunicação formal e registrada</strong> à autoridade
+      Todos podem reunir-se pacificamente, <strong>sem armas</strong>, em locais abertos ao público, <strong>independentemente de autorização</strong>, desde que <strong>não frustrem outra reunião anteriormente convocada para o mesmo local</strong>, sendo apenas exigido <strong>prévio aviso à autoridade competente</strong>.<br><br><br>
+      → Aviso prévio (Tema 855, STF): satisfeito com a <strong>veiculação de informação</strong> que permita ao poder público zelar pelo caráter pacífico ou para não frustrar outra reunião — <strong>não é necessária comunicação formal e registrada</strong> à autoridade
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Liberdade de associação (XVII, XVIII, XIX, XX, XXI)</div>
     <div class="card-text">
-      • <strong>XVII</strong> — plena para fins lícitos, <strong>vedada a de caráter paramilitar</strong>; criação <strong>independe de autorização</strong> (nem sequer deveria ser requerida)<br>
-      • <strong>XIX</strong> — dissolução compulsória: <strong>decisão judicial com trânsito em julgado</strong>; suspensão das atividades: <strong>decisão judicial</strong> (sem exigência de trânsito)<br>
-      • <strong>XX</strong> — ninguém é obrigado a associar-se ou a permanecer associado<br>
-      • <strong>XXI</strong> — entidades associativas, quando <strong>expressamente autorizadas</strong>, têm legitimidade para representar seus filiados <strong>judicial ou extrajudicialmente</strong><br>
-      • <strong>Expulsão de associado</strong>: exige garantia do direito de ampla defesa, e a matéria pode ser analisada pelo STF em recurso extraordinário (FCC/TCE-CE)
+      → <strong>XVII</strong> — plena para fins lícitos, <strong>vedada a de caráter paramilitar</strong>; criação <strong>independe de autorização</strong> (nem sequer deveria ser requerida)<br><br>
+      → <strong>XIX</strong> — dissolução compulsória: <strong>decisão judicial com trânsito em julgado</strong>; suspensão das atividades: <strong>decisão judicial</strong> (sem exigência de trânsito)<br><br>
+      → <strong>XX</strong> — ninguém é obrigado a associar-se ou a permanecer associado<br><br>
+      → <strong>XXI</strong> — entidades associativas, quando <strong>expressamente autorizadas</strong>, têm legitimidade para representar seus filiados <strong>judicial ou extrajudicialmente</strong><br><br>
+      → <strong>Expulsão de associado</strong>: exige garantia do direito de ampla defesa, e a matéria pode ser analisada pelo STF em recurso extraordinário (FCC/TCE-CE)
     </div>
   </div>
 
@@ -944,12 +962,12 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     A proibição de recebimento de <strong>recursos financeiros de entidades ou governos estrangeiros</strong> restringe-se aos <strong>partidos políticos</strong> (art. 17, II, CF) — não às associações.
   </div>
 
-  <div class="card" style="border-color:var(--blue);">
-    <div class="card-title" style="color:var(--blue-light);">Liberdade profissional (XIII)</div>
+  <div class="card">
+    <div class="card-title">Liberdade profissional (XIII)</div>
     <div class="card-text">
-      • Livre o exercício de qualquer trabalho, ofício ou profissão, <strong>atendidas as qualificações profissionais que a lei estabelecer</strong><br>
-      • <strong>Ausência de lei</strong> regulamentadora → o exercício é <strong>livre</strong> (não é impeditivo)<br>
-      • Lei <strong>superveniente</strong> pode exigir qualificações: quem não as preenche <strong>não pode continuar</strong> exercendo a profissão após a vigência da lei (o exercício anterior foi lícito, mas não gera direito a permanecer sem os novos requisitos — FGV/PM-SP e FGV/TJ-SE)
+      → Livre o exercício de qualquer trabalho, ofício ou profissão, <strong>atendidas as qualificações profissionais que a lei estabelecer</strong><br><br>
+      → <strong>Ausência de lei</strong> regulamentadora → o exercício é <strong>livre</strong> (não é impeditivo)<br><br>
+      → Lei <strong>superveniente</strong> pode exigir qualificações: quem não as preenche <strong>não pode continuar</strong> exercendo a profissão após a vigência da lei (o exercício anterior foi lícito, mas não gera direito a permanecer sem os novos requisitos — FGV/PM-SP e FGV/TJ-SE)
     </div>
   </div>
 </section>
@@ -967,7 +985,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Direito de petição e certidão (XXXIV)</div>
     <div class="card-text">
-      • São a todos assegurados, <strong>independentemente do pagamento de taxas</strong>:<br>
+      → São a todos assegurados, <strong>independentemente do pagamento de taxas</strong>:<br>
       &nbsp;&nbsp;(a) o <strong>direito de petição</strong> aos Poderes Públicos em defesa de direitos ou contra ilegalidade ou abuso de poder;<br>
       &nbsp;&nbsp;(b) a <strong>obtenção de certidões</strong> em repartições públicas, para defesa de direitos e esclarecimento de situações de interesse pessoal
     </div>
@@ -980,20 +998,20 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--green);">
-    <div class="card-title" style="color:var(--green);">Garantias processuais (LIII, LIV, LV, LVII, XXXVII, XL)</div>
+  <div class="card">
+    <div class="card-title">Garantias processuais (LIII, LIV, LV, LVII, XXXVII, XL)</div>
     <div class="card-text">
-      • <strong>LIII</strong> — ninguém será processado nem sentenciado senão pela <strong>autoridade competente</strong> (juiz natural)<br>
-      • <strong>LIV</strong> — ninguém será privado da liberdade ou de seus bens sem o <strong>devido processo legal</strong><br>
-      • <strong>LV</strong> — aos litigantes, em processo judicial ou administrativo, e aos acusados em geral são assegurados o <strong>contraditório e a ampla defesa</strong>, com os meios e recursos a ela inerentes<br>
-      • <strong>LVII</strong> — <strong>presunção de inocência</strong>: ninguém será considerado culpado até o <strong>trânsito em julgado</strong> de sentença penal condenatória<br>
-      • <strong>XXXVII</strong> — não haverá <strong>juízo ou tribunal de exceção</strong><br>
-      • <strong>XL</strong> — a lei penal não retroagirá, salvo para <strong>beneficiar o réu</strong>
+      → <strong>LIII</strong> — ninguém será processado nem sentenciado senão pela <strong>autoridade competente</strong> (juiz natural)<br><br>
+      → <strong>LIV</strong> — ninguém será privado da liberdade ou de seus bens sem o <strong>devido processo legal</strong><br><br>
+      → <strong>LV</strong> — aos litigantes, em processo judicial ou administrativo, e aos acusados em geral são assegurados o <strong>contraditório e a ampla defesa</strong>, com os meios e recursos a ela inerentes<br><br>
+      → <strong>LVII</strong> — <strong>presunção de inocência</strong>: ninguém será considerado culpado até o <strong>trânsito em julgado</strong> de sentença penal condenatória<br><br>
+      → <strong>XXXVII</strong> — não haverá <strong>juízo ou tribunal de exceção</strong><br><br>
+      → <strong>XL</strong> — a lei penal não retroagirá, salvo para <strong>beneficiar o réu</strong>
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue);">
-    <div class="card-title" style="color:var(--blue-light);">Recurso administrativo sem depósito prévio</div>
+  <div class="card">
+    <div class="card-title">Recurso administrativo sem depósito prévio</div>
     <div class="card-text">
       A exigência de <strong>depósito prévio</strong> do valor da multa como condição de admissibilidade de recurso administrativo é <strong>incompatível com a CF/88</strong> — viola o devido processo legal e a ampla defesa (arts. 5º, LIV e LV), o princípio da isonomia (caput) e o direito de petição (art. 5º, XXXIV, "a").<br><br>
       Fundamentos: <strong>Súmula Vinculante 21</strong>; ADPF 156/DF; RE 389.383/SP, 388.359/PE e 390.513/SP; ADI 1.976/DF.
@@ -1003,21 +1021,21 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Súmulas e jurisprudência da ampla defesa</div>
     <div class="card-text">
-      • <strong>SV 14</strong>: é direito do defensor, no interesse do representado, ter <strong>acesso amplo aos elementos de prova</strong> já documentados em procedimento investigatório realizado por órgão com competência de polícia judiciária<br>
-      • <strong>SV 5</strong>: a falta de <strong>defesa técnica por advogado</strong> no processo administrativo disciplinar <strong>não ofende</strong> a Constituição<br>
-      • <strong>Súmula 704 STF</strong>: não viola o juiz natural, a ampla defesa e o devido processo legal a atração por <strong>continência ou conexão</strong> do processo do co-réu ao foro por prerrogativa de função de um dos denunciados<br>
-      • <strong>Compartilhamento de provas</strong> entre processos (investigação criminal → outro processo criminal ou PAD) é admitido pela jurisprudência do STF (ARE 1.189.218-AgR)<br>
-      • <strong>Prova emprestada</strong>: utilizável em processo-crime se viabilizado o contraditório durante a instrução, inclusive a oriunda de inquérito policial (HC 187.245/SP; AgRg nos EDcl no REsp 1.465.485/PR)
+      → <strong>SV 14</strong>: é direito do defensor, no interesse do representado, ter <strong>acesso amplo aos elementos de prova</strong> já documentados em procedimento investigatório realizado por órgão com competência de polícia judiciária<br><br>
+      → <strong>SV 5</strong>: a falta de <strong>defesa técnica por advogado</strong> no processo administrativo disciplinar <strong>não ofende</strong> a Constituição<br><br>
+      → <strong>Súmula 704 STF</strong>: não viola o juiz natural, a ampla defesa e o devido processo legal a atração por <strong>continência ou conexão</strong> do processo do co-réu ao foro por prerrogativa de função de um dos denunciados<br><br>
+      → <strong>Compartilhamento de provas</strong> entre processos (investigação criminal → outro processo criminal ou PAD) é admitido pela jurisprudência do STF (ARE 1.189.218-AgR)<br><br>
+      → <strong>Prova emprestada</strong>: utilizável em processo-crime se viabilizado o contraditório durante a instrução, inclusive a oriunda de inquérito policial (HC 187.245/SP; AgRg nos EDcl no REsp 1.465.485/PR)
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Interceptação telefônica (art. 2º da Lei 9.296/96)</div>
     <div class="card-text">
-      A interceptação telefônica <strong>não será admitida</strong> quando:<br>
-      • <strong>I</strong> — não houver indícios razoáveis de autoria ou participação em infração penal<br>
-      • <strong>II</strong> — a prova puder ser feita por outros meios disponíveis<br>
-      • <strong>III</strong> — o fato investigado constituir infração penal punida, no máximo, com pena de <strong>detenção</strong>
+      A interceptação telefônica <strong>não será admitida</strong> quando:<br><br>
+      → <strong>I</strong> — não houver indícios razoáveis de autoria ou participação em infração penal<br><br>
+      → <strong>II</strong> — a prova puder ser feita por outros meios disponíveis<br><br>
+      → <strong>III</strong> — o fato investigado constituir infração penal punida, no máximo, com pena de <strong>detenção</strong>
     </div>
   </div>
 
@@ -1040,47 +1058,51 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Domicílio (XI)</div>
     <div class="card-text">
-      A casa é asilo inviolável do indivíduo — ninguém nela pode penetrar <strong>sem consentimento do morador</strong>, salvo:<br>
-      • <strong>flagrante delito</strong><br>
-      • <strong>desastre</strong><br>
-      • para <strong>prestar socorro</strong><br>
-      • <strong>durante o dia, por determinação judicial</strong><br><br>
-      Ordem judicial autoriza ingresso no domicílio apenas <strong>durante o dia</strong> — à noite, sem consentimento do morador, nem com determinação judicial (FCC/DPE-AM 2018 e FCC/TRT-RJ 2016)
+      A casa é asilo inviolável do indivíduo — ninguém nela pode penetrar <strong>sem consentimento do morador</strong>, salvo:<br><br>
+      → <strong>flagrante delito</strong><br><br>
+      → <strong>desastre</strong><br><br>
+      → para <strong>prestar socorro</strong><br><br>
+      → <strong>durante o dia, por determinação judicial</strong><br><br>
+      Ordem judicial autoriza ingresso no domicílio apenas <strong class="highlight">durante o dia</strong> — à noite, sem consentimento do morador, nem com determinação judicial (FCC/DPE-AM 2018 e FCC/TRT-RJ 2016)<br><br>
+      → <strong>Casa em sentido amplo (STF)</strong> — abrange <strong>escritórios profissionais</strong> (qualquer compartimento privado não aberto ao público onde se exerce profissão), <strong>quarto de hotel</strong> e <strong>embarcações</strong><br><br>
+      → ⚠️ <strong>Dia × noite:</strong> flagrante, desastre e socorro autorizam a entrada a <strong>qualquer hora</strong> (dia ou noite); <strong>só a ordem judicial</strong> se limita ao período <strong>diurno</strong>
     </div>
   </div>
 
-  <div class="mnemonic">
-    <div class="mnemonic-label">Mnemônico — exceções à inviolabilidade do domicílio</div>
-    <div class="mnemonic-content">FDS + D → Flagrante, Desastre, Socorro ... e com ordem judicial só de Dia</div>
+  <div class="card">
+    <div class="card-title">Quando é permitido entrar no domicílio — as exceções do inciso XI</div>
+    <div class="card-text">
+      → <strong>FDS + D</strong> — <strong>Flagrante, Desastre, Socorro</strong>... e com ordem judicial <strong>só de Dia</strong>
+    </div>
   </div>
 
   <div class="card">
     <div class="card-title">Sigilo das comunicações (XII)</div>
     <div class="card-text">
-      É inviolável o sigilo da <strong>correspondência e das comunicações telegráficas, de dados e das comunicações telefônicas</strong>, salvo, no último caso (telefônica), <strong>por ordem judicial</strong>, nas hipóteses e na forma que a lei estabelecer, para fins de <strong>investigação criminal ou instrução processual penal</strong>.<br><br>
-      • <strong>Sigilo de dados</strong>: a apreensão da <strong>base física</strong> (computador) onde os dados estão armazenados não viola o sigilo — a proteção é da <strong>comunicação de dados</strong>, não dos dados em si (STF, RE 418.416/SC, Rel. Min. Sepúlveda Pertence, j. 10.05.2006)<br>
-      • <strong>Celular de preso em flagrante</strong>: é lícita a prova obtida pela verificação dos registros das <strong>últimas ligações telefônicas</strong> no aparelho (STF, HC 70.814, Rel. Min. Celso de Mello, DJ 24/06/1994)
+      É inviolável o sigilo da <strong>correspondência e das comunicações telegráficas, de dados e das comunicações telefônicas</strong>, salvo, no último caso (telefônica), <strong>por ordem judicial</strong>, nas hipóteses e na forma que a lei estabelecer, para fins de <strong>investigação criminal ou instrução processual penal</strong>.<br><br><br>
+      → <strong>Sigilo de dados</strong>: a apreensão da <strong>base física</strong> (computador) onde os dados estão armazenados não viola o sigilo — a proteção é da <strong>comunicação de dados</strong>, não dos dados em si (STF, RE 418.416/SC, Rel. Min. Sepúlveda Pertence, j. 10.05.2006)<br><br>
+      → <strong>Celular de preso em flagrante</strong>: é lícita a prova obtida pela verificação dos registros das <strong>últimas ligações telefônicas</strong> no aparelho (STF, HC 70.814, Rel. Min. Celso de Mello, DJ 24/06/1994)
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue);">
-    <div class="card-title" style="color:var(--blue-light);">Encomendas postadas nos Correios (STF, RE 1.116.949, Tema 1041, Info 1119 — 2023)</div>
+  <div class="card">
+    <div class="card-title">Encomendas postadas nos Correios (STF, RE 1.116.949, Tema 1041, Info 1119 — 2023)</div>
     <div class="card-text">
-      • É <strong>válida</strong> a abertura de <strong>encomenda postada nos Correios</strong> por funcionários da empresa, desde que haja <strong>indícios fundamentados da prática de atividade ilícita</strong>, formalizando-se as providências adotadas para permitir o controle administrativo ou judicial posterior<br>
-      • A garantia do sigilo <strong>não abarca as encomendas</strong> postadas nos Correios quando houver fortes indícios de crime — <strong>não há necessidade de autorização judicial</strong><br>
-      • Em <strong>presídios</strong>: também é válida a abertura de <strong>carta, telegrama, pacote ou meio análogo</strong> quando houver indícios fundamentados de atividades ilícitas
+      → É <strong>válida</strong> a abertura de <strong>encomenda postada nos Correios</strong> por funcionários da empresa, desde que haja <strong>indícios fundamentados da prática de atividade ilícita</strong>, formalizando-se as providências adotadas para permitir o controle administrativo ou judicial posterior<br><br>
+      → A garantia do sigilo <strong>não abarca as encomendas</strong> postadas nos Correios quando houver fortes indícios de crime — <strong>não há necessidade de autorização judicial</strong><br><br>
+      → Em <strong>presídios</strong>: também é válida a abertura de <strong>carta, telegrama, pacote ou meio análogo</strong> quando houver indícios fundamentados de atividades ilícitas
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--green);">
-    <div class="card-title" style="color:var(--green);">Sigilo bancário e fiscal — quem pode "quebrar"</div>
+  <div class="card">
+    <div class="card-title">Sigilo bancário e fiscal — quem pode "quebrar"</div>
     <div class="card-text">
-      <strong>Podem, por autoridade própria (sem autorização judicial):</strong><br>
-      • <strong>Poder Judiciário</strong><br>
-      • <strong>CPIs</strong> (federais, estaduais e distritais) — têm poderes de investigação próprios das autoridades judiciais; com decisão fundamentada podem quebrar o sigilo <strong>fiscal, bancário e de dados</strong> (inclusive dados telefônicos)<br>
-      • <strong>Administração Tributária</strong> — pode requisitar, por ato próprio, informações bancárias na forma do <strong>art. 6º da LC 105/2001</strong> (translado do dever de sigilo da esfera bancária para a fiscal)<br><br>
-      <strong>NÃO podem quebrar — precisam de autorização judicial:</strong><br>
-      • <strong>Ministério Público</strong>, <strong>Polícia Judiciária</strong> e <strong>CPIs municipais</strong><br><br>
+      <strong>Podem, por autoridade própria (sem autorização judicial):</strong><br><br>
+      → <strong>Poder Judiciário</strong><br><br>
+      → <strong>CPIs</strong> (federais, estaduais e distritais) — têm poderes de investigação próprios das autoridades judiciais; com decisão fundamentada podem quebrar o sigilo <strong>fiscal, bancário e de dados</strong> (inclusive dados telefônicos)<br><br>
+      → <strong>Administração Tributária</strong> — pode requisitar, por ato próprio, informações bancárias na forma do <strong>art. 6º da LC 105/2001</strong> (translado do dever de sigilo da esfera bancária para a fiscal)<br><br>
+      <strong>NÃO podem quebrar — precisam de autorização judicial:</strong><br><br>
+      → <strong>Ministério Público</strong>, <strong>Polícia Judiciária</strong> e <strong>CPIs municipais</strong><br><br>
       <strong>Contas públicas (exceção):</strong> o sigilo é relativizado quando há interesse da sociedade em conhecer o destino dos recursos públicos — o STF admite o conhecimento direto de informações pelo <strong>TCU (MS 33.340)</strong> e pelo <strong>Ministério Público (RHC 133.118)</strong>
     </div>
   </div>
@@ -1097,10 +1119,13 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">propriedade, direitos autorais, herança, extradição e trabalho</div>
 
   <div class="card">
-    <div class="card-title">Direito de propriedade (XXII, XXV, XXVI)</div>
+    <div class="card-title">Direito de propriedade (XXII, XXIII, XXIV, XXV, XXVI)</div>
     <div class="card-text">
-      • <strong>XXV</strong> — <strong>requisição administrativa</strong>: no caso de iminente perigo público, a autoridade competente poderá usar de propriedade particular, assegurada ao proprietário indenização <strong>ulterior</strong>, se houver dano (intervenção <strong>branda</strong> do Estado — FGV/CAGE RS)<br>
-      • <strong>XXVI</strong> — a <strong>pequena propriedade rural</strong> trabalhada pela família é <strong>impenhorável</strong> para pagamento de débitos decorrentes de sua <strong>atividade produtiva</strong><br>
+      → <strong>XXII</strong> — é garantido o <strong>direito de propriedade</strong> — mas não é <strong>absoluto nem irrestrito</strong><br><br>
+      → <strong>XXIII</strong> — a propriedade <strong>atenderá à sua função social</strong>: norma de <strong>eficácia plena</strong>, que independe de lei ou decreto; vale para imóveis <strong>urbanos e rurais</strong><br><br>
+      → <strong>XXIV</strong> — <strong>desapropriação</strong> por necessidade ou utilidade pública, ou por interesse social, mediante <strong>justa e prévia indenização em dinheiro</strong> — ressalvados os casos previstos na CF<br><br>
+      → <strong>XXV</strong> — <strong>requisição administrativa</strong>: no caso de iminente perigo público, a autoridade competente poderá usar de propriedade particular, assegurada ao proprietário indenização <strong>ulterior</strong>, se houver dano (intervenção <strong>branda</strong> do Estado — FGV/CAGE RS)<br><br>
+      → <strong>XXVI</strong> — a <strong>pequena propriedade rural</strong> trabalhada pela família é <strong>impenhorável</strong> para pagamento de débitos decorrentes de sua <strong>atividade produtiva</strong><br>
       &nbsp;&nbsp;→ A penhora <strong>não é possível</strong> considerando a natureza e a dimensão da propriedade e a mão de obra utilizada (familiar), ainda que haja comercialização do excedente (FGV/TJ-AP)<br>
       &nbsp;&nbsp;→ A ordem de penhora não autoriza o ingresso do oficial de justiça no imóvel <strong>à noite</strong> sem consentimento do morador (FCC/DPE-AM)
     </div>
@@ -1109,27 +1134,27 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">Direitos autorais, herança e sucessão de estrangeiro (XXVII, XXVIII, XXX, XXXI)</div>
     <div class="card-text">
-      • <strong>XXVII</strong> — aos autores pertence o <strong>direito exclusivo</strong> de utilização, publicação ou reprodução de suas obras, <strong>transmissível aos herdeiros</strong> pelo tempo que a lei fixar<br>
-      • <strong>XXVIII</strong> — proteção às <strong>participações individuais em obras coletivas</strong> e à <strong>reprodução da imagem e voz humanas</strong><br>
-      • <strong>XXX</strong> — garantido o <strong>direito de herança</strong>; a proteção também alcança a sucessão de bens de estrangeiros<br>
-      • <strong>XXXI</strong> — a sucessão de bens de estrangeiros situados no País será regulada pela <strong>lei brasileira em benefício do cônjuge ou dos filhos brasileiros</strong>, <strong>sempre que não lhes seja mais favorável a lei pessoal do "de cujus"</strong> — aplica-se a lei <strong>mais benéfica</strong> ao cônjuge e aos filhos brasileiros (FCC/TRT 14ª Região 2018)
+      → <strong>XXVII</strong> — aos autores pertence o <strong>direito exclusivo</strong> de utilização, publicação ou reprodução de suas obras, <strong>transmissível aos herdeiros</strong> pelo tempo que a lei fixar<br><br>
+      → <strong>XXVIII</strong> — proteção às <strong>participações individuais em obras coletivas</strong> e à <strong>reprodução da imagem e voz humanas</strong><br><br>
+      → <strong>XXX</strong> — garantido o <strong>direito de herança</strong>; a proteção também alcança a sucessão de bens de estrangeiros<br><br>
+      → <strong>XXXI</strong> — a sucessão de bens de estrangeiros situados no País será regulada pela <strong>lei brasileira em benefício do cônjuge ou dos filhos brasileiros</strong>, <strong>sempre que não lhes seja mais favorável a lei pessoal do "de cujus"</strong> — aplica-se a lei <strong class="highlight">mais benéfica</strong> ao cônjuge e aos filhos brasileiros (FCC/TRT 14ª Região 2018)
     </div>
   </div>
 
-  <div class="card" style="border-color:var(--blue);">
-    <div class="card-title" style="color:var(--blue-light);">Extradição (LI e LII)</div>
+  <div class="card">
+    <div class="card-title">Extradição (LI e LII)</div>
     <div class="card-text">
-      • <strong>LI</strong> — <strong>nenhum brasileiro será extraditado</strong>, salvo o <strong>naturalizado</strong> em caso de <strong>crime comum praticado antes da naturalização</strong> ou de <strong>comprovado envolvimento em tráfico ilícito de entorpecentes e drogas afins</strong>, na forma da lei<br>
-      • <strong>LII</strong> — não será concedida extradição de <strong>estrangeiro por crime político ou de opinião</strong>
+      → <strong>LI</strong> — <strong>nenhum brasileiro será extraditado</strong>, salvo o <strong>naturalizado</strong> em caso de <strong>crime comum praticado antes da naturalização</strong> ou de <strong>comprovado envolvimento em tráfico ilícito de entorpecentes e drogas afins</strong>, na forma da lei<br><br>
+      → <strong>LII</strong> — não será concedida extradição de <strong>estrangeiro por crime político ou de opinião</strong>
     </div>
   </div>
 
   <div class="card">
     <div class="card-title">Trabalho (menores, presos e trabalho escravo)</div>
     <div class="card-text">
-      • <strong>Menores</strong> (art. 7º, XXXIII): proibido o trabalho para <strong>menores de 16 anos</strong>, salvo na condição de <strong>aprendiz</strong> (permitido a partir de 14 anos)<br>
-      • <strong>Trabalho dos presos</strong> (ADPF 336): a garantia do <strong>salário mínimo não se aplica</strong> à remuneração do trabalho dos presos — o preso não está sujeito ao regime celetista; é remunerado por tabela, em valor <strong>não inferior a 3/4 do salário mínimo</strong> (arts. 28, § 2º, e 29 da LEP); o trabalho do condenado é <strong>dever</strong>, obrigatório na medida de suas aptidões, com finalidades educativa e produtiva<br>
-      • <strong>Trabalho escravo</strong> (Inq. 3412): não se exige a coação física da liberdade de locomoção — basta a submissão a <strong>trabalhos forçados, jornada exaustiva ou condições degradantes</strong> (art. 149 do CP)
+      → <strong>Menores</strong> (art. 7º, XXXIII): proibido o trabalho para <strong>menores de 16 anos</strong>, salvo na condição de <strong>aprendiz</strong> (permitido a partir de 14 anos)<br><br>
+      → <strong>Trabalho dos presos</strong> (ADPF 336): a garantia do <strong>salário mínimo não se aplica</strong> à remuneração do trabalho dos presos — o preso não está sujeito ao regime celetista; é remunerado por tabela, em valor <strong>não inferior a 3/4 do salário mínimo</strong> (arts. 28, § 2º, e 29 da LEP); o trabalho do condenado é <strong>dever</strong>, obrigatório na medida de suas aptidões, com finalidades educativa e produtiva<br><br>
+      → <strong>Trabalho escravo</strong> (Inq. 3412): não se exige a coação física da liberdade de locomoção — basta a submissão a <strong>trabalhos forçados, jornada exaustiva ou condições degradantes</strong> (art. 149 do CP)
     </div>
   </div>
 </section>
@@ -1145,18 +1170,18 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">Síntese das pegadinhas recorrentes de FCC e FGV nesta aula</div>
 
   <div class="card">
-    <div class="card-title">🧩 Pegadinhas frequentes</div>
+    <div class="card-title">Pegadinhas frequentes — o que mais derruba</div>
     <div class="card-text">
-      • Domicílio: ordem judicial só <strong>durante o dia</strong>; à noite, sem consentimento, nunca (nem para cumprir mandado de penhora)<br>
-      • Sigilo: a exceção do XII é <strong>só telefônica</strong> e por ordem judicial; encomenda postada nos Correios <strong>não</strong> é protegida pelo sigilo<br>
-      • Sigilo bancário: <strong>MP, Polícia e CPI municipal</strong> não quebram sem autorização judicial; CPI federal/estadual/distrital e fisco podem<br>
-      • Associação: criação <strong>independe de autorização</strong>; dissolução exige <strong>trânsito em julgado</strong>, suspensão exige só <strong>decisão judicial</strong>; vedada a de caráter paramilitar<br>
-      • Reunião: exige <strong>aviso prévio</strong> (não autorização) e <strong>não pode frustrar reunião anterior</strong> convocada para o mesmo local<br>
-      • Recurso administrativo: <strong>não pode exigir depósito prévio</strong> (SV 21)<br>
-      • Extradição: brasileiro <strong>nato nunca</strong>; naturalizado só em <strong>crime comum anterior à naturalização</strong> ou <strong>tráfico de drogas</strong>; estrangeiro <strong>nunca</strong> por crime político ou de opinião<br>
-      • Sucessão de estrangeiro: aplica-se a lei <strong>mais benéfica</strong> ao cônjuge/filhos brasileiros (não é sempre a lei brasileira)<br>
-      • Igualdade: STF adota concepção <strong>material</strong>; ações afirmativas não constroem igualdade formal<br>
-      • Escusa de consciência: privado de direitos só se recusar a cumprir a <strong>prestação alternativa</strong> fixada em lei
+      → Domicílio: ordem judicial só <strong class="highlight">durante o dia</strong>; à noite, sem consentimento, nunca (nem para cumprir mandado de penhora)<br><br>
+      → Sigilo: a exceção do XII é <strong>só telefônica</strong> e por ordem judicial; encomenda postada nos Correios <strong>não</strong> é protegida pelo sigilo<br><br>
+      → Sigilo bancário: <strong>MP, Polícia e CPI municipal</strong> não quebram sem autorização judicial; CPI federal/estadual/distrital e fisco podem<br><br>
+      → Associação: criação <strong>independe de autorização</strong>; dissolução exige <strong>trânsito em julgado</strong>, suspensão exige só <strong>decisão judicial</strong>; vedada a de caráter paramilitar<br><br>
+      → Reunião: exige <strong>aviso prévio</strong> (não autorização) e <strong>não pode frustrar reunião anterior</strong> convocada para o mesmo local<br><br>
+      → Recurso administrativo: <strong class="highlight">não pode exigir depósito prévio</strong> (SV 21)<br><br>
+      → Extradição: brasileiro <strong>nato nunca</strong>; naturalizado só em <strong>crime comum anterior à naturalização</strong> ou <strong>tráfico de drogas</strong>; estrangeiro <strong>nunca</strong> por crime político ou de opinião<br><br>
+      → Sucessão de estrangeiro: aplica-se a lei <strong class="highlight">mais benéfica</strong> ao cônjuge/filhos brasileiros (não é sempre a lei brasileira)<br><br>
+      → Igualdade: STF adota concepção <strong>material</strong>; ações afirmativas não constroem igualdade formal<br><br>
+      → Escusa de consciência: privado de direitos só se recusar a cumprir a <strong>prestação alternativa</strong> fixada em lei
     </div>
   </div>
 
@@ -1228,7 +1253,12 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="card">
     <div class="card-title">📊 Contador de temas</div>
     <div class="card-text">
-      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 1 — Estrutura e aplicabilidade dos direitos fundamentais: 10</span><br>
+      <span class="tag tag-red">Seção 2 — Direitos à vida, igualdade e liberdade: 4</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 4 — Inviolabilidades: 2</span><br>
+      <span class="tag">Seção 5 — Outros direitos e deveres do art. 5º cobertos pelas fontes: 1</span><br>
     </div>
   </div>
 </section>
@@ -1249,6 +1279,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
   <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
   <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
   <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
 </div>
 <script>
@@ -1510,5 +1541,104 @@ mark.sr-first {
   run(false);
 })();
 </script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": 2, "tema": "Direitos e Deveres (art. 5º)", "questoes": [{"q": "A dimensão objetiva dos direitos fundamentais corresponde:", "opts": [{"t": "À possibilidade de serem exigidos judicialmente pelo titular.", "why": "Isso é a dimensão SUBJETIVA (direitos exigíveis do Estado)."}, {"t": "Ao impacto que produzem no ordenamento como um todo, como princípios estruturantes de eficácia irradiante.", "ok": true, "why": "Objetiva = valores que irradiam por todo o sistema normativo."}, {"t": "À aplicação exclusiva nas relações entre particulares.", "why": "Relações entre particulares = eficácia horizontal, tema distinto."}, {"t": "Ao rol taxativo do art. 5º, sem abertura a outros direitos.", "why": "O rol é EXEMPLIFICATIVO (§ 2º, cláusula de abertura)."}]}, {"q": "Reserva legal simples e qualificada distinguem-se porque:", "opts": [{"t": "A simples dispensa lei formal e a qualificada exige decreto.", "why": "Ambas exigem LEI formal; a diferença está no conteúdo definido ou não."}, {"t": "A simples exige lei sem definir conteúdo/finalidade e a qualificada já define conteúdo e finalidade.", "ok": true, "why": "Simples = ampla liberdade (ex.: assistência religiosa, VII); qualificada = conteúdo e finalidade prévios."}, {"t": "A qualificada vale só para direitos sociais e a simples, para individuais.", "why": "A distinção é sobre o grau de definição do conteúdo, não sobre a espécie de direito."}, {"t": "São sinônimos, usados conforme a banca.", "why": "Conceitos distintos e cobrados exatamente pela diferença."}]}, {"q": "Sobre o direito de propriedade (art. 5º, XXII a XXIV), é correto:", "opts": [{"t": "É absoluto e não admite qualquer intervenção estatal.", "why": "Não é absoluto nem irrestrito: submete-se à função social e à desapropriação."}, {"t": "Só pode ser desapropriado por interesse social, nunca por necessidade pública.", "why": "Admite as três: necessidade pública, utilidade pública OU interesse social."}, {"t": "É garantido, mas atenderá à função social; a desapropriação exige justa e prévia indenização em dinheiro, ressalvados os casos da CF.", "ok": true, "why": "XXII (garantia) + XXIII (função social, eficácia plena) + XXIV (desapropriação indenizada)."}, {"t": "A função social só vale para imóveis rurais.", "why": "Vale para urbanos e rurais, sem depender de lei ou decreto."}]}, {"q": "O conceito de 'casa' (art. 5º, XI) para o STF:", "opts": [{"t": "Abrange só a residência, excluindo locais de trabalho.", "why": "É abrangente: alcança escritórios e qualquer compartimento privado de profissão."}, {"t": "É abrangente: escritórios profissionais, quarto de hotel e embarcações, se compartimento privado.", "ok": true, "why": "Casa = qualquer compartimento privado não aberto ao público onde se exerce profissão ou se habita."}, {"t": "Exclui barracos em áreas públicas, por serem irregulares.", "why": "Ao contrário: barracos habitados SÃO casa (protegem os mais pobres do arbítrio)."}, {"t": "Permite ingresso noturno com ordem judicial.", "why": "Ordem judicial só de DIA; à noite, sem consentimento, nunca."}]}, {"q": "Sobre reunião (art. 5º, XVI) e o Tema 855, é correto:", "opts": [{"t": "Exige autorização prévia do poder público.", "why": "É INDEPENDENTE de autorização; exige só AVISO prévio."}, {"t": "O aviso prévio se satisfaz com veiculação de informação, sem comunicação formal; não pode frustrar reunião anterior.", "ok": true, "why": "Tema 855: basta informar para o poder zelar pelo caráter pacífico; sem frustrar a anterior."}, {"t": "Só vale para locais fechados, nunca em abertos ao público.", "why": "Invertido: vale para LOCAIS ABERTOS ao público, pacificamente e sem armas."}, {"t": "Permite frustrar reunião anterior se for maior.", "why": "Não pode frustrar reunião anteriormente convocada para o mesmo local."}]}, {"q": "O caput do art. 5º garante inviolabilidade do direito à:", "opts": [{"t": "Vida, liberdade, igualdade, segurança e propriedade.", "ok": true, "why": "O quinteto literal do caput; saúde, educação e moradia são do art. 6º (sociais)."}, {"t": "Saúde, educação, alimentação e moradia.", "why": "Esses são direitos SOCIAIS (art. 6º), não do caput do art. 5º."}, {"t": "Vida, trabalho, igualdade, segurança e propriedade.", "why": "Troca 'liberdade' por 'trabalho': o caput traz LIBERDADE."}, {"t": "Honra, imagem, intimidade e vida privada.", "why": "Esses são do inciso X, não do caput."}]}, {"q": "Relatividade dos direitos fundamentais significa:", "opts": [{"t": "Que podem ser renunciados livremente pelo titular.", "why": "São IRRENUNCIÁVEIS: pode-se não exercer, mas não renunciar."}, {"t": "Que nenhum é absoluto e, em colisão, relativiza-se um pelo outro via ponderação.", "ok": true, "why": "Relatividade/limitabilidade: sem hierarquia, cede-se por ponderação sem anular o preterido."}, {"t": "Que valem só para brasileiros natos.", "why": "Valem para todos no território (universalidade); basta estar no Brasil."}, {"t": "Que são prescritíveis com o tempo.", "why": "São IMPRESCRITÍVEIS: não perdem validade com o tempo."}]}, {"q": "Igualdade formal e material distinguem-se porque:", "opts": [{"t": "A formal admite cotas e a material as proíbe.", "why": "Invertido: cotas e ações afirmativas constroem a MATERIAL."}, {"t": "A formal é 'todos iguais perante a lei' e a material se concretiza em ações afirmativas como cotas.", "ok": true, "why": "Formal = perante a lei; material = igualdade de oportunidades (cotas raciais, Maria da Penha)."}, {"t": "A material proíbe qualquer tratamento diferenciado.", "why": "A material EXIGE tratar desigualmente os desiguais (cotas, reserva a negros)."}, {"t": "Só a formal é adotada pelo STF.", "why": "O STF adota a MATERIAL (cotas, ADC 19)."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
 </body>
 </html>
+
