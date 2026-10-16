@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Arquivologia Aula 9: Gestao de Arquivo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #92400e;
+  --mat-strong: #7c2d12;
+  --mat-soft: #f4e9df;
+  --mat-line: #e5cfc0;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: left;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(146,64,14,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #dfa787; --mat-strong: #f0c9b0; --mat-soft: #2b2018; --mat-line: #5b4230;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<aside class="sidebar">
+  <div class="sidebar-title">Arquivologia — Aula 9</div>
+  <div class="sidebar-sub">Gestao de Arquivo Digital · Estratégia Concursos</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Documento eletrônico × documento digital</a>
+  <a href="#sec2">2. Digitalização e o valor probatório do digitalizado</a>
+  <a href="#sec3">3. Decreto 10.278/2020 — o regulamento da digitalização</a>
+  <a href="#sec4">4. GED × SIGAD — compartimentado × orgânico</a>
+  <a href="#sec5">5. e-ARQ Brasil — a especificação dos requisitos</a>
+  <a href="#sec6">6. Procedimentos e operações técnicas do SIGAD</a>
+  <a href="#sec7">7. RDC-Arq e o modelo OAIS</a>
+  <a href="#sec8">8. ICP-Brasil e os 3 níveis de assinatura eletrônica</a>
+  <a href="#sec9">9. Governo Digital — Lei 14.129/2021</a>
+  <a href="#sec10">10. Microfilmagem — a tecnologia anterior com força de lei</a>
+  <a href="#sec11">11. Terminologia DBTA do mundo digital</a>
+  <a href="#sec12">12. Pontos que mais caem em prova</a>
+  <a href="#sec13">13. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-09-gestao-de-arquivo-digital.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fonte: Aula Completa + Aula Simplificada<br>
+    Estratégia Concursos · Prof. Ricardo Campanario
+  </div>
+</aside>
+
+<div class="main">
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — DOCUMENTO ELETRÔNICO × DIGITAL                      -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Documento eletrônico × documento digital</div>
+  </div>
+  <div class="sec-subtitle">O gênero e a espécie digital — e os 3 componentes que o documento comum não tem</div>
+
+  <div class="card">
+    <div class="card-title">As definições que a banca troca — DBTA e CTDE lado a lado</div>
+    <div class="card-text">
+      → <strong>Documento eletrônico (DBTA)</strong> — <strong>gênero documental</strong> integrado por documentos em <strong>meio eletrônico</strong> ou só acessíveis por equipamentos eletrônicos, como cartões perfurados, disquetes e documentos digitais<br>
+      → <strong>Documento digital (DBTA)</strong> — documento <strong>codificado em dígitos binários</strong>, acessível por meio de sistema computacional<br>
+      → <strong>Relação entre os dois</strong> — o digital <span class="highlight">faz parte do gênero eletrônico</span>, ao lado de disquetes e cartões perfurados; eletrônico é o gênero, digital é um dos seus integrantes<br>
+      → <strong>Documento arquivístico digital (CTDE)</strong> — documento digital <strong>tratado e gerenciado como arquivístico</strong>, ou seja, incorporado ao sistema de arquivos; sem essa incorporação, é só potencialmente arquivístico<br>
+      → <strong>Documento arquivístico convencional (CTDE)</strong> — documento arquivístico <strong>não digital</strong>, em qualquer outro suporte
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Por que o documento digital tem 3 componentes — e o comum só 2?</div>
+    <div class="card-text">
+      → <strong>Informação</strong> — conjunto de <strong>bits registrados digitalmente</strong> em um suporte; pode ser registrada, acessada e trabalhada por hardware e software de forma integrada<br>
+      → <strong>Hardware</strong> — elementos físicos que permitem a <strong>gravação e o acesso</strong> às informações do suporte — o suporte <strong>não</strong> é parte do hardware<br>
+      → <strong>Software</strong> — sistema que, com base nas capacidades do hardware, permite <strong>registro, recuperação e utilização</strong> das informações — as informações <strong>não</strong> são parte do software<br><br>
+      → <strong>Nato-digital × digitalizado</strong> — nato-digital já <strong>nasce em suporte eletrônico e código binário</strong>, na forma original; digitalizado nasce em outro suporte (papel, filme) e depois é <strong>reproduzido e inserido</strong> no computador<br>
+      → <strong>Manifestado × armazenado</strong> — fotografia digital e planilha são documentos <strong>manifestados</strong> (forma fixa: a apresentação não muda a cada acesso); base de dados é documento <strong>armazenado</strong> (alterável a cada manifestação)
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Vantagens do digital</th><th>Desvantagens do digital</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Economia de espaço</strong> físico</td><td><strong>Fragilidade do suporte</strong> — degradação física</td></tr>
+        <tr><td><strong>Ganho de produtividade</strong></td><td><strong>Obsolescência rápida</strong> de hardware, software e formatos</td></tr>
+        <tr><td><strong>Otimização dos fluxos</strong> de trabalho</td><td><strong>Integridade difícil</strong> de garantir — acesso facilitado demais</td></tr>
+        <tr><td><strong>Acesso fácil</strong> aos estoques de informação</td><td><strong>Preservação complexa e cara</strong></td></tr>
+        <tr><td><strong>Geração e distribuição</strong> facilitadas</td><td><strong>Dependência social</strong> do digital como fonte de prova</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — DIGITALIZAÇÃO E VALOR PROBATÓRIO                     -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Digitalização e o valor probatório do digitalizado</div>
+  </div>
+  <div class="sec-subtitle">O que mudou em 2019: de cópia sem valor a prova com força de original</div>
+
+  <div class="card">
+    <div class="card-title">O conceito e as exigências de todo processo de digitalização</div>
+    <div class="card-text">
+      → <strong>Digitalização (DBTA)</strong> — "processo de <strong>conversão de um documento para o formato digital</strong> por meio de dispositivo apropriado, como um escâner"; a Lei 12.682/2012 diz o mesmo: conversão da <strong>fiel imagem</strong> para código digital<br>
+      → <strong>Tríade obrigatória</strong> — todo processo deve preservar <strong>integridade, autenticidade</strong> e, quando necessária, <strong>confidencialidade</strong>, com <strong>certificado digital ICP-Brasil</strong>; o armazenamento deve blindar contra acesso, uso, alteração, reprodução e destruição não autorizados<br>
+      → <strong>Indexação é obrigatória</strong> — quem armazena em meio eletrônico deve adotar <strong>sistema de indexação</strong> que permita localização precisa e conferência das etapas; a indexação parte da organização já dada aos originais (plano de classificação e tabela de temporalidade)<br>
+      → <strong>Preparação do físico</strong> — <strong>higienização</strong> sempre antes (sujeira derruba a qualidade da captura) + <strong>verificação de folhas soltas</strong> (garante reprodução integral); em avulsos e encadernados soma-se <strong>consolidação do suporte, planificação e retirada de grampos</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">A virada de 2019 — Lei 13.874 × Lei 12.682, art. 2º-A</div>
+    <div class="card-text">
+      → <strong>Antes de 2019</strong> — o digitalizado <strong>não substituía o original</strong> quanto ao valor legal; era mera cópia de conveniência<br>
+      → <strong>Depois da Lei 13.874/2019</strong> — o art. 2º-A da Lei 12.682/2012 autoriza o armazenamento eletrônico e declara: o digital e sua reprodução têm o <span class="highlight">mesmo valor probatório do original, para todos os fins de direito</span>, inclusive o poder fiscalizatório do Estado<br>
+      → <strong>Destruição do original</strong> — constatada a integridade do digital, o original <strong>pode ser destruído</strong>, ressalvados os de <strong>valor histórico</strong> (preservação pela legislação específica)<br>
+      → <strong>Eliminação do digital</strong> — decorridos os prazos de <strong>decadência ou prescrição</strong>, os armazenados em meio eletrônico podem ser eliminados<br>
+      → <strong>Equivalência com microfilme</strong> — os digitalizados conforme a lei têm o <strong>mesmo efeito jurídico dos microfilmados</strong> (Lei 5.433/1968)
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — o permanente nunca sai de cena</div>
+    Documentos de <strong>valor permanente não podem ter o original eliminado em nenhuma hipótese</strong>, mesmo digitalizados — digitaliza-se para produzir, tramitar e dar acesso ao representante digital, mas o <strong>original fica</strong>. E antes de digitalizar qualquer conjunto, ele passa pela <strong>avaliação</strong>: digitalizar documento que será eliminado em breve é desperdício.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — DECRETO 10.278/2020                                  -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Decreto 10.278/2020 — o regulamento da digitalização</div>
+  </div>
+  <div class="sec-subtitle">Quando o digitalizado vale como original: requisitos, dpi e descarte</div>
+
+  <div class="card">
+    <div class="card-title">Alcance do decreto — o que entra e o que fica de fora</div>
+    <div class="card-text">
+      → <strong>Objeto (art. 1º)</strong> — técnica e requisitos para que o digitalizado produza os <strong>mesmos efeitos legais dos originais</strong><br>
+      → <strong>Aplica-se a</strong> — físicos digitalizados de <strong>pessoas jurídicas de direito público interno</strong> (mesmo com particulares) e de <strong>privados ou pessoas naturais</strong> para comprovação perante o poder público ou outros privados<br>
+      → <strong>Não se aplica a</strong> — nato-digitais; operações do <strong>sistema financeiro nacional</strong>; microfilmes; audiovisuais; documentos de <strong>identificação</strong>; documentos de <strong>porte obrigatório</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Requisitos técnicos — o número que cai em prova</div>
+    <div class="card-text">
+      → <strong>Perante ente público (art. 5º)</strong> — assinatura digital com <strong>certificação ICP-Brasil</strong> (autoria + integridade) + <strong>padrões mínimos do Anexo I</strong> + <strong>metadados mínimos do Anexo II</strong><br>
+      → <strong>Entre particulares (art. 6º)</strong> — vale qualquer meio de comprovação de autoria e integridade <strong>de comum acordo</strong>; sem acordo prévio, aplicam-se as regras do art. 5º<br>
+      → <strong>Resolução mínima</strong> — <span class="highlight">300 dpi para todos os documentos; 600 dpi só para plantas e mapas</span><br>
+      → <strong>Digitalização inviável</strong> — grande volume, tamanho, formato ou ilegibilidade: o físico <strong>permanece na unidade</strong>, com certidão padronizada no processo eletrônico e <strong>amplo acesso ao conteúdo</strong> garantido
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Avaliação antes, descarte depois, preservação até o prazo</div>
+    <div class="card-text">
+      → <strong>Avaliação prévia (art. 7º)</strong> — a digitalização pelo poder público é <strong>precedida da avaliação</strong> pelas tabelas de temporalidade, para mandar ao descarte o que já pode sair<br>
+      → <strong>Descarte do físico (art. 9º)</strong> — concluída a digitalização conforme o decreto, o físico <strong>pode ser descartado</strong>, ressalvado o de <strong>valor histórico</strong><br>
+      → <strong>Preservação mínima (art. 11)</strong> — digitalizados sem valor histórico ficam preservados ao menos até o transcurso da <strong>prescrição ou decadência</strong> dos direitos a que se referem<br>
+      → <strong>Entes públicos (art. 12)</strong> — observam a <strong>Lei 8.159/1991</strong>, as tabelas aprovadas pelas instituições arquivísticas e as diretrizes do <strong>Conarq</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — GED × SIGAD                                          -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">GED × SIGAD — compartimentado × orgânico</div>
+  </div>
+  <div class="sec-subtitle">A informação solta de um lado, o ciclo de vida completo do outro</div>
+
+  <div class="card">
+    <div class="card-title">GED — a fábrica da informação não estruturada</div>
+    <div class="card-text">
+      → <strong>Definição</strong> — conjunto de tecnologias para organizar a <strong>informação não estruturada</strong> (a que <strong>não</strong> está em banco de dados: e-mails, textos, imagens, sons, planilhas), nas funcionalidades <strong>captura, gerenciamento, armazenamento e distribuição</strong><br>
+      → <strong>GDE × GED</strong> — GDE (documentos eletrônicos) gerencia os <strong>nato-digitais</strong> com metadados, controle de versão, autoria declarada e trilhas; é criação, uso e trâmite por ferramentas digitais<br>
+      → <strong>Limite do GED</strong> — trata os documentos de maneira <strong>compartimentada</strong> e nem sempre incorpora o <strong>ciclo de vida</strong> arquivístico
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">SIGAD — o sistema com concepção arquivística</div>
+    <div class="card-text">
+      → <strong>Definição (e-ARQ)</strong> — conjunto de <strong>procedimentos e operações técnicas</strong> do sistema de gestão arquivística, <strong>processado por computador</strong> (software próprio, integrados, sob encomenda ou combinados)<br>
+      → <strong>Pré-requisito</strong> — o sucesso do SIGAD depende da <strong>implementação prévia de um programa de gestão arquivística</strong><br>
+      → <strong>CAIR</strong> — os requisitos que identificam um SIGAD são <strong>captura, armazenamento, indexação e recuperação</strong><br>
+      → <strong>Híbrido por natureza</strong> — gerencia digitais e convencionais ao mesmo tempo: dos convencionais registra <strong>apenas referências</strong>; dos digitais faz <strong>captura, armazenamento e acesso</strong><br>
+      → <strong>Só nas duas primeiras idades</strong> — a gestão arquivística ocorre em fase <strong>corrente e intermediária</strong>; o SIGAD <strong>não</strong> alcança a permanente<br>
+      → <strong>Garantias</strong> — mantém a <strong>relação orgânica</strong> e assegura <strong>confiabilidade, autenticidade e acesso ao longo do tempo</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — o resumo de uma linha</div>
+    <strong>SIGAD: política temporal e orgânica. GED: política arquivística compartimentada.</strong> O SIGAD nasce de uma <strong>política arquivística</strong> implantada no órgão; o GED, sozinho, não carrega essa concepção. E atenção: informatizar <strong>descentraliza o protocolo</strong> — com o eletrônico, a gestão centralizada do protocolo vira desnecessária.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — E-ARQ BRASIL                                         -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">e-ARQ Brasil — a especificação dos requisitos</div>
+  </div>
+  <div class="sec-subtitle">Versão 2 em vigor, O/AD/F na exigibilidade e funcionais × não funcionais</div>
+
+  <div class="card">
+    <div class="card-title">Base normativa — qual resolução vale hoje</div>
+    <div class="card-text">
+      → <strong>Resolução Conarq 50/2022</strong> — estabelece o e-ARQ <strong>Versão 2</strong>, em vigor desde <strong>16/05/2022</strong>; revogou as Resoluções <strong>25/2007 e 32/2010</strong><br>
+      → <strong>O que o e-ARQ é</strong> — especificação de <strong>requisitos</strong> a cumprir pela organização, pelo sistema e pelos documentos, para garantir <strong>confiabilidade, autenticidade e acessibilidade</strong> — independentemente da plataforma tecnológica<br>
+      → <strong>Objeto e limite</strong> — o objeto é o <strong>documento arquivístico digital</strong>, mas o e-ARQ <strong>não trata de digitalização</strong>; aplica-se a sistemas <strong>só-digitais e híbridos</strong><br>
+      → <strong>Estrutura em 2 partes</strong> — Parte I: <strong>gestão arquivística</strong> (arcabouço do programa); Parte II: <strong>requisitos do sistema</strong> informatizado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Graus de exigibilidade — O, AD e F</div>
+    <div class="card-text">
+      → <strong>O = obrigatório</strong> — "o SIGAD <strong>tem que</strong>...": requisito imprescindível<br>
+      → <strong>AD = altamente desejável</strong> — "o SIGAD <strong>deve</strong>...": pode ser ignorado por razões válidas, mas examinando todas as implicações<br>
+      → <strong>F = facultativo</strong> — "o SIGAD <strong>pode</strong>...": opcional<br>
+      → <strong>Exemplo cobrado</strong> — manter a associação entre <strong>tabela de temporalidade e plano de classificação</strong> é requisito <strong>obrigatório</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Funcionais × não funcionais — a divisão que decide questão</div>
+    <div class="card-text">
+      → <strong>Funcionais</strong> — o que o sistema faz <strong>sob o ponto de vista do usuário</strong>: organização, <strong>captura, avaliação/destinação</strong>, recuperação, elaboração, tramitação, <strong>segurança e preservação</strong><br>
+      → <strong>Não funcionais</strong> — condições de implementação (contextos jurídico, administrativo e tecnológico): <strong>armazenamento</strong>, funções administrativas, conformidade legal, usabilidade, interoperabilidade, disponibilidade, desempenho e escalabilidade<br><br>
+      → <strong>Regra de ouro:</strong> <span class="highlight">armazenamento é NÃO funcional</span>; captura, avaliação, segurança e preservação são <strong>funcionais</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — PROCEDIMENTOS TÉCNICOS                               -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Procedimentos e operações técnicas do SIGAD</div>
+  </div>
+  <div class="sec-subtitle">Da captura à preservação: o que cada operação garante</div>
+
+  <div class="card">
+    <div class="card-title">Captura — declarar o documento como arquivístico</div>
+    <div class="card-text">
+      → <strong>As 5 ações</strong> — <strong>registro, classificação, indexação, restrição de acesso e arquivamento</strong>; objetivos: identificar o documento como arquivístico e demonstrar a <strong>relação orgânica</strong><br>
+      → <strong>Captura ≠ digitalização</strong> — equiparar captura à conversão físico→digital é atribuir a ela o sentido de digitalização: errado<br>
+      → <strong>Formas de captura</strong> — <strong>individual</strong> fora do SIGAD (ex.: .doc, .pdf, .rtf, com registro inicial do usuário); <strong>individual</strong> em workflow integrado (registro e anexação podem ser automáticos); <strong>em lote</strong> (grupos do mesmo tipo vindos de outro SIGAD ou GED: faturas diárias, dossiês, processos)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Avaliação no SIGAD e a segurança em camadas</div>
+    <div class="card-text">
+      → <strong>Avaliação</strong> — o SIGAD identifica <strong>temporalidade e destinação no momento da captura</strong>, gravadas em <strong>metadado</strong>; depois lista os que cumpriram a temporalidade para executar a destinação (após a <strong>seleção</strong>: separar permanentes dos elimináveis)<br>
+      → <strong>Trilhas de auditoria</strong> — registram cada intervenção ou tentativa: <strong>quem operou, data, hora e ações</strong> (captura, classificação, acesso, preservação, destinação); servem ao cumprimento das políticas de gestão<br>
+      → <strong>Cópias de segurança</strong> — salvaguarda regular de documentos e metadados + <strong>recuperação rápida</strong> após sinistro, falha, quebra de segurança ou degradação<br>
+      → <strong>Assinatura digital</strong> — sequência de bits com algoritmos, chaves e certificados que <strong>autentica o assinante e confirma a integridade</strong>; usada quando há necessidade de <strong>autenticação, imputabilidade e irretratabilidade</strong><br>
+      → <strong>Criptografia</strong> — codificação por <strong>chave secreta</strong>: só autorizados restabelecem a forma legível
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Preservação digital — o foco é o acesso, não o suporte</div>
+    <div class="card-text">
+      → <strong>Mudança de paradigma</strong> — no convencional, preservar o <strong>suporte</strong> preserva o documento; no digital, o foco é manter o <strong>ACESSO</strong> — o que pode exigir trocar suporte, formato e ambiente tecnológico<br>
+      → <strong>Migração</strong> — transferir o objeto digital de suporte obsoleto/deteriorado para outro mais novo, de formato obsoleto para atual, ou de plataforma em descontinuidade para moderna; ocorre por <strong>conversão, atualização (refreshing) ou reformatação</strong><br>
+      → <strong>Conversão</strong> — mudar de <strong>formato</strong> ou de <strong>sistema computacional</strong> (não é mera cópia sem mudar codificação)<br>
+      → <strong>Outras estratégias</strong> — <strong>emulação</strong> (tecnologia atual imitando a obsoleta), <strong>encapsulamento</strong>, <strong>preservação da tecnologia</strong> e adoção de <strong>formatos abertos</strong><br>
+      → <strong>Recopiagem periódica</strong> — garante a legibilidade ao longo do tempo: o meio se torna obsoleto e exige recópia a cada <strong>cinco ou dez anos</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — RDC-ARQ E OAIS                                       -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">RDC-Arq e o modelo OAIS</div>
+  </div>
+  <div class="sec-subtitle">Onde os permanentes digitais moram: repositório confiável e pacotes SIP/AIP/DIP</div>
+
+  <div class="card">
+    <div class="card-title">RDC-Arq — o destino dos digitais permanentes</div>
+    <div class="card-text">
+      → <strong>Base atual</strong> — <strong>Resolução Conarq 51/2023</strong> (revogou 43/2015 e 39/2014): diretrizes de repositórios digitais confiáveis; a preservação digital deve estar associada a um RDC <strong>em todo o ciclo de vida</strong><br>
+      → <strong>Definição</strong> — repositório capaz de <strong>manter autênticos</strong> os materiais digitais, <strong>preservá-los e dar acesso</strong> pelo tempo necessário<br>
+      → <strong>Objetivo (art. 2º)</strong> — garantir <strong>autenticidade (identidade + integridade), confidencialidade, disponibilidade, acesso e preservação</strong> por longos períodos ou permanentemente<br>
+      → <strong>Autenticidade em fórmula</strong> — <span class="highlight">autenticidade = identidade + integridade</span>: ser exatamente o que foi produzido, sem alteração, corrompimento ou adulteração (Resolução 37/2012)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">OAIS — os 3 pacotes e as 5 classes do PDI</div>
+    <div class="card-text">
+      → <strong>OAIS (ISO 14721)</strong> — modelo conceitual do CCSDS: descreve as <strong>funções do repositório</strong> e os <strong>metadados</strong> de preservação e acesso<br>
+      → <strong>SIP</strong> — pacote de <strong>submissão</strong>: admissão dos digitais e metadados<br>
+      → <strong>AIP</strong> — pacote de <strong>arquivamento</strong>: acondicionamento e armazenamento<br>
+      → <strong>DIP</strong> — pacote de <strong>disseminação</strong>: acesso aos digitais e metadados<br>
+      → <strong>PDI em 5 classes</strong> — <strong>proveniência</strong> (histórico, origem, alterações, custódia), <strong>referência</strong> (identificadores), <strong>fixidez</strong> (verificações de integridade), <strong>contexto</strong> (relações com o ambiente e motivo de criação) e <strong>direitos de acesso</strong> (restrições, base legal, licenças)<br>
+      → <strong>Auditoria (ISO 16363)</strong> — certifica o RDC em 3 conjuntos: <strong>infraestrutura organizacional</strong>, <strong>gerenciamento do digital</strong> e <strong>tecnologia e segurança</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — autenticidade × autenticação</div>
+    <strong>Autenticidade</strong> é a <strong>qualidade</strong> de o documento ser verdadeiro; <strong>autenticação</strong> é a <strong>declaração</strong> dessa qualidade, feita em dado momento por pessoa autorizada. E atenção: <strong>nem todo digitalizado é autêntico</strong> só por ter sido convertido — autenticidade se constrói com procedimentos documentados, não com o scanner.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — ICP-BRASIL E ASSINATURAS                             -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">ICP-Brasil e os 3 níveis de assinatura eletrônica</div>
+  </div>
+  <div class="sec-subtitle">MP 2.200-2/2001, Lei 14.063/2020 e o que cada nível exige</div>
+
+  <div class="card">
+    <div class="card-title">ICP-Brasil — a infraestrutura da confiança (MP 2.200-2/2001)</div>
+    <div class="card-text">
+      → <strong>Finalidade (art. 1º)</strong> — garantir <strong>autenticidade, integridade e validade jurídica</strong> de documentos eletrônicos, aplicações e transações seguras com certificados digitais<br>
+      → <strong>Composição (art. 2º)</strong> — autoridade gestora de políticas + cadeia de <strong>AC Raiz, ACs e ARs</strong> (autoridades certificadoras e de registro)<br>
+      → <strong>Efeito (art. 10)</strong> — documentos eletrônicos da MP valem como <strong>públicos ou particulares para todos os fins legais</strong>; declarações com certificação ICP-Brasil <strong>presumem-se verdadeiras</strong> quanto aos signatários
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Nível (Lei 14.063/2020)</th><th>O que é</th><th>Quando usar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Simples</strong></td><td>Identifica o signatário; anexa dados eletrônicos aos dados assinados</td><td>Interações de <strong>menor impacto</strong>, sem sigilo: agendamentos, acesso a sítio oficial, protocolo, pesquisa pública, benefícios requeridos pelo interessado</td></tr>
+        <tr><td><strong>Avançada</strong></td><td>Certificados <strong>não ICP-Brasil</strong> ou outro meio válido de autoria e integridade, <strong>aceito pelas partes</strong></td><td>Com <strong>sigilo</strong>; registro de empresas e propriedade industrial; contratos e convênios; autocadastro em processo eletrônico; defesas e recursos administrativos</td></tr>
+        <tr><td><strong>Qualificada</strong></td><td><strong>Certificado digital ICP-Brasil</strong> (MP 2.200-2/2001)</td><td><strong>Qualquer</strong> interação com ente público; <strong>obrigatória</strong> para chefes de Poder e Ministros, notas fiscais eletrônicas, transferência e registro de <strong>bens imóveis</strong>; em conflito de normas, <strong>prevalece a qualificada</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Detalhes que decidem a questão — cadastro e saúde</div>
+    <div class="card-text">
+      → <strong>Cadastro por nível</strong> — simples: <strong>autodeclaração</strong> validada em bases governamentais; avançada: <strong>validador de acesso digital</strong> com validação biográfica/biometrica; qualificada: <strong>certificado digital</strong><br>
+      → <strong>Validação biométrica × biográfica</strong> — biométrica: medição biológica das características físicas (<strong>alto</strong> grau de segurança); biográfica: comparação de fatos da vida — nome, nascimento, filiação, endereço (<strong>médio</strong> grau)<br>
+      → <strong>Saúde</strong> — receituários de controle especial e atestados eletrônicos exigem assinatura <strong>qualificada</strong>; demais documentos de profissionais de saúde aceitam <strong>avançada ou qualificada</strong><br>
+      → <strong>Fora do alcance da lei</strong> — processos judiciais; relações só entre privados; interações com anonimato permitido ou identificação dispensada; ouvidorias; proteção a vítimas e testemunhas
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — GOVERNO DIGITAL                                      -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Governo Digital — Lei 14.129/2021</div>
+  </div>
+  <div class="sec-subtitle">Eficiência pela desburocratização: quem se aplica, direitos e guarda permanente</div>
+
+  <div class="card">
+    <div class="card-title">Alcance, princípios e o artigo que interessa ao arquivista</div>
+    <div class="card-text">
+      → <strong>Objetivo (art. 1º)</strong> — eficiência da administração por <strong>desburocratização, inovação, transformação digital e participação</strong> do cidadão<br>
+      → <strong>Aplica-se a</strong> — direta federal dos 3 Poderes (com TCU e MPU) + indireta federal <strong>que preste serviço público</strong> + demais entes que adotarem por ato próprio<br>
+      → <strong>Não se aplica a</strong> — estatais e controladas que <strong>não prestem serviço público</strong><br>
+      → <strong>Art. 13 — guarda permanente digital</strong> — documentos digitais e processos eletrônicos de <strong>valor permanente</strong> seguem as normas da <strong>instituição arquivística custodiante</strong><br>
+      → <strong>Diretrizes-mãe</strong> — publicidade como regra, transparência ativa, autosserviço, plataforma única, <strong>presunção de boa-fé</strong> do usuário, proteção de dados (LGPD) e estímulo às <strong>assinaturas eletrônicas</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Prestação digital na prática — componentes e direitos</div>
+    <div class="card-text">
+      → <strong>Componentes essenciais (art. 18)</strong> — <strong>Base Nacional de Serviços Públicos</strong> + <strong>Cartas de Serviços</strong> (Lei 13.460/2017) + <strong>Plataformas de Governo Digital</strong><br>
+      → <strong>Plataformas mínimas (art. 20)</strong> — ferramenta de <strong>solicitação e acompanhamento</strong> + <strong>painel de monitoramento</strong> (solicitações, tempo médio, satisfação)<br>
+      → <strong>Direitos do usuário (art. 27)</strong> — <strong>gratuidade</strong> no acesso; atendimento pela Carta de Serviços; <strong>padronização</strong> de formulários; <strong>protocolo</strong> físico ou digital; canal preferencial de comunicação<br>
+      → <strong>Acesso universal</strong> — tecnologias de <strong>amplo acesso</strong> (baixa renda, áreas rurais e isoladas), <strong>sem prejuízo do atendimento presencial</strong>; dados e transparência ativa são de <strong>livre utilização</strong> pela sociedade
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — MICROFILMAGEM                                       -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Microfilmagem — a tecnologia anterior com força de lei</div>
+  </div>
+  <div class="sec-subtitle">Lei 5.433/1968, Decreto 1.799/1996 e os 180 linhas/mm que caem em prova</div>
+
+  <div class="card">
+    <div class="card-title">Conceito, validade legal e o objetivo principal</div>
+    <div class="card-text">
+      → <strong>Microfilmagem (DTA)</strong> — "produção de <strong>imagens fotográficas em tamanho altamente reduzido</strong>"; o DBTA define o produto: <strong>microfilme</strong> é o filme da reprodução por meios fotográficos ou eletrônicos, em graus de redução, legível só por <strong>leitor de microformas</strong><br>
+      → <strong>Validade legal</strong> — o microfilme representa exatamente o original: tem <span class="highlight">validade como prova, a mesma do original</span> (Lei 5.433/1968 e Decreto 1.799/1996); microfilmes, certidões, traslados e cópias fotográficas diretas produzem os <strong>mesmos efeitos legais</strong> em juízo ou fora dele<br>
+      → <strong>Objetivo principal</strong> — <strong>economia de espaço</strong> (reduzir volume com garantia legal); em geral: reduzir volume e garantir <strong>durabilidade do suporte</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regras de ouro — Lei 5.433/1968 e Decreto 1.799/1996</div>
+    <div class="card-text">
+      → <strong>Definição técnica</strong> — sempre em <strong>filme original</strong>, com mínimo de <span class="highlight">180 linhas por milímetro</span> de definição; <strong>vedados filmes atualizáveis</strong>; extração de <strong>filme cópia é obrigatória</strong> (segurança) e original e cópia ficam em <strong>locais diferentes</strong><br>
+      → <strong>Negativos arquivados</strong> — ficam na repartição detentora, com <strong>saída vedada</strong> sob qualquer pretexto<br>
+      → <strong>Eliminação após microfilmar</strong> — a critério da autoridade, por meio que garanta inutilização, com <strong>termo próprio</strong>, após revisão e extração da cópia; oficiais/públicos só se previsto na <strong>tabela de temporalidade</strong> (respeitado o art. 9º da Lei 8.159/1991)<br>
+      → <strong>Limites permanentes</strong> — documentos de <strong>valor histórico</strong> e de <strong>guarda permanente não são eliminados</strong> após microfilmar (recolhem ao arquivo público ou ficam no órgão); em <strong>tramitação</strong>, pode microfilmar mas <strong>não eliminar até a destinação final</strong><br>
+      → <strong>Falhas e omissões</strong> — documentos omitidos ou ilegíveis são reproduzidos <strong>depois</strong>, sem corte ou inserção no original, com <strong>imagem de observação</strong> (identificação, irregularidades, responsável) + <strong>indexação remissiva</strong>; se a complementação falhar, <strong>repete-se tudo</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 5 tipos de microfilmagem (DTA)</div>
+    <div class="card-text">
+      → <strong>Complemento</strong> — complementação de <strong>acervos</strong><br>
+      → <strong>Referência</strong> — reproduz <strong>instrumentos de pesquisa</strong>, para facilitar a consulta<br>
+      → <strong>Segurança</strong> — <strong>cópias de segurança</strong> contra sinistros (incêndios, inundações)<br>
+      → <strong>Conservação (preservação)</strong> — informações de documentos de <strong>valor permanente</strong> danificados ou de manuseio constante; mesmo microfilmados, <strong>não são eliminados</strong><br>
+      → <strong>Substituição</strong> — documentos de <strong>valor temporário</strong>, eliminados para aproveitar espaço; aplica-se a <strong>não históricos</strong> (o inverso da preservação)<br><br>
+      → <strong>Sinalética</strong> — recurso de comunicação da microfilmagem com dados do conteúdo (equipamento, grau de redução, densidade, número do filme); classificam-se em <strong>iniciais, intermediárias e finais</strong>; a Resolução Conarq 10/1999 adota os símbolos <strong>ISO 9878/1990</strong> — incluindo o de <strong>repetição de imagem</strong>
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — acesso fácil × acesso individualizado</div>
+    O acesso <strong>genérico</strong> ao microfilme é <strong>fácil e rápido</strong> (vantagem); o acesso <strong>individualizado</strong> a cada documento é <strong>difícil</strong> (desvantagem: precisa de máquina, um documento por vez). Leia o adjetivo do enunciado antes de marcar.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — TERMINOLOGIA DBTA                                   -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Terminologia DBTA do mundo digital</div>
+  </div>
+  <div class="sec-subtitle">Definições literais de metadados, suportes e microformas</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Termo (DBTA)</th><th>Definição literal</th><th>Chave</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Metadados</strong></td><td>"Dados estruturados e codificados que descrevem e permitem <strong>acessar, gerenciar, compreender e preservar</strong> outros dados ao longo do tempo" — <strong>dados sobre dados</strong></td><td>Localização, descoberta, avaliação, seleção</td></tr>
+        <tr><td><strong>Indexação</strong></td><td>Representar documentos por <strong>termos, palavras-chave ou descritores</strong>, propiciando a recuperação</td><td>Base da busca</td></tr>
+        <tr><td><strong>Disco magnético</strong></td><td>"Suporte circular plano, revestido por camada <strong>magnetizada</strong>" — arquivar longe de <strong>campos magnéticos</strong></td><td>Discos rígidos, disquetes, fitas</td></tr>
+        <tr><td><strong>Disco ótico</strong></td><td>"Suporte circular plano, de <strong>grande capacidade</strong>, com sinais visuais, sonoros ou audiovisuais por gravação digital" — validade estimada de <strong>200 anos</strong></td><td>CD, DVD; também disco laser</td></tr>
+        <tr><td><strong>Criptografia</strong></td><td>Escrita com <strong>abreviaturas, cifras ou códigos</strong> para comunicação secreta</td><td>Chave secreta</td></tr>
+        <tr><td><strong>Backup</strong></td><td><strong>Cópia de segurança</strong> em meio eletrônico</td><td>Recuperação após sinistro</td></tr>
+        <tr><td><strong>Microfilme de segurança</strong></td><td>Cópia de segurança, guardada em local <strong>distinto</strong> dos originais, de preferência em <strong>câmara de segurança</strong></td><td>Local separado</td></tr>
+        <tr><td><strong>Microfilme de substituição</strong></td><td>Preserva informações de documentos <strong>eliminados</strong>, para racionalizar espaço</td><td>Só temporários</td></tr>
+        <tr><td><strong>Ultraficha</strong></td><td>Microficha com imagem reduzida <strong>mais de 90 vezes</strong></td><td>Número de prova: 90×</td></tr>
+        <tr><td><strong>Anopistógrafo</strong></td><td>Escrito/impresso de <strong>um só lado</strong>; opistógrafo = <strong>dois lados</strong></td><td>Caiu em prova recente</td></tr>
+        <tr><td><strong>Papiro × pergaminho</strong></td><td>Papiro = suporte <strong>vegetal</strong>; pergaminho = pele <strong>animal</strong>, também chamado <strong>velino</strong></td><td>Origem oposta</td></tr>
+        <tr><td><strong>Resolução (definição)</strong></td><td>Medida da <strong>nitidez</strong>: linhas discerníveis por milímetro</td><td>Liga aos 180 linhas/mm</td></tr>
+        <tr><td><strong>Guia-fora</strong></td><td>Indicador no lugar da unidade <strong>removida temporariamente</strong> — fantasma/ficha-fantasma</td><td>Remoção temporária</td></tr>
+        <tr><td><strong>Emulação</strong></td><td>Tecnologia atual funcionando com características da <strong>obsoleta</strong> (mesmas entradas e saídas)</td><td>Estratégia de preservação</td></tr>
+        <tr><td><strong>OCR</strong></td><td>Reconhecimento óptico de caracteres — cria <strong>textos editáveis</strong></td><td>Digitalização inteligente</td></tr>
+        <tr><td><strong>PDF/A</strong></td><td>Formato de arquivo que admite proteção contra edições — mais <strong>confidencialidade e integridade</strong></td><td>Arquivo de longo prazo</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 12 — PONTOS DE PROVA                                     -->
+<!-- ============================================================ -->
+<section id="sec12">
+  <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Checklist de véspera — Aula 09</div>
+    <div class="card-text">
+      → <strong>Eletrônico × digital</strong> — eletrônico é <strong>gênero</strong>; digital integra o gênero<br>
+      → <strong>3 componentes</strong> — informação + hardware + software (suporte não é hardware; informação não é software)<br>
+      → <strong>Virada de 2019</strong> — digitalizado com <strong>mesmo valor probatório do original</strong>; permanente nunca tem original eliminado<br>
+      → <strong>Decreto 10.278</strong> — ICP-Brasil + Anexos I/II; <strong>300 dpi</strong> (600 só plantas e mapas); avaliação antes, descarte depois<br>
+      → <strong>SIGAD × GED</strong> — orgânico e temporal × compartimentado; CAIR identifica o SIGAD; só corrente e intermediária<br>
+      → <strong>e-ARQ v2</strong> — Resolução 50/2022 (revogou 25/2007 e 32/2010); O/AD/F; armazenamento é <strong>não funcional</strong><br>
+      → <strong>Captura</strong> — registro, classificação, indexação, restrição, arquivamento; temporalidade em <strong>metadado</strong> desde a captura<br>
+      → <strong>Autenticidade = identidade + integridade</strong>; autenticação é a declaração dessa qualidade<br>
+      → <strong>OAIS</strong> — SIP submete, AIP arquiva, DIP dissemina; PDI em 5 classes<br>
+      → <strong>Assinaturas</strong> — simples (menor impacto), avançada (sigilo e contratos), qualificada (ICP-Brasil; chefes de Poder, NFe, imóveis)<br>
+      → <strong>Governo Digital</strong> — art. 13: permanente digital segue a instituição custodiadora; estatais sem serviço público fora<br>
+      → <strong>Microfilmagem</strong> — força de original; <strong>180 linhas/mm</strong>; negativos sem saída; permanentes e históricos não eliminados; 5 tipos (substituição só temporários)
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 13 — INCIDÊNCIA TEC                                      -->
+<!-- ============================================================ -->
+<section id="sec13">
+  <div class="sec-header">
+    <div class="sec-num">13</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão de cima para baixo — temas com mais questões primeiro</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contadores por tema</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada ainda.
+    </div>
+  </div>
+</section>
+</div><!-- .main -->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2009/resumo-aula-09-contratos-administrativos.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 09 · Contratos Administrativos</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+  
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": 9, "tema": "Gestão de Arquivo Digital", "questoes": [{"q": "Documento eletrônico e documento digital relacionam-se porque:", "opts": [{"t": "São sinônimos: ambos são codificados em dígitos binários.", "why": "Só o digital é necessariamente binário; eletrônico é o GÊNERO mais amplo."}, {"t": "O eletrônico é o gênero (meio eletrônico) e o digital é um de seus integrantes, ao lado de disquetes e cartões perfurados.", "ok": true, "why": "DBTA: eletrônico = gênero; digital = codificado em binários, acessível por computador."}, {"t": "O digital é o gênero e o eletrônico, uma de suas espécies.", "why": "Invertido: o gênero é o eletrônico."}, {"t": "O digital dispensa hardware e software, pois já nasce acessível.", "why": "O digital tem 3 componentes: informação + hardware + software."}]}, {"q": "Sobre o valor probatório do documento digitalizado, é correto:", "opts": [{"t": "Nunca substitui o original, servindo só para consulta.", "why": "Era assim ATÉ 2019; a Lei 13.874 mudou o quadro."}, {"t": "Desde 2019 (art. 2º-A da Lei 12.682/2012), tem o mesmo valor probatório do original, inclusive fiscalizatório.", "ok": true, "why": "A virada de 2019: digital conforme a lei = mesmos efeitos do original."}, {"t": "Permite eliminar o original até de documentos permanentes.", "why": "Permanentes NUNCA têm o original eliminado, mesmo digitalizados."}, {"t": "Dispensa integridade, autenticidade e ICP-Brasil.", "why": "A lei exige exatamente essa tríade em todo processo de digitalização."}]}, {"q": "Pelo Decreto 10.278/2020, a digitalização perante ente público exige:", "opts": [{"t": "Qualquer resolução, desde que legível, sem metadados.", "why": "Exige padrões mínimos do Anexo I (300 dpi; 600 para plantas/mapas) + metadados do Anexo II."}, {"t": "Avaliação posterior, descarte imediato do físico e 100 dpi.", "why": "A avaliação é PRÉVIA; o descarte ressalva o histórico; e o mínimo é 300 dpi."}, {"t": "Assinatura ICP-Brasil, 300 dpi (600 para plantas e mapas), metadados mínimos e avaliação prévia.", "ok": true, "why": "Art. 5º (ICP + anexos) + art. 7º (avaliação prévia pelas tabelas)."}, {"t": "Digitalização exclusiva nas dependências do órgão, sem terceiros.", "why": "Terceiros podem executar; a responsabilidade segue do possuidor/contratante."}]}, {"q": "GED e SIGAD distinguem-se porque:", "opts": [{"t": "O GED é orgânico e temporal; o SIGAD, compartimentado.", "why": "Invertido: SIGAD = orgânico e temporal; GED = compartimentado."}, {"t": "Ambos dispensam programa prévio de gestão arquivística.", "why": "O SIGAD EXIGE programa prévio de gestão arquivística para funcionar."}, {"t": "O SIGAD parte de concepção orgânica (CAIR, só corrente e intermediária); o GED trata informação não estruturada de forma compartimentada.", "ok": true, "why": "SIGAD = captura, armazenamento, indexação, recuperação, nas duas primeiras idades; GED = captura à distribuição do não estruturado."}, {"t": "O SIGAD alcança as três idades, incluindo a permanente.", "why": "SIGAD vale SÓ para corrente e intermediária."}]}, {"q": "No e-ARQ Brasil, requisitos e funcionalidades:", "opts": [{"t": "O = opcional, AD = obrigatório, F = facultativo.", "why": "O = OBRIGATÓRIO ('tem que'); AD = altamente desejável ('deve'); F = facultativo ('pode')."}, {"t": "Armazenamento é requisito funcional e segurança, não funcional.", "why": "Invertido: armazenamento é NÃO funcional; segurança, captura, avaliação e preservação são funcionais."}, {"t": "A versão vigente é a 1.0, da Resolução 25/2007.", "why": "Vigente é a v2 (Resolução 50/2022), que revogou a 25/2007 e a 32/2010."}, {"t": "O = obrigatório; armazenamento é não funcional; vigente é a v2 (Resolução 50/2022).", "ok": true, "why": "Exigibilidade O/AD/F + funcionais × não funcionais + v2 em vigor desde 16/05/2022."}]}, {"q": "No modelo OAIS, os pacotes de informação são:", "opts": [{"t": "SIP (arquivamento), AIP (disseminação) e DIP (submissão).", "why": "Trocado: SIP = submissão, AIP = arquivamento, DIP = disseminação."}, {"t": "SIP (submissão/admissão), AIP (arquivamento/armazenamento) e DIP (disseminação/acesso).", "ok": true, "why": "O trio OAIS (ISO 14721) organiza admissão, guarda e acesso no RDC-Arq."}, {"t": "Um pacote único que acumula as três funções.", "why": "São três pacotes distintos, cada um com sua função no ciclo."}, {"t": "PDI, PREMIS e NISO, nessa ordem.", "why": "PDI são classes de metadados dentro do AIP; PREMIS/NISO são padrões de metadados."}]}, {"q": "Sobre assinaturas eletrônicas (Lei 14.063/2020), é correto:", "opts": [{"t": "A simples usa certificado ICP-Brasil e vale para qualquer ato.", "why": "ICP-Brasil = QUALIFICADA; a simples é para interações de menor impacto, sem sigilo."}, {"t": "Avançada e qualificada são sinônimos, ambas com ICP-Brasil.", "why": "Avançada usa certificados NÃO ICP-Brasil (ou meio aceito); qualificada exige ICP-Brasil."}, {"t": "A qualificada usa certificado ICP-Brasil, vale para qualquer interação e é obrigatória para chefes de Poder, NFe e imóveis.", "ok": true, "why": "Qualificada = ICP-Brasil (MP 2.200-2/2001); em conflito de normas, ela prevalece."}, {"t": "Receituário de controle especial aceita assinatura simples.", "why": "Receituário especial e atestado eletrônico exigem QUALIFICADA."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>

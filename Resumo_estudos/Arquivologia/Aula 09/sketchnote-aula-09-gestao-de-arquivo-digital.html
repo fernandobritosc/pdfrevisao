@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — ARC Aula 09: Gestão de Arquivo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#92400e; --matsoft:#f4e9df; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#f4e9df 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:720px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"➜";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">ARC · Aula 09 · Gestão de Arquivo Digital</div>
+<h1><span class="hl">Digital</span> numa página 💾</h1>
+<p class="sub">Eletrônico × digital · digitalização · GED × SIGAD · e-ARQ · captura e segurança · OAIS · assinaturas · microfilmagem.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-09-gestao-de-arquivo-digital.html">resumo da Aula 09</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">💾</div><div><b>DIGITAL = binário + hardware + software</b><br><span>Eletrônico é o <strong>gênero</strong>, digital é integrante · 2019: digitalizado com <strong>força de original</strong></span></div></div>
+</div>
+<div class="tri"><span class="pill">💾 Conceitos</span><span class="pill">📸 Digitalizar</span><span class="pill">🖥️ GED×SIGAD</span><span class="pill">📋 e-ARQ</span><span class="pill">🔐 Segurança</span><span class="pill">✍️ Assinar</span><span class="pill">🎞️ Microfilmar</span></div>
+<main>
+<section class="note" aria-label="Digitalizar">
+<h2><span class="n">1</span> 📸 Digitalizar: 300 · 600</h2>
+<ul>
+<li><strong>Nato-digital</strong> (nasce binário) × <strong>digitalizado</strong> (papel→scanner) · <strong>manifestado</strong> (fixo) × <strong>armazenado</strong> (mutável)</li>
+<li><strong>Virada 2019:</strong> digital = <strong>mesmo valor probatório</strong> do original · <strong>permanente nunca</strong> elimina original</li>
+<li><strong>Dec. 10.278:</strong> ICP-Brasil + anexos · <strong>300 dpi</strong> (600 só plantas e mapas) · <strong>avaliação antes</strong>, descarte depois</li>
+</ul>
+</section>
+<section class="note" aria-label="GED SIGAD">
+<h2><span class="n">2</span> 🖥️ GED × SIGAD</h2>
+<ul>
+<li><strong>GED:</strong> informação <strong>não estruturada</strong>, compartimentada (captura→distribuição)</li>
+<li><strong>SIGAD:</strong> concepção <strong>orgânica e temporal</strong> — <strong>CAIR</strong> (captura, armazenamento, indexação, recuperação), <strong>só corrente e intermediária</strong></li>
+<li><strong>Resumo:</strong> SIGAD orgânico · GED compartimentado · SIGAD exige <strong>programa prévio</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="e-ARQ">
+<h2><span class="n">3</span> 📋 e-ARQ v2</h2>
+<ul>
+<li><strong>Res. 50/2022</strong> (revogou 25/2007 e 32/2010) · <strong>O</strong> tem que · <strong>AD</strong> deve · <strong>F</strong> pode</li>
+<li><strong>Funcionais:</strong> captura, avaliação, <strong>segurança, preservação</strong> · <strong>não funcional: armazenamento</strong></li>
+<li><strong>Captura</strong> (≠ digitalização): registro, classificação, indexação, restrição, arquivamento — temporalidade em <strong>metadado</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="Preservar">
+<h2><span class="n">4</span> 🏺 Preservar = manter acesso</h2>
+<ul>
+<li><strong>Autenticidade = identidade + integridade</strong> · autenticação = <strong>declarar</strong> essa qualidade</li>
+<li><strong>Migração:</strong> conversão, atualização, reformatação · <strong>emulação</strong> (atual imita obsoleta) · recópia a cada <strong>5–10 anos</strong></li>
+<li><strong>OAIS:</strong> <strong>SIP</strong> submete · <strong>AIP</strong> arquiva · <strong>DIP</strong> dissemina · PDI em 5 classes</li>
+<li><strong>Trilhas:</strong> quem, quando, o quê · <strong>backup</strong> + criptografia + assinatura</li>
+</ul>
+</section>
+<section class="note" aria-label="Assinaturas">
+<h2><span class="n">5</span> ✍️ Assinaturas: 3 níveis</h2>
+<ul>
+<li><strong>Simples:</strong> menor impacto, sem sigilo (agendar, protocolar, pesquisar)</li>
+<li><strong>Avançada:</strong> com sigilo, contratos, recursos — certificado <strong>não</strong> ICP</li>
+<li><strong>Qualificada = ICP-Brasil:</strong> vale p/ tudo; <strong>obrigatória</strong> p/ chefes de Poder, NFe e <strong>imóveis</strong> · prevalece em conflito</li>
+<li><strong>Gov Digital (14.129):</strong> permanente digital segue a <strong>custodiadora</strong> · estatal sem serviço público = <strong>fora</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="Microfilmagem">
+<h2><span class="n">6</span> 🎞️ Microfilmar: 180 linhas</h2>
+<ul>
+<li><strong>Força de original</strong> (Lei 5.433/68) · objetivo nº 1: <strong>economia de espaço</strong></li>
+<li><strong>180 linhas/mm</strong> · filme cópia <strong>obrigatório</strong> (local distinto) · negativos <strong>sem saída</strong></li>
+<li><strong>Históricos e permanentes nunca eliminados</strong> · em tramitação: microfilma, <strong>não elimina</strong></li>
+<li><strong>5 tipos:</strong> complemento · referência · <strong>segurança</strong> · conservação (permanentes!) · <strong>substituição</strong> (só temporários)</li>
+</ul>
+<div class="gotcha">🚨 Acesso <b>genérico</b> = fácil · acesso <b>individualizado</b> = difícil · <b>sinalética</b> ISO 9878 (inclui <b>repetição de imagem</b>).</div>
+</section>
+<section class="note wide" aria-label="Para levar">
+<h2><span class="n">★</span> 🎯 Para levar para a prova</h2>
+<p><span class="tag t-green"><strong>eletrônico</strong> = gênero · <strong>digital</strong> = integrante</span> <span class="tag t-blue"><strong>2019</strong> = força de original</span> <span class="tag t-yellow"><strong>300 dpi</strong> · <strong>600</strong> plantas</span> <span class="tag t-red"><strong>armazenamento</strong> = não funcional</span> <span class="tag t-purple"><strong>SIP·AIP·DIP</strong></span> <span class="tag t-yellow"><strong>qualificada = ICP</strong></span> <span class="tag t-green"><strong>180 linhas/mm</strong></span><br><br>
+→ <strong>LAI:</strong> ultra <strong>25</strong> · secreta <strong>15</strong> · reservada <strong>5</strong> · <strong>anopistógrafo</strong> (1 lado) · <strong>papiro</strong> vegetal × <strong>pergaminho</strong> animal</p>
+</section>
+</main>
+<footer>
+<div class="biz">✏️ Sketchnote — ARC Aula 09 · <span>0</span><span>9</span></div>
+<a class="back" href="resumo-aula-09-gestao-de-arquivo-digital.html">← voltar ao resumo completo</a>
+</footer>
+</div>
+</body>
+</html>

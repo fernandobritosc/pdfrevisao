@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — Arquivologia Aula 0: Conceitos Fundamentais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #92400e;
+  --mat-strong: #7c2d12;
+  --mat-soft: #f4e9df;
+  --mat-line: #e5cfc0;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: left;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(146,64,14,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #dfa787; --mat-strong: #f0c9b0; --mat-soft: #2b2018; --mat-line: #5b4230;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<aside class="sidebar">
+  <div class="sidebar-title">Arquivologia — Aula 0</div>
+  <div class="sidebar-sub">Conceitos Fundamentais · Estratégia Concursos</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Origem e conceito de arquivo</a>
+  <a href="#sec2">2. Importância histórica e os Arquivos Nacionais</a>
+  <a href="#sec3">3. Princípios arquivísticos</a>
+  <a href="#sec4">4. Natureza dos arquivos e os valores do documento</a>
+  <a href="#sec5">5. Classificação dos arquivos — 4 critérios</a>
+  <a href="#sec6">6. Terminologia arquivística (DBTA)</a>
+  <a href="#sec7">7. Pontos que mais caem em prova</a>
+  <a href="#sec8">8. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-00-conceitos-fundamentais.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fonte: Aula Completa + Aula Simplificada<br>
+    Estratégia Concursos · Prof. Ricardo Campanario
+  </div>
+</aside>
+
+<div class="main">
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — ORIGEM E CONCEITO                                   -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Origem e conceito de arquivo</div>
+  </div>
+  <div class="sec-subtitle">Da raiz grega à Lei 8.159/1991 — as definições que a banca cobra</div>
+
+  <div class="card">
+    <div class="card-title">De onde vem a palavra "arquivo" — duas correntes</div>
+    <div class="card-text">
+      → <strong>Corrente grega</strong> — do <strong>arché</strong> (Palácio dos Magistrados), evoluindo para <strong>archeion</strong>: local de guarda e depósito de documentos<br>
+      → <strong>Corrente latina</strong> — do <strong>archivum</strong>: palavra latina que identifica o <strong>local de guarda</strong> de documentos e títulos — é a mais próxima da definição usada em concursos<br>
+      → <strong>Fonte do curso</strong> — Marilena Leite Paes, referência da matéria para a origem do termo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As 4 definições de arquivo no DBTA — qual cai mais?</div>
+    <div class="card-text">
+      → <strong>1. Conjunto de documentos</strong> — produzidos e acumulados por uma <strong>entidade coletiva, pública ou privada, pessoa ou família</strong>, no desempenho de suas atividades, <strong>independentemente da natureza do suporte</strong><br>
+      → <strong>2. Instituição ou serviço</strong> — finalidade: <strong>custódia, processamento técnico, conservação e acesso</strong> a documentos<br>
+      → <strong>3. Instalações</strong> — os locais onde funcionam arquivos<br>
+      → <strong>4. Móvel</strong> — o móvel destinado à guarda de documentos<br><br>
+      → ⚠️ <strong>Regra de foco:</strong> conheça as quatro para diferenciar, mas <span class="highlight">a 1ª é a mais cobrada em prova</span> — a de "conjunto de documentos".
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">A definição legal — Lei 8.159/1991, arts. 2º e 7º</div>
+    <div class="card-text">
+      → <strong>Art. 2º (arquivo)</strong> — "conjuntos de documentos <strong>produzidos e recebidos</strong> por órgãos públicos, instituições de caráter público e entidades privadas, <strong>em decorrência do exercício de atividades específicas</strong>, bem como por pessoa física, <strong>qualquer que seja o suporte da informação ou a natureza dos documentos</strong>"<br>
+      → <strong>Art. 7º (arquivos públicos)</strong> — "conjuntos de documentos produzidos e recebidos, no exercício de suas atividades, por <strong>órgãos públicos de âmbito federal, estadual, do Distrito Federal e municipal</strong>, em decorrência de suas funções <strong>administrativas, legislativas ou judiciárias</strong>"<br>
+      → <strong>Arquivos privados</strong> — conjuntos de documentos produzidos ou recebidos por <strong>pessoas físicas e jurídicas</strong> em decorrência de suas atividades<br><br>
+      → ⚠️ <strong>Para fixar:</strong> a Lei 8.159/1991 divide os arquivos em apenas <strong>2 grupos</strong> (públicos × privados) — a quebra em 4 grupos é classificação de <strong>Leite Paes</strong> (ver Classificação).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Arquivologia × Arquivística — sinônimos ou ciências distintas?</div>
+    <div class="card-text">
+      → <strong>DBTA</strong> — Arquivologia é "disciplina que estuda as funções do arquivo e os <strong>princípios e técnicas</strong> a serem observados na produção, organização, guarda, preservação e utilização dos arquivos. <strong>Também chamada Arquivística</strong>"<br>
+      → <strong>Leite Paes</strong> — "ciência que tem por objeto o conhecimento dos arquivos e das teorias, métodos e técnicas utilizados na sua constituição, organização, desenvolvimento e utilização"<br>
+      → <strong>Eugenio Casanova</strong> — "acumulação <strong>ordenada</strong> de documentos criados por uma instituição ou pessoa no curso de sua atividade e <strong>preservados</strong> para a consecução de objetivos <strong>políticos, legais e culturais</strong>"<br><br>
+      → ⚠️ <strong>Resposta direta:</strong> para o DBTA, <span class="highlight">Arquivologia e Arquivística são sinônimos</span> — não são ciências distintas.<br><br>
+      → ⚠️ <strong>Não confundir com Biblioteconomia:</strong> Arquivologia, Biblioteconomia e Museologia são <strong>áreas distintas</strong> da Ciência da Informação (Rodrigues, 2008); e para Bellotto o objeto da Arquivística é o <strong>documento</strong> — em 3 planos: o <strong>arquivo</strong> (conjunto de documentos), o <strong>documento</strong> em si e o <strong>arquivo como instituição</strong> de custódia
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — o que NÃO é documento de arquivo</div>
+    Documento arquivístico é o que tem <strong>vínculo direto com as funções e atividades da entidade produtora</strong>, produzido de forma <strong>orgânica</strong>. Exemplares do Diário Oficial, folhetos de propaganda, catálogo de ramais e calendário de feriados <strong>não</strong> passam nesse teste — um <strong>registro de frequência dos empregados</strong>, sim. E documentos de arquivo <strong>não são coletados artificialmente</strong> nem adquiridos por compra, doação ou permuta: são <strong>acumulados natural e organicamente</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — HISTÓRIA DOS ARQUIVOS                               -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Importância histórica e os Arquivos Nacionais</div>
+  </div>
+  <div class="sec-subtitle">Grécia, Revolução Francesa, Inglaterra, EUA e as 4 razões de Schellenberg</div>
+
+  <div class="card">
+    <div class="card-title">Da Grécia antiga à Revolução Francesa</div>
+    <div class="card-text">
+      → <strong>Grécia (séculos V-IV a.C.)</strong> — no <strong>arché</strong> (Palácio dos Magistrados) conservavam-se <strong>leis, tratados e minutas da Assembleia Popular</strong>, gravados em <strong>papiros</strong>; é a primeira referência de algo parecido com um grande Arquivo Nacional<br>
+      → <strong>França, 1790</strong> — nas vésperas da Revolução, os revolucionários quase <strong>destruíram os registros de direitos e privilégios do passado</strong>; a resposta à pergunta "como registrar os atos da Nova França?" foi o <strong>primeiro Arquivo Nacional do mundo</strong> (Paris), para onde iriam todos os documentos<br>
+      → <strong>França, 1794</strong> — decreto com <strong>administração pública de arquivos</strong> em todo o território e <strong>direito de acesso aos documentos públicos</strong>: reconhecido como uma <span class="highlight">"declaração dos direitos da arquivística"</span><br>
+      → <strong>As 3 realizações da Revolução</strong> — (1) criação de uma <strong>administração nacional e independente de arquivos</strong>; (2) <strong>acesso do público</strong> aos arquivos; (3) reconhecimento da <strong>responsabilidade do Estado</strong> pela conservação dos documentos de valor do passado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Inglaterra, EUA e Brasil — três caminhos diferentes</div>
+    <div class="card-text">
+      → <strong>Inglaterra (1838)</strong> — motivo <strong>prático</strong>, não revolucionário: gestão em "verdadeiro caos", documentos em pergaminho desde o século XIII espalhados por salas úmidas e capelas, já <strong>inlocalizáveis</strong>; nasce o <strong>Public Record Office</strong> (Lei dos Documentos Públicos) — hoje <strong>não subordinado a qualquer ministério</strong><br>
+      → <strong>EUA (1934)</strong> — quase 100 anos depois da Inglaterra; estopim foram os <strong>incêndios de 1814, 1833 e 1877</strong> que destruíram milhares de documentos valiosos; a Associação Histórica Americana (1884) pressionava sem sucesso até o Congresso aprovar a construção (1912-1933)<br>
+      → <strong>Brasil — Arquivo Nacional</strong> — fica no <strong>Rio de Janeiro</strong> e é submetido ao <strong>Ministério da Gestão e da Inovação em Serviços Públicos</strong> (não ao Ministério da Cidadania/Justiça/Cultura)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As 4 razões para criar Arquivos Nacionais (Schellenberg)</div>
+    <div class="card-text">
+      → <strong>1. Práticas</strong> — ampliar a <strong>eficiência governamental</strong>: documentos encerrados vão se acumulando desorganizadamente até ocupar espaços valiosos e <strong>prejudicar as atividades-fim</strong><br>
+      → <strong>2. Culturais</strong> — arquivos públicos são <strong>fonte de cultura</strong> comparável a livros, museus, parques e monumentos; cuidar deles é <strong>obrigação pública</strong><br>
+      → <strong>3. Pessoais</strong> — interesses individuais reforçaram a iniciativa (caso da Revolução Francesa): criou-se órgão especial no Arquivo Nacional para segregar documentos de <strong>privilégios e direitos feudais</strong><br>
+      → <strong>4. Oficiais</strong> — os documentos, <strong>mesmo os mais antigos</strong>, são necessários ao governo e constituem sua <strong>principal fonte de informação</strong><br><br>
+      → ⚠️ <strong>Pegadinha clássica:</strong> o órgão especial segregava os documentos feudais <span class="highlight">para tentar ELIMINÁ-LOS, não para preservá-los</span> — leitura apressada inverte a finalidade.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — PRINCÍPIOS                                          -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Princípios arquivísticos</div>
+  </div>
+  <div class="sec-subtitle">Proveniência, fundos e a lista completa — o coração da matéria</div>
+
+  <div class="card">
+    <div class="card-title">Proveniência — o norte da Arquivologia</div>
+    <div class="card-text">
+      → <strong>Definição (DBTA)</strong> — "princípio básico segundo o qual o arquivo produzido por uma <strong>entidade coletiva, pessoa ou família</strong> <strong>não deve ser misturado</strong> aos de outras entidades produtoras"<br>
+      → <strong>Bellotto</strong> — "fixa a <strong>identidade do documento relativamente ao seu produtor</strong>"; arquivos devem ser organizados obedecendo à <strong>competência e às atividades</strong> da instituição produtora, <strong>sem mesclagem</strong> com arquivos de origem distinta<br>
+      → <strong>Outros nomes</strong> — princípio do <strong>Respeito aos Fundos</strong> ou do <strong>Método Histórico</strong><br>
+      → <strong>2 vertentes que o compõem</strong> — <strong>respeito aos fundos</strong> + <strong>respeito à ordem original</strong> (juntos, garantem a organicidade e o caráter de documento de arquivo)<br>
+      → <strong>O que ele faz</strong> — assegura o <strong>primeiro agrupamento</strong> dos documentos e <strong>delimita o contexto</strong> de cada fundo<br><br>
+      → ⚠️ <strong>Não confundir:</strong> <strong>Procedência</strong> (DBTA) é a origem <strong>mais imediata</strong> do arquivo quando ele entra por entidade <strong>diversa</strong> da produtora — conceito <strong>distinto</strong> de proveniência.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fundos — abertos × fechados (e a exceção)</div>
+    <div class="card-text">
+      → <strong>Definição (DBTA)</strong> — "conjuntos de documentos de uma <strong>mesma proveniência</strong>. Termo que <strong>equivale a arquivo</strong>" — fundo e arquivo são <strong>sinônimos</strong><br>
+      → <strong>Fundo aberto</strong> — novos documentos <strong>podem ser acrescentados</strong>: a entidade produtora <strong>continua funcionando</strong><br>
+      → <strong>Fundo fechado</strong> — em geral <strong>não se acrescenta mais</strong> nada: a entidade <strong>encerrou as atividades</strong><br><br>
+      → ⚠️ <strong>Exceção importante:</strong> documento produzido <strong>à época</strong> em que a entidade ainda funcionava <strong>pode</strong> ser acrescentado ao fundo fechado — o fundo fecha para documentos novos, não para os da própria época.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os demais princípios — regra + contexto de cada um</div>
+    <div class="card-text">
+      → <strong>Organicidade</strong> — arquivos <strong>espelham a estrutura, funções e atividades</strong> da entidade produtora ("relação natural entre documentos em decorrência das atividades"); o acúmulo contínuo e progressivo confere <strong>coesão espontânea e estruturada</strong><br>
+      → <strong>Unicidade</strong> — independente de forma, gênero, tipo ou suporte, cada documento tem <strong>caráter e papel únicos</strong> na estrutura documental do fundo — <strong>mesmo copiado, preserva a unicidade</strong> (ex.: prontuário do contribuinte reúne petições, notificações e autos no mesmo contexto)<br>
+      → <strong>Indivisibilidade / integridade</strong> — fundos preservados <strong>sem dispersão, mutilação, alienação, destruição não autorizada ou adição indevida</strong>; decorre da proveniência (resguarda o fundo de misturas, parcelamentos e eliminações indiscriminadas)<br>
+      → <strong>Cumulatividade / naturalidade</strong> — arquivo é <strong>formação progressiva, natural e orgânica</strong>: "não são coletados artificialmente, mas acumulados de modo natural" (Rondinelli); enquanto a entidade funciona, o volume cresce<br>
+      → <strong>Reversibilidade</strong> — todo <strong>procedimento ou tratamento</strong> empreendido em arquivos <strong>pode ser revertido</strong>; especialmente usado nas <strong>restaurações</strong><br>
+      → <strong>Respeito à ordem original</strong> — conservar o <strong>arranjo dado pela entidade produtora</strong>; também chamado princípio da <strong>Ordem Primitiva</strong> ou da <strong>"santidade" da ordem original</strong><br>
+      → <strong>Inalienabilidade / imprescritibilidade</strong> — proíbe <strong>transferir a propriedade</strong> de arquivos públicos a terceiros; o direito público sobre os arquivos <strong>não prescreve</strong> (não morre com o tempo) — <strong>Lei 8.159/1991, art. 10:</strong> "Os documentos de valor permanente são <strong>inalienáveis e imprescritíveis</strong>"<br>
+      → <strong>Universalidade</strong> — papel do arquivista <strong>mais abrangente</strong>: gerir a documentação e compreender o <strong>contexto do documento</strong> e suas relações com o fundo<br>
+      → <strong>Inter-relacionamento</strong> — "registros arquivísticos são um <strong>conjunto indivisível de relações</strong>": permite compreender o documento em relação ao fundo e sua relevância
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Territorialidade, pertinência territorial e pertinência temática — o trio que confunde</div>
+    <div class="card-text">
+      → <strong>Territorialidade (proveniência territorial)</strong> — documento fica <strong>o mais próximo possível do local onde foi produzido</strong>; <strong>exceções:</strong> documentos de <strong>operações militares</strong> e <strong>representações diplomáticas</strong><br>
+      → <strong>Pertinência territorial</strong> — documento deve ser <strong>transferido para o local com que seu CONTEÚDO se relaciona</strong> (ex.: documento produzido em SP sobre endividamento do Governo do RJ → Rio de Janeiro); contrapõe-se à territorialidade<br>
+      → <strong>Pertinência temática</strong> — <strong>reclassificar por assunto</strong>, ignorando proveniência e classificação original; também chamado <strong>princípio temático</strong><br><br>
+      → ⚠️ <strong>Alerta duplo:</strong> a pertinência temática é <span class="highlight">ultrapassada e contrária à proveniência e à ordem original</span> — em regra não se aplica, <strong>mas cai em prova</strong>. E territorialidade ≠ proveniência: são princípios <strong>distintos</strong> (um trata do lugar físico, outro da não-mistura de produtores).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Autenticidade × Veracidade — forma e conteúdo em lados opostos</div>
+    <div class="card-text">
+      → <strong>Autenticidade</strong> — qualidade do documento que <strong>não sofreu alteração, corrompimento ou adulteração</strong>; <span class="highlight">não se relaciona com o conteúdo</span> — garante que foi criado pela pessoa e para o propósito registrados<br>
+      → <strong>e-ARQ Brasil</strong> — "credibilidade de um documento enquanto documento: ser o que diz ser e estar <strong>livre de adulteração</strong>; composta de <strong>identidade e integridade</strong>"<br>
+      → <strong>Rondinelli</strong> — autênticos são os documentos "criados e conservados de acordo com <strong>procedimentos regulares</strong> comprováveis por rotinas"<br>
+      → <strong>Veracidade (confiabilidade)</strong> — garante que o <strong>CONTEÚDO</strong> é real, reflete a verdade dos fatos e serve como prova<br><br>
+      → ⚠️ <strong>As 3 combinações possíveis:</strong> documento <strong>verdadeiro e não autêntico</strong> (adulterado) · <strong>autêntico e falso</strong> (não reflete a realidade) · <strong>verdadeiro e autêntico</strong>. A banca induz a trocar autenticidade (forma/custódia) por confiabilidade (conteúdo).
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Princípio / característica</th><th>Chave de associação</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Proveniência</strong></td><td>Manutenção no respectivo fundo (não misturar produtores)</td></tr>
+        <tr><td><strong>Organicidade</strong></td><td>Relação natural entre os documentos do arquivo</td></tr>
+        <tr><td><strong>Unicidade</strong></td><td>Caráter e papel único do documento no fundo</td></tr>
+        <tr><td><strong>Indivisibilidade / integridade</strong></td><td>Preservação do fundo documental</td></tr>
+        <tr><td><strong>Cumulatividade / naturalidade</strong></td><td>Acumulação progressiva, natural e orgânica</td></tr>
+        <tr><td><strong>Reversibilidade</strong></td><td>Tratamentos podem ser revertidos (restauração)</td></tr>
+        <tr><td><strong>Respeito à ordem original</strong></td><td>Conservar o arranjo dado pelo produtor</td></tr>
+        <tr><td><strong>Inalienabilidade / imprescritibilidade</strong></td><td>Proíbe transferir arquivos públicos a terceiros</td></tr>
+        <tr><td><strong>Universalidade</strong></td><td>Contexto do documento em relação ao fundo</td></tr>
+        <tr><td><strong>Territorialidade</strong></td><td>Documento perto de onde foi produzido (exceções: guerra e diplomacia)</td></tr>
+        <tr><td><strong>Pertinência territorial</strong></td><td>Transferir pelo conteúdo (local a que se refere)</td></tr>
+        <tr><td><strong>Pertinência temática</strong></td><td>Reclassificar por assunto (ultrapassado — mas cai)</td></tr>
+        <tr><td><strong>Autenticidade</strong></td><td>Sem alteração — <strong>não</strong> se relaciona com o conteúdo</td></tr>
+        <tr><td><strong>Veracidade</strong></td><td>É real, independentemente da forma</td></tr>
+        <tr><td><strong>Inter-relacionamento</strong></td><td>Relação do documento com o seu fundo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — princípio × característica</div>
+    Conforme autor e banca, itens da lista acima aparecem como <strong>características (não princípios)</strong> — a <strong>Organicidade</strong> é o exemplo mais citado. O que importa na prova é <strong>associar a descrição ao nome</strong>, seja ele princípio ou característica. E não existe estágio de evolução chamado "arquivo quimérico": os três estágios são <strong>corrente, intermediário e permanente</strong>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — NATUREZA E VALORES                                  -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Natureza dos arquivos e os valores do documento</div>
+  </div>
+  <div class="sec-subtitle">Fatores tangíveis × intangíveis; por que o documento nasce e por que ele permanece</div>
+
+  <div class="card">
+    <div class="card-title">Fatores tangíveis × intangíveis — quais importam de verdade</div>
+    <div class="card-text">
+      → <strong>Tangíveis (concretos)</strong> — <strong>forma</strong> dos arquivos, <strong>fonte de origem</strong> e <strong>local de conservação</strong>; hoje <strong>não são fundamentais</strong>: o documento pode ter várias formas, vir de várias fontes e ser guardado em vários lugares e ainda ser arquivo<br>
+      → <strong>Intangíveis (abstratos) — os essenciais, em 2 elementos:</strong> (1) a <strong>razão pela qual foram produzidos e acumulados</strong> — alcançar objetivo ligado à <strong>atividade natural</strong> da entidade (no poder público, finalidade oficial), geralmente no curso de ato administrativo; (2) os <strong>valores pelos quais são preservados</strong> — os motivos oficiais <strong>não bastam</strong>: precisa haver <strong>razões culturais</strong> que justifiquem a guarda permanente e interessem a pessoas <strong>diferentes</strong> daquelas para quem foi criado
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Valor primário × valor secundário</div>
+    <div class="card-text">
+      → <strong>Valor primário</strong> — interesse da <strong>entidade produtora</strong>: utilidade para fins <strong>administrativos, legais e fiscais</strong>; é o valor típico do <strong>arquivo corrente</strong><br>
+      → <strong>Valor secundário</strong> — interesse da produtora <strong>e de outros usuários</strong>, para fins <strong>diferentes</strong> daqueles da produção; espécies clássicas: <strong>histórico/cultural, probatório, informativo e científico</strong> — é o valor do <strong>arquivo permanente</strong><br>
+      → <strong>O que decide o valor</strong> — a função <strong>avaliação</strong> detecta o valor do documento: o valor <strong>não depende do suporte nem da natureza</strong> do documento<br><br>
+      → ⚠️ <strong>Pegadinha recorrente:</strong> "documento do arquivo corrente tem valor informativo" — <strong>falso</strong>: o informativo é valor <strong>secundário</strong>, não típico do corrente. E a principal razão de <strong>produção</strong> de documentos é <strong>administrativa</strong>, nunca cultural — o valor cultural pode <strong>surgir depois</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Não confunda — Natureza dos ARQUIVOS × Natureza dos DOCUMENTOS</div>
+    <strong>Natureza dos arquivos</strong> = os <strong>valores</strong> (primário × secundário). <strong>Natureza dos documentos</strong> = critério de classificação <strong>especial × especializado</strong> (seção seguinte). E "ostensivo × sigiloso" é classificação quanto à <strong>natureza do ASSUNTO</strong> — sigiloso exige acesso restrito com medidas especiais de custódia; ostensivo tem acesso livre. Trocar esses rótulos entre si é erro clássico.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — CLASSIFICAÇÃO                                       -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Classificação dos arquivos — 4 critérios</div>
+  </div>
+  <div class="sec-subtitle">Entidades mantenedoras, 3 idades, extensão de atuação e natureza dos documentos</div>
+
+  <div class="card">
+    <div class="card-title">Critério 1 — Entidades mantenedoras (Leite Paes)</div>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Grupo</th><th>Subdivisões</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Públicos</strong></td><td>Central · Federal · Regional · Estadual · Municipal</td></tr>
+        <tr><td><strong>Institucionais</strong></td><td>Instituições educacionais · Igrejas · Corporações não lucrativas · Sociedades/Associações</td></tr>
+        <tr><td><strong>Comerciais</strong></td><td>Firmas · Corporações · Companhias</td></tr>
+        <tr><td><strong>Familiais ou pessoais</strong></td><td>Arquivos de pessoa física e família</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="card-text">
+      → <strong>Chave de prova:</strong> igrejas, sociedades, clubes e associações são <strong>institucionais</strong> — não "pessoais". E pela Lei 8.159/1991 a divisão é só <strong>público × privado</strong> (institucionais, comerciais e familiares = privados).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Critério 2 — Estágios de evolução (Teoria das 3 Idades)</div>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Estágio</th><th>Idade</th><th>Características</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Arquivo corrente</strong></td>
+          <td><strong>1ª idade</strong></td>
+          <td>Documentos em curso ou <strong>consultados com frequência</strong>; ficam nos próprios escritórios ou em dependências de fácil acesso; <strong>valor primário</strong>; mais próximo do usuário</td>
+        </tr>
+        <tr>
+          <td><strong>Arquivo intermediário</strong></td>
+          <td><strong>2ª idade</strong></td>
+          <td>Consultas <strong>menos frequentes</strong>; órgãos criadores ainda podem requisitar; permanência <strong>temporária e transitória</strong> — depois segue para o permanente <strong>ou</strong> é eliminado; apelidado de <span class="highlight">"purgatório" ou "limbo"</span>; conserva o <strong>valor primário</strong> (administrativo e legal) enquanto aguarda a destinação — sem ele, já teria sido <strong>eliminado</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Arquivo permanente</strong></td>
+          <td><strong>3ª idade</strong></td>
+          <td>Documentos que <strong>perderam o valor primário</strong> (sem utilidade administrativa); conservados pelos <strong>valores secundários</strong> (histórico, cultural, documental)</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="card-text">
+      → <strong>Por que dividir as idades</strong> — cada fase usa <strong>metodologia arquivística diferente</strong>, para atendimento célere, eficiente e preciso ao usuário e <strong>minimização de custos</strong>: documentos de valor primário são muito procurados; os de valor secundário, raramente requisitados.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Critério 3 — Extensão de atuação: setoriais × gerais/centrais</div>
+    <div class="card-text">
+      → <strong>Setoriais</strong> — <strong>descentralizados</strong>: ficam <strong>junto aos órgãos operacionais</strong> que produzem/recebem e usam o documento com frequência; documentos de <strong>valor primário</strong> e muito requisitados; correspondem ao <strong>arquivo corrente</strong> (1ª idade)<br>
+      → <strong>Gerais / centrais</strong> — <strong>centralizados</strong>: recebem documentos com alta frequência, mas <strong>centralizam o arquivamento e as atividades do arquivo corrente</strong> da entidade; ficam <strong>mais distantes</strong> do local de produção/recebimento — DBTA: "responsável pela <strong>normalização dos procedimentos técnicos</strong> aplicados aos arquivos de uma administração" (<strong>também chamado arquivo geral</strong>)<br><br>
+      → ⚠️ <strong>Regra da banca:</strong> arquivos correntes <span class="highlight">devem ser descentralizados</span> (setoriais). E o arquivo setorial <strong>não</strong> guarda documentos de valor permanente — intermediários e permanentes ficam nos arquivos gerais/centrais.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Critério 4 — Natureza dos documentos: especial × especializado</div>
+    <div class="card-text">
+      → <strong>Especiais</strong> — definidos pelo <strong>formato físico não convencional</strong>: fotografias, discos, fitas, disquetes, DVDs; exigem <strong>tratamento especial</strong> de armazenamento, registro, acondicionamento e conservação<br>
+      → <strong>Especializados</strong> — <strong>sem características físicas particulares</strong>: definidos pelo <strong>assunto/campo específico</strong> (esporte, educação, engenharia), <strong>independente do formato</strong> — ou, na letra do DBTA, por <strong>características comuns</strong> como natureza, função, atividade, tipo, conteúdo, suporte ou data<br>
+      → <strong>Pode ser os dois</strong> — um arquivo de <strong>Medicina</strong> com livros, DVDs, mapas e microfilmes é <strong>especializado</strong> (pelo assunto) e <strong>especial</strong> (pelos suportes) ao mesmo tempo
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Classificação por frequência de uso — ativo, inativo, morto e informatizado (Rosineide Sousa)</div>
+    <div class="card-text">
+      → <strong>Ativo</strong> — guarda documentos e papéis de <strong>uso, consulta e referência constantes e atuais</strong>, ou que se encontram em fase de conclusão — incluindo os do <strong>ano letivo</strong><br>
+      → <strong>Inativo</strong> — guarda documentos de <strong>menor frequência</strong> de uso, consulta ou referência; a <strong>microfilmagem</strong> é alternativa para <strong>reduzir o volume físico</strong> desses documentos<br>
+      → <strong>Morto</strong> — frequência de uso, consulta ou referência <strong>quase nula</strong>; a guarda se motiva apenas por <strong>necessidades especiais ou de caráter legal</strong> (documentos que não devem ou não podem ser descartados)<br>
+      → <strong>Informatizado</strong> — <strong>4º tipo</strong> da classificação de Sousa (2007), ao lado de ativo, inativo e morto<br><br>
+      → ⚠️ <strong>Detalhe:</strong> morto <strong>não é depósito de lixo</strong> — documentos inúteis devem ser <strong>destruídos</strong>; o arquivo morto se organiza com as <strong>mesmas técnicas e regras do ativo</strong>, pois a localização e a consulta imediata podem ser necessárias. E os arquivistas consideram o termo <strong>"arquivo morto" inadequado</strong>.
+    </div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">🚨 Pegadinha da banca — qual é o critério?</div>
+    → <strong>"Ostensivo × sigiloso"</strong> — natureza do <strong>assunto</strong> (e o sigilo <strong>não define a fase</strong>: documento sigiloso pode estar no corrente ou no intermediário)<br>
+    → <strong>"Público × privado"</strong> — Lei 8.159/1991 / entidades mantenedoras<br>
+    → <strong>"Corrente, intermediário, permanente"</strong> — estágios de <strong>evolução</strong> (3 idades)<br>
+    → <strong>"Setoriais × centrais/gerais"</strong> — extensão de <strong>atuação</strong><br>
+    → <strong>"Audiovisuais, cartográficos, eletrônicos, textuais..."</strong> — classificação quanto ao <strong>gênero</strong> (configuração do documento quanto a signos, suporte e formato)
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — DBTA                                                -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Terminologia arquivística (DBTA)</div>
+  </div>
+  <div class="sec-subtitle">Da Associação dos Arquivistas ao dicionário de 462 termos — e as definições literais</div>
+
+  <div class="card">
+    <div class="card-title">Como o DBTA nasceu — linha do tempo</div>
+    <div class="card-text">
+      → <strong>Anos 70</strong> — preocupação de Leite Paes: faltava terminologia específica para <strong>intercâmbio, disseminação e recuperação de informação</strong>; a <strong>Associação dos Arquivistas Brasileiros</strong> (fundada em <strong>1971</strong>), por meio do <strong>Comitê de Terminologia Arquivística</strong>, compôs o primeiro glossário com <strong>132 termos</strong>, apresentado no <strong>I Congresso Brasileiro de Arquivologia (1972)</strong><br>
+      → <strong>Referencial internacional</strong> — <strong>CIA</strong> (Conselho Internacional de Arquivos, criado em <strong>1948</strong>) com seus <strong>3 DATs</strong> (Dicionários de Terminologia Arquivística: <strong>1984, 1988 e 2002</strong>) + o dicionário de <strong>Portugal</strong> (1989 provisório, 1993 definitivo)<br>
+      → <strong>Subsídios</strong> — o <strong>Arquivo Nacional</strong> publicou estudos em <strong>1999 e 2004</strong> ("Subsídios para um dicionário brasileiro de terminologia arquivística")<br>
+      → <strong>2005 — DBTA</strong> — criado pelo <strong>Conarq</strong> (órgão vinculado ao Arquivo Nacional) por meio da <strong>Comissão Especial de Terminologia Arquivística</strong>, desenvolvido e organizado <strong>dentro do Arquivo Nacional</strong>, com <strong>462 termos</strong>; substituiu os "Subsídios"<br><br>
+      → ⚠️ <strong>Por que decorar o dicionário:</strong> as bancas cobram o <strong>significado técnico literal</strong> dos termos, muitas vezes sem qualquer contexto.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Definições DBTA com cobrança em prova</div>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Termo</th><th>Definição literal (DBTA)</th><th>Chave</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Documento</strong></td><td>"Unidade de registro de informações, <strong>qualquer que seja o suporte ou formato</strong>"</td><td>Suporte é irrelevante</td></tr>
+        <tr><td><strong>Fundo</strong></td><td>"Conjunto de documentos de uma mesma <strong>proveniência</strong>"</td><td>= <strong>arquivo</strong> (sinônimos)</td></tr>
+        <tr><td><strong>Arquivo corrente</strong></td><td>Documentos em tramitação ou não que, pelo <strong>valor primário</strong>, são objeto de <strong>consultas frequentes</strong> pela produtora</td><td>Valor primário + uso frequente</td></tr>
+        <tr><td><strong>Arquivo intermediário</strong></td><td>Documentos originários de arquivos correntes, <strong>com uso pouco frequente, que aguardam destinação</strong></td><td>2ª idade — o "limbo"</td></tr>
+        <tr><td><strong>Arquivo permanente</strong></td><td>Documentos <strong>preservados em caráter definitivo</strong> em função de seu valor</td><td>3ª idade — definitivo</td></tr>
+        <tr><td><strong>Tramitação</strong></td><td>"Curso do documento da produção/recepção até o <strong>cumprimento de sua função administrativa</strong>"</td><td>Também: movimentação/trâmite</td></tr>
+        <tr><td><strong>Transferência</strong></td><td>"Passagem de documentos do <strong>arquivo corrente para o intermediário</strong>"</td><td>Corrente → intermediário</td></tr>
+        <tr><td><strong>Recolhimento</strong></td><td>"Entrada de documentos públicos em <strong>arquivos permanentes</strong>" (operacionalmente: do intermediário para o permanente)</td><td>→ permanente (≠ transferência)</td></tr>
+        <tr><td><strong>Arquivo administrativo</strong></td><td>Predominância de documentos das <strong>atividades-meio</strong></td><td>Opõe-se ao técnico</td></tr>
+        <tr><td><strong>Arquivo técnico</strong></td><td>Predominância de documentos das <strong>atividades-fim</strong></td><td>Opõe-se ao administrativo</td></tr>
+        <tr><td><strong>Arquivo de segurança</strong></td><td>"Conjunto de <strong>cópias arquivadas em local diverso</strong> dos originais para garantir a integridade da informação"</td><td>Backup físico</td></tr>
+        <tr><td><strong>Patrimônio arquivístico</strong></td><td>"Conjunto dos <strong>arquivos de valor permanente</strong>, públicos ou privados, existentes no âmbito de uma nação, estado ou município"</td><td>É por nação/UF/município</td></tr>
+        <tr><td><strong>Valor primário</strong></td><td>Interesse da produtora — fins <strong>administrativos, legais e fiscais</strong></td><td>Quem criou, usa primeiro</td></tr>
+        <tr><td><strong>Valor secundário</strong></td><td>Interesse da produtora <strong>e de outros usuários</strong>, para fins <strong>diferentes</strong> da produção</td><td>Depois da função administrativa</td></tr>
+        <tr><td><strong>Valor permanente</strong></td><td>Valor probatório ou que justifica a guarda permanente; <strong>também chamado valor arquivístico ou histórico</strong></td><td>Denominação do glossário</td></tr>
+        <tr><td><strong>Valor informativo</strong></td><td>O valor que o documento tem <strong>pelas informações que contém, independentemente do valor probatório</strong></td><td>É valor <strong>secundário</strong></td></tr>
+        <tr><td><strong>Proveniência</strong></td><td>"Entidade coletiva, pessoa ou família <strong>produtora</strong> de arquivo"</td><td>Não é o lugar — é o produtor</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — PONTOS DE PROVA                                     -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Pontos que mais caem em prova</div>
+  </div>
+  <div class="sec-subtitle">Revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">🎯 Checklist de véspera — Aula 00</div>
+    <div class="card-text">
+      → <strong>Definição mais cobrada de arquivo</strong> — a <strong>1ª do DBTA</strong> (conjunto de documentos... qualquer suporte)<br>
+      → <strong>Arquivologia = Arquivística</strong> — sinônimos no DBTA<br>
+      → <strong>1º Arquivo Nacional do mundo</strong> — França, <strong>1790</strong>; decreto de <strong>1794</strong> = "declaração dos direitos da arquivística" (administração de arquivos + acesso público)<br>
+      → <strong>Inglaterra 1838 (PRO)</strong> — motivo <strong>prático</strong> (caos); hoje sem vínculo ministerial · <strong>EUA 1934</strong> — estopim: incêndios · <strong>Brasil</strong> — AN no RJ sob o <strong>Ministério da Gestão e da Inovação em Serviços Públicos</strong><br>
+      → <strong>4 razões de Schellenberg</strong> — práticas, culturais, pessoais, oficiais; o órgão especial segregava privilégios feudais <strong>para eliminá-los</strong><br>
+      → <strong>Proveniência</strong> — não misturar produtores; = respeito aos fundos; compõe-se de <strong>fundos + ordem original</strong>; <strong>procedência</strong> é conceito distinto<br>
+      → <strong>Fundo = arquivo</strong> — sinônimos; fundo fechado admite documento <strong>da época</strong> da entidade<br>
+      → <strong>Autenticidade (forma) ≠ Veracidade (conteúdo)</strong> — pode ser verdadeiro e não autêntico; autêntico e falso<br>
+      → <strong>Pertinência temática</strong> — ultrapassado, contra a proveniência, <strong>mas cai em prova</strong><br>
+      → <strong>Valor primário</strong> = administrativo, legal, fiscal (corrente) · <strong>secundário</strong> = histórico/cultural, probatório, informativo, científico (permanente)<br>
+      → <strong>Transferência</strong> = corrente → intermediário · <strong>Recolhimento</strong> = → permanente<br>
+      → <strong>Especial × especializado</strong> — formato físico × assunto; podem coexistir<br>
+      → <strong>DBTA</strong> — Conarq, 2005, <strong>462 termos</strong>, dentro do Arquivo Nacional; antecessores: AAB (132 termos, 1972) + 3 DATs do CIA
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — INCIDÊNCIA TEC                                      -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Priorize a revisão de cima para baixo — temas com mais questões primeiro</div>
+
+  <div class="card">
+    <div class="card-title">📊 Contadores por tema</div>
+    <div class="card-text">
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 5 — Classificação dos arquivos: 9</span><br><br>
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 1 — Origem e conceito de arquivo: 1</span><br>
+      <span class="tag">Seção 3 — Princípios arquivísticos: 1</span><br>
+      <span class="tag">Seção 6 — Terminologia arquivística (DBTA): 1</span><br>
+    </div>
+  </div>
+</section>
+</div><!-- .main -->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2009/resumo-aula-09-contratos-administrativos.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 09 · Contratos Administrativos</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+  
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": 0, "tema": "Conceitos Fundamentais", "questoes": [{"q": "Pelo princípio da proveniência, arquivos de entidades produtoras distintas:", "opts": [{"t": "Devem ser reunidos por assunto, para facilitar a recuperação.", "why": "Reunir por assunto ignorando o produtor é a pertinência temática — ultrapassada e contrária à proveniência."}, {"t": "Não devem ser misturados entre si, mantendo-se cada fundo com sua individualidade.", "ok": true, "why": "Proveniência = respeito aos fundos: sem mesclagem entre produtores; decompõe-se em fundos + ordem original."}, {"t": "Devem conservar apenas o arranjo dado pelo arquivista atual.", "why": "O arranjo a conservar é o dado pela entidade PRODUTORA (ordem original), não pelo arquivista."}, {"t": "Devem ficar guardados o mais perto possível do local de produção.", "why": "Isso é territorialidade, princípio distinto da proveniência."}]}, {"q": "Sobre autenticidade e veracidade do documento de arquivo, é correto:", "opts": [{"t": "Documento autêntico é aquele cujo conteúdo reflete a verdade dos fatos.", "why": "Conteúdo verdadeiro = veracidade (confiabilidade); autenticidade não se relaciona com o conteúdo."}, {"t": "Todo documento autêntico é necessariamente verdadeiro.", "why": "Pode ser autêntico e falso: sem alteração, mas sem refletir a realidade."}, {"t": "Autenticidade e veracidade são sinônimos, ambos relativos à forma.", "why": "São distintos: autenticidade = forma/custódia; veracidade = conteúdo."}, {"t": "Documento autêntico é o livre de alteração ou adulteração, ainda que seu conteúdo seja falso.", "ok": true, "why": "Autenticidade = não sofreu alteração; não garante veracidade (e-ARQ: identidade + integridade)."}]}, {"q": "O arquivo intermediário (2ª idade) caracteriza-se por:", "opts": [{"t": "Consultas menos frequentes e permanência temporária, conservando o valor primário até a destinação.", "ok": true, "why": "O 'purgatório/limbo': uso pouco frequente, temporário e transitório — depois, eliminação ou recolhimento."}, {"t": "Documentos em curso ou consultados com frequência pela produtora.", "why": "Isso é o arquivo corrente (1ª idade), de valor primário e uso frequente."}, {"t": "Documentos com valor secundário, preservados em caráter definitivo.", "why": "Valor secundário + definitivo = arquivo permanente (3ª idade)."}, {"t": "Dispensar qualquer prazo de guarda, pois já perdeu o valor primário.", "why": "Ele conserva o valor primário e cumpre prazo de guarda até a destinação."}]}, {"q": "Um arquivo de Medicina reunindo livros, DVDs, mapas e microfilmes é:", "opts": [{"t": "Apenas especial, pelo assunto médico.", "why": "O assunto define o especializado; o especial é definido pelos suportes não convencionais."}, {"t": "Apenas especializado, pelos suportes variados.", "why": "Invertido: suportes variados = especial; assunto específico = especializado."}, {"t": "Especializado pelo assunto e especial pelos suportes, ao mesmo tempo.", "ok": true, "why": "As classificações coexistem: assunto específico (especializado) + formatos não convencionais (especial)."}, {"t": "Nem especial nem especializado, pois as classificações se excluem.", "why": "Elas não se excluem: um mesmo arquivo pode ser os dois."}]}, {"q": "Pela Lei 8.159/1991, os documentos de valor permanente são:", "opts": [{"t": "Alienáveis, podendo ser vendidos a particulares interessados.", "why": "O art. 10 declara os documentos de valor permanente INALIENÁVEIS."}, {"t": "Inalienáveis e imprescritíveis.", "ok": true, "why": "Art. 10, literal: inalienáveis (não se transfere a propriedade) e imprescritíveis (o direito não morre com o tempo)."}, {"t": "Imprescritíveis, mas alienáveis com autorização do Conarq.", "why": "Não há essa exceção: são inalienáveis, ponto."}, {"t": "Prescritíveis em 100 anos, como as informações pessoais.", "why": "Os 100 anos são das informações PESSOAIS (LAI); permanência arquivística não prescreve."}]}, {"q": "Transferência e recolhimento distinguem-se porque:", "opts": [{"t": "São sinônimos: ambos levam documentos ao arquivo permanente.", "why": "Só o recolhimento vai ao permanente; transferência vai ao intermediário."}, {"t": "A transferência é do intermediário ao permanente e o recolhimento, do corrente ao intermediário.", "why": "Invertido: transferência = corrente→intermediário; recolhimento = →permanente."}, {"t": "Ambos ocorrem apenas dentro da fase corrente.", "why": "Ultrapassam a fase corrente: o destino é outra idade do ciclo."}, {"t": "A transferência leva ao arquivo intermediário e o recolhimento, ao permanente.", "ok": true, "why": "Transferência = corrente→intermediário (aguarda destinação); recolhimento = entrada no permanente."}]}, {"q": "O princípio da pertinência temática:", "opts": [{"t": "Manda reclassificar documentos por assunto, ignorando proveniência e ordem original, e é o mais aplicado hoje.", "ok": true, "why": "É exatamente isso — mas atenção ao complemento: ele é ULTRAPASSADO e contraria proveniência e ordem original, embora caia em prova."}, {"t": "Equivale ao respeito à ordem original, com outro nome.", "why": "São opostos: ordem original conserva o arranjo do produtor; pertinência reclassifica por assunto."}, {"t": "Determina que o documento fique perto do local de produção.", "why": "Isso é territorialidade, não pertinência temática."}, {"t": "Foi revogado pela Lei 8.159/1991 e não é mais cobrado.", "why": "Não foi 'revogado' por lei — é doutrinariamente superado, mas CONTINUA caindo em prova."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>

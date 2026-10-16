@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — ARC Aula 04: Gestão de Documentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#92400e; --matsoft:#f4e9df; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#f4e9df 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:720px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"➜";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.evo{display:flex;align-items:stretch;gap:.2rem;margin:.6rem 0;flex-wrap:wrap}
+.evo .step{flex:1;min-width:104px;border:2px dashed var(--ink);border-radius:10px;padding:.45rem .45rem;text-align:center;background:#fff;font-size:.74rem;color:var(--ink2)}
+.evo .step b{display:block;font-size:.78rem;color:var(--ink)}
+.evo .step.star{border-style:solid;background:var(--matsoft);box-shadow:3px 3px 0 var(--mat)}
+.evo .arrow{align-self:center;font-weight:800;font-size:1rem}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}.evo .arrow{font-size:.85rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">ARC · Aula 04 · Gestão de Documentos</div>
+<h1><span class="hl">Gestão</span> numa página 🗄️</h1>
+<p class="sub">PUD · Schellenberg · avaliação e CPAD · destinação · instrumentos · SIGA · UNESCO · DBTA.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-04-gestao-de-documentos.html">resumo da Aula 04</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">🗄️</div><div><b>GESTÃO = racionalizar + agilizar (PUD)</b><br><span>Pós-guerra, EUA/Canadá · corrente e intermediária · <strong>eliminação ou recolhimento</strong></span></div></div>
+</div>
+<div class="tri"><span class="pill">⚙️ PUD</span><span class="pill">🔀 Schellenberg</span><span class="pill">⚖️ Avaliar</span><span class="pill">📦 Destinar</span><span class="pill">🏛️ SIGA</span><span class="pill">📖 DBTA</span></div>
+<main>
+<section class="note" aria-label="PUD">
+<h2><span class="n">1</span> ⚙️ PUD: as 3 fases</h2>
+<div class="evo">
+<div class="step"><b>1 produção</b>criar só o indispensável, sem duplicar (organicidade)</div><div class="arrow">→</div>
+<div class="step"><b>2 utilização</b>protocolo, tramitar, arquivar, consultar (arquiva aqui!)</div><div class="arrow">→</div>
+<div class="step star"><b>3 avaliação ★</b>a mais complexa: prazos + eliminação ou guarda</div>
+</div>
+<div class="gotcha">🚨 <b>Protocolo</b> = 1ª <b>idade</b> + 2ª <b>fase</b> · arquivamento só da 2ª fase em diante · <b>recolhimento</b> é 3ª fase, nunca utilização.</div>
+</section>
+<section class="note" aria-label="Schellenberg">
+<h2><span class="n">2</span> 🔀 Schellenberg: funcional vence</h2>
+<ul>
+<li><strong>Funcional</strong> (ação→funções): estável, ideal p/ <strong>órgão público</strong> (estrutura muda, função fica)</li>
+<li><strong>Organizacional</strong> (estrutura): vulnerável — reestruturação = <strong>reclassificação</strong></li>
+<li><strong>Por assuntos:</strong> o mais raro — <strong>evitar</strong> (quebra a avaliação por conjuntos)</li>
+<li><strong>Estudo</strong> (ler e identificar) + <strong>codificação</strong> (aplicar o código) — no <strong>protocolo</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="Avaliacao">
+<h2><span class="n">3</span> ⚖️ Avaliar: valor decide tudo</h2>
+<ul>
+<li><strong>Primário</strong> (administrativo/legal) → corrente/intermediário · <strong>secundário</strong> (probatório/informativo) → permanente</li>
+<li><strong>CPAD:</strong> arquivistas + negócio, por ato do titular — elabora <strong>instrumentos de GESTÃO</strong> (nunca de pesquisa)</li>
+<li><strong>Sem secundário → elimina</strong> · com secundário → <strong>recolhe</strong> (permanente nunca elimina)</li>
+</ul>
+</section>
+<section class="note" aria-label="Destinacao">
+<h2><span class="n">4</span> 📦 Destinação: 3 destinos</h2>
+<ul>
+<li><strong>Eliminação:</strong> destruição, sem valor secundário (= <strong>descarte = expurgo</strong>)</li>
+<li><strong>Transferência → intermediário</strong> (permanente ou periódica)</li>
+<li><strong>Recolhimento → permanente</strong> (sistemático, regular ou selvagem)</li>
+<li><strong>Plano 1º, tabela depois</strong> — o plano orienta a tabela (nunca o contrário)</li>
+</ul>
+<div class="gotcha">🚨 Para o <b>permanente</b> vai <b>recolhimento</b> · prazo da tabela = <b>guarda</b> (não prescrição) · intermediário em <b>anos</b>, corrente em anos <b>ou ação</b>.</div>
+</section>
+<section class="note" aria-label="SIGA">
+<h2><span class="n">5</span> 🏛️ SIGA: AN no centro</h2>
+<ul>
+<li><strong>SIFAR → SGDI → SIGA</strong> (Dec. 4.915/2003; 10.148/2019 revogou arts. 6º–8º)</li>
+<li><strong>Central = Arquivo Nacional</strong> · setoriais (Ministérios) · seccionais (vinculadas)</li>
+<li><strong>Não confunda:</strong> Conarq→AN · <strong>SINAR→Conarq</strong> central · <strong>SIGA→AN</strong> central</li>
+<li><strong>UNESCO:</strong> mínimo (reter+eliminar) → ampliado (+intermediário) → intermediário (formulários, vitais) → máximo (tudo + automação)</li>
+</ul>
+</section>
+<section class="note" aria-label="DBTA">
+<h2><span class="n">6</span> 📖 DBTA de bolso</h2>
+<ul>
+<li><strong>Ciclo vital:</strong> produção→guarda/eliminação · gestão <strong>só</strong> no corrente e intermediário</li>
+<li><strong>Prazo de guarda:</strong> tabela, por <strong>estimativas de uso</strong> (= retenção) · <strong>seleção:</strong> separa permanente × eliminável</li>
+<li><strong>Protocolo:</strong> recebe, registra, classifica, distribui, controla, expede</li>
+<li><strong>Descentralizar: só o corrente</strong> · <strong>reproduzir:</strong> preservar originais + trocar suporte</li>
+</ul>
+</section>
+<section class="note wide" aria-label="Para levar">
+<h2><span class="n">★</span> 🎯 Para levar para a prova</h2>
+<p><span class="tag t-green"><strong>PUD</strong>: produzir · usar · destinar</span> <span class="tag t-blue"><strong>funcional</strong> no público</span> <span class="tag t-yellow"><strong>plano → tabela</strong></span> <span class="tag t-red"><strong>transferência</strong> → interm. · <strong>recolhimento</strong> → perm.</span> <span class="tag t-purple"><strong>central SIGA = AN</strong></span> <span class="tag t-yellow"><strong>eliminação = descarte = expurgo</strong></span><br><br>
+→ <strong>Jardim:</strong> documentar · reunir o mínimo · organizar · inibir eliminação do permanente · definir o patrimônio · <strong>Gestão = CONTROLE</strong> da informação</p>
+</section>
+</main>
+<footer>
+<div class="biz">✏️ Sketchnote — ARC Aula 04 · <span>0</span><span>4</span></div>
+<a class="back" href="resumo-aula-04-gestao-de-documentos.html">← voltar ao resumo completo</a>
+</footer>
+</div>
+</body>
+</html>

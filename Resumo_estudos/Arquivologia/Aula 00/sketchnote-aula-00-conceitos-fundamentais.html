@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — ARC Aula 00: Conceitos Fundamentais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#92400e; --matsoft:#f4e9df; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#f4e9df 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:720px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"➜";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.evo{display:flex;align-items:stretch;gap:.2rem;margin:.6rem 0;flex-wrap:wrap}
+.evo .step{flex:1;min-width:104px;border:2px dashed var(--ink);border-radius:10px;padding:.45rem .45rem;text-align:center;background:#fff;font-size:.74rem;color:var(--ink2)}
+.evo .step b{display:block;font-size:.78rem;color:var(--ink)}
+.evo .step.star{border-style:solid;background:var(--matsoft);box-shadow:3px 3px 0 var(--mat)}
+.evo .arrow{align-self:center;font-weight:800;font-size:1rem}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}.evo .arrow{font-size:.85rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">ARC · Aula 00 · Conceitos Fundamentais</div>
+<h1><span class="hl">Arquivo</span> numa página 📜</h1>
+<p class="sub">Conceito e lei · história · princípios · valores · 3 idades · 4 critérios · frequência · DBTA.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-00-conceitos-fundamentais.html">resumo da Aula 00</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">📜</div><div><b>ARQUIVO = conjunto orgânico, qualquer suporte</b><br><span>1ª definição DBTA (a mais cobrada) · Lei 8.159, art. 2º · Arquivologia = <strong>Arquivística</strong></span></div></div>
+</div>
+<div class="tri"><span class="pill">📜 Conceito</span><span class="pill">🏛️ História</span><span class="pill">🧭 Princípios</span><span class="pill">⚖️ Valores</span><span class="pill">🕰️ 3 Idades</span><span class="pill">🗂️ Critérios</span><span class="pill">📖 DBTA</span></div>
+<main>
+<section class="note" aria-label="Conceito">
+<h2><span class="n">1</span> 📜 Conceito e lei</h2>
+<ul>
+<li><strong>DBTA (4):</strong> <strong>conjunto de documentos</strong> (a campeã) · instituição/serviço · instalações · móvel</li>
+<li><strong>Lei 8.159, art. 2º:</strong> produzidos e recebidos por órgãos, entidades e pessoa física, <strong>qualquer suporte</strong></li>
+<li><strong>Art. 7º:</strong> públicos = federal, estadual, DF e municipal (administrativa, legislativa, judiciária)</li>
+<li><strong>Teste do vínculo:</strong> registro de frequência = arquivo · Diário Oficial avulso, panfleto, calendário = <strong>não</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="Historia">
+<h2><span class="n">2</span> 🏛️ História em datas</h2>
+<ul>
+<li><strong>França 1790:</strong> 1º Arquivo Nacional do mundo · <strong>1794:</strong> "declaração dos direitos da arquivística" (arquivos + acesso)</li>
+<li><strong>Inglaterra 1838</strong> (caos prático, sem vínculo ministerial) · <strong>EUA 1934</strong> (estopim: incêndios)</li>
+<li><strong>Brasil:</strong> AN no <strong>RJ</strong>, sob o Ministério da <strong>Gestão e Inovação</strong></li>
+<li><strong>4 razões (Schellenberg):</strong> práticas · culturais · pessoais (segregar p/ <strong>eliminar</strong>) · oficiais</li>
+</ul>
+</section>
+<section class="note" aria-label="Principios 1">
+<h2><span class="n">3</span> 🧭 Proveniência e Cia.</h2>
+<ul>
+<li><strong>Proveniência:</strong> <strong>não misturar</strong> produtores (= respeito aos fundos) · compõe-se de <strong>fundos + ordem original</strong></li>
+<li><strong>Fundo = arquivo</strong> (sinônimos) · aberto (entidade viva) × fechado (admite doc <strong>da época</strong>)</li>
+<li><strong>Organicidade:</strong> espelham estrutura e funções · <strong>Unicidade:</strong> papel único, mesmo copiado</li>
+<li><strong>Ordem original:</strong> conservar o arranjo do produtor ("santidade") · <strong>Reversibilidade:</strong> tratamentos reversíveis (restauração)</li>
+</ul>
+</section>
+<section class="note" aria-label="Principios 2">
+<h2><span class="n">4</span> 🧭 Território, forma e lei</h2>
+<ul>
+<li><strong>Territorialidade:</strong> perto de onde produziu (exceções: <strong>guerra e diplomacia</strong>) · pertinência territorial = pelo <strong>conteúdo</strong> · pertinência temática = por <strong>assunto</strong> (ultrapassada, mas cai)</li>
+<li><strong>Autenticidade (forma)</strong> ≠ <strong>veracidade (conteúdo)</strong> — dá p/ ser autêntico e falso</li>
+<li><strong>Art. 10:</strong> valor permanente = <strong>inalienáveis e imprescritíveis</strong></li>
+</ul>
+<div class="gotcha">🚨 Territorialidade ≠ <b>proveniência</b> (lugar × produtor) · sigilo <b>não define fase</b> · pertinência temática <b>cai mesmo ultrapassada</b>.</div>
+</section>
+<section class="note" aria-label="Valores">
+<h2><span class="n">5</span> ⚖️ Valores</h2>
+<ul>
+<li><strong>Primário</strong> (administrativo, legal, fiscal): interesse da <strong>produtora</strong> — mora no <strong>corrente</strong></li>
+<li><strong>Secundário</strong> (histórico, probatório, informativo, científico): produtora <strong>+ outros</strong> — mora no <strong>permanente</strong></li>
+<li><strong>Valor se detecta pela avaliação</strong> — não depende de suporte nem natureza</li>
+<li><strong>Informativo é secundário:</strong> "corrente tem valor informativo" = <strong>falso</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="Tres idades">
+<h2><span class="n">6</span> 🕰️ 3 idades <span class="tag t-red">9 TEC 🔴</span></h2>
+<div class="evo">
+<div class="step"><b>1ª corrente</b>em curso, uso frequente, valor primário, perto do usuário</div><div class="arrow">→</div>
+<div class="step"><b>2ª intermediária</b>"purgatório": pouco uso, temporária, conserva o primário</div><div class="arrow">→</div>
+<div class="step star"><b>3ª permanente ★</b>perdeu o primário; secundário, definitivo</div>
+</div>
+<ul>
+<li><strong>Transferência</strong> = corrente→intermediário · <strong>Recolhimento</strong> = →permanente</li>
+<li><strong>Setoriais</strong> (descentralizados, corrente) × <strong>centrais</strong> (DBTA: normalizam procedimentos; "arquivo geral")</li>
+</ul>
+</section>
+<section class="note" aria-label="Criterios">
+<h2><span class="n">7</span> 🗂️ Critérios <span class="tag t-red">9 TEC 🔴</span></h2>
+<ul>
+<li><strong>Mantenedoras:</strong> públicos · institucionais (igrejas, clubes) · comerciais · familiares</li>
+<li><strong>Especial (formato)</strong> × <strong>especializado (assunto)</strong> — podem coexistir; especializado = assunto <strong>ou características comuns</strong></li>
+<li><strong>Frequência (Sousa):</strong> ativo (uso constante + ano letivo) · inativo (microfilmagem reduz volume) · morto (quase nulo, <strong>não é lixo</strong>) · informatizado</li>
+<li><strong>Administrativo (meio)</strong> × <strong>técnico (fim)</strong></li>
+</ul>
+<div class="gotcha">🚨 <b>Ostensivo×sigiloso</b> = assunto · <b>público×privado</b> = mantenedora · <b>corrente/interm./perm.</b> = evolução · <b>setorial×central</b> = atuação.</div>
+</section>
+<section class="note" aria-label="DBTA">
+<h2><span class="n">8</span> 📖 DBTA essencial</h2>
+<ul>
+<li><strong>Documento:</strong> unidade de registro, <strong>qualquer suporte ou formato</strong></li>
+<li><strong>Tramitação:</strong> curso até cumprir a função · <strong>Proveniência</strong> = o produtor (≠ <strong>procedência</strong> = entrada imediata)</li>
+<li><strong>Segurança:</strong> cópias em <strong>local diverso</strong> · <strong>Patrimônio:</strong> permanentes de nação/UF/município</li>
+<li><strong>DBTA:</strong> Conarq, <strong>2005, 462 termos</strong> · antecessores: AAB (132, 1972) + 3 DATs do CIA</li>
+</ul>
+</section>
+<section class="note wide" aria-label="Para levar">
+<h2><span class="n">★</span> 🎯 Para levar para a prova</h2>
+<p><span class="tag t-green"><strong>1ª definição</strong> DBTA é a campeã</span> <span class="tag t-blue"><strong>1790</strong> França · <strong>1794</strong> direitos</span> <span class="tag t-yellow"><strong>fundo = arquivo</strong></span> <span class="tag t-red"><strong>autenticidade</strong> = forma · <strong>veracidade</strong> = conteúdo</span> <span class="tag t-purple"><strong>primário</strong> = corrente · <strong>secundário</strong> = permanente</span> <span class="tag t-yellow"><strong>transferência</strong> → interm. · <strong>recolhimento</strong> → perm.</span><br><br>
+→ <strong>Arquivologia = Arquivística</strong> · <strong>original ≠ único</strong> não é desta aula — é da 01 · <strong>morto ≠ lixo</strong> · <strong>pertinência temática cai</strong> mesmo ultrapassada</p>
+</section>
+</main>
+<footer>
+<div class="biz">✏️ Sketchnote — ARC Aula 00 · <span>0</span><span>0</span></div>
+<a class="back" href="resumo-aula-00-conceitos-fundamentais.html">← voltar ao resumo completo</a>
+</footer>
+</div>
+</body>
+</html>
