@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa Mental — DC Aula 02: Direitos e Deveres (art. 5º)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=JetBrains+Mono:wght@600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3;
+  --ink:#1f2733;
+  --ink2:#455064;
+  --mat:#7c3aed;
+  --card:#fffef9;
+  --c1:#7c3aed; /* estrutura */
+  --c2:#2563eb; /* direitos */
+  --c3:#059669; /* garantias */
+  --c4:#d97706; /* inviolabilidades */
+  --c5:#dc2626; /* pegadinhas */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'IBM Plex Sans',system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  min-height:100vh;
+  padding:1rem;
+}
+a{color:var(--mat);text-decoration:none}
+.sheet{
+  max-width:1100px;
+  margin:0 auto;
+  background:var(--card);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  box-shadow:8px 8px 0 var(--ink);
+  overflow:hidden;
+}
+header.hero{
+  padding:2rem 2rem 1.2rem;
+  text-align:center;
+  border-bottom:3px dashed var(--ink);
+  background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#ede9fe 0,transparent 35%),var(--card);
+}
+.kicker{
+  font-family:'IBM Plex Sans';
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--mat);
+  background:#ede9fe;
+  border:2px solid var(--ink);
+  display:inline-block;
+  padding:.2rem .8rem;
+  border-radius:999px;
+  transform:rotate(-2deg);
+}
+h1{
+  font-family:'Space Grotesk',cursive;
+  font-size:clamp(2rem,6vw,3rem);
+  line-height:1.05;
+  margin:.6rem 0 .2rem;
+}
+.sub{
+  color:var(--ink2);
+  font-size:.9rem;
+  max-width:720px;
+  margin:.4rem auto 0;
+  text-align:center;
+}
+.sub a{color:var(--mat);font-weight:700}
+
+/* mapa mental */
+.mm{
+  position:relative;
+  padding:2rem 1rem;
+  max-width:1100px;
+  margin:0 auto;
+  min-height:600px;
+}
+.center-wrap{
+  position:relative;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:1.6rem;
+  z-index:20;
+}
+.center-node{
+  background:var(--mat);
+  color:#fff;
+  border-radius:16px;
+  padding:1.1rem 1.8rem;
+  max-width:520px;
+  box-shadow:5px 5px 0 #6d28d9;
+  border:3px solid var(--ink);
+  text-align:center;
+}
+.center-node .big{font-size:2.2rem}
+.center-node b{font-family:'Space Grotesk';font-size:1.05rem;letter-spacing:-.01em;line-height:1.3;display:block;margin-bottom:.1rem}
+.center-node span{font-size:.8rem;opacity:.95;display:block}
+
+.svg-wrap{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  pointer-events:none;
+  z-index:10;
+}
+.conn-line{
+  stroke-width:3;
+  fill:none;
+  stroke-linecap:round;
+}
+
+.branches{
+  position:relative;
+  z-index:15;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:1rem;
+  max-width:1100px;
+  margin:0 auto;
+}
+.branch{
+  position:relative;
+  width:calc(20% - 1rem);
+  min-width:200px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.branch-card{
+  background:var(--card);
+  border:2.5px solid var(--ink);
+  border-radius:14px;
+  padding:.9rem 1.1rem;
+  box-shadow:4px 4px 0 rgba(31,39,51,.9);
+  width:100%;
+  position:relative;
+  text-align:left;
+}
+.branch-card::before{
+  content:"";
+  position:absolute;top:0;left:0;width:6px;height:100%;border-radius:14px 0 0 14px;
+}
+.branch-card h3{
+  font-family:'Space Grotesk';
+  font-size:.95rem;
+  font-weight:800;
+  margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.branch-card h3 .num{
+  font-family:'JetBrains Mono';
+  font-size:.7rem;
+  width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;color:#fff;
+}
+.branch-card ul{list-style:none;padding:0;margin:0}
+.branch-card li{
+  font-size:.8rem;
+  color:var(--ink2);
+  margin:.28rem 0;
+  padding-left:1.3rem;
+  position:relative;
+  line-height:1.45;
+}
+.branch-card li::before{
+  content:"➜";
+  position:absolute;left:0;color:var(--c4);font-weight:800;
+}
+.branch-card li strong{color:var(--ink)}
+.tag{
+  display:inline-block;
+  font-size:.68rem;
+  font-weight:700;
+  border:2px solid var(--ink);
+  border-radius:7px;
+  padding:.05rem .45rem;
+  margin:.12rem .1rem;
+  background:#fff;
+  font-family:'JetBrains Mono';
+}
+
+@media(max-width:900px){
+  .mm{min-height:auto;padding:1.2rem 1rem}
+  .branches{flex-direction:column;align-items:center}
+  .branch{width:100%;min-width:auto}
+  .svg-wrap{display:none}
+}
+
+/* rodapé */
+footer{
+  border-top:3px dashed var(--ink);
+  padding:1rem 1.4rem 1.4rem;
+  background:#f8f5e9;
+  display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;
+}
+.back{
+  display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat);
+}
+.back:hover{transform:translateY(-2px)}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">DC · Aula 02 · Direitos e Deveres (art. 5º)</div>
+<h1>Mapa mental do <span style="font-family:'Space Grotesk';">art. 5º</span> CF/88</h1>
+<p class="sub">Nó central + 5 ramos. Palavras-chave, cores por categoria. <a href="resumo-aula-02-direitos-e-deveres-art5.html">resumo completo →</a></p>
+</header>
+
+<div class="mm">
+  <svg class="svg-wrap" viewBox="0 0 1100 650" preserveAspectRatio="none">
+    <line class="conn-line" x1="550" y1="150" x2="110" y2="330" stroke="var(--c1)"/>
+    <line class="conn-line" x1="550" y1="150" x2="330" y2="330" stroke="var(--c2)"/>
+    <line class="conn-line" x1="550" y1="150" x2="550" y2="330" stroke="var(--c3)"/>
+    <line class="conn-line" x1="550" y1="150" x2="770" y2="330" stroke="var(--c4)"/>
+    <line class="conn-line" x1="550" y1="150" x2="990" y2="330" stroke="var(--c5)"/>
+  </svg>
+
+  <div class="center-wrap">
+    <div class="center-node">
+      <div class="big">⚖️</div>
+      <b>Art. 5º — Caput<br>vida · liberdade · igualdade · segurança · propriedade</b>
+      <span>brasileiros + estrangeiros residentes · rol exemplificativo · nenhum direito é absoluto</span>
+    </div>
+  </div>
+
+  <div class="branches">
+    <!-- 1 Estrutura -->
+    <div class="branch" style="--c:var(--c1)">
+      <div class="branch-card" style="--c:var(--c1)" ;>
+        <h3><span class="num" style="background:var(--c1)">1</span><span style="color:var(--c1)">Estrutura</span></h3>
+        <ul>
+          <li><strong>subjetiva</strong> × <strong>objetiva</strong></li>
+          <li>rol <strong>exemplificativo</strong></li>
+          <li><strong>ponderação</strong> em colisão</li>
+          <li>inalienáveis, irrenunciáveis, cumuláveis</li>
+        </ul>
+        <span class="tag" style="border-color:var(--c1);color:var(--c1)">estrutura</span>
+      </div>
+    </div>
+    <!-- 2 Direitos -->
+    <div class="branch" style="--c:var(--c2)">
+      <div class="branch-card" style="--c:var(--c2)" ;>
+        <h3><span class="num" style="background:var(--c2)">2</span><span style="color:var(--c2)">Direitos</span></h3>
+        <ul>
+          <li>vida · igualdade · liberdade</li>
+          <li>intimidade · imagem · honra</li>
+          <li>segurança · propriedade</li>
+        </ul>
+        <span class="tag" style="border-color:var(--c2);color:var(--c2)">direitos</span>
+      </div>
+    </div>
+    <!-- 3 Garantias -->
+    <div class="branch" style="--c:var(--c3)">
+      <div class="branch-card" style="--c:var(--c3)" ;>
+        <h3><span class="num" style="background:var(--c3)">3</span><span style="color:var(--c3)">Garantias</span></h3>
+        <ul>
+          <li>petição · certidão</li>
+          <li>ampla defesa · contraditório</li>
+          <li>presunção de inocência</li>
+        </ul>
+        <span class="tag" style="border-color:var(--c3);color:var(--c3)">garantias</span>
+      </div>
+    </div>
+    <!-- 4 Inviolabilidades -->
+    <div class="branch" style="--c:var(--c4)">
+      <div class="branch-card" style="--c:var(--c4)" ;>
+        <h3><span class="num" style="background:var(--c4)">4</span><span style="color:var(--c4)">Inviolab.</span></h3>
+        <ul>
+          <li>domicílio · FDS + D</li>
+          <li>sigilo da fonte</li>
+          <li>função social da propriedade</li>
+        </ul>
+        <span class="tag" style="border-color:var(--c4);color:var(--c4)">inviolab.</span>
+      </div>
+    </div>
+    <!-- 5 Pegadinhas -->
+    <div class="branch" style="--c:var(--c5)">
+      <div class="branch-card" style="--c:var(--c5)" ;>
+        <h3><span class="num" style="background:var(--c5)">5</span><span style="color:var(--c5)">Pegadinhas</span></h3>
+        <ul>
+          <li>extradição: nato nunca</li>
+          <li>associação: paramilitar vedada</li>
+          <li>sigilo bancário: limites</li>
+        </ul>
+        <span class="tag" style="border-color:var(--c5);color:var(--c5)">pegadinhas</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a class="back" href="sketchnote-aula-02-direitos-e-deveres-art5.html">← sketchnote</a>
+  <a class="back" href="resumo-aula-02-direitos-e-deveres-art5.html">resumo completo →</a>
+</footer>
+</div>
+</body>
+</html>

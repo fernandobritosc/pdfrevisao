@@ -9,6 +9,16 @@ Registro das alterações feitas nos resumos. Formato:
 
 ---
 
+## 2026-10-16
+
+**`Direito Administrativo/Aula 06/resumo-aula-06-atos-administrativos.html`** — questão TEC (desfazimento do ato: revogação como forma de corrigir ordem interna inconveniente/inoportuna)
+
+- **Trava de evidência**: o card "Características e limites da revogação" (Sec 8) já cobria o núcleo do gabarito — revogação = extinção de ato **válido e discricionário** pela própria Administração, por **conveniência e oportunidade**, efeitos **ex nunc** "conservando os efeitos já produzidos" (o que já foi alcançado permanece), vedação ao Judiciário revogar e o limite "revogação por motivos de legalidade é anulação". Anulação (ilegal, ex tunc), cassação (descumprimento de condições pelo beneficiário) e convalidação (suprimento de vício com efeitos retroativos, alcança atos vinculados e discricionários) já cobertos nos cards próprios das Sec 8 e 9. Nada foi reescrito.
+- **Detalhe novo acrescentado (nada removido)**: linha "→ **Aplicação prática:**" no mesmo card (linha ~1714) — ordem interna de organização dos serviços que se revela inconveniente e inoportuna (mais prejuízos que benefícios: dúvidas na aplicação, morosidade na análise dos pedidos) é ato **legal e válido**: corrige-se por **revogação** (mérito), jamais por anulação, pois não há ilegalidade a desfazer.
+- Incidência: `Seção 8 — Revogação — limites e efeitos (direitos adquiridos; ex nunc)` 6 → **7** (linha ~1964).
+- `check-html.py`: **ERROS: zero / ABERTAS: zero**. Busca e changelog regenerados.
+- Publicação no Surge verificada: **HTTP 200** + **MD5 idêntico** ao local (`F823A2835674D8667442C848E9F1092D`) — o arquivo no ar contém a linha nova.
+
 ## 2026-10-05
 
 **`Direito Administrativo/Aula 07/resumo-aula-07-licitacoes-publicas.html`** + **`sketchnote-aula-07-licitacoes-publicas.html`** — questão TEC (contrato de eficiência e julgamento por maior retorno econômico: art. 39, caput e §§ 1º a 4º)

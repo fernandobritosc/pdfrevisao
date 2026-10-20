@@ -193,7 +193,7 @@
 | ❌ | LC 95/1998: elaboração, estrutura e técnica das normas jurídicas | — | — |
 | ❌ | Redação de projetos de lei, decretos legislativos e resoluções | — | — |
 | ❌ | Pareceres técnicos e jurídicos; correspondências oficiais | — | — |
-| ❌ | Sistemas legislativos eletrônicos; gestão eletrônica de documentos | — | — |
+| 🔄 | Sistemas legislativos eletrônicos; gestão eletrônica de documentos | ARC Aula 09 (gestão eletrônica) | falta sistemas legislativos |
 
 ### E. Gestão pública e políticas públicas
 
@@ -203,7 +203,7 @@
 | ✅ | Gestão de pessoas no setor público (teorias, liderança, motivação, comunicação) | AP Aulas 00-07 | — |
 | ❌ | Organização administrativa da Câmara Municipal | — | — |
 | ❌ | Gestão de processos legislativos | — | — |
-| ❌ | Gestão documental e arquivística | — | — |
+| ✅ | Gestão documental e arquivística | ARC Aulas 00/04/09 | estudado 15/10 |
 | ❌ | Governança pública e compliance | — | — |
 | ❌ | Políticas públicas: conceito, ciclo, formulação, implementação, avaliação | — | — |
 | ❌ | Indicadores e avaliação de resultados | — | — |
