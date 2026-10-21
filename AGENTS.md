@@ -195,6 +195,12 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
   pergunta "onde ficou?", **NUNCA** responder de memória — sempre grep/read no
   arquivo para confirmar a seção exata ANTES de responder. Dizer "sec 5" quando
   está na sec 7 quebra a confiança e faz o usuário perder tempo conferindo.
+- **Auditoria prévia de layout de referência (regra do usuário, 21/10/2026)**: quando
+  o usuário pedir para seguir o modelo/layout/padrão de outro arquivo (sketchnote,
+  resumo, template, index), **SEMPRE ler o arquivo de referência completo linha por
+  linha ANTES de escrever qualquer código** — nunca presumir o layout de memória.
+  Antes de aplicar, listar ao usuário os elementos identificados (cores, fontes,
+  estrutura, classes) para confirmar. Violar esta regra = refazer o trabalho do zero.
 - **Títulos de card didáticos (regra do usuário, 13/09/2026)**: card titles não
   devem ser genéricos ("Art. 478 CLT (texto original)"). Preferir títulos que
   **expliquem o porquê** ou façam pergunta: "Art. 478 CLT — por que não é mais
