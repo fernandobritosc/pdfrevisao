@@ -1601,6 +1601,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
   <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
   <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
   <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
 </div>
 <script>
@@ -1862,5 +1863,103 @@ mark.sr-first {
   run(false);
 })();
 </script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"questoes": [{"questao": "O adicional de insalubridade é calculado sempre sobre o salário básico do empregado, nunca sobre o salário-mínimo.", "gabarito": "Errado", "aprendizado": "O art. 192 da CLT fixa o adicional de insalubridade (40%/20%/10%) sobre o salário-mínimo, segundo os graus máximo/médio/mínimo. A base de cálculo é um ponto clássico de pegadinha — a Súmula Vinculante 4 do STF suspendeu a Súmula 228 do TST (que usava o salário básico), mas ainda não há definição consolidada alternativa."}, {"questao": "Insalubridade e periculosidade são cumuláveis quando o trabalhador está exposto a ambas as condições.", "gabarito": "Errado", "aprendizado": "Não são cumuláveis. O art. 193, § 2º da CLT determina que, na presença de ambas as condições, o empregado opta pelo adicional mais vantajoso (não acumula). O item da questão que copia literalmente o art. 189 CLT mas atribui à periculosidade está errado — aquele texto define insalubridade."}, {"questao": "O adicional de periculosidade incide sobre todas as parcelas de natureza salarial do empregado, sem exceção.", "gabarito": "Errado", "aprendizado": "Regra geral (Súmula 191, I do TST): periculosidade incide apenas sobre o salário básico, não sobre ele acrescido de outros adicionais. Exceção: eletricitários contratados antes da Lei 12.740/2012 — adicional incide sobre todas as parcelas de natureza salarial."}, {"questao": "Gorjetas pagas espontaneamente pelo cliente integram a remuneração, mas não o salário.", "gabarito": "Certo", "aprendizado": "CLT, art. 457, § 3º: gorjetas (espontâneas ou compulsórias) integram a remuneração para todos os efeitos legais, mas não se confundem com salário. Não entram na base de aviso-prévio, adicional noturno, horas extras e RSR (Súmula 354 do TST)."}, {"questao": "Auxílio-alimentação pago em dinheiro (espécie) não integra o salário, pois é uma verba não salarial.", "gabarito": "Errado", "aprendizado": "CLT, art. 457, § 2º: o auxílio-alimentação NÃO pago em dinheiro (ticket/vale) não integra o salário. Se pago em dinheiro, tem natureza salarial. O ticket/vale é forma não monetária, fora da vedação do pagamento em dinheiro."}, {"questao": "O prazo do 5º dia últil para pagamento do salário (art. 459, § 1º) se aplica também ao trabalho intermitente.", "gabarito": "Errado", "aprendizado": "Não se aplica. No trabalho intermitente (CLT, art. 452-A, § 6º), o pagamento das parcelas é imediato, ao final de cada período de serviço — o prazo do 5º dia últil não serve para essa modalidade."}, {"questao": "Na equiparação salarial, o empregado pode indicar como paradigma um colega que já deixou a função antes de sua contratação, desde que tenham exercido a mesma função.", "gabarito": "Errado", "aprendizado": "Art. 461, § 5º: equiparação só entre empregados contemporâneos no cargo ou na função. Vedada a indicação de paradigmas remotos, ainda que o paradigma contemporâneo tenha obtido a vantagem em ação judicial própria."}, {"questao": "Empresas com mais de 100 empregados devem publicar relatórios semestrais de transparência salarial (Lei 14.611/2023).", "gabarito": "Errado", "aprendizado": "Lei 14.611/2023, art. 5º: o marco é 100 ou mais empregados — “mais de 100” exclui quem tem exatamente 100 e induz ao erro. Descumprimento: multa administrativa de até 3% da folha, limitada a 100 salários mínimos."}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
 </body>
 </html>
