@@ -983,7 +983,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <tr><td><strong>Caixa de Entrada</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Mensagens <strong>recebidas</strong>; organizada por remetente, assunto e data. Recebe como <strong>não lida</strong> por padrão (configurável)</td></tr>
         <tr><td><strong>Caixa de Saída</strong></td><td><span class="tag tag-amber">média</span></td><td>Mensagens <strong>pendentes de envio</strong> (temporária) — falha de conexão → fica aqui até restabelecer; depois vai para Itens Enviados</td></tr>
         <tr><td><strong>Itens Enviados</strong></td><td><span class="tag tag-amber">baixa</span></td><td>Mensagens <strong>enviadas com êxito</strong>; organizada por destinatário, assunto e data. Guarda como <strong>lida</strong></td></tr>
-        <tr><td><strong>Lixo Eletrônico / Spam</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Mensagens identificadas como <strong>spam</strong>; é possível marcar remetentes para mover automaticamente para cá</td></tr>
+        <tr><td><strong>Lixo Eletrônico / Spam</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Mensagens identificadas como <strong>spam</strong> — e-mails <strong>não solicitados</strong> (propagandas, correntes), que podem ser usados para <strong>disseminar códigos maliciosos</strong>, propagar golpes e promover a venda ilegal de produtos; é possível marcar remetentes para mover automaticamente para cá</td></tr>
         <tr><td><strong>Itens Excluídos / Lixeira</strong></td><td><span class="tag tag-red">ALTA</span></td><td>Mensagens <strong>excluídas</strong> de outras pastas, ainda não eliminadas em definitivo (política varia por provedor)</td></tr>
         <tr><td><strong>Rascunho</strong></td><td><span class="tag tag-red">Altíssima</span></td><td>Mensagens <strong>em redação</strong>, ainda não enviadas — para continuar editando depois</td></tr>
       </tbody>
@@ -1021,8 +1021,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <tr><td><strong>Para (To)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Destinatário(s)</strong> — pessoa, várias (separar com <strong>ponto-e-vírgula ;</strong>) ou lista. <strong>Não precisa estar no catálogo</strong> — pode digitar qualquer endereço. Entrega <strong>não garantida</strong> (caixa lotada, endereço inexistente → resposta automática ao remetente)</td></tr>
         <tr><td><strong>Assunto (Subject)</strong></td><td><span class="tag tag-amber">baixa</span></td><td>Manchete que resume o corpo. Preenchimento <strong>facultativo</strong> — pode ser omitido sem impedir o envio; cortesia para o destinatário saber o tema antes de abrir</td></tr>
         <tr><td><strong>Cc (Com Cópia)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Carbon Copy</strong> — cópia para destinatários <strong>secundários</strong>; endereços ficam <strong>visíveis</strong> para todos em Para e Cc. Uso: dar ciência sem esperar resposta</td></tr>
-        <tr><td><strong>Cco (Com Cópia Oculta)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Blind Carbon Copy (Bcc)</strong> — igual ao Cc, mas <strong>oculta</strong> os destinatários: cada um só vê seu próprio endereço; <strong>ninguém</strong> (Para/Cc/outros Cco) saberá que o Cco recebeu. Já quem está em Cco <strong>vê</strong> Para e Cc, mas não outros Ccos</td></tr>
-        <tr><td><strong>Conteúdo (Body)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Corpo / carga útil</strong>; permite formatação rica (fonte, negrito, itálico etc.). Campo <strong>não obrigatório</strong></td></tr>
+        <tr><td><strong>Cco (Com Cópia Oculta)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Blind Carbon Copy (Bcc)</strong> — igual ao Cc, mas <strong>oculta</strong> os destinatários: cada um só vê seu próprio endereço; <strong>ninguém</strong> (Para/Cc/outros Cco) saberá que o Cco recebeu. Já quem está em Cco <strong>vê</strong> Para e Cc, mas não outros Ccos. Um dos objetivos é <strong>esconder os destinatários para evitar ações de spam</strong> — quem recebe a mensagem não capta os endereços dos demais para usá-los em e-mails não solicitados. O Cco <strong>não restringe o recebimento de anexos</strong>: quem está em Cco recebe a mensagem completa, incluindo o arquivo anexado — o anexo existe no computador do remetente e de <strong>todos</strong> os destinatários (Para, Cc e Cco)</td></tr>
+        <tr><td><strong>Conteúdo (Body)</strong></td><td><span class="tag tag-amber">baixa</span></td><td><strong>Corpo / carga útil</strong>; permite formatação rica (fonte, negrito, itálico etc.). Campo <strong>não obrigatório</strong>. <strong>Modo Texto Simples</strong> (webmail): ferramentas de formatação — cor, negrito, tamanho de fonte — <strong>não ficam disponíveis</strong>; <strong>anexar arquivos (inclusive imagens) permanece possível</strong> — o modo texto simples restringe a formatação, não o envio de anexos. Nuance do Gmail: no modo texto simples, a ferramenta <strong>Inserir foto</strong> ainda aparece — imagens podem ser inseridas no corpo (motivo de controvérsia em prova: questão com dupla resposta cabível)</td></tr>
         <tr><td><strong>Anexo (Attachment)</strong></td><td><span class="tag tag-red">Altíssima</span></td><td><strong>Qualquer tipo de arquivo</strong> pode ser anexado (não só documentos/planilhas); observar <strong>limite de tamanho</strong> do provedor e cuidado com <strong>executáveis/malware</strong>. Anexo fica no <strong>servidor</strong> — download/delete local não afeta o original</td></tr>
       </tbody>
     </table>
@@ -1319,10 +1319,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">Temas mais cobrados em questões do TEC — contador por assunto</div>
 
   <div class="card">
-    <div class="card-title">📊 Incidência de temas (TEC)</div>
+    <div class="card-title">Incidência de temas (TEC)</div>
     <div class="card-text">
-      <strong>Média incidência 🟡</strong><br>
-      <span class="tag tag-amber">Seção 3 — Campos Para/Cc/Cco — visibilidade (quem vê quem): 2</span><br><br>
+      <strong>Alta incidência 🔴</strong><br>
+      <span class="tag tag-red">Seção 3 — Campos Para/Cc/Cco (visibilidade, anti-spam e anexos): 4</span><br><br>
       <strong>Baixa incidência ⚪</strong><br>
       <span class="tag">Seção 1 — Servidor × Cliente — caixa postal no servidor do provedor (não existe central): 1</span><br>
       <span class="tag">Seção 2 — MIME — norma para formatação (qualquer tipo de arquivo): 1</span><br>
@@ -1331,6 +1331,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       <span class="tag">Seção 3 — Funcionalidades básicas e encaminhamento: 1</span><br>
       <span class="tag">Seção 3 — Entrega de e-mail — não é garantida (confiabilidade): 1</span><br>
       <span class="tag">Seção 3 — Campo Assunto — facultativo (pode omitir) e Anexo — qualquer tipo: 1</span><br>
+      <span class="tag">Seção 3 — Modo texto simples (formatação off; anexo e Inserir foto ok): 1</span><br>
       <span class="tag">Seção 4 — Prioridade da mensagem (Alta/Média/Baixa): 1</span><br>
       <span class="tag">Atalhos de teclado (Outlook/Thunderbird): 1</span><br>
     </div>
@@ -1355,6 +1356,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
   <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
   <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
   <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
 </div>
 <script>
@@ -1616,5 +1618,103 @@ mark.sr-first {
   run(false);
 })();
 </script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"questoes": [{"q": "Um dos objetivos do campo Cco (cópia oculta / Bcc) é esconder os destinatários para evitar ações de spam.", "opts": [{"t": "Certo", "ok": true, "why": "Quem recebe a mensagem não capta os endereços dos demais para usá-los em e-mails não solicitados. Cada um em Cco só vê o próprio endereço — ninguém (Para/Cc/outros Cco) sabe quem mais recebeu."}, {"t": "Errado", "why": "Além de preservar a privacidade, o Cco tem exatamente esta função anti-spam — ocultar os endereços dos demais destinatários."}]}, {"q": "Quem está em Cco não recebe o arquivo anexado à mensagem — só o destinatário principal (Para) recebe o anexo.", "opts": [{"t": "Certo", "why": "O Cco não restringe nada do conteúdo — só oculta os endereços."}, {"t": "Errado", "ok": true, "why": "O Cco NÃO restringe o recebimento de anexos: quem está em Cco recebe a mensagem completa, incluindo o arquivo anexado. O anexo existe no remetente e em TODOS os destinatários (Para, Cc e Cco)."}]}, {"q": "Spam é o termo para e-mails não solicitados (propagandas, correntes), que podem ser usados para disseminar códigos maliciosos e propagar golpes.", "opts": [{"t": "Certo", "ok": true, "why": "Spam também pode promover a venda ilegal de produtos. Mensagens identificadas como spam vão para a pasta Lixo Eletrônico — e é possível marcar remetentes para mover automaticamente para lá."}, {"t": "Errado", "why": "Esta é a definição correta de spam — e-mails não solicitados com potencial de disseminar malware e golpes."}]}, {"q": "No modo Texto Simples de um webmail, o usuário pode anexar arquivos de imagem, mas não pode aplicar negrito, cor ou tamanho de fonte.", "opts": [{"t": "Certo", "ok": true, "why": "O modo texto simples restringe a FORMATAÇÃO (cor, negrito e tamanho de fonte não ficam disponíveis), mas não o envio de anexos — anexar arquivos (inclusive imagens) permanece possível. Nuance do Gmail: a ferramenta Inserir foto ainda aparece."}, {"t": "Errado", "why": "A formatação é restrita, mas o anexo continua disponível — as ferramentas de formatação somem, não a de anexar."}]}, {"q": "O webmail (Gmail.com, Outlook.com) usa diretamente os protocolos SMTP, POP3 e IMAP para comunicação com o servidor.", "opts": [{"t": "Certo", "why": "Cliente de e-mail (Thunderbird, Outlook) usa SMTP/POP3/IMAP diretamente — webmail usa HTTP/HTTPS."}, {"t": "Errado", "ok": true, "why": "Webmail é uma página web — usa HTTP/HTTPS diretamente. Por trás, o servidor usa SMTP/POP/IMAP, mas o webmail em si fala HTTP. Já o cliente de e-mail usa SMTP/POP3/IMAP diretamente."}]}, {"q": "Se nada for dito sobre o modo do POP3, considere que ele apaga as mensagens da caixa postal após o download.", "opts": [{"t": "Certo", "ok": true, "why": "Padrão em prova: POP3 no modo Delete (baixa e exclui do servidor). O modo Keep (baixa sem excluir) existe, mas não é o padrão assumido. IMAP, ao contrário, mantém tudo no servidor e sincroniza entre dispositivos."}, {"t": "Errado", "why": "O padrão do POP3 é justamente o modo Delete — apagar após o download (a menos que a questão diga o contrário)."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
 </body>
 </html>

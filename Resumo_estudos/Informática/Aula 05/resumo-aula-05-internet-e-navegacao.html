@@ -1452,7 +1452,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-header"><div class="card-icon">📌</div><div class="card-title">DHCP, Intranet, SMTP e certificado digital</div></div>
     <div class="card-text">
       <strong>DHCP</strong> (Dynamic Host Configuration Protocol) permite a <strong>atribuição automática de endereços IP</strong>: um servidor especial distribui endereços IP aos hosts que solicitam conexão, dispensando a configuração manual — é aplicável em intranets (rede interna)<br><br>
-      <strong>Intranet</strong> = rede <strong>privada</strong> de acesso restrito que <strong>usa os mesmos padrões e protocolos da Internet</strong> (http, tcp, ip, smtp, pop3); mesmo sem acesso à Internet, é possível utilizar todos os seus recursos<br><br>
+      <strong>Intranet</strong> = rede <strong>privada</strong> de acesso restrito que <strong>usa os mesmos padrões e protocolos da Internet</strong> (http, tcp, ip, smtp, pop3) — por isso, os mesmos programas utilizados na Internet podem ser aplicados à intranet; mesmo sem acesso à Internet, é possível utilizar todos os seus recursos; viabiliza a <strong>comunicação entre os empregados</strong> de uma empresa, permitindo <strong>compartilhar informações e trabalhar de forma colaborativa</strong><br>
+      → ⚠️ <strong>Não existe protocolo próprio da intranet:</strong> quem afirma que Internet e intranet operam com protocolos diferentes (adequados a cada situação) inverte a regra — a intranet foi criada justamente para usar os <strong>mesmos</strong> padrões da Internet<br>
+      → <strong>Acesso aos dados:</strong> usuários da intranet podem acessar dados de qualquer máquina que tenha acesso à Internet — mediante <strong>autenticação</strong> (identificação com nome e senha, entre outras checagens)<br><br>
       <strong>SMTP</strong> (Simple Mail Transfer Protocol) é usado <strong>exclusivamente para transmissão de e-mails</strong> — ferramentas de pesquisa (Google, Bing) usam <strong>HTTP/HTTPS</strong>, não SMTP<br><br>
       <strong>Certificado digital</strong> = documento eletrônico emitido por uma <strong>Autoridade Certificadora</strong> que <strong>vincula uma entidade a uma chave pública</strong>; obrigatório para assinatura digital. Em regra é armazenado <strong>no próprio navegador</strong> — instalá-lo no sistema operacional não é obrigatório e <strong>não dispensa</strong> a autenticação de usuários, o controle de acesso e as configurações de rede
     </div>
@@ -1470,18 +1472,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
 
   <div class="card">
-    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-title">Contador de temas</div>
     <div class="card-text">
       <strong>Média incidência 🟡</strong><br>
       <span class="tag tag-amber">Seção 4 — Navegação privativa/anônima: 2</span><br>
       <span class="tag tag-amber">Seção 5 — Gerenciador de senhas (Firefox — geração forte e alerta de vazamento): 2</span><br>
-      <span class="tag tag-amber">Seção 5 — Atalhos de navegação (teclas): 2</span><br><br>
+      <span class="tag tag-amber">Seção 5 — Atalhos de navegação (teclas): 2</span><br>
+      <span class="tag tag-amber">Seção 5 — Intranet: comunicação colaborativa entre empregados (mesmos protocolos da Internet): 2</span><br><br>
       <strong>Baixa incidência ⚪</strong><br>
       <span class="tag">Seção 3 — Limpeza de dados de navegação (Chrome): 1</span><br>
       <span class="tag">Seção 4 — Cookies — configuração no Firefox (apagar ao fechar): 1</span><br>
       <span class="tag">Seção 4 — Complementos e extensões (Firefox): 1</span><br>
       <span class="tag">Seção 5 — Servidor proxy (cache, filtro e segurança): 1</span><br>
-      <span class="tag">Seção 5 — DHCP e intranet (IP automático): 1</span><br>
+      <span class="tag">Seção 5 — DHCP (IP automático, aplicável em intranets): 1</span><br>
       <span class="tag">Seção 5 — Protocolo SMTP (e-mail): 1</span><br>
       <span class="tag">Seção 5 — Certificado digital: 1</span><br>
       <span class="tag">Seção 5 — Navegadores — multiplataforma × software nativo: 1</span><br>
@@ -1507,6 +1510,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
   <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
   <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
   <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
 </div>
 <script>
@@ -1768,5 +1772,103 @@ mark.sr-first {
   run(false);
 })();
 </script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"questoes": [{"q": "A intranet opera com protocolos diferentes dos usados na Internet, adequados ao ambiente corporativo.", "opts": [{"t": "Certo", "why": "Não existe protocolo próprio da intranet — ela foi criada justamente para usar os MESMOS padrões da Internet (http, tcp, ip, smtp, pop3)."}, {"t": "Errado", "ok": true, "why": "Intranet = rede privada de acesso restrito que usa os MESMOS protocolos da Internet — por isso os mesmos programas da Internet funcionam nela. Assertivas sobre 'protocolos diferentes' invertem a regra."}]}, {"q": "Mesmo sem acesso à Internet, é perfeitamente possível utilizar todos os recursos disponíveis em uma intranet.", "opts": [{"t": "Certo", "ok": true, "why": "A intranet é autônoma: por usar os mesmos padrões da Internet, funciona completa mesmo sem conexão externa. Viabiliza a comunicação colaborativa entre empregados (compartilhar informações, e-mail interno)."}, {"t": "Errado", "why": "A intranet não depende da Internet para funcionar — é rede privada autônoma."}]}, {"q": "A navegação anônima (modo privativo) protege o usuário contra keyloggers e outros malwares.", "opts": [{"t": "Certo", "why": "Quem protege contra malware é o ANTIVÍRUS — a navegação anônima só evita que o navegador salve a atividade no histórico local."}, {"t": "Errado", "ok": true, "why": "A navegação anônima NÃO impede keyloggers nem qualquer malware — só impede o salvamento local de histórico, cookies e dados de formulário. Ela também não torna o usuário anônimo para os sites visitados, o provedor e quem administra a rede."}]}, {"q": "Para apagar as imagens e partes de sites que aceleram o carregamento das páginas, o dado de navegação a limpar é o COOKIES.", "opts": [{"t": "Certo", "why": "Cookies armazenam preferências/sessões do usuário — quem armazena cópias de páginas e imagens para acelerar é o CACHE."}, {"t": "Errado", "ok": true, "why": "É o CACHE que guarda temporariamente conteúdo de páginas (imagens, HTML, JS) para exibi-las mais rápido em visitas futuras. Cookies guardam preferências e dados de sessão — consumindo menos espaço que o cache."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
 </body>
 </html>

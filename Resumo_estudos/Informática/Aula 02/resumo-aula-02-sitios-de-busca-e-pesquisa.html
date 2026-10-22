@@ -982,8 +982,9 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         <tr><td><strong>*</strong> (asterisco)</td><td>Pesquisar <strong>caracteres curinga</strong> ou palavras desconhecidas</td><td>maior * do brasil</td><td><span class="tag tag-amber">Média</span></td></tr>
         <tr><td><strong>OR</strong></td><td><strong>Combinar pesquisas</strong> (em maiúsculo)</td><td>maratona OR corrida</td><td><span class="tag tag-blue">Baixíssima</span></td></tr>
         <tr><td><strong>site:</strong></td><td>Pesquisar palavras em um <strong>site específico</strong></td><td>site:youtube.com flamengo</td><td><span class="tag tag-amber">Média</span></td></tr>
-        <tr><td><strong>related:</strong></td><td>Pesquisar <strong>sites relacionados</strong></td><td>related:uol.com.br</td><td><span class="tag tag-amber">Média</span></td></tr>
+        <tr><td><strong>related:</strong></td><td>Pesquisar <strong>sites relacionados</strong> — <strong>parecidos</strong> com o site correspondente à URL fornecida</td><td>related:uol.com.br</td><td><span class="tag tag-amber">Média</span></td></tr>
         <tr><td><strong>cache:</strong></td><td>Visualizar a <strong>última versão armazenada</strong> de uma página</td><td>cache:orkut.com</td><td><span class="tag tag-red">Alta</span></td></tr>
+        <tr><td><strong>info:</strong></td><td>Receber <strong>informações sobre um endereço da Web</strong> — inclui versão em <strong>cache</strong>, páginas <strong>semelhantes</strong> e páginas <strong>vinculadas</strong> ao site (operador <strong>depreciado — descontinuado em 2017</strong>; aparece em provas antigas como distrator)</td><td>info:uol.com.br</td><td><span class="tag tag-green">Baixa</span></td></tr>
         <tr><td><strong>inurl:</strong></td><td>Buscar páginas que contenham palavra em sua <strong>URL</strong></td><td>inurl:stn</td><td><span class="tag tag-green">Baixa</span></td></tr>
         <tr><td><strong>intitle:</strong></td><td>Realizar buscas em <strong>títulos</strong> de páginas</td><td>intitle:gripe</td><td><span class="tag tag-green">Baixa</span></td></tr>
         <tr><td><strong>inanchor:</strong></td><td>Buscar palavra em <strong>âncoras (links)</strong></td><td>inanchor:mais</td><td><span class="tag tag-green">Baixa</span></td></tr>
@@ -1199,9 +1200,10 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <div class="sec-subtitle">Priorize a revisão dos temas que mais aparecem nas questões</div>
 
   <div class="card">
-    <div class="card-title">📊 Contador de temas</div>
+    <div class="card-title">Contador de temas</div>
     <div class="card-text">
-      Nenhuma questão do TEC colada até o momento para esta aula. O contador será preenchido conforme as questões forem adicionadas, seguindo o AGENTS.md (conteúdo de estudo + incremento de incidência).
+      <strong>Baixa incidência ⚪</strong><br>
+      <span class="tag">Seção 3 — Operadores: related (sites parecidos com a URL) × info × site × inurl × intitle: 1</span><br>
     </div>
   </div>
 </section>
@@ -1222,6 +1224,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
   <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
   <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
   <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
 </div>
 <script>
@@ -1483,5 +1486,103 @@ mark.sr-first {
   run(false);
 })();
 </script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"questoes": [{"q": "O operador related: do Google retorna sites parecidos com o site correspondente à URL fornecida.", "opts": [{"t": "Certo", "ok": true, "why": "related:www.mpsp.mp.br retorna sites parecidos com o MPSP. Não confundir com site: (restringe a pesquisa ao próprio site fornecido) nem com inurl: (palavra contida na URL) ou intitle: (texto no título da página)."}, {"t": "Errado", "why": "related: é justamente o operador de sites parecidos/relacionados à URL fornecida."}]}, {"q": "O operador info: é um operador ativo do Google que recebe informações sobre um endereço da Web (cache, páginas semelhantes e vinculadas).", "opts": [{"t": "Certo", "why": "Essa era a função do info:, mas ele foi DESCONTINUADO em 2017 — não deve ser cobrado em provas futuras (aparece em provas antigas como distrator)."}, {"t": "Errado", "ok": true, "why": "info: foi descontinuado pelo Google em 2017 (operador depreciado, como o ~ de sinônimos). A definição está correta para a época, mas hoje é operador morto."}]}, {"q": "O asterisco (*) exclui termos da pesquisa no Google.", "opts": [{"t": "Certo", "why": "Quem exclui termos é o HÍFEN (–): Prisma -carro -chevrolet. O asterisco é caractere CURINGA (substitui qualquer palavra: 'maior * do brasil')."}, {"t": "Errado", "ok": true, "why": "Asterisco = caractere curinga (substitui palavra desconhecida). Quem EXCLUI é o hífen (–), sem espaço entre o símbolo e a palavra excluída."}]}, {"q": "Colocar a frase entre aspas no Google retorna menos resultados do que a mesma busca sem aspas.", "opts": [{"t": "Certo", "ok": true, "why": "Aspas = correspondência EXATA (ignora pontuação e maiúsculas/minúsculas). A quantidade de páginas com aspas é sempre MENOR que sem aspas — sem elas, as palavras aparecem em qualquer ordem."}, {"t": "Errado", "why": "A busca com aspas é mais restritiva (frase exata) — por isso retorna sempre menos resultados."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
 </body>
 </html>
