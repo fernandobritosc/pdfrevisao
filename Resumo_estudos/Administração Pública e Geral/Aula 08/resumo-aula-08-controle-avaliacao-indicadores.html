@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AP Aula 07: Comunicação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #0d9488;
+  --mat-strong: #0b7a70;
+  --mat-soft: #e6f4f2;
+  --mat-line: #b8e3de;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--mat);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #2dd4bf; --mat-strong: #7de0d6; --mat-soft: #0f3330; --mat-line: #14584f;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#b39af5;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(179,154,245,.08); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #4c3a75; }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Administração Pública e Geral — Aula 08</div>
+  <div class="sidebar-sub">Controle e Avaliação · Indicadores · Resumos estruturados</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Controle — conceito e características</a>
+  <a href="#sec2">2. Etapas do controle</a>
+  <a href="#sec3">3. Tipos — nível organizacional</a>
+  <a href="#sec4">4. Tipos — momento, Perrow, outras</a>
+  <a href="#sec5">5. Indicadores — conceito e componentes</a>
+  <a href="#sec6">6. Critérios e variáveis</a>
+  <a href="#sec7">7. Propriedades e qualidades</a>
+  <a href="#sec8">8. Cadeia de valor e 6 Es</a>
+  <a href="#sec9">9. Classificações de indicadores</a>
+  <a href="#sec10">10. Construção e mitos</a>
+  <a href="#sec11">11. O fator humano no controle</a>
+  <a href="#sec12">12. OKR e KPI</a>
+  <a href="#sec13">13. Incidência (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../../index.html" style="color:var(--mat-strong);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-08-controle-avaliacao-indicadores.html" style="color:var(--mat-strong);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- SEC 1 -->
+  <section id="sec1" class="section">
+    <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Controle — conceito e características</div>
+  </div>
+    <div class="sec-subtitle">A função que fecha o ciclo do processo administrativo · só existe controle se houve planejamento</div>
+
+    <div class="card">
+      <div class="card-title">Controle — por que ele depende do planejamento?</div>
+      <div class="card-text">
+        → <strong>Definição-síntese:</strong> monitorar as atividades, comparar os resultados obtidos (<strong>desempenho “atual”</strong>) com os resultados desejados/esperados (<strong>objetivos planejados</strong>) e fazer as correções necessárias para assegurar que os objetivos organizacionais sejam alcançados.<br><br>
+        → <strong>Chiavenato:</strong> “função administrativa que consiste em <span class="highlight">medir e corrigir o desempenho</span> para assegurar que os objetivos organizacionais e os planos estabelecidos para alcançá-los sejam realizados”.<br><br>
+        → <strong>Djalma Oliveira:</strong> metodologia administrativa que, mediante comparação com padrões previamente estabelecidos, mede e avalia o desempenho e <strong>realimenta com informações os tomadores de decisões</strong>, para que possam corrigir ou reforçar esse desempenho.<br><br>
+        → <strong>Mockler (apud Chiavenato):</strong> esforço sistemático de estabelecer padrões de desempenho, comparar o desempenho atual com eles, verificar onde estão os desvios e agir — para que todos os recursos sejam usados da maneira mais eficiente e eficaz.<br><br>
+        → <strong>Certo (apud Chiavenato):</strong> “processo de fazer algo acontecer da maneira como foi planejado para acontecer”.<br><br>
+        → <strong>Todos convergem:</strong> acompanhamento + monitoramento + avaliação do desempenho — verificar se as coisas estão acontecendo conforme o planejado.
+      </div>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Controle pressupõe planejamento:</strong> sem objetivos previamente definidos, não há padrão de comparação — logo, não há como controlar.</div></div>
+
+    <div class="card">
+      <div class="card-title">3 objetivos básicos — e o exemplo do concurseiro</div>
+      <div class="card-text">
+        → <strong>Assegurar o alcance:</strong> garantir que os resultados e objetivos previamente estabelecidos pelo planejamento sejam alcançados.<br><br>
+        → <strong>Corrigir desvios negativos:</strong> quando o resultado obtido não está de acordo com o planejado (ex.: simulado com 50 acertos contra a meta de 80 → ajustar: estudar mais, aprimorar revisões).<br><br>
+        → <strong>Reforçar desvios positivos:</strong> quando o desempenho é satisfatório — <span class="highlight">“repetir” ou “aprimorar”</span> (acertou 80 no simulado e pode mirar 85 para escolher a Lotação desejada).
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>Controle <strong>não é só punir</strong>: serve também para identificar e reforçar as “boas práticas” — é a natureza positiva do controle em ação.</div>
+
+    <div class="card">
+      <div class="card-title">11 características de um controle eficaz (Maximiano + Chiavenato)</div>
+      <div class="card-text">
+        → <strong>Orientação estratégica para resultados (foco estratégico):</strong> focalizar as atividades <strong>primordiais</strong> — as mais significativas, que trazem maiores resultados à empresa.<br><br>
+        → <strong>Compreensão (inteligibilidade):</strong> linguagem simples e clara; dados apresentados de forma compreensível — sem relatórios complicados nem estatísticas enganosas.<br><br>
+        → <strong>Orientação rápida para as exceções (foco nas exceções):</strong> identificar os desvios rapidamente, a partir de uma visão panorâmica das variações.<br><br>
+        → <strong>Flexibilidade:</strong> proporcionar julgamento individual, modificável para adaptar-se a novas circunstâncias e situações.<br><br>
+        → <strong>Autocontrole:</strong> confiabilidade, participação e boa comunicação entre as pessoas envolvidas.<br><br>
+        → <strong>Natureza positiva:</strong> enfatizar desenvolvimento, mudança e melhoria; alavancar a iniciativa das pessoas e minimizar o papel da penalidade e das punições.<br><br>
+        → <strong>Aceitação:</strong> os sistemas de controle devem ser aceitos pelos controlados — daí a resistência ser um risco real (seção 11).<br><br>
+        → <strong>Economia:</strong> os benefícios obtidos pelo controle devem ser <strong>maiores que os custos</strong> do controle.<br><br>
+        → <strong>Clareza e objetividade:</strong> imparcial e acurado para todos; “economia de palavras”.<br><br>
+        → <strong>Rapidez:</strong> as informações obtidas devem chegar rapidamente ao tomador de decisões.<br><br>
+        → <strong>Precisão:</strong> a tomada de decisão depende de informações precisas obtidas pelo processo de controle.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 2 -->
+  <section id="sec2" class="section">
+    <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Etapas do processo de controle</div>
+  </div>
+    <div class="sec-subtitle">4 etapas em ciclo · comparar para corrigir · exemplo do concurseiro em cada etapa</div>
+
+    <div class="card">
+      <div class="card-title">As 4 etapas — o que cada uma responde</div>
+      <div class="card-text">
+        → <strong>1. Definição dos objetivos:</strong> estabelece os objetivos (ou padrões de desempenho) — os <strong>resultados esperados</strong>. Sem objetivo prévio, não há controle. <span class="highlight">(Ex.: acertar 80 questões na prova.)</span><br><br>
+        → <strong>2. Monitoramento / medição / avaliação:</strong> etapa de <strong>coleta de informações</strong> — medir e avaliar a atividade desempenhada (o “desempenho atual”) para verificar se os resultados esperados estão sendo atingidos. <span class="highlight">(Ex.: realizar o simulado de 100 questões.)</span><br><br>
+        → <strong>3. Comparação:</strong> comparar o resultado obtido com os objetivos ou padrões estabelecidos — é aqui que o desvio aparece. <span class="highlight">(Ex.: 50 acertos no simulado × meta de 80.)</span><br><br>
+        → <strong>4. Correção / realimentação / feedback:</strong> o processo é “realimentado” com as informações — corrigem-se os desvios negativos; desvios positivos podem ser reforçados/aprimorados. <span class="highlight">(Ex.: aumentar as horas de estudo, aprimorar as revisões.)</span>
+      </div>
+    </div>
+
+    <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>O controle é cíclico:</strong> ao corrigir, o processo volta ao monitoramento — medir, comparar e corrigir se repete continuamente.</div></div>
+  </section>
+
+  <!-- SEC 3 -->
+  <section id="sec3" class="section">
+    <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Tipos de controle — nível organizacional</div>
+  </div>
+    <div class="sec-subtitle">Um controle para cada nível do planejamento (Chiavenato) · estratégico × tático × operacional</div>
+
+    <div class="card">
+      <div class="card-title">Estratégico, Tático ou Operacional — o que cada um avalia?</div>
+      <div class="card-text">
+        → <strong>Controle Estratégico (organizacional ou institucional):</strong> no nível estratégico, ligado ao Planejamento Estratégico (alta cúpula). Avalia a <strong>organização como um todo</strong>, com informações internas e externas — forte orientação externa; é <strong>genérico, sintético e de longo prazo</strong>; orienta a alta cúpula nas decisões. Exs.: balanço contábil, relatórios financeiros, nível de satisfação dos usuários, retorno sobre o investimento (RSI).<br><br>
+        → <strong>Controle Tático:</strong> no nível intermediário/gerencial, ligado ao Planejamento Tático. Avalia <strong>unidades/departamentos</strong> (“articulação interna”); menos genérico e mais detalhado que o estratégico; <strong>médio prazo</strong>. Exs.: controle orçamentário, contabilidade de custos.<br><br>
+        → <strong>Controle Operacional:</strong> no nível administrativo mais baixo, ligado ao Planejamento Operacional. Avalia <strong>tarefas e atividades específicas</strong> (“o que” e “como” fazer); foco em <strong>eficiência e consumo de recursos</strong>; é o mais detalhado e analítico; <strong>curto prazo</strong>. Exs.: controle de inventário de estoque, controle de qualidade, programação just-in-time.
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>O que avalia</th><th>Característica</th><th>Prazo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Estratégico</strong></td><td>Organização como um todo</td><td>Genérico e sintético</td><td>Longo</td></tr>
+          <tr><td><strong>Tático</strong></td><td>Unidades/departamentos</td><td>Menos genérico, mais detalhado</td><td>Médio</td></tr>
+          <tr><td><strong>Operacional</strong></td><td>Atividades e tarefas específicas</td><td>Detalhado e analítico</td><td>Curto</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SEC 4 -->
+  <section id="sec4" class="section">
+    <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Tipos de controle — momento, Perrow e outras classificações</div>
+  </div>
+    <div class="sec-subtitle">Antes, durante ou depois · insumos × processos × resultados · pegadinha: feedback não antecipa</div>
+
+    <div class="card">
+      <div class="card-title">Preventivo, Simultâneo e Posterior — o foco de cada um</div>
+      <div class="card-text">
+        → <strong>Preventivo</strong> (preliminar, pré-ação, diagnóstica, <span class="highlight">“ex ante”</span>, pré-controle): ocorre <strong>antes</strong> da atividade ser executada; foco nos <strong>insumos</strong> (recursos, máquinas, matérias-primas); é <strong>proativo</strong> — identifica e evita que os problemas ocorram.<br><br>
+        → <strong>Simultâneo</strong> (concorrente, monitoramento, <span class="highlight">“in itinere”</span>): ocorre <strong>durante</strong> a execução; foco no <strong>processo</strong>; é <strong>reativo</strong> — detecta e corrige os desvios enquanto a atividade acontece.<br><br>
+        → <strong>Posterior</strong> (pós-ação, somativa, feedback, <span class="highlight">“ex post”</span>): ocorre <strong>depois</strong> da execução; foco no <strong>resultado</strong>; identifica as <strong>causas</strong> dos desvios para evitar que os mesmos erros ocorram novamente no futuro — já não dá para corrigir a atividade encerrada.
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>“O controle por feedback antecipa os problemas” — <strong>errado</strong>: quem se antecipa é o <strong>preventivo</strong>. O posterior (feedback) age depois e só orienta a correção das ações futuras.</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>Quando</th><th>Foco</th><th>Caráter</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Preventivo</strong></td><td>Antes da atividade</td><td>Insumos</td><td>Proativo</td></tr>
+          <tr><td><strong>Simultâneo</strong></td><td>Durante a execução</td><td>Processos</td><td>Reativo</td></tr>
+          <tr><td><strong>Posterior</strong></td><td>Depois da execução</td><td>Resultados</td><td>Corretivo (ações futuras)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Perrow — 3 ordens de controle</div>
+      <div class="card-text">
+        → <strong>1ª ordem — supervisão direta:</strong> forma mais simples, comum em pequenas empresas — os chefes (ex.: o dono) controlam diretamente as atividades dos empregados.<br><br>
+        → <strong>2ª ordem — padronização de processos:</strong> baseada em tecnologia (automação dos processos) e burocracia (conjunto de regras racionais).<br><br>
+        → <strong>3ª ordem — controle por premissas e cultura:</strong> mais “implícito” — compartilhamento de pressupostos, valores e crenças que coordenam e orientam as atividades de forma “natural”.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Outras classificações (quanto à orientação) — visão geral</div>
+      <div class="card-text">
+        → <strong>Burocrático:</strong> criado por regras, regulamentos, normas, padrões e procedimentos — influencia e avalia o desempenho.<br><br>
+        → <strong>De mercado:</strong> critérios de mercado — participação de mercado, satisfação dos clientes — para avaliar atividades e resultados.<br><br>
+        → <strong>De clã:</strong> compartilhamento de crenças e valores; os relacionamentos informais orientam o comportamento em busca dos objetivos.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 5 -->
+  <section id="sec5" class="section">
+    <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Indicadores — conceito, finalidades e componentes</div>
+  </div>
+    <div class="sec-subtitle">Medidas que quantificam insumos, resultados e impactos · base: Guia Referencial do Planejamento</div>
+
+    <div class="card">
+      <div class="card-title">O que é um indicador de desempenho?</div>
+      <div class="card-text">
+        → <strong>Ferreira, Cassiolato e Gonzales (2009):</strong> “medida, de ordem quantitativa ou qualitativa, dotada de significado particular e utilizada para organizar e captar as informações relevantes” — recurso metodológico que informa empiricamente sobre a evolução do aspecto observado.<br><br>
+        → <strong>Graças Rua:</strong> “medidas que representam ou quantificam um <strong>insumo, um resultado, uma característica ou o desempenho</strong> de um processo, de um serviço, de um produto ou da organização como um todo”.<br><br>
+        → <strong>Para que servem:</strong> monitorar e medir o desempenho e os resultados organizacionais — por isso são chamados <strong>indicadores de desempenho</strong>.<br><br>
+        → <strong>Desempenho = esforços + resultados:</strong> os esforços empreendidos na direção dos resultados a serem alcançados.
+      </div>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Documento-base das bancas:</strong> o “Guia Referencial para Medição de Desempenho e Manual para Construção de Indicadores” (Ministério do Planejamento) — as questões de concurso partem dele.</div></div>
+
+    <div class="card">
+      <div class="card-title">5 finalidades dos indicadores (Guia Referencial)</div>
+      <div class="card-text">
+        → <strong>Mensurar</strong> os resultados e gerir o desempenho.<br><br>
+        → <strong>Embasar</strong> a análise crítica dos resultados obtidos e do processo de tomada de decisão.<br><br>
+        → <strong>Contribuir</strong> para a melhoria contínua dos processos organizacionais.<br><br>
+        → <strong>Facilitar</strong> o planejamento e o controle do desempenho.<br><br>
+        → <strong>Viabilizar</strong> a análise comparativa do desempenho da organização e de diversas organizações em áreas ou ambientes semelhantes.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">5 componentes básicos — com o exemplo do concurseiro</div>
+      <div class="card-text">
+        → <strong>Medida:</strong> grandeza qualitativa ou quantitativa que classifica características, resultados e consequências de produtos, processos ou sistemas. <span class="highlight">(Ex.: quantidade de acertos.)</span><br><br>
+        → <strong>Fórmula:</strong> padrão matemático que expressa a forma de realizar o cálculo — aparece quando há mais de uma variável em relação. <span class="highlight">(Ex.: prova com pesos 3 e 1.)</span><br><br>
+        → <strong>Índice (número):</strong> valor do indicador em determinado momento. <span class="highlight">(Ex.: 50 acertos no início dos estudos.)</span><br><br>
+        → <strong>Padrão de comparação:</strong> índice arbitrário e aceitável para avaliação comparativa de cumprimento. <span class="highlight">(Ex.: 80 acertos para ser aprovado.)</span><br><br>
+        → <strong>Meta:</strong> índice orientado pelo indicador em relação a um padrão de comparação, a ser alcançado em certo período. <span class="highlight">(Ex.: 85 acertos para escolher a Lotação desejada.)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 6 -->
+  <section id="sec6" class="section">
+    <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Critérios e variáveis dos indicadores</div>
+  </div>
+    <div class="sec-subtitle">Critérios básicos do Guia Referencial · variás de construção na visão do TCU</div>
+
+    <div class="card">
+      <div class="card-title">7 critérios básicos (critérios centrais) do Guia Referencial</div>
+      <div class="card-text">
+        → <strong>Seletividade (importância):</strong> fornecer informações sobre as principais variáveis estratégicas e as prioridades definidas de ações, produtos ou impactos esperados.<br><br>
+        → <strong>Simplicidade, clareza, inteligibilidade e comunicabilidade:</strong> indicadores simples e compreensíveis — nomes e expressões facilmente entendidos por todos os públicos interessados.<br><br>
+        → <strong>Representatividade, confiabilidade e sensibilidade:</strong> captar as etapas mais importantes e críticas dos processos, no local certo; dados precisos, coletados na fonte correta, refletindo tempestivamente os efeitos das intervenções.<br><br>
+        → <strong>Investigativos:</strong> dados fáceis de analisar — para registro, retenção de informações e juízos de valor.<br><br>
+        → <strong>Comparabilidade:</strong> facilmente comparáveis com referências internas ou externas e com séries históricas.<br><br>
+        → <strong>Estabilidade:</strong> gerados de forma sistemática e constante, sem muitas alterações — mantém o padrão e permite a série histórica.<br><br>
+        → <strong>Custo-efetividade:</strong> factíveis e economicamente viáveis — os benefícios em relação aos custos devem satisfazer os demais níveis; nem todas as informações devem ser mensuradas.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">4 variáveis dos indicadores (TCU)</div>
+      <div class="card-text">
+        → <strong>Custo:</strong> indicar os custos unitários das tarefas e os custos “totais” das ações programadas.<br><br>
+        → <strong>Tempo:</strong> indicar em quanto tempo cada tarefa é executada e se as ações cumprem os prazos estabelecidos.<br><br>
+        → <strong>Qualidade:</strong> mensurar a satisfação do “cliente/usuário” e avaliar se os padrões de qualidade estão sendo atingidos.<br><br>
+        → <strong>Quantidade:</strong> mensurar a produção total — verificar o alcance dos objetivos quantitativos de produção e o atendimento da demanda dos “clientes/usuários”.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 7 -->
+  <section id="sec7" class="section">
+    <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Propriedades e qualidades dos indicadores</div>
+  </div>
+    <div class="sec-subtitle">Manual de Orientações Básicas (Planejamento) · qualidades desejáveis na visão do TCU</div>
+
+    <div class="card">
+      <div class="card-title">Propriedades essenciais — vale para qualquer indicador</div>
+      <div class="card-text">
+        → <strong>Utilidade:</strong> suportar decisões nos níveis operacional, tático ou estratégico — basear-se nas necessidades de quem decide.<br><br>
+        → <strong>Validade:</strong> representar, com a maior proximidade possível, a realidade que se deseja medir — significante ao que é medido e manter essa significância ao longo do tempo.<br><br>
+        → <strong>Confiabilidade:</strong> origem em fontes confiáveis, com metodologias reconhecidas e transparentes de coleta, processamento e divulgação.<br><br>
+        → <strong>Disponibilidade:</strong> dados básicos para seu cômputo de fácil obtenção.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Propriedades complementares — dependem da situação</div>
+      <div class="card-text">
+        → <strong>Simplicidade:</strong> fácil obtenção, construção, manutenção, comunicação e entendimento pelo público interno e externo.<br><br>
+        → <strong>Clareza:</strong> em geral o indicador é uma divisão entre duas variáveis básicas (numerador e denominador); mesmo quando a fórmula é complexa, deve ser claro, atender a quem decide e estar documentado.<br><br>
+        → <strong>Sensibilidade:</strong> refletir tempestivamente as mudanças decorrentes das intervenções realizadas.<br><br>
+        → <strong>Desagregabilidade:</strong> representação regionalizada e de grupos sociodemográficos — a dimensão territorial é componente essencial nas políticas públicas.<br><br>
+        → <strong>Economicidade:</strong> obtido a custos módicos — relação entre custos de obtenção e benefícios favorável.<br><br>
+        → <strong>Estabilidade:</strong> séries históricas estáveis, com mínima interferência de outras variáveis.<br><br>
+        → <strong>Mensurabilidade:</strong> alcance e mensuração na versão mais atual, com maior precisão possível e sem ambiguidade.<br><br>
+        → <strong>Auditabilidade (rastreabilidade):</strong> qualquer pessoa deve poder verificar a boa aplicação das regras de uso — obtenção, tratamento, formatação, difusão e interpretação.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Outros aspectos na escolha dos indicadores (Manual)</div>
+      <div class="card-text">
+        → <strong>Publicidade:</strong> indicadores públicos — conhecidos e acessíveis a todos os níveis da instituição, à sociedade e aos demais entes da administração pública.<br><br>
+        → <strong>Temporalidade:</strong> quando começa a medição; disponibilidade de obtenção quando os resultados começarem a acontecer; possibilidade de acompanhamento periódico do desempenho.<br><br>
+        → <strong>Factibilidade:</strong> os dados vêm dos processos de gestão da instituição — coleta por amostra ou censo, estatísticas, questionários, observação; medição factível em momentos adequados, com periodicidade que equilibre informação e recursos.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">14 qualidades desejáveis (TCU) — o que medir</div>
+      <div class="card-text">
+        → <strong>Validade / representatividade:</strong> refletir o fenômeno medido — enfoque no produto, identificando produtos intermediários e finais e seus impactos.<br><br>
+        → <strong>Homogeneidade:</strong> usar apenas variáveis homogêneas (ex.: ao apurar custo médio por auditoria, separar por tipo de auditoria — cada tipo tem composição de custo diversa).<br><br>
+        → <strong>Seletividade:</strong> número equilibrado de indicadores que enfoquem os aspectos essenciais do que se quer medir.<br><br>
+        → <strong>Completude / cobertura:</strong> representar adequadamente a amplitude e a diversidade de características do fenômeno — sempre respeitando seletividade e simplicidade.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">14 qualidades desejáveis (TCU) — como comparar, manter e usar</div>
+      <div class="card-text">
+        → <strong>Comparabilidade:</strong> possibilitar comparações ao longo do tempo e entre diferentes objetos de auditoria.<br><br>
+        → <strong>Estabilidade:</strong> “estabilidade conceitual” das variáveis — forma de cálculo e procedimentos de coleta estáveis (condição para avaliar o desempenho no tempo).<br><br>
+        → <strong>Economicidade:</strong> coletar e atualizar as informações a custo razoável frente à utilidade gerencial — a manutenção da base de dados não pode ser dispendiosa (relação custo × benefício).<br><br>
+        → <strong>Acessibilidade:</strong> facilidade de acesso às informações primárias, de registro e manutenção para o cálculo.<br><br>
+        → <strong>Tempestividade:</strong> informações disponíveis em tempo hábil para a tomada de decisão.<br><br>
+        → <strong>Praticidade:</strong> o indicador funciona na prática e permite decisões gerenciais — garantia de utilidade para monitoramento e decisão.<br><br>
+        → <strong>Independência:</strong> medir resultados atribuíveis às ações monitoradas — evitar indicadores influenciáveis por fatores externos.<br><br>
+        → <strong>Confiabilidade:</strong> fonte de dados confiável — diferentes avaliadores chegam aos mesmos resultados.<br><br>
+        → <strong>Simplicidade / compreensão:</strong> fácil compreensão — sem dificuldades de cálculo ou de uso.<br><br>
+        → <strong>Objetividade:</strong> inequívoco o que está sendo medido e quais dados são usados — evitar ambiguidades.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 8 -->
+  <section id="sec8" class="section">
+    <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Cadeia de Valor e os 6 Es do desempenho</div>
+  </div>
+    <div class="sec-subtitle">Desempenho = esforços + resultados · 3 dimensões de esforço + 3 de resultado · insumos → ações → produtos → impactos</div>
+
+    <div class="card">
+      <div class="card-title">Os 6 Es — dimensões de esforço vs dimensões de resultado</div>
+      <div class="card-text">
+        → <strong>Economicidade (esforço):</strong> obtenção e uso de recursos com o <strong>menor ônus possível</strong>, dentro dos requisitos e quantidades exigidas — gerir adequadamente recursos financeiros e físicos (ex.: unidades de suprimentos).<br><br>
+        → <strong>Execução (esforço):</strong> realização dos processos, projetos e planos de ação conforme estabelecidos (ex.: monitoramento das ações do PPA).<br><br>
+        → <strong>Excelência (esforço):</strong> conformidade a critérios e padrões de qualidade/excelência na busca da melhor execução e economicidade — elemento <strong>transversal</strong> (ex.: Instrumento de Avaliação da Gestão Pública — IAGP).<br><br>
+        → <strong>Eficiência (resultado):</strong> relação entre produtos/serviços gerados e os <strong>insumos utilizados</strong>; fazer de forma correta; foco <strong>interno</strong>; meios e custos; produtividade (ex.: Carta de Serviços, SIAFI).<br><br>
+        → <strong>Eficácia (resultado):</strong> quantidade e qualidade de produtos e serviços <strong>entregues ao usuário</strong>; fazer a coisa certa; foco <strong>externo</strong>; fins; alcance dos objetivos independente dos custos (ex.: Carta de Serviços).<br><br>
+        → <strong>Efetividade (resultado):</strong> <strong>impactos gerados</strong> — transformação no contexto, benefícios gerados; foco <strong>externo</strong>; mais difícil de mensurar (natureza dos dados e caráter temporal); ligada à missão da instituição (ex.: dimensão estratégica do PPA).
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Dimensão</th><th>Elemento(s) na cadeia de valor</th><th>Frase de prova</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Eficiência</strong></td><td>Insumos + Produtos</td><td>Fazer de forma correta</td></tr>
+          <tr><td><strong>Eficácia</strong></td><td>Produtos</td><td>Fazer a coisa certa</td></tr>
+          <tr><td><strong>Efetividade</strong></td><td>Impactos</td><td>Gerar benefícios / transformação</td></tr>
+          <tr><td><strong>Execução</strong></td><td>Ações</td><td>Realizar processos e planos</td></tr>
+          <tr><td><strong>Economicidade</strong></td><td>Insumos</td><td>Menor ônus possível</td></tr>
+          <tr><td><strong>Excelência</strong></td><td>Insumos + Ações</td><td>Padrões de qualidade</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Exemplo da campanha de desarmamento — ineficaz e eficiente ao mesmo tempo?</div>
+      <div class="card-text">
+        → <strong>O plano:</strong> recolher <strong>1.000 armas</strong> com <strong>100 servidores</strong> ao custo de <strong>200 mil reais</strong> — esperando reduzir as mortes por arma de fogo em <strong>50%</strong>.<br><br>
+        → <strong>Recolheu 1.000 armas com 150 servidores e 300 mil:</strong> campanha <strong>eficaz</strong> (atingiu o objetivo) e <strong>ineficiente</strong> (usou 50% a mais de recursos e servidores).<br><br>
+        → <strong>Recolheu 500 armas com 20 servidores e 40 mil:</strong> campanha <strong>eficiente</strong> (gastou proporcionalmente bem menos) e <strong>ineficaz</strong> (não atingiu as 1.000 armas).<br><br>
+        → <strong>Efetivação:</strong> se reduziu 50% das mortes por arma de fogo → <strong>efetiva</strong> (impacto positivo na sociedade); se as mortes se mantiveram constantes → <strong>inefetiva</strong>.
+      </div>
+    </div>
+
+    <div class="callout callout-info"><div class="callout-icon">💡</div><div><strong>Cadeia de valor:</strong> insumos → ações → produtos → impactos — a Administração Pública usa insumos (recursos financeiros, pessoal) para, por meio de ações, gerar produtos/serviços (policiamento, transporte) que causem impacto (segurança, bem-estar) na sociedade.</div></div>
+  </section>
+
+  <!-- SEC 9 -->
+  <section id="sec9" class="section">
+    <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Classificações dos indicadores</div>
+  </div>
+    <div class="sec-subtitle">Graças Rua · quantitativos × qualitativos · simples × compostos · nível hierárquico · enfoque · lag × lead</div>
+
+    <div class="card">
+      <div class="card-title">Tipos de indicadores de Graças Rua</div>
+      <div class="card-text">
+        → <strong>Estratégicos:</strong> ligados ao planejamento estratégico; informam o “quanto” a organização caminha para a Visão; refletem o desempenho em relação aos Objetivos Estratégicos.<br><br>
+        → <strong>De projetos:</strong> avaliam o desempenho de projetos — conjunto de atividades com início, meio e fim determinados no tempo.<br><br>
+        → <strong>De processo:</strong> representam as características dos processos acompanhadas ao longo do tempo — dividem-se em <strong>qualidade</strong> (como o produto/serviço é percebido pelo cliente e a capacidade de atender requisitos; associados à <strong>eficácia</strong>) e <strong>produtividade</strong> (uso dos recursos para gerar produtos/serviços; associados à <strong>eficiência</strong> — devem andar lado a lado com os de qualidade, formando o equilíbrio do desempenho global).<br><br>
+        → <strong>Qualidade — dois subtipos:</strong> <strong>indicadores da qualidade</strong> (o que foi feito corretamente, dentro dos padrões) e <strong>da não-qualidade</strong> (o que “deixou de ser feito” ou foi “mal feito”, fora dos padrões).<br><br>
+        → <strong>Efetividade:</strong> avaliam os impactos que os produtos/serviços geram nos clientes ou na sociedade.<br><br>
+        → <strong>Capacidade:</strong> “capacidade de resposta de um processo pela relação entre saídas produzidas por unidade de tempo” (ex.: quantas canetas são produzidas em 8 horas).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Quantitativos × qualitativos e simples × compostos</div>
+      <div class="card-text">
+        → <strong>Quantitativos (objetivos):</strong> obtidos por medições de “números exatos” — o valor numérico representa o fenômeno medido (ex.: número de alunos aprovados, porcentagem de acertos).<br><br>
+        → <strong>Qualitativos (subjetivos):</strong> dependem do julgamento individual — variam de pessoa para pessoa, mesmo com metodologias (ex.: entrevistas, pesquisas de satisfação, observação direta).<br><br>
+        → <strong>Simples:</strong> decorrem de uma única medição (ex.: taxa de natalidade, taxa de alfabetização).<br><br>
+        → <strong>Compostos:</strong> decorrem da relação entre duas ou mais variáveis ou entre indicadores simples (ex.: IDH — educação, saúde/longevidade e renda).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Nível hierárquico e enfoque</div>
+      <div class="card-text">
+        → <strong>Estratégicos:</strong> planejamento estratégico, missão, visão e objetivos “globais” — devem conter variáveis internas e externas.<br><br>
+        → <strong>Táticos:</strong> áreas/departamentos — verificam se as ações de cada área contribuem para os objetivos estratégicos.<br><br>
+        → <strong>Operacionais:</strong> atividades e processos operacionais — ligados a procedimentos e operações.<br><br>
+        → <strong>De processo:</strong> monitoram os processos organizacionais (os meios) — relacionados à <strong>eficiência</strong>.<br><br>
+        → <strong>De resultado:</strong> avaliam os resultados obtidos (os fins) — relacionados à <strong>eficácia</strong>.<br><br>
+        → <strong>De impacto:</strong> orientados aos impactos gerados pelos produtos — relacionados à <strong>efetividade</strong>.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Lag × Lead — passado vs tendência</div>
+      <div class="card-text">
+        → <strong>Lag (de resultado):</strong> medem ações passadas — resultados já obtidos; mostram o desempenho até determinado período; se houve desvio, só no próximo período ou ciclo será corrigido (ex.: número de vendas do mês passado).<br><br>
+        → <strong>Lead (de tendência / direção):</strong> medem atividades para direcionar ou induzir <strong>resultados futuros</strong> — funcionam como “tendência” do desempenho futuro da organização.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 10 -->
+  <section id="sec10" class="section">
+    <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Construção de indicadores e os mitos da medição</div>
+  </div>
+    <div class="sec-subtitle">6 etapas e 10 passos (Guia Referencial) · 4 mitos que derrubam a medição de desempenho</div>
+
+    <div class="card">
+      <div class="card-title">6 etapas e 10 passos para construir indicadores</div>
+      <div class="card-text">
+        → <strong>As 6 etapas:</strong> (1) O que mensurar? (2) Como mensurar? (3) Coleta de informações (4) Mensuração (5) Análise (6) Comunicação.<br><br>
+        → <strong>Os 10 passos:</strong><br>
+        → 1. Identificação do nível, dimensão, subdimensão e objetos de mensuração<br>
+        → 2. Estabelecimento dos indicadores de desempenho<br>
+        → 3. Validação preliminar dos indicadores com as partes interessadas<br>
+        → 4. Construção de fórmulas, estabelecimento de metas e notas<br>
+        → 5. Definição de responsáveis<br>
+        → 6. Geração de sistemas de coleta de dados<br><br>
+        → 7. Ponderação e validação final dos indicadores com as partes interessadas<br>
+        → 8. Mensuração dos resultados<br>
+        → 9. Análise e interpretação dos indicadores<br>
+        → 10. Comunicação do desempenho e gerir mudança
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Mito 1 — “preciso medir tudo” (medição absoluta)</div>
+      <div class="card-text">
+        → Quem pretende medir tudo, <strong>acaba não medindo nada</strong>.<br><br>
+        → O Guia atribui ao mito o <span class="highlight">“fetiche do pan-óptico”</span> — a necessidade obsessiva de monitorar e controlar tudo e todos ao mesmo tempo e na mesma hora.<br><br>
+        → <strong>Postura correta:</strong> alta seletividade — medir apenas o que é importante e significativo; medir custa tempo e dinheiro.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Mito 2 — “preciso gerar todas as informações”</div>
+      <div class="card-text">
+        → Quem se preocupa em gerar todas as informações se perde diante de informações inviáveis e inúteis — obtenção, tratamento e processamento demandam tempo e dinheiro.<br><br>
+        → <strong>Postura correta:</strong> trabalhar com <strong>aproximações</strong> — construir indicadores a partir de dados já existentes e tratados dentro de padrões <strong>aceitáveis</strong> (e não “máximos”) de qualidade; na maioria dos casos, a disponibilidade de dados não é o problema fundamental.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Mito 3 — “primeiro meço, depois vejo o que faço”</div>
+      <div class="card-text">
+        → As medidas são feitas para controlar/melhorar o desempenho — não podem ser vistas como “obrigação”; devem fazer sentido, e as pessoas devem saber por que estão medindo.<br><br>
+        → A medição tem que ser <strong>orientada para a melhoria do desempenho</strong> — e a melhoria, por sua vez, se orienta pela medição.<br><br>
+        → <strong>Postura correta:</strong> antes de construir o indicador, saber o que será feito com as medidas — se não forem usadas, há desperdício de recursos.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Mito 4 — “preciso do sistema informatizado perfeito”</div>
+      <div class="card-text">
+        → Nenhum sistema de informática “resolve tudo” sozinho — o que se necessita é um <strong>bom modelo de mensuração</strong>, que defina o que é “seu desempenho” e, a partir daí, como mensurá-lo.<br><br>
+        → Os sistemas informacionais devem estar a serviço do “modelo lógico” de funcionamento — <strong>nunca o contrário</strong>.<br><br>
+        → <span class="highlight">“Primeiro a sistemática, depois o sistema”</span> — primeiro pensar no funcionamento lógico das coisas; depois, na ferramenta informatizada.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 11 -->
+  <section id="sec11" class="section">
+    <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">O fator humano no processo de controle</div>
+  </div>
+    <div class="sec-subtitle">Controlar pessoas gera resistência · efeitos comportamentais · 2 estratégias · 3 técnicas</div>
+
+    <div class="card">
+      <div class="card-title">Efeitos comportamentais do controle (Sobral &amp; Peci)</div>
+      <div class="card-text">
+        → <strong>Efeito positivo:</strong> quando uma atividade é submetida a controle, os funcionários tendem a <strong>melhorar</strong> seu desempenho individual.<br><br>
+        → <strong>Comportamento burocrático:</strong> esforços direcionados apenas ao que é medido pelo sistema — bom desempenho nos parâmetros, mas sem se envolver na resolução de problemas nem em atividades que melhorem o todo; postura rígida e inflexível.<br><br>
+        → <strong>Comportamento tático:</strong> “táticas” para burlar o sistema — quando os parâmetros são excessivos ou irrealistas, manipulam-se informações e resultados; ou estabelecem-se metas fáceis demais — o controle perde a relevância e a seriedade.<br><br>
+        → <strong>Resistência ao controle:</strong> o controle diminui a autonomia (sensação de perda de “liberdade”), expõe “problemas” de desempenho (medo de demissão) e pode gerar competição que reduz a cooperação — tudo isso gera resistência.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Imposição externa × motivação interna — as 2 estratégias</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspecto</th><th>Controle por imposição externa</th><th>Controle por motivação interna</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Premissa</strong></td><td>Pessoas motivadas por recompensas e punições externas</td><td>Pessoas motivadas pelo próprio comprometimento com os objetivos</td></tr>
+            <tr><td><strong>Objetivos e parâmetros</strong></td><td>Impostos externamente</td><td>Definidos de forma participativa</td></tr>
+            <tr><td><strong>Nível de desafio</strong></td><td>Objetivos difíceis, para que não se acomodem</td><td>Parâmetros para identificar e resolver problemas — não para punir</td></tr>
+            <tr><td><strong>Recompensas</strong></td><td>Relacionadas ao desempenho individual</td><td>Relacionadas ao desempenho geral</td></tr>
+            <tr><td><strong>Resultados positivos</strong></td><td>Maior controle sobre os subordinados; maior direcionamento dos esforços; maior fluxo de informações para melhorar o desempenho</td><td>Maior comprometimento e motivação; maior satisfação no trabalho</td></tr>
+            <tr><td><strong>Resultados negativos</strong></td><td>Comportamento disfuncional (resistir ou enganar o sistema); redução do fluxo de informação negativa</td><td>Menor controle sobre os subordinados; objetivos individuais pouco ambiciosos; pouco comprometimento com o todo; difícil estabelecer base objetiva para recompensar</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3 técnicas de controle comportamental</div>
+      <div class="card-text">
+        → <strong>Supervisão direta:</strong> “observação direta” do desempenho — problemas corrigidos à medida que ocorrem; a presença física do supervisor restringe o comportamento e permite detecção rápida (ex.: linhas de montagem).<br><br>
+        → <strong>Avaliação de desempenho:</strong> avaliar os resultados e a contribuição do funcionário ao desempenho organizacional — direciona o comportamento dos trabalhadores para garantir boa avaliação pelos superiores.<br><br>
+        → <strong>Disciplina:</strong> usada quando o funcionário ignora todas as regras e normas da organização ou quando seu desempenho é reiteradamente insuficiente.
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC 12 -->
+  <section id="sec12" class="section">
+    <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">OKR e KPI — modelos de medição de desempenho</div>
+  </div>
+    <div class="sec-subtitle">Dois modelos contemporâneos · ciclo curto e estratégico (OKR) × desempenho contínuo (KPI)</div>
+
+    <div class="card">
+      <div class="card-title">OKR — objetivos e resultados-chave</div>
+      <div class="card-text">
+        → <strong>O que é:</strong> modelo de <strong>gestão ágil de desempenho</strong>, focado em resultados — funciona como ferramenta de “comunicação interna”, integrando as equipes por objetivos alinhados à cultura da organização.<br><br>
+        → <strong>Origem:</strong> surgiu na <strong>Intel</strong> (Andrew Grove) e foi levado ao <strong>Google</strong> por John Doerr em 1999 — quando a empresa tinha menos de 1 ano de operação e cerca de 40 funcionários; foi peça fundamental no crescimento da empresa.<br><br>
+        → <strong>2 componentes (Bernhoeft):</strong> <strong>objetivo</strong> (o que queremos alcançar — claro, conciso, <strong>qualitativo</strong>, aspiracional, motivador e memorável) + conjunto de <strong>key results</strong> (como saber se estamos chegando lá — <strong>quantitativos</strong>, baseados em critérios de sucesso, métricas ou milestones). Recomendação: <strong>2 a 5 key results</strong> por objetivo.<br><br>
+        → <strong>Ciclos curtos:</strong> preferencialmente até <strong>3 meses</strong> (normalmente trimestrais) — agilidade e rápida adaptação às mudanças.<br><br>
+        → <strong>6 características:</strong> simplicidade (linguagem simples, clara e concisa) · ciclos curtos · foco (poucos objetivos por vez — o mais importante primeiro) · bottom-up e top-down (acordados entre gestor e colaborador, com prioridade para o <strong>bottom-up</strong> — quem executa participa das metas) · alinhamento organizacional (integra objetivos individuais, de equipes e organizacionais por resultados mensuráveis) · transparência (metas claras compartilhadas — cada um vê como sua contribuição se encaixa nos objetivos).<br><br>
+        → <strong>Exemplo (restaurante):</strong> objetivo “encantar os clientes”; key results: aumentar visitas em 30%; atingir NPS 56 (Net Promoter Score — metodologia que mede grau de fidelidade e satisfação dos clientes); aumentar engajamento nas redes sociais em 50%.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3 formas dos Key Results (Bernie Smith)</div>
+      <div class="card-text">
+        → <strong>Baseline metric key result (métrica da linha de base):</strong> métrica importante <strong>sem dados históricos</strong> — contar e relatar antes de fixar alvo (ex.: nº de faturas recebidas por mês); em geral não se define valor-alvo até estabelecer a linha de base.<br><br>
+        → <strong>Target metric key result (métrica-alvo):</strong> especifica uma <strong>meta numérica</strong>, em três variações:<br>
+        → <strong>Positiva:</strong> “bom” seguir na direção positiva (ex.: 40 avaliações concluídas até o fim de junho — 39 é melhor que 1)<br>
+        → <strong>Negativa:</strong> “bom” seguir na direção negativa (ex.: no máximo 2 erros materiais nas demonstrações trimestrais — 0 é melhor que 2)<br>
+        → <strong>Limite (threshold):</strong> intervalo aceitável entre valores baixo e alto (ex.: manter taxa de utilização mensal de consultores entre 60% e 90%)<br><br>
+        → <strong>Milestone key result (marco):</strong> marco que <strong>não pode ser configurado como métrica</strong> (ex.: abrir filial na Austrália com ao menos 1 funcionário em tempo integral até o fim do trimestre) — pode e deve ser dividido em etapas menores (assinar aluguel, contratar gerente, traduzir preços para a moeda local).
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">KPI — indicadores-chave de desempenho</div>
+      <div class="card-text">
+        → <strong>O que são:</strong> os indicadores <strong>eleitos como os mais importantes</strong> para a empresa — medem o alcance de objetivos e metas; são métricas que monitoram o progresso em direção aos objetivos.<br><br>
+        → <strong>Desempenho contínuo:</strong> medem o desempenho contínuo — importantes para orientar ações corretivas e de melhoria.<br><br>
+        → <strong>Formulação complexa:</strong> depende das necessidades específicas de cada organização, da diversidade de fatores que influenciam o desempenho e do alinhamento com metas específicas.<br><br>
+        → <strong>Universalidade:</strong> servem a qualquer tipo de organização — papel fundamental na avaliação do sucesso organizacional.<br><br>
+        → <strong>Exemplos:</strong> NPS, taxa de retenção de clientes, ROI, taxa de crescimento de receita, custo de aquisição por cliente, participação de mercado, número de reclamações, satisfação do cliente, custo de produção.<br><br>
+        → <strong>Quantitativos × qualitativos:</strong> quantitativos são mensuráveis e numéricos, com dados objetivos (ex.: taxa de crescimento de receita); qualitativos são descritivos e subjetivos, de entrevistas, pesquisas e análises de sentimentos (ex.: sentimentos dos clientes).<br><br>
+        → <strong>Guia PMBOK:</strong> os KPIs de projetos são <span class="highlight">“medidas quantificáveis usadas para avaliar o sucesso de um projeto”</span> — como a maioria é quantitativa, alguns autores definem KPIs como valores quantitativos.
+      </div>
+    </div>
+
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div><strong>KPI ≠ OKR:</strong> o KPI mede o <strong>desempenho contínuo</strong> (“como vamos” no dia a dia); o OKR foca <strong>objetivos estratégicos de curto prazo</strong>, em ciclos (ex.: trimestrais). Trocar os dois é o erro clássico.</div>
+  </section>
+
+  <!-- SEC 13 -->
+  <section id="sec13" class="section">
+    <div class="sec-header">
+    <div class="sec-num">13</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+    <div class="sec-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
+
+    <div class="card">
+      <div class="card-title">Incidência registrada</div>
+      <div class="card-text">
+        Nenhuma questão do TEC colada ainda. Quando as questões vierem, cada tema entra aqui com contagem por seção (ex.: <em>Seção 4 — Tipos de controle: 5</em>), e o aprendizado de cada uma vira conteúdo no card da seção correspondente.
+      </div>
+    </div>
+  </section>
+
+</div><!-- .main -->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2007/resumo-aula-07-comunicacao.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 07 · Comunicação</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": "08", "tema": "Controle, Avaliação e Indicadores", "materia": "Administração Pública e Geral", "questoes": [{"q": "No processo de controle, a etapa em que se comparam os resultados obtidos (desempenho atual) com os objetivos previamente estabelecidos é denominada:", "opts": [{"t": "Monitoramento / medição / avaliação do desempenho", "why": "Errado — monitorar é coletar as informações e medir o desempenho atual (etapa 2), sem ainda confrontá-lo com o padrão."}, {"t": "Correção / realimentação / feedback", "why": "Errado — corrigir é a etapa final: ajusta os desvios negativos e reforça os positivos depois da comparação."}, {"t": "Comparação", "ok": true, "why": "Certo — comparar o desempenho atual com os objetivos/padrões é exatamente a etapa 3 do processo de controle."}, {"t": "Definição dos objetivos", "why": "Errado — definir objetivos é a etapa 1: estabelece os resultados esperados, mas não os compara com o obtido."}]}, {"q": "Uma fábrica inspeciona a qualidade das matérias-primas antes de liberar a linha de produção, justamente para evitar que problemas ocorram. Esse controle é classificado, quanto ao momento, como:", "opts": [{"t": "Simultâneo", "why": "Errado — o simultâneo ocorre durante a execução da atividade e tem foco no processo (é reativo)."}, {"t": "Preventivo", "ok": true, "why": "Certo — o preventivo ocorre antes da atividade, foca nos insumos (recursos, matérias-primas) e é proativo: evita que o problema aconteça."}, {"t": "Posterior", "why": "Errado — o posterior ocorre depois, foca no resultado e busca identificar causas para que os erros não se repitam."}, {"t": "Operacional", "why": "Errado — 'operacional' classifica o controle quanto ao nível organizacional (tarefas específicas), não quanto ao momento em que ocorre."}]}, {"q": "Uma campanha de vacinação cumpriu a meta de imunizar 100.000 crianças, mas consumiu o dobro dos recursos previstos. Quanto aos 6 Es do desempenho, essa campanha foi:", "opts": [{"t": "Eficiente e eficaz", "why": "Errado — gastar o dobro dos recursos é justamente o oposto de eficiência (relação produto × insumo desfavorável)."}, {"t": "Efetiva e ineficiente", "why": "Errado — efetividade é impacto (transformação na realidade); cumprir a meta é eficácia, não efetividade."}, {"t": "Ineficaz e ineficiente", "why": "Errado — atingir a meta de 100.000 crianças imunizadas é justamente o que caracteriza a eficácia."}, {"t": "Eficaz e ineficiente", "ok": true, "why": "Certo — cumpriu o objetivo (eficácia), mas usou o dobro de recursos (ineficiência): eficácia mede o alcance dos fins; eficiência, o uso dos meios."}]}, {"q": "Segundo o Guia Referencial para Medição de Desempenho, diante do mito de que é preciso de um sistema informatizado perfeito para medir, a postura correta é:", "opts": [{"t": "Construir primeiro um bom modelo de mensuração — \"primeiro a sistemática, depois do sistema\"", "ok": true, "why": "Certo — o necessário é um bom modelo que defina o que é desempenho e como mensurá-lo; os sistemas informacionais servem ao modelo lógico, não o contrário."}, {"t": "Adquirir o software mais completo do mercado antes de iniciar qualquer medição", "why": "Errado — nenhum sistema 'resolve tudo' sozinho; a ferramenta vem depois da sistemática."}, {"t": "Contratar consultoria externa enquanto não houver orçamento de tecnologia", "why": "Errado — o Guia não trata de terceirização; trata de definir o modelo de mensuração antes do sistema."}, {"t": "Suspender a medição de desempenho até haver verba para informática", "why": "Errado — medir é possível e necessário com dados existentes; a falta de sistema perfeito não paralisa a medição."}]}, {"q": "Sobre o método OKR (Objectives and Key Results), é correto afirmar:", "opts": [{"t": "Os objetivos são definidos predominantemente de forma top-down, impostos pela alta direção", "why": "Errado — o método prioriza o bottom-up: quem executará o OKR participa da elaboração de suas metas."}, {"t": "Cada objetivo deve possuir um único resultado-chave, sempre de natureza qualitativa", "why": "Errado — recomenda-se de 2 a 5 key results por objetivo, e eles devem ser quantitativos (métricas ou milestones)."}, {"t": "Recomenda-se de 2 a 5 resultados-chave quantitativos por objetivo, em ciclos curtos (normalmente trimestrais)", "ok": true, "why": "Certo — objetivo é qualitativo (claro, conciso, aspiracional); key results são quantitativos; ciclos têm no máximo cerca de 3 meses."}, {"t": "As metas são atreladas diretamente a bônus e promoções, como regra do método", "why": "Errado — vinculação direta a bonificações, prêmios e ascensão profissional não é recomendação da metodologia."}]}, {"q": "A distinção tecnicamente correta entre KPI e OKR é:", "opts": [{"t": "KPI mede o desempenho contínuo; OKR foca objetivos estratégicos de curto prazo em ciclos", "ok": true, "why": "Certo — KPIs medem o desempenho contínuo e orientam ações corretivas; o OKR trabalha objetivos em ciclos curtos (ex.: trimestrais)."}, {"t": "KPI aplica-se apenas a projetos; OKR aplica-se ao dia a dia das operações", "why": "Errado — inverte os papéis: o OKR é que organiza objetivos em ciclos; o KPI acompanha o desempenho contínuo, inclusive de projetos."}, {"t": "KPI é sempre qualitativo; OKR é sempre quantitativo", "why": "Errado — KPIs podem ser quantitativos ou qualitativos; os key results do OKR é que são quantitativos."}, {"t": "KPI e OKR são sinônimos adotados por bancas diferentes", "why": "Errado — são modelos distintos: um mede o desempenho contínuo, o outro gerencia objetivos por ciclos curtos."}]}, {"q": "Em um indicador, o valor que se espera alcançar em determinado período, orientado por um padrão de comparação, é denominado:", "opts": [{"t": "Índice", "why": "Errado — índice é o valor do indicador em determinado momento (a medida aferida), não o alvo a atingir."}, {"t": "Medida", "why": "Errado — medida é a grandeza que classifica características, resultados e consequências de produtos/processos."}, {"t": "Meta", "ok": true, "why": "Certo — meta é o índice orientado pelo indicador em relação a um padrão de comparação, a ser alcançado durante certo período."}, {"t": "Fórmula", "why": "Errado — fórmula é o padrão matemático que expressa como realizar o cálculo do indicador."}]}, {"q": "Quando os funcionários passam a dedicar esforços apenas às atividades que são medidas pelo sistema de controle, sem se envolver na resolução de problemas nem em melhorias mais amplas, ocorre o comportamento:", "opts": [{"t": "Tático", "why": "Errado — comportamento tático é a tentativa de burlar o sistema (metas fáceis, manipular informações quando os parâmetros são irrealistas)."}, {"t": "Burocrático", "ok": true, "why": "Certo — comportamento burocrático: foco apenas no que é medido, bom desempenho nos parâmetros, postura rígida, sem olhar o desempenho global."}, {"t": "De resistência ao controle", "why": "Errado — resistência é a reação à perda de autonomia e ao medo exposto pelo controle, não o esforço restrito ao que é medido."}, {"t": "De aceitação plena", "why": "Errado — aceitação é característica desejável do sistema (ser aceito pelos controlados), não uma consequência negativa do controle."}]}]}</script>
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>

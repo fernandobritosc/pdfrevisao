@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sketchnote — AP Aula 08: Controle, Avaliação e Indicadores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf3; --ink:#1f2733; --ink2:#455064;
+  --mat:#0d9488; --matsoft:#e6f4f2; --amber:#d97706; --red:#dc2626; --purple:#7c3aed;
+  --mark:#fef08a; --card:#fffef9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#e9e4d6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:1.2rem;min-height:100vh}
+.sheet{max-width:1060px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;position:relative}
+header.hero{padding:2.2rem 2rem 1.2rem;text-align:center;border-bottom:3px dashed var(--ink);background:radial-gradient(circle at 20% 10%,#fef9c3 0,transparent 40%),radial-gradient(circle at 85% 20%,#ccfbf1 0,transparent 35%),var(--paper)}
+.kicker{font-family:'IBM Plex Sans';font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mat);background:var(--matsoft);border:2px solid var(--ink);display:inline-block;padding:.2rem .8rem;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:'Caveat',cursive;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;margin:.6rem 0 .2rem}
+h1 .hl{background:linear-gradient(transparent 55%,var(--mark) 55%,var(--mark) 92%,transparent 92%);padding:0 .15em}
+.sub{color:var(--ink2);font-size:.9rem;max-width:700px;margin:.4rem auto 0}
+.sub a{color:var(--mat)}
+.center-node{display:flex;justify-content:center;padding:1.2rem 1rem .4rem}
+.core{background:var(--ink);color:#fff;border-radius:16px;padding:1rem 1.4rem;display:flex;gap:1rem;align-items:center;max-width:760px;transform:rotate(-.6deg);box-shadow:5px 5px 0 var(--mat)}
+.core .big{font-size:2.6rem}
+.core b{font-family:'Space Grotesk';font-size:1.02rem;letter-spacing:-.01em}
+.core span{font-size:.82rem;opacity:.9}
+.tri{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;padding:.9rem 1.2rem 1.2rem}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:.3rem .9rem;font-weight:700;font-size:.82rem;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.pill:nth-child(1){transform:rotate(-1.5deg)} .pill:nth-child(2){transform:rotate(1deg);background:#fef9c3} .pill:nth-child(3){transform:rotate(-1deg);background:var(--matsoft)} .pill:nth-child(4){transform:rotate(1.2deg)} .pill:nth-child(5){transform:rotate(-1.2deg);background:#fef9c3} .pill:nth-child(6){transform:rotate(1deg)}
+main{padding:1.2rem 1.4rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:820px){main{grid-template-columns:1fr}}
+.note{background:var(--card);border:2.5px solid var(--ink);border-radius:14px;padding:1rem 1.1rem;position:relative;box-shadow:4px 4px 0 rgba(31,39,51,.9)}
+.note:nth-child(odd){transform:rotate(-.4deg)} .note:nth-child(even){transform:rotate(.4deg)}
+.note.wide{grid-column:1/-1}
+.note h2{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.15;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem}
+.note h2 .n{background:var(--ink);color:#fff;font-family:'Space Grotesk';font-size:.75rem;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;flex-shrink:0}
+.note p,.note li{font-size:.85rem;color:var(--ink2);text-align:left}
+.note strong{color:var(--ink)}
+.note ul{list-style:none;padding:0;margin:.3rem 0}
+.note li{margin:.35rem 0;padding-left:1.3rem;position:relative}
+.note li::before{content:"\279C";position:absolute;left:0;color:var(--amber);font-weight:800}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;border:2px solid var(--ink);border-radius:7px;padding:.05rem .45rem;margin:.12rem .1rem;background:#fff}
+.t-green{background:var(--matsoft)} .t-yellow{background:#fef9c3} .t-blue{background:#dbeafe} .t-red{background:#fee2e2} .t-purple{background:#ede9fe}
+.evo{display:flex;align-items:stretch;gap:.2rem;margin:.6rem 0;flex-wrap:wrap}
+.evo .step{flex:1;min-width:104px;border:2px dashed var(--ink);border-radius:10px;padding:.45rem .45rem;text-align:center;background:#fff;font-size:.74rem;color:var(--ink2)}
+.evo .step b{display:block;font-size:.78rem;color:var(--ink)}
+.evo .step.star{border-style:solid;background:var(--matsoft);box-shadow:3px 3px 0 var(--mat)}
+.evo .arrow{align-self:center;font-weight:800;font-size:1rem}
+.gotcha{border:2px solid var(--red);background:#fef2f2;border-radius:10px;padding:.5rem .7rem;font-size:.8rem;margin-top:.6rem;color:var(--ink2)}
+.gotcha b{color:var(--red)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.5rem}
+@media(max-width:520px){.duo{grid-template-columns:1fr}}
+.duo div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .6rem;background:#fff;font-size:.78rem;color:var(--ink2)}
+.duo div b{color:var(--ink);display:block;font-size:.79rem;margin-bottom:.15rem}
+.tri3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-top:.5rem}
+@media(max-width:700px){.tri3{grid-template-columns:1fr}}
+.tri3 div{border:2px solid var(--ink);border-radius:10px;padding:.5rem .6rem;background:#fff;font-size:.78rem;color:var(--ink2)}
+.tri3 div b{color:var(--ink);display:block;font-size:.79rem;margin-bottom:.15rem}
+footer{border-top:3px dashed var(--ink);padding:1rem 1.4rem 1.4rem;background:#f8f5e9;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+footer .biz{font-family:'Caveat',cursive;font-size:1.4rem}
+footer .biz span{background:var(--mat);color:#fff;border-radius:7px;padding:.05rem .45rem;font-family:'JetBrains Mono';font-size:.95rem;margin-right:.15rem}
+.back{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;padding:.5rem 1rem;border-radius:10px;box-shadow:3px 3px 0 var(--mat)}
+.back:hover{transform:translateY(-2px)}
+@media(max-width:520px){body{padding:.6rem}main{padding:1rem .9rem 1.3rem}.sheet{border-radius:14px;box-shadow:5px 5px 0 var(--ink)}.core{flex-direction:column;text-align:center;gap:.4rem}.evo .arrow{font-size:.85rem}}
+@media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:2px solid #000}.back{display:none}}
+:focus-visible{outline:3px solid var(--mat);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+<div class="kicker">AP · Aula 08 · Controle e Indicadores</div>
+<h1><span class="hl">Controle</span> e Indicadores 🎛️</h1>
+<p class="sub">Conceito e 4 etapas do controle · tipos por nível e por momento · indicadores e os 6 Es · mitos da medição · OKR × KPI.<br>Versão visual de bolso — o estudo completo está no <a href="resumo-aula-08-controle-avaliacao-indicadores.html">resumo da Aula 08</a>.</p>
+</header>
+<div class="center-node">
+<div class="core"><div class="big">🎛️</div><div><b>CONTROLE = medir o desempenho ATUAL × o PLANEJADO e corrigir</b><br><span>Desempenho = <strong>esforços + resultados</strong> · sem planejamento prévio, <strong>não há controle</strong> · serve para corrigir desvios negativos <strong>e</strong> reforçar os positivos</span></div></div>
+</div>
+<div class="tri"><span class="pill">🎛️ Controle</span><span class="pill">🔄 Etapas</span><span class="pill">📏 Indicadores</span><span class="pill">⚖️ 6 Es</span><span class="pill">🪄 Mitos</span><span class="pill">🎯 OKR × KPI</span></div>
+<main>
+<section class="note" aria-label="Conceito e objetivos do controle">
+<h2><span class="n">1</span> 🎛️ Conceito e 3 objetivos <span class="tag t-yellow">clássico</span></h2>
+<ul>
+<li><strong>Definição (todos os autores convergem):</strong> monitorar atividades, comparar o resultado obtido com o planejado e fazer as correções para <strong>assegurar o alcance dos objetivos</strong></li>
+<li><strong>Objetivo 1:</strong> assegurar que resultados e objetivos do planejamento sejam alcançados</li>
+<li><strong>Objetivo 2:</strong> ajustar/corrigir <strong>desvios negativos</strong> — falhas e erros identificados (<em>ex.: simulado 50 acertos × meta 80</em>)</li>
+<li><strong>Objetivo 3:</strong> reforçar <strong>desvios positivos</strong> — identificar as "boas práticas" e repeti-las ou aprimorá-las</li>
+<li><strong>Controle eficaz (Maximiano/Chiavenato):</strong> orientação estratégica p/ resultados (foco no essencial) · compreensão (linguagem simples) · foco nas <strong>exceções</strong> · flexibilidade · aceitação pelos controlados · economia (benefício &gt; custo) · precisão e rapidez</li>
+</ul>
+</section>
+<section class="note" aria-label="Etapas do controle">
+<h2><span class="n">2</span> 🔄 4 etapas <span class="tag t-blue">cai toda prova</span></h2>
+<div class="evo">
+<div class="step"><b>1 definir</b>objetivos / resultados esperados</div><div class="arrow">→</div>
+<div class="step"><b>2 medir</b>monitorar o desempenho atual</div><div class="arrow">→</div>
+<div class="step"><b>3 comparar</b>atual × padrão estabelecido</div><div class="arrow">→</div>
+<div class="step star"><b>4 corrigir ★</b>feedback: ajusta ou reforça</div>
+</div>
+<ul>
+<li><strong>É cíclico:</strong> corrigir leva de volta ao monitoramento — medir, comparar e corrigir se repete</li>
+<li><strong>Exemplo do concurseiro:</strong> meta 80 acertos (definir) · simulado (medir) · 50 × 80 (comparar) · estudar mais / revisar melhor (corrigir)</li>
+</ul>
+</section>
+<section class="note" aria-label="Tipos por nivel">
+<h2><span class="n">3</span> 🧭 Por nível organizacional <span class="tag t-red">pegadinha</span></h2>
+<div class="tri3">
+<div><b>Estratégico</b>Organização <b>como um todo</b> · genérico, sintético · longo prazo · exs.: balanço, relatórios financeiros, RSI</div>
+<div><b>Tático</b><b>Unidades/departamentos</b> · menos genérico, mais detalhado · médio prazo · exs.: orçamento, custos</div>
+<div><b>Operacional</b><b>Tarefas específicas</b> · detalhado e analítico · curto prazo · exs.: estoque, qualidade, just-in-time</div>
+</div>
+</section>
+<section class="note" aria-label="Tipos por momento">
+<h2><span class="n">4</span> ⏱️ Por momento <span class="tag t-red">🚨 gotcha</span></h2>
+<ul>
+<li><strong>Preventivo</strong> ("ex ante", pró-controle): <strong>antes</strong> · foco nos <strong>insumos</strong> · <strong>proativo</strong> — evita que o problema ocorra</li>
+<li><strong>Simultâneo</strong> ("in itinere"): <strong>durante</strong> · foco no <strong>processo</strong> · <strong>reativo</strong> — corrige o desvio na hora</li>
+<li><strong>Posterior</strong> ("ex post", feedback): <strong>depois</strong> · foco no <strong>resultado</strong> — descobre as causas para não repetir o erro no futuro</li>
+<li><strong>Perrow (3 ordens):</strong> 1ª supervisão direta (chefe observa) · 2ª padronização (tecnologia + burocracia) · 3ª premissas e cultura (implícito)</li>
+</ul>
+<div class="gotcha">🚨 <b>"Feedback antecipa problemas"</b> — <b>errado</b>: quem se antecipa é o <b>preventivo</b>; o posterior age depois e só orienta as ações futuras.</div>
+</section>
+<section class="note" aria-label="Indicadores conceito e componentes">
+<h2><span class="n">5</span> 📏 Indicadores <span class="tag t-blue">Guia Referencial</span></h2>
+<ul>
+<li><strong>O que é:</strong> medida (quantitativa ou qualitativa) que representa/quantifica <strong>insumo, resultado ou desempenho</strong> de processo, serviço, produto ou organização — base: Guia do Planejamento</li>
+<li><strong>5 finalidades:</strong> mensurar e gerir o desempenho · embasar a decisão · melhorar processos · facilitar planejamento e controle · permitir comparação (inclusive entre organizações)</li>
+<li><strong>5 componentes:</strong> medida (o quê) · fórmula (como calcula) · índice (valor no momento) · padrão de comparação (o aceitável) · <strong>meta</strong> (o alvo no período)</li>
+<li><strong>4 variáveis (TCU):</strong> custo · tempo · qualidade · quantidade</li>
+<li><strong>Critérios (Guia):</strong> seletividade (só o Importante) · simplicidade e clareza · representatividade e confiabilidade · comparabilidade · estabilidade · <strong>custo-efetividade</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="Cadeia de valor e 6 Es">
+<h2><span class="n">6</span> ⚖️ 6 Es do desempenho <span class="tag t-red">pegadinha</span></h2>
+<ul>
+<li><strong>Esforço:</strong> economicidade (menor ônus nos <strong>insumos</strong>) · execução (realizar <strong>ações</strong> e planos) · excelência (padrões de qualidade — transversal)</li>
+<li><strong>Resultado:</strong> eficiência (produtos × insumos — <strong>meios</strong>, foco interno) · eficácia (entregar o combinado — <strong>fins</strong>, foco externo) · efetividade (<strong>impacto</strong> transformador)</li>
+</ul>
+<div class="duo">
+<div><b>Exemplo da campanha</b>Meta: 1.000 armas, 100 servidores, 200 mil → <b>recolheu 1.000 com 150 e 300 mil</b> = <b>eficaz</b> e <b>ineficiente</b> · recolheu 500 com 20 e 40 mil = <b>eficiente</b> e <b>ineficaz</b></div>
+<div><b>Efetividade</b>Se reduziu 50% das mortes por arma de fogo = <b>efetiva</b> (impacto na sociedade) · se as mortes se mantiveram = <b>inefetiva</b></div>
+</div>
+<div class="gotcha">🚨 Cadeia de valor: <b>insumos → ações → produtos → impactos</b> — eficiência liga insumos e produtos; economicidade, só insumos; execução, ações.</div>
+</section>
+<section class="note" aria-label="Propriedades e classificacoes">
+<h2><span class="n">7</span> 🧱 Propriedades e classificações <span class="tag t-yellow">ESAF/IADES</span></h2>
+<ul>
+<li><strong>Essenciais (Manual):</strong> utilidade (apoia a decisão) · validade (representa a realidade) · confiabilidade (fonte séria) · disponibilidade (dado fácil)</li>
+<li><strong>Complementares:</strong> simplicidade · clareza · sensibilidade · desagregabilidade (recorte regional) · economicidade · estabilidade (série histórica) · mensurabilidade · auditabilidade</li>
+<li><strong>TCU (qualidades):</strong> validade/representatividade · comparabilidade · homogeneidade · praticidade · independência · <strong>completude (cobertura)</strong> · tempestividade · objetividade</li>
+<li><strong>Graças Rua:</strong> estratégicos (Visão) · de projetos (início, meio e fim) · de processo → qualidade (eficácia — "da qualidade" × "da não-qualidade") e produtividade (eficiência) · efetividade · capacidade (saídas por tempo)</li>
+<li><strong>Lag × Lead:</strong> lag mede <strong>resultado passado</strong> (vendas do mês passado — desvio só se corrige no ciclo seguinte) · lead aponta <strong>tendência futura</strong></li>
+</ul>
+</section>
+<section class="note" aria-label="Construcao e mitos">
+<h2><span class="n">8</span> 🪄 Construção e 4 mitos <span class="tag t-yellow">FGV adora</span></h2>
+<ul>
+<li><strong>6 etapas:</strong> o que mensurar → como → coleta → mensuração → análise → <strong>comunicação</strong> (desdobradas em 10 passos)</li>
+<li><strong>Mito 1 (medição absoluta):</strong> "preciso medir tudo" — quem mede tudo, não mede nada ("fetiche do pan-óptico"). <strong>Certo:</strong> alta seletividade</li>
+<li><strong>Mito 2:</strong> "preciso gerar todas as informações". <strong>Certo:</strong> aproximações com dados existentes em padrões <strong>aceitáveis</strong> (não "máximos")</li>
+<li><strong>Mito 3:</strong> "primeiro meço, depois vejo". <strong>Certo:</strong> medição orientada à <strong>melhoria</strong> — saber antes para que a medida serve</li>
+<li><strong>Mito 4:</strong> "preciso do sistema perfeito". <strong>Certo:</strong> <strong>"primeiro a sistemática, depois o sistema"</strong> — bom modelo de mensuração antes da ferramenta</li>
+</ul>
+</section>
+<section class="note" aria-label="Fator humano">
+<h2><span class="n">9</span> 🧍 Fator humano <span class="tag t-blue">CESPE</span></h2>
+<ul>
+<li><strong>Efeito positivo:</strong> atividade controlada tende a <strong>melhorar</strong> o desempenho individual</li>
+<li><strong>Burocrático:</strong> só se esforça no que é <strong>medido</strong> — rígido, não resolve problemas do todo</li>
+<li><strong>Tático:</strong> <strong>burla</strong> o sistema (metas fáceis, manipula dados quando o parâmetro é irrealista)</li>
+<li><strong>Resistência:</strong> controle tira <strong>autonomia</strong>, expõe problemas (medo) e gera competição que reduz a cooperação</li>
+<li><strong>2 estratégias:</strong> imposição externa (recompensa/punição, objetivos impostos, resultados individuais) × motivação interna (participativo, resolve problemas, desempenho geral)</li>
+<li><strong>3 técnicas:</strong> supervisão direta · avaliação de desempenho · disciplina</li>
+</ul>
+</section>
+<section class="note wide" aria-label="OKR e KPI">
+<h2><span class="n">10</span> 🎯 OKR × KPI <span class="tag t-red">🚨 gotcha</span></h2>
+<div class="duo">
+<div><b>OKR — ciclo curto</b>Modelo ágil focado em resultados · origem Intel (Grove) → Google (Doerr, 1999) · objetivo <b>qualitativo</b> + 2 a 5 key results <b>quantitativos</b> · ciclos de até 3 meses · <b>bottom-up</b> (quem executa ajuda a definir) · transparência e foco · KRs: baseline, métrica-alvo (positiva/negativa/limite), milestone</div>
+<div><b>KPI — desempenho contínuo</b>Indicadores <b>eleitos como mais importantes</b> · medem alcance de metas e progresso · orientam ações corretivas · formulação complexa (depende da organização) · servem a qualquer tipo de organização · exs.: NPS, ROI, retenção · quantitativos ou qualitativos · PMBOK: "medidas quantificáveis"</div>
+</div>
+<div class="gotcha">🚨 <b>KPI ≠ OKR:</b> KPI mede o <b>desempenho contínuo</b> (dia a dia); OKR foca <b>objetivos estratégicos de curto prazo</b> em ciclos.</div>
+</section>
+<section class="note wide" aria-label="Para levar">
+<h2><span class="n">★</span> 🎯 Para levar para a prova</h2>
+<p><span class="tag t-green"><strong>desempenho</strong> = esforços + resultados</span> <span class="tag t-blue"><strong>4 etapas</strong> terminam em corrigir/feedback</span> <span class="tag t-yellow"><strong>eficiência</strong> = meios · <strong>eficácia</strong> = fins · <strong>efetividade</strong> = impacto</span> <span class="tag t-red"><strong>preventivo</strong> = insumos · <strong>simultâneo</strong> = processos · <strong>posterior</strong> = resultados</span> <span class="tag t-purple"><strong>"primeiro a sistemática, depois o sistema"</strong></span><br><br>
+→ <strong>Não confundir:</strong> padrão de comparação (o aceitável) × meta (o alvo) · índice (valor no momento) · lag (passado) × lead (tendência) · imposição externa × motivação interna<br>
+→ <strong>Erros clássicos:</strong> "medir tudo" · "feedback antecipa problemas" · "recursos iguais com objetivo atingido = eficiente" (é <strong>eficaz</strong>) · "KPI e OKR são a mesma coisa"</p>
+</section>
+</main>
+<footer>
+<div class="biz">✏️ Sketchnote — AP Aula 08 · <span>0</span><span>8</span></div>
+<a class="back" href="resumo-aula-08-controle-avaliacao-indicadores.html">← voltar ao resumo completo</a>
+</footer>
+</div>
+</body>
+</html>
