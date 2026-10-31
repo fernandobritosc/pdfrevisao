@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — AFO 07: Classificações Orçamentárias e Estrutura Programática</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #16a34a;
+  --mat-strong: #15803d;
+  --mat-soft: #e8f6ec;
+  --mat-line: #bbf7d0;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: #dbe3ef; color: var(--text); }
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: rgba(124,58,237,.05); }
+tbody tr:last-child td { border-bottom: none; }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+</style>
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #4ade80; --mat-strong: #86efac; --mat-soft: #0f3330; --mat-line: #14584f;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#86efac; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#4ade80;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(74,222,128,.12); }
+/* Toolbar flutuante */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav a.placeholder { visibility: hidden; }
+/* Dark mode toolbar */
+html[data-theme="dark"] .rh-toolbar button { background:#1f232b;color:#e8ebf2;border-color:#3a4050; }
+html[data-theme="dark"] .rh-toolbar button:hover { border-color:#4ade80; }
+@page { margin: 1.2cm; }
+@media print {
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  .card, .header, .table-wrap, .callout, .gotcha { box-shadow: none !important; break-inside: avoid; }
+}
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+</head>
+<body class="aula">
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">AFO — Aula 07</div>
+  <div class="sidebar-sub">Classificações Orçamentárias · Estrutura Programática</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Classificação por Esfera Orçamentária</a>
+  <a href="#sec2">2. Classificação Institucional</a>
+  <a href="#sec3">3. Classificação Funcional</a>
+  <a href="#sec4">4. Estrutura Programática</a>
+  <a href="#sec5">5. Outras Classificações</a>
+  <a href="#sec6">6. Incidência de temas (TEC)</a>
+  <hr class="sidebar-divider">
+  <a href="../../../index.html" style="color:var(--mat-strong);font-size:.78rem;">← Voltar ao índice</a>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="header">
+  <h1>💰 AFO — Aula 07: Classificações Orçamentárias e Estrutura Programática</h1>
+  <p>Esfera orçamentária · Institucional · Funcional · Estrutura programática · Outras classificações · Material base: simplificado + mapa mental + completo · Estratégia Concursos · Luciana de Paula Marinho</p>
+</div>
+
+<!-- SEC 1 -->
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Classificação por Esfera Orçamentária</div></div>
+  <div class="sec-subtitle">Identifica "em qual orçamento" a despesa será alocada · art. 165, § 5º, CF/1988</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Os 3 orçamentos</div></div>
+    <div class="card-text">
+      → <strong>Orçamento fiscal:</strong> Poderes da União, fundos, órgãos e entidades da administração direta e indireta, inclusive fundações instituídas e mantidas pelo poder público.<br><br>
+      → <strong>Orçamento da Seguridade Social:</strong> todos os entes e órgãos vinculados, administração direta ou indireta, e fundos e fundações instituídos e mantidos pelo poder público.<br><br>
+      → <strong>Orçamento de investimento:</strong> empresas em que a União, direta ou indiretamente, detenha a maioria do capital social com direito a voto.<br><br>
+      ⚖️ <strong>Base legal:</strong> art. 165, § 5º, CF/1988.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Classificador de esfera no SIOP</div></div>
+    <div class="card-text">
+      → Na LOA, o classificador de esfera é identificado com as letras "<strong>F</strong>" (fiscal), "<strong>S</strong>" (Seguridade) ou "<strong>I</strong>" (investimento).<br><br>
+      → No SIOP, o campo da esfera orçamentária tem dois dígitos e se associa à ação orçamentária.<br><br>
+      → A esfera pode ser vista tanto na ótica da receita como na da despesa — ambas seguem a mesma classificação do art. 165, § 5º, CF/1988.
+    </div>
+  </div>
+</section>
+
+<!-- SEC 2 -->
+<section id="sec2">
+  <div class="sec-header"><div class="sec-num">2</div><div class="sec-title">Classificação Institucional</div></div>
+  <div class="sec-subtitle">Estrutura organizacional de alocação dos créditos · "quem faz" a despesa · Lei 4.320/64, art. 14</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Dois níveis hierárquicos</div></div>
+    <div class="card-text">
+      → <strong>Órgão orçamentário:</strong> agrupamento de unidades orçamentárias.<br><br>
+      → <strong>Unidade orçamentária (UO):</strong> agrupamento de serviços subordinados ao mesmo órgão ou repartição, a que são consignadas dotações próprias (art. 14, Lei 4.320/64).<br><br>
+      → No SIOP, o código institucional tem cinco dígitos: os dois primeiros identificam o órgão, os demais, a UO.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">O que a classificação institucional responde</div></div>
+    <div class="card-text">
+      → Responde "quem faz" a despesa — permite comparar imediatamente as dotações recebidas por cada órgão ou UO.<br><br>
+      → O agente encarregado do gasto pode ser identificado na classificação institucional.<br><br>
+      → Nem todo órgão ou UO corresponde a uma estrutura administrativa (ex.: fundos especiais, encargos financeiros da União, operações oficiais de crédito, reserva de contingência).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">💡</div><div class="card-title">Exemplos de codificação</div></div>
+    <div class="card-text">
+      → Órgão "26.000 – Ministério da Educação" tem UOs como: 26.105 (Instituto Benjamin Constant), 26.237 (UFJF), 26.290 (INEP).<br><br>
+      → Exs. de UOs que não correspondem a estrutura administrativa: 74.902 (Recursos sob Supervisão do FIES/MEC) e 73.107 (Recursos sob Supervisão do MEC – Transferências a estados, DF e municípios).
+    </div>
+  </div>
+</section>
+
+<!-- SEC 3 -->
+<section id="sec3">
+  <div class="sec-header"><div class="sec-num">3</div><div class="sec-title">Classificação Funcional</div></div>
+  <div class="sec-subtitle">Funções e subfunções · responde "em que área" da ação governamental · Portaria 42/1999</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Conceito e base legal</div></div>
+    <div class="card-text">
+      → A classificação funcional responde "em que" área de ação governamental a despesa será realizada.<br><br>
+      → Instituída pela Portaria nº 42, de 14 de abril de 1999, atualizada pela Portaria SOF/ME nº 2.520/2022.<br><br>
+      → É independente dos programas, de aplicação comum e obrigatória (municípios, estados, DF e União), permitindo consolidação nacional dos gastos.<br><br>
+      → No SIOP, tem cinco dígitos: os dois primeiros referem à função, os três últimos à subfunção.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Função × Subfunção × Matricialidade</div></div>
+    <div class="card-text">
+      → <strong>Função:</strong> maior nível de agregação das áreas de atuação do setor público (ex.: cultura, educação, saúde, defesa).<br><br>
+      → <strong>Subfunção:</strong> nível imediatamente inferior à função, evidencia cada área de atuação governamental.<br><br>
+      → <strong>Matricialidade:</strong> subfunções podem ser combinadas com funções diferentes daquelas típicas da Portaria 42/1999. Ex.: "10.128 – Saúde e Formação de Recursos Humanos".<br><br>
+      → Exceção: a função "28 – Encargos Especiais" admite apenas suas subfunções típicas.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">⚠️</div><div class="card-title">Funcional × Programática (distinção)</div></div>
+    <div class="card-text">
+      → A classificação funcional organiza as despesas em funções e subfunções — indica a área de atuação governamental.<br><br>
+      → A classificação programática relaciona a despesa a programas e ações — expressa os objetivos pretendidos e a atuação governamental correspondente.<br><br>
+      → São dimensões distintas e complementares: a mesma dotação pode ser analisada pela área funcional e pela programação à qual contribui.
+    </div>
+  </div>
+</section>
+
+<!-- SEC 4 -->
+<section id="sec4">
+  <div class="sec-header"><div class="sec-num">4</div><div class="sec-title">Estrutura Programática</div></div>
+  <div class="sec-subtitle">Programas e ações vinculados a objetivos do PPA · Portaria 42/1999</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Programas e ações</div></div>
+    <div class="card-text">
+      → Toda ação do governo está estruturada em programas orientados para os objetivos estratégicos do PPA (Plano Plurianual, de quatro anos).<br><br>
+      → A estrutura programática demonstra as realizações do governo e a efetividade de seu trabalho em prol da população.<br><br>
+      → <strong>Programa:</strong> conjunto de políticas públicas financiadas por ações orçamentárias e não orçamentárias, instrumento de organização da ação governamental para concretizar objetivos pretendidos, mensurado por indicadores do PPA.<br><br>
+      → <strong>Programas finalísticos:</strong> conjunto coordenado de ações governamentais financiadas por recursos orçamentários e não orçamentários visando à concretização do objetivo.<br><br>
+      → <strong>Programas de gestão:</strong> despesas com manutenção dos órgãos, MPU, DPU e empresas estatais, especialmente gastos de pessoal e custeio. Não têm metas nem indicadores.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Tipos de ação (Portaria 42/1999)</div></div>
+    <div class="card-text">
+      → <strong>Atividade:</strong> conjunto de operações contínuas e permanentes, das quais resulta um produto ou serviço necessário à manutenção da ação de governo.<br><br>
+      → <strong>Projeto:</strong> conjunto de operações limitadas no tempo, das quais resulta um produto que concorre para a expansão ou aperfeiçoamento da ação de governo.<br><br>
+      → <strong>Operação especial:</strong> despesas que não contribuem para manutenção, expansão ou aperfeiçoamento das ações de governo, das quais não resulta um produto e não geram contraprestação direta (ex.: cumprimento de sentenças judiciais, amortização da dívida).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Subtítulo (localizador do gasto)</div></div>
+    <div class="card-text">
+      → Detalhado pelo MTO, especifica a localização física da ação, não podendo haver alteração da finalidade, do produto e das metas (a não ser que se altere a LOA).<br><br>
+      → <strong>Finalidade:</strong> o objetivo a ser alcançado pela ação (o porquê do desenvolvimento da ação).<br><br>
+      → <strong>Produto:</strong> o bem ou serviço que resulta da ação, destinado ao público-alvo. Cada ação deve ter um único produto.<br><br>
+      → Na União, o subtítulo representa o menor nível de categoria de programação, detalhado por esfera orçamentária, grupo de natureza de despesa, modalidade de aplicação, identificador de uso e fonte de recursos.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Plano Orçamentário (PO)</div></div>
+    <div class="card-text">
+      → Identificação orçamentária de caráter gerencial (não constante da LOA), vinculada à ação orçamentária.<br><br>
+      → Permite que a elaboração do orçamento e o acompanhamento físico e financeiro da execução ocorram em nível mais detalhado do que o do subtítulo (localizador de gasto) da ação.
+    </div>
+  </div>
+</section>
+
+<!-- SEC 5 -->
+<section id="sec5">
+  <div class="sec-header"><div class="sec-num">5</div><div class="sec-title">Outras Classificações</div></div>
+  <div class="sec-subtitle">IDUSO, IDOC e identificador de resultado primário</div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">IDUSO — Identificador de Uso</div></div>
+    <div class="card-text">
+      → Completa a informação concernente à aplicação dos recursos.<br><br>
+      → Indica se os recursos compõem contrapartida nacional de empréstimos, doações ou se se destinam a outras aplicações.<br><br>
+      → Constam da Lei Orçamentária e de seus créditos adicionais.<br><br>
+      → Para contrapartida de empréstimos: IDUSO igual a 1, 2, 3 ou 4 e IDOC com o número da respectiva operação de crédito.<br><br>
+      → Para contrapartida de doações: IDUSO igual a 5 e o respectivo IDOC.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">IDOC — Identificador de Doação e de Operação de Crédito</div></div>
+    <div class="card-text">
+      → Identifica as doações de entidades internacionais ou operações de crédito contratuais alocadas nas ações orçamentárias, com ou sem contrapartida de recursos da União.<br><br>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Identificador de resultado primário</div></div>
+    <div class="card-text">
+      → De caráter indicativo, tem como finalidade auxiliar a apuração do resultado primário previsto na LDO.<br><br>
+      → Deve constar tanto no PLOA quanto na respectiva LOA, bem como em todos os Grupos de Natureza da Despesa (GNDs).<br><br>
+      → Despesa primária: gastos necessários para promover serviços públicos à sociedade, desconsiderando o pagamento de empréstimos e financiamentos.<br><br>
+      → Códigos (MTO-2023): 0 (financeira), 1 (primária obrigatória), 2 (primária discricionária), 4 (primária discricionária do Orçamento de Investimento), 6 (primária por emendas individuais), 7 (primária por emendas de bancada estadual).
+    </div>
+  </div>
+</section>
+
+<!-- SEC 6 -->
+<section id="sec6">
+  <div class="sec-header"><div class="sec-num">6</div><div class="sec-title">Incidência de temas (TEC)</div></div>
+  <div class="sec-subtitle">Temas que mais aparecem nas questões coladas — priorize a revisão de cima para baixo</div>
+
+  <div class="card">
+    <div class="card-title">Incidência registrada</div>
+    <div class="card-text">
+      Nenhuma questão do TEC colada ainda.
+    </div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2006/resumo-aula-06-despesas-publicas.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 06 · Despesas Públicas</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+</body>
+</html>
