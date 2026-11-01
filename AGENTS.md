@@ -485,3 +485,13 @@ ideia do usuário) = incidência TEC agregada por matéria.
 
 - Reportar ao usuário **onde** cada alteração foi feita (arquivo + seção + linha quando possível).
 - Se houver log de revisão, registrá-lo.
+
+## Fatos operacionais (atalhos do ambiente)
+
+Fatos fixos desta máquina — não são fluxo, só caminhos e comandos que funcionam:
+
+- **Python:** `C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe` (definir `$env:PYTHONIOENCODING="utf-8"` nos builds).
+- **Validador HTML obrigatório:** `C:\Users\uniao\AppData\Local\Temp\opencode\check-html.py` — rodar antes de qualquer deploy; ERROS e ABERTAS têm de dar zero.
+- **Deploy Surge:** `$env:SURGE_LOGIN="fernandobritosc@gmail.com"; & "C:\Program Files\nodejs\npx.cmd" surge "C:\Programação\pdfrevisao-main\pdfrevisao-main\Resumo_estudos" resumos-hermes.surge.sh`. URLs são **case-sensitive** (`Aula%2006`, nunca `AULA%2006`); verificar com `Invoke-WebRequest -Method Head` esperando `200`.
+- **Git:** branch local é `master`, mas o remoto publicado é `main` — push com `git push origin HEAD:main`. `core.longpaths` já está `true` (nomes de arquivo longos quebravam o `git add -A`).
+- **Raiz real do repo:** `C:\Programação\pdfrevisao-main\pdfrevisao-main` (o diretório `pdfrevisao-main` de fora é pasta duplicada — trabalhar sempre na de dentro).
