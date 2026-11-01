@@ -21,6 +21,8 @@ Gerar e manter resumos de estudo para concursos públicos a partir de PDFs de au
 PDF Revisão/
 ├── index.html                         ← índice do site
 ├── AGENTS.md                          ← este arquivo
+├── GLOSSARY.md                        ← vocabulário do domínio (Resumo, Aula, Seção, Card, Callout, Gotcha, Tag, Incidência, Trilha, Sketchnote, Quiz, Módulo, Interface, Profundidade, Costura, Adapter, Alavancagem, Localidade)
+├── docs/adr/                          ← Architecture Decision Records (ADR-001 a ADR-005)
 ├── template-resumo.html               ← template antigo (gerado por auto_resumo.py)
 ├── auto_resumo.py                     ← script legado (não usar para conteúdo)
 ├── <Matéria>/
@@ -38,9 +40,11 @@ PDF Revisão/
 │   ├── tce-go-trilha.html             ← painel visual da trilha TCE-GO
 │   ├── tce-go-trilha.md               ← mapeamento completo TCE-GO
 │   └── templates/
-│       ├── template-sumario.html      ← template base do resumo
+│       ├── template-sumario.html      ← template base do resumo (gerado por build.py)
 │       └── COMO-USAR.md
 ```
+
+> **Vocabulário oficial**: Use termos do [GLOSSARY.md](GLOSSARY.md) (Resumo, Aula, Seção, Card, Callout, Gotcha, Tag, Incidência, Trilha, Sketchnote, Quiz, Módulo, Interface, Profundidade, Costura, Adapter, Alavancagem, Localidade). Decisões arquiteturais em [docs/adr/](docs/adr/).
 
 ## Fluxo de trabalho
 
@@ -140,6 +144,37 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
 3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
    configurar algum no futuro, registrar aqui (nome, `type`, `command`).
 4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.
+
+## Pipeline de Build (orquestração explícita)
+
+O script `build.py` na raiz do repo é o **orquestrador declarativo** do pipeline. Substitui a orquestração implícita na skill `/nova-aula`.
+
+**Uso:**
+```bash
+python build.py                    # Pipeline completo (design → template → validate → index+changelog → deploy)
+python build.py template validate  # Auto-inclui dependências (design)
+python build.py --list-steps       # Lista passos com dependências
+python build.py --dry-run          # Mostra ondas de execução sem rodar
+python build.py --parallel         # Paraleliza index + changelog (pós-validate)
+python build.py --verbose          # Output detalhado dos subprocessos
+```
+
+**Pipeline (ordem declarativa + dependências):**
+```
+Onda 1: design       (concatena/minifica design-system CSS+JS)
+  ↓
+Onda 2: template     (deps: design)  — injeta no template-thin → template-sumario.html
+  ↓
+Onda 3: validate     (deps: template) — check-html.py
+  ↓
+Onda 4: index + changelog (paralelo, deps: validate)
+  ↓
+Onda 5: deploy       (deps: index, changelog) [opcional] — npx surge + HTTP 200
+```
+
+**Etapas independentes (paralelizam):** `index` + `changelog` (mesmo `parallel_group: post-validate`).
+
+**Deploy Surge** continua **independente do git** (ADR-005): roda a cada alteração, antes do commit de encerramento da aula.
 
 ## Regras de qualidade
 
@@ -426,6 +461,19 @@ via badge verde na linha da aula:
 - Após marcar: atualizar o campo "Última atualização" no header do index,
   commitar e publicar no Surge (fluxo normal).
 - O badge fica na linha da aula, na coluna `ma-rev` (Plex Mono, verde).
+
+## Architecture Reviews (reviews de arquitetura)
+
+Para revisões de arquitetura, use a skill `improve-codebase-architecture` com vocabulário do **GLOSSARY.md** e registre decisões em **docs/adr/**.
+
+**Processo:**
+1. Carregar vocabulário: `GLOSSARY.md` (Resumo, Aula, Seção, Card, Callout, Gotcha, Tag, Incidência, Trilha, Sketchnote, Quiz, Módulo, Interface, Profundidade, Costura, Adapter, Alavancagem, Localidade)
+2. Rodar `improve-codebase-architecture` → gera relatório HTML em temp com candidatos de deepening
+3. Para cada candidato aceito: criar ADR em `docs/adr/ADR-XXX-titulo.md` (use `docs/adr/template.md`)
+4. Atualizar `docs/adr/README.md` com novo ADR
+5. Próximas reviews usam termos do GLOSSARY e consultam ADRs existentes (evita re-sugerir decisões já tomadas)
+
+**Termos obrigatórios nas reviews:** "módulo", "interface", "profundidade", "costura", "adapter", "alavancagem", "localidade", "teste da deleção". **Não use:** "componente", "serviço", "API", "boundary", "feature".
 
 ## Backlog
 

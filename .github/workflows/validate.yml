@@ -1,0 +1,66 @@
+name: Validate Resumos
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate HTML & Add-ons
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # needed for git log in build-changelog.py
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # No external deps needed (stdlib only)
+
+      - name: Run validation gate
+        run: |
+          python tools/validate-all.py --check
+        working-directory: ${{ github.workspace }}
+
+      - name: Build search index (verify it works)
+        run: |
+          python build-search-index.py
+        working-directory: ${{ github.workspace }}
+
+      - name: Build changelog (verify it works)
+        run: |
+          python build-changelog.py
+        working-directory: ${{ github.workspace }}
+
+      - name: Upload validation artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-output
+          path: |
+            Resumo_estudos/search-index.json
+            Resumo_estudos/mudancas.html
+
+  # Optional: Deploy to Surge on successful validation (requires secrets)
+  # deploy:
+  #   needs: validate
+  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install Surge
+  #       run: npm install -g surge
+  #     - name: Deploy to Surge
+  #       run: npx surge "PDF Revisão/Resumo_estudos" resumos-hermes.surge.sh
+  #       env:
+  #         SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+  #         SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}

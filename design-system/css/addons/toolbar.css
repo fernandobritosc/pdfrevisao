@@ -1,0 +1,76 @@
+/* ============================================================
+   TOOLBAR FLUTUANTE (tema · fonte · topo)
+   ============================================================ */
+
+.rh-toolbar {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  z-index: 300;
+}
+
+.rh-toolbar button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+
+.rh-toolbar button:hover {
+  transform: translateY(-2px);
+  border-color: var(--blue);
+}
+
+.rh-toolbar button:disabled {
+  opacity: .4;
+  cursor: default;
+  transform: none;
+}
+
+.rh-toolbar button[hidden] {
+  display: none;
+}
+
+.rh-toolbar button.on {
+  border-color: var(--amber);
+  background: #fdf3d8;
+}
+
+html[data-theme="dark"] .rh-toolbar button.on {
+  background: #33290f;
+  border-color: #6e5a1e;
+}
+
+@media (max-width: 768px) {
+  .rh-toolbar {
+    right: .7rem;
+    bottom: .7rem;
+  }
+  .rh-toolbar button {
+    width: 38px;
+    height: 38px;
+    font-size: .8rem;
+  }
+}
+
+@media print {
+  .rh-toolbar {
+    display: none !important;
+  }
+}

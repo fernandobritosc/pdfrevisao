@@ -1,0 +1,145 @@
+/* ============================================================
+   CARD
+   ============================================================ */
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+
+.aula .card {
+  overflow: hidden;
+}
+
+.card + .card {
+  margin-top: 1rem;
+}
+
+.card:hover {
+  border-color: var(--mat-line);
+}
+
+.aula .card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--mat);
+}
+
+.card h2 {
+  font-size: 15px;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .5rem;
+}
+
+.card-icon {
+  font-size: 1.2rem;
+}
+
+.card-title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  margin-bottom: .35rem;
+}
+
+.card-text {
+  font-size: .9rem;
+  color: var(--text2);
+  line-height: 1.65;
+  text-align: left;
+}
+
+.card-text + .card-text {
+  margin-top: .65rem;
+}
+
+.card-text strong {
+  color: var(--text);
+}
+
+.card-links {
+  margin-top: .6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+
+.card-links a:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.card-meta {
+  font-size: .8rem;
+  color: var(--text2);
+  margin-bottom: .5rem;
+}
+
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+@media (max-width: 900px) {
+  .grid-2,
+  .grid-3,
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}

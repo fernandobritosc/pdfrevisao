@@ -2,8 +2,10 @@
 """Migra fontes dos sketchnotes antigos para o trio aprovado (24/09):
 Caveat + Space Grotesk + JetBrains Mono (+ IBM Plex Sans no corpo)."""
 import io, re, os
+from pathlib import Path
 
-ROOT = r'C:\Programação\hermes\PDF Revisão\Resumo_estudos'
+REPO_ROOT = Path(__file__).parent
+ROOT = REPO_ROOT / 'Resumo_estudos'
 
 NEW_LINK_A = ('<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&'
               'family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&'
@@ -27,7 +29,7 @@ GROUP_B = [
 ]
 
 for rel in GROUP_A:
-    p = os.path.join(ROOT, rel)
+    p = ROOT / rel
     html = io.open(p, encoding='utf-8').read()
     if 'Archivo' not in html:
         print('pular (sem Archivo):', rel); continue
@@ -40,7 +42,7 @@ for rel in GROUP_A:
     print('grupo A ok:', rel, '| tags p/ JetBrains:', n)
 
 for rel in GROUP_B:
-    p = os.path.join(ROOT, rel)
+    p = ROOT / rel
     html = io.open(p, encoding='utf-8').read()
     if 'Permanent Marker' not in html:
         print('pular (sem Permanent Marker):', rel); continue
@@ -57,6 +59,7 @@ for rel in GROUP_B:
 # verificação: nenhum resquício
 print('--- verificacao ---')
 for rel in GROUP_A + GROUP_B:
-    html = io.open(os.path.join(ROOT, rel), encoding='utf-8').read()
+    p = ROOT / rel
+    html = io.open(p, encoding='utf-8').read()
     resto = [w for w in ('Archivo', 'Permanent Marker', 'Patrick Hand', 'IBM Plex Mono') if w in html]
     print(os.path.basename(rel), '->', 'OK' if not resto else 'RESTOU: ' + ','.join(resto))

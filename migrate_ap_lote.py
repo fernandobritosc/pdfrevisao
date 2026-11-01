@@ -4,10 +4,14 @@
 # Variante B (Aulas 00-03): shell intermediário (sec-header e aside já presentes; troca CSS + cards + hero)
 # Regras: conteúdo ZERO tocado; aborta o lote em qualquer falha.
 import io, re, os, subprocess, sys
+from pathlib import Path
 
-ROOT = r'C:\Programação\hermes\PDF Revisão\Resumo_estudos\Administração Pública e Geral'
-DC = r'C:\Programação\hermes\PDF Revisão\Resumo_estudos\Direito Constitucional\Aula 04\resumo-aula-04-direitos-sociais.html'
-CHECK = r'C:\Users\uniao\AppData\Local\Temp\opencode\check-html.py'
+# Paths relativos à raiz do repo
+REPO_ROOT = Path(__file__).parent
+ROOT = REPO_ROOT / 'Resumo_estudos' / 'Administração Pública e Geral'
+DC = REPO_ROOT / 'Resumo_estudos' / 'Direito Constitucional' / 'Aula 04' / 'resumo-aula-04-direitos-sociais.html'
+CHECK = REPO_ROOT / 'tools' / 'check-html.py'
+
 AP_TOKENS = {
     '--mat: #7c3aed;': '--mat: #0d9488;',
     '--mat-strong: #6d28d9;': '--mat-strong: #0b7a70;',
@@ -101,7 +105,7 @@ def fix_main(h, log):
 
 def validate(path, h, aula):
     io.open(path, 'w', encoding='utf-8', newline='\n').write(h)
-    r = subprocess.run([sys.executable, CHECK, path], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, str(CHECK), str(path)], capture_output=True, text=True)
     out = (r.stdout + r.stderr).strip()
     ok = ('ERROS: zero' in out and 'ABERTAS: zero' in out)
     print('  [check-html]', out.replace('\n', ' '))

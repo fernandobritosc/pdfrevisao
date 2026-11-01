@@ -1,0 +1,144 @@
+/* ============================================================
+   RH MODO PRÁTICA (quiz)
+   ============================================================ */
+
+#rhPracticePanel {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 5.8rem;
+  z-index: 301;
+  display: none;
+  width: min(390px, calc(100vw - 2.2rem));
+  max-height: min(72vh, 580px);
+  overflow: auto;
+  background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2);
+  padding: .85rem .95rem .95rem;
+}
+
+#rhPracticePanel.show {
+  display: block;
+}
+
+#rhPracticePanel .rhpp-head {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .3rem;
+}
+
+#rhPracticePanel .rhpp-head strong {
+  font-size: .88rem;
+  color: var(--text, #1f2733);
+}
+
+#rhPracticePanel .rhpp-score {
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  color: var(--text2, #455064);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+#rhPracticePanel .rhpp-close {
+  background: none;
+  border: none;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text2, #455064);
+  padding: 0 .1rem;
+}
+
+#rhPracticePanel .rhpp-item {
+  margin: .55rem 0;
+}
+
+#rhPracticePanel .rhpp-q {
+  font-size: .83rem;
+  font-weight: 700;
+  color: var(--text, #1f2733);
+  margin-bottom: .3rem;
+  line-height: 1.45;
+}
+
+#rhPracticePanel .rhpp-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: .79rem;
+  line-height: 1.45;
+  font-family: inherit;
+  background: var(--bg, #fff);
+  color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7);
+  border-radius: 8px;
+  padding: .4rem .6rem;
+  margin: .25rem 0;
+  cursor: pointer;
+}
+
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) {
+  border-color: var(--mat, var(--blue, #2563eb));
+}
+
+#rhPracticePanel .rhpp-opt:disabled {
+  cursor: default;
+  opacity: .72;
+}
+
+#rhPracticePanel .rhpp-opt.ok {
+  border-color: #15803d;
+  background: rgba(21,128,61,.1);
+  opacity: 1;
+}
+
+#rhPracticePanel .rhpp-opt.bad {
+  border-color: var(--red, #b3261e);
+  background: rgba(179,38,30,.08);
+  opacity: 1;
+}
+
+#rhPracticePanel .rhpp-why {
+  font-size: .75rem;
+  color: var(--text2, #455064);
+  line-height: 1.5;
+  background: var(--surface, #f6f4ee);
+  border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0;
+  padding: .42rem .6rem;
+  margin-top: .28rem;
+}
+
+#rhPracticePanel .rhpp-reset {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 600;
+  background: var(--card, #fff);
+  color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7);
+  border-radius: 8px;
+  padding: .35rem .7rem;
+  cursor: pointer;
+  margin-top: .55rem;
+}
+
+html[data-theme="dark"] #rhPracticePanel {
+  background: var(--surface, #1f232b);
+}
+
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt {
+  background: var(--card, #262b34);
+}
+
+html[data-theme="dark"] #rhPracticePanel .rhpp-why {
+  background: rgba(255,255,255,.05);
+}
+
+@media print {
+  #rhPracticePanel {
+    display: none !important;
+  }
+}

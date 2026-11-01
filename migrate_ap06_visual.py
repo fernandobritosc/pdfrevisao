@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import io, re, sys
+from pathlib import Path
 
-AP = r'C:\Programação\hermes\PDF Revisão\Resumo_estudos\Administração Pública e Geral\Aula 06\resumo-aula-06-motivacao.html'
-DC = r'C:\Programação\hermes\PDF Revisão\Resumo_estudos\Direito Constitucional\Aula 04\resumo-aula-04-direitos-sociais.html'
+REPO_ROOT = Path(__file__).parent
+
+AP = REPO_ROOT / 'Resumo_estudos' / 'Administração Pública e Geral' / 'Aula 06' / 'resumo-aula-06-motivacao.html'
+DC = REPO_ROOT / 'Resumo_estudos' / 'Direito Constitucional' / 'Aula 04' / 'resumo-aula-04-direitos-sociais.html'
 
 ap = io.open(AP, encoding='utf-8').read()
 dc = io.open(DC, encoding='utf-8').read()

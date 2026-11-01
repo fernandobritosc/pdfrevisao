@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Teste Marks</title>
+<style>
+:root { --mat: #2563eb; --red: #dc2626; --card: #fff; --border: #e2dfd7; --text: #1f2733; --text2: #455064; --blue: #2563eb; }
+body { font-family: 'IBM Plex Sans', sans-serif; }
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid #c9c5ba; background: #fff; cursor: pointer; }
+.card { border: 1px solid #e2dfd7; border-radius: 14px; padding: 1rem; margin-bottom: 1rem; }
+.card-title { font-weight: bold; }
+.gotcha { border-left: 5px solid #dc2626; background: #fdf1f1; padding: .7rem 1rem; margin: .75rem 0; }
+.callout { border: 1px solid #c9c5ba; background: #f0eee7; padding: .75rem 1rem; margin: .8rem 0; }
+.mnemonic { background: #fef3d8; border: 2px dashed #d97706; border-radius: 14px; padding: .85rem 1.15rem; margin: .85rem 0; }
+.mnemonic-label { font-family: monospace; font-size: .7rem; color: #d97706; }
+.table-wrap { overflow-x: auto; border: 1px solid #c9c5ba; border-radius: 10px; }
+.question { border: 1px solid #c9c5ba; border-left: 4px solid #d97706; border-radius: 14px; padding: 1.1rem 1.3rem; margin: .9rem 0; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+</head>
+<body class="aula">
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  
+  <button type="button" id="rhRev" title="Modo revisão" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button><button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var bR=document.getElementById('rhRev');
+  function onRev(){return root.classList.contains('rh-rev');}
+  function applyRev(){var now=!onRev();root.classList.toggle('rh-rev',now);bR.classList.toggle('on',now);try{localStorage.setItem('rh-rev',now?'1':'0');}catch(e){}bR.setAttribute('aria-pressed',now?'true':'false');}
+  bR.addEventListener('click',applyRev);
+  try{if(localStorage.getItem('rh-rev')==='1')applyRev();}catch(e){}
+  document.addEventListener('click',function(ev){if(!onRev())return;var el=ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question');if(!el||ev.target.closest('a'))return;el.classList.toggle('rev-open');});
+})();
+</script>
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script><!--/rh:ui-->
+<main class="main">
+<section id="sec1">
+  <div class="sec-header"><div class="sec-num">1</div><div class="sec-title">Introdução</div></div>
+  <div class="card"><div class="card-title">Conceito</div><div class="card-text">Conteúdo.</div></div>
+  <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha</div>Cuidado.</div>
+  <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div>Info.</div></div>
+  <div class="mnemonic"><div class="mnemonic-label">Mnemônico</div><div class="mnemonic-content">Conteúdo.</div></div>
+  <div class="table-wrap"><table><thead><tr><th>Col</th></tr></thead><tbody><tr><td>Val</td></tr></tbody></table></div>
+  <div class="question"><div class="question-text">Pergunta?</div></div>
+</section>
+</main>
+</body>
+</html>

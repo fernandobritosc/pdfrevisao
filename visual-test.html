@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Regression Test — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN SYSTEM — TOKENS (copied from design-system/css/tokens.css)
+   ============================================================ */
+
+:root {
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --shadow: 0 1px 3px rgba(31,39,51,.06), 0 4px 16px rgba(31,39,51,.04);
+  --shadow-hover: 0 4px 12px rgba(31,39,51,.08), 0 12px 40px rgba(31,39,51,.06);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+  --nav-h: 56px;
+
+  /* Cores por matéria */
+  --mat-afo: #16a34a;
+  --mat-ap: #0d9488;
+  --mat-ad: #2563eb;
+  --mat-dc: #7c3aed;
+  --mat-dt: #d97706;
+  --mat-dpt: #dc2626;
+  --mat-pt: #0891b2;
+  --mat-inf: #3b82f6;
+  --mat-cp: #db2777;
+  --mat-rml: #65a30d;
+  --mat-arc: #92400e;
+}
+
+/* Default matéria para testes */
+:root { --mat: var(--mat-ad); --mat-strong: #1d4ed8; --mat-soft: #e8effd; --mat-line: #c3d5fa; }
+
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #5a6272;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat-afo: #4ade80; --mat-ap: #2dd4bf; --mat-ad: #6ea8fe; --mat-dc: #b39af5;
+  --mat-dt: #f0a92e; --mat-dpt: #f87b7b; --mat-pt: #22d3ee; --mat-inf: #93c5fd;
+  --mat-cp: #f472b6; --mat-li: #c4b0fb; --mat-rml: #a3e635; --mat-arc: #dfa787;
+  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,.4), 0 12px 40px rgba(0,0,0,.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 2rem;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* ============================================================
+   BASE COMPONENTS (from design-system/css/components/*.css)
+   ============================================================ */
+
+/* Card */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+}
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+
+/* Callout */
+.callout {
+  display: flex; gap: .6rem; padding: .75rem 1rem; border-radius: 12px;
+  font-size: .88rem; line-height: 1.6; margin: .8rem 0;
+  background: #f0eee7; border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* Gotcha */
+.gotcha { background: #fdf1f1; border: 1px solid #f3d4d4; border-left: 5px solid var(--red); border-radius: 12px; padding: .7rem 1rem; margin: .75rem 0; font-size: .9rem; color: var(--text); text-align: left; }
+.gotcha-title { font-family: var(--font-mono); font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* Button */
+.btn { display: inline-block; padding: 0.6rem 1.2rem; background: var(--blue); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; border: none; cursor: pointer; }
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+
+/* Tag */
+.tag { display: inline-block; padding: .2rem .55rem; border-radius: 5px; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .76rem; font-weight: 600; margin: 0 .2rem; background: #e8e6df; color: #455064; }
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+
+/* Table */
+.table-wrap { overflow-x: auto; margin: .8rem 0; border-radius: 10px; border: 1px solid var(--line-strong); background: var(--card); }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* Grid */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* Toolbar */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1; font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem; box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center; transition: transform .15s, border-color .15s; }
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button[hidden] { display: none; }
+
+/* Search Box */
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input { width: 100%; box-sizing: border-box; background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem; color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem; }
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info { display: flex; justify-content: space-between; align-items: center; gap: .3rem; margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem; color: var(--text2, #455064); }
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button { background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px; cursor: pointer; color: var(--text2, #455064); font-family: inherit; font-size: .62rem; padding: 0 .32rem; line-height: 1.5; }
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+
+/* Panel (Marks / Practice) */
+.panel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+.panel.show { display: block; }
+.panel .count { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+.panel button { font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600; background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem; color: var(--text); cursor: pointer; margin-right: .3rem; }
+.panel button:hover { border-color: var(--blue); }
+
+/* Practice Panel */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none; width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto; background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px; box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1; cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733); margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45; font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733); border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem; margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5; background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb)); border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb)); border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem; cursor: pointer; margin-top: .55rem; }
+
+/* Search Box in Sidebar */
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input { width: 100%; box-sizing: border-box; background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem; color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem; }
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info { display: flex; justify-content: space-between; align-items: center; gap: .3rem; margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem; color: var(--text2, #455064); }
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button { background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px; cursor: pointer; color: var(--text2, #455064); font-family: inherit; font-size: .62rem; padding: 0 .32rem; line-height: 1.5; }
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear { background: none; border: none; padding: 0; cursor: pointer; color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem; }
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit { background: rgba(217, 119, 6, .55); color: inherit; border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35); }
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first { background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4); }
+
+/* Section Header */
+.sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.sec-num { width: auto; min-width: 44px; color: var(--mat); background: transparent; display: flex; align-items: baseline; justify-content: center; font-weight: 800; font-size: 2.5rem; line-height: .9; letter-spacing: -.04em; }
+.sec-title { font-size: 1.42rem; font-weight: 800; letter-spacing: -.025em; color: var(--ink); }
+
+/* Layout */
+.test-container { max-width: 1200px; margin: 0 auto; }
+.section { margin-bottom: 3rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+.section-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; color: var(--ink); border-bottom: 2px solid var(--line-strong); padding-bottom: .5rem; }
+
+/* Print styles hidden for visual tests */
+@media print { .rh-toolbar, .panel, #rhPracticePanel { display: none !important; } }
+
+/* Dark mode toggle for testing */
+.theme-toggle { position: fixed; top: 1rem; right: 1rem; z-index: 1000; padding: .5rem 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌓 Alternar Tema</button>
+
+<div class="test-container">
+  <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: .5rem; color: var(--ink);">Visual Regression Test — Design System</h1>
+  <p style="color: var(--text2); margin-bottom: 2rem;">Página de teste para visual regression. Testa todos os componentes do design system em light/dark mode.</p>
+
+  <!-- ============================================================
+       SEÇÃO 1 — CARDS
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🃏 Cards</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">Card Padrão</div>
+        <div class="card-text">Conteúdo padrão do card com <strong>texto em negrito</strong>.</div>
+        <div class="card-text">Segunda linha com mais conteúdo para testar altura.</div>
+      </div>
+      <div class="card" style="border-color: var(--blue);">
+        <div class="card-title" style="color: var(--green);">Card Contraste</div>
+        <div class="card-text">Card com borda azul e título verde.</        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Card Longo</div>
+        <div class="card-text">Este card tem bastante conteúdo para testar como o layout se comporta com diferentes alturas de conteúdo. Deve crescer naturalmente.</div>
+        <div class="card-text">Mais uma linha para garantir altura suficiente.</div>
+        <div class="card-text">Última linha do card longo.</div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-icon">📌</span><div class="card-title">Card com Ícone</div></div>
+        <div class="card-text">Card com header contendo ícone e título.</        </div>
+        <div class="card-meta">Metadado do card</div>
+        <div class="card-links"><a href="#">Link 1</a><a href="#">Link 2</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 2 — CALLOUTS
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">📢 Callouts</h2>
+    <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div><strong>Info:</strong> Informação adicional de apoio.</div></div>
+    <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div><strong>Atenção:</strong> Ponto que costuma cair em prova.</div></div>
+    <div class="callout callout-success"><div class="callout-icon">✅</div><div><strong>Dica:</strong> Orientação direta para a prova.</div></div>
+    <div class="callout callout-danger"><div class="callout-icon">❌</div><div><strong>Erro comum:</strong> Equívoco que a banca explora.</div></div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 3 — GOTCHAS
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🚨 Gotchas</h2>
+    <div class="gotcha"><div class="gotcha-title">🚨 Pegadinha da banca</div>Descrição da pegadinha: o que a banca costuma inverter ou confundir.</div>
+    <div class="gotcha"><div class="gotcha-title">🚨 Outra pegadinha</div>Mais uma pegadinha para testar múltiplos gotchas.</    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 4 — BOTÕES
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🔘 Botões</h2>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+      <button class="btn">Botão Primário</button>
+      <button class="btn" style="background: var(--green);">Sucesso</button>
+      <button class="btn" style="background: var(--amber);">Aviso</button>
+      <button class="btn" style="background: var(--red);">Perigo</button>
+      <button class="btn" disabled>Desabilitado</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 5 — TAGS
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🏷️ Tags</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;">
+      <span class="tag">Padrão</span>
+      <span class="tag tag-blue">Azul</span>
+      <span class="tag tag-green">Verde</span>
+      <span class="tag tag-amber">Âmbar</span>
+      <span class="tag tag-red">Vermelho</span>
+      <span class="tag tag-purple">Roxo</span>
+      <span class="tag tag-teal">Teal</span>
+      <span class="tag tag-gray">Cinza</span>
+      <br>
+      <span class="tag tag.c">Correta</span>
+      <span class="tag tag.d">Incorreta</span>
+      <span class="tag tag.a">Atenção</span>
+      <span class="tag tag.x">Especial</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 6 — TABELAS
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">📊 Tabelas</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Coluna 1</th><th>Coluna 2</th><th>Coluna 3</th></tr></thead>
+        <tbody>
+          <tr><td>Item A</td><td>Descrição do item A</td><td><strong>Exemplo</strong></td></tr>
+          <tr><td>Item B</td><td>Descrição do item B</td><td>Observação</td></tr>
+          <tr><td>Item C</td><td>Descrição do item C</td><td>Outra coisa</td></tr>
+          <tr><td>Item D</td><td>Descrição do item D</td><td>Mais um</td></tr>
+          <tr><td>Item E</td><td>Descrição do item E</td><td>Final</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 7 — GRID DE CARDS
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🔲 Grid de Cards</h2>
+    <div class="grid grid-3">
+      <div class="card"><div class="card-title">Card 1</div><div class="card-text">Conteúdo 1</div></div>
+      <div class="card"><div class="card-title">Card 2</div><div class="card-text">Conteúdo 2</div></div>
+      <div class="card"><div class="card-title">Card 3</div><div class="card-text">Conteúdo 3</div></div>
+      <div class="card"><div class="card-title">Card 4</div><div class="card-text">Conteúdo 4</div></div>
+      <div class="card"><div class="card-title">Card 5</div><div class="card-text">Conteúdo 5</div></div>
+      <div class="card"><div class="card-title">Card 6</div><div class="card-text">Conteúdo 6</div></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 8 — TOOLBAR
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🛠️ Toolbar</h2>
+    <div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+      <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+      <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+      <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+      <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+      <button type="button" id="rhRev" title="Modo revisão" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+      <button type="button" id="rhMarks" title="Marcar vacilos" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+      <button type="button" id="rhPractice" title="Modo prática" aria-label="Abrir modo prática" aria-pressed="false">🎯</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 9 — SEARCH BOX
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🔍 Search Box</h2>
+    <div class="sr-box" data-sr-v="2">
+      <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+      <div class="sr-info"><span id="sr-count">0 blocos</span>
+      <span class="sr-nav"><button id="sr-prev" type="button" title="Anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima (Enter)" disabled>↓</button></span>
+      <button id="sr-clear" type="button">limpar</button></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 10 — MARKS PANEL
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🏷️ Marks Panel</h2>
+    <div id="rhMarkPanel" class="panel" role="dialog" aria-label="Marcar vacilos">
+      <div class="count">Vacilos marcados: <span id="rhmpN">0</span></div>
+      <button type="button" id="rhmpExp">⬇ exportar</button>
+      <button type="button" id="rhmpImp">⬆ importar</button>
+      <input id="rhmpFile" type="file" accept="application/json" hidden>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 11 — PRACTICE PANEL
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🎯 Practice Panel</h2>
+    <div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+      <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+      <div id="rhPracticeList"></div>
+      <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 11 — MATÉRIAS (CORES)
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">🎨 Cores por Matéria</h2>
+    <div class="grid grid-3" style="max-width: 800px;">
+      <div class="card" style="--mat: var(--mat-afo); --mat-strong: #15803d; --mat-soft: #dcfce7; --mat-line: #86efac;"><div class="card-title">AFO</div><div class="card-text">#16a34a</div></div>
+      <div class="card" style="--mat: var(--mat-ap); --mat-strong: #0f766e; --mat-soft: #ccfbf1; --mat-line: #5eead4;"><div class="card-title">AP</div><div class="card-text">#0d9488</div></div>
+      <div class="card" style="--mat: var(--mat-ad); --mat-strong: #1d4ed8; --mat-soft: #e8effd; --mat-line: #c3d5fa;"><div class="card-title">AD</div><div class="card-text">#2563eb</div></div>
+      <div class="card" style="--mat: var(--mat-dc); --mat-strong: #6d28d9; --mat-soft: #f3e8ff; --mat-line: #d8b4fe;"><div class="card-title">DC</div><div class="card-text">#7c3aed</div></div>
+      <div class="card" style="--mat: var(--mat-dt); --mat-strong: #b45309; --mat-soft: #fef3c7; --mat-line: #fde047;"><div class="card-title">DT</div><div class="card-text">#d97706</div></div>
+      <div class="card" style="--mat: var(--mat-dpt); --mat-strong: #b91c1c; --mat-soft: #fee2e2; --mat-line: #fecaca;"><div class="card-title">DPT</div><div class="card-text">#dc2626</div></div>
+      <div class="card" style="--mat: var(--mat-pt); --mat-strong: #0e7490; --mat-soft: #e0f2fe; --mat-line: #7dd3fc;"><div class="card-title">PT</div><div class="card-text">#0891b2</div></div>
+      <div class="card" style="--mat: var(--mat-inf); --mat-strong: #1d4ed8; --mat-soft: #e8effd; --mat-line: #c3d5fa;"><div class="card-title">INF</div><div class="card-text">#3b82f6</div></div>
+      <div class="card" style="--mat: var(--mat-cp); --mat-strong: #be185d; --mat-soft: #fce7f3; --mat-line: #fbcfe8;"><div class="card-title">CP</div><div class="card-text">#db2777</div></div>
+      <div class="card" style="--mat: var(--mat-rml); --mat-strong: #4d7c0f; --mat-soft: #f0fdf4; --mat-line: #a3e635;"><div class="card-title">RML</div><div class="card-text">#65a30d</div></div>
+      <div class="card" style="--mat: var(--mat-arc); --mat-strong: #78350f; --mat-soft: #fef3c7; --mat-line: #fde047;"><div class="card-title">ARC</div><div class="card-text">#92400e</div></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 12 — SECTION HEADER
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">📑 Section Header</h2>
+    <div class="sec-header">
+      <div class="sec-num">1</div>
+      <div class="sec-title">Título da Seção</div>
+    </div>
+    <div class="sec-header">
+      <div class="sec-num">2</div>
+      <div class="sec-title">Título Longo da Seção Para Testar Quebra de Linha</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO 13 — SECTION HEADER COM SUBTITLE
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section-title">📝 Section Header com Subtitle</h2>
+    <div class="sec-header">
+      <div class="sec-num">3</div>
+      <div class="sec-title">Título com Subtitle</div>
+    </div>
+    <div class="sec-subtitle">Subtítulo opcional com fonte/banca</div>
+  </section>
+
+</div>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️ Light' : '🌙 Dark';
+}
+
+// Initialize theme from localStorage or system preference
+(function() {
+  const root = document.documentElement;
+  let theme = localStorage.getItem('theme');
+  if (!theme) {
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  root.setAttribute('data-theme', theme);
+  document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
+})();
+
+// Expose for tests
+window.__VISUAL_TEST__ = { toggleTheme };
+</script>
+</body>
+</html>

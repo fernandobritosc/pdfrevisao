@@ -10,7 +10,5 @@ Carregue a skill `nova-aula` e execute o procedimento completo descrito nela.
 $ARGUMENTS
 
 - Se os argumentos vierem com matéria/número/tema: processe essa aula.
-- Se vierem vazios: detecte PDFs pendentes em qualquer `<Matéria>/aula NN/` e
-  pergunte ao usuário qual processar antes de começar.
-- Se o que o usuário colou são questões do TEC (e não uma aula nova): siga a
-  seção "Fluxo TEC" da skill em vez do ciclo de aula.
+- Se vierem vazios: detecte PDFs pendentes em qualquer `<Matéria>/aula NN/` e pergunte ao usuário qual processar antes de começar.
+- Se o que o usuário colou são questões do TEC (e não uma aula nova): siga a seção "Fluxo TEC" da skill em vez do ciclo de aula.

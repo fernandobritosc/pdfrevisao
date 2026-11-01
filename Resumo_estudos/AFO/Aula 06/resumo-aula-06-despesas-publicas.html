@@ -564,7 +564,42 @@ h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size:
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-}</style>
+}
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
 
 
 
@@ -869,7 +904,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → ⚠️ <strong>Não confundir:</strong> pagamento de restos a pagar e resgate de ARO <strong>nunca</strong> são despesa orçamentária (de capital ou corrente) — despesa orçamentária de capital é a <strong>amortização da dívida</strong>, o GND 6.<br><br>
       → ⚠️ <strong>Para fixar:</strong><br>
       → Inscrição em restos a pagar = <strong>receita</strong> extraorçamentária.<br>
-      → Pagamento de restos a pagar = <strong>despesa</strong> extraorçamentária.
+      → Pagamento de restos a pagar = <strong>despesa</strong> extraorçamentária.<br><br>
+      → ⚠️ <strong>Distinção — restos a pagar × DEA:</strong> restos a pagar é a despesa que <strong>foi empenhada</strong> em exercício anterior (o pagamento sai como extraorçamentário); despesas de <strong>exercícios anteriores (DEA)</strong> são as que tiveram o fato gerador em exercício anterior, mas <strong>não foram empenhadas na época correta</strong> — estas sim são orçamentárias, executadas com elemento próprio de DEA.
     </div>
   </div>
 
@@ -885,7 +921,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-header"><div class="card-icon">📌</div><div class="card-title">Programação qualitativa — no que será gasta a verba</div></div>
     <div class="card-text">
       → <strong>O programa de trabalho responde "no que será despendida a verba"</strong> — blocos: esfera, institucional, funcional, estrutura programática e programa/ação.<br><br>
-      → Ex.: Função (classificação funcional) é qualitativa; atende à necessidade de informação de Poderes, sociedade e privados sobre as finanças públicas.
+      → Ex.: Função (classificação funcional) é qualitativa; atende à necessidade de informação de Poderes, sociedade e privados sobre as finanças públicas.<br><br>
+      → ⚠️ <strong>Não confundir quem é qualitativo:</strong> além da função, são qualitativos o <strong>órgão e a unidade orçamentária</strong> (bloco institucional — quem é o responsável por fazer) e o <strong>programa</strong> (estrutura programática — o que se pretende alcançar com a política pública); do lado quantitativo ficam <strong>categoria econômica</strong> (despesa corrente × capital, qual o efeito econômico do gasto), <strong>GND</strong>, <strong>modalidade de aplicação</strong> (de que forma serão aplicados os recursos) e <strong>elemento de despesa</strong> (quais os insumos que se pretende usar ou adquirir).
     </div>
   </div>
 
@@ -938,7 +975,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → Divergem ainda: capital de empresa AGRIN/COMFIN (4.320 separa; natureza junta tudo em inversões).<br><br>
       → ⚠️ <strong>Distinção:</strong><br>
       → Juros e encargos → categoria <strong>corrente</strong>; amortização (principal) → categoria <strong>capital</strong>.<br>
-      → Grupo <strong>9</strong> (reservas) não executa — serve de fonte para créditos adicionais, que aí sim classificam a despesa nos grupos próprios.
+      → Grupo <strong>9</strong> (reservas) não executa — serve de fonte para créditos adicionais, que aí sim classificam a despesa nos grupos próprios.<br>
+      → ⚠️ <strong>Juros ficam fora do primário:</strong> juros e encargos da dívida são <strong>despesas financeiras</strong> — a apuração do <strong>resultado primário</strong> não os considera; eles reaparecem só no <strong>resultado nominal</strong> (primário + juros e encargos ativos − passivos) (MDF 12ª ed.).
     </div>
   </div>
 
@@ -967,7 +1005,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-text">
       → <strong>Elemento:</strong> identifica o objeto do gasto — vencimentos (11), diárias, material de consumo, serviços de terceiros – PJ (39, ex.: energia elétrica), obras, auxílios, sentenças judiciais (91).<br><br>
       → Elementos <strong>41</strong> (contribuições), <strong>42</strong> (auxílios), <strong>43</strong> (subvenções sociais), <strong>45</strong> (subvenções econômicas) e <strong>81</strong> (distribuição constitucional/legal de receitas) = despesas <strong>correntes</strong> — não geram PIB; só investimentos geram acréscimo.<br><br>
-      → <strong>Subelemento (desdobramento):</strong> detalha o elemento para escrituração e controle — uso <strong>facultativo</strong> por cada ente (nunca obrigatório).<br><br>
+      → ⚠️ <strong>Correlação não é casamento:</strong> os elementos normalmente guardam correlação com os <strong>grupos</strong> de natureza, mas <strong>não há impedimento</strong> para que elementos típicos de <strong>despesa corrente</strong> fiquem relacionados a um <strong>grupo de despesa de capital</strong> (MCASP — o elemento é o último passo da composição da natureza da despesa).<br><br>
+      → <strong>Subelemento (desdobramento):</strong> detalha o elemento para escrituração e controle — uso <strong>facultativo</strong> por cada ente (nunca obrigatório): fica facultado o <strong>desdobramento dos elementos de despesa</strong> conforme as <strong>necessidades de escrituração contábil e controle da execução orçamentária</strong> (MCASP 9ª ed.) — ex.: material de consumo (30) ganhando item próprio <strong>combustíveis e lubrificantes</strong> no código 3.3.90.30.<strong>XX</strong>.<br><br>
       → ⚠️ <strong>Não confundir:</strong><br>
       → Elemento/subelemento identificam <strong>objeto do gasto</strong> — nada têm a ver com cota/repasse (movimentação financeira do SIAFI/Tesouro, Decreto 93.872/1986).<br>
       → Reparos, pintura e reformas <strong>sem</strong> ampliação do imóvel = <strong>39</strong> (terceiros – PJ); <strong>com</strong> ampliação relevante do potencial econômico = <strong>51</strong> (obras e instalações, investimento).<br>
@@ -1063,7 +1102,8 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → <strong>O que entra:</strong> obras, imóveis para obras, programas especiais, instalações, equipamentos, material permanente e capital de empresa <strong>não</strong> comercial/financeira — discriminados por projeto (art. 20); programa especial que não segue a execução normal vai por <strong>dotação global</strong> (exceção à discriminação).<br><br>
       → ⚠️ <strong>Obra nova é investimento, e ponto:</strong> construir equipamento público (escola, creche, posto) permanece <strong>investimento</strong> ainda que a obra <strong>eleve a despesa corrente</strong> depois (salários de servidores) e ainda que a construção decorra de <strong>determinação judicial</strong> — o que classifica é a natureza da obra, não o efeito futuro nem a origem da obrigação.<br><br>
       → ⚠️ <strong>Obra que não vira ativo do ente continua investimento:</strong> construir casas populares para <strong>doar</strong> às vítimas de uma calamidade não cria ativo para o setor público e, mesmo assim, fica em despesa de <strong>capital</strong>, no grupo <strong>investimentos (categoria 4, GND 4)</strong>: a construção é <strong>formação bruta de capital fixo para o país</strong>. A correlação "capital = vira ativo do ente" é <strong>regra geral</strong>, que cede no caso excepcional em que o gasto forma capital fixo para a economia (MCASP).<br><br>
-      → ⚠️ <strong>Bem novo × bem usado:</strong> máquina industrial <strong>nova</strong> = <strong>investimento</strong> (§4º — equipamentos e material permanente; permanência superior a 2 anos, art. 15); a mesma máquina <strong>já em utilização</strong> = <strong>inversão financeira</strong> (§5º, I) — continua capital nos dois casos, mudando só o GND; o que decide é o <strong>estado do bem</strong>, não o vendedor nem o preço.
+      → ⚠️ <strong>Bem novo × bem usado:</strong> máquina industrial <strong>nova</strong> = <strong>investimento</strong> (§4º — equipamentos e material permanente; permanência superior a 2 anos, art. 15); a mesma máquina <strong>já em utilização</strong> = <strong>inversão financeira</strong> (§5º, I) — continua capital nos dois casos, mudando só o GND; o que decide é o <strong>estado do bem</strong>, não o vendedor nem o preço.<br><br>
+      → ⚠️ <strong>Investimento impacta o primário:</strong> investimentos compõem as <strong>despesas primárias de capital</strong> do MDF (12ª ed.) — despesa primária de capital <strong>impacta as metas de resultado primário</strong> definidas para o exercício; a reconstrução emergencial de via/ponte danificadas por chuvas é exatamente esse caso.
     </div>
   </div>
 
@@ -1155,9 +1195,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       → Ex.: vacinação de crianças — a meta é regionalizada pela quantidade de crianças (ou de vacinas) em <strong>cada Estado</strong>, mesmo sendo campanha nacional e despesa paga de forma <strong>centralizada</strong>; o mesmo vale na distribuição de livros didáticos.<br><br>
       → <strong>Atividade</strong> — conjunto de operações realizadas de <strong>modo contínuo e permanente</strong>, das quais resulta produto ou serviço necessário à <strong>manutenção</strong> da ação de Governo (ex.: fiscalização e monitoramento das operadoras de planos de saúde).<br>
       → <strong>Projeto</strong> — conjunto de operações <strong>limitadas no tempo</strong>, das quais resulta produto que concorre para a <strong>expansão ou o aperfeiçoamento</strong> da ação de Governo (ex.: implantação da rede nacional de bancos de leite humano).<br>
-      → <strong>Operação Especial</strong> — não resulta produto e não gera contraprestação direta ao Estado.<br><br>
+      → <strong>Operação Especial</strong> — <strong>não contribui</strong> para a manutenção, expansão ou aperfeiçoamento das ações de governo, <strong>não resulta produto</strong> e não gera contraprestação direta <strong>sob a forma de bens ou serviços</strong> (MCASP 9ª ed.).<br><br>
       → Ação iniciada com dígito <strong>ímpar = projeto</strong>; com dígito <strong>par = atividade</strong> — leitura direta pelo primeiro dígito.<br><br>
-      → ⚠️ <strong>Como decidir:</strong> pergunte se a ação <strong>termina</strong> — prazo definido com produto que amplia <strong>ou aperfeiçoa</strong> a ação é <strong>projeto</strong> (qualificar professores em 4 anos aumenta o percentual de qualificados = projeto); rotina que se repete a cada exercício, ainda que com produto relevante, é <strong>atividade</strong>.
+      → ⚠️ <strong>Como decidir:</strong> pergunte se a ação <strong>termina</strong> — prazo definido com produto que amplia <strong>ou aperfeiçoa</strong> a ação é <strong>projeto</strong> (qualificar professores em 4 anos aumenta o percentual de qualificados = projeto); rotina que se repete a cada exercício, ainda que com produto relevante, é <strong>atividade</strong>.<br>
+      → ⚠️ <strong>Não confundir:</strong> obra emergencial de reconstrução (trecho de rodovia federal e ponte destruídos por chuvas) é <strong>projeto</strong>, e não operação especial — o caráter emergencial não define o tipo de ação; decide-se pela leitura programática: <strong>operações limitadas no tempo</strong> (a obra termina), das quais <strong>resulta produto</strong> que <strong>expande ou aperfeiçoa</strong> a ação do Estado.<br><br>
+      → ⚠️ <strong>Atenção:</strong> créditos <strong>extraordinários</strong> dispensam a <strong>autorização legislativa</strong> e a <strong>indicação da fonte de recursos</strong>, mas <strong>não</strong> dispensam a <strong>classificação por estrutura programática</strong> — o que se dispensa é o trâmite legislativo e a fonte, não a amarração da ação a programas ligados ao PPA (Portaria MOG 42/1999, art. 3º; MCASP 9ª ed.).<br><br>
       → <strong>PO</strong> (gerencial, fora da LOA): detalha a ação abaixo do subtítulo — produção intermediária, etapas, acompanhamento intensivo, descentralizadas, reservado, padronizado.
     </div>
   </div>
@@ -1237,14 +1279,14 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     <div class="card-title">Contador de temas</div>
     <div class="card-text">
       <strong>Alta incidência 🔴</strong><br>
-      <span class="tag tag-red">Seção 4 — Natureza da despesa (C-G-MM-EE-DD): 11</span><br>
-      <span class="tag tag-red">Seção 7 — Funcional, institucional, esfera e programática: 14</span><br>
-      <span class="tag tag-red">Seção 6 — Lei 4.320 (custeio, subvenções e investimentos): 13</span><br><br>
+      <span class="tag tag-red">Seção 7 — Funcional, institucional, esfera e programática: 15</span><br>
+      <span class="tag tag-red">Seção 6 — Lei 4.320 (custeio, subvenções e investimentos): 15</span><br>
+      <span class="tag tag-red">Seção 4 — Natureza da despesa (C-G-MM-EE-DD): 12</span><br>
+      <span class="tag tag-red">Seção 2 — Forma de ingresso (extraorçamentária): 3</span><br><br>
       <strong>Média incidência 🟡</strong><br>
-      <span class="tag tag-amber">Seção 2 — Forma de ingresso (extraorçamentária): 2</span><br><br>
+      <span class="tag tag-amber">Seção 3 — Programação orçamentária (qualitativa × quantitativa): 2</span><br><br>
       <strong>Baixa incidência ⚪</strong><br>
       <span class="tag">Seção 1 — Conceito de Despesa Pública (empenho prévio): 1</span><br>
-      <span class="tag">Seção 3 — Programação orçamentária (atividade × projeto): 1</span><br>
       <span class="tag">Seção 5 — Classificações doutrinárias (afetação patrimonial): 1</span><br>
     </div>
   </div>
@@ -1266,6 +1308,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
   <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
   <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
   <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
   <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
 </div>
 <script>
@@ -1527,5 +1570,68 @@ mark.sr-first {
   run(false);
 })();
 </script>
-</body>
+<!--rh:practice:start-->
+<style id="rh-practice-style"></style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong>
+<span class="rhpp-score" id="rhPracticeScore"></span>
+<button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+<script type="application/json" id="rhPracticeData">{"aula": "06", "tema": "Despesas Públicas", "materia": "AFO", "questoes": [{"q": "Uma rodovia federal e uma ponte, destruídas por chuvas, precisam de reconstrução emergencial. Sob a classificação programática, essa ação é:", "opts": [{"t": "Atividade continuada", "why": "Errado - atividade é ação contínua e permanente para manter a ação de governo; a reconstrução tem prazo definido, termina e entrega produto."}, {"t": "Operação especial", "why": "Errado - não contribui para a manutenção, expansão ou aperfeiçoamento das ações de governo e não resulta produto; a reconstrução resulta produto (a estrutura reconstruída)."}, {"t": "Projeto", "ok": true, "why": "Certo - conjunto de operações limitadas no tempo das quais resulta produto que concorre para a expansão ou o aperfeiçoamento da ação de governo; o caráter emergencial não define o tipo da ação."}, {"t": "Programa especial com dotação global", "why": "Errado - programa especial é categoria de programa (não o tipo da ação); a dotação global (art. 20) trata da discriminação da execução, não da leitura do tipo de ação."}]}, {"q": "Na abertura de créditos extraordinários, fica dispensado:", "opts": [{"t": "Indicação da fonte de recursos", "why": "Errado - incompleto: também se dispensa a autorização legislativa."}, {"t": "Autorização legislativa e indicação da fonte de recursos", "ok": true, "why": "Certo - é isso que se dispensa; a classificação por estrutura programática continua obrigatória (Portaria MOG 42/1999, art. 3º)."}, {"t": "O empenho e a liquidação", "why": "Errado - os estágios da despesa (empenho, liquidação, pagamento) continuam obrigatórios."}, {"t": "A classificação por estrutura programática", "why": "Errado - toda ação fica estruturada em programas ligados aos objetivos do PPA, mesmo em crédito extraordinário (MCASP)."}]}, {"q": "O desdobramento dos elementos de despesa é:", "opts": [{"t": "Facultado a cada ente, conforme as necessidades de escrituração contábil e controle da execução orçamentária", "ok": true, "why": "Certo - o 5º nível da natureza da despesa é desdobramento facultativo: cada ente desdobra se precisar (ex.: 3.3.90.30.XX, combustíveis e lubrificantes desdobrando material de consumo)."}, {"t": "Obrigatório para todos os entes da federação", "why": "Errado - é faculdade, nunca obrigação; o obrigatório é a discriminação mínima categoria + GND + modalidade (Portaria 163/2001, art. 6º)."}, {"t": "Válido apenas para a União", "why": "Errado - a faculdade alcança cada ente: União, Estados, DF e Municípios."}, {"t": "Ato que só o Poder Legislativo pratica na LOA", "why": "Errado - é decisão do próprio ente para escrituração e controle da execução, não ato de fixação orçamentária do Legislativo."}]}, {"q": "Elementos típicos de despesa corrente podem estar relacionados a um grupo de despesa de capital?", "opts": [{"t": "Não", "why": "Errado - não há impedimento; a correlação com os grupos é 'normalmente', não casamento rígido."}, {"t": "Não, salvo caso de calamidade", "why": "Errado - a exceção não depende de calamidade: é a própria regra do MCASP que admite a mistura."}, {"t": "Não, porque grupos e elementos se excluem", "why": "Errado - eles se correlacionam normalmente; não há exclusão recíproca."}, {"t": "Sim", "ok": true, "why": "Certo - MCASP: 'normalmente os elementos guardam correlação com os grupos, mas não há impedimento para que alguns elementos típicos de despesa corrente estejam relacionados a um grupo de despesa de capital'."}]}, {"q": "Na apuração do resultado primário, os juros e encargos da dívida:", "opts": [{"t": "Entram como despesas primárias de capital", "why": "Errado - juros são despesas financeiras e ficam fora da base primária."}, {"t": "Ficam fora do primário, reaparecendo apenas no resultado nominal", "ok": true, "why": "Certo - o primário cruza receitas e despesas primárias; os juros (financeiros) somam só no nominal (primário + juros e encargos ativos - passivos), na leitura do MDF."}, {"t": "Não entram no primário nem no nominal", "why": "Errado - o resultado nominal os requer por fórmula (nominal = primário + juros e encargos ativos - passivos)."}, {"t": "Entram no primário por serem despesa corrente (GND 2)", "why": "Errado - ser corrente (categoria 3, GND 2) não muda a natureza financeira que os exclui do primário."}]}, {"q": "O pagamento de restos a pagar inscritos em exercício anterior é:", "opts": [{"t": "Despesa orçamentária executada com elemento próprio de DEA", "why": "Errado - troca de regime: restos a pagar já foi empenhado; quem exige elemento próprio de DEA é a despesa não empenhada na época correta."}, {"t": "Despesa orçamentária por crédito adicional superveniente", "why": "Errado - não há dotação nova: o passivo já está registrado; o saque é extraorçamentário."}, {"t": "Dispêndio extraorçamentário", "ok": true, "why": "Certo - o valor pertence ao exercício do empenho; no exercício seguinte o pagamento é despesa extraorçamentária (e a inscrição, receita extraorçamentária)."}, {"t": "Gasto sem registro contábil até a quitação", "why": "Errado - registra sempre: inscrição em restos a pagar = receita extraorçamentária; pagamento = despesa extraorçamentária."}]}, {"q": "A unidade orçamentária compõe qual abordagem da programação orçamentária?", "opts": [{"t": "Qualitativa - bloco institucional (quem é o responsável por fazer)", "ok": true, "why": "Certo - a UO é item do bloco institucional do programa de trabalho, junto com órgão, esfera, funcional e programática."}, {"t": "Quantitativa - dimensão física", "why": "Errado - a dimensão física é a meta (quantidade de produto, territorializada); a UO não mede produto."}, {"t": "Quantitativa - dimensão financeira", "why": "Errado - os quantitativos financeiros são natureza da despesa, IDUSO, fonte, IDOC, resultado primário e dotação."}, {"t": "Nenhuma - é estrutura administrativa pura, fora do orçamento", "why": "Errado - a UO é o bloco que recebe a dotação e integra o programa de trabalho (qualitativo)."}]}, {"q": "A reconstrução emergencial de via e ponte, coberta com recursos do Tesouro, impacta as metas de resultado primário do exercício?", "opts": [{"t": "Não, porque é despesa de capital", "why": "Errado - capital não fica fora do primário: existem despesas primárias de capital, incluindo investimentos."}, {"t": "Não, porque escapa da LOA", "why": "Errado - a modalidade ou a origem do gasto não o sustrai da apuração primária."}, {"t": "Não, pois o primário só abrange despesas correntes", "why": "Errado - o primário abrange primárias correntes e primárias de capital."}, {"t": "Sim", "ok": true, "why": "Certo - investimentos compõem as despesas primárias de capital (MDF): a obra é despesa primária e impacta as metas de resultado primário do exercício."}]}]}</script>
+<!--rh:practice:end--><script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script></body>
 </html>
