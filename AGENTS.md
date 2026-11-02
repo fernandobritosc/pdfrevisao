@@ -279,6 +279,35 @@ seguem este padrão** (CSS já portado no `template-sumario.html`):
   novo padrão — toda aula antiga tocada (correção, questão TEC, revisão, qualquer
   ajuste) é migrada ao padrão atual **na mesma alteração**; nenhuma aula permanece
   no padrão antigo após ser editada.
+- **Densidade controlada — restyle "batidas + setas" (regra do usuário, 01/11/2026)**:
+  aprovado no piloto da DC Aula 00. Cada seção leva no topo uma tira `.tldr`
+  **"Batidas da seção"** (4-6 linhas-chave numeradas `1.`-`6.` em negrito, título
+  mono uppercase, **border-left 5px na cor da matéria**, fundo tinted 10% não
+  transparente, radius 12px) — leitura de 10 segundos antes de mergulhar no
+  conteúdo. Prosa espessa nos cards vira **linhas `→` escaneáveis** (termos em
+  negrito), cards ficam **curtos** (1-3 setas) e **sempre em coluna única** —
+  nenhum grid-2/grid-3 de cards (o grid-3 "Sentidos da Constituição" da DC Aula
+  00 foi dissolvido em cards empilhados). Conteúdo **nunca é suprimido**: só
+  reorganizar. CSS da tira (injetado por aula):
+  ```html
+  <style>
+  .tldr{background:color-mix(in srgb,VAR_MAT 10%,transparent);border-left:5px solid VAR_MAT;border-radius:12px;padding:1rem 1.2rem;margin:.4rem 0 1.6rem}
+  .tldr-title{font-family:'JetBrains Mono',monospace;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:VAR_MAT;margin-bottom:.5rem}
+  .tldr div{font-size:.84rem;line-height:1.55;margin-bottom:.35rem}
+  .tldr div b{color:VAR_MAT;font-weight:700}
+  @media(max-width:640px){.tldr{padding:.8rem .9rem}.tldr div{font-size:.8rem}}
+  </style>
+  ```
+  onde `VAR_MAT` = cor da matéria da aula (ex.: aulas com tokens `--mat` usam
+  `var(--mat)`; aulas antigas sem o token usam a cor direta — `var(--purple)`
+  na DC Aula 00). **Rolagem por aula**: o restyle completo (batidas + setas +
+  split de cards) entra numa aula por vez, quando o usuário pedir; não acoplar
+  o re-trabalho inteiro ao ciclo de questão TEC (questões seguem o fluxo
+  normal; a migration estrutural de aula tocada continua valendo).
+- **Título limpo**: regra dos emojis (`nunca em títulos de card/seção`) vale
+  também para `📌`/`🎯`/`⚙️`/`🧩` pré-existentes em títulos de card no corpo dos
+  resumos — remover ao re-trabalhar a aula (o emoji só existe em callout ⚠️ e
+  pegadinha 🚨).
 
 ## Formato de conversão de questão → conteúdo de estudo
 
