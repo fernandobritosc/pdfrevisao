@@ -141,6 +141,16 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
       quando ausente. Regra (usuário, 09/10/2026): toda aula encerrada ganha
       `quiz.json` (4-8 questões de pegadinhas/alta incidência, conferidas na fonte)
       + injeção; a camada de prática mora DENTRO do resumo (não em workspace à parte).
+    - `apply-a11y.py` → pacote de acessibilidade + navegação mobile nos 79 resumos e nos
+      templates: skip link "Pular para o conteúdo" (1º focável), botão ☰ fixo em
+      ≤900px que abre o sidebar como gaveta (as páginas escondem o sidebar nesse
+      breakpoint, então sem ele não havia navegação no celular), backdrop + Esc/link
+      fecham, foco devolvido ao botão, scroll spy marcando a seção visível
+      (`aria-current="location"`); patch estático `scope="col"` em todos os `<th>`,
+      `id="conteudo" tabindex="-1"` no container principal, `role="status"
+      aria-live="polite"` nos contadores de busca/prática e fallback de cor antes do
+      `color-mix` (iOS < 16.2). Idempotente por `id="rh-nav-mobile"`; rodar após
+      regenerar resumos pelo template.
 3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
    configurar algum no futuro, registrar aqui (nome, `type`, `command`).
 4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.
@@ -291,7 +301,7 @@ seguem este padrão** (CSS já portado no `template-sumario.html`):
   reorganizar. CSS da tira (injetado por aula):
   ```html
   <style>
-  .tldr{background:color-mix(in srgb,VAR_MAT 10%,transparent);border-left:5px solid VAR_MAT;border-radius:12px;padding:1rem 1.2rem;margin:.4rem 0 1.6rem}
+  .tldr{background:VAR_SOFT;background:color-mix(in srgb,VAR_MAT 10%,transparent);border-left:5px solid VAR_MAT;border-radius:12px;padding:1rem 1.2rem;margin:.4rem 0 1.6rem}
   .tldr-title{font-family:'JetBrains Mono',monospace;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:VAR_MAT;margin-bottom:.5rem}
   .tldr div{font-size:.84rem;line-height:1.55;margin-bottom:.35rem}
   .tldr div b{color:VAR_MAT;font-weight:700}
@@ -300,7 +310,10 @@ seguem este padrão** (CSS já portado no `template-sumario.html`):
   ```
   onde `VAR_MAT` = cor da matéria da aula (ex.: aulas com tokens `--mat` usam
   `var(--mat)`; aulas antigas sem o token usam a cor direta — `var(--purple)`
-  na DC Aula 00). **Rolagem por aula**: o restyle completo (batidas + setas +
+  na DC Aula 00) e `VAR_SOFT` = fallback para navegadores sem `color-mix`
+  (iOS < 16.2): `var(--mat-soft)` quando o token existe, senão um `rgba` da
+  própria cor (ex.: `rgba(124,58,237,.1)` no roxo).
+  **Rolagem por aula**: o restyle completo (batidas + setas +
   split de cards) entra numa aula por vez, quando o usuário pedir; não acoplar
   o re-trabalho inteiro ao ciclo de questão TEC (questões seguem o fluxo
   normal; a migration estrutural de aula tocada continua valendo).
