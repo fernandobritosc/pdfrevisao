@@ -22,6 +22,8 @@ jobs:
       # 1. Checkout do código
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # build-changelog.py lê o git log completo
 
       # 2. Setup Python
       - name: Setup Python
@@ -51,22 +53,29 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      # 7. Pipeline completo (build + validação + testes visuais)
+      # 7. Pipeline de build (sem deploy — quem publica é o job deploy-surge)
       - name: Run build pipeline
-        run: python build.py all --parallel
+        run: python build.py design template validate index changelog --parallel
 
       # 8. Valida vocabulário (falha se termos proibidos)
       - name: Validate glossary vocabulary
         run: python tools/check-glossary.py --all --strict
 
-      # 9. Upload artifacts (template gerado, snapshots, relatórios)
-      - name: Upload build artifacts
+      # 9. Site completo (é o que o job de deploy publica)
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: Resumo_estudos
+          retention-days: 7
+
+      # 10. Relatórios e snapshots (diagnóstico em caso de falha)
+      - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: build-output
+          name: test-reports
           path: |
-            Resumo_estudos/templates/template-sumario.html
             tests/snapshots/
             playwright-report/
             test-results/
@@ -82,11 +91,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download build artifacts
+      - name: Download site artifact
         uses: actions/download-artifact@v4
         with:
-          name: build-output
-          path: ./build-output
+          name: site
+          path: ./site
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -99,5 +108,5 @@ jobs:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           echo "Deploying to Surge..."
-          npx surge ./build-output/Resumo_estudos ${{ secrets.SURGE_DOMAIN }} --token $SURGE_TOKEN
+          npx surge ./site ${{ secrets.SURGE_DOMAIN }} --token $SURGE_TOKEN
         shell: bash

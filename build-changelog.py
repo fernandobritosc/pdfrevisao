@@ -87,7 +87,8 @@ def main():
             for p in c["paths"]:
                 mat, label = friendly(p)
                 if label:
-                    links.append('<a href="%s">📄 %s</a>' % (html.escape(p), html.escape(label)))
+                    rel = p.split("/", 1)[1]  # mudancas.html já vive dentro de Resumo_estudos/
+                    links.append('<a href="%s">📄 %s</a>' % (html.escape(rel), html.escape(label)))
             files = " · ".join(links) if links else '<span style="color:var(--text2);">(index / scripts / docs)</span>'
             items.append(
                 '<div class="card">'
