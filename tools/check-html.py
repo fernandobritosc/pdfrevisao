@@ -100,7 +100,9 @@ class HTMLValidator(HTMLParser):
             self.errors.append(f"Linha ~{self.line}: fechamento '</{tag}>' sem abertura correspondente")
 
     def handle_startendtag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]):
-        if tag not in VOID_TAGS:
+        # Em conteúdo estrangeiro (SVG/MathML) o HTML5 aceita auto-fechamento
+        in_foreign = any(t in ('svg', 'math') for t, _, _ in self.stack)
+        if tag not in VOID_TAGS and not in_foreign:
             self.errors.append(f"Linha ~{self.line}: tag '<{tag} />' auto-fechante mas não é void")
 
     def handle_data(self, data: str):

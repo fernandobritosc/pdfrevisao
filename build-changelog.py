@@ -23,11 +23,11 @@ CSS = """
 body { background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; line-height: 1.55; }
 .container { max-width: 760px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
 .header { border-bottom: 2px solid var(--ink); padding-bottom: 1rem; margin-bottom: 1.6rem; }
-.header h1 { font-family: 'Archivo', 'Segoe UI', sans-serif; font-size: 1.7rem; font-weight: 800; letter-spacing: -.03em; }
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1.7rem; font-weight: 800; letter-spacing: -.03em; }
 .header .sub { color: var(--text2); font-size: .85rem; margin-top: .2rem; }
 .back { display: inline-block; margin-top: .8rem; color: var(--blue); font-size: .82rem; text-decoration: none; font-family: 'IBM Plex Mono', 'Consolas', monospace; }
 .day { margin-bottom: 1.8rem; }
-.day-title { font-family: 'Archivo', 'Segoe UI', sans-serif; font-size: 1.05rem; font-weight: 700;
+.day-title { font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1.05rem; font-weight: 700;
              display: flex; align-items: center; gap: .5rem; margin-bottom: .6rem; }
 .day-title .badge-new { background: #B45309; color: #fff; font-size: .65rem; font-family: 'IBM Plex Mono', 'Consolas', monospace;
                         padding: .15rem .45rem; border-radius: 4px; letter-spacing: .05em; }
@@ -38,6 +38,11 @@ body { background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', '
 .c-files { font-size: .8rem; color: var(--text2); }
 .c-files a { color: var(--blue); text-decoration: none; }
 .c-files a:hover { text-decoration: underline; }
+.rh-skip { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.rh-skip:focus { left: .75rem; top: .75rem; width: auto; height: auto; padding: .55rem .9rem; background: #fff;
+              color: var(--ink); border: 2px solid var(--blue); border-radius: 8px; font-size: .82rem;
+              font-weight: 600; text-decoration: none; z-index: 10; }
+#conteudo:focus { outline: none; }
 .footer { margin-top: 2rem; color: var(--text2); font-size: .72rem; font-family: 'IBM Plex Mono', 'Consolas', monospace; }
 """
 
@@ -87,7 +92,8 @@ def main():
             for p in c["paths"]:
                 mat, label = friendly(p)
                 if label:
-                    links.append('<a href="%s">📄 %s</a>' % (html.escape(p), html.escape(label)))
+                    rel = p.split("/", 1)[1]  # mudancas.html já vive dentro de Resumo_estudos/
+                    links.append('<a href="%s">📄 %s</a>' % (html.escape(rel), html.escape(label)))
             files = " · ".join(links) if links else '<span style="color:var(--text2);">(index / scripts / docs)</span>'
             items.append(
                 '<div class="card">'
@@ -110,11 +116,12 @@ def main():
 <meta name="theme-color" content="#F5F4F0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>%s</style>
 </head>
 <body>
-<div class="container">
+<a class="rh-skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="container" id="conteudo" tabindex="-1">
   <div class="header">
     <h1>📜 O que mudou</h1>
     <div class="sub">Alterações recentes nos resumos (derivado do git log — adições TEC, novas aulas, correções)</div>

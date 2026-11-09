@@ -43,6 +43,8 @@ e pergunte qual processar.
   - `build-changelog.py` → gera `Resumo_estudos/mudancas.html` (rodar ANTES de todo deploy).
   - `apply-search.py` → injeta busca por palavra no sidebar de todos os `resumo-aula-*.html`.
   - `apply-review-mode.py` / `apply-marks-mode.py` / `apply-pwa.py` → add-ons (🧠 revisão, 🏷 marcação, PWA offline).
+  - `apply-a11y.py` → skip link, gaveta de navegação mobile (☰ ≤900px), scroll spy,
+    `scope="col"` nas tabelas, aria-live nos contadores e fallback do `color-mix`.
   - Todos idempotentes; rodar após regenerar resumos pelo template.
 
 ---
@@ -189,6 +191,7 @@ Rodar os add-ons idempotentes:
 & "<python>" "C:\Programação\hermes\PDF Revisão\apply-review-mode.py"
 & "<python>" "C:\Programação\hermes\PDF Revisão\apply-marks-mode.py"
 & "<python>" "C:\Programação\hermes\PDF Revisão\apply-pwa.py"
+& "<python>" "C:\Programação\hermes\PDF Revisão\apply-a11y.py"
 ```
 
 ---

@@ -479,7 +479,7 @@ mark.sr-first {
 </script>""",
     html="""  <div class="sr-box" data-sr-v="2">
     <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
-    <div class="sr-info"><span id="sr-count"></span>
+    <div class="sr-info"><span id="sr-count" role="status" aria-live="polite"></span>
 <span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button>
 <span id="sr-pos"></span>
 <button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span>
@@ -579,6 +579,7 @@ html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,25
           });
           if (!o.ok) b.classList.add('bad');
           var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.setAttribute('role', 'status'); why.setAttribute('aria-live', 'polite');
           why.textContent = o.why || ''; box.appendChild(why);
           done++; if (o.ok) hits++; score();
         });
@@ -606,7 +607,7 @@ html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,25
 <style id="rh-practice-style"></style>
 <div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
   <div class="rhpp-head"><strong>🎯 Modo prática</strong>
-<span class="rhpp-score" id="rhPracticeScore"></span>
+<span class="rhpp-score" id="rhPracticeScore" role="status" aria-live="polite"></span>
 <button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
   <div id="rhPracticeList"></div>
   <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
@@ -634,6 +635,114 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
 </script>""",
     css="",
     js="",
+)
+
+
+A11Y_CONFIG = ApplyConfig(
+    idempotency_key='id="rh-nav-mobile"',
+    # CSS no fim do <head>: precisa vencer o `display:none` que as páginas
+    # aplicam ao sidebar em <=900px (mesma especificidade, ordem posterior).
+    css_anchor=r"</head>",
+    css="""<style id="rh-nav-css">
+/* rh-nav-mobile v1 */
+.rh-skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:400}
+.rh-skip:focus{left:.75rem;top:.75rem;width:auto;height:auto;padding:.55rem .9rem;background:var(--card,#fff);color:var(--ink,#1f2733);border:2px solid var(--mat,#2563eb);border-radius:8px;font:600 .82rem/1.3 var(--font-body,system-ui,sans-serif);box-shadow:0 4px 16px rgba(31,39,51,.2)}
+#conteudo:focus{outline:none}
+.rh-navbtn{display:none}
+.rh-navbackdrop{display:none}
+.aula .sidebar a.rh-current{background:var(--mat-soft,#e8effd);color:var(--text,#1f2733);font-weight:600;box-shadow:inset 3px 0 0 var(--mat,#2563eb)}
+html[data-theme="dark"] .aula .sidebar a.rh-current{background:rgba(255,255,255,.08);color:#fff}
+@media(max-width:900px){
+  .rh-navbtn{display:flex;align-items:center;justify-content:center;position:fixed;left:.8rem;bottom:calc(.9rem + env(safe-area-inset-bottom));width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong,#c9c5ba);background:var(--card,#fff);color:var(--ink,#1f2733);box-shadow:0 4px 14px rgba(31,39,51,.16);z-index:320;cursor:pointer;font-size:1.15rem;line-height:1;padding:0}
+  .rh-navbtn[aria-expanded="true"]{background:var(--mat,#2563eb);color:#fff;border-color:var(--mat,#2563eb)}
+  .aula .sidebar{display:block;transform:translateX(-105%);visibility:hidden;transition:transform .22s ease,visibility 0s linear .22s;box-shadow:0 12px 44px rgba(0,0,0,.22);z-index:330;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom))}
+  .aula .sidebar.rh-open{transform:none;visibility:visible;transition:transform .22s ease,visibility 0s}
+  body.rh-nav-open{overflow:hidden}
+  .rh-navbackdrop.rh-open{display:block;position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(15,20,30,.42);z-index:310}
+}
+@media(prefers-reduced-motion:reduce){.aula .sidebar{transition:none}}
+@media print{.rh-navbtn,.rh-navbackdrop,.rh-skip{display:none!important}}
+</style>
+""",
+    html_anchor=r"<body[^>]*>",
+    inject_html_after=True,
+    html='<a class="rh-skip" href="#conteudo">Pular para o conteúdo</a>\n',
+    js_anchor=r"</body>",
+    js="""<button type="button" class="rh-navbtn" id="rhNavBtn" aria-label="Abrir navegação de seções" aria-expanded="false" aria-controls="rhSidebar">☰</button>
+<div class="rh-navbackdrop" id="rhNavBackdrop"></div>
+<script id="rh-nav-mobile">
+(function(){
+  var btn = document.getElementById('rhNavBtn');
+  var sb = document.querySelector('.aula .sidebar');
+  var bd = document.getElementById('rhNavBackdrop');
+  if (!btn || !sb || !bd) return;
+  sb.id = 'rhSidebar';
+  var mq = window.matchMedia('(max-width: 900px)');
+  function isOpen(){ return sb.classList.contains('rh-open'); }
+  function open(){
+    sb.classList.add('rh-open'); bd.classList.add('rh-open');
+    document.body.classList.add('rh-nav-open');
+    btn.setAttribute('aria-expanded','true');
+    btn.setAttribute('aria-label','Fechar navegação de seções');
+    var first = sb.querySelector('a');
+    if (first) first.focus({preventScroll:true});
+  }
+  function close(returnFocus){
+    sb.classList.remove('rh-open'); bd.classList.remove('rh-open');
+    document.body.classList.remove('rh-nav-open');
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label','Abrir navegação de seções');
+    if (returnFocus) btn.focus({preventScroll:true});
+  }
+  btn.addEventListener('click', function(){ if (isOpen()) close(true); else open(); });
+  bd.addEventListener('click', function(){ close(true); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && isOpen()) close(true);
+  });
+  sb.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (a && mq.matches) close(false);
+  });
+  var onMq = function(e){ if (!e.matches && isOpen()) close(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onMq);
+  else if (mq.addListener) mq.addListener(onMq);
+
+  var links = [].slice.call(sb.querySelectorAll('a[href^="#"]'));
+  var byId = {};
+  links.forEach(function(a){ var id = a.getAttribute('href').slice(1); if (id) byId[id] = a; });
+  var secs = [].slice.call(document.querySelectorAll('.main section[id]'));
+  if (!('IntersectionObserver' in window) || !secs.length) return;
+  var cur = null;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      var a = byId[en.target.id];
+      if (a && a !== cur) {
+        if (cur) { cur.classList.remove('rh-current'); cur.removeAttribute('aria-current'); }
+        cur = a; a.classList.add('rh-current'); a.setAttribute('aria-current','location');
+      }
+    });
+  }, {rootMargin: '-12% 0px -72% 0px'});
+  secs.forEach(function(s){ io.observe(s); });
+})();
+</script>
+""",
+)
+
+
+A11Y_SKIP_CONFIG = ApplyConfig(
+    idempotency_key='class="rh-skip"',
+    css_anchor=r"</head>",
+    css="""<style id="rh-skip-css">
+.rh-skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:400}
+.rh-skip:focus{left:.75rem;top:.75rem;width:auto;height:auto;padding:.55rem .9rem;background:var(--card,#fff);color:var(--ink,#1f2733);border:2px solid var(--mat,#2563eb);border-radius:8px;font:600 .82rem/1.3 var(--font-body,system-ui,sans-serif);box-shadow:0 4px 16px rgba(31,39,51,.2)}
+#conteudo:focus{outline:none}
+@media print{.rh-skip{display:none!important}}
+</style>
+""",
+    html_anchor=r"<body[^>]*>",
+    inject_html_after=True,
+    html='<a class="rh-skip" href="#conteudo">Pular para o conteúdo</a>\n',
 )
 
 
