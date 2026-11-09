@@ -221,7 +221,7 @@ changelog, publicar no Surge com HTTP 200.
 
 **Origem**: questão VUNESP 2026 (Assistente CM Nova Odessa/Legislativo) sobre a
 **Lei Anticorrupção (Lei 12.846/2011)** — tema sem aula processada no repositório
-(Direito Administrativo tem lacuna nas Aulas 10–14; a Aula 15 de Improbidade cita
+(Direito Administrativo — Aula 10 renomeada para Aula 20 (LAI). Lacuna restante: Aulas 11–14; a Aula 15 de Improbidade cita
 a LAC apenas no non bis in idem, Seção 6). Usuário escolheu **aguardar a aula da
 LAC**. Ao processá-la, transformar em blocos 📌/⚖️ e incrementar a incidência da
 seção correspondente.

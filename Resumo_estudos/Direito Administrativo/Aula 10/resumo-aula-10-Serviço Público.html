@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo — DA Aula 10: Serviço Público</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* --mat = cor da matéria (comanda sidebar, numerais, cards, tabelas).
+     Trocar por matéria: AFO #16a34a / AP #0d9488 / AD #2563eb / DC #7c3aed /
+     DT #d97706 / DPT #dc2626 / PT #0891b2 / INF #3b82f6.
+     Derivar: --mat-strong (tom escuro), --mat-soft (fundo pálido),
+     --mat-line (filete). Dark mode: ajustar no bloco rh-addons abaixo. */
+  --bg: #f5f4f0;
+  --sidebar: #ecebe5;
+  --card: #ffffff;
+  --border: #e2dfd7;
+  --text: #1f2733;
+  --text2: #455064;
+  --muted: #6b7484;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --amber: #d97706;
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --panel: #ffffff;
+  --line: #e2dfd7;
+  --line-strong: #c9c5ba;
+  --dim: #6b7484;
+  --ink: #1f2733;
+  --mark: #fdf3d8;
+  --mat: #2563eb;
+  --mat-strong: #1d4ed8;
+  --mat-soft: #e8effd;
+  --mat-line: #c3d5fa;
+  --radius: 14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.72;
+  min-height: 100vh;
+}
+a { color: var(--mat-strong); }
+:focus-visible { outline: 2px solid var(--mat); outline-offset: 2px; border-radius: 4px; }
+
+/* SIDEBAR (aula pages) */
+.aula .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line-strong);
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+.aula .sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--mat);
+}
+.aula .sidebar-title, .aula .sidebar-brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .8rem;
+  font-weight: 800;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+html[data-theme="dark"] .aula .sidebar-title,
+html[data-theme="dark"] .aula .sidebar-brand {
+  color: #fff;
+}
+html[data-theme="dark"] .aula .sidebar-brand {
+  background: #262f42;
+  border-color: #43506b;
+}
+.aula .sidebar-sub {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  color: var(--text2);
+  margin: .8rem 0 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--line);
+}
+.aula .sidebar a {
+  display: block;
+  padding: .35rem .5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .8rem;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+.aula .sidebar a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar h3, .aula .sidebar-heading {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: .35rem .5rem .2rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 18px 0 8px;
+}
+.aula .sidebar-divider { border: none; border-top: 1px solid var(--line-strong); margin: .7rem 0; }
+.aula .sidebar-nav {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-nav a { display: flex; align-items: center; gap: .4rem; }
+.aula .sidebar-nav a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .sidebar-nav a.active { background: var(--mat); color: #fff; }
+.aula .sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.aula .sidebar-footer a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.aula .sidebar-footer a:hover { background: var(--mat-soft); color: var(--text); }
+.aula .brand {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+.aula .brand small { display: block; color: var(--dim); font-size: 11px; margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.aula .main { margin-left: 260px; max-width: 960px; padding: 0 0 3rem; }
+.aula section, .aula .section { padding: 2rem 3rem; border-bottom: 1px solid var(--line); }
+.aula section:last-child { border-bottom: none; }
+.aula .sec-header { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .75rem; padding-bottom: .55rem; border-bottom: 2px solid var(--mat-line); }
+.aula .sec-num {
+  width: auto;
+  min-width: 44px;
+  color: var(--mat);
+  background: transparent;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.aula .sec-title {
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.aula .sec-subtitle { font-size: .92rem; color: var(--text2); margin-bottom: .8rem; line-height: 1.5; text-align: left; }
+.aula .section-title {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 2rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line-strong);
+}
+.aula .section-subtitle { font-size: .91rem; color: var(--text2); margin-bottom: 1rem; text-align: left; }
+.subtitle { color: var(--text2); font-size: .95rem; margin-bottom: 2rem; }
+.aula .sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+
+/* HEADER */
+.header {
+  background: var(--card);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--line-strong);
+  border-top: 6px solid var(--ink);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+.header h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 1.8rem; font-weight: 800; letter-spacing: -.03em; }
+.header p { color: var(--text2); font-size: .9rem; margin-top: .3rem; }
+
+/* CARDS */
+.grid { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.05rem 1.3rem;
+  box-shadow: none;
+  position: relative;
+  transition: border-color .2s;
+  color: inherit;
+  text-decoration: none;
+}
+.aula .card { overflow: hidden; }
+.card + .card { margin-top: 1rem; }
+.card:hover { border-color: var(--mat-line); }
+.aula .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--mat); }
+.card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+.card-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .5rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title { font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink); margin-bottom: .35rem; }
+.card-text { font-size: .9rem; color: var(--text2); line-height: 1.65; text-align: left; }
+.card-text + .card-text { margin-top: .65rem; }
+.card-text strong { color: var(--text); }
+.card-links { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.card-links a {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: #e3e9f4;
+  color: #1d3f9e;
+  border: 1px solid #1d3f9e;
+  transition: all .15s;
+}
+.card-links a:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.card-meta { font-size: .8rem; color: var(--text2); margin-bottom: .5rem; }
+.card-tag {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  background: #d9f2e3;
+  color: #0b5d3b;
+}
+
+/* CALLOUTS */
+.callout {
+  display: flex;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .88rem;
+  line-height: 1.6;
+  margin: .8rem 0;
+  background: #f0eee7;
+  border: 1px solid var(--line-strong);
+}
+.callout strong { color: var(--amber); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; }
+.callout > div:not(.callout-icon) { text-align: left; }
+.callout-info { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; }
+.callout-warn { background: #fdf3d8; border: 1px solid #ecd28a; color: #7a5412; }
+.callout-success { background: #dff3e9; border: 1px solid #9fd9bf; color: #0b5d3b; }
+.callout-danger { background: #fae5e5; border: 1px solid #efb4b4; color: #9c1f1f; }
+
+/* MNEMONIC */
+.mnemonic {
+  background: var(--mark);
+  border: 2px dashed var(--amber);
+  border-radius: var(--radius);
+  padding: .85rem 1.15rem;
+  margin: .85rem 0;
+}
+.mnemonic-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.mnemonic-content {
+  font-size: .91rem;
+  font-weight: 700;
+  color: #7a5412;
+  letter-spacing: .01em;
+  margin-top: .15rem;
+  line-height: 1.7;
+  text-align: left;
+  white-space: normal;
+}
+.mnemonic-content span {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem 0;
+}
+.mnemonic-content .mnem-high {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: var(--amber);
+  color: #fff;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: .8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--card);
+}
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+thead, thead tr { background: var(--mat-soft); }
+th { padding: .6rem .85rem; text-align: left; font-weight: 600; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--mat-line); color: var(--mat-strong); }
+td { padding: .6rem .85rem; border-bottom: 1px solid var(--line); color: var(--text2); }
+td strong { color: var(--text); }
+tr:nth-child(even) { background: #faf9f6; }
+tr:hover { background: color-mix(in srgb, var(--mat) 5%, transparent); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* GOTCHA */
+.gotcha {
+  background: #fdf1f1;
+  border: 1px solid #f3d4d4;
+  border-left: 5px solid var(--red);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin: .75rem 0;
+  font-size: .9rem;
+  color: var(--text);
+  text-align: left;
+}
+.gotcha-title { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem; font-weight: 600; color: var(--red); text-transform: uppercase; margin-bottom: .15rem; }
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: .2rem .55rem;
+  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .76rem;
+  font-weight: 600;
+  margin: 0 .2rem;
+  background: #e8e6df;
+  color: #455064;
+}
+.tag-blue { background: #dbe6fb; color: #1d3f9e; }
+.tag-green { background: #d9f2e3; color: #0b5d3b; }
+.tag-amber { background: #fbeecb; color: #7a5412; }
+.tag-red { background: #f8d8d8; color: #9c1f1f; }
+.tag-purple { background: #e9e2f9; color: #5b3aa5; }
+.tag-teal { background: #d3f2ee; color: #0b5d55; }
+.tag-gray { background: #e5e7eb; color: #4b5563; }
+.tag.c { color: var(--green); border: 1px solid var(--green); background: #dff3e9; }
+.tag.d { color: var(--red); border: 1px solid var(--red); background: #fae5e5; }
+.tag.a { color: var(--amber); border: 1px solid var(--amber); background: #fdf3d8; }
+.tag.x { color: var(--purple); border: 1px solid var(--purple); background: #ece5fa; }
+.tag.i { color: #0891b2; border: 1px solid #0891b2; background: #dcf3f8; }
+
+/* HIGHLIGHT */
+.highlight {
+  background: var(--mark);
+  padding: .15rem .35rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+.hl {
+  background: #e8e6df;
+  border-left: 3px solid var(--blue);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* PROGRESS */
+.progress-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(245,244,240,.92);
+  backdrop-filter: blur(8px);
+  padding: .6rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track {
+  height: 8px;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width .3s;
+}
+.progress-label { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .3rem; font-weight: 600; }
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 4px;
+  background: rgba(37,99,235,.2);
+  z-index: 100;
+}
+
+/* LEGAL BLOCK */
+.legal-block {
+  background: var(--mat-soft);
+  border: 1px solid var(--mat-line);
+  border-left: 5px solid var(--mat);
+  border-radius: 8px;
+  padding: .7rem .9rem;
+  margin: .6rem 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.legal-block strong { color: var(--mat-strong); }
+
+/* QUESTIONS / OPTIONS */
+.question {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: .9rem 0;
+  font-size: .85rem;
+}
+.question-header { font-size: .85rem; font-weight: 800; color: var(--amber); margin-bottom: .5rem; }
+.question-text { font-size: .88rem; color: var(--text2); line-height: 1.7; }
+.q-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.q-text { color: var(--text); margin: 6px 0; }
+.q-ans { color: var(--green); font-size: 12px; font-weight: 700; }
+.options { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .75rem; }
+.option {
+  background: #faf9f5;
+  border: 1px solid var(--line-strong);
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.option.correct { background: #dff3e9; border-color: #10b981; color: #0b5d3b; }
+.answer { font-size: .88rem; color: var(--text); line-height: 1.7; margin-top: .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+.answer strong { color: var(--green); font-weight: 800; }
+.alert { background: #fdf3d8; border: 1px solid #eab308; color: #7a5412; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+.alert-blue { background: #e3e9f4; border: 1px solid #b6c8ea; color: #1d3f9e; padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 10px 0; }
+
+/* DOTS */
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot.g { background: var(--green); }
+.dot.b { background: var(--blue); }
+.dot.a { background: var(--amber); }
+.dot.r { background: var(--red); }
+.dot.p { background: var(--purple); }
+.dot.c { background: #0891b2; }
+
+/* EXAMPLE / FLOW */
+.example {
+  background: #f0eee7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--text2);
+  font-style: italic;
+}
+.flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.flow-box { background: #e8e6df; border: 1px solid var(--line-strong); padding: 8px 12px; border-radius: 6px; font-size: 12px; color: var(--text); }
+.flow-arrow { color: var(--dim); font-size: 18px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ul { margin: 6px 0; padding-left: 22px; }
+li { margin: 4px 0; }
+
+/* LANDING */
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.container h1 {
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, var(--blue), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 { font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+.back-link {
+  display: inline-block;
+  color: #1d3f9e;
+  text-decoration: none;
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--blue-light); text-decoration: underline; }
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: #1d3f9e; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,.35); }
+.footer { text-align: center; padding: 2rem; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line-strong); margin-top: 2rem; }
+.footer a { color: var(--blue); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .two-col { grid-template-columns: 1fr; }
+  .aula .main { margin-left: 0; }
+  .aula .sidebar { display: none; }
+  .aula .progress-bar { left: 0; }
+}
+@media (max-width: 768px) {
+  .header { padding: 1.5rem 1rem; }
+  .header h1 { font-size: 1.4rem; }
+  .aula section, .aula .section { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}</style>
+
+
+<style id="rh-addons">
+/* ===== RH ADDONS — dark mode · impressão · toolbar · navegação entre aulas ===== */
+html[data-theme="dark"] {
+  --bg: #17191f; --sidebar: #1c1f26; --card: #1f232b; --panel: #1f232b;
+  --border: #2e3340; --line: #2e3340; --line-strong: #3a4050;
+  --text: #d7dbe4; --text2: #a8b0c0; --muted: #7d8698; --dim: #7d8698;
+  --ink: #e8ebf2; --mark: #3a3117;
+  --blue: #6ea8fe; --blue-light: #93c5fd; --amber: #f0a92e; --green: #3ad29f;
+  --red: #f87b7b; --purple: #b39af5; --teal: #2dd4bf;
+  --mat: #8ab0fe; --mat-strong: #a9c3ef; --mat-soft: #1d2739; --mat-line: #33507e;
+}
+html[data-theme="dark"] .callout { background:#262a33; }
+html[data-theme="dark"] .callout-info { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .callout-warn { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .callout-success { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .callout-danger { background:#331a1a;border-color:#7e2e2e;color:#f2a6a6; }
+html[data-theme="dark"] .gotcha { background:#331a1a;border-color:#7e2e2e; }
+html[data-theme="dark"] .mnemonic-content { color:#e6c36d; }
+html[data-theme="dark"] .mnemonic-content .mnem-high { color:#17191f; }
+html[data-theme="dark"] .tag { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag-blue { background:#1d2c4a;color:#a9c3ef; }
+html[data-theme="dark"] .tag-green { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .tag-amber { background:#38300f;color:#e6c36d; }
+html[data-theme="dark"] .tag-red { background:#3f1d1d;color:#f2a6a6; }
+html[data-theme="dark"] .tag-purple { background:#2b1f45;color:#c9b6f2; }
+html[data-theme="dark"] .tag-teal { background:#0f3330;color:#7de0d6; }
+html[data-theme="dark"] .tag-gray { background:#2a2e38;color:#a8b0c0; }
+html[data-theme="dark"] .tag.c { background:#10291e; }
+html[data-theme="dark"] .tag.d { background:#331a1a; }
+html[data-theme="dark"] .tag.a { background:#33290f; }
+html[data-theme="dark"] .tag.x { background:#2b1f45; }
+html[data-theme="dark"] .tag.i { background:#0f2f38; }
+html[data-theme="dark"] .card-tag { background:#143428;color:#85ddb0; }
+html[data-theme="dark"] .card-links a { background:#1d2739;color:#a9c3ef;border-color:#33507e; }
+html[data-theme="dark"] .card-links a:hover { color:#17191f; }
+html[data-theme="dark"] .aula .sidebar a:hover { background:#2a2e38; }
+html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#262f42; }
+html[data-theme="dark"] .aula .sidebar-nav a.active { color:#17191f; }
+html[data-theme="dark"] .aula .sec-num { color:#8ab0fe;box-shadow:none; }
+html[data-theme="dark"] tr:nth-child(even) { background:#232733; }
+html[data-theme="dark"] tr:hover { background:rgba(138,176,254,.08); }
+html[data-theme="dark"] .question { background:#232733; }
+html[data-theme="dark"] .option { background:#232733; }
+html[data-theme="dark"] .option.correct { background:#10291e;border-color:#2b6a4c;color:#85ddb0; }
+html[data-theme="dark"] .alert { background:#33290f;border-color:#6e5a1e;color:#e6c36d; }
+html[data-theme="dark"] .alert-blue { background:#1d2739;border-color:#33507e;color:#a9c3ef; }
+html[data-theme="dark"] .legal-block { background:#262a33; }
+html[data-theme="dark"] .legal-block strong { color:#a9c3ef; }
+html[data-theme="dark"] .example { background:#262a33; }
+html[data-theme="dark"] .flow-box { background:#2a2e38; }
+html[data-theme="dark"] .hl { background:#2a2e38; }
+html[data-theme="dark"] .progress-wrap { background:rgba(23,25,31,.92); }
+html[data-theme="dark"] .back-link { color:#a9c3ef; }
+html[data-theme="dark"] .btn { color:#17191f; }
+html[data-theme="dark"] .card, html[data-theme="dark"] .header { box-shadow: none; }
+html[data-theme="dark"] .card:hover { box-shadow: none; border-color: #33507e; }
+/* Toolbar flutuante (tema · fonte · topo) */
+.rh-toolbar { position: fixed; right: 1.1rem; bottom: 1.1rem; display: flex; flex-direction: column; gap: .45rem; z-index: 300; }
+.rh-toolbar button {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-strong);
+  background: var(--card); color: var(--text); cursor: pointer; padding: 0; line-height: 1;
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 4px 14px rgba(31,39,51,.18); display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .15s;
+}
+.rh-toolbar button:hover { transform: translateY(-2px); border-color: var(--blue); }
+.rh-toolbar button:disabled { opacity: .4; cursor: default; transform: none; }
+.rh-toolbar button[hidden] { display: none; }
+@media (max-width: 768px) {
+  .rh-toolbar { right: .7rem; bottom: .7rem; }
+  .rh-toolbar button { width: 38px; height: 38px; font-size: .8rem; }
+}
+
+/* Navegação entre aulas */
+.aula-nav { display: flex; gap: .8rem; margin: 1.2rem 2.5rem 2.5rem; }
+.aula .aula-nav { margin-left: 260px; max-width: 960px; }
+.aula-nav a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem; text-decoration: none;
+  background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: .7rem 1rem; color: var(--text2); transition: border-color .15s, transform .15s;
+}
+.aula-nav a:hover { border-color: var(--blue); transform: translateY(-2px); color: var(--text2); }
+.aula-nav a.next { text-align: right; }
+.aula-nav .aula-nav-dir {
+  font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .68rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: .05em;
+}
+.aula-nav .aula-nav-label { font-weight: 600; color: var(--text); font-size: .84rem; }
+.aula-nav a.placeholder { visibility: hidden; }
+@media (max-width: 900px) {
+  .aula .aula-nav { margin-left: 0; }
+  .aula-nav { margin: 1rem 1.25rem 1.5rem; flex-direction: column; }
+}
+@page { margin: 1.2cm; }
+@media print {
+  html[data-theme="dark"] {
+  --bg: #f5f4f0; --sidebar: #ecebe5; --card: #ffffff; --panel: #ffffff;
+  --border: #e2dfd7; --line: #e2dfd7; --line-strong: #c9c5ba;
+  --text: #1f2733; --text2: #455064; --muted: #6b7484; --dim: #6b7484;
+  --ink: #1f2733; --mark: #fdf3d8;
+  --blue: #2563eb; --blue-light: #3b82f6; --amber: #d97706; --green: #059669;
+  --red: #dc2626; --purple: #7c3aed; --teal: #0d9488;
+  }
+  html[data-theme="dark"] .callout { background:#f0eee7; }
+  html[data-theme="dark"] .callout-info { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .callout-warn { background:#fdf3d8;border-color:#ecd28a;color:#7a5412; }
+  html[data-theme="dark"] .callout-success { background:#dff3e9;border-color:#9fd9bf;color:#0b5d3b; }
+  html[data-theme="dark"] .callout-danger { background:#fae5e5;border-color:#efb4b4;color:#9c1f1f; }
+  html[data-theme="dark"] .gotcha { background:#fae5e5;border-color:#efb4b4; }
+  html[data-theme="dark"] .mnemonic-content { color:#7a5412; }
+  html[data-theme="dark"] .mnemonic-content .mnem-high { color:#fff; }
+  html[data-theme="dark"] .tag { background:#e8e6df;color:#455064; }
+  html[data-theme="dark"] .tag-blue { background:#dbe6fb;color:#1d3f9e; }
+  html[data-theme="dark"] .tag-green { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .tag-amber { background:#fbeecb;color:#7a5412; }
+  html[data-theme="dark"] .tag-red { background:#f8d8d8;color:#9c1f1f; }
+  html[data-theme="dark"] .tag-purple { background:#e9e2f9;color:#5b3aa5; }
+  html[data-theme="dark"] .tag-teal { background:#d3f2ee;color:#0b5d55; }
+  html[data-theme="dark"] .tag-gray { background:#e5e7eb;color:#4b5563; }
+  html[data-theme="dark"] .tag.c { background:#dff3e9; }
+  html[data-theme="dark"] .tag.d { background:#fae5e5; }
+  html[data-theme="dark"] .tag.a { background:#fdf3d8; }
+  html[data-theme="dark"] .tag.x { background:#ece5fa; }
+  html[data-theme="dark"] .tag.i { background:#dcf3f8; }
+  html[data-theme="dark"] .card-tag { background:#d9f2e3;color:#0b5d3b; }
+  html[data-theme="dark"] .card-links a { background:#e3e9f4;color:#1d3f9e;border-color:#1d3f9e; }
+  html[data-theme="dark"] .card-links a:hover { color:#fff; }
+  html[data-theme="dark"] .aula .sidebar a:hover { background:#e2dfd4; }
+  html[data-theme="dark"] .aula .sidebar-nav a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-footer a:hover { background:#dbe3ef; }
+  html[data-theme="dark"] .aula .sidebar-nav a.active { color:#fff; }
+  html[data-theme="dark"] .aula .sec-num { color:#fff;box-shadow:0 3px 8px rgba(31,39,51,.22); }
+  html[data-theme="dark"] tr:nth-child(even) { background:#faf9f5; }
+  html[data-theme="dark"] tr:hover { background:rgba(37,99,235,.06); }
+  html[data-theme="dark"] .question { background:#faf9f5; }
+  html[data-theme="dark"] .option { background:#faf9f5; }
+  html[data-theme="dark"] .option.correct { background:#dff3e9;border-color:#10b981;color:#0b5d3b; }
+  html[data-theme="dark"] .alert { background:#fdf3d8;border-color:#eab308;color:#7a5412; }
+  html[data-theme="dark"] .alert-blue { background:#e3e9f4;border-color:#b6c8ea;color:#1d3f9e; }
+  html[data-theme="dark"] .legal-block { background:#f0eee7; }
+  html[data-theme="dark"] .legal-block strong { color:#1d3f9e; }
+  html[data-theme="dark"] .example { background:#f0eee7; }
+  html[data-theme="dark"] .flow-box { background:#e8e6df; }
+  html[data-theme="dark"] .hl { background:#e8e6df; }
+  html[data-theme="dark"] .progress-wrap { background:rgba(245,244,240,.92); }
+  html[data-theme="dark"] .back-link { color:#1d3f9e; }
+  html[data-theme="dark"] .btn { color:#fff; }
+  body { background: #fff !important; color: #1f2733 !important; }
+  .sidebar, .rh-toolbar, .progress-wrap, .progress-bar, .aula-nav { display: none !important; }
+  .aula .main, .main { margin: 0 !important; max-width: 100% !important; padding: 0 !important; }
+  .aula section, .aula .section { padding: .6rem 0 !important; }
+  a { color: #1f2733 !important; text-decoration: none !important; }
+  .card, .header, .table-wrap, .callout, .gotcha, .mnemonic, .question, .option,
+  .example, .flow-box, .hl, .alert, .alert-blue, .legal-block {
+    box-shadow: none !important; break-inside: avoid;
+  }
+  .card-text, .sec-subtitle, td, .subtitle, .question-text, .option { color: #1f2733 !important; }
+  .card-title, .sec-title, .section-title, h1, h2, h3 { color: #1f2733 !important; }
+  thead, thead tr { background: #ecebe5 !important; }
+  th, td { border-color: #c9c5ba !important; }
+  tr:nth-child(even) { background: #faf9f5 !important; }
+  .tag, .card-tag { border: 1px solid #b6b2a6; }
+  .highlight { background: transparent !important; }
+  .mnemonic { background: #fff !important; }
+}
+
+/* ===== RH modo revisão (active recall) ===== */
+html.rh-rev .card-text, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic-content, html.rh-rev .question-text, html.rh-rev .answer { display: none; }
+html.rh-rev .card, html.rh-rev .gotcha, html.rh-rev .callout, html.rh-rev .table-wrap,
+html.rh-rev .mnemonic, html.rh-rev .question { cursor: pointer; }
+html.rh-rev .card.rev-open .card-text, html.rh-rev .gotcha.rev-open, html.rh-rev .callout.rev-open,
+html.rh-rev .table-wrap.rev-open, html.rh-rev .mnemonic.rev-open .mnemonic-content,
+html.rh-rev .question.rev-open .question-text, html.rh-rev .question.rev-open .answer { display: block; }
+html.rh-rev .card.rev-open, html.rh-rev .gotcha.rev-open { border-color: var(--amber); }
+.rh-toolbar button.on { border-color: var(--amber); background: #fdf3d8; }
+html[data-theme="dark"] .rh-toolbar button.on { background: #33290f; border-color: #6e5a1e; }
+
+/* ===== RH marcação pessoal (vacilo) ===== */
+html.rh-marking .card, html.rh-marking .gotcha, html.rh-marking .callout,
+html.rh-marking .table-wrap, html.rh-marking .mnemonic, html.rh-marking .question { cursor: pointer; }
+.rh-marked { border-color: var(--red) !important; box-shadow: 0 0 0 1px var(--red); }
+#rhMarkPanel { position: fixed; right: 1.1rem; bottom: 5.6rem; z-index: 299; display: none;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: .6rem .8rem; font-size: .8rem; box-shadow: 0 4px 14px rgba(31,39,51,.14); min-width: 180px; }
+#rhMarkPanel.show { display: block; }
+#rhMarkPanel .rhmp-count { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem; color: var(--text2); margin-bottom: .4rem; }
+#rhMarkPanel button { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .74rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .28rem .6rem;
+  color: var(--text); cursor: pointer; margin-right: .3rem; }
+#rhMarkPanel button:hover { border-color: var(--blue); }
+@media print { #rhMarkPanel { display: none !important; } }
+</style>
+<script id="rh-init">(function(){try{var t=null;try{t=localStorage.getItem('rh-theme');}catch(e){}if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.setAttribute('data-theme',t);var f=100;try{f=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}if(isFinite(f)&&f>=85&&f<=120&&f!==100){document.documentElement.style.fontSize=f+'%';}}catch(e){}})();</script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<meta name="theme-color" content="#F5F4F0">
+<script>
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  navigator.serviceWorker.register('/sw.js').catch(function () {});
+}
+</script>
+</head>
+<body class="aula">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-title">Direito Administrativo — Aula 10</div>
+  <div class="sidebar-sub">Serviço Público · vConsolidado</div>
+  <div class="sr-box" data-sr-v="2">
+    <input id="sr-input" type="search" placeholder="Buscar palavra no resumo…" autocomplete="off">
+    <div class="sr-info"><span id="sr-count"></span><span class="sr-nav"><button id="sr-prev" type="button" title="Ocorrência anterior (Shift+Enter)" disabled>↑</button><span id="sr-pos"></span><button id="sr-next" type="button" title="Próxima ocorrência (Enter)" disabled>↓</button></span><button id="sr-clear" type="button">limpar</button></div>
+  </div>
+  <div class="sidebar-heading">Navegação</div>
+  <a href="#sec1">1. Conceito de Serviço Público</a>
+  <a href="#sec2">2. Classificação</a>
+  <a href="#sec3">3. Princípios</a>
+  <a href="#sec4">4. Modalidades de Delegação</a>
+  <a href="#sec5">5. Licitação e Edital</a>
+  <a href="#sec6">6. Contrato e Cláusulas</a>
+  <a href="#sec7">7. Serviço Adequado</a>
+  <a href="#sec8">8. Usuários e Partes</a>
+  <a href="#sec9">9. Intervenção na Execução</a>
+  <a href="#sec10">10. Extinção e Reversão</a>
+  <a href="#sec11">11. Tarifas e Equilíbrio</a>
+  <a href="#sec12">12. Jurisprudência</a>
+  <a href="#sec13">13. Incidência de temas (TEC)</a>
+  <a href="#sec14">14. Pontos que mais caem</a>
+  <hr class="sidebar-divider">
+  <a href="../../index.html" style="color:var(--blue);font-size:.78rem;">← Voltar ao índice</a>
+  <a href="sketchnote-aula-10-Serviço Público.html" style="color:var(--blue);font-size:.78rem;">🎨 Sketchnote — versão visual de 1 página</a>
+  <hr class="sidebar-divider">
+  <div style="font-size:.65rem;color:var(--text2);">
+    Fontes: simplificado (Estratégia) + completo<br>
+    Herbert Almeida, Equipe Direito Administrativo
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — CONCEITO / INTRODUÇÃO                                -->
+<!-- ============================================================ -->
+<section id="sec1">
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Conceito de Serviço Público</div>
+  </div>
+  <div class="sec-subtitle">Base constitucional, correntes doutrinárias, elementos e definições</div>
+
+  <div class="card">
+    <div class="card-title">Art. 175 CF — por que a titularidade nunca sai do Estado</div>
+    <div class="card-text">De acordo com a Constituição Federal de 1988, incumbe ao Poder Público, diretamente ou sob regime de concessão ou permissão, a prestação de serviços públicos (art. 175). A lei deve dispor sobre o regime de delegação, os direitos dos usuários, a política tarifária e a obrigação de manter serviço adequado (art. 175, parágrafo único), e sobre reclamações relativas à prestação dos serviços (art. 37, §3º).<br><br>
+→ <strong>Titularidade</strong>: sempre do Poder Público — na delegação, só a <strong>execução</strong> passa ao particular; o controle estatal permanece integral.<br>
+→ <strong>Prestação direta</strong>: pelo Estado por seus próprios meios.<br>
+→ <strong>Prestação indireta</strong>: pelos regimes de concessão e permissão (art. 175) — e por <strong>autorização</strong>, terceira forma prevista em dispositivos esparsos (p. ex. art. 21, XI e XII).<br>
+→ <strong>Consequência prática</strong>: a iniciativa privada não presta serviço do art. 175 por livre iniciativa — depende de delegação do Estado.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os dois tipos de serviço público na Constituição — art. 175 × ordem social</div>
+    <div class="card-text">O art. 175 está no Título VII (Ordem Econômica e Financeira) e abrange atividades com potencial de lucro; a saúde e a educação estão no Título VIII (Ordem Social) e seguem lógica oposta.<br><br>
+→ <strong>Serviços do art. 175</strong>: atividade econômica em sentido amplo, podem ser prestados pelo Estado (direta) ou delegados por outorga/delegação (indireta); a iniciativa privada só atua por delegação.<br>
+→ <strong>Serviços de ordem social (saúde, educação)</strong>: só são serviço público quando prestados pelo Estado; a CF faculta a prestação privada (art. 199 — "assistência à saúde é livre à iniciativa privada"; art. 209 — "ensino é livre à iniciativa privada").<br>
+→ <strong>Ponto de prova</strong>: escola particular e hospital privado <strong>não</strong> prestam serviço público — prestam serviço <strong>privado</strong>, sem delegação, submetidos apenas ao controle do <span class="highlight">poder de polícia</span> administrativa.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As três escolas do conceito — qual o Brasil adota e por quê</div>
+    <div class="card-text">Não existe conceito legal de serviço público — o conceito vem da doutrina, em três correntes:<br><br>
+→ <strong>Escola essencialista (materialista)</strong>: serviço público se define pelas características da atividade (importância crucial para a população). <strong>Não adotada</strong>: a saúde, essencialíssima, quando privada não é serviço público, enquanto a loteria é.<br>
+→ <strong>Escola subjetivista</strong>: serviço público é o prestado pelo Estado ou suas entidades. <strong>Não adotada</strong>: (a) há serviço público prestado por particular delegado; (b) EP e SEM (art. 173) exploram atividade econômica que não é serviço público.<br>
+→ <strong>Escola formalista (legalista)</strong>: <span class="highlight">corrente adotada no Brasil</span> — é serviço público a atividade que o ordenamento define como prestada sob regime jurídico de direito público; quem define é a Constituição e a lei, não o conteúdo da atividade.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bandeira de Mello — os dois elementos que compõem o conceito</div>
+    <div class="card-text">Para Celso Antônio Bandeira de Mello, a noção de serviço público se compõe necessariamente de dois elementos:<br><br>
+→ <strong>Substrato material</strong>: prestação de utilidade ou comodidade fruível singularmente pelos administrados (água, luz, energia elétrica etc.).<br>
+→ <strong>Elemento formal</strong>: regime jurídico de direito público — uma "unidade normativa" consagradora de prerrogativas de supremacia e restrições especiais, instituída em favor dos interesses definidos como públicos no sistema normativo.<br>
+→ <strong>Detalhe</strong>: mesmo rejeitando o essencialismo, o autor incorpora a materialidade como um dos elementos — o regime de direito público é o "traço formal indispensável que dá caráter de noção jurídica".
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O terceiro elemento de Di Pietro — o subjetivo (por que já não é unanimidade)</div>
+    <div class="card-text">Maria Sylvia Zanella Di Pietro acrescenta aos elementos formal e material um <strong>elemento subjetivo</strong>, a partir de Rivero:<br><br>
+→ <strong>Criação por lei</strong>: o serviço público corresponde a uma opção do Estado, que assume atividade cuja importância para a coletividade não parece conveniente deixar dependente da iniciativa privada.<br>
+→ <strong>Gestão incumbente ao Estado</strong>: diretamente (Administração centralizada da União, estados e municípios) ou indiretamente (concessão, permissão ou pessoas jurídicas criadas pelo Estado).<br>
+→ <strong>Por que não é unanimidade</strong>: a evolução do conceito (delegações a particulares e serviços "de ordem social" privados) esvaziou a exigência de atuação estatal direta; formal e material permanecem os elementos nucleares.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As definições dos administrativistas — o que cada uma destaca</div>
+    <div class="card-text">Cada autor realça um aspecto diverso do mesmo instituto:<br><br>
+→ <strong>Hely Lopes Meirelles</strong>: prestado pela Administração ou delegados, "sob normas e controles estatais", para necessidades essenciais <em>ou secundárias</em> da coletividade "ou simples conveniências do Estado".<br>
+→ <strong>Alexandre Santos de Aragão</strong>: utilidades <strong>econômicas</strong> a indivíduos determinados, a cargo do Estado por CF ou lei, "com ou sem reserva de titularidade", gratuita ou remuneradamente.<br>
+→ <strong>José dos Santos Carvalho Filho</strong>: atividade do Estado ou delegados, "basicamente sob regime de direito público", para necessidades essenciais e secundárias.<br>
+→ <strong>Maria Sylvia Zanella Di Pietro</strong>: atividade material que a lei atribui ao Estado, sob regime jurídico "total ou parcialmente público" — admite regime híbrido.<br>
+→ <strong>Marcelo Alexandrino e Vicente Paulo</strong>: prestações que representem em si mesmas utilidades materiais, executadas sob regime público pela Administração ou por delegatários (concessionários, permissionários e, em restritas hipóteses, autorizatários).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Execução direta × indireta — a classificação de Di Pietro adotada na aula</div>
+    <div class="card-text">A doutrina diverge sobre o serviço prestado pela administração indireta ser execução direta ou indireta; a aula adota Di Pietro a partir do conteúdo do art. 175:<br><br>
+→ <strong>Execução direta</strong>: Administração <strong>direta</strong> (órgãos sem personalidade jurídica) <em>e</em> <strong>indireta</strong> (autarquias, fundações, SEM e EP — art. 37, caput).<br>
+→ <strong>Execução indireta</strong>: somente a prestada por meio de <strong>delegação</strong> de serviço público (concessão, permissão, autorização).<br>
+→ <strong>Observação</strong>: as formas de prestação (centralização, descentralização, concentração, desconcentração) são tema da aula de organização administrativa — aqui o foco é o meio de execução.
+</div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Síntese da seção:</strong> não há conceito legal — vale a escola formalista (regime de direito público definido em norma) com o substrato material de Bandeira de Mello; titularidade é sempre do Poder Público, e a iniciativa privada só presta serviço público por delegação (art. 175) — fora dela, saúde e educação privadas são serviços privados sob poder de polícia.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — CLASSIFICAÇÃO                                        -->
+<!-- ============================================================ -->
+<section id="sec2">
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Classificação dos Serviços Públicos</div>
+  </div>
+  <div class="sec-subtitle">Coletivos/singulares, delegáveis/indelegáveis, próprios/impróprios</div>
+
+  <div class="card">
+    <div class="card-title">Coletivos (uti universi) × singulares (uti singuli) — a classificação que define a taxa</div>
+    <div class="card-text">É a mais pacífica das classificações, adotada inclusive pelo STF; a relevância prática é tributária (art. 145, II, CF).<br><br>
+→ <strong>Serviços coletivos (gerais, indivisíveis, uti universi)</strong>: prestados a toda coletividade, indistintamente, a usuários indeterminados — impossível mensurar o uso de cada um. Exemplos: conservação de vias públicas, iluminação pública, varrição de ruas e praças; em sentido amplo, policiamento urbano, segurança nacional, defesa de fronteiras.<br><br>
+→ <strong>Serviços singulares (individuais, específicos, divisíveis, uti singuli)</strong>: mensuráveis individualmente, mesmo destinados à coletividade. Exemplos: energia elétrica, água encanada, telefonia, gás canalizado, coleta domiciliar de lixo.<br><br>
+→ <strong>Usufruto direto × indireto</strong> (Di Pietro): os singuli têm satisfação <strong>individual e direta</strong> das necessidades do cidadão; os uti universi são prestados à coletividade mas <strong>usufruídos apenas indiretamente</strong> pelos indivíduos — é por isso que não podem ser remunerados por taxa. Exemplos de usufruto indireto: defesa do país contra o inimigo externo, serviços diplomáticos, trabalhos de pesquisa científica, iluminação pública, saneamento.<br><br>
+→ <strong>Definição por grupamentos</strong> (Carvalho Filho): os uti universi são "prestados a <strong>grupamentos indeterminados de indivíduos</strong>", conforme as opções administrativas e os recursos disponíveis — o foco é o grupo, nunca o indivíduo identificável.<br><br>
+→ <strong>Direito subjetivo</strong>: os uti universi <strong>não geram direito subjetivo</strong> a qualquer administrado — ninguém pode exigir o serviço "para seu domicílio, para sua rua ou para seu bairro" (Hely Lopes Meirelles); os singulares, por terem usuários determinados e utilização mensurável, geram.<br><br>
+→ <strong>Taxa × tarifa nos singulares</strong>: remuneram-se por <strong>taxa</strong> quando a utilização é <strong>obrigatória</strong> (regime legal) e por <strong>tarifa</strong> quando <strong>facultativa</strong> (regime contratual) — Vicente Paulo e Marcelo Alexandrino.<br><br>
+→ <strong>Consequência</strong>: só os singulares (específicos e divisíveis) podem ser remunerados por <strong>taxa</strong> (art. 145, II, CF) — os <strong>uti universi são mantidos por impostos</strong> (tributo geral): taxa e tarifa são remuneração mensurável e proporcional ao uso individual, incompatível com serviço indivisível e sem usuários determinados (Hely Lopes Meirelles). Iluminação pública é o exemplo clássico: custeada pela receita de impostos, não por taxa ou tarifa.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Delegáveis × indelegáveis — quem pode executar</div>
+    <div class="card-text">→ <strong>Indelegáveis</strong>: só podem ser prestados pelo Estado ou por entidades administrativas de direito público — exemplos: exercício do <strong>poder de polícia</strong> e serviços <strong>judiciários</strong>; a execução jamais sai para a iniciativa privada.<br>
+→ <strong>Delegáveis</strong>: passíveis de delegação à iniciativa privada, além da prestação estatal direta ou por entidades administrativas — exemplos: transporte público, fornecimento de energia elétrica, telefonia.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Próprios × impróprios — as duas concepções que as bancas misturam</div>
+    <div class="card-text">A classificação admite duas leituras distintas — saber qual está na questão evita erro:<br><br>
+→ <strong>1ª concepção (tradicional)</strong>: <em>próprios</em> são os que representam comodidade material à população, regidos por direito público quando prestados pelo Estado direta ou indiretamente (concessão/permissão); <em>impróprios</em> são os de natureza social (saúde, educação, assistência social) que a iniciativa privada pode prestar <strong>sem delegação</strong>, sob regime de direito privado.<br>
+→ <strong>2ª concepção (Hely Lopes Meirelles)</strong>: <em>próprios</em> se relacionam intimamente com as funções do Poder Público, com uso da supremacia sobre os administrados — só entidades públicas, sem delegação; <em>impróprios</em> "não afetam substancialmente as necessidades da comunidade" e podem ser delegados.<br>
+→ <strong>Detalhe</strong>: nesta 2ª concepção, próprios/impróprios <span class="highlight">equivale a indelegáveis/delegáveis</span> — não se confunde com a 1ª concepção.
+</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Mensuração</th><th>Exemplos</th><th>Taxa (art. 145, II)</th></tr></thead>
+      <tbody>
+        <tr><td>Coletivo (uti universi)</td><td>Indeterminado / indivisível</td><td>Iluminação pública, varrição, policiamento</td><td>Não permitida</td></tr>
+        <tr><td>Singular (uti singuli)</td><td>Individual / divisível</td><td>Energia, água, telefonia, gás, lixo domiciliar</td><td>Permitida</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">Pegadinha clássica</div>
+    <div>Bancas afirmam que energia domiciliar e linha telefônica seriam <em>uti universi</em> "porque prestados à coletividade de forma indistinta". A definição até vem certa — mas os exemplos são <strong>singulares</strong>: a prestação é mensurável individualmente. E o inverso também aparece: iluminação urbana é coletiva <strong>por alcançar número indeterminado de pessoas</strong>. Verifique sempre a mensuração individual, não o destino coletivo.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — PRINCÍPIOS                                           -->
+<!-- ============================================================ -->
+<section id="sec3">
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Princípios do Serviço Público</div>
+  </div>
+  <div class="sec-subtitle">Di Pietro (3), Carvalho Filho (4) e o rol completo de Bandeira de Mello (10)</div>
+
+  <div class="card">
+    <div class="card-title">Por que as listas divergem — e qual a mais cobrada</div>
+    <div class="card-text">Como em muitos pontos do Direito Administrativo, a doutrina é conflitante na enumeração dos princípios do serviço público:<br><br>
+→ <strong>Di Pietro</strong> (doutrina francesa): continuidade do serviço público, mutabilidade do regime jurídico e igualdade dos usuários — são as <span class="highlight">Leis de Rolland</span>, os três princípios norteadores tradicionais dos serviços públicos elencados na França por <strong>Louis Rolland</strong>: continuidade (<em>continuité</em>), igualdade (<em>égalité</em>) e mutabilidade (<em>mutabilité</em>) — rótulo que a banca usa como sinônimo da tríade (Rafael Carvalho Rezende Oliveira).<br>
+→ <strong>Carvalho Filho</strong>: generalidade, continuidade, eficiência e modicidade.<br>
+→ <strong>Bandeira de Mello</strong>: dez princípios que constituem o <strong>aspecto formal</strong> do conceito (o regime jurídico) — a proposta mais completa, detalhada abaixo.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 10 princípios de Bandeira de Mello — parte 1 (dever, interesse e atualização)</div>
+    <div class="card-text">→ <strong>Dever inescusável de prestação</strong>: o Estado deve prestar o serviço, direta ou indiretamente; se não o fizer, o administrado pode mover ação para compeli-lo ou responsabilizá-lo pelos danos da omissão.<br>
+→ <strong>Supremacia do interesse público</strong>: pilar do regime jurídico-administrativo — o interesse da coletividade prevalece sobre interesses individuais e também sobre interesses secundários do Estado ou de quem presta o serviço.<br>
+→ <strong>Adaptabilidade</strong>: prestação em constante atualização e modernização, respeitando as possibilidades econômicas do Poder Público.<br>
+→ <strong>Universalidade</strong>: serviço aberto à generalidade do público, alcançando a maior amplitude possível de usuários.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 10 princípios de Bandeira de Mello — parte 2 (impessoalidade a controle)</div>
+    <div class="card-text">→ <strong>Impessoalidade</strong>: vedada qualquer forma de discriminação entre usuários.<br>
+→ <strong>Continuidade</strong>: impossibilidade de interrupção e pleno direito do usuário à não suspensão; a Lei 8.987/1995 admite interrupções que <strong>não</strong> configuram descontinuidade (art. 6º, §3º — p. ex. inadimplência), detalhadas na seção de serviço adequado.<br>
+→ <strong>Transparência</strong>: máximo de informações sobre o serviço e sua prestação ao público — <strong>dele decorre</strong> o princípio da motivação.<br>
+→ <strong>Motivação</strong>: dever de motivar com largueza todas as decisões relacionadas ao serviço.<br>
+→ <strong>Modicidade das tarifas</strong>: preços módicos avaliando o poder econômico do usuário, para que dificuldades financeiras não deixem pessoas sem acesso; o lucro deve decorrer da boa gestão, não da exploração indevida da população.<br>
+→ <strong>Controle (interno e externo)</strong>: fiscalização pelo poder concedente e seus órgãos, e por outros poderes — Ministério Público, Judiciário, Congresso Nacional, TCU.
+</div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Não confundir:</strong> os princípios <em>do serviço público</em> (rol de Bandeira de Mello) não se confundem com as <em>condições do serviço adequado</em> do art. 6º, §1º da Lei 8.987 (regularidade, continuidade, eficiência, segurança, atualidade, generalidade, cortesia e modicidade) — a banca troca os rótulos.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — MODALIDADES DE DELEGAÇÃO                             -->
+<!-- ============================================================ -->
+<section id="sec4">
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Modalidades de Delegação — Concessão, Permissão e Autorização</div>
+  </div>
+  <div class="sec-subtitle">Lei 8.987/1995, Lei 9.074/1995, Lei 11.079/2004 e o regime da autorização</div>
+
+  <div class="card">
+    <div class="card-title">O arcabouço legal — por que a Lei 8.987 vale para todos os entes</div>
+    <div class="card-text">→ <strong>Competência legislativa</strong>: art. 22, XXVII, CF — compete privativamente à União legislar sobre normas gerais de licitação e contratação em todas as modalidades.<br>
+→ <strong>Lei 8.987/1995</strong> (regime de concessão e permissão): normas gerais aplicáveis a União, estados, DF e municípios — cada ente pode editar normas complementares para suas situações.<br>
+→ <strong>Lei 9.074/1995</strong>: normas sobre contratos com a Administração, com regras específicas de outorga de serviços públicos.<br>
+→ <strong>Lei 11.079/2004</strong> (PPPs): acrescentou duas novas modalidades de concessão — patrocinada e administrativa.<br>
+→ <strong>Conteúdo mínimo do art. 175, parágrafo único</strong>: regime das concessionárias/permissionárias, caráter especial do contrato e prorrogação, condições de caducidade, fiscalização e rescisão, direitos dos usuários, política tarifária e obrigação de manter serviço adequado.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Concessão de serviço público — o conceito do art. 2º, II e o que cada termo exige</div>
+    <div class="card-text">"Delegação de sua prestação, feita pelo poder concedente, mediante licitação, na modalidade concorrência ou diálogo competitivo, a pessoa jurídica ou consórcio de empresas que demonstre capacidade para seu desempenho, por sua conta e risco e por prazo determinado" (art. 2º, II). Desdobrando:<br><br>
+→ <strong>Licitação obrigatória</strong>: concorrência ou diálogo competitivo — este último incluído pela Lei 14.133/2021.<br>
+→ <strong>Quem pode ser concessionária</strong>: apenas pessoa jurídica ou consórcio de empresas — a complexidade <strong>exclui pessoa física</strong>.<br>
+→ <strong>Por conta e risco</strong>: prejuízo da atividade é da empresa, sem interferência da Administração.<br>
+→ <strong>Prazo determinado</strong>: a lei é expressa — sem contrato por tempo indeterminado (prorrogação admitida).<br>
+→ <strong>Remuneração × outorga</strong> (art. 2º, III): na concessão <strong>precedida de obra pública</strong>, o investimento da concessionária deve ser <span class="highlight">remunerado e amortizado mediante a exploração do serviço ou da obra</span> por prazo determinado — o delegatário precisa sempre se recompor; já o <strong>pagamento à Administração pela outorga</strong> é <strong>facultativo</strong>, previsto apenas como possibilidade (critério de "maior oferta" do art. 15, II quando houver pagamento ao poder concedente).<br>
+→ <strong>Definição ampliada de Di Pietro</strong> (a lei seria "incompleta"): contrato administrativo pelo qual a Administração delega a execução a outrem, para execução <strong>em nome próprio</strong>, por conta e risco, mediante tarifa do usuário ou remuneração da exploração.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Concessão precedida de obra pública (art. 2º, III) — como a obra se paga</div>
+    <div class="card-text">Construção total ou parcial, conservação, reforma, ampliação ou melhoramento de obras de interesse público, delegados mediante licitação (concorrência ou diálogo competitivo) a pessoa jurídica ou consórcio.<br><br>
+→ <strong>Remuneração</strong>: o investimento da concessionária é <strong>remunerado e amortizado</strong> mediante a exploração do serviço ou da obra por prazo determinado — a empresa constrói e recebe o direito de explorar.<br>
+→ <strong>Unificação pela Lei 14.133/2021</strong>: a redação do inciso III foi alterada da mesma forma que a do inciso II — hoje <strong>as duas modalidades de concessão</strong> (simples e precedida de obra pública) pressupõem licitação prévia em <strong>concorrência ou diálogo competitivo</strong>, não havendo mais distinção de modalidade entre elas.<br>
+→ <strong>Garantias específicas</strong>: o edital deve trazer dados da obra (projeto básico) e garantias limitadas ao valor da obra (art. 18, o); o contrato, cronograma físico-financeiro e garantia de fiel cumprimento das obrigações da obra (art. 23, parágrafo único).<br>
+→ <strong>Não confundir — concessão <em>de</em> obra × concessão de serviço <em>precedida</em> de obra</strong> (Di Pietro): a <span class="highlight">concessão de obra pública é modalidade autônoma</span> cujo objeto é a <strong>execução da obra</strong>, sendo <strong>secundária</strong> a prestação de serviço público — o concessionário executa por sua conta e risco e é retribuído pelos <strong>beneficiários da obra</strong>, pela <strong>exploração dos serviços ou utilidades que a obra proporciona</strong> ou até por <strong>contribuição de melhoria</strong>. Já na concessão de serviço precedida de obra, o negócio central <em>é o serviço</em> e a obra é investimento que se recupera na exploração.<br>
+→ <strong>Eixo de identificação no caso concreto</strong>: delegatário que <strong>presta o serviço por sua conta e risco</strong> e <strong>se remunera pela própria exploração</strong> (tarifa dos usuários + receitas acessórias do art. 11), <span class="highlight">sem contraprestação pecuniária do parceiro público</span>, está diante de <strong>concessão de serviço público precedida de obra pública</strong> — não de PPP (que sempre traz aporte público) nem de concessão de obra (onde a obra seria o objeto primário).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As exceções ao "sempre concorrência/diálogo" — leilão e inexigibilidade</div>
+    <div class="card-text">A regra é licitação em concorrência ou diálogo competitivo, mas há duas exceções documentadas na aula:<br><br>
+→ <strong>Leilão (Lei 9.074/1995, art. 27)</strong>: quando serviços públicos são prestados por pessoas jurídicas sob controle direto ou indireto da União e se quiser <strong>privatizar simultaneamente</strong> à nova concessão ou prorrogação, a União pode vender quotas/ações para transferência do controle societário, por <strong>leilão</strong> — exceto telecomunicações.<br>
+→ <strong>Inexigibilidade (Lei 9.472/1997 — Anatel)</strong>: outorga de concessão de telecomunicações sem licitação quando a disputa for <strong>inviável</strong> (só um interessado pode realizar o serviço) ou <strong>desnecessária</strong> (exploração admitida a todos os interessados).<br>
+→ <strong>Pegadinha</strong>: "dispensa" de licitação por interesse público imediato <strong>não existe</strong> — precedida ou não de obra, a concessão sempre é licitada (art. 14).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Permissão — o que a lei diz e o que a tabela da aula sintetiza</div>
+    <div class="card-text">"Delegação, <strong>a título precário</strong>, mediante licitação, da prestação de serviços públicos, feita pelo poder concedente à pessoa física ou jurídica que demonstre capacidade para seu desempenho, por sua conta e risco" (art. 2º, IV); formalizada por <strong>contrato de adesão</strong>, observadas a precariedade e a revogabilidade unilateral pelo poder concedente (art. 40, caput).<br><br>
+→ <strong>Modalidade licitatória</strong>: ao contrário da concessão, a lei <strong>não especificou</strong> a modalidade — o art. 2º, IV exige apenas "mediante licitação", prevalecendo na doutrina que <strong>qualquer modalidade</strong> pode ser adotada, <span class="highlight">a ser escolhida conforme o valor a ser contratado</span>.<br>
+→ <strong>Perfil econômico</strong>: a aula a descreve como modalidade menos complexa, destinada a serviços de <strong>porte médio</strong> — sem os investimentos vultosos da concessão, mas não desprezíveis.<br>
+→ <strong>Aplicação subsidiária</strong>: "aplica-se às permissões o disposto nesta Lei" (art. 40, parágrafo único) — o "no que couber" é implícito; nem tudo da concessão se transfere.<br>
+→ <strong>Contrato de adesão</strong>: cláusulas previamente fixadas (minuta anexa ao edital), cabendo ao particular apenas aderir — tecnicamente todos os contratos administrativos o são, mas a lei <strong>explicita</strong> isso só para a permissão.<br>
+→ <strong>Natureza jurídica (direito positivo)</strong>: pelo art. 40 a permissão é <span class="highlight">contrato administrativo e de adesão</span> — e o próprio edital disciplina a precariedade e a <strong>revogabilidade unilateral</strong> pelo poder concedente; na concessão a lei <strong>não rotula</strong> o contrato como de adesão (art. 4º), mas exige cláusulas essenciais próprias (art. 23) e não admite revogação do vínculo.<br>
+→ ⚠️ <strong>Não confundir — doutrina × lei</strong> (Alexandre Mazza): a <span class="highlight">maioria da doutrina considera a permissão um ato administrativo unilateral</span> — Bandeira de Mello, Hely Lopes Meirelles e Di Pietro — coerente com a precariedade e a escassez de direitos do permissionário frente ao Poder Público; foi apenas o <strong>direito positivo pós-CF/1988</strong> que passou a tratá-la como <strong>contrato de adesão</strong>, o que o autor considera um equívoco. Na prova, pergunte-se primeiro <em>de quem</em> a questão quer a resposta.<br>
+→ <strong>Objeto restrito ao serviço</strong>: a permissão <span class="highlight">não pode ser precedida de obra pública</span> — a espécie "concessão de serviço público precedida da execução de obra pública" é figura exclusiva da concessão (art. 2º, III), inexistente para a permissão.<br>
+→ <strong>Controvérsia da precariedade</strong>: leitura literal = revogável a qualquer tempo, sem prazo certo; Alexandre Santos de Aragão e Alexandrino & Paulo sustentam <strong>prazo determinado</strong>, reduzindo a precariedade à ausência de necessidade de indenizar — posição confirmada por questão que informa que a permissão comporta prazo.<br>
+→ <strong>Critério de identificação</strong>: delegatário que <strong>só pode ser pessoa jurídica ou consórcio de empresas</strong> e contrato <strong>por tempo determinado</strong> apontam para a <span class="highlight">concessionária</span> — a permissão <strong>admite pessoa física</strong> (art. 2º, IV) e se formaliza por <strong>contrato de adesão</strong> (art. 40), enquanto o prazo determinado é cláusula essencial expressa da concessão (art. 23, I).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Autorização — ato unilateral, discricionário e precário (fora da Lei 8.987)</div>
+    <div class="card-text">Não prevista no art. 175 CF nem disciplinada na Lei 8.987/1995; aparece em dispositivos esparsos (art. 21, XI e XII; art. 223 — radiodifusão sonora e de sons e imagens). Doutrinadores que negam sua natureza de delegação, mas <strong>as bancas a tratam como terceira modalidade</strong>, em hipóteses restritas.<br><br>
+→ <strong>Hipóteses de uso</strong>: (a) serviço a <strong>grupo restrito de usuários</strong>, sendo o particular autorizado beneficiário principal ou exclusivo (ex.: radioamadorismo — telecomunicação); (b) situações de <strong>emergência, transitórias ou especiais</strong> (Decreto 2.521/1998: "delegação ocasional, por prazo limitado ou viagem certa", transporte emergencial ou especial).<br>
+→ <strong>Ato unilateral</strong>: manifestação exclusiva do Poder Público, sem contrato administrativo — é o que distingue a autorização da concessão, cuja delegação <strong>sempre se formaliza mediante contrato</strong>, precedida ou não de obra pública (art. 4º, caput, Lei 8.987).<br>
+→ <strong>Discricionariedade</strong>: conveniência e oportunidade do agente — <strong>exceção</strong>: autorização de serviço de telecomunicação é ato <span class="highlight">vinculado</span> (art. 131, §1º, Lei 9.472/1997).<br>
+→ <strong>Precariedade</strong>: revogável a qualquer momento, <strong>sem direito a indenização</strong>; em regra prazo indeterminado.<br>
+→ <strong>Perfil de aplicação</strong> (Vicente Paulo e Marcelo Alexandrino): outorga <strong>sem licitação prévia</strong>, adequada a serviços que <strong>não exigem elevado grau de especialização técnica nem vultoso aporte de capital</strong> — situações de emergência, transitórias ou especiais, e prestação a <strong>usuários restritos</strong>, em que o beneficiário exclusivo ou principal é o próprio particular autorizado.
+</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>Concessão</th><th>Permissão</th><th>Autorização</th></tr></thead>
+      <tbody>
+        <tr><td>Instrumento</td><td>Contrato administrativo</td><td>Contrato de adesão (precário, revogável)</td><td>Ato administrativo unilateral</td></tr>
+        <tr><td>Prazo</td><td>Determinado, admite prorrogação</td><td>Determinado, admite prorrogação</td><td>Em regra indeterminado</td></tr>
+        <tr><td>Licitação</td><td>Sempre — concorrência ou diálogo competitivo (exceto leilão/inexigibilidade)</td><td>Sempre — sem modalidade legal específica</td><td>Não exige</td></tr>
+        <tr><td>Delegatário</td><td>Pessoa jurídica ou consórcio de empresas</td><td>Pessoa física ou jurídica</td><td>Pessoa física ou jurídica</td></tr>
+        <tr><td>Lei autorizativa prévia</td><td>Exige (exceções: art. 2º da Lei 9.074/1995)</td><td>Exige (mesmas exceções)</td><td>Não exige</td></tr>
+        <tr><td>Precariedade / revogação</td><td>Sem precariedade; não cabe revogação do contrato</td><td>Delegação a título precário; revogabilidade unilateral</td><td>Precária; revogável a qualquer tempo sem indenização</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As três espécies de concessão quanto à remuneração (Lei 8.987 × PPPs)</div>
+    <div class="card-text">O vocábulo "concessão" tem muitos objetos na doutrina de Di Pietro (serviço, obra, uso de bem, direito real de uso, moradia, minas, administrativa), mas interessam três categorias de delegação de serviço público:<br><br>
+→ <strong>Concessão comum (ordinária/tradicional)</strong>: remuneração básica vem da <strong>tarifa do usuário</strong> ou de receita da própria exploração (alternativas) — Lei 8.987/1995.<br>
+→ <strong>Concessão patrocinada</strong>: <strong>tarifa do usuário + contraprestação pecuniária do parceiro público</strong> — Lei 11.079/2004.<br>
+→ <strong>Concessão administrativa</strong>: remuneração básica vem da <strong>contraprestação do parceiro público</strong> — Lei 11.079/2004.<br>
+→ <strong>Definições legais da PPP (art. 2º, §§1º e 2º, Lei 11.079)</strong>: a PPP é <span class="highlight">contrato administrativo de concessão somente nas modalidades patrocinada ou administrativa</span> — <strong>patrocinada</strong> é a concessão de serviços públicos <em>ou de obras públicas</em> da Lei 8.987 que envolva, <strong>adicionalmente à tarifa cobrada dos usuários</strong>, contraprestação pecuniária do parceiro público ao privado; <strong>administrativa</strong> é o contrato de prestação de serviços de que <strong>a Administração Pública seja a usuária direta ou indireta</strong>, ainda que envolva execução de obra ou fornecimento e instalação de bens.<br>
+→ ⚠️ <strong>Exceção — não existe PPP sem dinheiro público</strong>: como <span class="highlight">tanto na patrocinada quanto na administrativa há contraprestação pecuniária do parceiro público</span>, é <strong>sempre presente o aporte de recursos públicos</strong> no parceiro privado; a PPP jamais é a "única espécie" que reúne obra e serviço num mesmo contrato.<br>
+→ <strong>Receitas acessórias não identificam modelo</strong>: a cobrança de receitas alternativas, complementares, acessórias ou de projetos associados é previsão do <strong>art. 11 da Lei 8.987</strong> — cabe na <strong>concessão comum</strong>, não sendo exclusividade da patrocinada.<br>
+→ <strong>Para fixar</strong>: comum = usuário paga; patrocinada = usuário paga e Estado complementa; administrativa = quem paga é o Estado.
+</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">Pegadinha clássica</div>
+    <div>Bancas trocam a natureza jurídica entre as modalidades: <em>"concessão e autorização se constituem por contrato administrativo"</em> — errado, autorização é <strong>ato unilateral</strong>; <em>"permissão não tem natureza contratual"</em> — errado, é formalizada por <strong>contrato de adesão</strong> (art. 40); <em>"permissão independe de licitação"</em> — errado, o art. 2º, IV exige licitação; <em>"serviço executado em nome do Estado na permissão"</em> — errado, executa-se <strong>em nome do permissionário</strong>, por sua conta e risco.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — LICITAÇÃO E EDITAL                                   -->
+<!-- ============================================================ -->
+<section id="sec5">
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Licitação da Concessão — Critérios e Edital</div>
+  </div>
+  <div class="sec-subtitle">Art. 14 (dever de licitar), art. 15 (julgamento), arts. 16-18-A (regras e edital)</div>
+
+  <div class="card">
+    <div class="card-title">Licitação sempre — sem as exceções da Lei 14.133</div>
+    <div class="card-text">Toda concessão de serviço público, precedida ou não de obra, será objeto de prévia licitação (art. 14), nos termos da legislação própria e com observância dos princípios da legalidade, moralidade, publicidade, igualdade, do julgamento por critérios objetivos e da vinculação ao instrumento convocatório.<br><br>
+→ <strong>Sem exceções</strong>: diferentemente das contratações da Lei 14.133/2021 (que admite dispensa e inexigibilidade), <span class="highlight">não existe dispensa de licitação para concessão e permissão</span> — o art. 175 CF exige "sempre através de licitação".<br>
+→ <strong>Julgamento por critérios objetivos</strong>: a avaliação das propostas deve ser objetiva, de modo que vários analistas concluam pelo mesmo vencedor.<br>
+→ <strong>Vinculação ao instrumento convocatório</strong>: concorrentes <em>e</em> Administração devem seguir as regras do edital.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 7 critérios de julgamento do art. 15 — próprios das concessões</div>
+    <div class="card-text">Critério é o parâmetro de avaliação da proposta vencedora; as concessões têm critérios próprios (semelhantes, mas não idênticos, aos da Lei 14.133):<br><br>
+→ <strong>Menor valor da tarifa</strong> do serviço público a ser prestado (I).<br>
+→ <strong>Maior oferta</strong>, nos casos de pagamento ao poder concedente pela outorga (II).<br>
+→ <strong>Combinação dois a dois</strong> dos critérios I, II e VII — só se previamente prevista no edital, com regras e fórmulas precisas de avaliação econômico-financeira (III).<br>
+→ <strong>Melhor proposta técnica, com preço fixado no edital</strong> (IV).<br>
+→ <strong>Menor tarifa + melhor técnica</strong> (V).<br>
+→ <strong>Maior oferta pela outorga + melhor técnica</strong> (VI).<br>
+→ <strong>Melhor oferta de pagamento pela outorga após qualificação de propostas técnicas</strong> (VII).<br>
+→ ⚠️ <strong>Atenção — o eixo da cobrança</strong>: <span class="highlight">"maior retorno econômico" NÃO integra os critérios do art. 15</span> da Lei das Concessões — foi instituído pela Lei 14.133/2021 (art. 39) e é utilizado <strong>exclusivamente para a celebração de contrato de eficiência</strong>: o julgamento considera a <strong>maior economia para a Administração</strong>, e a remuneração é fixada em <strong>percentual que incide de forma proporcional à economia efetivamente obtida</strong> na execução do contrato — quem mistura esse critério no rol do art. 15 erra a questão.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Preferências, recusas e desclassificações — a isonomia material do certame</div>
+    <div class="card-text">→ <strong>Preferência em empate</strong>: em igualdade de condições, vence a proposta de <strong>empresa brasileira</strong> (art. 15, §4º).<br>
+→ <strong>Recusa de propostas</strong>: o poder concedente recusará as manifestamente inexequíveis ou financeiramente incompatíveis com os objetivos da licitação (art. 15, §3º).<br>
+→ <strong>Vedações de outorga</strong>: a concessão/permissão <strong>não terá caráter de exclusividade</strong>, salvo inviabilidade técnica ou econômica justificada (art. 16).<br>
+→ <strong>Ato prévio ao edital</strong>: o poder concedente deve publicar, antes do edital, ato justificando a conveniência da outorga, com objeto, área e prazo — as justificativas de exclusividade, se houver, constam desse ato (art. 5º).<br>
+→ <strong>Desclassificação por subsídios</strong>: proposta que dependa de vantagens ou subsídios não previamente autorizados em lei e à disposição de todos os concorrentes (art. 17); idem entidade estatal alheia à esfera do concedente que dependa de subsídios de seu ente controlador (art. 17, §1º — ex.: empresa pública de SC não usa vantagem catarinense em licitação gaúcha).<br>
+→ <strong>Detalhe</strong>: tratamento tributário diferenciado que comprometa a isonomia fiscal <strong>conta como vantagem/subsídio</strong>, ainda que decorra da natureza jurídica do licitante.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Inversão das fases (art. 18-A) — celeridade com previsão no edital</div>
+    <div class="card-text">O edital pode prever a inversão das fases de habilitação e julgamento — primeiro julgam-se/classificam-se as propostas; depois se abre a documentação do 1º colocado, e assim sucessivamente se ele não atender aos requisitos.<br><br>
+→ <strong>Vantagem</strong>: evita recursos em cascata de candidatos desclassificados que sequer venceriam.<br>
+→ <strong>Condição</strong>: só funciona <strong>com previsão expressa no edital</strong>.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que o edital (art. 18) não pode deixar de trazer — parte 1</div>
+    <div class="card-text">→ <strong>Objeto, metas e prazo</strong> da concessão (a).<br>
+→ <strong>Condições necessárias</strong> à prestação adequada do serviço (b).<br>
+→ <strong>Prazos</strong> para recebimento das propostas, julgamento e assinatura do contrato (c).<br>
+→ <strong>Dados, estudos e projetos</strong> para orçamentos e propostas — prazo, local e horário de fornecimento aos interessados (d).<br>
+→ <strong>Capacidade técnica, idoneidade financeira e regularidade jurídica/fiscal</strong> — critérios e relação de documentos para aferição (e).<br>
+→ <strong>Fontes de receita</strong> alternativas, complementares ou acessórias e de projetos associados (f).<br>
+→ <strong>Direitos e obrigações</strong> de concedente e concessionária quanto a alterações e expansões futuras, para garantir a continuidade (g).<br>
+→ <strong>Critérios de reajuste e revisão da tarifa</strong> (h).<br>
+→ <strong>Critérios, indicadores, fórmulas e parâmetros</strong> do julgamento técnico e econômico-financeiro (i).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que o edital (art. 18) não pode deixar de trazer — parte 2</div>
+    <div class="card-text">→ <strong>Bens reversíveis</strong>: indicação (j) e características/condições de disponibilização quando extinta a concessão anterior (k).<br>
+→ <strong>Ônus das desapropriações</strong> e servidões administrativas — responsável expressamente indicado (l).<br>
+→ <strong>Liderança no consórcio</strong>: condições da empresa líder, se permitida a participação consorciada (m).<br>
+→ <strong>Minuta do contrato</strong> com as cláusulas essenciais do art. 23, quando aplicáveis (n).<br>
+→ <strong>Concessão precedida de obra</strong>: dados da obra (elementos do projeto básico) e garantias limitadas ao valor da obra (o).<br>
+→ <strong>Permissão</strong>: os termos do contrato de adesão a ser firmado (p).
+</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — CONTRATO E CLÁUSULAS ESSENCIAIS                      -->
+<!-- ============================================================ -->
+<section id="sec6">
+  <div class="sec-header">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Contrato de Concessão e Cláusulas Essenciais</div>
+  </div>
+  <div class="sec-subtitle">Art. 4º, art. 23 (XV incisos), arbitragem (art. 23-A) e a verticalidade do contrato administrativo</div>
+
+  <div class="card">
+    <div class="card-title">Por que o contrato é vertical — prerrogativas e cláusulas exorbitantes</div>
+    <div class="card-text">Nos contratos privados as partes celebram em igualdade; no contrato administrativo a Administração ocupa <strong>verticalidade</strong> perante o particular, com prerrogativas fundadas na supremacia do interesse público — inclusive modificação unilateral de cláusulas.<br><br>
+→ <strong>Cláusulas exorbitantes</strong>: presentes no contrato administrativo sem equivalente no privado (no direito privado, cláusula só muda por acordo das partes).<br>
+→ <strong>Rol geral da Lei 14.133/2021 (art. 104)</strong>: modificação unilateral, extinção unilateral, fiscalização da execução, aplicação direta de sanções e decretação de ocupação provisória ou temporária.<br>
+→ <strong>Na Lei 8.987/1995</strong>: não há artigo que enumere as exorbitantes — elas aparecem espalhadas nas <strong>competências do poder concedente</strong> (art. 29).<br>
+→ <strong>Formalização</strong>: a concessão, precedida ou não de obra, é formalizada mediante <strong>contrato</strong> que observa a Lei, as normas pertinentes e o edital (art. 4º).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As cláusulas essenciais do art. 23 — o que deve constar no edital quando aplicável</div>
+    <div class="card-text">"Essenciais" porque devem constar sempre que aplicáveis — nem toda cláusula essencial está obrigatoriamente em todo contrato:<br><br>
+→ <strong>Objeto, área e prazo</strong> da concessão (I).<br>
+→ <strong>Modo, forma e condições</strong> de prestação do serviço (II).<br>
+→ <strong>Qualidade</strong>: critérios, indicadores, fórmulas e parâmetros definidores (III).<br>
+→ <strong>Preço e tarifa</strong>: o preço do serviço, critérios e procedimentos de reajuste e revisão (IV).<br>
+→ <strong>Direitos, garantias e obrigações</strong> de concedente e concessionária, incluídas as previsíveis necessidades de alteração e expansão, modernização, aperfeiçoamento e ampliação de equipamentos e instalações (V).<br>
+→ <strong>Direitos e deveres dos usuários</strong> para obtenção e utilização do serviço (VI).<br>
+→ <strong>Fiscalização</strong> de instalações, equipamentos, métodos e práticas, com indicação dos órgãos competentes (VII).<br>
+→ <strong>Penalidades</strong> contratuais e administrativas da concessionária e sua forma de aplicação (VIII).<br>
+→ <strong>Extinção</strong>: os casos de extinção da concessão (IX).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As cláusulas essenciais do art. 23 — continuação</div>
+    <div class="card-text">→ <strong>Bens reversíveis</strong> (X).<br>
+→ <strong>Indenizações</strong>: critérios para o cálculo e forma de pagamento devidos à concessionária, quando for o caso (XI).<br>
+→ <strong>Prorrogação</strong>: condições para a prorrogação do contrato (XII).<br>
+→ <strong>Prestação de contas</strong> da concessionária ao poder concedente — obrigatoriedade, forma e periodicidade (XIII).<br>
+→ <strong>Publicidade financeira</strong>: exigência de publicação de demonstrações financeiras periódicas (XIV).<br>
+→ <strong>Foro e modo amigável</strong> de solução das divergências contratuais (XV).<br>
+→ <strong>Obra vinculada (parágrafo único)</strong>: contratos precedidos de obra pública trazem ainda cronograma físico-financeiro da obra e garantia de fiel cumprimento das obrigações da obra.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Arbitragem no contrato de concessão (art. 23-A) — incluído pela Lei 11.196/2005</div>
+    <div class="card-text">O contrato pode prever <strong>mecanismos privados de resolução de conflitos</strong>, inclusive arbitragem — com dois limites: realizada <strong>no Brasil</strong> e <strong>em língua portuguesa</strong>.
+</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — SERVIÇO ADEQUADO                                     -->
+<!-- ============================================================ -->
+<section id="sec7">
+  <div class="sec-header">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Serviço Adequado e as Hipóteses de Interrupção</div>
+  </div>
+  <div class="sec-subtitle">Art. 6º — os 8 atributos, o que não é descontinuidade e a vedação de corte em véspera de feriado</div>
+
+  <div class="card">
+    <div class="card-title">O conceito legal de serviço adequado — 8 atributos para decorar</div>
+    <div class="card-text">Toda concessão ou permissão pressupõe prestação de serviço adequado ao <strong>pleno atendimento dos usuários</strong>, conforme a Lei, as normas pertinentes e o contrato (art. 6º, caput) — exigência que o art. 175 CF manda a lei disciplinar.<br><br>
+Serviço adequado é o que satisfaz as condições de:<br><br>
+→ <strong>Regularidade</strong>;<br>
+→ <strong>Continuidade</strong>;<br>
+→ <strong>Eficiência</strong>;<br>
+→ <strong>Segurança</strong>;<br>
+→ <strong>Atualidade</strong>;<br>
+→ <strong>Generalidade</strong>;<br>
+→ <strong>Cortesia</strong> na prestação;<br>
+→ <strong>Modicidade das tarifas</strong>.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Atualidade e continuidade — o que a lei define e o que a banca cobra</div>
+    <div class="card-text">→ <strong>Atualidade</strong> (conceito na própria lei): modernidade das técnicas, do equipamento e das instalações e sua conservação, bem como melhoria e expansão do serviço — o requisito <strong>não se restringe</strong> à "atualização de materiais e técnicas": a lei fez caber dentro dele a <strong>conservação</strong> e a <strong>melhoria e expansão</strong> (Vicente Paulo e Marcelo Alexandrino).<br>
+→ <strong>Continuidade</strong>: prestação permanente, pelo caráter essencial do serviço — mas a lei comporta interrupções que <strong>não</strong> são consideradas descontinuidade (art. 6º, §3º).<br>
+→ <strong>Continuidade alcança os delegatários</strong> (Vicente Paulo e Marcelo Alexandrino): a observância é obrigatória <strong>não só para a Administração, mas também para os particulares</strong> incumbidos da prestação sob delegação — concessionárias, permissionárias e autorizadas — porque a interrupção prejudica <strong>toda a coletividade</strong>, que depende do serviço para satisfazer suas necessidades.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Nomes inventados × o que a lei realmente enumera</div>
+    <div class="card-text">→ ⚠️ <strong>Atenção</strong>: rótulos como "congruência", "celeridade" e "itinerância" <strong>não existem</strong> entre as condições do serviço adequado (art. 6º, §1º) nem nas listas doutrinárias dos princípios do serviço público — são nomes plausíveis fabricados para testar se o candidato decora o rol: regularidade, continuidade, eficiência, segurança, atualidade, generalidade, cortesia e modicidade.<br>
+→ <strong>Generalidade</strong> (Carvalho Filho — dupla faceta): de um lado, serviços prestados <strong>com a maior amplitude possível</strong>, beneficiando o maior número possível de indivíduos; de outro, prestados <strong>sem discriminação</strong> entre beneficiários que tenham as mesmas condições técnicas e jurídicas para a fruição.<br>
+→ ⚠️ <strong>Não confundir</strong>: "seletividade" é princípio <strong>tributário</strong> — não integra as condições do serviço público; onde a questão fala em "priorizar os mais necessitados" como seletividade, o que existe na Lei 8.987/1995 é a <strong>generalidade</strong>.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">As 3 interrupções que NÃO configuram descontinuidade (art. 6º, §3º)</div>
+    <div class="card-text">→ <strong>Situação de emergência</strong>: interrupção admissível — <strong>não se exige aviso prévio</strong>, incompatível com a própria emergência.<br>
+→ <strong>Razões de ordem técnica ou de segurança das instalações</strong> (ex.: manutenção da rede elétrica): exige <strong>prévio aviso</strong>.<br>
+→ <strong>Inadimplência do usuário</strong>: exige <strong>prévio aviso</strong> e consideração do <strong>interesse da coletividade</strong>.<br>
+→ <strong>Regra de ouro</strong>: fora dessas hipóteses, interromper serviço essencial é ilegítimo — e as restrições da jurisprudência do STJ estão na seção 12.
+</div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div><strong>Limitação de agenda do corte:</strong> a interrupção por inadimplência <span class="highlight">não pode iniciar-se na sexta-feira, no sábado, no domingo, em feriado ou no dia anterior a feriado</span> — suspensão alegando inadimplência só pode começar em dia "útil" de trabalho pleno.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — DIREITOS, ENCARGOS E PODER CONCEDENTE                -->
+<!-- ============================================================ -->
+<section id="sec8">
+  <div class="sec-header">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Usuários, Concessionária e Poder Concedente</div>
+  </div>
+  <div class="sec-subtitle">Arts. 7º, 7º-A, 22, 25, 31 (encargos) e 29-30 (competências e fiscalização)</div>
+
+  <div class="card">
+    <div class="card-title">Direitos e obrigações dos usuários (art. 7º) — parte 1</div>
+    <div class="card-text">O art. 175 CF manda a lei dispor sobre os direitos dos usuários — o art. 7º cuidou da parte:<br><br>
+→ <strong>Receber serviço adequado</strong> (a) — o principal dos direitos, espelhando o art. 6º.<br>
+→ <strong>Receber informações</strong> do poder concedente e da concessionária para defesa de interesses individuais ou coletivos (b).<br>
+→ <strong>Obter e utilizar o serviço com liberdade de escolha</strong> entre vários prestadores, quando for o caso, observadas as normas do poder concedente (c).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Direitos e obrigações dos usuários (art. 7º) — parte 2 e extras</div>
+    <div class="card-text">→ <strong>Levar as irregularidades</strong> do serviço ao conhecimento do poder público e da concessionária (d).<br>
+→ <strong>Comunicar às autoridades competentes os atos ilícitos</strong> praticados pela concessionária na prestação (e).<br>
+→ <strong>Contribuir para a permanência das boas condições</strong> dos bens públicos por que lhes são prestados os serviços (f).<br>
+→ <strong>Vencimentos (art. 7º-A)</strong>: as concessionárias devem oferecer ao consumidor/usuário, dentro do mês, <strong>no mínimo 6 datas</strong> de vencimento dos débitos.<br>
+→ <strong>Certidão (art. 22)</strong>: <strong>qualquer pessoa</strong> pode obter certidão sobre atos, contratos, decisões ou pareceres da licitação ou das concessões — sem demonstrar interesse, sem precisar ser usuário.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 8 encargos da concessionária (art. 31) — parte 1</div>
+    <div class="card-text">→ <strong>Prestar serviço adequado</strong> (I) — o principal encargo, nos termos do art. 6º, normas técnicas e contrato.<br>
+→ <strong>Inventário e registro</strong> dos bens vinculados à concessão em dia (II).<br>
+→ <strong>Prestar contas</strong> da gestão ao poder concedente e aos usuários, conforme o contrato (III).<br>
+→ <strong>Cumprir e fazer cumprir</strong> as normas do serviço e as cláusulas contratuais (IV).<br>
+→ <strong>Livre acesso à fiscalização</strong> (V): obras, equipamentos, instalações e registros contábeis, <strong>em qualquer época</strong>, aos encarregados do controle.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Os 8 encargos da concessionária (art. 31) — parte 2</div>
+    <div class="card-text">→ <strong>Desapropriações e servidões</strong> (VI): promover as desapropriações e constituir servidões <strong>autorizadas pelo poder concedente</strong>, conforme edital e contrato.<br>
+→ <strong>Limite importante</strong>: a <strong>decretação</strong> de utilidade/necessidade pública é exclusiva do poder público; à concessionária pode caber a <strong>execução</strong> e o <strong>pagamento das indenizações</strong>.<br>
+→ <strong>Zelar e segurar os bens</strong> (VII): integridade dos bens vinculados ao serviço e seguro adequado.<br>
+→ <strong>Recursos financeiros</strong> (VIII): captar, aplicar e gerir os necessários à prestação do serviço.<br>
+→ <strong>Parágrafo único</strong>: as contratações da concessionária (inclusive mão de obra) seguem o <strong>direito privado e a legislação trabalhista</strong> — <span class="highlight">nenhuma relação</span> entre os terceiros contratados e o poder concedente.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Responsabilidade integral — a fiscalização não atenua (art. 25)</div>
+    <div class="card-text">Incumbe à concessionária a execução do serviço concedido, respondendo por <strong>todos os prejuízos</strong> causados ao poder concedente, aos usuários ou a terceiros — <strong>sem que a fiscalização</strong> exercida pelo órgão competente exclua ou atenue essa responsabilidade (art. 25).<br><br>
+→ <strong>Lógica</strong>: ao assumir a delegação, a empresa afirma ter competência para o serviço, por sua conta e risco — o prejuízo é dela, sem interferência da Administração.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Poder concedente — quem é e o que faz (arts. 2º, I e 29)</div>
+    <div class="card-text">Poder concedente é a União, o Estado, o DF ou o Município em cuja competência se encontra o serviço delegado (art. 2º, I) — o ente que recebe da Constituição a competência para prestar aquele serviço. Competências (art. 29):<br><br>
+→ <strong>Regulamentar e fiscalizar permanentemente</strong> o serviço concedido (I).<br>
+→ <strong>Aplicar penalidades</strong> regulamentares e contratuais (II).<br>
+→ <strong>Intervir</strong> na prestação, nos casos e condições legais (III) — seção 9.<br>
+→ <strong>Extinguir a concessão</strong>, nos casos da Lei e na forma do contrato (IV).<br>
+→ <strong>Homologar reajustes e revisar tarifas</strong> (V) — seção 11.<br>
+→ <strong>Cumprir e fazer cumprir</strong> disposições regulamentares e cláusulas (VI).<br>
+→ <strong>Queixas dos usuários</strong> (VII): receber, apurar e solucionar; o usuário é cientificado das providências em até <strong>30 dias</strong>.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Poder concedente — parte 2 (desapropriações, estímulos e agências)</div>
+    <div class="card-text">→ <strong>Utilidade pública</strong> (VIII): declarar e promover desapropriações, diretamente ou por outorga de poderes à concessionária — <strong>desta a responsabilidade pelas indenizações</strong>.<br>
+→ <strong>Servidão administrativa</strong> (IX): mesma lógica para instituição de servidão sobre bens necessários à execução do serviço ou obra.<br>
+→ <strong>Estímulo e competitividade</strong> (X-XII): aumentar qualidade, produtividade, preservação ambiental e conservação; incentivar a competitividade; estimular associações de usuários para defesa de interesses do serviço.<br>
+→ <strong>Agências reguladoras</strong>: atribuições do poder concedente podem ser descentralizadas para entidades administrativas, <strong>desde que lei outorgue</strong> as competências.<br>
+→ <strong>Acesso a dados</strong>: na fiscalização, o concedente tem acesso a dados de administração, contabilidade e recursos técnicos, econômicos e financeiros da concessionária.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Como se fiscaliza o serviço (art. 30) — duas vias obrigatórias</div>
+    <div class="card-text">→ <strong>Regra matriz (art. 3º)</strong>: <span class="highlight">as concessões <em>e</em> as permissões</span> sujeitam-se à fiscalização pelo poder concedente responsável pela delegação, <strong>com a cooperação dos usuários</strong> — a precariedade da permissão <strong>não a isenta</strong> de controle, nem a afasta das agências reguladoras.<br>
+→ <strong>Órgão técnico ou conveniada</strong> (a): fiscalização por intermédio de órgão técnico do poder concedente ou entidade com ele conveniada.<br>
+→ <strong>Comissão tripartite</strong> (b): periodicamente, conforme norma regulamentar — comissão com representantes do <strong>poder concedente</strong>, da <strong>concessionária</strong> e dos <strong>usuários</strong>.
+</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — INTERVENÇÃO                                          -->
+<!-- ============================================================ -->
+<section id="sec9">
+  <div class="sec-header">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Intervenção na Concessão</div>
+  </div>
+  <div class="sec-subtitle">Arts. 32-34 — decreto, prazos de 30 e 180 dias, nulidade e devolução</div>
+
+  <div class="card">
+    <div class="card-title">O que é a intervenção e como se formaliza (art. 32)</div>
+    <div class="card-text">Instituto pelo qual o poder concedente <strong>assume temporariamente a execução</strong> do serviço, para assegurar a adequada prestação e o fiel cumprimento das normas contratuais, regulamentares e legais (arts. 32-34).<br><br>
+→ <strong>Forma</strong>: <strong>decreto</strong> do poder concedente, que deve conter: designação do interventor, prazo da intervenção e objetivos e limites da medida (parágrafo único).<br>
+→ <strong>Prazo</strong>: não pode ser indeterminado — a lei não fixa máximo nem mínimo, apenas exige que o decreto estabeleça um.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O rito posterior e os prazos — 30 dias para instaurar, 180 para concluir</div>
+    <div class="card-text">→ <strong>Procedimento administrativo em 30 dias</strong> (art. 33, caput): após declarada a intervenção, o poder concedente deve instaurar procedimento para comprovar as causas determinantes da medida e apurar responsabilidades, <strong>assegurada a ampla defesa</strong>.<br>
+→ <strong>Conclusão em 180 dias</strong> (art. 33, §2º): sob pena de considerar-se <span class="highlight">inválida a intervenção</span>.<br>
+→ <strong>Nulidade declarada</strong> (art. 33, §1º): comprovado que a intervenção não observou os pressupostos legais e regulamentares, o serviço é <strong>imediatamente devolvido</strong> à concessionária, sem prejuízo de seu <strong>direito à indenização</strong>.<br>
+→ <strong>Cessação</strong> (art. 34): encerrada a intervenção sem extinção da concessão, a administração volta à concessionária, precedida de <strong>prestação de contas do interventor</strong> — que responde pelos atos da sua gestão.
+</div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Jurisprudência (STJ, RMS 66.794/2022):</strong> na intervenção, o direito de defesa do concessionário só é propiciado <strong>após a decretação</strong>, com a instauração do procedimento apuratório — a intervenção tem finalidades <strong>investigatória e fiscalizatória, não punitivas</strong>; ilegalidades no curso do procedimento exigem comprovação de prejuízo.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — EXTINÇÃO E REVERSÃO                                 -->
+<!-- ============================================================ -->
+<section id="sec10">
+  <div class="sec-header">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Extinção da Concessão e Reversão</div>
+  </div>
+  <div class="sec-subtitle">Arts. 35 a 38 — as 6 hipóteses de extinção, bens reversíveis e indenização (art. 36), encampação (art. 37), caducidade (art. 38), rescisão e anulação</div>
+
+  <div class="card">
+    <div class="card-title">As 6 hipóteses de extinção do art. 35 — mapa geral</div>
+    <div class="card-text">A descentralização por colaboração tem prazo determinado — por término do contrato ou outro motivo, ele se encerra. Hipóteses (art. 35):<br><br>
+→ <strong>Advento do termo contratual</strong> — término "natural" do prazo.<br>
+→ <strong>Encampação</strong> — retomada por interesse público, com lei e indenização prévia.<br>
+→ <strong>Caducidade</strong> — inexecução pela concessionária.<br>
+→ <strong>Rescisão</strong> — inadimplência do poder concedente, por iniciativa da concessionária.<br>
+→ <strong>Anulação</strong> — ilegalidade na licitação ou no contrato.<br>
+→ <strong>Falência ou extinção</strong> da empresa concessionária; <strong>falecimento ou incapacidade</strong> do titular, na empresa individual.<br>
+→ <strong>Efeito comum</strong>: retornam ao poder concedente todos os <strong>bens reversíveis</strong>, direitos e privilégios transferidos, conforme edital e contrato (art. 35, §1º).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bens reversíveis, assunção imediata e a regra da indenização</div>
+    <div class="card-text">→ <strong>Bens reversíveis</strong>: previstos no contrato para incorporação ao patrimônio do poder concedente após a extinção (art. 23, X) — equipamentos necessários para o Estado dar continuidade ao serviço.<br>
+→ <strong>Conceito e critério</strong>: são reversíveis <span class="highlight">tanto os bens cedidos pelo poder concedente quanto os adquiridos pela concessionária</span> que se mostrem <strong>imprescindíveis à execução do serviço concedido</strong> — o que qualifica o bem é a sua <strong>destinação funcional ao serviço público</strong>, não a origem nem o momento da aquisição; por isso não há vedação a que a própria concessionária invista e compre esses ativos.<br>
+→ <strong>Assunção imediata</strong> (art. 35, §§2º-3º): extinta a concessão, o poder concedente assume o serviço, com levantamentos, avaliações e liquidações — a assunção autoriza a <strong>ocupação das instalações</strong> e a utilização de todos os bens reversíveis; a reversão se dá <strong>em favor do poder concedente</strong>, e <span class="highlight">não</span> de compra dos bens pela nova concessionária diretamente da contratada anterior.<br>
+→ <strong>Destinação posterior</strong>: decidida pelo <strong>titular do serviço</strong>, com autonomia — ceder os bens à nova concessionária em novo contrato, utilizá-los na prestação direta ou dar-lhes outro destino dentro da lei; <strong>não há dever</strong> de cedê-los à contratada seguinte.<br>
+→ <strong>Indenização (art. 36)</strong>: a reversão, no advento do termo contratual, far-se-á com a indenização das parcelas dos investimentos vinculados a bens reversíveis <strong>ainda não amortizados ou depreciados</strong>, realizados para garantir <strong>continuidade e atualidade</strong> do serviço concedido — devida em <strong>todas</strong> as hipóteses de extinção.<br>
+→ <strong>Razão da regra</strong>: a concessionária foi recompondo o investimento ao longo da vigência, pela exploração do serviço; pagar o que já foi recuperado (ou consumido pela depreciação) configuraria <span class="highlight">enriquecimento sem causa</span> — a indenização é <strong>saldo, não preço de mercado</strong>.<br>
+→ <strong>Quando pagar</strong>: na <strong>encampação</strong>, a indenização é <span class="highlight">prévia</span>; na <strong>caducidade</strong>, só após descontar prejuízos causados pela concessionária e multas devidas.<br>
+→ <strong>Antecipação</strong>: no advento do termo e na encampação, o poder concedente deve antecipar levantamentos e avaliações para calcular as indenizações devidas.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Encampação — os 3 pressupostos cumulativos (art. 37)</div>
+    <div class="card-text">Retomada do serviço pelo poder concedente <strong>durante o prazo</strong> da concessão, sem qualquer irregularidade da concessionária — por motivo de interesse público:<br><br>
+→ <strong>Motivo de interesse público</strong>;<br>
+→ <strong>Lei autorizativa específica</strong>;<br>
+→ <strong>Prévio pagamento da indenização</strong>.<br>
+→ ⚠️ <strong>Não confundir — discricionariedade do motivo × exigência da forma</strong>: o juízo de <strong>interesse público</strong> é de conveniência e oportunidade do poder concedente, mas os outros dois pressupostos são <span class="highlight">exigências formais do tipo legal</span> — sem <strong>lei autorizativa específica</strong> e sem <strong>indenização prévia</strong> não se configura a encampação do art. 37, por legítimo que seja o motivo invocado.<br>
+→ <strong>Limite</strong>: a indenização cobre as parcelas não pagas dos bens reversíveis ainda não depreciados/amortizados — <span class="highlight">não alcança lucros cessantes</span> (o que a empresa deixaria de lucrar explorando o serviço).<br>
+→ ⚠️ <strong>Por que não é "revogação"</strong>: a concessão é <span class="highlight">contrato administrativo, não ato administrativo unilateral</span> — por isso a prerrogativa de revogar por conveniência e oportunidade <strong>não se aplica</strong>, e a revogação não integra as hipóteses de extinção do art. 35. O <strong>tipo legal</strong> de retomada por interesse público é a encampação (art. 37); na permissão, ao contrário, a revogabilidade unilateral decorre do próprio art. 40.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Caducidade — as hipóteses do art. 38, §1º (I a VII, com inciso VII duplicado)</div>
+    <div class="card-text">Extinção por <strong>inexecução total ou parcial</strong> do contrato. Via de regra é <strong>discricionária</strong> — o poder pode declarar ou não:<br><br>
+→ <strong>I</strong> — <strong>Serviço inadequado ou deficiente</strong>, tendo por base normas, critérios, indicadores e parâmetros de qualidade.<br>
+→ <strong>II</strong> — <strong>Descumprimento</strong> de cláusulas contratuais ou disposições legais/regulamentares.<br>
+→ <strong>III</strong> — <strong>Paralisar o serviço</strong> ou concorrer para tanto — ressalvados caso fortuito e força maior.<br>
+→ <strong>IV</strong> — <strong>Perder condições</strong> econômicas, técnicas ou operacionais para a adequada prestação.<br>
+→ <strong>V</strong> — <strong>Não cumprir as penalidades</strong> impostas por infrações, nos devidos prazos.<br>
+→ <strong>VI</strong> — <strong>Não atender intimação</strong> do poder concedente para regularizar a prestação do serviço.<br>
+→ <strong>VII</strong> — concessionária <span class="highlight">condenada em sentença transitada em julgado por sonegação de tributos</span>, inclusive contribuições sociais.<br>
+→ <strong>VII (duplicado)</strong> — <strong>não atender intimação</strong> para, em <strong>180 dias</strong>, apresentar a documentação de <strong>regularidade fiscal</strong> no curso da concessão, na forma do art. 29 da Lei 8.666/1993 — inciso incluído pela <strong>Lei 12.767/2012</strong> (a MP 577/2012 já o tinha inserido), sem renumeração do anterior.<br>
+→ ⚠️ <strong>Detalhe de numeração</strong>: a consolidação traz <span class="highlight">dois incisos numerados VII</span> — são <strong>8 situações</strong> de caducidade, e a contagem tradicional de "7 hipóteses" ignora o segundo VII.<br>
+→ <strong>Cruzamentos do rol</strong>: o inciso <strong>I</strong> não se mede por impressão, mas pelas <strong>8 condições do serviço adequado</strong> (art. 6º, §1º — regularidade, continuidade, eficiência, segurança, atualidade, generalidade, cortesia e modicidade), detalhadas no edital e nos contratos de desempenho; e o inciso <strong>IV</strong> presume que a capacidade <strong>econômica, técnica e operacional</strong> é <span class="highlight">requisito de vigência contínua</span> — não se prova apenas na habilitação da licitação, e a <strong>perda superveniente</strong> dessas condições autoriza a caducidade.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Caducidade — a hipótese VINCULADA e o rito do art. 38</div>
+    <div class="card-text">→ <strong>Caso vinculado (art. 27)</strong>: a transferência da concessão ou do <strong>controle societário</strong> da concessionária <strong>sem prévia anuência</strong> do poder concedente <span class="highlight">implica a caducidade</span> — a autoridade <em>deve</em> declará-la. (O STF, na ADI 2.946, confirmou a constitucionalidade da transferência <em>com</em> anuência.)<br>
+→ <strong>Rito (art. 38)</strong>: (a) comunicação detalhada dos descumprimentos, com prazo para corrigir falhas e enquadrar-se; (b) não corrigidas, <strong>processo administrativo com ampla defesa</strong>; (c) comprovada a inadimplência, caducidade declarada por <strong>decreto</strong>, <strong>independentemente de indenização prévia</strong> (calculada no curso do processo).<br>
+→ <strong>Descontos</strong>: a indenização <span class="highlight">continua devida na forma do art. 36 e do contrato</span> — a dispensa da indenização <strong>prévia</strong> é exigência de <strong>momento</strong>, não de <strong>pagamento</strong>: extingue-se o contrato antes de pagar, mas o valor dos <strong>bens reversíveis</strong> ainda não amortizados ou depreciados há de ser indenizado (Rafael Carvalho Rezende Oliveira).<br>
+→ Do montante subtraem-se <strong>multas contratuais</strong> e os <strong>danos causados</strong> pela concessionária (§5º).<br>
+→ <strong>Efeito protetivo</strong>: declarada a caducidade, o poder concedente não responde por encargos, ônus, obrigações ou compromissos com terceiros ou empregados da concessionária (§6º).<br>
+→ ⚠️ <strong>Rótulo × tipo legal</strong>: a doutrina descreve a caducidade como <span class="highlight">"rescisão unilateral promovida pelo Poder Público"</span>, fundada na inexecução — rótulo <em>descritivo</em>, que realça o contraste com a encampação (sem culpa). Na Lei 8.987, contudo, a palavra <strong>rescisão</strong> está reservada ao art. 39 (iniciativa da <em>concessionária</em>), de modo que o enquadramento correto se faz pelo <strong>tipo do art. 38</strong>, e não pelo nome.<br>
+→ <strong>Poder de origem</strong>: a caducidade é <span class="highlight">sanção</span> — o processo administrativo de inadimplência (art. 38, §2º) é exercício do <strong>poder disciplinar</strong> do poder concedente sobre a delegatária. A encampação <strong>não é sanção de espécie alguma</strong>: como não pressupõe falta da concessionária, não se origina de poder disciplinar, e sim da <strong>declaração de interesse público</strong> formalizada em lei específica. <strong>Poder hierárquico</strong> não entra nessa seara — hierarquia supõe <strong>vínculo orgânico dentro da Administração</strong>, inexistente perante a empresa delegada, que se sujeita a <em>fiscalização e vinculação contratual</em>, não a hierarquia.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Rescisão, anulação e falência — as outras três portas de saída</div>
+    <div class="card-text">→ <strong>Rescisão (art. 39)</strong>: inadimplência <strong>do poder concedente</strong>; por iniciativa da <strong>concessionária</strong>, sempre mediante <strong>ação judicial</strong> especialmente intentada; os serviços <strong>não podem ser interrompidos ou paralisados até o trânsito em julgado</strong> (parágrafo único) — regra mais rígida que a da Lei 14.133 (art. 137, §2º, IV: oposição após 2 meses de inadimplência).<br>
+→ <strong>Anulação (art. 35, V)</strong>: ilegalidade na licitação ou no contrato (ex.: vencedora que subornou a comissão); efeitos <strong>retroativos</strong> — ao passo que as demais hipóteses decorrem de fatos supervenientes e têm efeitos <strong>proativos</strong> (da data em diante).<br>
+→ <strong>Falência/extinção da empresa; falecimento/incapacidade do titular individual (art. 35, VI)</strong>: decorre da natureza <span class="highlight">intuitu personae</span> dos contratos de concessão e permissão — sem quem possa prosseguir, o contrato se extingue; com reversão dos bens aplicados ao serviço.
+</div>
+  </div>
+
+  <div class="gotcha">
+    <div class="gotcha-title">Pegadinha clássica</div>
+    <div>A banca troca os institutos: <em>"nulidade na licitação durante a execução → caducidade"</em> — errado, é <strong>anulação</strong>; <em>"descumprimento pela concessionária → rescisão unilateral da Administração"</em> — errado, isso é <strong>caducidade</strong> (rescisão é iniciativa do <em>particular</em>, por ação judicial); <em>"retomar serviço adequado por interesse público → revogação da concessão"</em> — errado, é <strong>encampação</strong>, pois a concessão é contrato e não ato unilateral; <em>"caducidade depende de autorização legislativa e de indenização prévia"</em> — errado, basta <strong>decreto</strong> após processo administrativo; <em>"encampação inclui lucros cessantes"</em> — errado, indenização cobre só a parcela não amortizada/depreciada dos bens reversíveis.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — TARIFAS E EQUILÍBRIO                                -->
+<!-- ============================================================ -->
+<section id="sec11">
+  <div class="sec-header">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Tarifas, Receitas e Equilíbrio Econômico-Financeiro</div>
+  </div>
+  <div class="sec-subtitle">Arts. 9º a 13 — fixação, diferenciação, subsídios, reajuste × revisão e álea ordinária</div>
+
+  <div class="card">
+    <div class="card-title">Tarifa — fixação, valoração diferenciada e alteração unilateral</div>
+    <div class="card-text">→ <strong>Fixação</strong> (art. 9º): a tarifa é fixada pelo <strong>preço da proposta vencedora</strong> da licitação, preservada pelas regras de revisão da Lei, do edital e do contrato.<br>
+→ <strong>Não subordinação legal (art. 9º, §1º)</strong>: a fixação das tarifas <span class="highlight">não está subordinada a legislação específica anterior</span> — e o poder concedente <strong>não pode condicionar</strong> a cobrança de tarifa à disponibilização de <strong>serviço público alternativo e gratuito</strong> ao usuário, <strong>salvo nos casos expressamente previstos em lei</strong>; em regra, a tarifa é cobrada ainda que não exista serviço alternativo gratuito.<br>
+→ <strong>Tarifa mínima × cobrança por estimativa</strong>: disponibilizado o serviço mas não utilizado efetivamente, é <strong>legítima a cobrança de tarifa mínima</strong> pela <strong>só disponibilização</strong>, desde que haja <strong>previsão contratual e legal</strong> (ex.: energia elétrica — cobra-se a disponibilidade mesmo sem consumo); porém é <span class="highlight">vedada a cobrança por estimativa</span>.<br>
+→ <strong>Natureza de preço público</strong> (Alexandre Mazza): a tarifa exigida diretamente dos usuários do concessionário <strong>não tem natureza de tributo</strong> — é <span class="highlight">preço público</span>, exigido como <strong>contraprestação contratual</strong> pela utilização do serviço.<br>
+→ <strong>Diferenciação</strong> (art. 13): as tarifas <span class="highlight">podem ser diferenciadas</span> em função das características técnicas e dos custos específicos do atendimento a <strong>distintos segmentos de usuários</strong> — ex.: telefonia com planos diversos; não vigora "unicidade da tarifa".<br>
+→ <strong>Isonomia × generalidade</strong> (Di Pietro): a igualdade dos usuários perante o serviço — precursora da generalidade — garante que, <strong>satisfeitas as condições legais</strong>, ninguém sofra distinção <strong>de caráter pessoal</strong>; mas a própria Lei 8.987 admite distinções <strong>técnicas e por segmento</strong>: é o que permite isenção de tarifa para idosos e tarifas reduzidas para usuários de menor poder aquisitivo.<br>
+→ <strong>Alteração unilateral</strong>: resguardado o equilíbrio, o Poder Público pode alterar a valoração tarifária — por <strong>subsídio</strong>, definição de <strong>outras receitas</strong>, pagamento de <strong>indenização</strong> ou <strong>diminuição de encargos e ônus</strong> do delegatário.<br>
+→ <strong>Nem só de tarifa</strong>: na concessão de rádio e TV, p. ex., a remuneração vem também da exploração publicitária.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Receitas alternativas e modicidade (art. 11) — o subsídio cruzado admitido</div>
+    <div class="card-text">→ <strong>Previsão no edital</strong> (art. 11): o poder concedente pode prever, em favor da concessionária, outras fontes de receitas <strong>alternativas, complementares, acessórias</strong> ou de <strong>projetos associados</strong>, com ou sem exclusividade, com vistas a <strong>favorecer a modicidade das tarifas</strong>, observado o art. 17.<br>
+→ <strong>Exemplo</strong>: exploração comercial do subsolo da via concedida — restaurantes, estacionamentos, lojas.<br>
+→ <strong>Obrigatoriedade</strong> (parágrafo único): essas fontes são <strong>obrigatoriamente consideradas</strong> na aferição do inicial equilíbrio econômico-financeiro.<br>
+→ <strong>Modicidade tarifária</strong>: tarifas em patamar acessível, para que condições financeiras não afastem parcela significativa da população do acesso — direito subjetivo do usuário; simultaneamente, devem proteger a <strong>margem de lucro</strong> do concessionário contra inflação e eventos imprevistos (macroeconômicos ou da própria Administração) — o preço tem de cobrir custos, dar retorno e ser razoável ao usuário.<br>
+→ <strong>Custo proporcional × universalidade</strong> (Rafael Carvalho Rezende Oliveira): modicidade significa que o <strong>valor cobrado do usuário deve ser proporcional ao custo do respectivo serviço</strong>, para viabilizar o acesso pelo maior número possível de pessoas — daí a <strong>íntima vinculação com a universalidade</strong>; as receitas alternativas do art. 11 são justamente o <strong>instrumento contratual</strong> pelo qual a modicidade se garante na concessão.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Reajuste × revisão — palavras que a banca trata como sinônimos (não são)</div>
+    <div class="card-text">→ <strong>Reajuste</strong>: mera <strong>atualização</strong> do valor real da tarifa, por periodicidade e critérios definidos no contrato (ex.: variação de índices de preços de insumos); cabe ao poder concedente <strong>homologar</strong> (art. 29, V).<br>
+→ <strong>Revisão</strong>: altera a tarifa para <strong>restabelecer o equilíbrio</strong> econômico-financeiro inicialmente pactuado — decorre de situações excepcionais/extraordinárias não previstas, de alterações unilaterais do contrato ou de eventos extracontratuais que ativam a <strong>teoria da imprevisão</strong> (art. 9º, §2º: os contratos <em>poderão prever mecanismos de revisão</em>).<br>
+→ <strong>Tributos (art. 9º, §3º)</strong>: criação, alteração ou extinção de tributos ou encargos legais <strong>após a proposta</strong>, comprovado o impacto, implicam revisão da tarifa para mais ou para menos — <span class="highlight">ressalvados os impostos sobre a renda</span>.<br>
+→ <strong>Alteração unilateral (art. 9º, §4º)</strong>: afetado o inicial equilíbrio, o poder concedente deve restabelecê-lo <strong>concomitantemente à alteração</strong> — é o dever de recomposição <em>simultânea</em>, não posterior; o eixo da cobrança é a concomitância.<br>
+→ <strong>Transparência tarifária (art. 9º, §5º</strong>, incluído pela Lei 13.673/2018): a concessionária deve <strong>divulgar em sítio eletrônico</strong> tabela com as <strong>tarifas praticadas</strong> e a <strong>evolução das revisões e reajustes dos últimos CINCO anos</strong> — obrigação de publicidade que permite ao usuário acompanhar a composição do preço.<br>
+→ <strong>Presunção (art. 10)</strong>: atendidas as condições do contrato, considera-se mantido o equilíbrio econômico-financeiro.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">O que o equilíbrio NÃO protege — a álea contratual ordinária</div>
+    <div class="card-text">Para Bandeira de Mello, não estão acobertados pelo equilíbrio:<br><br>
+→ <strong>Ineficiência ou imperícia</strong> do concessionário — prejuízo por má gestão é suportado por ele.<br>
+→ <strong>Estimativa inexata de clientela</strong> — perdas por captação/manutenção de clientes mal estimada.<br>
+→ <strong>Expectativa frustrada de receitas alternativas</strong> — ganhos não realizados de negócios acessórios.<br>
+→ <strong>Comparação</strong>: a proteção ao equilíbrio na concessão é <strong>menos completa</strong> que na generalidade dos contratos administrativos — a Lei 14.133/2021 prevê reequilíbrio em termos mais amplos, nem todos aplicáveis à concessão.
+</div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Para fixar:</strong> "modicidade protege o lucro contra inflação, mas não contra imprevistos macroeconômicos ou da Administração" — <strong>ERRADO</strong>: protege contra ambos; "só cabe reajuste anual, sem revisão em concessão" — <strong>ERRADO</strong>: cabe revisão por álea extraordinária; "tarifa diferenciada por segmento é vedada" — <strong>ERRADO</strong>: o art. 13 permite.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 12 — JURISPRUDÊNCIA                                      -->
+<!-- ============================================================ -->
+<section id="sec12">
+  <div class="sec-header">
+    <div class="sec-num">12</div>
+    <div class="sec-title">Jurisprudência de Serviços Públicos</div>
+  </div>
+  <div class="sec-subtitle">Súmulas vinculantes, teses do STF e o compilado do STJ sobre corte de serviços essenciais</div>
+
+  <div class="card">
+    <div class="card-title">Súmulas vinculantes — lixo e iluminação pública</div>
+    <div class="card-text">→ <strong>SV 19</strong>: a taxa cobrada <strong>exclusivamente</strong> em razão dos serviços públicos de coleta, remoção e tratamento ou destinação de lixo ou resíduos provenientes de imóveis <strong>não viola</strong> o art. 145, II, da CF — é serviço específico e divisível.<br>
+→ <strong>SV 41</strong> (antiga Súmula 670 do STF): o serviço de iluminação pública <strong>não pode</strong> ser remunerado mediante <strong>taxa</strong> — é uti universi (indivisível, sem usuários determinados, usufruído apenas indiretamente), não se enquadrando no conceito do art. 145, II, da CF; seu custeio vem dos <strong>impostos</strong>, não de taxa ou tarifa.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Teses do STF — licitar, transferir e publicitar</div>
+    <div class="card-text">→ <strong>Prorrogação de permissão sem licitação é inconstitucional</strong> (ADI 7.241, 2024): lei estadual que restaura e prorroga automaticamente permissões vencidas de transporte alternativo ofende o art. 175 — a delegação exige licitação prévia.<br>
+→ <strong>Tema 854</strong> (RE 1.001.104, 2020): salvo situações excepcionais devidamente comprovadas, o serviço público de <strong>transporte coletivo</strong> pressupõe prévia licitação.<br>
+→ <strong>Táxi é serviço de utilidade pública</strong> (Ag. Reg. RE 1.002.310, 2017): prestado por particular sem caracterização como serviço público — art. 175 e art. 37, XXI inaplicáveis, <strong>licitação inexigível</strong>, basta <strong>mera autorização</strong>.<br>
+→ <strong>Transporte terrestre por autorização</strong> (ADI 5.549 e ADI 6.270, 2023): é constitucional o regime de outorga por <strong>mera autorização, sem licitação</strong>, para transporte coletivo terrestre desvinculado de exploração de obras de infraestrutura, desde que cumpridos requisitos específicos.<br>
+→ <strong>Transferência de controle societário</strong> (ADI 2.946, 2022): é constitucional a transferência da concessão e do controle das concessionárias <strong>mediante anuência</strong> do poder concedente (art. 27 da Lei 8.987) — o que importa é a proposta mais vantajosa, não a identidade subjetiva do contratado; isonomia e impessoalidade não se aplicam ao ato de anuência (negócio entre particulares, disciplinado pelo direito privado).<br>
+→ <strong>Publicidade em processo sancionador</strong> (ADI 5.371, 2022): processos administrativos sancionadores de agências contra concessionárias devem obedecer ao princípio da <strong>publicidade em toda a tramitação</strong>, ressalvados atos sigilosos previstos em lei ou na CF.
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Faixa de domínio de rodovia — quem pode cobrar pelo uso (STJ, IAC 8)</div>
+    <div class="card-text">Tese: é <strong>indevida</strong> a cobrança pela concessionária de rodovia, contra autarquia de saneamento, pelo uso da faixa de domínio da via concedida (REsp 1.817.302, 2022).<br><br>
+→ <strong>Fundamento</strong>: a via pública, mesmo concedida, permanece <strong>bem de uso comum do povo</strong> (art. 99, I, CC) afetado à destinação pública — sem remuneração por uso para viabilizar serviço público de entidade estatal fora do regime concorrencial; não é preço público nem taxa.<br>
+→ <strong>Estado × concessionária</strong>: não pode cobrar, seja o Estado gestor/autor da cobrança, seja sujeito passivo dela.<br>
+→ <strong>Concessionária × concessionária</strong> (privado × privado, tônica negocial): <strong>pode cobrar</strong>, desde que haja <strong>previsão no contrato de concessão</strong> (art. 11 da Lei 8.987).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">STJ em tese (Edição 13) — corte por inadimplência e motivos técnicos</div>
+    <div class="card-text">→ <strong>Inadimplência</strong>: corte <strong>legítimo</strong> em serviço essencial, desde que precedido de <strong>notificação</strong> (tese 1).<br>
+→ <strong>Razões técnicas ou de segurança das instalações</strong>: corte <strong>legítimo</strong>, desde que precedido de notificação (tese 2).<br>
+→ <strong>Pessoa jurídica de direito público inadimplente</strong>: corte <strong>legítimo</strong> com notificação, desde que <strong>não atinja unidades prestadoras de serviços indispensáveis</strong> à população (tese 4).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">STJ em tese (Edição 13) — os cortes ILEGÍTIMOS</div>
+    <div class="card-text">→ <strong>Saúde e integridade física</strong>: ilegítimo o corte de energia quando puder afetar o direito à saúde e à integridade física do usuário (tese 3).<br>
+→ <strong>Unidade de saúde inadimplente</strong>: ilegítimo o corte — prevalece a proteção à vida e à saúde (tese 5).<br>
+→ <strong>Débitos pretéritos</strong>: ilegítimo o corte por inadimplência decorrente de débitos antigos — a interrupção pressupõe inadimplemento de <strong>conta regular, do mês do consumo</strong> (tese 6).<br>
+→ <strong>Dívida de usuário anterior</strong>: ilegítimo — a dívida é <strong>pessoal</strong> (tese 7).<br>
+→ <strong>Débito irrisório</strong>: ilegítimo o corte de energia — abuso de direito, ofensa à proporcionalidade/razoabilidade, com <strong>cabimento de danos morais</strong> (tese 8).<br>
+→ <strong>Irregularidade apurada unilateralmente</strong> no hidrômetro ou medidor: ilegítimo o corte enquanto apurada só pela concessionária (tese 9).<br>
+→ <strong>Corte em outra unidade</strong>: o corte de energia só pode recair sobre o <strong>imóvel que originou o débito</strong>, não sobre outra unidade de consumo do inadimplente (tese 10).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Loterias estaduais — ADI 7.640 (2025) e a competência sobre consórcios e sorteios</div>
+    <div class="card-text">São <strong>inconstitucionais</strong> normas <em>federais</em> que restringem a participação de grupos econômicos e empresas em contratos de concessão de loterias estaduais e sua publicidade (ADI 7.640/SP, 2025) — usurpam a autonomia federativa e ofendem proporcionalidade, livre concorrência, livre iniciativa e o art. 175.<br><br>
+→ <strong>Loteria é serviço público em sentido formal</strong>: submete-se a regime jurídico de direito público.<br>
+→ <strong>Competência legislativa</strong>: privativa da União sobre "sistemas de consórcios e sorteios" (art. 22, XX) — daí a <strong>SV 2</strong>: lei estadual/distrital sobre consórcios e sorteios (bingos e loterias) é inconstitucional.<br>
+→ <strong>Competência material</strong>: a legislativa privativa da União <strong>não exclui</strong> a dos Estados para explorar os serviços lotéricos (art. 25, §1º) — distinguir competência legislativa de material.<br>
+→ <strong>Recado da ADI</strong>: restrição federal de "1 concessão por grupo econômico, em 1 só ente" e limitações de publicidade extraterritoriais ofendem a federação.
+</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 13 — INCIDÊNCIA DE TEMAS (TEC)                           -->
+<!-- ============================================================ -->
+<section id="sec13">
+  <div class="sec-header">
+    <div class="sec-num">13</div>
+    <div class="sec-title">Incidência de temas (TEC)</div>
+  </div>
+  <div class="sec-subtitle">Contadores por seção — atualizados a cada questão colada</div>
+
+  <div class="card">
+    <div class="card-text"><strong>Alta incidência 🔴</strong><br>
+<span class="tag tag-red">Seção 4 — Modalidades de delegação: 7</span><br>
+<span class="tag tag-red">Seção 10 — Extinção e Reversão: 6</span><br><br>
+<strong>Média incidência 🟡</strong><br>
+<span class="tag tag-amber">Seção 2 — Classificação: 2</span><br>
+<span class="tag tag-amber">Seção 11 — Tarifas e Equilíbrio: 2</span><br><br>
+<strong>Baixa incidência ⚪</strong><br>
+<span class="tag">Seção 3 — Princípios: 1</span><br>
+<span class="tag">Seção 5 — Licitação e Edital: 1</span><br>
+<span class="tag">Seção 6 — Contrato de Concessão: 1</span><br>
+<span class="tag">Seção 7 — Serviço adequado: 1</span><br>
+<span class="tag">Seção 9 — Usuários e Poder Concedente: 1</span><br></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 14 — PONTOS QUE MAIS CAEM EM PROVA                       -->
+<!-- ============================================================ -->
+<section id="sec14">
+  <div class="sec-header">
+    <div class="sec-num">14</div>
+    <div class="sec-title">Pontos que Mais Caem em Prova</div>
+  </div>
+  <div class="sec-subtitle">O núcleo de cobrança da aula — revisão rápida antes da prova</div>
+
+  <div class="card">
+    <div class="card-title">As distinções que a banca mais troca</div>
+    <div class="card-text">→ <strong>Concessão × permissão</strong>: PJ/consórcio vs. PF/PJ; concorrência ou diálogo competitivo vs. licitação sem modalidade; sem precariedade vs. título precário; não revogável vs. revogabilidade unilateral.<br>
+→ <strong>Autorização</strong>: ato unilateral, discricionário (exceto telecom: vinculado), precário, sem licitação e sem lei autorizativa — e as bancas a consideram modalidade de delegação.<br>
+→ <strong>Rescisão × caducidade × anulação × encampação</strong>: particular via judicial × inexecução da concessionária × ilegalidade originária (efeitos retroativos) × interesse público com indenização prévia.<br>
+→ <strong>Reajuste × revisão</strong>: atualização homologada × restabelecimento de equilíbrio por evento extraordinário.<br>
+→ <strong>Próprio/impróprio</strong>: 1ª concepção (comodidade material × social privado) vs. 2ª de Hely (indelegável × delegável).
+</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Números para gravar</div>
+    <div class="card-text">→ <strong>30 dias</strong>: instauração do procedimento após intervenção — e prazo para cientificar o usuário das providências sobre queixas (art. 29, VII).<br>
+→ <strong>180 dias</strong>: conclusão da intervenção (pena: invalidade) — e prazo para regularizar documentação fiscal sob pena de caducidade (art. 38, §1º, VII — o <strong>segundo</strong> inciso VII, da Lei 12.767/2012).<br>
+→ <strong>6 datas</strong>: mínimo de vencimentos de débitos dentro do mês (art. 7º-A).<br>
+→ <strong>7 critérios</strong>: julgamento do art. 15 — menor tarifa, maior oferta, combinações, técnica com preço fixado, técnica×tarifa, técnica×outorga, outorga após qualificação técnica.<br>
+→ <strong>8 atributos</strong> do serviço adequado (art. 6º, §1º) — <strong>8 encargos</strong> da concessionária (art. 31) — <strong>15 cláusulas</strong> essenciais (art. 23) — <strong>16 itens</strong> de edital (art. 18, a-p).<br>
+→ <strong>6 hipóteses</strong> de extinção (art. 35) — <strong>3 pressupostos</strong> da encampação (art. 37) — <strong>3 modalidades</strong> de delegação.
+</div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-icon">ℹ️</div>
+    <div><strong>Frase-chave da aula:</strong> na delegação de serviço público, <span class="highlight">só a execução migra — a titularidade permanece com o poder público</span> (descentralização por colaboração), e o delegatário presta <strong>em nome próprio, por sua conta e risco</strong>, respondendo integralmente pelos prejuízos, sem que a fiscalização estatal atenue essa responsabilidade.</div>
+  </div>
+</section>
+
+</div><!-- .main -->
+
+
+<!--rh:ui-->
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+  <button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button>
+</div>
+<!--/rh:ui-->
+
+<!--rh:ui-->
+<nav class="aula-nav" aria-label="Navegação entre aulas">
+  <a class="prev" href="../Aula%2009/resumo-aula-09-contratos-administrativos.html" rel="prev"><span class="aula-nav-dir">← anterior</span><span class="aula-nav-label">Aula 09 · Contratos Administrativos</span></a>
+  <a class="next" href="../../index.html" rel="next"><span class="aula-nav-dir">próxima →</span><span class="aula-nav-label">Índice geral</span></a>
+</nav>
+<div class="rh-toolbar" role="group" aria-label="Ferramentas de leitura">
+  <button type="button" id="rhTheme" title="Modo claro/escuro" aria-label="Alternar modo claro/escuro">🌙</button>
+  <button type="button" id="rhFontMinus" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+  <button type="button" id="rhFontPlus" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button type="button" id="rhTop" title="Voltar ao topo" aria-label="Voltar ao topo" hidden>↑</button>
+  <button type="button" id="rhRev" title="Modo revisão: oculte e se auto-teste" aria-label="Alternar modo revisão" aria-pressed="false">🧠</button>
+  <!--rh:practice-btn:start--><button type="button" id="rhPractice" title="Modo prática: quiz de recall da aula" aria-label="Abrir modo prática" aria-pressed="false">🎯</button><!--rh:practice-btn:end-->
+  
+  
+  
+  
+  <button type="button" id="rhMarks" title="Marcar vacilos (cards) — exportar/importar backup" aria-label="Marcar vacilos" aria-pressed="false">🏷️</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  var bT=document.getElementById('rhTheme'),bM=document.getElementById('rhFontMinus'),
+      bP=document.getElementById('rhFontPlus'),bTop=document.getElementById('rhTop');
+  function icon(){bT.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';}
+  bT.addEventListener('click',function(){var t=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',t);try{localStorage.setItem('rh-theme',t);}catch(e){}icon();});
+  icon();
+  var steps=[90,95,100,107,114],cur=100;
+  try{cur=parseInt(localStorage.getItem('rh-fs')||'100',10);}catch(e){}
+  if(steps.indexOf(cur)<0){cur=100;}
+  function apply(){root.style.fontSize=cur+'%';try{localStorage.setItem('rh-fs',String(cur));}catch(e){}bM.disabled=steps.indexOf(cur)===0;bP.disabled=steps.indexOf(cur)===steps.length-1;}
+  bM.addEventListener('click',function(){var i=steps.indexOf(cur);if(i>0){cur=steps[i-1];apply();}});
+  bP.addEventListener('click',function(){var i=steps.indexOf(cur);if(i<steps.length-1){cur=steps[i+1];apply();}});
+  apply();
+  function onScroll(){bTop.hidden=(window.scrollY||document.documentElement.scrollTop)<500;}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  bTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+
+<script id="rh-rev">
+(function(){
+  var b=document.getElementById('rhRev'); if(!b) return;
+  var root=document.documentElement;
+  function on(){return root.classList.contains('rh-rev');}
+  function apply(){
+    var now=!on();
+    root.classList.toggle('rh-rev', now);
+    b.classList.toggle('on', now);
+    try{localStorage.setItem('rh-rev', now?'1':'0');}catch(e){}
+    b.setAttribute('aria-pressed', now?'true':'false');
+  }
+  b.addEventListener('click', apply);
+  try{ if(localStorage.getItem('rh-rev')==='1') apply(); }catch(e){}
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest('.card,.gotcha,.callout,.table-wrap,.mnemonic,.question') : null;
+    if(!el || ev.target.closest('a')) return;
+    el.classList.toggle('rev-open');
+  });
+})();
+</script>
+
+
+<script id="rh-marks">
+(function(){
+  var b=document.getElementById('rhMarks'); if(!b) return;
+  var root=document.documentElement;
+  var LS='rh-marks', KEY=location.pathname||'local';
+  var store={}; try{store=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
+  var panel=document.createElement('div'); panel.id='rhMarkPanel';
+  panel.innerHTML='<div class="rhmp-count">Vacilos marcados: <span id="rhmpN">0</span></div>'+
+    '<button type="button" id="rhmpExp">⬇ exportar</button>'+
+    '<button type="button" id="rhmpImp">⬆ importar</button><input id="rhmpFile" type="file" accept="application/json" hidden>';
+  document.body.appendChild(panel);
+  var nEl=document.getElementById('rhmpN'), fileIn=document.getElementById('rhmpFile');
+  function blkKey(el){
+    var sec=el.closest('section'); var sid=sec?(sec.id||''):'';
+    var t=el.querySelector('.card-title,.gotcha-title,.mnemonic-label');
+    var txt='';
+    if(t){txt=t.textContent.trim();}
+    else{var th=el.querySelector('th'); txt=th?th.textContent.trim():'';}
+    if(!txt){var f=el.firstElementChild; txt=(f?f.textContent:'')||'';}
+    return (sid?sid+'|':'')+(txt.slice(0,60)||'bloco');
+  }
+  var SEL='.card,.gotcha,.callout,.table-wrap,.mnemonic,.question';
+  function collect(){ var out=[]; document.querySelectorAll('.rh-marked').forEach(function(el){out.push(blkKey(el));}); return out; }
+  function save(){ store[KEY]=collect(); try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){} render(); }
+  function render(){ nEl.textContent=String(collect().length); }
+  function applyMarks(list){
+    document.querySelectorAll('.rh-marked').forEach(function(el){el.classList.remove('rh-marked');});
+    document.querySelectorAll(SEL).forEach(function(el){ if(list.indexOf(blkKey(el))>=0) el.classList.add('rh-marked'); });
+    save();
+  }
+  function on(){return root.classList.contains('rh-marking');}
+  b.addEventListener('click', function(){
+    root.classList.toggle('rh-marking', b.classList.toggle('on', !on()));
+    b.setAttribute('aria-pressed', on()?'true':'false');
+    panel.classList.toggle('show', on());
+  });
+  document.addEventListener('click', function(ev){
+    if(!on()) return;
+    var el = ev.target && ev.target.closest ? ev.target.closest(SEL) : null;
+    if(!el || ev.target.closest('a') || ev.target.closest('#rhMarkPanel')) return;
+    el.classList.toggle('rh-marked');
+    save();
+  });
+  document.getElementById('rhmpExp').addEventListener('click', function(){
+    var blob=new Blob([JSON.stringify({version:1,path:KEY,marks:collect()},null,2)],{type:'application/json'});
+    var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download='marcacoes'+KEY.replace(/[^\w]+/g,'-')+'.json'; a.click();
+  });
+  document.getElementById('rhmpImp').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f=fileIn.files && fileIn.files[0]; if(!f) return;
+    var r=new FileReader(); r.onload=function(){
+      try{ var d=JSON.parse(r.result); if(d&&d.marks) applyMarks(d.marks); }catch(e){}
+    }; r.readAsText(f);
+  });
+  try{
+    var saved=(store[KEY]||[]);
+    if(saved.length) applyMarks(saved);
+  }catch(e){}
+  render();
+})();
+</script>
+
+<!--/rh:ui-->
+<style id="sr-style">
+.sr-box { padding: .55rem .2rem .2rem; }
+#sr-input {
+  width: 100%; box-sizing: border-box; background: var(--card, #fff);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .42rem .6rem;
+  color: var(--text, #1f2733); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .72rem;
+}
+#sr-input:focus { outline: none; border-color: var(--mat, var(--blue, #2563eb)); }
+.sr-info {
+  display: flex; justify-content: space-between; align-items: center; gap: .3rem;
+  margin-top: .3rem; font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: .62rem; color: var(--text2, #455064);
+}
+.sr-nav { display: inline-flex; align-items: center; gap: .25rem; }
+.sr-nav button {
+  background: none; border: 1px solid var(--border, #e2dfd7); border-radius: 5px;
+  cursor: pointer; color: var(--text2, #455064); font-family: inherit;
+  font-size: .62rem; padding: 0 .32rem; line-height: 1.5;
+}
+.sr-nav button:hover:not(:disabled) { border-color: var(--mat, var(--blue)); color: var(--mat-strong, var(--blue)); }
+.sr-nav button:disabled { opacity: .35; cursor: default; }
+#sr-pos { min-width: 3.2ch; text-align: center; color: var(--mat-strong, var(--blue, #2563eb)); font-weight: 600; }
+#sr-clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--mat-strong, var(--blue, #2563eb)); font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; font-size: .62rem;
+}
+#sr-clear:hover { text-decoration: underline; }
+.sr-hide { display: none !important; }
+section.sr-empty { opacity: .4; }
+mark.sr-hit {
+  background: rgba(217, 119, 6, .55); color: inherit;
+  border-radius: 3px; padding: 0 1px; box-shadow: 0 0 0 1px rgba(217, 119, 6, .35);
+}
+[data-theme="dark"] mark.sr-hit { background: rgba(240, 169, 46, .45); }
+mark.sr-first {
+  background: rgba(220, 38, 38, .55); box-shadow: 0 0 0 2px rgba(220, 38, 38, .4);
+}
+@media print { .sr-box { display: none !important; } }
+</style>
+<script id="sr-script" data-sr-v="2">
+(function () {
+  var input = document.getElementById('sr-input');
+  if (!input) return;
+  var info = document.getElementById('sr-count');
+  var posEl = document.getElementById('sr-pos');
+  var bPrev = document.getElementById('sr-prev');
+  var bNext = document.getElementById('sr-next');
+  var clear = document.getElementById('sr-clear');
+  var SEL = '.card, .gotcha, .callout';
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.main ' + SEL));
+  var total = blocks.length;
+  var hits = [], cur = -1;
+  var norm = function (s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  function clearMarks(root) {
+    root.querySelectorAll('mark.sr-hit').forEach(function (m) {
+      var p = m.parentNode;
+      if (!p) return;
+      p.replaceChild(document.createTextNode(m.textContent), m);
+      p.normalize();
+    });
+  }
+  function highlight(block, words) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentNode;
+        if (!p || /^(SCRIPT|STYLE|MARK)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+        var low = norm(n.nodeValue);
+        for (var w = 0; w < words.length; w++) {
+          if (low.indexOf(words[w]) >= 0) return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var text = n.nodeValue, low = norm(text);
+      var frag = document.createDocumentFragment(), i = 0;
+      for (;;) {
+        var best = -1, bestLen = 0;
+        for (var w = 0; w < words.length; w++) {
+          var idx = low.indexOf(words[w], i);
+          if (idx >= 0 && (best < 0 || idx < best)) { best = idx; bestLen = words[w].length; }
+        }
+        if (best < 0) break;
+        if (best > i) frag.appendChild(document.createTextNode(text.slice(i, best)));
+        var mk = document.createElement('mark');
+        mk.className = 'sr-hit';
+        mk.textContent = text.slice(best, best + bestLen);
+        frag.appendChild(mk);
+        i = best + bestLen;
+      }
+      if (i < text.length) frag.appendChild(document.createTextNode(text.slice(i)));
+      n.parentNode.replaceChild(frag, n);
+    });
+  }
+  function setActive(n, scroll) {
+    if (cur >= 0 && hits[cur]) hits[cur].classList.remove('sr-first');
+    cur = n;
+    if (!hits.length) { posEl.textContent = ''; sync(); return; }
+    cur = ((n % hits.length) + hits.length) % hits.length;
+    hits[cur].classList.add('sr-first');
+    posEl.textContent = (cur + 1) + '/' + hits.length;
+    if (scroll) hits[cur].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    sync();
+  }
+  function sync() {
+    bPrev.disabled = bNext.disabled = hits.length === 0;
+  }
+  function run(scrollToFirst) {
+    var q = norm(input.value.trim());
+    var words = q ? q.split(/\s+/).filter(Boolean) : [];
+    blocks.forEach(function (b) { b.classList.remove('sr-hide'); clearMarks(b); });
+    hits = []; cur = -1;
+    if (words.length) {
+      var found = 0;
+      blocks.forEach(function (b) {
+        var low = norm(b.textContent);
+        var all = words.every(function (w) { return low.indexOf(w) >= 0; });
+        if (all) { found++; highlight(b, words); }
+        else { b.classList.add('sr-hide'); }
+      });
+      document.querySelectorAll('.main section').forEach(function (s) {
+        var vis = s.querySelectorAll(SEL + ':not(.sr-hide)').length;
+        s.classList.toggle('sr-empty', vis === 0);
+      });
+      info.textContent = found + ' de ' + total + ' blocos';
+      hits = Array.prototype.slice.call(document.querySelectorAll('.main mark.sr-hit'));
+      if (hits.length && scrollToFirst !== false) setActive(0, true); else sync();
+      if (!hits.length) { posEl.textContent = ''; sync(); }
+    } else {
+      document.querySelectorAll('.main section').forEach(function (s) { s.classList.remove('sr-empty'); });
+      info.textContent = total + ' blocos';
+      posEl.textContent = ''; sync();
+    }
+  }
+  input.addEventListener('input', function () { run(true); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(true); }
+    else if (e.key === 'Enter') { e.preventDefault(); setActive(hits.length ? cur + (e.shiftKey ? -1 : 1) : -1, true); }
+  });
+  bNext.addEventListener('click', function () { if (hits.length) setActive(cur + 1, true); });
+  bPrev.addEventListener('click', function () { if (hits.length) setActive(cur - 1, true); });
+  clear.addEventListener('click', function () { input.value = ''; run(true); input.focus(); });
+  run(false);
+})();
+</script>
+<!--rh:practice:start-->
+<style id="rh-practice-style">
+/* ===== RH modo prática (quiz) ===== */
+#rhPracticePanel { position: fixed; right: 1.1rem; bottom: 5.8rem; z-index: 301; display: none;
+  width: min(390px, calc(100vw - 2.2rem)); max-height: min(72vh, 580px); overflow: auto;
+  background: var(--card, #fff); border: 1px solid var(--border, #e2dfd7); border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(31,39,51,.2); padding: .85rem .95rem .95rem; }
+#rhPracticePanel.show { display: block; }
+#rhPracticePanel .rhpp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+#rhPracticePanel .rhpp-head strong { font-size: .88rem; color: var(--text, #1f2733); }
+#rhPracticePanel .rhpp-score { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .7rem;
+  color: var(--text2, #455064); margin-left: auto; white-space: nowrap; }
+#rhPracticePanel .rhpp-close { background: none; border: none; font-size: 1.15rem; line-height: 1;
+  cursor: pointer; color: var(--text2, #455064); padding: 0 .1rem; }
+#rhPracticePanel .rhpp-item { margin: .55rem 0; }
+#rhPracticePanel .rhpp-q { font-size: .83rem; font-weight: 700; color: var(--text, #1f2733);
+  margin-bottom: .3rem; line-height: 1.45; }
+#rhPracticePanel .rhpp-opt { display: block; width: 100%; text-align: left; font-size: .79rem; line-height: 1.45;
+  font-family: inherit; background: var(--bg, #fff); color: var(--text, #1f2733);
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .4rem .6rem;
+  margin: .25rem 0; cursor: pointer; }
+#rhPracticePanel .rhpp-opt:hover:not(:disabled) { border-color: var(--mat, var(--blue, #2563eb)); }
+#rhPracticePanel .rhpp-opt:disabled { cursor: default; opacity: .72; }
+#rhPracticePanel .rhpp-opt.ok { border-color: #15803d; background: rgba(21,128,61,.1); opacity: 1; }
+#rhPracticePanel .rhpp-opt.bad { border-color: var(--red, #b3261e); background: rgba(179,38,30,.08); opacity: 1; }
+#rhPracticePanel .rhpp-why { font-size: .75rem; color: var(--text2, #455064); line-height: 1.5;
+  background: var(--surface, #f6f4ee); border-left: 3px solid var(--mat, var(--blue, #2563eb));
+  border-radius: 0 8px 8px 0; padding: .42rem .6rem; margin-top: .28rem; }
+#rhPracticePanel .rhpp-reset { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: .72rem;
+  font-weight: 600; background: var(--card, #fff); color: var(--mat, var(--blue, #2563eb));
+  border: 1px solid var(--border, #e2dfd7); border-radius: 8px; padding: .35rem .7rem;
+  cursor: pointer; margin-top: .55rem; }
+html[data-theme="dark"] #rhPracticePanel { background: var(--surface, #1f232b); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-opt { background: var(--card, #262b34); }
+html[data-theme="dark"] #rhPracticePanel .rhpp-why { background: rgba(255,255,255,.05); }
+@media print { #rhPracticePanel { display: none !important; } }
+</style>
+<div id="rhPracticePanel" role="dialog" aria-label="Modo prática — quiz da aula">
+  <div class="rhpp-head"><strong>🎯 Modo prática</strong><span class="rhpp-score" id="rhPracticeScore"></span><button type="button" class="rhpp-close" id="rhPracticeClose" aria-label="Fechar">×</button></div>
+  <div id="rhPracticeList"></div>
+  <button type="button" class="rhpp-reset" id="rhPracticeReset">Refazer</button>
+</div>
+
+<script id="rh-practice">
+(function(){
+  var dataEl = document.getElementById('rhPracticeData');
+  var btn = document.getElementById('rhPractice');
+  var panel = document.getElementById('rhPracticePanel');
+  if (!dataEl || !btn || !panel) return;
+  var DATA; try { DATA = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var qs = DATA.questoes || [];
+  var list = document.getElementById('rhPracticeList');
+  var scoreEl = document.getElementById('rhPracticeScore');
+  var hits = 0, done = 0, total = qs.length;
+  function score() { scoreEl.textContent = hits + ' acertos · ' + done + '/' + total; }
+  function render() {
+    hits = 0; done = 0; list.innerHTML = '';
+    qs.forEach(function (item, qi) {
+      var box = document.createElement('div'); box.className = 'rhpp-item';
+      var q = document.createElement('div'); q.className = 'rhpp-q';
+      q.textContent = 'Q' + (qi + 1) + ' · ' + item.q; box.appendChild(q);
+      item.opts.forEach(function (o) {
+        var b = document.createElement('button'); b.type = 'button';
+        b.className = 'rhpp-opt'; b.textContent = o.t;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done') === '1') return;
+          box.setAttribute('data-done', '1');
+          var opts = box.querySelectorAll('.rhpp-opt');
+          Array.prototype.forEach.call(opts, function (s, si) {
+            s.disabled = true;
+            if (item.opts[si] && item.opts[si].ok) s.classList.add('ok');
+          });
+          if (!o.ok) b.classList.add('bad');
+          var why = document.createElement('div'); why.className = 'rhpp-why';
+          why.textContent = o.why || ''; box.appendChild(why);
+          done++; if (o.ok) hits++; score();
+        });
+        box.appendChild(b);
+      });
+      list.appendChild(box);
+    });
+    score();
+  }
+  btn.addEventListener('click', function () {
+    var show = !panel.classList.contains('show');
+    panel.classList.toggle('show', show);
+    btn.classList.toggle('on', show);
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    if (show && !list.children.length) render();
+  });
+  document.getElementById('rhPracticeClose').addEventListener('click', function () {
+    panel.classList.remove('show'); btn.classList.remove('on');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  document.getElementById('rhPracticeReset').addEventListener('click', render);
+})();
+</script>
+<!--rh:practice:end-->
+</body>
+</html>

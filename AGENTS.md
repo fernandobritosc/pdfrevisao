@@ -201,7 +201,10 @@ Onda 5: deploy       (deps: index, changelog) [opcional] — npx surge + HTTP 20
 - **Cache de fontes legais (regra do usuário, 13/10/2026)**: quando o usuário
   **solicitar pesquisa legal**, usar o cache local antes da web (instantâneo) —
   `CF.md` em `Direito Constitucional/Aula 08/`, `L4320.md` (mesma pasta),
-  `L14133.md` em `Direito Administrativo/Aula 07/`, `CLT.md` etc. Se a lei não
+  `L14133.md` em `Direito Administrativo/Aula 07/`,
+  `L8987consol.md` (Lei 8.987/1995 consolidada — texto extraível com PyMuPDF; o
+  arquivo é um PDF da página do Planalto salvo com extensão `.md`, em
+  `Direito Administrativo/Aula 10/`) `CLT.md` etc. Se a lei não
   estiver em cache, baixar o texto oficial (Planalto) e salvar como arquivo
   local na pasta da aula (mesmo padrão do `L14133.md`) para as próximas
   consultas (página da CF no Planalto = 1,8 MB por fetch).
@@ -314,6 +317,11 @@ seguem este padrão** (CSS já portado no `template-sumario.html`):
 Cada questão colada vira um bloco de aprendizado no resumo, na seção temática correta:
 
 - **Conferência da aula de destino (regra do usuário, 24/08/2026)**: antes de processar uma questão do TEC, verificar em qual aula o tema pertence — matérias com aulas sequenciais sobre o mesmo assunto (ex.: "Licitações Públicas" Aula 07 e "Lei 14.133/2021 - Parte 2" Aula 08) podem ter temas distribuídos entre elas. Consultar os arquivos-fonte (.md) e os resumos existentes para identificar a aula correta, e não presumir que é a aula em andamento.
+
+- **Explicação em linguagem simples na conversa (regra do usuário, 08/11/2026)**: toda questão colada recebe, **além** do pipeline normal (conteúdo no resumo + incidência + publicação), uma explicação **aqui no chat**, em linguagem leiga — o que o caso está perguntando, por que a gabaritada está certa e onde está a armadilha — servindo de base para as anotações pessoais do usuário no caderno dele. Essa explicação **NUNCA vai para o resumo** (mantém-se a proibição de referenciar questão/banca/assertiva no arquivo).
+**Ordem da resposta**: explicação primeiro, depois o relatório do que mudou no resumo (ajustável a pedido).
+
+- **Palavras-chave ao fim da explicação (regra do usuário, 08/11/2026)**: toda explicação de questão termina com um bloco **"Palavras-chave"** — termos centrais em **negrito**, uma linha por termo, no formato `**Termo** → traço distintivo | traço | dispositivo`, incluindo sempre uma linha **Armadilha** (a troca que a banca faz). Serve de cópia direta para o caderno do usuário; **não vai para o resumo**.
 
 ```
 📌 Aprendizado    — o que a questão ensina (regra, exceção, distinção)
