@@ -161,7 +161,10 @@
 | 🔄 | Restos a pagar | AFO Aula 14 (parcial 🔄) | só fim de mandato (arts. 41-A/42); falta parte geral |
 | ✅ | Despesas com pessoal e limites | AFO Aula 12 | — |
 | ❌ | Dívida e endividamento público | — | — |
-| ✅ | Lei de Responsabilidade Fiscal | AFO Aulas 11-14 | Partes I-IV completas |
+| ✅ | LRF Parte I — Introdução e planejamento | AFO Aula 11 | Parte I |
+| ✅ | LRF Parte II — Despesa e pessoal | AFO Aula 12 | Parte II |
+| ✅ | LRF Parte III — Transparência e receita | AFO Aula 13 | Parte III |
+| ✅ | LRF Parte IV — Dívida e endividamento | AFO Aula 14 | Parte IV |
 | ❌ | MCASP Parte I | — | — |
 
 **Aulas TJ que cobrem TCE:** 00-06 e 11-14 (orçamento, princípios, ciclo, receita, despesa + LRF completa)  
