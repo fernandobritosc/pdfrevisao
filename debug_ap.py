@@ -1,7 +1,7 @@
 import io, re, os
 from pathlib import Path
 
-REPO_ROOT = Path(r'C:\Programação\pdfrevisao-main\pdfrevisao-main')
+REPO_ROOT = Path(r'C:\Programação\pdfrevisao-main\pdf revisao')
 ROOT = REPO_ROOT / 'Resumo_estudos' / 'Administração Pública e Geral'
 
 BATCH_A = [('Aula 04', 'resumo-aula-04-estrutura-organizacional.html'),

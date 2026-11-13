@@ -335,6 +335,7 @@ Cada questão colada vira um bloco de aprendizado no resumo, na seção temátic
 **Ordem da resposta**: explicação primeiro, depois o relatório do que mudou no resumo (ajustável a pedido).
 
 - **Palavras-chave ao fim da explicação (regra do usuário, 08/11/2026)**: toda explicação de questão termina com um bloco **"Palavras-chave"** — termos centrais em **negrito**, uma linha por termo, no formato `**Termo** → traço distintivo | traço | dispositivo`, incluindo sempre uma linha **Armadilha** (a troca que a banca faz). Serve de cópia direta para o caderno do usuário; **não vai para o resumo**.
+- **Resposta do Treinador no chat (regra do usuário, 10/11/2026)**: o Treinador devolve ao hub, para o chat do usuário, a **explicação leiga** (o que o caso pergunta, por que a alternativa gabaritada está certa e onde está a armadilha) e as **Palavras-chave**. A explicação pode falar da questão (número, banca, assertiva, gabarito). A proibição de referenciar questão/banca/assertiva vale **apenas para o resumo HTML**, nunca para a explicação no chat.
 
 ```
 📌 Aprendizado    — o que a questão ensina (regra, exceção, distinção)
@@ -542,6 +543,6 @@ Fatos fixos desta máquina — não são fluxo, só caminhos e comandos que func
 
 - **Python:** `C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe` (definir `$env:PYTHONIOENCODING="utf-8"` nos builds).
 - **Validador HTML obrigatório:** `C:\Users\uniao\AppData\Local\Temp\opencode\check-html.py` — rodar antes de qualquer deploy; ERROS e ABERTAS têm de dar zero.
-- **Deploy Surge:** `$env:SURGE_LOGIN="fernandobritosc@gmail.com"; & "C:\Program Files\nodejs\npx.cmd" surge "C:\Programação\pdfrevisao-main\pdfrevisao-main\Resumo_estudos" resumos-hermes.surge.sh`. URLs são **case-sensitive** (`Aula%2006`, nunca `AULA%2006`); verificar com `Invoke-WebRequest -Method Head` esperando `200`.
+- **Deploy Surge:** `$env:SURGE_LOGIN="fernandobritosc@gmail.com"; & "C:\Program Files\nodejs\npx.cmd" surge "C:\Programação\pdfrevisao-main\pdf revisao\Resumo_estudos" resumos-hermes.surge.sh`. URLs são **case-sensitive** (`Aula%2006`, nunca `AULA%2006`); verificar com `Invoke-WebRequest -Method Head` esperando `200`.
 - **Git:** branch local é `master`, mas o remoto publicado é `main` — push com `git push origin HEAD:main`. `core.longpaths` já está `true` (nomes de arquivo longos quebravam o `git add -A`).
-- **Raiz real do repo:** `C:\Programação\pdfrevisao-main\pdfrevisao-main` (o diretório `pdfrevisao-main` de fora é pasta duplicada — trabalhar sempre na de dentro).
+- **Raiz real do repo:** `C:\Programação\pdfrevisao-main\pdf revisao` (atenção: o nome tem espaço; `pdfrevisao-main\pdfrevisao-main` não existe — era um stub vazio de 10/11/2026, guardado como `pdfrevisao-main.stub-2026-11-13`, e não deve ser usado).

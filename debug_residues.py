@@ -1,7 +1,7 @@
 import io, re, os
 from pathlib import Path
 
-REPO_ROOT = Path(r'C:\Programação\pdfrevisao-main\pdfrevisao-main')
+REPO_ROOT = Path(r'C:\Programação\pdfrevisao-main\pdf revisao')
 
 # Check a few files from validation output
 files_to_check = [
