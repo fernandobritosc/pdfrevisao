@@ -542,7 +542,7 @@ ideia do usuário) = incidência TEC agregada por matéria.
 Fatos fixos desta máquina — não são fluxo, só caminhos e comandos que funcionam:
 
 - **Python:** `C:\Users\uniao\AppData\Local\Programs\Python\Python314\python.exe` (definir `$env:PYTHONIOENCODING="utf-8"` nos builds).
-- **Validador HTML obrigatório:** `C:\Users\uniao\AppData\Local\Temp\opencode\check-html.py` — rodar antes de qualquer deploy; ERROS e ABERTAS têm de dar zero.
+- **Validador HTML obrigatório:** `C:\Programação\pdfrevisao-main\pdf revisao\tools\check-html.py` — rodar no repo ativo antes de qualquer deploy: `python tools\check-html.py --dir Resumo_estudos --check`; ERROS e ABERTAS têm de dar zero. Não usar a cópia antiga de `Temp\opencode` (valida um arquivo só e dá falso positivo em `<script>`/`<style>`).
 - **Deploy Surge:** `$env:SURGE_LOGIN="fernandobritosc@gmail.com"; & "C:\Program Files\nodejs\npx.cmd" surge "C:\Programação\pdfrevisao-main\pdf revisao\Resumo_estudos" resumos-hermes.surge.sh`. URLs são **case-sensitive** (`Aula%2006`, nunca `AULA%2006`); verificar com `Invoke-WebRequest -Method Head` esperando `200`.
 - **Git:** branch local é `master`, mas o remoto publicado é `main` — push com `git push origin HEAD:main`. `core.longpaths` já está `true` (nomes de arquivo longos quebravam o `git add -A`).
 - **Raiz real do repo:** `C:\Programação\pdfrevisao-main\pdf revisao` (atenção: o nome tem espaço; `pdfrevisao-main\pdfrevisao-main` não existe — era um stub vazio de 10/11/2026, guardado como `pdfrevisao-main.stub-2026-11-13`, e não deve ser usado).
