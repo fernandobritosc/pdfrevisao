@@ -93,7 +93,12 @@ def main():
                 mat, label = friendly(p)
                 if label:
                     rel = p.split("/", 1)[1]  # mudancas.html já vive dentro de Resumo_estudos/
-                    links.append('<a href="%s">📄 %s</a>' % (html.escape(rel), html.escape(label)))
+                    # histórico pode apontar para caminhos que foram movidos/renomeados depois:
+                    # só emite <a href> se o arquivo existe hoje; senão, rótulo sem link (evita 404)
+                    if os.path.exists(os.path.join(REPO, p)):
+                        links.append('<a href="%s">📄 %s</a>' % (html.escape(rel), html.escape(label)))
+                    else:
+                        links.append('<span style="color:var(--text2);">📄 %s</span>' % html.escape(label))
             files = " · ".join(links) if links else '<span style="color:var(--text2);">(index / scripts / docs)</span>'
             items.append(
                 '<div class="card">'
