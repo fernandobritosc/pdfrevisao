@@ -34,6 +34,11 @@ jobs:
           python tools/check-html.py --dir Resumo_estudos --check
         working-directory: ${{ github.workspace }}
 
+      - name: Check links (arquivos e âncoras internas)
+        run: |
+          python tools/check-links.py
+        working-directory: ${{ github.workspace }}
+
       - name: Build search index (verify it works)
         run: |
           python build-search-index.py

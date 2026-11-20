@@ -258,6 +258,8 @@
 
 ---
 
+**Grade de revisão semanal (fixo, com ritual 🧠/🎯):** [ifg-revisao-semanal.md](ifg-revisao-semanal.md) — semanas 0–12 (20/11/2026 → 14/02/2027), alinhada às Fases 1–3 e com a janela TCE-GO marcada.
+
 ## PRÓXIMOS PASSOS
 
 1. **Confirmar inscrição** (24/11–23/12/2026) e cidade de prova

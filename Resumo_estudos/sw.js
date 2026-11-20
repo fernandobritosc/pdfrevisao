@@ -1,7 +1,7 @@
 /* Resumos Hermes — service worker (offline)
    Estratégia: network-first para navegação (conteúdo sempre fresco),
    cache-first para search-index.json e runtime cache para demais. */
-var V = 'rh-v1';
+var V = 'rh-v2';
 var CORE = ['/', '/manifest.webmanifest', '/search-index.json',
             '/icons/icon-192.png', '/icons/icon-512.png', '/icons/icon-180.png'];
 
@@ -43,7 +43,11 @@ self.addEventListener('fetch', function (e) {
   }
 
   if (url.pathname.endsWith('/search-index.json')) {
-    e.respondWith(caches.match(req).then(function (r) { return r || fetch(req); }));
+    e.respondWith(fetch(req).then(function (res) {
+      var cp = res.clone();
+      caches.open(V).then(function (c) { c.put(req, cp); });
+      return res;
+    }).catch(function () { return caches.match(req); }));
     return;
   }
 

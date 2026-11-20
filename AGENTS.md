@@ -82,9 +82,16 @@ TEC coladas em conteúdo de estudo e incrementar a incidência.
    - **NÃO commitar no decorrer da aula ou da revisão** — nem por etapa (conversão,
      resumo, aprendizado TEC) nem a cada bloco de questões. Acumular as mudanças na
      working tree (regra do usuário, 19/08/2026).
-   - Commitar e **`git push origin main` SOMENTE quando o usuário encerrar a aula**
-     — commit único de encerramento, com as mudanças acumuladas.
-   - O `.gitignore` já exclui `*.pdf` e `Resumo_estudos.rar` do versionamento.
+   - **Fim de aula = PR + merge (regra de 20/11/2026)**: o encerramento da aula é um
+     commit de encerramento no branch de trabalho, seguido de **Pull Request → merge
+     na `main`**. O deploy no Surge é **automático** (CI + secrets `SURGE_TOKEN` /
+     `SURGE_DOMAIN` no Actions) — `git push origin main` direto não existe mais na
+     prática; quem publica é a esteira. Quando a aula for publicada pela CI, conferir
+     com `gh run list --branch main --limit 3` e `gh run view <id>` (a run "CI + Deploy
+     Surge" deve ficar verde). Fallback manual: `npx surge ./Resumo_estudos resumos-hermes.surge.sh`
+     na máquina do usuário.
+   - O `.gitignore` já exclui `*.pdf`, `Resumo_estudos.rar`, `node_modules/` e artefatos
+     de teste (`test-results/`, `playwright-report/`, `temp_imgs/`) do versionamento.
 7. **Aulas exclusivas do TCE-GO (regra do usuário, 13/09/2026)**: quando o usuário
    avisar no início que a aula pertence ao TCE, **NÃO criar materia-card** na grade
    `Matérias` do `Resumo_estudos/index.html` — a aula vive só na trilha: link no

@@ -1,4 +1,9 @@
-# Backlog — pendências agendadas
+# Backlog — pendências de conteúdo e estudo
+
+> **Escopo (regra, 20/11/2026):** este arquivo rastreia pendências de **conteúdo de estudo**
+> (aulas, incidência TEC, revisão dirigida, mentoria). Pendências de **manutenção do projeto/site**
+> (dados do index, docs, CI/deploy, decisões travadas) vivem em [PENDENCIAS.md](PENDENCIAS.md).
+> Se encontrar algo que pertence ao outro, mover para lá — não duplicar.
 
 Tarefas deferidas para execução futura por agente. Cada item: contexto suficiente
 para retomar sem depender da conversa original.
