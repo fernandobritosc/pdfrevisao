@@ -7,13 +7,20 @@ Guia de trabalho deste projeto. Leia antes de qualquer tarefa.
 Gerar e manter resumos de estudo para concursos públicos a partir de PDFs de aulas
 (Estratégia Concursos, TEC Concursos, etc.), publicados como HTML navegável.
 
-**Duas trilhas de estudo:**
+**Três trilhas de estudo:**
 - **[TJ/TRT]** — Mentoria, aulas em andamento (trilha original)
 - **[TCE-GO]** — Autodidata, Trilha Estratégica (Prof. Fábio de Castro Dias)
   - Cargo: Técnico de Controle Externo - Técnico Administrativo (A01)
   - Banca: FCC | Prova: 17/01/2027 | Inscrições: 05/10 a 06/11/2026
   - Trilha completa: `Resumo_estudos/tce-go-trilha.html`
   - Mapeamento: `Resumo_estudos/tce-go-trilha.md`
+- **[IFG]** — Concurso Público nº 001/2026 · Assistente em Administração (Cód. 301 · Nível D)
+  - Banca: Instituto AOCP | Prova: 14/02/2027 | Inscrições: 24/11 a 23/12/2026 (taxa R$ 160,00)
+  - Remuneração: R$ 3.181,39 (40h) · 14 vagas (Uruaçu 3, Cidade de Goiás 4, Jataí 2, Senador Canedo 2, Aparecida de Goiânia 1, Formosa 1, Goiânia/Reitoria 1 PCD)
+  - Prova objetiva: 50 questões / 100 pts; mín. 60; Específicos = 20q × peso 3 (mín. 39)
+  - Edital completo (conversão): `docs/edital/ifg-001-2026-assistente-em-administracao.md`
+  - Trilha completa: `Resumo_estudos/ifg-trilha.html`
+  - Mapeamento: `Resumo_estudos/ifg-trilha.md`
 
 ## Estrutura de pastas
 
@@ -39,6 +46,8 @@ PDF Revisão/
 │   │       └── resumo-aula-XX-<tema>.html    ← resumo final no padrão
 │   ├── tce-go-trilha.html             ← painel visual da trilha TCE-GO
 │   ├── tce-go-trilha.md               ← mapeamento completo TCE-GO
+│   ├── ifg-trilha.html                ← painel visual da trilha IFG
+│   ├── ifg-trilha.md                  ← mapeamento completo IFG
 │   └── templates/
 │       ├── template-sumario.html      ← template base do resumo (gerado por build.py)
 │       └── COMO-USAR.md
