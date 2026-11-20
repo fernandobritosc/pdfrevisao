@@ -45,13 +45,13 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
-      # 6. Instala dependências Node (Playwright, Surge)
+      # 6. Instala dependências Node (Surge no deploy-surge usa npx; Playwright NÃO é instalado na CI)
       - name: Install Node dependencies
         run: npm ci
 
-      # 7. Instala browsers Playwright (Chromium + deps)
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+      # A regressão visual (Playwright) NÃO roda na CI — roda localmente na máquina do usuário:
+      #   npm install && npx playwright install chromium && npm test
+      # (economiza ~1–2 min por merge; ci.yml não executa nenhum teste visual)
 
       # 7. Pipeline de build (sem deploy — quem publica é o job deploy-surge)
       - name: Run build pipeline
@@ -60,6 +60,10 @@ jobs:
       # 8. Valida vocabulário (falha se termos proibidos)
       - name: Validate glossary vocabulary
         run: python tools/check-glossary.py --all --strict
+
+      # 8b. Valida links locais do site (existência + âncoras internas)
+      - name: Check links (site)
+        run: python tools/check-links.py
 
       # 9. Site completo (é o que o job de deploy publica)
       - name: Upload site artifact

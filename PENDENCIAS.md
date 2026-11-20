@@ -1,4 +1,9 @@
-# Pendências — Migração visual dos resumos
+# Pendências — manutenção do projeto e do site
+
+> **Escopo (regra, 20/11/2026):** este arquivo rastreia pendências de **manutenção do projeto/site**
+> (dados do index, docs, CI/deploy, decisões travadas). Pendências ligadas ao **conteúdo de estudo**
+> (aulas, incidência TEC, revisão por incidência, mentora) vivem em [BACKLOG.md](BACKLOG.md).
+> Se encontrar algo que pertence ao outro, mover para lá — não duplicar.
 
 **Última atualização:** 20/11/2026
 **Estado:** migração dos 79 resumos concluída, validada e publicada no Surge.
