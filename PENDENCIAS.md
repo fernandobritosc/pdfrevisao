@@ -1,6 +1,6 @@
 # Pendências — Migração visual dos resumos
 
-**Última atualização:** 06/11/2026
+**Última atualização:** 20/11/2026
 **Estado:** migração dos 79 resumos concluída, validada e publicada no Surge.
 **Contexto:** continuidade do processo por etapas (Onda 1 → Ondas 2/3), executado nesta sessão.
 
@@ -29,24 +29,12 @@
 
 ## 2. Pendências (em ordem de prioridade)
 
-### P1 — Data do index · 5 min · bloqueio: aprovação
-- **Arquivo:** [Resumo_estudos/index.html](../Resumo_estudos/index.html) — linha 342
-- **Hoje:** `01/11/2026` · **correto:** `06/11/2026`
-- **Ação:** trocar o `<div class="sc-value date">01/11/2026</div>` e republicar.
-- **Por que não foi feito:** o AGENTS.md manda atualizar a data ao marcar revisão; esta sessão foi manutenção visual, não revisão de aula.
+### P1 — Data do index · ✅ CONCLUÍDA em 20/11/2026
+- **Arquivo:** [Resumo_estudos/index.html](../Resumo_estudos/index.html)
+- **Feito:** contadores do topo atualizados para o estado real do acervo — `82 Aulas resumidas`, `13 Matérias` e `Última atualização · Brasília` = `20/11/2026`. Republicado no Surge via CI (merge do PR da higiene do repositório).
 
-### P2 — Documentar as ferramentas no AGENTS.md · 10 min · bloqueio: aprovação
-Adicionar na seção "Scripts de build" (após `apply-a11y.py`):
-
-```markdown
-- `audit_visual_migration.py` → só leitura: agrupa os resumos por folha de estilo
-  e aponta o que falta do padrão travado (tokens, justify, dark, numeral, card, th).
-- `apply-visual-migration.py` → aplica a migração por ondas:
-  `--wave swap-a` (variantes com 3+ páginas), `--wave swap-b` (variantes isoladas),
-  `--wave tokens` (bloco `#rh-mat`), `--wave dark` (numeral no dark),
-  `--wave extras` (limpa/preserva `#rh-page-extra`). `--dry-run` lista tudo antes;
-  preserva regras próprias de página e é idempotente (2ª execução = 0 arquivos).
-```
+### P2 — Documentar as ferramentas no AGENTS.md · ✅ CONCLUÍDA em 20/11/2026
+- **Feito:** seção "Scripts de build" (ambiente opencode, após `apply-a11y.py`) passou a documentar `audit_visual_migration.py` (só leitura), `apply-visual-migration.py` (ondas swap-a/swap-b/addons), `migrate_*.py` (uso único, não re-executar), `tools/check-html.py`, `tools/validate-all.py`, `tools/check-glossary.py`, `tools/apply_shared.py` e utilitários ad-hoc de `tools/`. Também registra a remoção dos scripts de bancada (`test_*.py`, `debug_*.py`, `tmp_*`) do Git em 20/11/2026.
 
 ### P3 — Borda azul inline em 5 cards da Administração Pública · 10 min · bloqueio: aprovação (conteúdo)
 - **Páginas:** AP Aulas 00, 01, 04, 05 e 06

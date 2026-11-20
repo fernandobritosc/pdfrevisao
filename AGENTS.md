@@ -160,6 +160,32 @@ e comandos `gsd-*`). Em uma máquina nova, após clonar o repositório, faça:
       aria-live="polite"` nos contadores de busca/prática e fallback de cor antes do
       `color-mix` (iOS < 16.2). Idempotente por `id="rh-nav-mobile"`; rodar após
       regenerar resumos pelo template.
+    - `audit_visual_migration.py` → **só leitura**: agrupa os resumos por folha de
+      estilo e aponta o que falta do padrão travado (tokens, justify, dark, numeral
+      de seção, card, `th` com `scope="col"`). Usar como diagnóstico antes de
+      qualquer migração visual em lote.
+    - `apply-visual-migration.py` → aplica a migração visual por ondas:
+      `--wave swap-a` (variantes com 3+ páginas), `--wave swap-b` (variantes
+      isoladas), `--wave addons` (alinhamento de `rh-addons`). Idempotente; sempre
+      precedido pelo `audit_visual_migration.py`.
+    - `migrate_*.py` (`migrate_afo.py`, `migrate_all_subjects.py`, `migrate_ap06_visual.py`,
+      `migrate_ap_lote.py`, `migrate_sketchnote_fonts.py`) → **migrações de uso único**
+      (ondas 1/2/3, já executadas). Não rodar de novo sem ler o contexto em
+      `PENDENCIAS.md` — existem para consulta histórica.
+    - `tools/check-html.py` → validador de balanceamento de tags HTML (rodado no CI,
+      gate mínimo; `--dir Resumo_estudos --check`).
+    - `tools/validate-all.py` → validação completa local (fontes, grids, resíduos
+      de migração). Tem dívida antiga conhecida — falhar nele não bloqueia o CI.
+    - `tools/check-glossary.py --all --strict` → valida vocabulário do GLOSSARY
+      (rodado no CI; exit 0 obrigatório).
+    - `tools/apply_shared.py` → helpers compartilhados pelos `apply-*.py`
+      (idempotência por marcadores). Utilitários ad-hoc em `tools/`
+      (`find_sec.py`, `list_secs*.py`, `download_imgs.py`, `fix_nav.py`,
+      `add_next.py`, `resumo.py`) são de uso sob demanda — não são pipeline.
+    - Scripts de bancada (`test_*.py`, `debug_*.py`, `tmp_*`) foram **removidos do
+      Git em 20/11/2026** (commit "Higiene do repositório"); o histórico preserva
+      o conteúdo. Quando precisar recriar testes, usar `tests/` (visual-regression)
+      e não a raiz.
 3. **MCP**: nenhum servidor MCP é obrigatório para este projeto. Se o usuário
    configurar algum no futuro, registrar aqui (nome, `type`, `command`).
 4. **Restart**: após qualquer mudança em config do opencode, reiniciar o opencode.
