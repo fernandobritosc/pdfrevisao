@@ -76,6 +76,7 @@ De `BACKLOG.md`:
 
 ### P9 — Conferir a CI após o push
 - `.github/workflows/ci.yml` roda em push para `main`: build + testes + validação e, em seguida, o job **deploy-surge** publica o artefato `site`.
+- ⚠️ **2026-11-20:** o job `deploy-surge` falha na main (run 44668869370, step "Deploy no Surge"). Causa provável: o repositório **não tem nenhum secret registrado** em *Settings → Secrets and variables → Actions* (`SURGE_LOGIN`, `SURGE_TOKEN` e `SURGE_DOMAIN`). Sem eles o `npx surge` não autentica. Enquanto não forem criados, publicar localmente na máquina do usuário: `npx surge ./Resumo_estudos resumos-hermes.surge.sh` (funciona lá porque o login do surge já existe em `~/.netrc`).
 - Após o push, conferir a execução: `gh run list --branch main --limit 3` e `gh run view <id>`.
 - O deploy manual já foi feito; a CI republica o mesmo conteúdo montado a partir de `Resumo_estudos`.
 
